@@ -13,7 +13,8 @@ been released yet.
 - None.
 
 ### Added functions
-- None.
+- `find_nonfunctional_pkgs()` to find nonfunctional packages.
+- `get_details_pkgs()` to get details of installed packages.
 
 ### Minor improvements
 - None.
