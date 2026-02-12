@@ -17,11 +17,21 @@ Get details about installed packages
 
 Re-check cleaning \code{SystemRequirements}: now still yields a separate column.
 
+See also \code{progutils_knip::check_status_DEFUNCT()}.
+
 Implement saving data as a csv-file using \code{progutils::save_file()}.
 }
 
 \seealso{
-Other get information about packages: 
-\code{\link{find_nonfunctional_pkgs}()}
+\code{\link[tools:CRANtools]{tools::CRAN_package_db()}} for information about current and archived packages
+in the CRAN package repository; \code{\link[BiocManager:available]{BiocManager::available()}} for information
+about current packages in the Bioconductor and CRAN package repositories.
+
+The vignette \emph{Instructions about R packages}:
+\code{vignette("r_pkgs", package = "checkrpkgs")}.
+
+Other functions to get information about packages: 
+\code{\link{find_nonfunc_pkgs}()},
+\code{\link{list_dependencies}()}
 }
-\concept{get information about packages}
+\concept{functions to get information about packages}

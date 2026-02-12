@@ -5,10 +5,20 @@
 #' [invisibly][invisible()].
 #'
 #' @family
-#' get information about packages
+#' functions to get information about packages
+#'
+#' @seealso
+#' [tools::CRAN_package_db()] for information about current and archived packages
+#' in the CRAN package repository; [BiocManager::available()] for information
+#' about current packages in the Bioconductor and CRAN package repositories.
+#'
+#' The vignette *Instructions about R packages*:
+#' `vignette("r_pkgs", package = "checkrpkgs")`.
 #'
 #' @section Wishlist:
 #' Re-check cleaning `SystemRequirements`: now still yields a separate column.
+#'
+#' See also `progutils_knip::check_status_DEFUNCT()`.
 #'
 #' Implement saving data as a csv-file using `progutils::save_file()`.
 #'
