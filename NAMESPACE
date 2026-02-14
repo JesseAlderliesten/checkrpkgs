@@ -2,5 +2,4 @@
 
 export(find_nonfunc_pkgs)
 export(get_details_pkgs)
-export(list_dependencies)
 importFrom(utils,installed.packages)

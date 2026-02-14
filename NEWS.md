@@ -18,7 +18,6 @@ been released yet.
 ### Added functions
 - `find_nonfunctional_pkgs()` to find non-functional packages.
 - `get_details_pkgs()` to get details of installed packages.
-- `list_dependencies()` to list dependencies of packages.
 
 ### Minor improvements
 - None.
