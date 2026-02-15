@@ -2,58 +2,55 @@
 #'
 #' Function to check for non-installed or non-functional packages.
 #'
-#' @param pkgs A character vector with names of packages to be checked or file
-#' paths to their directories, see `Details`.
-#' @param quietly `TRUE` or `FALSE`: suppress printing warnings when loading
+#' @param pkgs A character vector with names of packages to be checked, or
+#' ending in such names, see `Details`.
+#' @param quietly `TRUE` or `FALSE`: suppress warnings when loading
 #' installed non-functional packages?
 #'
 #' @details
 #' The part after the last forward or backward slash is considered to be the
-#' package name if names contain such slashes. Therefore the file path to
-#' packages can be used as input to `pkgs`, and packages from
-#' [GitHub](https://github.com/) can be in the format `username/repository` or
-#' `repository`, where `repository` is the package name.
+#' package name if input to `pkgs` contains such slashes. Therefore the package
+#' name, the file path to packages, and the full URL to packages from
+#' [GitHub](https://github.com/) can all be used as input to `pkgs`.
 #'
 #' Packages are looked for in the library paths given by [.libPaths()].
 #'
 #' @returns
-#' `character(0)` if all packages in `pkgs` are installed and functional, or a
-#' character vector containing the names of packages in `pkgs` that are not
-#' installed or are installed but non-functional (with a warning), returned
-#' [invisibly][invisible].
+#' A character vector containing the names of packages in `pkgs` that are not
+#' installed or are installed but non-functional, with a warning. `character(0)`
+#' if all packages in `pkgs` are installed and functional.
 #'
 #' @section Side effects:
 #' Packages are [loaded][loadNamespace()], such that [updating][update.packages()]
-#' packages might fail if they are not unloaded first. A message is emitted
-#' urging to restart \R to prevent this.
-#'
-#' @section Notes:
-#' This function uses [find.package()] and [requireNamespace()] instead of
-#' [installed.packages()], because `installed.packages()` does not check if
-#' packages are functional, nor if all needed [dependencies][list_dependencies()]
-#' are installed and functional. In addition, `installed.packages()` can be slow
-#' such that its [help page][installed.packages()] states that
-#' [requireNamespace()] or [require()] should be used instead.
+#' them might fail. Restart \R to prevent such problems.
 #'
 #' @section Programming notes:
+#' This function uses [find.package()] and [requireNamespace()] instead of
+#' [installed.packages()] because `installed.packages` does not check if
+#' packages are functional, nor if all needed
+#' [dependencies][tools::package_dependencies()] are installed and functional.
+#' In addition, `installed.packages()` can be slow such that its
+#' [help page][installed.packages()] states that [requireNamespace()] or
+#' [require()] should be used instead.
+#'
 #' Setting environment variable `_R_TRACE_LOADNAMESPACE_` to a numerical value
 #' (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will generate additional
-#' messages on progress for non-standard packages, see section `Tracing` in
+#' messages on progress for non-standard packages, see the section `Tracing` in
 #' [requireNamespace()].
 #'
-#' [requireNamespace()] does not have an effect for a package that is already
-#' loaded.
-#'
-#' @section To do:
-#' Use shorter function name?
-#'
-#' Run R CMD check
-#'
 #' @seealso
-#' `options("defaultPackages")` for a list with the names of packages are
-#' attached by default when \R starts up; `tools::standard_package_names()`
-#' (present since \R 4.4.0) for a list with the names of the base and
-#' recommended packages.
+#' `tools::package_dependencies(..., recursive = TRUE)` for dependencies and
+#' `tools::dependsOnPkgs(..., recursive = TRUE)` for reverse dependencies;
+#' `tools::standard_package_names()` (present since \R 4.4.0) for names of the
+#' base and recommended packages.
+#'
+#' [old.packages()] and `BiocManager::valid()` to check for outdated or too new
+#' packages, where the latter takes the currently used version of Bioconductor
+#' into account.
+#'
+#' `options("defaultPackages")` for names of packages that are attached by
+#' default when \R starts up; [loadedNamespaces()] and [utils::sessionInfo()]
+#' for names of packages that are currently loaded.
 #'
 #' The vignette *Instructions about R packages*:
 #' `vignette("r_pkgs", package = "checkrpkgs")`.
@@ -63,7 +60,6 @@
 #'
 #' @examples
 #' find_nonfunc_pkgs(pkgs = c("base", "grid"), quietly = FALSE)
-#' find_nonfunc_pkgs(pkgs = list("methods", "stats4"), quietly = TRUE)
 #'
 #' non_existent_pkgs <- c("yz/wx/abcdef4", "wx/abcdef3", "abcdef2", "abcdef1")
 #' find_nonfunc_pkgs(non_existent_pkgs, quietly = FALSE)
@@ -120,5 +116,5 @@ find_nonfunc_pkgs <- function(pkgs, quietly = FALSE) {
   }
 
   message("Restart R to prevent problems arising from updating loaded packages!")
-  invisible(names_problem)
+  names_problem
 }
