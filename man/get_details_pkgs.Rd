@@ -4,34 +4,54 @@
 \alias{get_details_pkgs}
 \title{Get details about installed packages}
 \usage{
-get_details_pkgs()
+get_details_pkgs(
+  lib.loc = NULL,
+  priority = NULL,
+  fields = c("Additional_repositories", "Repository", "SystemRequirements", "URL")
+)
+}
+\arguments{
+\item{lib.loc}{
+    character vector describing the location of \R library trees to
+    search through, or \code{NULL} for all known trees
+    (see \code{\link{.libPaths}}).
+  }
+
+\item{priority}{
+    character vector or \code{NULL} (default).  If non-null, used to
+    select packages; \code{"high"} is equivalent to
+    \code{c("base", "recommended")}.  To select all packages without an
+    assigned priority use \code{priority = NA_character_}.
+  }
+
+\item{fields}{a character vector giving the fields to extract from
+    each package's \file{DESCRIPTION} file in addition to the default
+    ones, or \code{NULL} (default).  Unavailable fields result in
+    \code{NA} values.}
 }
 \value{
-A matrix containing the details of the installed packages, returned
-\link[=invisible]{invisibly}.
+A matrix containing the details of the installed packages.
 }
 \description{
-Get details about installed packages
+Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get slightly more information
+about the origin of packages.
 }
-\section{Wishlist}{
+\section{Programming notes}{
 
-Re-check cleaning \code{SystemRequirements}: now still yields a separate column.
-
-See also \code{progutils_knip::check_status_DEFUNCT()}.
-
-Implement saving data as a csv-file using \code{progutils::save_file()}.
+\code{SystemRequirements} is a messy column that makes it difficult to convert the
+data to a neat csv-file, see the code of \code{count_syst_req()} in
+\code{checkrpkgs_knip::count_syst_req.R} for a stub to address that.
 }
 
 \seealso{
 \code{\link[tools:CRANtools]{tools::CRAN_package_db()}} for information about current and archived packages
-in the CRAN package repository; \code{\link[BiocManager:available]{BiocManager::available()}} for information
+in the CRAN package repository; \code{BiocManager::available()} for information
 about current packages in the Bioconductor and CRAN package repositories.
 
 The vignette \emph{Instructions about R packages}:
 \code{vignette("r_pkgs", package = "checkrpkgs")}.
 
 Other functions to get information about packages: 
-\code{\link{find_nonfunc_pkgs}()},
-\code{\link{list_dependencies}()}
+\code{\link{find_nonfunc_pkgs}()}
 }
 \concept{functions to get information about packages}
