@@ -37,28 +37,31 @@ of that package.
 
 ## Obtaining packages
 R packages can be obtained from various repositories, which commonly also
-provide thematic selections of packages:
+provide thematic collections of packages:
 
 - [Bioconductor](https://bioconductor.org/) with 
-  [thematic lists](https://bioconductor.org/packages/release/BiocViews.html#___Software);
-- [CRAN](https://cran.r-project.org/web/packages/index.html); with thematic
-  lists organised in [taskviews](https://cran.r-project.org/web/views/): to
-  install or update all core packages from a
-  [taskview](https://cran.r-project.org/web/views/), install package
-  [ctv](https://CRAN.R-project.org/package=ctv) and run
+  [thematic collections](https://bioconductor.org/packages/release/BiocViews.html#___Software);
+- [CRAN](https://cran.r-project.org/web/packages/index.html) or any of its
+  [mirrors](https://cran.r-project.org/mirrors.html) (i.e., websites hosted in
+  various parts of the world with the same content as the main CRAN website;
+  with thematic collections organised in
+  [taskviews](https://cran.r-project.org/web/views/): to install or update all
+  core packages from a [taskview](https://cran.r-project.org/web/views/),
+  install package [ctv](https://CRAN.R-project.org/package=ctv) and run
   `ctv::install.views("taskviewname", coreOnly = TRUE)` or
-  `ctv::update.views("taskviewname", coreOnly = TRUE)`, respectively; see also
-  the section 'CRAN mirrors' below. CRAN packages that have been recently
-  archived are available at [CRANhaven](https://www.cranhaven.org/);
+  `ctv::update.views("taskviewname", coreOnly = TRUE)`, respectively; CRAN
+  packages that have been recently archived are available at
+  [CRANhaven](https://www.cranhaven.org/);
 - [Neuroconductor](https://neuroconductor.org/list-packages/all);
 - [R-Forge](https://r-forge.r-project.org/) with a 
   [GitHub mirror](https://github.com/r-forge) and 
-  [thematic lists](https://r-forge.r-project.org/softwaremap/trove_list.php);
+  [thematic collections](https://r-forge.r-project.org/softwaremap/trove_list.php);
 - [R-multiverse](https://r-multiverse.org/overview.html) with
-  [thematic lists](https://r-multiverse.org/topics/);
+  [thematic collections](https://r-multiverse.org/topics/);
 - [rOpenSci](https://ropensci.org/packages/all/) with
-  [thematic lists](https://ropensci.org/packages/);
-- [R universe](https://r-universe.dev/search).
+  [thematic collections](https://ropensci.org/packages/);
+- [R universe](https://r-universe.dev/search) with an overview of
+  [datasets](https://r-universe.dev/datasets) included in R packages.
 
 In addition, many R packages are available from [GitHub](https://github.com/).
 
@@ -81,13 +84,13 @@ the packages from source, see the section 'Rtools' in the vignette
 The function `install_version()` from package
 [remotes](https://CRAN.R-project.org/package=remotes) can be used to install an
 old version of a package:
-`remotes::install_version("deSolve", version = "1.40", upgrade = "ask")`.
+`remotes::install_version(<pkgname>, version = "1.40", upgrade = "ask")`.
 
 The installation page of CRAN packages gives URLs pointing to older versions at
 `Downloads` > `Old sources` > `<pkgname> archive`. That URL can be used to
 install older versions using base R. For example, to install an older version of
 package [deSolve](https://CRAN.R-project.org/package=deSolve):
-`install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz", lib = .libPaths()[1], repos = NULL, type = "source")`.
+`install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz", repos = NULL, type = "source")`.
 
 Older versions of [Bioconductor](https://bioconductor.org/) packages can be
 found by visiting the appropriate version of Bioconductor, e.g.,
@@ -119,13 +122,11 @@ expressions. The fuzzy matching can be disabled by setting argument `agrep` to
 ### Already-installed packages
 The locations where packages have been installed can be obtained with
 `.libPaths()`, and the names of all installed packages can be obtained with
-`unique(c(list.files(path = .libPaths(), recursive = FALSE)))`. This output can
-be used to re-install the packages after upgrading to a new version of R and to
-delete the old packages after the new packages have been installed.
-
-#### To do
-- How to preserve source of the packages, to be able to re-install packages from
-  GitHub? See my InstallPkgs::check_duplicates()?
+`list.files(path = .libPaths(), recursive = FALSE)`. The repository from which a
+package was installed can be obtained from the `Repository` and `URL` fields of
+package descriptions: `installed.packages(fields = c("Repository", "URL"))`.
+This output can be used to re-install the packages after installing a new
+version of R.
 
 Information on a package and its functions is available from within R after the
 package has been installed and loaded (i.e., `library(<pkgname>)` has been run):
@@ -210,7 +211,8 @@ non-exported functions should *not* be used in code you write: they are
 non-exported because they might change.
 
 ### getAnywhere
-A more robust alternative is using `getAnywhere("<funcname>")`: that function
+A more robust alternative to the basic method outlined above is using
+`getAnywhere("<funcname>")`: that function
 looks in more places and finds internal functions without the need to specify
 in which package a function is defined. Although the quotes around the function
 name are not necessary when looking for normal functions, they are required when
@@ -218,26 +220,26 @@ looking for the source code of operators such as `%in%`, such that it is most
 robust to always use them.
 
 #### UseMethod
-If `getAnywhere("<funcname>")` returns `UseMethod("<funcname>")`, the function is
-[S3-generic](https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation)
-and has different methods for different object classes. Use
-`methods("<funcname>")` to get an overview of the available methods and then use
-`getAnywhere("<function.class>")`, where `<function.class>` is an item from the
-overview returned by `methods("<funcname>")`, to obtain the source code of a
+If `getAnywhere("<funcname>")` returns `UseMethod("<funcname>")`, the function
+has different methods for different object classes and is
+[S3-generic](https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation).
+Use `methods("<funcname>")` to get an overview of the available methods and then
+use `getAnywhere("<function.class>")`, where `<function.class>` is an item from
+the overview returned by `methods("<funcname>")`, to obtain the source code of a
 particular method. For example, `getAnywhere("mean")` returns
 `function (x, ...) UseMethod("mean")`. Using `methods("mean")` returns
 `mean.Date`, `mean.default`, and other methods. Then using
 `getAnywhere("mean.Date")` returns the source code for the method used with
 objects of class 'Date', and `getAnywhere("mean.default")` returns the source
 code for the default method (i.e., the method used with objects of classes not
-listed in the output of `methods("mean")`). If the overview of `methods(...)`
-includes the remark `Non-visible functions are asterisked`, it means that these
-functions are not exported and you need to use `getAnywhere("<method.class>")`
-or `<pkgname>:::<method.class>`.
+listed in the output of `methods("mean")`). If the overview of
+`methods(<funcname>)` includes the remark `Non-visible functions are asterisked`,
+it means that these functions are not exported and you need to use
+`getAnywhere("<method.class>")` or `<pkgname>:::<method.class>`.
 
 #### standardGeneric
 If `getAnywhere("<funcname>")` returns `standardGeneric("<funcname>")`, the
-function is an S4-function and has different methods for different object
+function has different [S4-methods][methods::Introduction] for different object
 classes. Use `showMethods("<funcname>")` to get an overview of the available
 methods (or `<pkgname>:::<funcname>` to get an overview of the available methods
 from package `<pkgname>`) and then obtain the source code of a particular method
@@ -258,12 +260,12 @@ source code for that particular method:
 If `getAnywhere("<funcname>")` returns `.Internal` or `.Primitive`, the function
 is internal or primitive. The source code of such functions can only be viewed
 at the code repositories such as [GitHub](https://github.com/r-devel/r-svn/).
-Locate the file 'src/main/names.c' and look in the first column (which gives the
-name of the R function) for the function name to find the appropriate c-entry
-which is given in the second column of that file. Then either search for that
-c-entry using the GitHub search, or manually locate the c-file (the name of the
-file is the c-entry without the prefix 'do_') in 'src/main' to get the file with
-the source code. For example, `getAnywhere("matrix")` shows, among others, the line
+Locate the file 'src/main/names.c' and look in the first column for the name of
+the R function to find the appropriate c-entry which is given in the second
+column of that file. Then either search for that c-entry using the GitHub
+search, or manually locate the c-file (the name of the file is the c-entry
+without the prefix 'do_') in 'src/main' to get the file with the source code.
+For example, `getAnywhere("matrix")` shows, among others, the line
 `.Internal(matrix(data, nrow, ncol, byrow, dimnames, missing(nrow), missing(ncol)))`.
 The file
 [src/main/names.c](https://github.com/r-devel/r-svn/blob/main/src/main/names.c)
@@ -273,30 +275,26 @@ Searching 'src/main' for 'matrix' gives file
 [array.c](https://github.com/r-devel/r-svn/blob/main/src/main/array.c) as one of
 the results. That file contains the source code of 'matrix'. Similarly,
 `getAnywhere("log10")` shows `function (x)  .Primitive("log10")`. The file
-'src/main/names.c' has as entry with 'log10' in the first column:
+[src/main/names.c](https://github.com/r-devel/r-svn/blob/main/src/main/names.c)
+has as entry with 'log10' in the first column:
 `{"log10",	do_log1arg,	10,	1,	1,	{PP_FUNCALL, PREC_FN,	0}}`. Searching
-'src/main' for log1arg gives file 'arithmetic.c' as one of its results. That
-file contains the source code of `log10`.
+'src/main' for 'log1arg' gives file
+[arithmetic.c](https://github.com/r-devel/r-svn/blob/main/src/main/arithmetic.c)
+as one of its results. That file contains the source code of `log10`.
 
 #### .Call
 If `getAnywhere("<funcname>")` returns code that contains `.Call(...)`, the
 function contains a call to C or C++ code. Although the file `src/<pkgname>.h`
-(e.g., `src/stats.h` if code is from package `stats`) contains an overview of
-the C/C++ code included in a package, your best bet for finding the source code
-is using the GitHub search, or installing the package from source and search in
-the `src` folder of the downloaded code.
-
-
-## CRAN mirrors
-A list of CRAN mirrors (i.e., websites hosted in various parts of the world with
-the same content as the main CRAN website) is available at
-https://cran.r-project.org/mirrors.html, with information about their
-[status](https://cran.r-project.org/mirmon_report.html) that is also available
-from within R through `utils::getCRANmirrors()`.
+(e.g.,
+[src/stats.h](https://github.com/r-devel/r-svn/tree/main/src/library/stats/src)
+if code is from package `stats`) contains an overview of
+the C or C++ code included in a package, your best bet for finding the source
+code is using the GitHub search, or installing the package from source and
+search in the `src` folder of the downloaded code.
 
 
 ## Troubleshooting
-Note that package names, just like everything else in R, are case-sensitive.
+Note that package names are case-sensitive, just like everything else in R.
 
 If errors occur when loading packages that require Java, make sure the 64-bit
 version of Java is installed on 64-bit PCs. The different Java versions are
