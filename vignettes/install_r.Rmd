@@ -18,10 +18,9 @@ knitr::opts_chunk$set(
 ```
 
 
-## Introduction
+## Introduction and notation
 This vignette contains instructions on installing and configuring R, RStudio,
-and Rtools. It also provides an overview of functions to get information about
-the used R installation.
+and Rtools.
 
 In this vignette, `<pkgname>` is used to refer to a package name that should be
 filled in to get working code, e.g., `<pkgname>` should be replaced with `grid`
@@ -107,7 +106,7 @@ the `Note` in `help(win.version)`).
 ## RStudio
 [RStudio](https://posit.co/products/open-source/rstudio/?sid=1) is an
 [integrated development environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
-for R that can be [downloaded here](https://posit.co/download/rstudio-desktop/).
+for R that can be downloaded [here](https://posit.co/download/rstudio-desktop/).
 
 After installing RStudio, start RStudio, go to `Tools` > `Global Options` >
 `General` and *de*select the option `Restore .RData into workspace at startup`
@@ -122,12 +121,11 @@ usually fixes that without the need to actually reset the shortcuts.
 
 The appearance of code can be changed at `Tools` > `Global options` >
 `Appearance`. The default Editor theme is the light `Textmate`, another nice
-light Editor theme is `Xcode`. I like dark Editor theme `Tomorrow Night Bright`,
-`Idle Fingers`, or `Pastel On Dark`,
-with Editor fonts `Consolas`, `Cacadia Mono Light`, or `Lucida Console`. To
-check that characters in a typeface or font can be properly distinguished from
-each other when choosing a font, for example using
-[Adobe Fonts](https://fonts.adobe.com/) or
+light Editor theme is `Xcode`. I like dark Editor themes `Tomorrow Night Bright`,
+`Idle Fingers`, or `Pastel On Dark`, with Editor fonts `Consolas`,
+`Cacadia Mono Light`, or `Lucida Console`. To check that characters in a
+typeface or font can be properly distinguished from each other when choosing a
+font, for example using [Adobe Fonts](https://fonts.adobe.com/) or
 [Google Fonts](https://fonts.google.com/), the following string groups together
 characters that in some fonts are similar in appearance:
 `71lI|i/ oQO0D gq B8 S5 Z2 ijy4 ., :; "'' __ cldcIdc|dc1d rnm UVVWuvvw`. The
@@ -155,19 +153,25 @@ string):
 
 ## Rtools
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) is *not* an R package
-but is software: the toolchain bundle used to build R packages from source. It
-is needed to install packages that are distributed as source files ('to install
+but software: the toolchain bundle used to build R packages from source. It is
+needed to install packages that are distributed as source files ('to install
 packages from source'): packages from [GitHub](https://github.com/) and *older*
-versions of packages from other repositories (see the section 'Installing older
-versions' in the vignette *Instructions about R packages* for instructions:
-`vignette("r_pkgs", package = "checkrpkgs")`). Rtools is *not* needed to install
-current versions of packages from [CRAN](https://cran.r-project.org/) or
+versions of packages from
+[CRAN](https://cran.r-project.org/web/packages/index.html) (see the section
+'Installing packages' in the vignette *Instructions about R packages* for
+instructions: `vignette("r_pkgs", package = "checkrpkgs")`). Rtools is *not*
+needed to install current versions of packages from
+[CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/) on Windows.
 
 To install Rtools, download the version appropriate for the installed version of
 R (see `R.version.string`) from a [CRAN website](https://cran.r-project.org/)
 via `Download R for Windows` > `Rtools` > `RTools X.Y` and set it up using the
-instructions given there.
+instructions given there. See also the 
+[HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.5.html) by Tomas
+Kalibera. Alternatively, `pkgbuild::check_build_tools(debug = TRUE)` and
+`cmdstanr::check_cmdstan_toolchain(fix = TRUE)` can be used to check and install
+Rtools.
 
 
 ## Documentation and help
@@ -191,5 +195,5 @@ instructions given there.
   [R Contribution Working Group](https://contributor.r-project.org/);
 - [RStudio user guide](https://docs.posit.co/ide/user/) by
   [Posit](https://posit.co/);
-- A few [search engines](https://cran.r-project.org/search.html) specific for R;
+- [search engines](https://cran.r-project.org/search.html) specific for R;
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the r-tag.
