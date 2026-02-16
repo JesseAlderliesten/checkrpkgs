@@ -431,6 +431,7 @@ searching in the `src` folder of the downloaded code.
 
 
 ## Documentation and help
+- [search engines](https://cran.r-project.org/search.html) specific for R;
 - The [instructions](https://bioconductor.org/install/) on installing
   [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
   packages.
