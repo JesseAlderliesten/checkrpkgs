@@ -36,6 +36,10 @@ A matrix containing the details of the installed packages.
 Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get slightly more information
 about the origin of packages.
 }
+\examples{
+get_details_pkgs(priority = "base")
+
+}
 \seealso{
 \code{\link[tools:CRANtools]{tools::CRAN_package_db()}} for information about packages available from
 \href{https://cran.r-project.org/web/packages/index.html}{CRAN};

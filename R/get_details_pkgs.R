@@ -21,6 +21,7 @@
 #' `vignette("r_pkgs", package = "checkrpkgs")`.
 #'
 #' @examples
+#' get_details_pkgs(priority = "base")
 #'
 #' @export
 get_details_pkgs <- function(lib.loc = NULL, priority = NULL,
