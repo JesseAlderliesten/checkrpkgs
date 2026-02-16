@@ -14,9 +14,11 @@ ending in such names, see \code{Details}.}
 installed non-functional packages?}
 }
 \value{
-A character vector containing the names of packages in \code{pkgs} that are not
-installed or are installed but non-functional, with a warning. \code{character(0)}
-if all packages in \code{pkgs} are installed and functional.
+A list of length two, with elements 'absent' and 'nonfunc' containing
+character vectors with the names of packages in \code{pkgs} that are not installed
+or are installed but non-functional, with a warning. The elements are
+\code{character(0)} if all packages in \code{pkgs} are present, and if all packages
+are installed and functional, respectively.
 }
 \description{
 Function to check for non-installed or non-functional packages.

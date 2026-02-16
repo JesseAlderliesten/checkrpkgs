@@ -16,9 +16,11 @@
 #' Packages are looked for in the library paths given by [.libPaths()].
 #'
 #' @returns
-#' A character vector containing the names of packages in `pkgs` that are not
-#' installed or are installed but non-functional, with a warning. `character(0)`
-#' if all packages in `pkgs` are installed and functional.
+#' A list of length two, with elements 'absent' and 'nonfunc' containing
+#' character vectors with the names of packages in `pkgs` that are not installed
+#' or are installed but non-functional, with a warning. The elements are
+#' `character(0)` if all packages in `pkgs` are present, and if all packages
+#' are installed and functional, respectively.
 #'
 #' @section Side effects:
 #' Packages are [loaded][loadNamespace()], such that [updating][update.packages()]
@@ -85,8 +87,9 @@ find_nonfunc_pkgs <- function(pkgs, quietly = FALSE) {
   names_absent <- pkgs_input[bool_absent]
 
   if(all(bool_absent)) {
+    # No need to look for non-functional packages if all are absent
     bool_nonfunc <- !bool_absent # Special case where all are absent: all FALSE
-    names_problem <- names_absent
+    names_nonfunc <- character(0)
   } else {
     if(quietly) {
       bool_nonfunc <- suppressWarnings(suppressPackageStartupMessages(
@@ -99,23 +102,24 @@ find_nonfunc_pkgs <- function(pkgs, quietly = FALSE) {
                 FUN.VALUE = logical(1), lib.loc = NULL, quietly = quietly)
       )
     }
-    names_problem <- pkgs_input[bool_absent | bool_nonfunc]
+    names_nonfunc <- (pkgs[!bool_absent])[bool_nonfunc]
   }
 
-  names_nonfunc <- (pkgs_input[!bool_absent])[bool_nonfunc]
-  if(length(names_problem) > 0L) {
+  if(any(bool_absent) || any(bool_nonfunc)) {
     warn_text <- character(0)
-    if(length(names_absent) > 0L) {
-      warn_text <- c(warn_text, paste0("non-installed packages: ",
-                                       progutils::paste_quoted(names_absent)))
+    if(any(bool_absent)) {
+      warn_text <- c(warn_text,
+                     paste0("non-installed packages: ",
+                            progutils::paste_quoted(names_absent)))
     }
-    if(length(names_nonfunc) > 0L) {
-      warn_text <- c(warn_text, paste0("installed non-functional packages: ",
-                                       progutils::paste_quoted(names_nonfunc)))
+    if(any(bool_nonfunc)) {
+      warn_text <- c(warn_text,
+                     paste0("installed non-functional packages: ",
+                            progutils::paste_quoted(names_nonfunc)))
     }
     warning(progutils::wrap_text(paste0(warn_text, collapse = "; ")))
   }
 
   message("Restart R to prevent problems arising from updating loaded packages!")
-  names_problem
+  list(absent = names_absent, nonfunc = names_nonfunc)
 }
