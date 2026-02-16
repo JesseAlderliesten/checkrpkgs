@@ -7,10 +7,12 @@ been released yet.
 - Nothing.
 
 ### Breaking changes
-- Added dependencies on `checkinput` (version 0.0.6 or higher) and `progutils`
-  (version 0.0.2 or higher).
+- Added dependencies `checkinput` (version 0.0.6 or higher) and `progutils`
+  (version 0.0.2 or higher) in `Depends`, and `BiocManager` in `Suggests`.
 - Imported `utils::installed.packages`.
-- Renamed `find_nonfunctional_pkgs()` to `find_nonfunc_pkgs()`.
+- Renamed `find_nonfunctional_pkgs()` to `find_nonfunc_pkgs()` and changed its
+  return to a list of length two, giving the absent and nonfunctional packages
+  separately.
 
 ### Bug fixes
 - None.
