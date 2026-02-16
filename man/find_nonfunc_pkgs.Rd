@@ -61,12 +61,13 @@ find_nonfunc_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
 
 }
 \seealso{
-\code{tools::package_dependencies(..., recursive = TRUE)} for dependencies and
-\code{tools::dependsOnPkgs(..., recursive = TRUE)} for reverse dependencies;
-\code{tools::standard_package_names()} (present since \R 4.4.0) for names of the
-base and recommended packages.
+\link[tools:package_dependencies]{package_dependencies}\verb{(packages = "<pkgname>", recursive = TRUE)}
+for dependencies and
+\link[tools:dependsOnPkgs]{dependsOnPkgs}\verb{(pkgs = "<pkgname>", recursive = TRUE)}
+for reverse dependencies; \code{tools::standard_package_names()} (present since
+\R 4.4.0) for names of the base and recommended packages.
 
-\code{\link[=old.packages]{old.packages()}} and \code{BiocManager::valid()} to check for outdated or too new
+\code{\link[=old.packages]{old.packages()}} and \code{\link[BiocManager:valid]{BiocManager::valid()}} to check for outdated or too new
 packages, where the latter takes the currently used version of Bioconductor
 into account.
 

@@ -39,12 +39,13 @@
 #' [requireNamespace()].
 #'
 #' @seealso
-#' `tools::package_dependencies(..., recursive = TRUE)` for dependencies and
-#' `tools::dependsOnPkgs(..., recursive = TRUE)` for reverse dependencies;
-#' `tools::standard_package_names()` (present since \R 4.4.0) for names of the
-#' base and recommended packages.
+#' [package_dependencies][tools::package_dependencies()]`(packages = "<pkgname>", recursive = TRUE)`
+#' for dependencies and
+#' [dependsOnPkgs][tools::dependsOnPkgs()]`(pkgs = "<pkgname>", recursive = TRUE)`
+#' for reverse dependencies; `tools::standard_package_names()` (present since
+#' \R 4.4.0) for names of the base and recommended packages.
 #'
-#' [old.packages()] and `BiocManager::valid()` to check for outdated or too new
+#' [old.packages()] and [BiocManager::valid()] to check for outdated or too new
 #' packages, where the latter takes the currently used version of Bioconductor
 #' into account.
 #'
