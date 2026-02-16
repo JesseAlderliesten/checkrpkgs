@@ -12,17 +12,13 @@
 #' functions to get information about packages
 #'
 #' @seealso
-#' [tools::CRAN_package_db()] for information about current and archived packages
-#' in the CRAN package repository; `BiocManager::available()` for information
-#' about current packages in the Bioconductor and CRAN package repositories.
+#' [tools::CRAN_package_db()] for information about packages available from
+#' [CRAN](https://cran.r-project.org/web/packages/index.html);
+#' [BiocManager::available()] for the names of packages available from
+#' [BioConductor](https://bioconductor.org/packages/release/BiocViews.html).
 #'
 #' The vignette *Instructions about R packages*:
 #' `vignette("r_pkgs", package = "checkrpkgs")`.
-#'
-#' @section Programming notes:
-#' `SystemRequirements` is a messy column that makes it difficult to convert the
-#' data to a neat csv-file, see the code of `count_syst_req()` in
-#' `checkrpkgs_knip::count_syst_req.R` for a stub to address that.
 #'
 #' @examples
 #'

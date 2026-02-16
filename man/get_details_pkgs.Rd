@@ -36,17 +36,11 @@ A matrix containing the details of the installed packages.
 Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get slightly more information
 about the origin of packages.
 }
-\section{Programming notes}{
-
-\code{SystemRequirements} is a messy column that makes it difficult to convert the
-data to a neat csv-file, see the code of \code{count_syst_req()} in
-\code{checkrpkgs_knip::count_syst_req.R} for a stub to address that.
-}
-
 \seealso{
-\code{\link[tools:CRANtools]{tools::CRAN_package_db()}} for information about current and archived packages
-in the CRAN package repository; \code{BiocManager::available()} for information
-about current packages in the Bioconductor and CRAN package repositories.
+\code{\link[tools:CRANtools]{tools::CRAN_package_db()}} for information about packages available from
+\href{https://cran.r-project.org/web/packages/index.html}{CRAN};
+\code{\link[BiocManager:available]{BiocManager::available()}} for the names of packages available from
+\href{https://bioconductor.org/packages/release/BiocViews.html}{BioConductor}.
 
 The vignette \emph{Instructions about R packages}:
 \code{vignette("r_pkgs", package = "checkrpkgs")}.
