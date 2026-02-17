@@ -7,6 +7,7 @@
 get_details_pkgs(
   lib.loc = NULL,
   priority = NULL,
+  pkgs = character(0),
   fields = c("Additional_repositories", "Repository", "SystemRequirements", "URL")
 )
 }
@@ -24,20 +25,43 @@ get_details_pkgs(
     assigned priority use \code{priority = NA_character_}.
   }
 
+\item{pkgs}{A character vector with names of packages to be checked, or
+ending in such names, see \code{Details}.}
+
 \item{fields}{a character vector giving the fields to extract from
     each package's \file{DESCRIPTION} file in addition to the default
     ones, or \code{NULL} (default).  Unavailable fields result in
     \code{NA} values.}
 }
 \value{
-A matrix containing the details of the installed packages.
+A matrix containing the details of the installed packages. If \code{pkgs} has a
+length larger than zero, only information about the packages in \code{pkgs} is
+returned. A zero-row matrix is returned if no packages were found, with a
+warning.
 }
 \description{
-Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get slightly more information
-about the origin of packages.
+Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get more information about
+the origin of packages and select the packages for which to return
+information.
 }
+\details{
+The part after the last forward or backward slash is considered to be the
+package name if input to \code{pkgs} contains such slashes. Therefore the package
+name, the file path to packages, and the full URL to packages from
+\href{https://github.com/}{GitHub} can all be used as input to \code{pkgs}.
+
+Packages are looked for in the library paths given by \code{\link[=.libPaths]{.libPaths()}}.
+}
+\section{Programming notes}{
+
+Could improve speed by using \code{\link[=find.package]{find.package()}} if \code{pkgs} is not \code{NULL}? See
+the \verb{Programming notes} of \code{\link[=find_nonfunc_pkgs]{find_nonfunc_pkgs()}}.
+}
+
 \examples{
 get_details_pkgs(priority = "base")
+get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput",
+                          "JesseAlderliesten/checkrpkgs"))
 
 }
 \seealso{
