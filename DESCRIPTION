@@ -17,10 +17,20 @@ Imports:
     utils
 Suggests: 
     BiocManager,
+    conflicted,
+    ctv,
     knitr,
+    methods,
+    pkgbuild,
+    remotes,
     rmarkdown,
-    tinytest
-Remotes: github::JesseAlderliesten/checkinput
+    strict,
+    tinytest,
+    tools,
+    stats
+Remotes:
+    github::JesseAlderliesten/checkinput,
+    github::hadley/strict/
 URL: https://github.com/JesseAlderliesten/checkrpkgs
 BugReports: https://github.com/JesseAlderliesten/checkrpkgs/issues
 VignetteBuilder: knitr
