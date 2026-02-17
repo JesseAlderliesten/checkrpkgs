@@ -40,7 +40,7 @@ them might fail. Restart \R to prevent such problems.
 \section{Programming notes}{
 
 This function uses \code{\link[=find.package]{find.package()}} and \code{\link[=requireNamespace]{requireNamespace()}} instead of
-\code{\link[=installed.packages]{installed.packages()}} because \code{installed.packages} does not check if
+\code{\link[utils:installed.packages]{utils::installed.packages()}} because \code{installed.packages} does not check if
 packages are functional, nor if all needed
 \link[tools:package_dependencies]{dependencies} are installed and functional.
 In addition, \code{installed.packages()} can be slow such that its

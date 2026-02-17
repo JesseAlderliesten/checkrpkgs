@@ -28,7 +28,7 @@
 #'
 #' @section Programming notes:
 #' This function uses [find.package()] and [requireNamespace()] instead of
-#' [installed.packages()] because `installed.packages` does not check if
+#' [utils::installed.packages()] because `installed.packages` does not check if
 #' packages are functional, nor if all needed
 #' [dependencies][tools::package_dependencies()] are installed and functional.
 #' In addition, `installed.packages()` can be slow such that its
