@@ -103,7 +103,7 @@ of CRAN packages (at `Downloads` > `Old sources` > `<pkgname> archive`) to
 install older versions using base R. For example, to install an older version of
 package [deSolve](https://CRAN.R-project.org/package=deSolve):
 ```{r, eval = FALSE}
-install.packages(pkgs =                   "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
+install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
                  lib = .libPaths(), repos = NULL, dependencies = NA,
                  type = "source", verbose = getOption("verbose"),
                  quiet = FALSE)
@@ -213,7 +213,9 @@ After installing a package, you need to run `library(<pkgname>)` to be able to
 use the functions of that package.
 
 Re-install packages using `force = TRUE` if packages are not functional after
-installing or updating.
+installing or updating. If a package is non-functional, use
+`get_details_pkgs()` to check what dependencies it has and then use
+`find_nonfunc_pkgs()` to see if these are all installed.
 
 If the warning `lib = ... is not writeable` was issued, you probably forgot to
 run R (or RStudio) as administrator. Close R (RStudio) and right-click on the R
@@ -454,14 +456,15 @@ searching in the `src` folder of the downloaded code.
 
 
 ## Documentation and help
-- [search engines](https://cran.r-project.org/search.html) specific for R;
-- The [instructions](https://bioconductor.org/install/) on installing
+- [Instructions](https://bioconductor.org/install/) on installing
   [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
   packages.
-- The section
+- [Search engines](https://cran.r-project.org/search.html) specific for R;
+- Section
   [Add-on packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
   in the `R Installation and Administration` manual;
-- The section `R packages` > `Troubleshooting` above;
-- The section 'Documentation and help' in the vignette
-  *Installing R, Rtools and RStudio*: `vignette("install_r", package = "checkrpkgs")`;
-- The documentation of `checkrpkgs::find_nonfunc_pkgs()`.
+- Section 'Documentation and help' in the vignette
+  *Installing R, Rtools and RStudio*:
+  `vignette("install_r", package = "checkrpkgs")`;
+- Section `R packages` > `Troubleshooting` above;
+- The help-page `help(checkrpkgs::find_nonfunc_pkgs)`.
