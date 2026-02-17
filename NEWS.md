@@ -43,3 +43,4 @@ released versions.
 - Updated README.
 - Added vignette `Installing R, Rtools and RStudio`.
 - Added vignette `Instructions about R packages`.
+- Added vignette `Using Git and GitHub`.

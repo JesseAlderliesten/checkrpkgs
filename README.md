@@ -37,6 +37,9 @@ The main content of `checkrpkgs` consists of vignettes:
   `vignette("r_pkgs", package = "checkrpkgs")`. This vignette contains
   information on installing and getting information about R packages. It
   also explains how to obtain the source code of R functions.
+- *Using Git and GitHub*:
+  `vignette("git_github", package = "checkrpkgs")`. This vignette
+  contains information about setting up and using Git and GitHub.
 
 In addition, `checkrpkgs` contains the functions `find_nonfunc_pkgs()`
 and `get_details_pkgs()`:
