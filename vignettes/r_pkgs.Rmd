@@ -76,21 +76,26 @@ The code below can be used to install packages from
 ```{r, eval = FALSE}
 pkgs_new <- c(<pkgname>, <pkgname>)
 bool_install <- !vapply(X = pkgs_new, FUN = requireNamespace,
-                        FUN.VALUE = logical(1), lib.loc = .libPaths(),
-                        quietly = TRUE)
+                        FUN.VALUE = logical(1), quietly = TRUE)
 pkgs_install <- pkgs_new[bool_install]
 if(length(pkgs_install) > 0L) {
-  install.packages(pkgs = pkgs_install, lib = .libPaths(), verbose = FALSE)
+  install.packages(pkgs = pkgs_install, lib = .libPaths(), dependencies = NA,
+                   type = getOption("pkgType"), verbose = getOption("verbose"),
+                   quiet = FALSE)
 }
 ```
 
 The code below can be used to install an old version of a package from CRAN,
 using package [remotes](https://CRAN.R-project.org/package=remotes).
 ```{r, eval = FALSE}
-if(!requireNamespace("remotes", lib.loc = .libPaths(), quietly = TRUE)) {
-  install.packages("remotes", lib = .libPaths())
+if(!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
+                   type = getOption("pkgType"), verbose = getOption("verbose"),
+                   quiet = FALSE)
 }
-remotes::install_version(<pkgname>, version = "1.23", upgrade = "ask")
+remotes::install_version(package = <pkgname>, version = "1.23", dependencies = NA,
+                         upgrade = "ask", quiet = FALSE, build_vignettes = TRUE,
+                         verbose = getOption("verbose"))
 ```
 
 Alternatively, use the URLs pointing to older versions at the installation page
@@ -98,15 +103,18 @@ of CRAN packages (at `Downloads` > `Old sources` > `<pkgname> archive`) to
 install older versions using base R. For example, to install an older version of
 package [deSolve](https://CRAN.R-project.org/package=deSolve):
 ```{r, eval = FALSE}
-`install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
-                  repos = NULL, type = "source")`.
+install.packages(pkgs =                   "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
+                 lib = .libPaths(), repos = NULL, dependencies = NA,
+                 type = "source", verbose = getOption("verbose"),
+                 quiet = FALSE)
 ```
 
 #### BioConductor
 [Bioconductor](https://bioconductor.org/) has many packages, with
 [thematic collections](https://bioconductor.org/packages/release/BiocViews.html).
 
-The code below can be used to install packages from [CRAN](https://cran.r-project.org/web/packages/index.html) or
+The code below can be used to install packages from
+[CRAN](https://cran.r-project.org/web/packages/index.html) or
 [BioConductor](https://bioconductor.org/packages/release/BiocViews.html), using
 package [BiocManager](https://CRAN.R-project.org/package=BiocManager). The
 packages are from a specific BioConductor release (here version 3.22), which are
@@ -116,10 +124,13 @@ of R to make sure that packages can be installed together.
 
 ```{r, eval = FALSE}
 pkgs_new <- c(<pkgname>, <pkgname>)
-if(!requireNamespace("BiocManager", lib.loc = .libPaths(), quietly = TRUE)) {
-  install.packages("BiocManager", lib = .libPaths())
+if(!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
+                   type = getOption("pkgType"), verbose = getOption("verbose"),
+                   quiet = FALSE)
 }
-BiocManager::install(pkgs = pkgs_new, lib = .libPaths(), verbose = FALSE,
+BiocManager::install(pkgs = pkgs_new, lib = .libPaths(), dependencies = NA,
+                     type = getOption("pkgType"), verbose = getOption("verbose"),
                      update = FALSE, ask = TRUE, checkBuilt = TRUE,
                      force = FALSE, version = "3.22")
 ```
@@ -138,12 +149,14 @@ can be used to install GitHub packages, using package
 
 ```{r, eval = FALSE}
 pkgs_new <- c(<pkgname>, <pkgname>)
-if(!requireNamespace("remotes", lib.loc = .libPaths(), quietly = TRUE)) {
-  install.packages("remotes", lib = .libPaths())
+if(!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
+                   type = getOption("pkgType"), verbose = getOption("verbose"),
+                   quiet = FALSE)
 }
-remotes::install_github(repo = pkgs_new, lib = .libPaths(), verbose = FALSE,
-                        upgrade = FALSE, ask = TRUE, checkBuilt = TRUE,
-                        force = FALSE)
+remotes::install_github(repo = pkgs_new, dependencies = NA, upgrade = FALSE,
+                        force = FALSE, quiet = FALSE, build_vignettes = TRUE,
+                        lib = .libPaths(), verbose = getOption("verbose"))
 ```
 
 #### Other repositories
@@ -171,18 +184,26 @@ Updating out-of-date packages prevents compatibility issues between
 already-installed and newly-installed packages. However, it *changes* the
 version of already-installed packages, which might be unwanted.
 
-To update packages, use
-`update.packages(lib.loc = .libPaths(), ask = TRUE, checkBuilt = TRUE)` to
-install the latest version of packages from
-[CRAN](https://cran.r-project.org/web/packages/index.html), or use the code
-below to update packages to a specific BioConductor release (here version 3.22)
-see section 'BioConductor' above.
+The following code can be used to install the latest version of packages from
+[CRAN](https://cran.r-project.org/web/packages/index.html).
 
 ```{r, eval = FALSE}
-if(!requireNamespace("BiocManager", lib.loc = .libPaths(), quietly = TRUE)) {
-  install.packages("BiocManager", lib = .libPaths())
+utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
+                       verbose = getOption("verbose"), quiet = FALSE,
+                       checkBuilt = TRUE, type = getOption("pkgType"))
+```
+
+Alternatively, the following code can be used to update packages to a specific
+BioConductor release (here version 3.22), see section 'Installing packages >
+BioConductor' above.
+
+```{r, eval = FALSE}
+if(!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
+                   type = getOption("pkgType"), verbose = getOption("verbose"),
+                   quiet = FALSE)
 }
-BiocManager::install(pkgs = pkgs_new, lib = .libPaths(), verbose = FALSE,
+BiocManager::install(pkgs = character(), lib = .libPaths(), verbose = FALSE,
                      update = TRUE, ask = TRUE, checkBuilt = TRUE,force = FALSE,
                      version = "3.22")
 ```
@@ -339,13 +360,13 @@ available [here](https://code.bioconductor.org/search/).
 ### Basic method
 The simplest way to obtain the source code of a function is typing the name of
 the function, *without* the brackets. E.g., `sd` returns
-`function (x, na.rm = FALSE) sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), na.rm = na.rm))`. For operators such as `%in%`, use backticks
-around the name. To differentiate functions with the same name defined in
-different packages, specify the package followed by two colons:
-`<pkgname>::<funcname>`. For non-exported (i.e., internal) functions, specify
-the package followed by three colons: `<pkgname>:::<funcname>`. Note that
-non-exported functions should *not* be used: they are non-exported because they
-might change.
+`function (x, na.rm = FALSE) sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), na.rm = na.rm))`.
+For operators such as `%in%`, use backticks around the name. To differentiate
+functions with the same name defined in different packages, specify the package
+followed by two colons: `<pkgname>::<funcname>`. For non-exported (i.e.,
+internal) functions, specify the package followed by three colons:
+`<pkgname>:::<funcname>`. Note that non-exported functions should *not* be used:
+they are non-exported because they might change.
 
 ### getAnywhere
 A more robust alternative to the basic method outlined above is using
@@ -380,8 +401,10 @@ function has different S4-methods (see `methods::Introduction`) for different
 object classes. Use `showMethods("<funcname>")` to get an overview of the
 available methods in all loaded packages, or `<pkgname>:::<funcname>` to get an
 overview of the available methods from package `<pkgname>`. Then provide the
-function name as argument `f` and the *entire line* of the selected method as argument `signature` to function `getMethod()`, i.e.,
-`getMethod(f = "<funcname>", signature = c(target = "<classname>", current = "<classname>"))` to obtain the source code of a particular method.
+function name as argument `f` and the *entire line* of the selected method as
+argument `signature` to function `getMethod()`, i.e.,
+`getMethod(f = "<funcname>", signature = c(target = "<classname>", current = "<classname>"))`
+to obtain the source code of a particular method.
 For example, if the Matrix package is installed and loaded (i.e.,
 `library(Matrix)` has been run), `getAnywhere("all.equal")` returns
 matches for package Matrix and for package base. Selecting the match from
@@ -436,7 +459,8 @@ searching in the `src` folder of the downloaded code.
   [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
   packages.
 - The section
-[Add-on packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages) in the `R Installation and Administration` manual;
+  [Add-on packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
+  in the `R Installation and Administration` manual;
 - The section `R packages` > `Troubleshooting` above;
 - The section 'Documentation and help' in the vignette
   *Installing R, Rtools and RStudio*: `vignette("install_r", package = "checkrpkgs")`;
