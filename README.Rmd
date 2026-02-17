@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
 [R](https://www.r-project.org/),
 [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/); obtaining information
-about to-be-installed and already-installed packages; how to get the source code
-of R-functions; setting up and using Git and [GitHub](https://github.com/);
+about to-be-installed and already-installed packages; and how to get the source
+code of R-functions.
 
 ## Installation
 You can install `checkrpkgs` from
@@ -35,9 +35,23 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs", dependencies = TR
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The main content of `checkrpkgs` consists of vignettes:
+
+- *Installing R, Rtools and RStudio*:
+  `vignette("install_r", package = "checkrpkgs")`. This vignette contains
+  instructions on installing and configuring [R](https://www.r-project.org/),
+  [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
+  [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+- *Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")`.
+  This vignette contains information on installing and getting information about
+  R packages. It also explains how to obtain the source code of R functions.
+
+In addition, `checkrpkgs` contains the functions `find_nonfunc_pkgs()` and
+`get_details_pkgs()`:
 
 ```{r example}
 library(checkrpkgs)
-## basic example code
+find_nonfunc_pkgs(pkgs = "abcdef1") # package is absent
+
+get_details_pkgs(pkgs = c("utils", "checkrpkgs")) # Details about packages.
 ```
