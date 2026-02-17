@@ -7,9 +7,11 @@ been released yet.
 - Nothing.
 
 ### Breaking changes
-- Added dependencies `checkinput` (version 0.0.6 or higher) and `progutils`
-  (version 0.0.2 or higher) in `Depends`, and `BiocManager` in `Suggests`.
-- Imported `utils::installed.packages`.
+- Added dependencies `checkinput` (version 0.0.6 or higher), `progutils`
+  (version 0.0.2 or higher), and `utils` in `Depends`.
+- Added packages in `Suggests` to be able to run all code in the vignettes and
+  documentation: `BiocManager`, `conflicted`, `ctv`, `methods`, `pkgbuild`,
+  `remotes`, `strict`, `tools`, `stats`.
 - Renamed `find_nonfunctional_pkgs()` to `find_nonfunc_pkgs()` and changed its
   return to a list of length two, giving the absent and nonfunctional packages
   separately.
