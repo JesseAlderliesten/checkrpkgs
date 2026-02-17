@@ -1,34 +1,43 @@
-# checkrpkgs (development version)
-
-The development-branch of `checkrpkgs` is *work in progress*: no version has
-been released yet.
+# checkrpkgs 0.0.2_devel (development version)
+The development-branch of `checkrpkgs` is *work in progress*: see below for the
+released versions.
 
 ### To do
 - Nothing.
 
 ### Breaking changes
-- Added dependencies `checkinput` (version 0.0.6 or higher), `progutils`
-  (version 0.0.2 or higher), and `utils` in `Depends`.
-- Added packages in `Suggests` to be able to run all code in the vignettes and
-  documentation: `BiocManager`, `conflicted`, `ctv`, `methods`, `pkgbuild`,
-  `remotes`, `strict`, `tools`, `stats`.
-- Renamed `find_nonfunctional_pkgs()` to `find_nonfunc_pkgs()` and changed its
-  return to a list of length two, giving the absent and nonfunctional packages
-  separately.
+- None.
 
 ### Bug fixes
 - None.
 
 ### Added functions
-- `find_nonfunctional_pkgs()` to find non-functional packages.
-- `get_details_pkgs()` to get details of installed packages.
+- None.
 
 ### Minor improvements
 - None.
 
 ### Updated documentation
-- Added vignette `Installing R, Rtools and RStudio`.
-- Added vignette `Instructions about R packages`.
+- None.
 
 ### Updated tests
 - None.
+
+
+# checkrpkgs 0.0.1
+
+### Breaking changes
+- Added dependencies `checkinput` (version 0.0.6 or higher), `progutils`
+  (version 0.0.2 or higher), and `utils` in `Depends`.
+- Added dependencies in `Suggests` to be able to run all code in the vignettes
+  and documentation: `BiocManager`, `conflicted`, `ctv`, `methods`, `pkgbuild`,
+  `remotes`, `strict`, `tools`, `stats`.
+
+### Added functions
+- `find_nonfunc_pkgs()` to find non-installed or non-functional packages.
+- `get_details_pkgs()` to get details of installed packages.
+
+### Updated documentation
+- Updated README.
+- Added vignette `Installing R, Rtools and RStudio`.
+- Added vignette `Instructions about R packages`.
