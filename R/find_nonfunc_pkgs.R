@@ -120,6 +120,5 @@ find_nonfunc_pkgs <- function(pkgs, quietly = FALSE) {
     warning(progutils::wrap_text(paste0(warn_text, collapse = "; ")))
   }
 
-  message("Restart R to prevent problems arising from updating loaded packages!")
   list(absent = names_absent, nonfunc = names_nonfunc)
 }
