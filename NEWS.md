@@ -28,7 +28,9 @@ released versions.
 
 ### Breaking changes
 - Added dependencies `checkinput` (version 0.0.6 or higher), `progutils`
-  (version 0.0.2 or higher), and `utils` in `Depends`.
+  (version 0.0.2 or higher), `utils`, `knitr`, and `rmarkdown` in `Depends`.
+  Using `knitr` and `rmarkdown` in `Depends` because the vignettes are the main
+  part of the package.
 - Added dependencies in `Suggests` to be able to run all code in the vignettes
   and documentation: `BiocManager`, `conflicted`, `ctv`, `methods`, `pkgbuild`,
   `remotes`, `strict`, `tools`, `stats`.

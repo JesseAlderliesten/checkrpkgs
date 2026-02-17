@@ -13,17 +13,17 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports: 
     checkinput (>= 0.0.6),
+    knitr,
     progutils (>= 0.0.2),
+    rmarkdown,
     utils
 Suggests: 
     BiocManager,
     conflicted,
     ctv,
-    knitr,
     methods,
     pkgbuild,
     remotes,
-    rmarkdown,
     strict,
     tinytest,
     tools,
