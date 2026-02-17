@@ -2,3 +2,5 @@
 
 export(find_nonfunc_pkgs)
 export(get_details_pkgs)
+importFrom(knitr,knit)
+importFrom(rmarkdown,render)
