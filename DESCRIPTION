@@ -14,7 +14,7 @@ RoxygenNote: 7.3.3
 Imports: 
     checkinput (>= 0.0.6),
     knitr,
-    progutils (>= 0.0.2),
+    progutils (>= 0.0.3),
     rmarkdown,
     utils
 Suggests: 
