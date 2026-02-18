@@ -79,7 +79,7 @@ bool_install <- !vapply(X = pkgs_new, FUN = requireNamespace,
                         FUN.VALUE = logical(1), quietly = TRUE)
 pkgs_install <- pkgs_new[bool_install]
 if(length(pkgs_install) > 0L) {
-  install.packages(pkgs = pkgs_install, lib = .libPaths(), dependencies = NA,
+  install.packages(pkgs = pkgs_install, lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
@@ -89,7 +89,7 @@ The code below can be used to install an old version of a package from CRAN,
 using package [remotes](https://CRAN.R-project.org/package=remotes).
 ```{r, eval = FALSE}
 if(!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
+  install.packages(pkgs = "remotes", lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
@@ -104,9 +104,8 @@ install older versions using base R. For example, to install an older version of
 package [deSolve](https://CRAN.R-project.org/package=deSolve):
 ```{r, eval = FALSE}
 install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
-                 lib = .libPaths(), repos = NULL, dependencies = NA,
-                 type = "source", verbose = getOption("verbose"),
-                 quiet = FALSE)
+                 lib = NULL, repos = NULL, dependencies = NA, type = "source",
+                 verbose = getOption("verbose"), quiet = FALSE)
 ```
 
 #### BioConductor
@@ -125,11 +124,11 @@ of R to make sure that packages can be installed together.
 ```{r, eval = FALSE}
 pkgs_new <- c(<pkgname>, <pkgname>)
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
-  install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
+  install.packages(pkgs = "BiocManager", lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
-BiocManager::install(pkgs = pkgs_new, lib = .libPaths(), dependencies = NA,
+BiocManager::install(pkgs = pkgs_new, lib = NULL, dependencies = NA,
                      type = getOption("pkgType"), verbose = getOption("verbose"),
                      update = FALSE, ask = TRUE, checkBuilt = TRUE,
                      force = FALSE, version = "3.22")
@@ -150,13 +149,13 @@ can be used to install GitHub packages, using package
 ```{r, eval = FALSE}
 pkgs_new <- c(<pkgname>, <pkgname>)
 if(!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
+  install.packages(pkgs = "remotes", lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
 remotes::install_github(repo = pkgs_new, dependencies = NA, upgrade = FALSE,
                         force = FALSE, quiet = FALSE, build_vignettes = TRUE,
-                        lib = .libPaths(), verbose = getOption("verbose"))
+                        lib = NULL, verbose = getOption("verbose"))
 ```
 
 #### Other repositories
@@ -188,7 +187,7 @@ The following code can be used to install the latest version of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html).
 
 ```{r, eval = FALSE}
-utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
+utils::update.packages(lib.loc = NULL, ask = TRUE, dependencies = NA,
                        verbose = getOption("verbose"), quiet = FALSE,
                        checkBuilt = TRUE, type = getOption("pkgType"))
 ```
@@ -199,11 +198,11 @@ BioConductor' above.
 
 ```{r, eval = FALSE}
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
-  install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
+  install.packages(pkgs = "BiocManager", lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
-BiocManager::install(pkgs = character(), lib = .libPaths(), verbose = FALSE,
+BiocManager::install(pkgs = character(), lib = NULL, verbose = FALSE,
                      update = TRUE, ask = TRUE, checkBuilt = TRUE,force = FALSE,
                      version = "3.22")
 ```
