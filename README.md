@@ -19,7 +19,7 @@ if(!requireNamespace("remotes", quietly = TRUE)) {
 }
 remotes::install_github(repo = "JesseAlderliesten/checkrpkgs", dependencies = TRUE,
                         upgrade = FALSE, force = FALSE, quiet = FALSE,
-                        build_vignettes = TRUE, lib = .libPaths(),
+                        build_vignettes = TRUE, lib = NULL,
                         verbose = getOption("verbose"))
 ```
 
@@ -39,7 +39,8 @@ The main content of `checkrpkgs` consists of vignettes:
   also explains how to obtain the source code of R functions.
 - *Using Git and GitHub*:
   `vignette("git_github", package = "checkrpkgs")`. This vignette
-  contains information about setting up and using Git and GitHub.
+  contains information about setting up and using Git and
+  [GitHub](https://github.com/).
 
 In addition, `checkrpkgs` contains the functions `find_nonfunc_pkgs()`
 and `get_details_pkgs()`:
@@ -56,14 +57,14 @@ find_nonfunc_pkgs(pkgs = "abcdef1") # package is absent
 #> character(0)
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs")) # Details about packages.
-#>            Package      LibPath                                            
-#> checkrpkgs "checkrpkgs" "C:/Users/Eigenaar/AppData/Local/R/win-library/4.5"
-#> utils      "utils"      "C:/Program Files/R/R-4.5.2/library"               
-#>            Version Priority Depends
-#> checkrpkgs "0.0.1" NA       NA     
-#> utils      "4.5.2" "base"   NA     
+#>            Package      LibPath                              Version Priority
+#> checkrpkgs "checkrpkgs" "C:/Program Files/R/R-4.5.2/library" "0.0.1" NA      
+#> utils      "utils"      "C:/Program Files/R/R-4.5.2/library" "4.5.2" "base"  
+#>            Depends
+#> checkrpkgs NA     
+#> utils      NA     
 #>            Imports                                                                
-#> checkrpkgs "checkinput (>= 0.0.6), knitr, progutils (>= 0.0.2), rmarkdown,\nutils"
+#> checkrpkgs "checkinput (>= 0.0.6), knitr, progutils (>= 0.0.3), rmarkdown,\nutils"
 #> utils      NA                                                                     
 #>            LinkingTo
 #> checkrpkgs NA       
