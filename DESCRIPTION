@@ -30,6 +30,7 @@ Suggests:
     stats
 Remotes:
     github::JesseAlderliesten/checkinput,
+    github::JesseAlderliesten/progutils,
     github::hadley/strict
 URL: https://github.com/JesseAlderliesten/checkrpkgs
 BugReports: https://github.com/JesseAlderliesten/checkrpkgs/issues
