@@ -2,7 +2,7 @@
 
 ### Breaking changes
 - Added dependencies `checkinput` (version 0.0.6 or higher), `knitr`, `progutils`
-  (version 0.0.2 or higher), `rmarkdown`, and `utils` in `Depends`. Using
+  (version 0.0.3 or higher), `rmarkdown`, and `utils` in `Depends`. Using
   `knitr` and `rmarkdown` in `Depends` because the vignettes are the main part
   of the package.
 - Added dependencies in `Suggests` to be able to run all code in the vignettes
