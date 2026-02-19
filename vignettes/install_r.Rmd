@@ -32,51 +32,56 @@ used to refer to a function name that should be filled in to get working code.
 
 
 ## R
-To install [R](https://www.r-project.org/), select a nearby
-[CRAN mirror](https://cran.r-project.org/mirrors.html)
+To install [R](https://www.r-project.org/), select a nearby CRAN
+[mirror](https://cran.r-project.org/mirrors.html)
 (i.e., websites hosted in various parts of the world with the same content as
-the [main CRAN page](https://cran.r-project.org/)), download R, e.g., via
+the [main](https://cran.r-project.org/) CRAN page), download R, e.g., via
 `Download R for Windows` > `base` > `Download R-X.Y.Z for Windows` and install
-it by opening the downloaded .exe-file. R is *not* required to *read* R-scripts:
+it by opening the downloaded .exe-file.
+
+R is *not* required to *read* R-scripts: 
 R-scripts are plain-text files that can be read by applications such as
 Microsoft NotePad.
 
+### Configuring R
 R can be configured by changing general options (`help("options")`), options for
 startup (`help("Startup")`), and options for installing packages
 (`help("install.packages")` and `help(".libPaths")`). For more details, see the
-[R Installation and Administration manual](https://cran.r-project.org/manuals.html)
+[R Installation and Administration manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
 and the section [R Startup](https://rstats.wtf/r-startup) from
 [What They Forgot to Teach You About R](https://rstats.wtf/).
 
 R can be made a bit stricter by setting various options, described in
 `help("options")` and `help("environment variables")`:
 
-- Warn in case of partial matching (default: `FALSE` for each of these):
-  `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`;
-- Throw an error instead of issuing a warning when calling `a:b` when numeric
-  `a` or `b` is longer than one (introduced in R 4.3.0):
-  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`;
-- Throw an error instead of silently using only the first element in comparisons
+- Warn in case of partial matching (default: `FALSE` for each of these):  
+  `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
+- Error instead of warn when calling `a:b` when numeric `a` or `b` is longer
+  than one (introduced in R 4.3.0):  
+  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
+- Error instead of silently use only the first element in comparisons
   (introduced in R 3.6.0, no longer used since R 4.3.0 because there calling
-  `&&` or `||` with length larger than one always gives an error):
-  `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`;
-- Throw an error instead of issuing a warning if a condition has length larger
+  `&&` or `||` with length larger than one always gives an error):  
+  `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
+- Error instead of warn if a condition has length larger
   than one (introduced in R 3.y.z, no longer used since R 4.2.0 because there
-  conditions with length larger than one always give an error):
-  `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`;
-- Print warnings immediately as they occur (default: `options(warn = 0)`):
-  `options(warn = 1)`;
-- Make warnings an error (default: `options(warn = 0)`): `options(warn = 2)`;
-- Enter the environment browser (`help(browser)`) upon error (default:
-  `options(error = NULL)`): `options(error = browser)`; press `Q` or `Escape` to
-  quit the browser mode; press `c` to continue code.
+  conditions with length larger than one always give an error):  
+  `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
+- Print warnings immediately as they occur (default: `options(warn = 0)`):  
+  `options(warn = 1)`.
+- Make warnings an error (default: `options(warn = 0)`):  
+  `options(warn = 2)`.
+- Enter the environment browser (see `help(browser)`) upon error (default:
+  `options(error = NULL)`):  
+  `options(error = browser)`; press `Q` or `Escape` to quit the browser mode;
+  press `c` to continue code.
 
 In addition, various packages contain ways to make R stricter:
 
 - Package [strict](https://github.com/hadley/strict/) warns about various unsafe
   practices, such as the behaviour of `sample()` and `diag()` if called with an
   argument of length one and type-unsafe `sapply()`; additional ideas are in the
-  [issues](https://github.com/hadley/strict/issues?q=is%3Aissue);
+  [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
 - Package [conflicted](https://CRAN.R-project.org/package=conflicted) avoids
   silent conflict resolution (i.e., choosing the latest attached package out of
   multiple packages to use a function from), and provides
@@ -87,16 +92,16 @@ Several variables and functions provide information about R and the current R
 session:
 
 - `.Machine` and `Sys.info()` provide information about the machine and platform
-  R is running on;
+  R is running on.
 - `.Platform` and `R.Version()` provide information about the platform R was
-  built on;
-- `Sys.getlocale()` provides details about the locale;
+  built on.
+- `Sys.getlocale()` provides details about the locale.
 - `sessionInfo()` extracts parts of the information provided by the functions
   mentioned above about the operating system and R. It also lists attached and
   loaded packages. Its printing method can be used to print additional
-  information: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`;
+  information: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
 - `capabilities()` and `extSoftVersion()` provide details about external
-  software that can be used with R;
+  software that can be used with R.
 - `help("environment variables")` lists some of the environment variables which
   affect an R session.
 
@@ -111,8 +116,11 @@ the `Note` in `help(win.version)`).
 [integrated development environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
 for R that can be downloaded [here](https://posit.co/download/rstudio-desktop/).
 
+RStudio can also be used to read and modify plain-text files.
+
+### Configuring RStudio
 After installing RStudio, start RStudio, go to `Tools` > `Global Options` >
-`General` and *de*select the option `Restore .RData into workspace at startup`
+`General` to *de*select the option `Restore .RData into workspace at startup`
 and set the option `Save workspace to .RData on exit` to `Never` to make work
 portable.
 
@@ -124,15 +132,18 @@ usually fixes that without the need to actually reset the shortcuts.
 
 The appearance of code can be changed at `Tools` > `Global options` >
 `Appearance`. The default Editor theme is the light `Textmate`, another nice
-light Editor theme is `Xcode`. I like dark Editor themes `Tomorrow Night Bright`,
-`Idle Fingers`, or `Pastel On Dark`, with Editor fonts `Consolas`,
-`Cacadia Mono Light`, or `Lucida Console`. To check that characters in a
+light Editor theme is `Xcode`. Nice dark Editor themes are
+`Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`, with Editor fonts
+`Consolas`, `Cacadia Mono Light`, or `Lucida Console`.
+
+To check that characters in a
 typeface or font can be properly distinguished from each other when choosing a
 font, for example using [Adobe Fonts](https://fonts.adobe.com/) or
 [Google Fonts](https://fonts.google.com/), the following string groups together
 characters that in some fonts are similar in appearance:
-`71lI|i/ oQO0D gq B8 S5 Z2 ijy4 ., :; "'' __ cldcIdc|dc1d rnm UVVWuvvw`. The
-string consists of the following characters (using upper case letter that are
+`71lI|i/ oQO0D gq B8 S5 Z2 ijy4 ., :; "'' __ cldcIdc|dc1d rnm UVVWuvvw`  
+
+The string consists of the following characters (using upper case letter that are
 easier to distinguish, with 'lower' and 'upper' indicating the case used in the
 string):
 
@@ -147,20 +158,20 @@ string):
 - COLON, SEMICOLON
 - double QUOTES, single QUOTES, single QUOTES
 - UNDERSCORE, UNDERSCORE
-- lower CEE, lower EL, lower DEE, lower CEE, upper I, lower DEE, lower CEE,
+- lower CEE, lower EL, lower DEE, lower CEE, upper I, lower DEE, lower CEE,  
   vertical BAR, lower DEE, lower CEE, ONE, lower DEE
 - lower AR, lower EN, lower EM
-- upper U, upper VEE, upper VEE, upper double-U, lower U, lower VEE, lower VEE,
-  lower double-U
+- upper U, upper VEE, upper VEE, upper double-U,  
+  lower U, lower VEE, lower VEE, lower double-U
 
 
 ## Rtools
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) is *not* an R package
-but software: the toolchain bundle used to build R packages from source. It is
-needed to install packages that are distributed as source files ('to install
-packages from source'): packages from [GitHub](https://github.com/) and *older*
-versions of packages from
-[CRAN](https://cran.r-project.org/web/packages/index.html) (see the section
+but software used to build R packages from source: packages from
+[GitHub](https://github.com/) and *older* versions of packages from
+[CRAN](https://cran.r-project.org/web/packages/index.html) or
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
+(see the section
 'Installing packages' in the vignette *Instructions about R packages* for
 instructions: `vignette("r_pkgs", package = "checkrpkgs")`). Rtools is *not*
 needed to install current versions of packages from
@@ -168,7 +179,7 @@ needed to install current versions of packages from
 [Bioconductor](https://bioconductor.org/) on Windows.
 
 To install Rtools, download the version appropriate for the installed version of
-R (see `R.version.string`) from a [CRAN website](https://cran.r-project.org/)
+R (see `R.version.string`) from [CRAN](https://cran.r-project.org/)
 via `Download R for Windows` > `Rtools` > `RTools X.Y` and set it up using the
 instructions given there. See also the 
 [HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.5.html) by Tomas
@@ -178,24 +189,27 @@ to check and install Rtools.
 
 ## Documentation and help
 - [Bug reporting](https://www.r-project.org/bugs.html), linking to
-  [bugzilla](https://bugs.r-project.org/);
-- CRAN: [CRAN homepage](https://cran.r-project.org/);
-  [CRAN mirrors](https://cran.r-project.org/mirrors.html) with information about
-  their [status](https://cran.r-project.org/mirmon_report.html) that is also
-  available from within R through `utils::getCRANmirrors()`;
-  [R FAQs](https://cran.r-project.org/faqs.html);
-  [R manuals](https://cran.r-project.org/manuals.html), with
-  [derived versions](https://rstudio.github.io/r-manuals/) better suited for
-  searching; see especially the
-  [R Installation and Administration manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html);
-  [R news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html) and
-  [R news (devel)](https://cran.r-project.org/doc/manuals/r-devel/NEWS.html);
-- R general help from inside R: `help.start()`;
-- [R homepage](https://www.r-project.org/) with the
-  [developer page](https://developer.r-project.org/); see also the
-  [development guide](https://contributor.r-project.org/rdevguide/) from the
-  [R Contribution Working Group](https://contributor.r-project.org/);
+  [bugzilla](https://bugs.r-project.org/)
+- CRAN [homepage](https://cran.r-project.org/)
+- R [FAQs](https://cran.r-project.org/faqs.html)
+- R help: from inside R through `help.start()` or online via
+  https://cran.r-project.org/search.html
+- R [homepage](https://www.r-project.org/)
+- R [manuals](https://cran.r-project.org/manuals.html) (especially the
+  [R Installation and Administration manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)),
+  with [derived versions](https://rstudio.github.io/r-manuals/) better suited
+  for searching.
+- R [news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
 - [RStudio user guide](https://docs.posit.co/ide/user/) by
-  [Posit](https://posit.co/);
-- [search engines](https://cran.r-project.org/search.html) specific for R;
-- [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the r-tag.
+  [Posit](https://posit.co/)
+- [search engines](https://cran.r-project.org/search.html) specific for R
+- [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the r-tag
+
+### For developers
+- CRAN [mirrors](https://cran.r-project.org/mirrors.html) with information about
+  their [status](https://cran.r-project.org/mirmon_report.html) also available
+  from within R through `utils::getCRANmirrors()`
+- R [developer page](https://developer.r-project.org/)
+- R [development guide](https://contributor.r-project.org/rdevguide/) from the
+  [R Contribution Working Group](https://contributor.r-project.org/)
+- R [news (devel)](https://cran.r-project.org/doc/manuals/r-devel/NEWS.html)
