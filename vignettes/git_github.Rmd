@@ -81,14 +81,14 @@ local directory up-to-date with the remote directory:
 Save the modified R-file after you have made some changes, only then will the
 name of the file appear in the `Git` menu of RStudio to review changes:
 
-- in RStudio: check the checkbox in front of the relevant filename, use the
+- in RStudio: check the box in front of the relevant filename, use the
   `Diff` button in the `Git` menu to get an overview of the changes to the file,
   describe the changes in the box `Commit message`, and use the `Commit` button.
   `Pull` again (downward arrow) to make sure the local file is up-to-date, and
   handle any conflicts. Then `push` (upward arrow) to incorporate the changes in
   the remote directory.
 - in the [shell](https://happygitwithr.com/shell): to compare the content of two
-  files, see the instructions in section 'Comparing files' below. Next, use
+  files, see the instructions in the section [Comparing files] below. Next, use
   `git commit -m 'your commit message goes here' path/and/filename.R`
   `git push https://github.com/UserName/RepositoryName`
   (UserName/RepositoryName has to be replaced with the relevant names) to commit
@@ -96,7 +96,7 @@ name of the file appear in the `Git` menu of RStudio to review changes:
 
 If a `Push` leads to an error because of an invalid username or password, `Push`
 again, then you will be asked for a personal access token (PAT; see section
-'Using personal access tokens' above). After you have entered the PAT once,
+[Using personal access tokens (PATs)] above). After you have entered the PAT once,
 RStudio will remember this token for next times.
 
 
@@ -112,6 +112,19 @@ path has to be added in front of the filename.
 
 
 ## Comparing files
+
+### Using GitHub
+- For a chronological overview of all commits (i.e., across all files) in a
+  particular branch of a repository, use an URL of the form
+  http://github.com/<username>/<reponame>/commits, or go to the main page of the
+  repository and in the `Code` panel click the `clock` icon at the top of the
+  file overview.
+- Comparing different branches: see
+[here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons)
+- Comparing commits: see
+[here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits)
+
+### Not using GitHub
 R-scripts can be compared using `tools::Rdiff()`: use the quoted file paths
 (i.e., the directories and file names, *including* the extensions) of the two
 files as arguments `from` and `to`:  
@@ -123,13 +136,13 @@ the file paths (i.e., the directories and file names, *including* the extensions
 of the two files to be compared into the shell on the same line, and press `Enter`:
 `git diff --no-index '<path/and/filename_file1>.R' '<path/and/filename_file2>.R'`
 
-### Notes
+Note:
 
-- The two paths should be on the same line, i.e., *not* separated by a newline.
-- Using quotes (`''`) around the paths ensures this also works when they contain
-  spaces.
 - The flag `--no-index` makes it possible to compare files that are *not* under
   version control in `Git`.
+- Using quotes (`''`) around the paths ensures this also works when they contain
+  spaces.
+- The two paths should be on the same line, i.e., *not* separated by a newline.
 - Although the scroll bar in `Git Bash` seems to indicate the end of the file is
   reached (and scrolling with the mouse does not work) after opening a file,
   usually a colon (`:`) will be displayed left to the cursor to indicate that
@@ -155,12 +168,15 @@ that, find the file on the local repository (i.e., your PC) and delete the it.
 Then `pull`.
 
 
-## Renaming a file
+## Moving or renaming a file
 See the GitHub documentation
-[here](https://docs.github.com/en/repositories/working-with-files/managing-files/renaming-a-file)
+[here](https://docs.github.com/en/repositories/working-with-files/managing-files/renaming-a-file).
+
+Note that this can also be used to *move* a file to a new location, see
+[here](https://docs.github.com/en/repositories/working-with-files/managing-files/moving-a-file-to-a-new-location).
 
 
-## Downloading, forking, or cloning a GitHub repository
+## Repositories: download, fork, or clone?
 There are several ways to get code from a `GitHub` repository to your computer:
 
 - To be able to `push` your changes back to a `GitHub` repository to which you
@@ -187,15 +203,19 @@ There are several ways to get code from a `GitHub` repository to your computer:
   file with the same name as the repository.
 
 ### Further documentation
-For details, see:
+For details, see the GitHub documentation about:
+
+- [branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)
+- [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+  a repository
+- [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)
+- [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+
+And see
 
 - The section [Fork and clone](https://happygitwithr.com/fork-and-clone) from
   [Happy Git and GitHub for the useR](https://happygitwithr.com/);
-- The GitHub documentation about 
-  [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-  a repository;
-- The GitHub documentation about 
-  [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+- https://learngitbranching.js.org/
 
 
 ## Common shell commands
@@ -204,7 +224,7 @@ the documentation of [Git SCM](https://git-scm.com/docs), the
 [section](https://happygitwithr.com/shell#basic-shell-commands) from 
 [Happy Git and GitHub for the useR](https://happygitwithr.com/) (a summary of
 which is given below), or in the `BASH shell` type `git config` or
-`git help command` (replace `command` by the command you want help about).
+`git help <command>` (replace `<command>` by the command you want help about).
 
 - list files: `ls` (use `ls -a` to also show hidden files)
 - list remote repositories: `git remote -v`
@@ -228,17 +248,26 @@ paths, respectively.
 
 
 ## Documentation
-- [Git documentation](https://git-scm.com/doc);
-- GitHub: [general](https://docs.github.com/en) help page;
-  help page on 
-  [setting up](https://docs.github.com/en/get-started/git-basics/set-up-git)
-  GitHub;
-- [Happy Git and GitHub for the useR](https://happygitwithr.com/), by Jennifer
-  Bryan;
-- Chapter about
-  [version control](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html) from Posit's
-  [RStudio User Guide](https://posit.co/products/open-source/rstudio/?sid=1);
-- [Pro Git Book](https://git-scm.com/book/en/v2), by Scott Chacon and Ben Straub.
+
+Official documentation
+
+- [Git](https://git-scm.com/doc)
+- GitHub help pages on 
+  [setting up Git](https://docs.github.com/en/get-started/git-basics/set-up-git),
+  [setting up GitHub](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account) and on [general](https://docs.github.com/en) help
+
+Books
+
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jennifer
+  Bryan
+- [Pro Git Book](https://git-scm.com/book/en/v2) by Scott Chacon and Ben Straub
+
+Chapters
+
+- [Version control](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html) from Posit's
+  [RStudio User Guide](https://posit.co/products/open-source/rstudio/?sid=1)
+- [Collaboration](https://epirhandbook.com/en/new_pages/collaboration.html) from
+  [The Epidemiologist R Handbook](https://epirhandbook.com/en/)
 
 On git tags and releases:
 
