@@ -1,5 +1,5 @@
 
-![](https://img.shields.io/github/r-package/v/JesseAlderliesten/checkrpkgs)
+![](https://img.shields.io/github/r-package/v/JesseAlderliesten/checkrpkgs?color=blue)
 
 # checkrpkgs
 

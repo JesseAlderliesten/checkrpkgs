@@ -10,7 +10,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-![](https://img.shields.io/github/r-package/v/JesseAlderliesten/checkrpkgs)
+![](https://img.shields.io/github/r-package/v/JesseAlderliesten/checkrpkgs?color=blue)
+
 
 # checkrpkgs
 `checkrpkgs` provides information on installing and configuring
