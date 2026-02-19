@@ -31,7 +31,8 @@ used to refer to a function name that should be filled in to get working code.
 ## R packages
 A [package](https://cran.r-project.org/doc/FAQ/R-FAQ.html#What-is-the-difference-between-package-and-library_003f)
 is a standardized collection of material extending R by providing code, data, or
-documentation. You have to install a package (see section 'Installing packages'
+documentation. You have to install a package (see the section
+[Installing packages]
 below) and then need to run `library(<pkgname>)` to be able to use the functions
 of that package.
 
@@ -72,7 +73,7 @@ packages, use `ctv::update.views("<taskviewname>", coreOnly = TRUE)`.
 CRAN packages that have been recently archived are available at
 [CRANhaven](https://www.cranhaven.org/);
 
-The code below can be used to install packages from 
+The following code can be used to install packages from 
 [CRAN](https://cran.r-project.org/web/packages/index.html):
 
 ```{r, eval = FALSE}
@@ -87,7 +88,7 @@ if(length(pkgs_install) > 0L) {
 }
 ```
 
-The code below can be used to install an old version of a package from CRAN,
+The following code can be used to install an old version of a package from CRAN,
 using package [remotes](https://CRAN.R-project.org/package=remotes):
 
 ```{r, eval = FALSE}
@@ -118,7 +119,7 @@ install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/
 with thematic
 [collections](https://bioconductor.org/packages/release/BiocViews.html).
 
-The code below can be used to install packages from
+The following code can be used to install packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [BioConductor](https://bioconductor.org/packages/release/BiocViews.html#___Software), using
 package [BiocManager](https://CRAN.R-project.org/package=BiocManager). The
@@ -148,8 +149,8 @@ older versions can be found by visiting the appropriate version of Bioconductor,
 e.g., `https://bioconductor.org/packages/3.21/BiocViews.html`.
 
 #### Github
-Many R packages are available from [GitHub](https://github.com/). The code below
-can be used to install GitHub packages, using package
+Many R packages are available from [GitHub](https://github.com/). The following
+code can be used to install GitHub packages, using package
 [remotes](https://CRAN.R-project.org/package=remotes).
 
 ```{r, eval = FALSE}
@@ -199,8 +200,7 @@ utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
 ```
 
 Alternatively, the following code can be used to update packages to a specific
-BioConductor release (here version 3.22), see section 'Installing packages >
-BioConductor' above:
+BioConductor release (here version 3.22), see the section [BioConductor] above:
 
 ```{r, eval = FALSE}
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
@@ -270,8 +270,8 @@ BiocManager::install(pkgs = character(), lib = .libPaths(), verbose = FALSE,
 
 ### Not-yet-installed packages
 The source code of base R packages can be obtained from
-[GitHub](https://github.com/r-devel/r-svn/) (see the section 'Getting the source
-code' below), and the installation pages of packages on CRAN frequently contain
+[GitHub](https://github.com/r-devel/r-svn/) (see the section
+[Getting the source code] below), and the installation pages of packages on CRAN frequently contain
 links to the GitHub pages where their source code can be viewed.
 
 A PDF-file with all the help files of the standard and recommended packages is
@@ -315,7 +315,7 @@ package has been installed and loaded (i.e., `library(<pkgname>)` has been run):
 - Show installed package version: `utils::packageVersion("<pkgname>")`.
 
 Information about functions, methods, and classes can also be obtained (see also
-the section 'Getting the source code' below):
+the section [Getting the source code] below):
 
 - Help page of a function: `help("<funcname>")`.
   to distinguish between functions from different packages:
@@ -392,9 +392,9 @@ Some special cases:
   used directly: they might change.
 
 ### getAnywhere
-A more robust alternative to the basic method outlined above is using
-`getAnywhere("<funcname>")`: `getAnywhere()`
-looks in more places and finds internal functions without the need to specify
+A more robust alternative to the [basic method][Basic method] outlined above is
+to use `getAnywhere("<funcname>")`, which looks in more places and finds
+internal functions without the need to specify
 in which package a function is defined. Although the quotes around the function
 name are not necessary when looking for normal functions, they are required when
 looking for the source code of operators such as `%in%`, such that it is most
@@ -521,5 +521,5 @@ searching in the `src` folder of the downloaded code.
 - Section 'Documentation and help' in the vignette
   *Installing R, Rtools and RStudio*:  
   `vignette("install_r", package = "checkrpkgs")`
-- Section `R packages` > `Troubleshooting` above
+- Section [Troubleshooting] above
 - The help-page `?checkrpkgs::find_nonfunc_pkgs`
