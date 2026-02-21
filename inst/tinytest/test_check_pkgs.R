@@ -14,28 +14,28 @@ warn_non_existent_pkgs <- progutils::wrap_text(paste0(
 # This test assumes base package 'base' are installed and functional.
 expect_silent(
   expect_equal(
-    find_nonfunc_pkgs(pkgs = c("base", "grid"), quietly = FALSE),
+    check_pkgs(pkgs = c("base", "grid"), quietly = FALSE),
     list(absent = character(0), nonfunc = character(0))
   )
 )
 
 expect_warning(
   expect_equal(
-    find_nonfunc_pkgs(pkgs = non_existent_pkgs, quietly = FALSE),
+    check_pkgs(pkgs = non_existent_pkgs, quietly = FALSE),
     list(absent = non_existent_pkgs, nonfunc = character(0))
   ),
   pattern = warn_non_existent_pkgs, strict = TRUE, fixed = TRUE)
 
 expect_warning(
   expect_equal(
-    find_nonfunc_pkgs(pkgs = non_existent_pkgs, quietly = TRUE),
+    check_pkgs(pkgs = non_existent_pkgs, quietly = TRUE),
     list(absent = non_existent_pkgs, nonfunc = character(0))
   ),
   pattern = warn_non_existent_pkgs, strict = TRUE, fixed = TRUE)
 
 expect_warning(
   expect_equal(
-    find_nonfunc_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE),
+    check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE),
     list(absent = non_existent_pkgs, nonfunc = character(0))
   ),
   pattern = warn_non_existent_pkgs, strict = TRUE, fixed = TRUE)
@@ -47,31 +47,30 @@ expect_warning(
 # functional.
 expect_silent(
   expect_equal(
-    find_nonfunc_pkgs(pkgs = c("ab/methods", "ab/cd/stats", "ab/stats4",
-                               "ab/cd/splines"),
-                      quietly = TRUE),
+    check_pkgs(pkgs = c("ab/methods", "ab/cd/stats", "ab/stats4", "ab/cd/splines"),
+               quietly = TRUE),
     list(absent = character(0), nonfunc = character(0)))
 )
 
 # Arguments that should result in an error.
 expect_error(
-  find_nonfunc_pkgs(pkgs = character(0), quietly = FALSE),
+  check_pkgs(pkgs = character(0), quietly = FALSE),
   pattern = "all_characters(pkgs) is not TRUE", fixed = TRUE)
 
 expect_error(
-  find_nonfunc_pkgs(pkgs = "", quietly = FALSE),
+  check_pkgs(pkgs = "", quietly = FALSE),
   pattern = "all_characters(pkgs) is not TRUE", fixed = TRUE)
 
 expect_error(
-  find_nonfunc_pkgs(pkgs = 1, quietly = FALSE),
+  check_pkgs(pkgs = 1, quietly = FALSE),
   pattern = "all_characters(pkgs) is not TRUE", fixed = TRUE)
 
 expect_error(
-  find_nonfunc_pkgs(pkgs = non_existent_pkgs, quietly = NA),
+  check_pkgs(pkgs = non_existent_pkgs, quietly = NA),
   pattern = "is_logical(quietly) is not TRUE", fixed = TRUE)
 
 expect_error(
-  find_nonfunc_pkgs(pkgs = non_existent_pkgs, quietly = 1),
+  check_pkgs(pkgs = non_existent_pkgs, quietly = 1),
   pattern = "is_logical(quietly) is not TRUE", fixed = TRUE)
 
 

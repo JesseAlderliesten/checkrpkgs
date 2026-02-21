@@ -53,12 +53,12 @@ The main content of `checkrpkgs` consists of vignettes:
   [GitHub](https://github.com/).
 
 
-In addition, `checkrpkgs` contains the functions `find_nonfunc_pkgs()` and
+In addition, `checkrpkgs` contains the functions `check_pkgs()` and
 `get_details_pkgs()`:
 
 ```{r example}
 library(checkrpkgs)
-find_nonfunc_pkgs(pkgs = "abcdef1") # package is absent
+check_pkgs(pkgs = "abcdef1") # package is absent
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs")) # Details about packages.
 ```

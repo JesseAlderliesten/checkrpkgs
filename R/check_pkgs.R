@@ -1,4 +1,4 @@
-#' Find non-functional packages
+#' Check for non-installed or non-functional packages
 #'
 #' Function to check for non-installed or non-functional packages.
 #'
@@ -44,8 +44,9 @@
 #' [package_dependencies][tools::package_dependencies()]`(packages = "<pkgname>", recursive = TRUE)`
 #' for dependencies and
 #' [dependsOnPkgs][tools::dependsOnPkgs()]`(pkgs = "<pkgname>", recursive = TRUE)`
-#' for reverse dependencies; `tools::standard_package_names()` (present since
-#' \R 4.4.0) for names of the base and recommended packages.
+#' for reverse dependencies; [get_details_pkgs]`(pkgs = <pkgname>)` for more
+#' information about the origin of packages; `tools::standard_package_names()`
+#' (present since \R 4.4.0) for names of the base and recommended packages.
 #'
 #' [old.packages()] and [BiocManager::valid()] to check for outdated or too new
 #' packages, where the latter takes the currently used version of Bioconductor
@@ -62,15 +63,15 @@
 #' functions to get information about packages
 #'
 #' @examples
-#' find_nonfunc_pkgs(pkgs = c("base", "grid"), quietly = FALSE)
+#' check_pkgs(pkgs = c("base", "grid"), quietly = FALSE)
 #'
 #' non_existent_pkgs <- c("yz/wx/abcdef4", "wx/abcdef3", "abcdef2", "abcdef1")
-#' find_nonfunc_pkgs(non_existent_pkgs, quietly = FALSE)
-#' find_nonfunc_pkgs(non_existent_pkgs, quietly = TRUE)
-#' find_nonfunc_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
+#' check_pkgs(non_existent_pkgs, quietly = FALSE)
+#' check_pkgs(non_existent_pkgs, quietly = TRUE)
+#' check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
 #'
 #' @export
-find_nonfunc_pkgs <- function(pkgs, quietly = FALSE) {
+check_pkgs <- function(pkgs, quietly = FALSE) {
   stopifnot(checkinput::all_characters(pkgs), checkinput::is_logical(quietly))
 
   pkgs_input <- pkgs
