@@ -32,46 +32,46 @@ used to refer to a function name that should be filled in to get working code.
 
 
 ## R
-To install [R](https://www.r-project.org/), select a nearby CRAN
-[mirror](https://cran.r-project.org/mirrors.html)
-(i.e., websites hosted in various parts of the world with the same content as
-the [main](https://cran.r-project.org/) CRAN page), download R, e.g., via
-`Download R for Windows` > `base` > `Download R-X.Y.Z for Windows` and install
-it by opening the downloaded .exe-file.
+To install [R](https://www.r-project.org/), visit a nearby CRAN
+[mirror](https://cran.r-project.org/mirrors.html) (i.e., a website with the same
+content as the [main](https://cran.r-project.org/) CRAN page), download R, e.g.,
+via `Download R for Windows` > `base` > `Download R-X.Y.Z for Windows` and
+install it by opening the downloaded .exe-file.
 
-R is *not* required to *read* R-scripts: 
+R is *not* required to read R-scripts: 
 R-scripts are plain-text files that can be read by applications such as
 Microsoft NotePad.
 
 ### Configuring R
-R can be configured by changing general options (`help("options")`), options for
-startup (`help("Startup")`), and options for installing packages
-(`help("install.packages")` and `help(".libPaths")`). For more details, see the
+R can be configured by changing general [options](../help/options), options for
+[startup](../help/Startup), and options for [installing packages](../help/install.packages)
+and [library paths](../help/.libPaths). For more details, see the
 [R Installation and Administration manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
 and the section [R Startup](https://rstats.wtf/r-startup) from
 [What They Forgot to Teach You About R](https://rstats.wtf/).
 
-R can be made a bit stricter by setting various options, described in
-`help("options")` and `help("environment variables")`:
+R can be made a bit stricter by setting various options, described in the help
+files for [options](../help/options) and [environment variables](../help/environment%20variables):
 
-- Warn in case of partial matching (default: `FALSE` for each of these):  
+- Warn in case of [partial matching](../help/pmatch) (default: `FALSE` for each
+  of these):  
   `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
-- Error instead of warn when calling `a:b` when numeric `a` or `b` is longer
+- Error instead of warn when calling [a:b](../help/colon) when numeric `a` or `b` is longer
   than one (introduced in R 4.3.0):  
   `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
-- Error instead of silently use only the first element in comparisons
+- Error instead of silently use only the first element in [logical operations](../help/Logic)
   (introduced in R 3.6.0, no longer used since R 4.3.0 because there calling
   `&&` or `||` with length larger than one always gives an error):  
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
-- Error instead of warn if a condition has length larger
+- Error instead of warn if a [condition](../help/Control) has length larger
   than one (introduced in R 3.y.z, no longer used since R 4.2.0 because there
   conditions with length larger than one always give an error):  
   `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
-- Print warnings immediately as they occur (default: `options(warn = 0)`):  
+- Print warnings [warnings](../help/warning) immediately as they occur (default: `options(warn = 0)`):  
   `options(warn = 1)`.
-- Make warnings an error (default: `options(warn = 0)`):  
+- Make [warnings](../help/warning) an [error](../help/stop) (default: `options(warn = 0)`):  
   `options(warn = 2)`.
-- Enter the environment browser (see `help(browser)`) upon error (default:
+- Enter the environment [browser](../help/browser) upon error (default:
   `options(error = NULL)`):  
   `options(error = browser)`; press `Q` or `Escape` to quit the browser mode;
   press `c` to continue code.
@@ -79,11 +79,12 @@ R can be made a bit stricter by setting various options, described in
 In addition, various packages contain ways to make R stricter:
 
 - Package [strict](https://github.com/hadley/strict/) warns about various unsafe
-  practices, such as the behaviour of `sample()` and `diag()` if called with an
-  argument of length one and type-unsafe `sapply()`; additional ideas are in the
+  practices, such as the behaviour of [sample](../help/sample) and
+  [diag](../help/diag) if called with an
+  argument of length one and type-unsafe [sapply](../help/sapply); additional ideas are in the
   [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
 - Package [conflicted](https://CRAN.R-project.org/package=conflicted) avoids
-  silent conflict resolution (i.e., choosing the latest attached package out of
+  silent [conflict](../help/conflicts) resolution (i.e., choosing the latest attached package out of
   multiple packages to use a function from), and provides
   `conflicts_prefer(<pkgname>::<funcname>)` to declare preferences once.
 
@@ -91,24 +92,24 @@ In addition, various packages contain ways to make R stricter:
 Several variables and functions provide information about R and the current R
 session:
 
-- `.Machine` and `Sys.info()` provide information about the machine and platform
+- [.Machine](../help/.Machine) and [Sys.info()](../help/Sys.info) provide information about the machine and platform
   R is running on.
-- `.Platform` and `R.Version()` provide information about the platform R was
+- [.Platform](../help/.Platform) and [R.Version()](../help/R.Version) provide information about the platform R was
   built on.
-- `Sys.getlocale()` provides details about the locale.
-- `sessionInfo()` extracts parts of the information provided by the functions
+- [Sys.getlocale()](../help/Sys.getlocale) provides details about the locale.
+- [sessionInfo()](../help/sessionInfo) extracts parts of the information provided by the functions
   mentioned above about the operating system and R. It also lists attached and
   loaded packages. Its printing method can be used to print additional
   information: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
-- `capabilities()` and `extSoftVersion()` provide details about external
+- [capabilities()](../help/capabilities) and  [extSoftVersion()](../help/extSoftVersion) provide details about external
   software that can be used with R.
-- `help("environment variables")` lists some of the environment variables which
+- [environment variables](../help/environment%20variables) lists some of the environment variables which
   affect an R session.
 
 How operating systems identify themselves and their versions can be arcane, and
 specifically Windows versions might report older versions than the versions that
-are actually installed (see the section `osVersion` in `help(sessionInfo)` and
-the `Note` in `help(win.version)`).
+are actually installed (see the section `osVersion` in [sessionInfo()](../help/sessionInfo) and
+the `Note` in [win.version()](../help/win.version)).
 
 
 ## RStudio
@@ -167,7 +168,8 @@ string):
 
 ## Rtools
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) is *not* an R package
-but software used to build R packages from source: packages from
+but software used to build R [from source](https://cran.r-project.org/sources.html)
+and to build R packages from source: packages from
 [GitHub](https://github.com/) and *older* versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
@@ -178,7 +180,8 @@ needed to install current versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/) on Windows.
 
-To install Rtools, download the version appropriate for the installed version of
+To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/), download
+the version appropriate for the installed version of
 R (see `R.version.string`) from [CRAN](https://cran.r-project.org/)
 via `Download R for Windows` > `Rtools` > `RTools X.Y` and set it up using the
 instructions given there. See also the 
@@ -192,7 +195,7 @@ to check and install Rtools.
   [bugzilla](https://bugs.r-project.org/)
 - CRAN [homepage](https://cran.r-project.org/)
 - R [FAQs](https://cran.r-project.org/faqs.html)
-- R help: from inside R through `help.start()` or online via
+- R help: from inside R through [help.start()](../help/help.start) or online via
   https://cran.r-project.org/search.html
 - R [homepage](https://www.r-project.org/)
 - R [manuals](https://cran.r-project.org/manuals.html) (especially the
@@ -208,7 +211,7 @@ to check and install Rtools.
 ### For developers
 - CRAN [mirrors](https://cran.r-project.org/mirrors.html) with information about
   their [status](https://cran.r-project.org/mirmon_report.html) also available
-  from within R through `utils::getCRANmirrors()`
+  from within R through [getCRANmirrors()](../help/getCRANmirrors)
 - R [developer page](https://developer.r-project.org/)
 - R [development guide](https://contributor.r-project.org/rdevguide/) from the
   [R Contribution Working Group](https://contributor.r-project.org/)
