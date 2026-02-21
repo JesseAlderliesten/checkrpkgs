@@ -33,7 +33,9 @@ To update the Git for Windows GitHub client if you already have it, type
 
 To use Git and GitHub from RStudio: in RStudio at `Tools` > `Global Options` >
 `Git/SVN`, tick `Enable version control interface for RStudio projects`. The Git
-executable is at `C:/Program Files/Git/bin/git.exe`.
+executable is probably at `C:/Program Files/Git/bin/git.exe` or
+`C:/Users/Eigenaar/AppData/Local/Git/bin/git.exe`: run `where git.exe` in the
+[shell](https://happygitwithr.com/shell) to get its location.
 
 Open the `Git Bash` [shell](https://happygitwithr.com/shell) (which was
 installed when installing
@@ -116,16 +118,17 @@ path has to be added in front of the filename.
 ### Using GitHub
 - For a chronological overview of all commits (i.e., across all files) in a
   particular branch of a repository, use an URL of the form
-  http://github.com/<username>/<reponame>/commits, or go to the main page of the
+  `http://github.com/<username>/<reponame>/commits`, or go to the main page of the
   repository and in the `Code` panel click the `clock` icon at the top of the
   file overview.
 - Comparing different branches: see
 [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons)
 - Comparing commits: see
 [here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits)
+- See also Section [Repositories: download, fork, or clone?] below.
 
 ### Not using GitHub
-R-scripts can be compared using `tools::Rdiff()`: use the quoted file paths
+R-scripts can be compared using [tools::Rdiff()](../help/Rdiff): use the quoted file paths
 (i.e., the directories and file names, *including* the extensions) of the two
 files as arguments `from` and `to`:  
 `tools::Rdiff(from = "<path/and/filename_file1>.R", to = "<path/and/filename_file2>.R")`
@@ -191,12 +194,12 @@ There are several ways to get code from a `GitHub` repository to your computer:
   the repository, copying the URL to the clipboard (i.e., do *not* use
   `download ZIP`), create a new R project in RStudio (`File` > `New Project` >
   `Version control` > `Git`), paste the repository URL (something like
-  `https://github.com/username/reposname`) in the designated field, select the
+  `https://github.com/<username>/<reposname>`, where `<username>` and `<reposname>` need to be replaced with the actual names) in the designated field, select the
   desired location on your computer, and create the project. The same repository
   URL can be used when using shell commands to clone a repository, either with
-  its complete history by using `git clone https://github.com/username/reposname`
+  its complete history by using `git clone https://github.com/<username>/<reposname>`
   or with only the last commit by using
-  `git clone --depth=1 https://github.com/username/reposname`.
+  `git clone --depth=1 https://github.com/<username>/<reposname>`.
 - To download code without being able to push your changes back to a GitHub
   repository, you can download the repository by using the green `Code` button,
   choosing `Download ZIP`, unzip the downloaded files, and open the `.Rproj`
@@ -216,6 +219,7 @@ And see
 - The section [Fork and clone](https://happygitwithr.com/fork-and-clone) from
   [Happy Git and GitHub for the useR](https://happygitwithr.com/);
 - https://learngitbranching.js.org/
+- Section [Using GitHub] above
 
 
 ## Common shell commands
