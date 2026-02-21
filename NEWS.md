@@ -1,3 +1,17 @@
+# checkrpkgs 0.1.0
+
+### Breaking changes
+- `get_details_pkgs()`: argument `pkgs` moved to be the first argument.
+- `find_nonfunc_pkgs()`: renamed to `check_pkgs()`.
+
+### Updated documentation
+- Vignette `Instructions about R packages`: use internal links when referring to
+  section headings. Use hyperlinks to refer to help pages.
+- Vignette `Using Git and GitHub`: add info about comparing files using GitHub.
+  Restructure and expand 'Documentation'. Use internal links when referring to
+  section headings. 
+
+
 # checkrpkgs 0.0.1
 
 ### Breaking changes
