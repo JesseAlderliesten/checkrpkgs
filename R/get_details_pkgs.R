@@ -5,9 +5,9 @@
 #' information.
 #'
 #' @inheritParams utils::installed.packages
-#' @inheritParams find_nonfunc_pkgs
+#' @inheritParams check_pkgs
 #'
-#' @inherit find_nonfunc_pkgs details
+#' @inherit check_pkgs details
 #'
 #' @returns
 #' A matrix containing the details of the installed packages. If `pkgs` has a
@@ -17,7 +17,7 @@
 #'
 #' @section Programming notes:
 #' Could improve speed by using [find.package()] if `pkgs` is not `NULL`? See
-#' the `Programming notes` of [find_nonfunc_pkgs()].
+#' the `Programming notes` of [check_pkgs()].
 #'
 #' @family
 #' functions to get information about packages
@@ -37,7 +37,7 @@
 #'                           "JesseAlderliesten/checkrpkgs"))
 #'
 #' @export
-get_details_pkgs <- function(lib.loc = NULL, priority = NULL, pkgs = character(0),
+get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NULL,
                              fields = c("Additional_repositories", "Repository",
                                         "SystemRequirements", "URL")) {
   stopifnot(checkinput::all_characters(x = pkgs, allow_zero = TRUE))
