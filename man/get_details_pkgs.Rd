@@ -52,6 +52,12 @@ name, the file path to packages, and the full URL to packages from
 
 Packages are looked for in the library paths given by \code{\link[=.libPaths]{.libPaths()}}.
 }
+\section{Notes}{
+
+All instances are returned if a package occurs more than once, with a
+warning reporting their version, library path and origin.
+}
+
 \section{Programming notes}{
 
 Could improve speed by using \code{\link[=find.package]{find.package()}} if \code{pkgs} is not \code{NULL}? See

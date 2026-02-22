@@ -1,8 +1,10 @@
 # checkrpkgs 0.1.0
 
 ### Breaking changes
-- `get_details_pkgs()`: argument `pkgs` moved to be the first argument.
-- `find_nonfunc_pkgs()`: renamed to `check_pkgs()`.
+- `get_details_pkgs()`: argument `pkgs` moved to be the first argument. Now
+  warns if a package is found more than once.
+- `find_nonfunc_pkgs()`: renamed to `check_pkgs()`. Now warns if a package is
+  found more than once.
 
 ### Updated documentation
 - Vignette `Instructions about R packages`: use internal links when referring to

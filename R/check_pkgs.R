@@ -26,6 +26,10 @@
 #' Packages are [loaded][loadNamespace()], such that [updating][update.packages()]
 #' them might fail. Restart \R to prevent such problems.
 #'
+#' @section Notes:
+#' Only the first instance of a package is checked if it occurs more than once,
+#' with a warning.
+#'
 #' @section Programming notes:
 #' This function uses [find.package()] and [requireNamespace()] instead of
 #' [utils::installed.packages()] because `installed.packages` does not check if
@@ -82,8 +86,9 @@ check_pkgs <- function(pkgs, quietly = FALSE) {
 
   # lib.loc = NULL looks at all libraries known to .libPaths()
   bool_absent <- vapply(X = pkgs, FUN = function(x) {
-    # Using 'quiet = TRUE' to not get an error if the package is not found
-    length(find.package(x, lib.loc = NULL, quiet = TRUE)) == 0L},
+    # Using 'quiet = TRUE' to not get an error if the package is not found.
+    # Using 'verbose = TRUE' to get a warning if a package is found more than once.
+    length(find.package(x, lib.loc = NULL, quiet = TRUE, verbose = TRUE)) == 0L},
     FUN.VALUE = logical(1), USE.NAMES = FALSE)
   names_absent <- pkgs_input[bool_absent]
 

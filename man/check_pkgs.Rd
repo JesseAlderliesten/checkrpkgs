@@ -37,6 +37,12 @@ Packages are \link[=loadNamespace]{loaded}, such that \link[=update.packages]{up
 them might fail. Restart \R to prevent such problems.
 }
 
+\section{Notes}{
+
+Only the first instance of a package is checked if it occurs more than once,
+with a warning.
+}
+
 \section{Programming notes}{
 
 This function uses \code{\link[=find.package]{find.package()}} and \code{\link[=requireNamespace]{requireNamespace()}} instead of
