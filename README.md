@@ -57,7 +57,18 @@ check_pkgs(pkgs = "abcdef1") # package is absent
 #> $nonfunc
 #> character(0)
 
-get_details_pkgs(pkgs = c("utils", "checkrpkgs")) # Details about packages.
+get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
+#> Warning: Packages found more than once:
+#> * checkinput:
+#> - version 0.1.0 at C:/Users/Eigenaar/AppData/Local/R/win-library/4.5 from
+#> https://github.com/JesseAlderliesten/checkinput
+#> - version 0.0.6 at C:/Program Files/R/R-4.5.2/library from
+#> https://github.com/JesseAlderliesten/checkinput
+#> * checkrpkgs:
+#> - version 0.1.0 at C:/Users/Eigenaar/AppData/Local/R/win-library/4.5 from
+#> https://github.com/JesseAlderliesten/checkrpkgs
+#> - version 0.0.1 at C:/Program Files/R/R-4.5.2/library from
+#> https://github.com/JesseAlderliesten/checkrpkgs
 #>            Package      LibPath                                            
 #> checkrpkgs "checkrpkgs" "C:/Users/Eigenaar/AppData/Local/R/win-library/4.5"
 #> checkrpkgs "checkrpkgs" "C:/Program Files/R/R-4.5.2/library"               
