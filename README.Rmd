@@ -60,5 +60,5 @@ In addition, `checkrpkgs` contains the functions `check_pkgs()` and
 library(checkrpkgs)
 check_pkgs(pkgs = "abcdef1") # package is absent
 
-get_details_pkgs(pkgs = c("utils", "checkrpkgs")) # Details about packages.
+get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
 ```
