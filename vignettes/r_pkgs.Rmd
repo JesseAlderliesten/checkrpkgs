@@ -113,13 +113,13 @@ The following code can be used to install packages from
 ```{r, eval = FALSE}
 pkgs_new <- c(<pkgname>, <pkgname>)
 if(!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
+  install.packages(pkgs = "remotes", lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
 remotes::install_github(repo = pkgs_new, dependencies = NA, upgrade = FALSE,
                         force = FALSE, quiet = FALSE, build_vignettes = TRUE,
-                        lib = .libPaths(), verbose = getOption("verbose"))
+                        lib = NULL, verbose = getOption("verbose"))
 ```
 
 #### Mirror websites
@@ -210,11 +210,11 @@ BioConductor release (here version 3.22), see the section [BioConductor] above:
 
 ```{r, eval = FALSE}
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
-  install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
+  install.packages(pkgs = "BiocManager", lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
-BiocManager::install(pkgs = character(), lib = .libPaths(), verbose = FALSE,
+BiocManager::install(pkgs = character(), lib = NULL, verbose = FALSE,
                      update = TRUE, ask = TRUE, checkBuilt = TRUE,force = FALSE,
                      version = "3.22")
 ```
