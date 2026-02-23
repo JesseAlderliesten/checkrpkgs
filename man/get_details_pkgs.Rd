@@ -5,13 +5,16 @@
 \title{Get details about installed packages}
 \usage{
 get_details_pkgs(
+  pkgs = character(0),
   lib.loc = NULL,
   priority = NULL,
-  pkgs = character(0),
-  fields = c("Additional_repositories", "Repository", "SystemRequirements", "URL")
+  fields = c("Repository", "Additional_repositories", "URL", "SystemRequirements")
 )
 }
 \arguments{
+\item{pkgs}{A character vector with names of packages to be checked, or
+ending in such names, see \code{Details}.}
+
 \item{lib.loc}{
     character vector describing the location of \R library trees to
     search through, or \code{NULL} for all known trees
@@ -24,9 +27,6 @@ get_details_pkgs(
     \code{c("base", "recommended")}.  To select all packages without an
     assigned priority use \code{priority = NA_character_}.
   }
-
-\item{pkgs}{A character vector with names of packages to be checked, or
-ending in such names, see \code{Details}.}
 
 \item{fields}{a character vector giving the fields to extract from
     each package's \file{DESCRIPTION} file in addition to the default
@@ -52,10 +52,16 @@ name, the file path to packages, and the full URL to packages from
 
 Packages are looked for in the library paths given by \code{\link[=.libPaths]{.libPaths()}}.
 }
+\section{Notes}{
+
+All instances are returned if a package occurs more than once, with a
+warning reporting their version, library path and origin.
+}
+
 \section{Programming notes}{
 
 Could improve speed by using \code{\link[=find.package]{find.package()}} if \code{pkgs} is not \code{NULL}? See
-the \verb{Programming notes} of \code{\link[=find_nonfunc_pkgs]{find_nonfunc_pkgs()}}.
+the \verb{Programming notes} of \code{\link[=check_pkgs]{check_pkgs()}}.
 }
 
 \examples{
@@ -74,6 +80,6 @@ The vignette \emph{Instructions about R packages}:
 \code{vignette("r_pkgs", package = "checkrpkgs")}.
 
 Other functions to get information about packages: 
-\code{\link{find_nonfunc_pkgs}()}
+\code{\link{check_pkgs}()}
 }
 \concept{functions to get information about packages}

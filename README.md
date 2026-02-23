@@ -1,4 +1,6 @@
 
+![](https://img.shields.io/github/r-package/v/JesseAlderliesten/checkrpkgs?color=blue)
+
 # checkrpkgs
 
 `checkrpkgs` provides information on installing and configuring
@@ -42,46 +44,65 @@ The main content of `checkrpkgs` consists of vignettes:
   contains information about setting up and using Git and
   [GitHub](https://github.com/).
 
-In addition, `checkrpkgs` contains the functions `find_nonfunc_pkgs()`
-and `get_details_pkgs()`:
+In addition, `checkrpkgs` contains the functions `check_pkgs()` and
+`get_details_pkgs()`:
 
 ``` r
 library(checkrpkgs)
-find_nonfunc_pkgs(pkgs = "abcdef1") # package is absent
-#> Warning in find_nonfunc_pkgs(pkgs = "abcdef1"): non-installed packages:
-#> 'abcdef1'
+check_pkgs(pkgs = "abcdef1") # package is absent
+#> Warning in check_pkgs(pkgs = "abcdef1"): non-installed packages: 'abcdef1'
 #> $absent
 #> [1] "abcdef1"
 #> 
 #> $nonfunc
 #> character(0)
 
-get_details_pkgs(pkgs = c("utils", "checkrpkgs")) # Details about packages.
-#>            Package      LibPath                              Version Priority
-#> checkrpkgs "checkrpkgs" "C:/Program Files/R/R-4.5.2/library" "0.0.1" NA      
-#> utils      "utils"      "C:/Program Files/R/R-4.5.2/library" "4.5.2" "base"  
-#>            Depends
-#> checkrpkgs NA     
-#> utils      NA     
+get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
+#> Warning: Packages found more than once:
+#> * checkinput:
+#> - version 0.1.0 at C:/Users/Eigenaar/AppData/Local/R/win-library/4.5 from
+#> https://github.com/JesseAlderliesten/checkinput
+#> - version 0.0.6 at C:/Program Files/R/R-4.5.2/library from
+#> https://github.com/JesseAlderliesten/checkinput
+#> * checkrpkgs:
+#> - version 0.1.0 at C:/Users/Eigenaar/AppData/Local/R/win-library/4.5 from
+#> https://github.com/JesseAlderliesten/checkrpkgs
+#> - version 0.0.1 at C:/Program Files/R/R-4.5.2/library from
+#> https://github.com/JesseAlderliesten/checkrpkgs
+#>            Package      LibPath                                            
+#> checkrpkgs "checkrpkgs" "C:/Users/Eigenaar/AppData/Local/R/win-library/4.5"
+#> checkrpkgs "checkrpkgs" "C:/Program Files/R/R-4.5.2/library"               
+#> utils      "utils"      "C:/Program Files/R/R-4.5.2/library"               
+#>            Version Priority Depends
+#> checkrpkgs "0.1.0" NA       NA     
+#> checkrpkgs "0.0.1" NA       NA     
+#> utils      "4.5.2" "base"   NA     
 #>            Imports                                                                
+#> checkrpkgs "checkinput (>= 0.0.6), knitr, progutils (>= 0.0.3), rmarkdown,\nutils"
 #> checkrpkgs "checkinput (>= 0.0.6), knitr, progutils (>= 0.0.3), rmarkdown,\nutils"
 #> utils      NA                                                                     
 #>            LinkingTo
 #> checkrpkgs NA       
+#> checkrpkgs NA       
 #> utils      NA       
 #>            Suggests                                                                                   
+#> checkrpkgs "BiocManager, conflicted, ctv, methods, pkgbuild, remotes,\nstrict, tinytest, tools, stats"
 #> checkrpkgs "BiocManager, conflicted, ctv, methods, pkgbuild, remotes,\nstrict, tinytest, tools, stats"
 #> utils      "methods, xml2, commonmark, knitr, jsonlite"                                               
 #>            Enhances License              License_is_FOSS License_restricts_use
 #> checkrpkgs NA       "MIT + file LICENSE" NA              NA                   
+#> checkrpkgs NA       "MIT + file LICENSE" NA              NA                   
 #> utils      NA       "Part of R 4.5.2"    NA              NA                   
 #>            OS_type MD5sum NeedsCompilation Built   Additional_repositories
+#> checkrpkgs NA      NA     "no"             "4.5.2" NA                     
 #> checkrpkgs NA      NA     "no"             "4.5.2" NA                     
 #> utils      NA      NA     "yes"            "4.5.2" NA                     
 #>            Repository SystemRequirements
 #> checkrpkgs NA         NA                
+#> checkrpkgs NA         NA                
 #> utils      NA         NA                
 #>            URL                                              
+#> checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs"
 #> checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs"
 #> utils      NA
 ```

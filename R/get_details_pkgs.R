@@ -5,9 +5,9 @@
 #' information.
 #'
 #' @inheritParams utils::installed.packages
-#' @inheritParams find_nonfunc_pkgs
+#' @inheritParams check_pkgs
 #'
-#' @inherit find_nonfunc_pkgs details
+#' @inherit check_pkgs details
 #'
 #' @returns
 #' A matrix containing the details of the installed packages. If `pkgs` has a
@@ -15,9 +15,13 @@
 #' returned. A zero-row matrix is returned if no packages were found, with a
 #' warning.
 #'
+#' @section Notes:
+#' All instances are returned if a package occurs more than once, with a
+#' warning reporting their version, library path and origin.
+#'
 #' @section Programming notes:
 #' Could improve speed by using [find.package()] if `pkgs` is not `NULL`? See
-#' the `Programming notes` of [find_nonfunc_pkgs()].
+#' the `Programming notes` of [check_pkgs()].
 #'
 #' @family
 #' functions to get information about packages
@@ -37,14 +41,40 @@
 #'                           "JesseAlderliesten/checkrpkgs"))
 #'
 #' @export
-get_details_pkgs <- function(lib.loc = NULL, priority = NULL, pkgs = character(0),
-                             fields = c("Additional_repositories", "Repository",
-                                        "SystemRequirements", "URL")) {
+get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NULL,
+                             fields = c("Repository", "Additional_repositories",
+                                        "URL", "SystemRequirements")) {
   stopifnot(checkinput::all_characters(x = pkgs, allow_zero = TRUE))
 
   # Argument 'fields' lists fields that are additional to the default fields.
+  # Hardcoded fields 'Repository' and 'URL' because those are used to report on
+  # duplicated packages.
   res <- utils::installed.packages(lib.loc = lib.loc, priority = priority,
-                                   fields = fields)
+                                   fields = c(fields, "Repository", "URL"))
+
+  pkg_names <- res[, "Package"]
+  bool_dupl <- duplicated(pkg_names)
+  if(any(bool_dupl)) {
+    ind_bool <- which(bool_dupl)
+    LibPaths <- rep(NA_character_, times = length(ind_bool))
+    for(ind_msg in seq_along(ind_bool)) {
+      pkg <- res[ind_bool[ind_msg], "Package"]
+      row_ind_match <- which(res[, "Package"] == pkg)
+      LibPaths[ind_msg] <- paste(
+        pkg,
+        paste0("version ", res[row_ind_match, "Version"],
+               " at ", res[row_ind_match, "LibPath"],
+               " from ", res[row_ind_match, "Repository"],
+               ": ", res[row_ind_match, "URL"],
+               collapse = "\n- "),
+        sep = ":\n- ")
+    }
+    warning("Packages found more than once:\n* ",
+            progutils::wrap_text(paste0(LibPaths, collapse = "\n* "),
+                                 ignore_newlines = FALSE),
+            call. = FALSE)
+  }
+
   if(is.null(lib.loc)) {
     lib.loc_string <- progutils::paste_quoted(.libPaths())
   } else {
@@ -54,11 +84,9 @@ get_details_pkgs <- function(lib.loc = NULL, priority = NULL, pkgs = character(0
   if(length(pkgs) > 0L) {
     bool_absent <- !(basename(path = pkgs) %in% res[, "Package"])
     if(any(bool_absent)) {
-      warn_text <- paste0(
-        "Package(s) not found at 'lib.loc' (",
-        lib.loc_string,
-        "): ", progutils::paste_quoted(pkgs[bool_absent]))
-      warning(progutils::wrap_text(warn_text))
+      warning(progutils::wrap_text(paste0(
+        "Package(s) not found at 'lib.loc' (", lib.loc_string, "): ",
+        progutils::paste_quoted(pkgs[bool_absent]))))
     }
     res <- res[res[, "Package"] %in% basename(path = pkgs), , drop = FALSE]
   }
