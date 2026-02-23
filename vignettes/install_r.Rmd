@@ -71,7 +71,7 @@ files for [options](../help/options) and [environment variables](../help/environ
   `options(warn = 1)`.
 - Make [warnings](../help/warning) an [error](../help/stop) (default: `options(warn = 0)`):  
   `options(warn = 2)`.
-- Enter the environment [browser](../help/browser) upon error (default:
+- Enter the [environment browser](../help/browser) upon error (default:
   `options(error = NULL)`):  
   `options(error = browser)`; press `Q` or `Escape` to quit the browser mode;
   press `c` to continue code.
@@ -209,9 +209,8 @@ to check and install Rtools.
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the r-tag
 
 ### For developers
-- CRAN [mirrors](https://cran.r-project.org/mirrors.html) with information about
-  their [status](https://cran.r-project.org/mirmon_report.html) also available
-  from within R through [getCRANmirrors()](../help/getCRANmirrors)
+- CRAN mirrors: see the section 'Mirror websites' in the vignette
+  *Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")` 
 - R [developer page](https://developer.r-project.org/)
 - R [development guide](https://contributor.r-project.org/rdevguide/) from the
   [R Contribution Working Group](https://contributor.r-project.org/)
