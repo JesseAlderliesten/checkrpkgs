@@ -2,13 +2,16 @@
 
 ### Breaking changes
 - `get_details_pkgs()`: argument `pkgs` moved to be the first argument. Now
-  warns if a package is found more than once.
+  warns if a package is found more than once. Always return information from
+  fields 'Repository' and 'URL'.
 - `find_nonfunc_pkgs()`: renamed to `check_pkgs()`. Now warns if a package is
   found more than once.
 
 ### Updated documentation
-- Vignette `Instructions about R packages`: use internal links when referring to
-  section headings. Use hyperlinks to refer to help pages.
+- Vignette `Instructions about R packages`: first mention BioConductor releases,
+  explaining their advantage. Expanded information on mirror websites into a
+  separate section. Use internal links when referring to section headings. Use
+  hyperlinks to refer to help pages.
 - Vignette `Using Git and GitHub`: add info about comparing files using GitHub.
   Restructure and expand 'Documentation'. Use internal links when referring to
   section headings. 
