@@ -173,10 +173,9 @@ Then `pull`.
 
 ## Moving or renaming a file
 See the GitHub documentation
+[here](https://docs.github.com/en/repositories/working-with-files/managing-files/moving-a-file-to-a-new-location)
+and
 [here](https://docs.github.com/en/repositories/working-with-files/managing-files/renaming-a-file).
-
-Note that this can also be used to *move* a file to a new location, see
-[here](https://docs.github.com/en/repositories/working-with-files/managing-files/moving-a-file-to-a-new-location).
 
 
 ## Repositories: download, fork, or clone?
@@ -187,10 +186,10 @@ There are several ways to get code from a `GitHub` repository to your computer:
   `fork` button > `create a new fork`). This creates a copy of the repository in
   your own GitHub repository. Next, you have to `clone` your copy to your local
   computer, see the next point.
-- To be able to push your changes back to a GitHub repository to which you do
+- To be able to push your changes back to a GitHub repository to which you *do*
   have writing access (e.g., to work on your project from another machine; or to
   work on a fork you created in the step above), you have to clone a copy of the
-  GitHub repository to your local computer by using the green button `Code` in
+  GitHub repository to your local computer by using the green `Code` button in
   the repository, copying the URL to the clipboard (i.e., do *not* use
   `download ZIP`), create a new R project in RStudio (`File` > `New Project` >
   `Version control` > `Git`), paste the repository URL (something like
@@ -224,8 +223,8 @@ And see
 
 ## Common shell commands
 For an overview of some [shell](https://happygitwithr.com/shell) commands, see
-the documentation of [Git SCM](https://git-scm.com/docs), the
-[section](https://happygitwithr.com/shell#basic-shell-commands) from 
+the documentation of [Git SCM](https://git-scm.com/docs), the section about the
+[shell](https://happygitwithr.com/shell#basic-shell-commands) from 
 [Happy Git and GitHub for the useR](https://happygitwithr.com/) (a summary of
 which is given below), or in the `BASH shell` type `git config` or
 `git help <command>` (replace `<command>` by the command you want help about).
