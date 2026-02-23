@@ -8,7 +8,7 @@ get_details_pkgs(
   pkgs = character(0),
   lib.loc = NULL,
   priority = NULL,
-  fields = c("Additional_repositories", "Repository", "SystemRequirements", "URL")
+  fields = c("Repository", "Additional_repositories", "URL", "SystemRequirements")
 )
 }
 \arguments{

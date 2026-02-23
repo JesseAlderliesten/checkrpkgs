@@ -42,13 +42,15 @@
 #'
 #' @export
 get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NULL,
-                             fields = c("Additional_repositories", "Repository",
-                                        "SystemRequirements", "URL")) {
+                             fields = c("Repository", "Additional_repositories",
+                                        "URL", "SystemRequirements")) {
   stopifnot(checkinput::all_characters(x = pkgs, allow_zero = TRUE))
 
   # Argument 'fields' lists fields that are additional to the default fields.
+  # Hardcoded fields 'Repository' and 'URL' because those are used to report on
+  # duplicated packages.
   res <- utils::installed.packages(lib.loc = lib.loc, priority = priority,
-                                   fields = fields)
+                                   fields = c(fields, "Repository", "URL"))
 
   pkg_names <- res[, "Package"]
   bool_dupl <- duplicated(pkg_names)
@@ -58,12 +60,14 @@ get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NUL
     for(ind_msg in seq_along(ind_bool)) {
       pkg <- res[ind_bool[ind_msg], "Package"]
       row_ind_match <- which(res[, "Package"] == pkg)
-      LibPaths[ind_msg] <- paste(pkg,
-                                 paste0("version ", res[row_ind_match, "Version"],
-                                        " at ", res[row_ind_match, "LibPath"],
-                                        " from ", res[row_ind_match, "URL"],
-                                        collapse = "\n- "),
-                                 sep = ":\n- ")
+      LibPaths[ind_msg] <- paste(
+        pkg,
+        paste0("version ", res[row_ind_match, "Version"],
+               " at ", res[row_ind_match, "LibPath"],
+               " from ", res[row_ind_match, "Repository"],
+               ": ", res[row_ind_match, "URL"],
+               collapse = "\n- "),
+        sep = ":\n- ")
     }
     warning("Packages found more than once:\n* ",
             progutils::wrap_text(paste0(LibPaths, collapse = "\n* "),
