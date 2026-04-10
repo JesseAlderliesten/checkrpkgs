@@ -526,6 +526,13 @@ has as entry with `log10` in the first column:
 [arithmetic.c](https://github.com/r-devel/r-svn/blob/main/src/main/arithmetic.c)
 as one of its results. That file contains the source code of `log10`.
 
+Sometimes an R-function is defined in a file that defines multiple functions and
+thus has a general name. Then the file with c-code will have a similar general
+name. For example, the source code of `make.names()` is defined in
+`src/library/base/R/character.R` which contains (among others) the code
+`.Internal(make.names(names, allow_))`, and the c-code for `do_makenames()` is
+in file `src/main/character.c`.
+
 #### .Call
 If `getAnywhere("<funcname>")` returns code that contains `.Call(...)`, the
 function contains a call to C or C++ code. Although the file `src/<pkgname>.h`
@@ -540,7 +547,11 @@ from source and searching in the `src` folder of the downloaded code.
 ## Documentation and help
 - [Instructions](https://bioconductor.org/install/) on installing
   [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
-  packages
+  packages and [documentation](https://docs.r-universe.dev/bioconductor/) on the
+  collaboration between BioConductor and the
+  [R-universe](https://r-universe.dev/search)
+- [Documentation](https://docs.r-universe.dev/) from the
+  [R-universe](https://r-universe.dev/search)
 - [Search engines](https://cran.r-project.org/search.html) specific for R
 - Section
   [Add-on packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
