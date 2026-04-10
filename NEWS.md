@@ -1,3 +1,8 @@
+# checkrpkgs 0.1.1
+`checkrpkgs` now uses GitHub action `check-standard` on all branches (see
+`?usethis::use_github_action()`).
+
+
 # checkrpkgs 0.1.0
 
 ### Breaking changes

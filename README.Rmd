@@ -10,8 +10,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+<!-- badges: start -->
 ![](https://img.shields.io/github/r-package/v/JesseAlderliesten/checkrpkgs?color=blue)
-
+[![R-CMD-check](https://github.com/JesseAlderliesten/checkrpkgs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JesseAlderliesten/checkrpkgs/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 # checkrpkgs
 `checkrpkgs` provides information on installing and configuring
