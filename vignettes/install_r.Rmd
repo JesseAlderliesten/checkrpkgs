@@ -198,14 +198,17 @@ to check and install Rtools.
 - R help: from inside R through [help.start()](../help/help.start) or online via
   https://cran.r-project.org/search.html
 - R [homepage](https://www.r-project.org/)
-- R [manuals](https://cran.r-project.org/manuals.html) (especially the
+- R [mailing lists](https://www.r-project.org/mail.html) with a web interface
+  with [information and archives](https://stat.ethz.ch/mailman/listinfo) and a
+  mirror for [searching](https://r-mailing-lists.thecoatlessprofessor.com/)
+- R [manuals](https://cran.r-project.org/manuals.html), (especially the
   [R Installation and Administration manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)),
   with [derived versions](https://rstudio.github.io/r-manuals/) better suited
   for searching.
 - R [news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
 - [RStudio user guide](https://docs.posit.co/ide/user/) by
   [Posit](https://posit.co/)
-- [search engines](https://cran.r-project.org/search.html) specific for R
+- [search engines](https://cran.r-project.org/search.html) specific for R;
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the r-tag
 
 ### For developers
