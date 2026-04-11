@@ -249,9 +249,10 @@ utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
 
 - If the question
   `Do you want to install from sources the packages which need compilation?` is
-  asked, possibly accompanied by the remark
-  `There are binary versions available but the source versions are later`, you
-  should choose `No` if you have *not* installed
+  asked (in a new window), accompanied by the remark
+  `There are binary versions available but the source versions are later` and an
+  overview in the console of the binary and source versions indicating if these
+  need compilation, you should choose `No` if you have *not* installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/): you will then get
   slightly less up to date package versions but a faster installation.
   
