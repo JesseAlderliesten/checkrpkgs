@@ -25,8 +25,8 @@ Function to check for non-installed or non-functional packages.
 }
 \details{
 The part after the last forward or backward slash is considered to be the
-package name if input to \code{pkgs} contains such slashes. Therefore the package
-name, the file path to packages, and the full URL to packages from
+package name if input to \code{pkgs} contains such slashes. Therefore package
+names, file paths to packages, and full URLs to packages from
 \href{https://github.com/}{GitHub} can all be used as input to \code{pkgs}.
 
 Packages are looked for in the library paths given by \code{\link[=.libPaths]{.libPaths()}}.
