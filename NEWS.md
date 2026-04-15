@@ -1,6 +1,12 @@
+# devel
+- No need to import `knit()` from `knitr` or `render()` from `rmarkdown`, so
+  moved `knitr` and `rmarkdown` back from `Imports` to `Suggests`.
+- Updated the `Instructions about R packages` vignette, especially the section
+  `Getting the source code`.
+
 # checkrpkgs 0.1.1
-`checkrpkgs` now uses GitHub action `check-standard` on all branches (see
-`?usethis::use_github_action()`).
+- `checkrpkgs` now uses GitHub action `check-standard` on all branches (see
+  `?usethis::use_github_action()`).
 
 
 # checkrpkgs 0.1.0
