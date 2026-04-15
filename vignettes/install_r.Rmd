@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 ## Introduction and notation
 This vignette contains instructions on installing and configuring
 [R](https://www.r-project.org/),
-[RStudio](https://posit.co/products/open-source/rstudio/?sid=1),
+[RStudio](https://posit.co/products/open-source/rstudio),
 and [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
 
 In this vignette, `<pkgname>` is used to refer to a package name that should be
@@ -113,7 +113,7 @@ the `Note` in [win.version()](../help/win.version)).
 
 
 ## RStudio
-[RStudio](https://posit.co/products/open-source/rstudio/?sid=1) is an
+[RStudio](https://posit.co/products/open-source/rstudio) is an
 [integrated development environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
 for R that can be downloaded [here](https://posit.co/download/rstudio-desktop/).
 
