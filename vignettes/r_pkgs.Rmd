@@ -107,17 +107,21 @@ Packages from CRAN that have been recently archived are available at
 
 #### Github
 The following code can be used to install packages from
-[GitHub](https://github.com/), using package 
-[remotes](https://CRAN.R-project.org/package=remotes):
+[GitHub](https://github.com/). Packages can be specified using the author and
+repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or by the full URL to a
+package (e.g., `"https://github.com/JesseAlderliesten/checkrpkgs"`). This code
+also installs the [remotes](https://CRAN.R-project.org/package=remotes) package
+that is then used to downloads code from GitHub:
 
 ```{r, eval = FALSE}
-pkgs_new <- c(<pkgname>, <pkgname>)
+repo_pkgs_new <- c("JesseAlderliesten/checkrpkgs",
+                   "https://github.com/JesseAlderliesten/progutils")
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
-remotes::install_github(repo = pkgs_new, dependencies = NA, upgrade = FALSE,
+remotes::install_github(repo = repo_pkgs_new, dependencies = NA, upgrade = FALSE,
                         force = FALSE, quiet = FALSE, build_vignettes = TRUE,
                         lib = NULL, verbose = getOption("verbose"))
 ```
@@ -127,7 +131,7 @@ Mirror websites (mirrors) are websites hosted in various parts of the world with
 the same content as the main website. Using a nearby mirror allows for faster
 downloads. Mirrors, or repositories more generally, can be selected using
 [utils::setRepositories()](../help/setRepositories). However, 
-[RStudio](https://posit.co/products/open-source/rstudio/?sid=1)
+[RStudio](https://posit.co/products/open-source/rstudio)
 [uses](https://docs.posit.co/ide/user/ide/guide/environments/r/packages.html#primary-repository)
 the [RStudio CRAN mirror](https://cran.rstudio.com) with its own global
 distribution, see [getOption("repos")](../help/getOption).
@@ -221,7 +225,7 @@ BiocManager::install(pkgs = character(), lib = NULL, verbose = FALSE,
 
 Alternatively, the following code can be used to install the latest version of
 packages from [CRAN](https://cran.r-project.org/web/packages/index.html) (but
-note this *changes* the version of already-installed packages, which might be
+note this **changes** the version of already-installed packages, which might be
 undesirable):
 
 ```{r, eval = FALSE}
@@ -329,7 +333,7 @@ Information about a package and its functions is available from within R after
 the package has been installed and loaded (i.e.,
 [library](../help/library)`(<pkgname>)` has been run):
 
-- Citation: [utils::citation("<pkgname>")](../help/citation), with
+- Citation: [utils::citation](../help/citation)`("<pkgname>")`, with
   `utils::citation()` to cite R itself.
 - Function overview: `ls(getNamespace("<pkgname>"))` returns a character vector
   with the function names (ignoring names that start with a dot, which by
