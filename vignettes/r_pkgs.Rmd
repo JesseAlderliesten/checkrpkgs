@@ -107,17 +107,21 @@ Packages from CRAN that have been recently archived are available at
 
 #### Github
 The following code can be used to install packages from
-[GitHub](https://github.com/), using package 
-[remotes](https://CRAN.R-project.org/package=remotes):
+[GitHub](https://github.com/). Packages can be specified using the author and
+repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or by the full URL to a
+package (e.g., `"https://github.com/JesseAlderliesten/checkrpkgs"`). This code
+also installs the [remotes](https://CRAN.R-project.org/package=remotes) package
+that is then used to downloads code from GitHub:
 
 ```{r, eval = FALSE}
-pkgs_new <- c(<pkgname>, <pkgname>)
+repo_pkgs_new <- c("JesseAlderliesten/checkrpkgs",
+                   "https://github.com/JesseAlderliesten/progutils")
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = NULL, dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
-remotes::install_github(repo = pkgs_new, dependencies = NA, upgrade = FALSE,
+remotes::install_github(repo = repo_pkgs_new, dependencies = NA, upgrade = FALSE,
                         force = FALSE, quiet = FALSE, build_vignettes = TRUE,
                         lib = NULL, verbose = getOption("verbose"))
 ```
@@ -127,7 +131,7 @@ Mirror websites (mirrors) are websites hosted in various parts of the world with
 the same content as the main website. Using a nearby mirror allows for faster
 downloads. Mirrors, or repositories more generally, can be selected using
 [utils::setRepositories()](../help/setRepositories). However, 
-[RStudio](https://posit.co/products/open-source/rstudio/?sid=1)
+[RStudio](https://posit.co/products/open-source/rstudio)
 [uses](https://docs.posit.co/ide/user/ide/guide/environments/r/packages.html#primary-repository)
 the [RStudio CRAN mirror](https://cran.rstudio.com) with its own global
 distribution, see [getOption("repos")](../help/getOption).
@@ -221,7 +225,7 @@ BiocManager::install(pkgs = character(), lib = NULL, verbose = FALSE,
 
 Alternatively, the following code can be used to install the latest version of
 packages from [CRAN](https://cran.r-project.org/web/packages/index.html) (but
-note this *changes* the version of already-installed packages, which might be
+note this **changes** the version of already-installed packages, which might be
 undesirable):
 
 ```{r, eval = FALSE}
@@ -249,9 +253,10 @@ utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
 
 - If the question
   `Do you want to install from sources the packages which need compilation?` is
-  asked, possibly accompanied by the remark
-  `There are binary versions available but the source versions are later`, you
-  should choose `No` if you have *not* installed
+  asked (in a new window), accompanied by the remark
+  `There are binary versions available but the source versions are later` and an
+  overview in the console of the binary and source versions indicating if these
+  need compilation, you should choose `No` if you have *not* installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/): you will then get
   slightly less up to date package versions but a faster installation.
   
@@ -302,9 +307,9 @@ packages available from [CRAN](https://cran.r-project.org/web/packages/index.htm
 [BioConductor](https://bioconductor.org/packages/release/BiocViews.html).
 
 The source code of base R packages can be obtained from
-[GitHub](https://github.com/r-devel/r-svn/) (see the section
-[Getting the source code] below), and the installation pages of packages on CRAN
-frequently contain links to the GitHub pages where their source code can be viewed.
+[GitHub](https://github.com/r-devel/r-svn/) (see the section [Repositories]
+below), and the installation pages of packages on CRAN frequently contain links
+to the GitHub pages where their source code can be viewed.
 
 #### Package dependencies
 Use
@@ -328,10 +333,13 @@ Information about a package and its functions is available from within R after
 the package has been installed and loaded (i.e.,
 [library](../help/library)`(<pkgname>)` has been run):
 
-- Citation: [utils::citation("<pkgname>")](../help/citation), with
+- Citation: [utils::citation](../help/citation)`("<pkgname>")`, with
   `utils::citation()` to cite R itself.
-- Function overview: `ls(getNamespace("<pkgname>"))` gives their names as a
-  character vector;  
+- Function overview: `ls(getNamespace("<pkgname>"))` returns a character vector
+  with the function names (ignoring names that start with a dot, which by
+  convention are for internal use in packages;
+  `ls(getNamespace("<pkgname>"), all.names = TRUE)` includes those function
+  names in the returned character vector);
   `help(package = "<pkgname>")` gives an overview with links to their help-pages
   (does not work if there is no file `<pkgname>.R` in folder `<pgkname>\R`).
 - Help page: `help(topic = "<pkgname>")`.
@@ -387,28 +395,47 @@ Partly based on:
 - Ligges U. 2006. Accessing the sources.
 [RNews 6(4):43-45](https://journal.r-project.org/articles/RN-2006-035/).
 - A post from [StackOverflow](https://stackoverflow.com/a/19226817).
+- The help page for [utils::methods()](../help/methods)
 
 ### Repositories
-The source code of the base R packages, for the current as well as earlier
+The source code of the base R packages, for the development, current, and older
 versions of R, is available at [CRAN](https://cran.r-project.org/src/base/)
-and at the [SVN-project](https://svn.r-project.org/R/). Searching the source
-code is easiest using the [GitHub mirror](https://github.com/r-devel/r-svn/) of
-the latter.
+and at the [SVN-project](https://svn.r-project.org/R/branches/). Searching the
+source code is easiest using the
+[GitHub mirror](https://github.com/r-devel/r-svn/tree/main/src/library) of
+the development version of the latter, see the documentation on
+[searching GitHub](https://docs.github.com/en/search-github).
 
-The source code of [BioConductor](https://bioconductor.org/) packages is
-available [here](https://code.bioconductor.org/search/). The source of the
-add-on packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
-is available at [METACRAN](https://github.com/cran), an *unofficial* CRAN mirror.
+The source code of add-on packages from [BioConductor](https://bioconductor.org/)
+packages is available [here](https://code.bioconductor.org/search/). The source
+of add-on packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
+can be searched at [METACRAN](https://github.com/cran), an *unofficial* CRAN
+mirror. Alternatively, download the source file from section `Downloads` of the
+CRAN page. The source file is a compressed `tar` file so you have to extract the
+files (right-click on the downloaded file and choose `extract all`) and then
+move the package to the location of your R library, which is given by the output
+of `cat(normalizePath(R.home()))`, something like `C:\Program Files\R\R-4.5.2`.
+
+The source code of add-on packages from [GitHub](https://github.com/) can be
+viewed directly on GitHub, or after downloading the code to your computer by
+clicking the green `Code` button and choosing `Download ZIP` and 
 
 ### Basic method
 The simplest way to obtain the source code of a function is typing the name of
-the function, *without* the brackets. E.g., [sd](../help/sd) returns
-`function (x, na.rm = FALSE) sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), na.rm = na.rm))`.
+the function, *without* the brackets. For example, to see what happens when
+using [sd](../help/sd) to calculate the standard deviation:
+
+```{r}
+sd
+```
 
 Some special cases:
 
 - For operators such as [%in%](../help/match) which start with a symbol, use
-  backticks around the name.
+  backticks (`) around the name:
+```{r}
+`%in%`
+```
 - To distinguish functions with the same name from different packages, specify
   the package followed by two colons: `<pkgname>::<funcname>`.
 - For non-exported (i.e., internal) functions, specify the package followed by
@@ -496,9 +523,8 @@ function (target, current, ...) {
 
 #### .Internal or .Primitive
 If `getAnywhere("<funcname>")` returns `.Internal` or `.Primitive`, the function
-is internal or primitive. The source code of such functions can be viewed at the
-code repositories such as [GitHub](https://github.com/r-devel/r-svn/), or on
-your computer if you have installed R
+is internal or primitive. The source code of such functions can be viewed at
+code [repositories][Repositories], or on your computer if you have installed R
 [from source](https://cran.r-project.org/sources.html) using Rtools (see the
 section 'Rtools' in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`).
@@ -539,10 +565,12 @@ function contains a call to C or C++ code. Although the file `src/<pkgname>.h`
 (e.g.,
 [src/stats.h](https://github.com/r-devel/r-svn/blob/main/src/library/stats/src/stats.h)
 if code is from package `stats`) contains an overview of the C or C++ code
-included in a package, your best bet for finding the source code is using the
-[GitHub](https://github.com/r-devel/r-svn/) search, or installing the package
-from source and searching in the `src` folder of the downloaded code.
-
+included in a package, your best bet for finding the source code is
+[searching](https://docs.github.com/en/search-github) the
+[GitHub](https://github.com/r-devel/r-svn/) repository, or installing the package
+from source (see the section 'Rtools' in the vignette
+*Installing R, Rtools and RStudio*: `vignette("install_r", package = "checkrpkgs")`)
+and searching in the `src` folder of the downloaded code.
 
 ## Documentation and help
 - [Instructions](https://bioconductor.org/install/) on installing

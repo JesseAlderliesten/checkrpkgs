@@ -201,8 +201,9 @@ There are several ways to get code from a `GitHub` repository to your computer:
   `git clone --depth=1 https://github.com/<username>/<reposname>`.
 - To download code without being able to push your changes back to a GitHub
   repository, you can download the repository by using the green `Code` button,
-  choosing `Download ZIP`, unzip the downloaded files, and open the `.Rproj`
-  file with the same name as the repository.
+  choosing `Download ZIP`, unzip the downloaded files (right-click on them and
+  choose `extract all`), and open the `.Rproj` file with the same name as the
+  repository.
 
 ### Further documentation
 For details, see the GitHub documentation about:
@@ -268,7 +269,7 @@ Books
 Chapters
 
 - [Version control](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html) from Posit's
-  [RStudio User Guide](https://posit.co/products/open-source/rstudio/?sid=1)
+  [RStudio User Guide](https://posit.co/products/open-source/rstudio)
 - [Collaboration](https://epirhandbook.com/en/new_pages/collaboration.html) from
   [The Epidemiologist R Handbook](https://epirhandbook.com/en/)
 

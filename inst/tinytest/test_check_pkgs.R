@@ -1,7 +1,9 @@
 # Notes:
-# - Subsequent tests use different packages from base-R that are known to be
-#   present and functional. These packages are attached during startup if they
-#   are in options("defaultPackages") (see help("Startup")).
+# - Subsequent tests use different packages from base-R that should be present
+#   and functional. The packages used here are attached during startup if
+#   environment variable R_DEFAULT_PACKAGES is unset (they should be in
+#   options("defaultPackages"), see help("Startup") and the entry
+#   'defaultPackages' in help(options)).
 
 
 #### Create objects to use in tests ####
@@ -11,10 +13,10 @@ warn_non_existent_pkgs <- progutils::wrap_text(paste0(
 
 
 #### Test the examples ####
-# This test assumes base package 'base' are installed and functional.
+# This test assumes base packages 'base' is installed and functional.
 expect_silent(
   expect_equal(
-    check_pkgs(pkgs = c("base", "grid"), quietly = FALSE),
+    check_pkgs(pkgs = "base", quietly = FALSE),
     list(absent = character(0), nonfunc = character(0))
   )
 )
@@ -33,6 +35,7 @@ expect_warning(
   ),
   pattern = warn_non_existent_pkgs, strict = TRUE, fixed = TRUE)
 
+# This test assumes base package 'utils' is installed and functional.
 expect_warning(
   expect_equal(
     check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE),
@@ -42,12 +45,12 @@ expect_warning(
 
 
 #### Tests ####
-# Everything before the last slash should be removed. This test assumes base
-# packages 'methods', 'stats', 'stats4' and 'splines' are installed and
+# Everything up to the last slash should be removed. This test assumes base
+# packages 'methods', 'stats', 'datasets' and 'graphics' are installed and
 # functional.
 expect_silent(
   expect_equal(
-    check_pkgs(pkgs = c("ab/methods", "ab/cd/stats", "ab/stats4", "ab/cd/splines"),
+    check_pkgs(pkgs = c("ab/methods", "ab/cd/stats", "ab/datasets", "ab/cd/graphics"),
                quietly = TRUE),
     list(absent = character(0), nonfunc = character(0)))
 )

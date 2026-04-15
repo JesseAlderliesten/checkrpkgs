@@ -6,7 +6,7 @@
 \alias{checkrpkgs-package}
 \title{checkrpkgs: Information on Installing R, RStudio, Rtools, and R packages}
 \description{
-Information on installing and configuring R, RStudio, and Rtools; setting up and using Git and GitHub; obtaining information about to-be-installed and already-installed packages.
+Information on installing and configuring R, RStudio, and Rtools; setting up and using Git and GitHub; obtaining information about to-be-installed and already-installed packages, among which the source code of functions.
 }
 \seealso{
 Useful links:
