@@ -273,7 +273,7 @@ utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
 - If the warning `package <pkgname> was built under R version 'x.y.z'` occurs,
   you installed a binary package (i.e., not by building from source) that was
   compiled for an earlier version of R than the version of R you are currently
-  using (run [R.version.string](../help/R.Version) to see your current R version).
+  using (run [getRversion()](../help/R.Version) to see your current R version).
   The warning is issued because packages are not tested on versions of R that
   are older than the version they were built on. Therefore it is best to update
   R when installing packages.
