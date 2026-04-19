@@ -8,8 +8,8 @@
 
 #### Create objects to use in tests ####
 non_existent_pkgs <- c("yz/wx/abcdef4", "wx/abcdef3", "abcdef2", "abcdef1")
-warn_non_existent_pkgs <- progutils::wrap_text(paste0(
-  "non-installed packages: ", progutils::paste_quoted(non_existent_pkgs)))
+warn_non_existent_pkgs <- paste0("non-installed packages: ",
+                                 progutils::paste_quoted(non_existent_pkgs))
 
 
 #### Test the examples ####
