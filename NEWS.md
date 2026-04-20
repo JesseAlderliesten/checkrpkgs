@@ -1,13 +1,16 @@
 # checkrpkgs 0.1.3
 
 ### Miscellaneous
-- GitHub action `check-standard` now also runs on `R` 4.1.0 on macos, windows,
-  and ubuntu, is triggered every Saturday on 04:23 UTC, and can be triggered
-  manually (trigger it once manually on the main branch to be able to trigger it
-  manually on other branches).
-- GitHub actions are tested against `R` 4.1.0 which is required to pass the R
-  CMD check on ubuntu-latest: `github::hadley/strict` needs `R` >= 4.1. Because
-  `strict` is in `suggests` it is *not* needed to add dependency `R` >= 4.1.0.
+- Adjusted GitHub action `check-standard` to run without the dependencies listed
+  in `Suggests` which I use for documentation. The GitHub action runs on the
+  released `R` version and on `R` 4.1.0 on macOS, Windows, and Ubuntu. It is run
+  every Saturday on 04:23 UTC, and can be run manually (trigger it once manually
+  on the main branch to be able to trigger it manually on other branches).
+- Including GitHub actions against `R` 4.1.0 because `R` 4.1.0 is required to
+  pass the R CMD check on ubuntu-latest: `github::hadley/strict` needs `R` >=
+  4.1. Because `strict` is in `suggests` it is *not* needed to add dependency
+  `R` >= 4.1.0.
+- Show folder structure in `README`.
 
 
 # checkrpkgs 0.1.2
