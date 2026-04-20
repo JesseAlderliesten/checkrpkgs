@@ -70,8 +70,7 @@ get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NUL
         sep = ":\n- ")
     }
     warning("Packages found more than once:\n* ",
-            progutils::wrap_text(paste0(LibPaths, collapse = "\n* "),
-                                 ignore_newlines = FALSE),
+            paste0(LibPaths, collapse = "\n* "),
             call. = FALSE)
   }
 
@@ -84,17 +83,15 @@ get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NUL
   if(length(pkgs) > 0L) {
     bool_absent <- !(basename(path = pkgs) %in% res[, "Package"])
     if(any(bool_absent)) {
-      warning(progutils::wrap_text(paste0(
-        "Package(s) not found at 'lib.loc' (", lib.loc_string, "): ",
-        progutils::paste_quoted(pkgs[bool_absent]))))
+      warning("Package(s) not found at 'lib.loc' (", lib.loc_string, "):\n",
+              progutils::paste_quoted(pkgs[bool_absent]))
     }
     res <- res[res[, "Package"] %in% basename(path = pkgs), , drop = FALSE]
   }
 
   if(nrow(res) == 0L) {
-    warning(progutils::wrap_text(paste0(
-      "No packages found at ", lib.loc_string, ": returning a zero-row matrix."
-    )))
+    warning("No packages found at ", lib.loc_string,
+            ":\nreturning a zero-row matrix.")
   }
 
   res
