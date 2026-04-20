@@ -23,6 +23,17 @@ knitr::opts_chunk$set(
 about to-be-installed and already-installed packages; and how to get the source
 code of R-functions.
 
+## Folder structure
+```
+├── .github
+│   └── workflows: workflows to run tests with GitHub Actions
+├── R: functions
+├── inst
+│   └── tinytest: tests
+├── man: help-files
+└── tests: setup to use 'tinytest' for testing
+```
+
 ## Installation
 You can install `checkrpkgs` from
 [GitHub](https://github.com/JesseAlderliesten/checkrpkgs) with:

@@ -95,7 +95,8 @@ session:
 - [.Machine](../help/.Machine) and [Sys.info()](../help/Sys.info) provide information about the machine and platform
   R is running on.
 - [.Platform](../help/.Platform) and [R.Version()](../help/R.Version) provide information about the platform R was
-  built on.
+  built on. [getRversion()](../help/R.Version) provides the version of the
+  running R.
 - [Sys.getlocale()](../help/Sys.getlocale) provides details about the locale.
 - [sessionInfo()](../help/sessionInfo) extracts parts of the information provided by the functions
   mentioned above about the operating system and R. It also lists attached and
@@ -181,8 +182,8 @@ needed to install current versions of packages from
 [Bioconductor](https://bioconductor.org/) on Windows.
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/), download
-the version appropriate for the installed version of
-R (see `R.version.string`) from [CRAN](https://cran.r-project.org/)
+the version appropriate for the installed version of R (see the output of
+[getRversion()](../help/R.Version)) from [CRAN](https://cran.r-project.org/)
 via `Download R for Windows` > `Rtools` > `RTools X.Y` and set it up using the
 instructions given there. See also the 
 [HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.5.html) by Tomas

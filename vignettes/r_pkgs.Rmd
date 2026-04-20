@@ -65,7 +65,10 @@ released. Bioconductor also has thematic package collections known as
 
 The following code can be used to install packages from BioConductor release
 [version](http://bioconductor.org/about/release-announcements/#release-versions)
-3.22, using package [BiocManager](https://CRAN.R-project.org/package=BiocManager):
+3.22. This code also installs the
+[BiocManager](https://CRAN.R-project.org/package=BiocManager) package from
+[CRAN](https://CRAN.R-project.org) that is then used to download code from
+`Bioconductor`:
 
 ```{r, eval = FALSE}
 pkgs_new <- c(<pkgname>, <pkgname>)
@@ -111,7 +114,7 @@ The following code can be used to install packages from
 repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or by the full URL to a
 package (e.g., `"https://github.com/JesseAlderliesten/checkrpkgs"`). This code
 also installs the [remotes](https://CRAN.R-project.org/package=remotes) package
-that is then used to downloads code from GitHub:
+that is then used to download code from GitHub:
 
 ```{r, eval = FALSE}
 repo_pkgs_new <- c("JesseAlderliesten/checkrpkgs",
@@ -273,7 +276,7 @@ utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
 - If the warning `package <pkgname> was built under R version 'x.y.z'` occurs,
   you installed a binary package (i.e., not by building from source) that was
   compiled for an earlier version of R than the version of R you are currently
-  using (run [R.version.string](../help/R.Version) to see your current R version).
+  using (run [getRversion()](../help/R.Version) to see your current R version).
   The warning is issued because packages are not tested on versions of R that
   are older than the version they were built on. Therefore it is best to update
   R when installing packages.

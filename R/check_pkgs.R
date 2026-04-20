@@ -123,7 +123,7 @@ check_pkgs <- function(pkgs, quietly = FALSE) {
                      paste0("installed non-functional packages: ",
                             progutils::paste_quoted(names_nonfunc)))
     }
-    warning(progutils::wrap_text(paste0(warn_text, collapse = "; ")))
+    warning(paste0(warn_text, collapse = "\n"))
   }
 
   list(absent = names_absent, nonfunc = names_nonfunc)

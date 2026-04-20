@@ -14,6 +14,16 @@
 information about to-be-installed and already-installed packages; and
 how to get the source code of R-functions.
 
+## Folder structure
+
+    ├── .github
+    │   └── workflows: workflows to run tests with GitHub Actions
+    ├── R: functions
+    ├── inst
+    │   └── tinytest: tests
+    ├── man: help-files
+    └── tests: setup to use 'tinytest' for testing
+
 ## Installation
 
 You can install `checkrpkgs` from
@@ -66,17 +76,14 @@ get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
 #> checkrpkgs "checkrpkgs" "C:/Users/Eigenaar/AppData/Local/R/win-library/4.5"
 #> utils      "utils"      "C:/Program Files/R/R-4.5.2/library"               
 #>            Version Priority Depends
-#> checkrpkgs "0.1.0" NA       NA     
+#> checkrpkgs "0.1.1" NA       NA     
 #> utils      "4.5.2" "base"   NA     
-#>            Imports                                                                
-#> checkrpkgs "checkinput (>= 0.0.6), knitr, progutils (>= 0.0.3), rmarkdown,\nutils"
-#> utils      NA                                                                     
-#>            LinkingTo
-#> checkrpkgs NA       
-#> utils      NA       
-#>            Suggests                                                                                   
-#> checkrpkgs "BiocManager, conflicted, ctv, methods, pkgbuild, remotes,\nstrict, tinytest, tools, stats"
-#> utils      "methods, xml2, commonmark, knitr, jsonlite"                                               
+#>            Imports                                              LinkingTo
+#> checkrpkgs "checkinput (>= 0.0.6), progutils (>= 0.0.3), utils" NA       
+#> utils      NA                                                   NA       
+#>            Suggests                                                                                                     
+#> checkrpkgs "BiocManager, conflicted, ctv, knitr, methods, pkgbuild,\nremotes, rmarkdown, strict, tinytest, tools, stats"
+#> utils      "methods, xml2, commonmark, knitr, jsonlite"                                                                 
 #>            Enhances License              License_is_FOSS License_restricts_use
 #> checkrpkgs NA       "MIT + file LICENSE" NA              NA                   
 #> utils      NA       "Part of R 4.5.2"    NA              NA                   
