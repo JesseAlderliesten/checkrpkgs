@@ -6,6 +6,8 @@
   the dependency on `vctrs`.
 - Dependency `progutils`: increase from `>= 0.0.3` to `>= 0.0.6` to be able to
   use functions added to `progutils`.
+- Dependency `tinytest`: declare version `>= 1.4.1` because I use argument
+  `strict` in `expect_message()` and `expect_warning()`.
 
 ### Miscellaneous
 - Make the location of newlines more predictable by hardcoding newlines using

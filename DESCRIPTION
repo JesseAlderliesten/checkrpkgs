@@ -26,7 +26,7 @@ Suggests:
     remotes,
     rmarkdown,
     strict,
-    tinytest,
+    tinytest (>= 1.4.1),
     tools,
     stats
 Remotes:
