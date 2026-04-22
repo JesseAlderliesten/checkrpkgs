@@ -10,18 +10,20 @@
 #' @inherit check_pkgs details
 #'
 #' @returns
-#' A matrix containing the details of the installed packages. If `pkgs` has a
-#' length larger than zero, only information about the packages in `pkgs` is
-#' returned. A zero-row matrix is returned if no packages were found, with a
-#' warning.
+#' A matrix containing the details of the installed packages. The matrix
+#' contains columns `"Repository"`, `"URL"`, `"GithubRepo"`, `"GithubUsername"`,
+#' and any columns requested through argument `fields` in addition to the
+#' default columns returned by [installed.packages()]. `Repository` field that
+#' are `NA` or `""` are changed to `Github` if fields `"GithubRepo"` or
+#' `"GithubUsername"` are not `NA` or field `URL` contains `github`.
+#'
+#' If `pkgs` has a length larger than zero, only information about the packages
+#' in `pkgs` is returned but the rows are *not* ordered on `pkgs`. A zero-row
+#' matrix is returned if no packages were found, with a warning.
 #'
 #' @section Notes:
-#' All instances are returned if a package occurs more than once, with a
+#' If a package occurs more than once, all instances are returned, with a
 #' warning reporting their version, library path and origin.
-#'
-#' @section Programming notes:
-#' Could improve speed by using [find.package()] if `pkgs` is not `NULL`? See
-#' the `Programming notes` of [check_pkgs()].
 #'
 #' @family
 #' functions to get information about packages
@@ -38,19 +40,30 @@
 #' @examples
 #' get_details_pkgs(priority = "base")
 #' get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput",
-#'                           "JesseAlderliesten/checkrpkgs"))
+#'                           "JesseAlderliesten/checkrpkgs"),
+#'                  fields = c("SystemRequirements", "AnotherField"))
+#' get_details_pkgs(pkgs = c("base", "package_one_is_not_there",
+#'                           "package_two_is_not_there"))
 #'
 #' @export
 get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NULL,
-                             fields = c("Repository", "Additional_repositories",
-                                        "URL", "SystemRequirements")) {
+                             fields = c("Additional_repositories",
+                                        "SystemRequirements")) {
   stopifnot(checkinput::all_characters(x = pkgs, allow_zero = TRUE))
 
-  # Argument 'fields' lists fields that are additional to the default fields.
-  # Hardcoded fields 'Repository' and 'URL' because those are used to report on
-  # duplicated packages.
+  # Argument 'fields' gives fields that are additional to the fields that
+  # utils::installed.packages() returns by default. The hardcoded fields are
+  # used to determine the repository or to report on duplicated packages.
   res <- utils::installed.packages(lib.loc = lib.loc, priority = priority,
-                                   fields = c(fields, "Repository", "URL"))
+                                   fields = c("Repository", "URL", "GithubRepo",
+                                              "GithubUsername", fields))
+
+  bool_repos_GitHub <- (is.na(res[, "Repository"]) | res[, "Repository"] == "") &
+    (!is.na(res[, "GithubRepo"]) | !is.na(res[, "GithubUsername"]) |
+       grepl(pattern = "github", x = res[, "URL"], fixed = TRUE))
+  if(any(bool_repos_GitHub)) {
+    res[bool_repos_GitHub, "Repository"] <- "Github"
+  }
 
   pkg_names <- res[, "Package"]
   bool_dupl <- duplicated(pkg_names)
@@ -82,16 +95,17 @@ get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NUL
 
   if(length(pkgs) > 0L) {
     bool_absent <- !(basename(path = pkgs) %in% res[, "Package"])
-    if(any(bool_absent)) {
-      warning("Package(s) not found at 'lib.loc' (", lib.loc_string, "):\n",
+    if(any(bool_absent) && !all(bool_absent)) {
+      warning("Some packages were not found at 'lib.loc' (", lib.loc_string, "):\n",
               progutils::paste_quoted(pkgs[bool_absent]))
     }
     res <- res[res[, "Package"] %in% basename(path = pkgs), , drop = FALSE]
   }
 
   if(nrow(res) == 0L) {
-    warning("No packages found at ", lib.loc_string,
-            ":\nreturning a zero-row matrix.")
+    warning("Returning a zero-row matrix because none of the packages were",
+            " found at 'lib.loc' (", lib.loc_string,
+            "): ", progutils::paste_quoted(pkgs[bool_absent]))
   }
 
   res
