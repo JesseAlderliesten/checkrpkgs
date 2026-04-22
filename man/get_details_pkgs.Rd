@@ -8,7 +8,7 @@ get_details_pkgs(
   pkgs = character(0),
   lib.loc = NULL,
   priority = NULL,
-  fields = c("Repository", "Additional_repositories", "URL", "SystemRequirements")
+  fields = c("Additional_repositories", "SystemRequirements")
 )
 }
 \arguments{
@@ -34,10 +34,16 @@ ending in such names, see \code{Details}.}
     \code{NA} values.}
 }
 \value{
-A matrix containing the details of the installed packages. If \code{pkgs} has a
-length larger than zero, only information about the packages in \code{pkgs} is
-returned. A zero-row matrix is returned if no packages were found, with a
-warning.
+A matrix containing the details of the installed packages. The matrix
+contains columns \code{"Repository"}, \code{"URL"}, \code{"GithubRepo"}, \code{"GithubUsername"},
+and any columns requested through argument \code{fields} in addition to the
+default columns returned by \code{\link[=installed.packages]{installed.packages()}}. \code{Repository} field that
+are \code{NA} or \code{""} are changed to \code{Github} if fields \code{"GithubRepo"} or
+\code{"GithubUsername"} are not \code{NA} or field \code{URL} contains \code{github}.
+
+If \code{pkgs} has a length larger than zero, only information about the packages
+in \code{pkgs} is returned but the rows are \emph{not} ordered on \code{pkgs}. A zero-row
+matrix is returned if no packages were found, with a warning.
 }
 \description{
 Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get more information about
@@ -54,20 +60,17 @@ Packages are looked for in the library paths given by \code{\link[=.libPaths]{.l
 }
 \section{Notes}{
 
-All instances are returned if a package occurs more than once, with a
+If a package occurs more than once, all instances are returned, with a
 warning reporting their version, library path and origin.
-}
-
-\section{Programming notes}{
-
-Could improve speed by using \code{\link[=find.package]{find.package()}} if \code{pkgs} is not \code{NULL}? See
-the \verb{Programming notes} of \code{\link[=check_pkgs]{check_pkgs()}}.
 }
 
 \examples{
 get_details_pkgs(priority = "base")
 get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput",
-                          "JesseAlderliesten/checkrpkgs"))
+                          "JesseAlderliesten/checkrpkgs"),
+                 fields = c("SystemRequirements", "AnotherField"))
+get_details_pkgs(pkgs = c("base", "package_one_is_not_there",
+                          "package_two_is_not_there"))
 
 }
 \seealso{
