@@ -17,13 +17,13 @@ Imports:
     progutils (>= 0.0.6),
     utils
 Suggests: 
-    BiocManager,
+    BiocManager (>= 1.30.5),
     conflicted,
-    ctv,
+    ctv (>= 0.4-0),
     knitr,
     methods,
     pkgbuild,
-    remotes,
+    remotes (>= 2.0.0),
     rmarkdown,
     strict,
     tinytest (>= 1.4.1),
