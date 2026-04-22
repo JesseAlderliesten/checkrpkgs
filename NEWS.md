@@ -1,3 +1,17 @@
+# checkrpkgs 0.3.0
+
+### Breaking changes
+- Dependency `BiocManager` (in `Suggests`): require version `>= 1.30.5` to be
+  able to run code in vignettes.
+- Dependency `ctv` (in `Suggests`): require version `>= 0.4-0` to be able to run
+  code in vignettes.
+- Dependency `remotes` (in `Suggests`): require version `>= 2.0.0` to be able to
+  run code in vignettes.
+- `get_details_pkgs()`: also extract fields `"GithubRepo"` and `"GithubUsername"`.
+  No need to use the hardcoded fields in the default argument. Set field
+  `Repository` to `Github` if appropriate. Adjusted warnings.
+
+
 # checkrpkgs 0.2.0
 
 ### Breaking changes
