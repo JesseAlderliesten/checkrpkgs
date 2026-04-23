@@ -67,7 +67,7 @@ The following code can be used to install packages from BioConductor release
 [version](http://bioconductor.org/about/release-announcements/#release-versions)
 3.22. This code also installs the
 [BiocManager](https://CRAN.R-project.org/package=BiocManager) package from
-[CRAN](https://CRAN.R-project.org) that is then used to download code from
+[CRAN](https://CRAN.R-project.org) that is then used to install packages from
 `Bioconductor`:
 
 ```{r, eval = FALSE}
@@ -90,6 +90,7 @@ The following code can be used to install packages from CRAN:
 
 ```{r, eval = FALSE}
 pkgs_new <- c(<pkgname>, <pkgname>)
+# Select packages that are currently not installed or not functional
 pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
                                  FUN.VALUE = logical(1), quietly = TRUE)]
 if(length(pkgs_install) > 0L) {
@@ -110,23 +111,26 @@ Packages from CRAN that have been recently archived are available at
 
 #### Github
 The following code can be used to install packages from
-[GitHub](https://github.com/). Packages can be specified using the author and
-repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or by the full URL to a
-package (e.g., `"https://github.com/JesseAlderliesten/checkrpkgs"`). This code
-also installs the [remotes](https://CRAN.R-project.org/package=remotes) package
-that is then used to download code from GitHub:
+[GitHub](https://github.com/): it installs the
+[remotes](https://CRAN.R-project.org/package=remotes) package that is needed to
+install packages from GitHub. `grep(pattern = "/", x = pkgs_new, value = TRUE)`
+is used to select those elements of `pkgs_new` that contain a slash because
+argument `pkgs` of `remotes::install_github()` should be the author and
+repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or the full URL to a
+package (e.g., `"https://github.com/JesseAlderliesten/checkrpkgs"`).
 
 ```{r, eval = FALSE}
-repo_pkgs_new <- c("JesseAlderliesten/checkrpkgs",
-                   "https://github.com/JesseAlderliesten/progutils")
+pkgs_new <- c("JesseAlderliesten/checkrpkgs",
+              "https://github.com/JesseAlderliesten/progutils")
 if(!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages(pkgs = "remotes", lib = NULL, dependencies = NA,
+  install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
-remotes::install_github(repo = repo_pkgs_new, dependencies = NA, upgrade = FALSE,
-                        force = FALSE, quiet = FALSE, build_vignettes = TRUE,
-                        lib = NULL, verbose = getOption("verbose"))
+remotes::install_github(repo = grep(pattern = "/", x = pkgs_new, value = TRUE),
+                        dependencies = NA, upgrade = "ask", force = FALSE,
+                        quiet = FALSE, build_vignettes = TRUE, lib = .libPaths(),
+                        verbose = getOption("verbose"))
 ```
 
 #### Mirror websites
@@ -152,6 +156,7 @@ mirror is used (see above), which is signalled by the message
 `'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details`.
 
 #### Other repositories
+Examples of other useful repositories for R packages are:
 
 - [Neuroconductor](https://neuroconductor.org/list-packages/all)
 - [R-Forge](https://r-forge.r-project.org/) with a 
@@ -164,6 +169,23 @@ mirror is used (see above), which is signalled by the message
 - [R universe](https://r-universe.dev/search) with an
   [overview](https://r-universe.dev/datasets) of
   [datasets](../help/data) included in R packages
+
+The websites of these repositories include instructions how to install packages
+from them. The following code shows how to install packages from
+[R-Forge](https://r-forge.r-project.org/) as an example:
+
+```{r, eval = FALSE}
+pkgs_new <- c(<pkgname>, <pkgname>)
+# Select packages that are currently not installed or not functional
+pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
+                                 FUN.VALUE = logical(1), quietly = TRUE)]
+if(length(pkgs_install) > 0L) {
+  install.packages(pkgs = pkgs_install, lib = .libPaths(),
+                   repos = "http://R-Forge.R-project.org", dependencies = NA,
+                   type = getOption("pkgType"), verbose = getOption("verbose"),
+                   quiet = FALSE)
+}
+```
 
 ### Installing old versions
 Installing old versions of a package might require installing Rtools to build
@@ -188,7 +210,7 @@ if(!requireNamespace("remotes", quietly = TRUE)) {
 }
 remotes::install_version(package = <pkgname>, version = "1.23", dependencies = NA,
                          upgrade = "ask", quiet = FALSE, build_vignettes = TRUE,
-                         verbose = getOption("verbose"))
+                         lib = .libPaths(), verbose = getOption("verbose"))
 ```
 
 Alternatively, at the installation page of a package from CRAN go to
@@ -199,7 +221,7 @@ version 1.40 of package [deSolve](https://CRAN.R-project.org/package=deSolve):
 ```{r, eval = FALSE}
 install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
                  lib = .libPaths(), repos = NULL, dependencies = NA,
-                 type = "source", verbose = getOption("verbose"),
+                 type = getOption("pkgType"), verbose = getOption("verbose"),
                  quiet = FALSE)
 ```
 
@@ -217,12 +239,13 @@ BioConductor release (here version 3.22), see the section [BioConductor] above:
 
 ```{r, eval = FALSE}
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
-  install.packages(pkgs = "BiocManager", lib = NULL, dependencies = NA,
+  install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
-BiocManager::install(pkgs = character(), lib = NULL, verbose = FALSE,
-                     update = TRUE, ask = TRUE, checkBuilt = TRUE,force = FALSE,
+BiocManager::install(pkgs = character(), lib = .libPaths(), dependencies = NA,
+                     type = getOption("pkgType"), verbose = getOption("verbose"),
+                     update = TRUE, ask = TRUE, checkBuilt = TRUE, force = FALSE,
                      version = "3.22")
 ```
 
@@ -249,7 +272,9 @@ utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
   [checkrpkgs::check_pkgs](../help/check_pkgs)`(pkgs = c(<pkgnames>))` to check
   if all the dependencies are installed and functional.
 
-- If the warning `lib = <pkgname> is not writeable` occurs, you probably forgot
+- If the warnings `lib = <pkgname> is not writeable` or
+  `'lib' element <element from .libPaths()> is not a writable directory` occurs,
+  you probably forgot
   to run R (or RStudio) as administrator. Close R (RStudio), right-click on the
   R or RStudio icon and select `Run as administrator` to start it as
   administrator.
