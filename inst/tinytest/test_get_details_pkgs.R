@@ -13,9 +13,8 @@ expect_true(all(fields_std %in% colnames(details_base)))
 expect_true(all(details_base[, "Priority", drop = FALSE] == "base"))
 
 # Enable requesting a non-default field (also used as an example)
-expect_silent(
-  details_v2 <- get_details_pkgs(pkgs = pkgs_present,
-                                 fields = c("SystemRequirements", "SomeField")))
+details_v2 <- get_details_pkgs(pkgs = pkgs_present,
+                               fields = c("SystemRequirements", "SomeField"))
 expect_true(all(rownames(details_v2) %in% basename(pkgs_present)))
 expect_true(all(c(fields_std, "SystemRequirements", "SomeField") %in%
                   colnames(details_v2)))
@@ -24,9 +23,8 @@ expect_true(all(is.na(details_v2[, "SomeField", drop = FALSE])))
 expect_true(all(details_v2[, "Repository"] == "Github"))
 
 # Do not duplicate fields if a default field and a hardcoded field are requested
-expect_silent(
-  details_v3 <- get_details_pkgs(pkgs = pkgs_present,
-                                 fields = c("LibPath", "URL")))
+details_v3 <- get_details_pkgs(pkgs = pkgs_present,
+                               fields = c("LibPath", "URL"))
 expect_true(all(rownames(details_v3) %in% basename(pkgs_present)))
 expect_true(all(c(fields_std, "LibPath", "URL") %in% colnames(details_v3)))
 expect_true(all(is.na(details_v3[, "Priority", drop = FALSE])))
