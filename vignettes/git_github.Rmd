@@ -213,9 +213,10 @@ The following code can be used to install packages from
 `vignette("r_pkgs", package = "checkrpkgs")`):
 
 ```{r, eval = FALSE}
-remotes::install_github(repo = repo_pkgs_new, dependencies = NA, upgrade = "ask",
-                        force = FALSE, quiet = FALSE, build_vignettes = TRUE,
-                        lib = .libPaths(), verbose = getOption("verbose"))
+remotes::install_github(repo = pkgs_new[basename(pkgs_new) != pkgs_new],
+                        dependencies = NA, upgrade = "ask", force = FALSE,
+                        quiet = FALSE, build_vignettes = TRUE, lib = .libPaths(),
+                        verbose = getOption("verbose"))
 ```
 
 ### Further documentation
