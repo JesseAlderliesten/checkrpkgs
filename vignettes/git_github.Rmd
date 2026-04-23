@@ -205,6 +205,19 @@ There are several ways to get code from a `GitHub` repository to your computer:
   choose `extract all`), and open the `.Rproj` file with the same name as the
   repository.
 
+### Installing a package from GitHub
+The following code can be used to install packages from
+[GitHub](https://github.com/) (see the section
+'R packages > Installing packages > Github' in the vignette
+*Instructions about R packages* for details:
+`vignette("r_pkgs", package = "checkrpkgs")`):
+
+```{r, eval = FALSE}
+remotes::install_github(repo = repo_pkgs_new, dependencies = NA, upgrade = "ask",
+                        force = FALSE, quiet = FALSE, build_vignettes = TRUE,
+                        lib = .libPaths(), verbose = getOption("verbose"))
+```
+
 ### Further documentation
 For details, see the GitHub documentation about:
 
