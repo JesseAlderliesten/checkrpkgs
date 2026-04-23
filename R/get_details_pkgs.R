@@ -51,28 +51,54 @@ get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NUL
                                         "SystemRequirements")) {
   stopifnot(checkinput::all_characters(x = pkgs, allow_zero = TRUE))
 
+  if(is.null(lib.loc)) {
+    lib.loc_string <- progutils::paste_quoted(.libPaths())
+  } else {
+    lib.loc_string <- progutils::paste_quoted(lib.loc)
+  }
+
   # Argument 'fields' gives fields that are additional to the fields that
   # utils::installed.packages() returns by default. The hardcoded fields are
   # used to determine the repository or to report on duplicated packages.
   res <- utils::installed.packages(lib.loc = lib.loc, priority = priority,
                                    fields = c("Repository", "URL", "GithubRepo",
                                               "GithubUsername", fields))
+  pkg_names <- res[, "Package"]
 
-  bool_repos_GitHub <- (is.na(res[, "Repository"]) | res[, "Repository"] == "") &
-    (!is.na(res[, "GithubRepo"]) | !is.na(res[, "GithubUsername"]) |
-       grepl(pattern = "github", x = res[, "URL"], fixed = TRUE))
-  if(any(bool_repos_GitHub)) {
-    res[bool_repos_GitHub, "Repository"] <- "Github"
+  if(length(pkgs) > 0L) {
+    bool_absent <- !(basename(path = pkgs) %in% pkg_names)
+    if(any(bool_absent) && !all(bool_absent)) {
+      warning("Some packages were not found at 'lib.loc' (", lib.loc_string, "):\n",
+              progutils::paste_quoted(pkgs[bool_absent]))
+    }
+    res <- res[pkg_names %in% basename(path = pkgs), , drop = FALSE]
+    pkg_names <- res[, "Package"]
   }
 
-  pkg_names <- res[, "Package"]
+  if(nrow(res) == 0L) {
+    warning("Returning a zero-row matrix because none of the packages were",
+            " found at 'lib.loc' (", lib.loc_string,
+            "): ", progutils::paste_quoted(pkgs[bool_absent]))
+  }
+
+  bool_no_repos_info <- is.na(res[, "Repository"]) | res[, "Repository"] == ""
+  if(any(bool_no_repos_info)) {
+    bool_suggests_GitHub <- !is.na(res[, "GithubRepo"]) |
+      !is.na(res[, "GithubUsername"]) |
+      grepl(pattern = "github", x = res[, "URL"], fixed = TRUE)
+    bool_add_github_info <- bool_no_repos_info & bool_suggests_GitHub
+    if(any(bool_add_github_info)) {
+      res[bool_add_github_info, "Repository"] <- "Github"
+    }
+  }
+
   bool_dupl <- duplicated(pkg_names)
   if(any(bool_dupl)) {
-    ind_bool <- which(bool_dupl)
-    LibPaths <- rep(NA_character_, times = length(ind_bool))
-    for(ind_msg in seq_along(ind_bool)) {
-      pkg <- res[ind_bool[ind_msg], "Package"]
-      row_ind_match <- which(res[, "Package"] == pkg)
+    ind_dupl <- which(bool_dupl)
+    LibPaths <- rep(NA_character_, times = length(ind_dupl))
+    for(ind_msg in seq_along(ind_dupl)) {
+      pkg <- res[ind_dupl[ind_msg], "Package"]
+      row_ind_match <- which(pkg_names == pkg)
       LibPaths[ind_msg] <- paste(
         pkg,
         paste0("version ", res[row_ind_match, "Version"],
@@ -85,27 +111,6 @@ get_details_pkgs <- function(pkgs = character(0), lib.loc = NULL, priority = NUL
     warning("Packages found more than once:\n* ",
             paste0(LibPaths, collapse = "\n* "),
             call. = FALSE)
-  }
-
-  if(is.null(lib.loc)) {
-    lib.loc_string <- progutils::paste_quoted(.libPaths())
-  } else {
-    lib.loc_string <- progutils::paste_quoted(lib.loc)
-  }
-
-  if(length(pkgs) > 0L) {
-    bool_absent <- !(basename(path = pkgs) %in% res[, "Package"])
-    if(any(bool_absent) && !all(bool_absent)) {
-      warning("Some packages were not found at 'lib.loc' (", lib.loc_string, "):\n",
-              progutils::paste_quoted(pkgs[bool_absent]))
-    }
-    res <- res[res[, "Package"] %in% basename(path = pkgs), , drop = FALSE]
-  }
-
-  if(nrow(res) == 0L) {
-    warning("Returning a zero-row matrix because none of the packages were",
-            " found at 'lib.loc' (", lib.loc_string,
-            "): ", progutils::paste_quoted(pkgs[bool_absent]))
   }
 
   res
