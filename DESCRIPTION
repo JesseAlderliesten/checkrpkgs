@@ -21,14 +21,14 @@ Suggests:
     conflicted,
     ctv (>= 0.4-0),
     knitr,
+    Matrix,
     methods,
     pkgbuild,
     remotes (>= 2.0.0),
     rmarkdown,
     strict,
     tinytest (>= 1.4.1),
-    tools,
-    stats
+    tools
 Remotes:
     github::JesseAlderliesten/checkinput,
     github::JesseAlderliesten/progutils,
