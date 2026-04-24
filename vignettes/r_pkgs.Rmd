@@ -546,28 +546,26 @@ function has different S4-methods (see
 object classes. Use [showMethods](../help/showMethods)`("<funcname>")` to get an
 overview of the available methods in all *loaded* packages, or use
 `<pkgname>:::<funcname>` to get an overview of the available methods from package
-`<pkgname>`. Then provide the function name as argument `f` and the *entire line*
-of the selected method as argument [signature](../help/signature) to function
-[getMethod()](../help/getMethod), i.e.,
-`getMethod(f = "<funcname>", signature = c(target = "<classname>", current = "<classname>"))`
-to obtain the source code of a particular method.
+`<pkgname>`. Finally, provide the function name as argument `f` and the selected
+method as a character vector to argument [signature](../help/signature) of
+function [getMethod()](../help/getMethod) to obtain the source code of a
+particular method:
+`getMethod(f = "<funcname>", signature = c(target = "<classname>", current = "<classname>"))`.
 
-For example, if the Matrix package is installed and loaded (i.e.,
-`library(Matrix)` has been run), `getAnywhere("all.equal")` returns matches for
-package Matrix and for package base. Selecting the match from package Matrix
-(i.e., `getAnywhere("all.equal")[1]`) returns, among others,
-`standardGeneric("all.equal")` indicating that `all.equal()` is an S4 function.
-`showMethods("all.equal")` gives an overview of the different methods. Then use
-function `getMethod()` with the function name as argument `f` and the selected
-method as a character vector to argument `signature` to get the source code for
-that particular method:
+The example below shows how to find the source code of method `cbind2()` used by
+the `Matrix` package to combine two matrices that both have the `Matrix` class
+defined by package `Matrix`.
 
 ```{r, eval = TRUE}
 library(Matrix)
 getAnywhere("cbind2")
 
+# standardGeneric("cbind2") indicating that cbind2() is an S4 function, so use
+# showMethods("cbind2") to get an overview of the different methods:
 showMethods("cbind2")
 
+# To get the source code of 'cbind2' used with two matrices that both have the
+# 'Matrix' class defined by package 'Matrix'
 getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 ```
 
