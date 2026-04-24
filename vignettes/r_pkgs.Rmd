@@ -564,14 +564,11 @@ that particular method:
 
 ```{r, eval = TRUE}
 library(Matrix)
-getAnywhere("all.equal")
+getAnywhere("cbind2")
 
-getAnywhere("all.equal")[1]
+showMethods("cbind2")
 
-showMethods("all.equal")
-
-methods::getMethod(f = "all.equal",
-                   signature = c(target = "vector", current = "Matrix"))
+getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 ```
 
 #### .Internal or .Primitive
