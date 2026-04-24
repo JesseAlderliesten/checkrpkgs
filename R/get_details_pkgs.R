@@ -1,7 +1,7 @@
 #' Get details about installed packages
 #'
 #' Wrapper around [utils::installed.packages()] to get more information about
-#' the origin of packages and select the packages for which to return
+#' the origin of installed packages and select the packages for which to return
 #' information.
 #'
 #' @inheritParams utils::installed.packages

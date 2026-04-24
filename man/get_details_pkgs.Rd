@@ -47,7 +47,7 @@ matrix is returned if no packages were found, with a warning.
 }
 \description{
 Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get more information about
-the origin of packages and select the packages for which to return
+the origin of installed packages and select the packages for which to return
 information.
 }
 \details{
