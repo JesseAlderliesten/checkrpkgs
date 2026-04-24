@@ -24,26 +24,27 @@ This vignette contains instructions on installing and configuring
 [RStudio](https://posit.co/products/open-source/rstudio),
 and [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
 
-In this vignette, `<pkgname>` is used to refer to a package name that should be
-filled in to get working code, e.g., `<pkgname>` should be replaced with `grid`
-if you want to obtain information about package `grid`, and with `stats` if you
-want to obtain information about package `stats`. Similarly, `<funcname>` is
-used to refer to a function name that should be filled in to get working code.
-
+In this vignette, text between angled brackets (`<...>`) is used to refer to
+text that should be replaced with specific text to get working code or working
+file paths. For example, `<pkgname>` is used as a place holder to refer in
+general to a package name: `<pkgname>` should be replaced with `utils` if you
+want to obtain information about package `utils`, and with `methods` if you want
+to obtain information about package `methods`. Similarly, `<funcname>` is a
+place holder to refer to a function name that should be filled in with a
+specific function name to get working code.
 
 ## R
 To install [R](https://www.r-project.org/), visit a nearby CRAN
 [mirror](https://cran.r-project.org/mirrors.html) (i.e., a website with the same
-content as the [main](https://cran.r-project.org/) CRAN page), download R, e.g.,
-via `Download R for Windows` > `base` > `Download R-X.Y.Z for Windows` and
-install it by opening the downloaded .exe-file.
+content as the [main](https://cran.r-project.org/) CRAN page), download R via
+`Download R for Windows` > `base` > `Download R-X.Y.Z for Windows` and install
+it by opening the downloaded .exe-file.
 
-R is *not* required to read R-scripts: 
-R-scripts are plain-text files that can be read by applications such as
-Microsoft NotePad.
+Note that R is *not* required to read R-scripts: R-scripts are plain-text files
+that can be read by applications such as Microsoft NotePad.
 
 ### Configuring R
-R can be configured by changing general [options](../help/options), options for
+R can be configured by changing [general options](../help/options), options for
 [startup](../help/Startup), and options for [installing packages](../help/install.packages)
 and [library paths](../help/.libPaths). For more details, see the
 [R Installation and Administration manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
@@ -53,64 +54,66 @@ and the section [R Startup](https://rstats.wtf/r-startup) from
 R can be made a bit stricter by setting various options, described in the help
 files for [options](../help/options) and [environment variables](../help/environment%20variables):
 
-- Warn in case of [partial matching](../help/pmatch) (default: `FALSE` for each
-  of these):  
+- Warn in case of [partial matching](../help/pmatch) such as `list(mean = 3)$me`
+  (the default is `FALSE` for each of these):
   `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
-- Error instead of warn when calling [a:b](../help/colon) when numeric `a` or `b` is longer
-  than one (introduced in R 4.3.0):  
+- Error instead of warn when calling [a:b](../help/colon) when numeric `a` or `b`
+  is longer than one, such as `3:c(5, 7)` (introduced in R 4.3.0):  
   `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
-- Error instead of silently use only the first element in [logical operations](../help/Logic)
-  (introduced in R 3.6.0, no longer used since R 4.3.0 because there calling
-  `&&` or `||` with length larger than one always gives an error):  
+- Error instead of silently using only the first element in
+  [logical operations](../help/Logic) such as `c(TRUE, TRUE) && TRUE)`
+  (introduced in R 3.6.0, no longer used since R 4.3.0 because there calling `&&`
+  or `||` with length larger than one always gives an error):  
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
-- Error instead of warn if a [condition](../help/Control) has length larger
-  than one (introduced in R 3.y.z, no longer used since R 4.2.0 because there
-  conditions with length larger than one always give an error):  
-  `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
-- Print warnings [warnings](../help/warning) immediately as they occur (default: `options(warn = 0)`):  
-  `options(warn = 1)`.
-- Make [warnings](../help/warning) an [error](../help/stop) (default: `options(warn = 0)`):  
-  `options(warn = 2)`.
+- Error instead of warn if a [condition](../help/Control) has length larger than
+  one, such as `if(3 < c(5, 7)) {"Now run some code"}` (introduced in R 3.y.z, no
+  longer used since R 4.2.0 because there conditions with length larger than one
+  always give an error): `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
+- Print warnings [warnings](../help/warning) immediately as they occur (default:
+  `options(warn = 0)`): `options(warn = 1)`.
+- Make [warnings](../help/warning) an [error](../help/stop) (default:
+  `options(warn = 0)`): `options(warn = 2)`.
 - Enter the [environment browser](../help/browser) upon error (default:
-  `options(error = NULL)`):  
-  `options(error = browser)`; press `Q` or `Escape` to quit the browser mode;
-  press `c` to continue code.
+  `options(error = NULL)`): `options(error = browser)`; press `Q` or `Escape` to
+  quit the browser mode; press `c` to continue code.
 
 In addition, various packages contain ways to make R stricter:
 
 - Package [strict](https://github.com/hadley/strict/) warns about various unsafe
-  practices, such as the behaviour of [sample](../help/sample) and
-  [diag](../help/diag) if called with an
-  argument of length one and type-unsafe [sapply](../help/sapply); additional ideas are in the
-  [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
+  practices, such as the behaviour of [sample()](../help/sample) and
+  [diag()](../help/diag) if called with an
+  argument of length one and type-unsafe [sapply()](../help/sapply); additional
+  ideas are in the [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
 - Package [conflicted](https://CRAN.R-project.org/package=conflicted) avoids
-  silent [conflict](../help/conflicts) resolution (i.e., choosing the latest attached package out of
-  multiple packages to use a function from), and provides
+  silent [conflict](../help/conflicts) resolution (i.e., choosing the latest
+  attached package out of multiple packages to use a function from), and provides
   `conflicts_prefer(<pkgname>::<funcname>)` to declare preferences once.
 
 ### Information about R
 Several variables and functions provide information about R and the current R
 session:
 
-- [.Machine](../help/.Machine) and [Sys.info()](../help/Sys.info) provide information about the machine and platform
-  R is running on.
-- [.Platform](../help/.Platform) and [R.Version()](../help/R.Version) provide information about the platform R was
-  built on. [getRversion()](../help/R.Version) provides the version of the
-  running R.
+- [.Machine](../help/.Machine) and [Sys.info()](../help/Sys.info) provide
+  information about the machine and platform R is running on.
+- [.Platform](../help/.Platform) and [R.Version()](../help/R.Version) provide
+  information about the platform R was built on.
+  [getRversion()](../help/R.Version) provides the version of the running R.
 - [Sys.getlocale()](../help/Sys.getlocale) provides details about the locale.
-- [sessionInfo()](../help/sessionInfo) extracts parts of the information provided by the functions
-  mentioned above about the operating system and R. It also lists attached and
-  loaded packages. Its printing method can be used to print additional
-  information: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
-- [capabilities()](../help/capabilities) and  [extSoftVersion()](../help/extSoftVersion) provide details about external
+- [sessionInfo()](../help/sessionInfo) extracts parts of the information
+  provided by the functions mentioned above about the operating system and R. It
+  also lists attached and loaded packages. Its printing method can be used to
+  print additional information: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+- [capabilities()](../help/capabilities) and
+  [extSoftVersion()](../help/extSoftVersion) provide details about external
   software that can be used with R.
-- [environment variables](../help/environment%20variables) lists some of the environment variables which
-  affect an R session.
+- [environment variables](../help/environment%20variables) lists some of the
+  environment variables which affect an R session.
 
 How operating systems identify themselves and their versions can be arcane, and
 specifically Windows versions might report older versions than the versions that
-are actually installed (see the section `osVersion` in [sessionInfo()](../help/sessionInfo) and
-the `Note` in [win.version()](../help/win.version)).
+are actually installed (see the section `osVersion` in
+[sessionInfo()](../help/sessionInfo) and the `Note` in
+[win.version()](../help/win.version)).
 
 
 ## RStudio
@@ -133,10 +136,10 @@ modified keyboard shortcuts. Going to `Tools` > `Modify Keyboard Shortcuts`
 usually fixes that without the need to actually reset the shortcuts.
 
 The appearance of code can be changed at `Tools` > `Global options` >
-`Appearance`. The default Editor theme is the light `Textmate`, another nice
-light Editor theme is `Xcode`. Nice dark Editor themes are
-`Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`, with Editor fonts
-`Consolas`, `Cacadia Mono Light`, or `Lucida Console`.
+`Appearance`. The default `Editor theme` is the light `Textmate`, another nice
+light `Editor theme` is `Xcode`. Nice dark `Editor themes` are
+`Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`, with
+`Editor fonts` `Consolas`, `Cacadia Mono Light`, or `Lucida Console`.
 
 To check that characters in a
 typeface or font can be properly distinguished from each other when choosing a
@@ -151,11 +154,11 @@ string):
 
 - SEVEN, ONE, lower EL, upper I, vertical BAR, lower I, SLASH
 - lower O, upper CUE, upper O, ZERO, upper DEE
-- lower G, lower CUE
+- lower GEE, lower CUE
 - upper BEE, EIGHT
 - upper ESS, FIVE
 - upper ZED, TWO
-- lower I, lower JAY, lower WY, FOUR
+- lower I, lower JAY, lower WYE, FOUR
 - DOT, COMMA,
 - COLON, SEMICOLON
 - double QUOTES, single QUOTES, single QUOTES
@@ -166,18 +169,17 @@ string):
 - upper U, upper VEE, upper VEE, upper double-U,  
   lower U, lower VEE, lower VEE, lower double-U
 
-
 ## Rtools
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) is *not* an R package
 but software used to build R [from source](https://cran.r-project.org/sources.html)
-and to build R packages from source: packages from
-[GitHub](https://github.com/) and *older* versions of packages from
+and to build R packages from source: packages from [GitHub](https://github.com/)
+and *older* versions of packages from 
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
-(see the section
-'Installing packages' in the vignette *Instructions about R packages* for
-instructions: `vignette("r_pkgs", package = "checkrpkgs")`). Rtools is *not*
-needed to install current versions of packages from
+(see the section 'Installing packages' in the vignette
+*Instructions about R packages* for instructions:
+`vignette("r_pkgs", package = "checkrpkgs")`). Rtools is *not* needed to install
+current versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/) on Windows.
 
@@ -211,9 +213,10 @@ to check and install Rtools.
   [Posit](https://posit.co/)
 - [search engines](https://cran.r-project.org/search.html) specific for R;
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the r-tag
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
 
 ### For developers
-- CRAN mirrors: see the section 'Mirror websites' in the vignette
+- CRAN mirrors: see the section 'Other repositories and mirrors' in the vignette
   *Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")` 
 - R [developer page](https://developer.r-project.org/)
 - R [development guide](https://contributor.r-project.org/rdevguide/) from the

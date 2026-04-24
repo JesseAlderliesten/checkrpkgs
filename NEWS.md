@@ -1,3 +1,26 @@
+# checkrpkgs 0.4.0
+
+### Breaking changes
+- Updated dependencies: add suggested dependency `Matrix` that is used in
+  vignettes. Remove suggested dependency `stats` after updating an example in
+  the vignettes to use `methods` instead of `stats`.
+
+### Bugfixes ###
+- `get_details_pkgs()`: if `pkgs` has length larger than zero, warn only about
+  duplicated packages that are in `pkgs`.
+
+### Miscellaneous
+- Updated vignettes: some corrections in text, various updates. Changed order of
+  some sections to be more logical. Explain notation for text to be filled in
+  (e.g., `<funcname>`) and use that more consistently.
+  `Installing R, Rtools and RStudio`: Adjusted newlines to have shorter lines.
+  Add examples to section 'Configuring R'. `Instructions about R packages`: some
+  bugfixes in example code. More consistent code to install or update packages.
+  Add example how to install from other repositories. Use evaluation of R code
+  instead of hardcoding output in examples. `Using Git and GitHub`: added
+  section on installing packages from `GitHub`.
+
+
 # checkrpkgs 0.3.0
 
 ### Breaking changes

@@ -1,6 +1,6 @@
 Package: checkrpkgs
 Title: Information on Installing R, RStudio, Rtools, and R packages
-Version: 0.2.0
+Version: 0.4.0
 Authors@R: 
     person("Jesse", "Alderliesten", email = "jessealderliesten@hotmail.com",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1132-4310"))
@@ -21,14 +21,14 @@ Suggests:
     conflicted,
     ctv (>= 0.4-0),
     knitr,
+    Matrix,
     methods,
     pkgbuild,
     remotes (>= 2.0.0),
     rmarkdown,
     strict,
     tinytest (>= 1.4.1),
-    tools,
-    stats
+    tools
 Remotes:
     github::JesseAlderliesten/checkinput,
     github::JesseAlderliesten/progutils,
