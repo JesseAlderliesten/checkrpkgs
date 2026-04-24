@@ -18,10 +18,18 @@ knitr::opts_chunk$set(
 ```
 
 
-## Introduction
+## Introduction and notation
 This vignette provides information on setting up and using Git and
 [GitHub](https://github.com/).
 
+In this vignette, text between angled brackets (`<...>`) is used to refer to
+text that should be replaced with specific text to get working code or working
+file paths. For example, `<pkgname>` is used as a place holder to refer in
+general to a package name: `<pkgname>` should be replaced with `utils` if you
+want to obtain information about package `utils`, and with `methods` if you want
+to obtain information about package `methods`. Similarly, `<funcname>` is a
+place holder to refer to a function name that should be filled in with a
+specific function name to get working code.
 
 ## Setting up Git and GitHub
 Create a [GitHub](https://github.com/) account, download a
@@ -33,14 +41,16 @@ To update the Git for Windows GitHub client if you already have it, type
 
 To use Git and GitHub from RStudio: in RStudio at `Tools` > `Global Options` >
 `Git/SVN`, tick `Enable version control interface for RStudio projects`. The Git
-executable is probably at `C:/Program Files/Git/bin/git.exe` or
-`C:/Users/Eigenaar/AppData/Local/Git/bin/git.exe`: run `where git.exe` in the
-[shell](https://happygitwithr.com/shell) to get its location.
+executable is probably at `C:\Program Files\Git\bin\git.exe` or
+`C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows notation; in R
+these are `C:/Program Files/Git/bin/git.exe` or
+`C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, see the [Notes on paths]):
+run `where git.exe` in the [shell](https://happygitwithr.com/shell) to get its
+location.
 
 Open the `Git Bash` [shell](https://happygitwithr.com/shell) (which was
-installed when installing
-[Git for Windows](https://gitforwindows.org/)) by typing `Git Bash` + `Enter` in
-Windows' `Start` menu.
+installed when installing [Git for Windows](https://gitforwindows.org/)) by
+typing `Git Bash` + `Enter` in Windows' `Start` menu.
 
 To associate Git with your GitHub account, you need to provide your name
 (this name is listed in GitHub with the changes you make and does *not* have to
@@ -49,14 +59,15 @@ See the Chapter [Introduce yourself to Git](https://happygitwithr.com/hello-git.
 [Happy Git and GitHub for the useR](https://happygitwithr.com/) for more details.
 
 ```{Git Bash}
-git config --global user.name 'Jane Doe'
-git config --global user.email 'jane@example.com'
+git config --global user.name '<Jane Doe>'
+git config --global user.email '<jane@example.com>'
 git config --global --list
 ```
 The last line should return the username and email address you just entered.
 
 ### Using personal access tokens (PATs)
-On the use of personal access tokens (PATs) instead of a username and password:
+On the use of personal access tokens (PATs) instead of a username and password,
+see:
 
 - GitHub [documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens);
 - The Chapter about [Personal Access Tokens](https://happygitwithr.com/https-pat.html)
@@ -66,8 +77,8 @@ On the use of personal access tokens (PATs) instead of a username and password:
 
 
 ## Using Git and GitHub
-To work with GitHub in RStudio, you should *not* open an R script (i.e., a file
-with extension `.R`) but the R Project file (i.e., a file with extension
+To work with GitHub in RStudio, you should not open an R *script* (i.e., a file
+with extension `.R`) but the R *Project file* (i.e., a file with extension
 `.Rproj`). Then the `Git` menu will be visible as a tab in the
 [Environment pane](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 
@@ -77,8 +88,7 @@ local directory up-to-date with the remote directory:
 
 - in RStudio: use the `pull` button (downward arrow) in the `Git` menu;
 - in the [shell](https://happygitwithr.com/shell):
-  `git pull https://github.com/UserName/RepositoryName`
-  (UserName/RepositoryName has to be replaced with the relevant names).
+  `git pull https://github.com/<UserName>/<RepositoryName>`.
 
 Save the modified R-file after you have made some changes, only then will the
 name of the file appear in the `Git` menu of RStudio to review changes:
@@ -91,13 +101,11 @@ name of the file appear in the `Git` menu of RStudio to review changes:
   the remote directory.
 - in the [shell](https://happygitwithr.com/shell): to compare the content of two
   files, see the instructions in the section [Comparing files] below. Next, use
-  `git commit -m 'your commit message goes here' path/and/filename.R`
-  `git push https://github.com/UserName/RepositoryName`
-  (UserName/RepositoryName has to be replaced with the relevant names) to commit
-  changes.
+  `git commit -m '<your commit message goes here>' <path>/<and>/<filename>.R`
+  `git push https://github.com/<UserName>/<RepositoryName>` to commit changes.
 
 If a `Push` leads to an error because of an invalid username or password, `Push`
-again, then you will be asked for a personal access token (PAT; see section
+again, then you will be asked for a personal access token (PAT; see the section
 [Using personal access tokens (PATs)] above). After you have entered the PAT once,
 RStudio will remember this token for next times.
 
@@ -105,13 +113,14 @@ RStudio will remember this token for next times.
 ## Adding a new file
 To add a file to GitHub that was not there yet, first add it to the local folder
 (i.e., on your computer), then let `git` know it is there by typing (it is
-convenient to use `tab`-completion to select files): `git add filename.extension`.
+convenient to use `tab`-completion to select files):
+`git add <filename>.<extension>`.
 
 If the working directory is *not* the folder where the to-be-added file is in,
-the working directory has to be set to that folder first (in the
-[shell](https://happygitwithr.com/shell): use `cd file/path/to/folder`), or the
-path has to be added in front of the filename.
-
+the working directory has to be set to that folder (e.g., using
+`cd <path/to/folder>`, in the [shell](https://happygitwithr.com/shell) or the
+path has to be added in front of the filename (dragging the file onto the shell
+will copy the path to the shell).
 
 ## Comparing files
 
@@ -125,7 +134,7 @@ path has to be added in front of the filename.
 [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons)
 - Comparing commits: see
 [here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits)
-- See also Section [Repositories: download, fork, or clone?] below.
+- See also section [Repositories: download, fork, or clone?] below.
 
 ### Not using GitHub
 R-scripts can be compared using [tools::Rdiff()](../help/Rdiff): use the quoted file paths
@@ -157,12 +166,12 @@ Note:
 
 
 ## Deleting a file
-You might want to move files to a folder `Archive` instead of deleting them.
-To delete a file, delete the file from the local repository (i.e., your PC),
-then `commit` the change (i.e., deletion of a file), using the `commit message`
-to describe why the file was deleted. Then `pull` to make sure the local
-repository is up to date with the remote repository, and then `push` the change
-to the remote repository.
+Consider moving files to a folder `archive` instead of deleting them. To delete
+a file, delete the file from the local repository (i.e., your PC), then `commit`
+the change (i.e., deletion of a file), using the `commit message` to describe
+why the file was deleted. Then `pull` to make sure the local repository is up to
+date with the remote repository, and then `push` the change to the remote
+repository.
 
 Alternatively, open the file on the remote repository (i.e., on the `GitHub`
 website), click the three dots at the top-right of the file > `delete` >
@@ -193,7 +202,7 @@ There are several ways to get code from a `GitHub` repository to your computer:
   the repository, copying the URL to the clipboard (i.e., do *not* use
   `download ZIP`), create a new R project in RStudio (`File` > `New Project` >
   `Version control` > `Git`), paste the repository URL (something like
-  `https://github.com/<username>/<reposname>`, where `<username>` and `<reposname>` need to be replaced with the actual names) in the designated field, select the
+  `https://github.com/<username>/<reposname>`) in the designated field, select the
   desired location on your computer, and create the project. The same repository
   URL can be used when using shell commands to clone a repository, either with
   its complete history by using `git clone https://github.com/<username>/<reposname>`
@@ -201,16 +210,19 @@ There are several ways to get code from a `GitHub` repository to your computer:
   `git clone --depth=1 https://github.com/<username>/<reposname>`.
 - To download code without being able to push your changes back to a GitHub
   repository, you can download the repository by using the green `Code` button,
-  choosing `Download ZIP`, unzip the downloaded files (right-click on them and
-  choose `extract all`), and open the `.Rproj` file with the same name as the
-  repository.
+  choosing `Download ZIP` and unzip the downloaded file (right-click on them and
+  choose `extract all`). To be able to let R use the package correctly, move the
+  package to a location of your R libraries (given by the output of
+  `cat(normalizePath(.libPaths()))`, something like
+  `C:\Program Files\R\R-4.5.2\library` or
+  `C:\Users\<owner>\AppData\Local\R\win-library\4.5`. Then open the `.Rproj`
+  file (which has the same name as the repository).
 
 ### Installing a package from GitHub
 The following code can be used to install packages from
-[GitHub](https://github.com/) (see the section
+[GitHub](https://github.com/) (for details see the section
 'R packages > Installing packages > Github' in the vignette
-*Instructions about R packages* for details:
-`vignette("r_pkgs", package = "checkrpkgs")`):
+*Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")`):
 
 ```{r, eval = FALSE}
 remotes::install_github(repo = pkgs_new[basename(pkgs_new) != pkgs_new],
@@ -251,14 +263,13 @@ which is given below), or in the `BASH shell` type `git config` or
 - working directory, navigate to: `cd ~`
 - working directory, print: `pwd`
 - working directory, change: `cd` (e.g.,
-  `cd 'D:/Userdata/PcName/Documents/GIT/SomeFolder'`).
-
+  `cd 'D:/Userdata/<owner>/Documents/GIT/<somefolder>'`).
 
 ## Notes on paths
 When entering paths in the `shell`, use forward slash (`/`) instead of the
 Windows-default backslash (`\`). If the path you want to specify contains spaces
 (e.g., `D:/Userdata/My Account/...`), use quotes around the path (e.g.,
-`"D:/Userdata/My Account/"`). `Tab`-completion can be used when entering paths:
+`"D:/Userdata/My Account/..."`). `Tab`-completion can be used when entering paths:
 single `tab` to select an option, double `tab` to see multiple options. Dragging
 a file into the shell gives the absolute path to that file. The current and
 parent directory can be indicated by a single (`.`) or two (`..`) dots in file
@@ -272,7 +283,8 @@ Official documentation
 - [Git](https://git-scm.com/doc)
 - GitHub help pages on 
   [setting up Git](https://docs.github.com/en/get-started/git-basics/set-up-git),
-  [setting up GitHub](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account) and on [general](https://docs.github.com/en) help
+  [setting up GitHub](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account), on [general](https://docs.github.com/en) help, and on
+  [searching GitHub](https://docs.github.com/en/search-github)
 
 Books
 
