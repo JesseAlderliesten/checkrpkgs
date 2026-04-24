@@ -570,8 +570,8 @@ getAnywhere("all.equal")[1]
 
 showMethods("all.equal")
 
-# methods::getMethod(f = "all.equal",
-#                    signature = c(target = "vector", current = "Matrix"))
+methods::getMethod(f = "all.equal",
+                   signature = c(target = "vector", current = "Matrix"))
 ```
 
 #### .Internal or .Primitive
