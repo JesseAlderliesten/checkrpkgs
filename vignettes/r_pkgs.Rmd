@@ -336,7 +336,7 @@ are installed, as well as from within R the packages are installed.
 The [reference manual](https://cran.r-project.org/manuals.html) is a PDF-file
 with all the help files of the standard and recommended packages. The manuals
 and help pages of all packages from CRAN can be searched
-[online](https://search.r-project.org/), or from within R using
+[online](https://cran.r-project.org/search.html), or from within R using
 [utils::RSiteSearch()](../help/RSiteSearch). In addition,
 [utils::help.search()](../help/help.search) can be used to search the help
 system using fuzzy matching or regular expressions, which can be disabled by
@@ -640,3 +640,4 @@ folder of the downloaded code.
   `vignette("install_r", package = "checkrpkgs")`
 - Section [Troubleshooting] above
 - The help-page [checkrpkgs::check_pkgs()](../help/check_pkgs)
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)

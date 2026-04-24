@@ -213,6 +213,7 @@ to check and install Rtools.
   [Posit](https://posit.co/)
 - [search engines](https://cran.r-project.org/search.html) specific for R;
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the r-tag
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
 
 ### For developers
 - CRAN mirrors: see the section 'Other repositories and mirrors' in the vignette
