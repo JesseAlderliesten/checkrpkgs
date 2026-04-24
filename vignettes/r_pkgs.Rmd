@@ -557,14 +557,20 @@ For example, if the Matrix package is installed and loaded (i.e.,
 package Matrix and for package base. Selecting the match from package Matrix
 (i.e., `getAnywhere("all.equal")[1]`) returns, among others,
 `standardGeneric("all.equal")` indicating that `all.equal()` is an S4 function.
-`showMethods("all.equal")` gives an overview of the different methods. Then
-providing the function name as argument `f` and the *entire line* of the
-selected method as argument `signature` to function `getMethod()` to get the
-source code for that particular method:
+`showMethods("all.equal")` gives an overview of the different methods. Then use
+function `getMethod()` with the function name as argument `f` and the selected
+method as a character vector to argument `signature` to get the source code for
+that particular method:
 
 ```{r, eval = TRUE}
-library(Matrix)
-methods::getMethod(f = "all.equal", signature = c(target = "vector", current = "Matrix"))
+# library(Matrix)
+# getAnywhere("all.equal")
+# 
+# getAnywhere("all.equal")[1]
+# 
+# showMethods("all.equal")
+# 
+# methods::getMethod(f = "all.equal", signature = c(target = "vector", current = "Matrix"))
 ```
 
 #### .Internal or .Primitive
