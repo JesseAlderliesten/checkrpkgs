@@ -3,17 +3,17 @@
 #' Function to check for non-installed or non-functional packages.
 #'
 #' @param pkgs A character vector with names of packages to be checked, or
-#' ending in such names, see `Details`.
+#' ending in such names, see section `Package names` below.
 #' @param quietly `TRUE` or `FALSE`: suppress warnings when loading
 #' installed non-functional packages?
 #'
-#' @details
+#' @section Package names:
 #' The part after the last forward or backward slash is considered to be the
 #' package name if input to `pkgs` contains such slashes. Therefore package
 #' names, file paths to packages, and full URLs to packages from
-#' [GitHub](https://github.com/) can all be used as input to `pkgs`.
-#'
-#' Packages are looked for in the library paths given by [.libPaths()].
+#' [GitHub](https://github.com/) can all be used as input to `pkgs`, e.g.,
+#' `"checkrpkgs"`, `"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"`,
+#' `"https://github.com/JesseAlderliesten/checkrpkgs"`.
 #'
 #' @returns
 #' A list of length two, with elements 'absent' and 'nonfunc' containing
@@ -27,6 +27,8 @@
 #' them might fail. Restart \R to prevent such problems.
 #'
 #' @section Notes:
+#' Packages are looked for in the library paths given by [.libPaths()].
+#'
 #' Only the first instance of a package is checked if it occurs more than once,
 #' with a warning.
 #'
@@ -45,16 +47,16 @@
 #' [requireNamespace()].
 #'
 #' @seealso
-#' [package_dependencies][tools::package_dependencies()]`(packages = "<pkgname>", recursive = TRUE)`
+#' [tools::package_dependencies()]`(packages = "<pkgname>", recursive = TRUE)`
 #' for dependencies and
-#' [dependsOnPkgs][tools::dependsOnPkgs()]`(pkgs = "<pkgname>", recursive = TRUE)`
+#' [tools::dependsOnPkgs()]`(pkgs = "<pkgname>", recursive = TRUE)`
 #' for reverse dependencies; [get_details_pkgs]`(pkgs = <pkgname>)` for more
 #' information about the origin of packages; `tools::standard_package_names()`
 #' (present since \R 4.4.0) for names of the base and recommended packages.
 #'
 #' [old.packages()] and [BiocManager::valid()] to check for outdated or too new
-#' packages, where the latter takes the currently used version of Bioconductor
-#' into account.
+#' packages, where the latter takes the currently used
+#' [version][BiocManager::version()] of Bioconductor into account.
 #'
 #' `options("defaultPackages")` for names of packages that are attached by
 #' default when \R starts up; [loadedNamespaces()] and [utils::sessionInfo()]
@@ -80,8 +82,8 @@ check_pkgs <- function(pkgs, quietly = FALSE) {
 
   pkgs_input <- pkgs
 
-  # Remove the last forward slash and everything before it, because the package
-  # name is the part after the last forward slash in GitHub repository names.
+  # Remove the last forward or backward slash and everything before it, because
+  # the package name is the part after the last slash in GitHub repository names.
   pkgs <- basename(path = pkgs)
 
   # lib.loc = NULL looks at all libraries known to .libPaths()

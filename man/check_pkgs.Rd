@@ -8,7 +8,7 @@ check_pkgs(pkgs, quietly = FALSE)
 }
 \arguments{
 \item{pkgs}{A character vector with names of packages to be checked, or
-ending in such names, see \code{Details}.}
+ending in such names, see section \verb{Package names} below.}
 
 \item{quietly}{\code{TRUE} or \code{FALSE}: suppress warnings when loading
 installed non-functional packages?}
@@ -23,14 +23,16 @@ are installed and functional, respectively.
 \description{
 Function to check for non-installed or non-functional packages.
 }
-\details{
+\section{Package names}{
+
 The part after the last forward or backward slash is considered to be the
 package name if input to \code{pkgs} contains such slashes. Therefore package
 names, file paths to packages, and full URLs to packages from
-\href{https://github.com/}{GitHub} can all be used as input to \code{pkgs}.
-
-Packages are looked for in the library paths given by \code{\link[=.libPaths]{.libPaths()}}.
+\href{https://github.com/}{GitHub} can all be used as input to \code{pkgs}, e.g.,
+\code{"checkrpkgs"}, \code{"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"},
+\code{"https://github.com/JesseAlderliesten/checkrpkgs"}.
 }
+
 \section{Side effects}{
 
 Packages are \link[=loadNamespace]{loaded}, such that \link[=update.packages]{updating}
@@ -38,6 +40,8 @@ them might fail. Restart \R to prevent such problems.
 }
 
 \section{Notes}{
+
+Packages are looked for in the library paths given by \code{\link[=.libPaths]{.libPaths()}}.
 
 Only the first instance of a package is checked if it occurs more than once,
 with a warning.
@@ -69,16 +73,16 @@ check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
 
 }
 \seealso{
-\link[tools:package_dependencies]{package_dependencies}\verb{(packages = "<pkgname>", recursive = TRUE)}
+\code{\link[tools:package_dependencies]{tools::package_dependencies()}}\verb{(packages = "<pkgname>", recursive = TRUE)}
 for dependencies and
-\link[tools:dependsOnPkgs]{dependsOnPkgs}\verb{(pkgs = "<pkgname>", recursive = TRUE)}
+\code{\link[tools:dependsOnPkgs]{tools::dependsOnPkgs()}}\verb{(pkgs = "<pkgname>", recursive = TRUE)}
 for reverse dependencies; \link{get_details_pkgs}\verb{(pkgs = <pkgname>)} for more
 information about the origin of packages; \code{tools::standard_package_names()}
 (present since \R 4.4.0) for names of the base and recommended packages.
 
 \code{\link[=old.packages]{old.packages()}} and \code{\link[BiocManager:valid]{BiocManager::valid()}} to check for outdated or too new
-packages, where the latter takes the currently used version of Bioconductor
-into account.
+packages, where the latter takes the currently used
+\link[BiocManager:version]{version} of Bioconductor into account.
 
 \code{options("defaultPackages")} for names of packages that are attached by
 default when \R starts up; \code{\link[=loadedNamespaces]{loadedNamespaces()}} and \code{\link[utils:sessionInfo]{utils::sessionInfo()}}

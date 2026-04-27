@@ -415,7 +415,9 @@ The function [loadedNamespaces()](../help/loadedNamespaces) shows which packages
 are loaded. To see which packages are used in a script, look for `::`, `:::`,
 [library](../help/library), [require](../help/require), and `namespace` (e.g.,
 [loadNamespace](../help/loadNamespace),
-[requireNamespace()](../help/requireNamespace)).
+[requireNamespace()](../help/requireNamespace)). Various packages have their own
+way to create dependencies on packages, see the overview at
+[pak::scan_deps()](https://pak.r-lib.org/reference/scan_deps.html).
 
 To see which packages are mentioned in comments, also look for:
 

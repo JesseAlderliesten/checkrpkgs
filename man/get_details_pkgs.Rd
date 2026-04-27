@@ -6,20 +6,20 @@
 \usage{
 get_details_pkgs(
   pkgs = character(0),
-  lib.loc = NULL,
+  fields = NULL,
   priority = NULL,
-  fields = c("Additional_repositories", "SystemRequirements")
+  lib.loc = NULL,
+  db = NULL
 )
 }
 \arguments{
 \item{pkgs}{A character vector with names of packages to be checked, or
-ending in such names, see \code{Details}.}
+ending in such names, see section \verb{Package names} below.}
 
-\item{lib.loc}{
-    character vector describing the location of \R library trees to
-    search through, or \code{NULL} for all known trees
-    (see \code{\link{.libPaths}}).
-  }
+\item{fields}{a character vector giving the fields to extract from
+    each package's \file{DESCRIPTION} file in addition to the default
+    ones, or \code{NULL} (default).  Unavailable fields result in
+    \code{NA} values.}
 
 \item{priority}{
     character vector or \code{NULL} (default).  If non-null, used to
@@ -28,22 +28,35 @@ ending in such names, see \code{Details}.}
     assigned priority use \code{priority = NA_character_}.
   }
 
-\item{fields}{a character vector giving the fields to extract from
-    each package's \file{DESCRIPTION} file in addition to the default
-    ones, or \code{NULL} (default).  Unavailable fields result in
-    \code{NA} values.}
+\item{lib.loc}{
+    character vector describing the location of \R library trees to
+    search through, or \code{NULL} for all known trees
+    (see \code{\link{.libPaths}}).
+  }
+
+\item{db}{\code{NULL} (default) or a matrix with the results of a call to
+\code{\link[utils:installed.packages]{utils::installed.packages()}} containing column \code{Package} (or rownames that
+are package names). To prevent a call to \code{\link[utils:installed.packages]{utils::installed.packages()}}, the
+matrix should contain the columns listed in section \code{Details} below and any
+requested columns.}
 }
 \value{
-A matrix containing the details of the installed packages. The matrix
-contains columns \code{"Repository"}, \code{"URL"}, \code{"GithubRepo"}, \code{"GithubUsername"},
-and any columns requested through argument \code{fields} in addition to the
-default columns returned by \code{\link[=installed.packages]{installed.packages()}}. \code{Repository} field that
-are \code{NA} or \code{""} are changed to \code{Github} if fields \code{"GithubRepo"} or
-\code{"GithubUsername"} are not \code{NA} or field \code{URL} contains \code{github}.
+A matrix containing details of the installed packages, see \code{Details}.
+
+\code{Repository} fields in the returned matrix that are \code{NA} or \code{""} are changed
+to \code{Github} if fields \code{"GithubRepo"} or \code{"GithubUsername"} are not \code{NA} or
+field \code{URL} matches \code{"github"}.
 
 If \code{pkgs} has a length larger than zero, only information about the packages
-in \code{pkgs} is returned but the rows are \emph{not} ordered on \code{pkgs}. A zero-row
-matrix is returned if no packages were found, with a warning.
+in \code{pkgs} is returned (but the rows are \emph{not} ordered on \code{pkgs}), with a
+warning if a package is not found.
+
+If a package occurs more than once in the searched \R library trees, all
+instances are returned, with a warning reporting their version, library path
+and origin. Information about a package is not duplicated in the returned
+matrix if multiple entries in \code{pkgs} refer to the same package.
+
+If no packages were found, a zero-row matrix is returned, with a warning.
 }
 \description{
 Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get more information about
@@ -51,33 +64,49 @@ the origin of installed packages and select the packages for which to return
 information.
 }
 \details{
+The returned matrix will contain columns \code{"Package"}, \code{"Version"},
+\code{"MD5sum"}, \code{"Built"}, \code{"Priority"}, \code{"LibPath"}, \code{"Repository"},
+\code{"Additional_repositories"}, \code{"URL"}, \code{"GithubRepo"}, \code{"GithubUsername"},
+\code{"SystemRequirements"}, \code{"NeedsCompilation"}, \code{"OS_type"}, \code{"Depends"},
+\code{"Imports"}, \code{"LinkingTo"}, \code{"Suggests"} and any columns requested through
+argument \code{fields}.
+}
+\section{Package names}{
+
 The part after the last forward or backward slash is considered to be the
 package name if input to \code{pkgs} contains such slashes. Therefore package
 names, file paths to packages, and full URLs to packages from
-\href{https://github.com/}{GitHub} can all be used as input to \code{pkgs}.
-
-Packages are looked for in the library paths given by \code{\link[=.libPaths]{.libPaths()}}.
-}
-\section{Notes}{
-
-If a package occurs more than once, all instances are returned, with a
-warning reporting their version, library path and origin.
+\href{https://github.com/}{GitHub} can all be used as input to \code{pkgs}, e.g.,
+\code{"checkrpkgs"}, \code{"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"},
+\code{"https://github.com/JesseAlderliesten/checkrpkgs"}.
 }
 
 \examples{
 get_details_pkgs(priority = "base")
-get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput",
+
+# Returns all default fields and requested fields, warns about packages that
+# are not found
+get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
                           "JesseAlderliesten/checkrpkgs"),
-                 fields = c("SystemRequirements", "AnotherField"))
-get_details_pkgs(pkgs = c("base", "package_one_is_not_there",
-                          "package_two_is_not_there"))
+                 fields = "SomeField")
 
 }
 \seealso{
+\code{\link[utils:installed.packages]{utils::installed.packages()}} that is used by \code{get_details_pkgs()}.
+
 \code{\link[tools:CRANtools]{tools::CRAN_package_db()}} for information about packages available from
-\href{https://cran.r-project.org/web/packages/index.html}{CRAN};
-\code{\link[BiocManager:available]{BiocManager::available()}} for the names of packages available from
-\href{https://bioconductor.org/packages/release/BiocViews.html}{BioConductor}.
+\href{https://cran.r-project.org/web/packages/index.html}{CRAN}, including the
+\code{Description} and \code{Maintainer} fields not returned by
+\code{\link[utils:available.packages]{utils::available.packages()}}. \code{\link[tools:CRANtools]{tools::CRAN_check_results()}},
+\code{\link[tools:CRANtools]{tools::CRAN_check_details()}} and \code{\link[tools:CRANtools]{tools::CRAN_check_issues()}} on the current
+check status of CRAN packages.
+
+\link[utils:available.packages]{utils::available.packages}\verb{(fields = NULL, repos = }\code{\link[BiocManager:repositories]{BiocManager::repositories()}}\verb{)}
+for information about packages available from
+\href{https://bioconductor.org/packages/release/BiocViews.html}{BioConductor}, and
+\code{\link[BiocManager:available]{BiocManager::available()}} for their names.
+
+\link{check_pkgs}, with information on obtaining dependencies in its help-page.
 
 The vignette \emph{Instructions about R packages}:
 \code{vignette("r_pkgs", package = "checkrpkgs")}.
