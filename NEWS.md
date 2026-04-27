@@ -1,3 +1,10 @@
+# checkrpkgs 0.5.0
+
+### Breaking changes
+- Updated `get_details_pkgs()`: added argument `db`, additional checks on input,
+  and updated documentation.
+
+
 # checkrpkgs 0.4.0
 
 ### Breaking changes
