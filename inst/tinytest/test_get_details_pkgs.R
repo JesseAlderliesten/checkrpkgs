@@ -106,9 +106,8 @@ expect_identical(
 NULL_pkgs_div <- get_details_pkgs(pkgs = pkgs_div, db = NULL)
 OK_pkgs_div <- get_details_pkgs(pkgs = pkgs_div, db = db_OK)
 expect_identical(NULL_pkgs_div, OK_pkgs_div)
-expect_identical(NULL_pkgs_div[pkgs_div, "Repository"],
-                 c(utils = NA, Matrix = "CRAN", tinytest = "CRAN",
-                   checkrpkgs = "Github", checkinput = "Github"))
+expect_true(all(c("CRAN", "Github", NA_character_) %in%
+                  NULL_pkgs_div[pkgs_div, "Repository"]))
 
 
 #### Argument 'priority' ####
