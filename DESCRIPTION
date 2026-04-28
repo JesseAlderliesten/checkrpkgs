@@ -1,6 +1,6 @@
 Package: checkrpkgs
 Title: Information on Installing R, RStudio, Rtools, and R packages
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: 
     person("Jesse", "Alderliesten", email = "jessealderliesten@hotmail.com",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1132-4310"))
@@ -33,6 +33,6 @@ Remotes:
     github::JesseAlderliesten/checkinput,
     github::JesseAlderliesten/progutils,
     github::hadley/strict
-URL: https://github.com/JesseAlderliesten/checkrpkgs
+URL: https://github.com/JesseAlderliesten/checkrpkgs, https://jessealderliesten.github.io/checkrpkgs/
 BugReports: https://github.com/JesseAlderliesten/checkrpkgs/issues
 VignetteBuilder: knitr

@@ -359,7 +359,7 @@ For (not necessarily installed) packages from CRAN, use
 to see dependencies (i.e., which packages are required by package `<pkgname>`) and
 [tools::dependsOnPkgs](../help/dependsOnPkgs)`(pkgs = "<pkgname>", recursive = TRUE)`
 to see reverse dependencies (i.e., which packages require package `<pkgname>`).
-`NULL` is returned for packages that are not found, wheres `character(0)` is
+`NULL` is returned for packages that are not found, whereas `character(0)` is
 returned for packages that do not have any dependencies.
 
 ### Already-installed packages

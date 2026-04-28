@@ -1,3 +1,7 @@
+# checkrpkgs 0.5.1
+- Use pkgdown, see https://r-pkgs.org/website.html and https://pkgdown.r-lib.org/.
+
+
 # checkrpkgs 0.5.0
 
 ### Breaking changes
