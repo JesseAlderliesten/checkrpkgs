@@ -1,0 +1,271 @@
+# Installing R, Rtools and RStudio
+
+## Introduction and notation
+
+This vignette contains instructions on installing and configuring
+[R](https://www.r-project.org/),
+[RStudio](https://posit.co/products/open-source/rstudio), and
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+
+In this vignette, text between angled brackets (`<...>`) is used to
+refer to text that should be replaced with specific text to get working
+code or working file paths. For example, `<pkgname>` is used as a place
+holder to refer in general to a package name: `<pkgname>` should be
+replaced with `utils` if you want to obtain information about package
+`utils`, and with `methods` if you want to obtain information about
+package `methods`. Similarly, `<funcname>` is a place holder to refer to
+a function name that should be filled in with a specific function name
+to get working code.
+
+## R
+
+To install [R](https://www.r-project.org/), visit a nearby CRAN
+[mirror](https://cran.r-project.org/mirrors.html) (i.e., a website with
+the same content as the [main](https://cran.r-project.org/) CRAN page),
+download R via `Download R for Windows` \> `base` \>
+`Download R-X.Y.Z for Windows` and install it by opening the downloaded
+.exe-file.
+
+Note that R is *not* required to read R-scripts: R-scripts are
+plain-text files that can be read by applications such as Microsoft
+NotePad.
+
+### Configuring R
+
+R can be configured by changing [general
+options](https://jessealderliesten.github.io/checkrpkgs/help/options),
+options for
+[startup](https://jessealderliesten.github.io/checkrpkgs/help/Startup),
+and options for [installing
+packages](https://jessealderliesten.github.io/checkrpkgs/help/install.packages)
+and [library
+paths](https://jessealderliesten.github.io/checkrpkgs/help/.libPaths).
+For more details, see the [R Installation and Administration
+manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
+and the section [R Startup](https://rstats.wtf/r-startup) from [What
+They Forgot to Teach You About R](https://rstats.wtf/).
+
+R can be made a bit stricter by setting various options, described in
+the help files for
+[options](https://jessealderliesten.github.io/checkrpkgs/help/options)
+and [environment
+variables](https://jessealderliesten.github.io/checkrpkgs/help/environment%20variables):
+
+- Warn in case of [partial
+  matching](https://jessealderliesten.github.io/checkrpkgs/help/pmatch)
+  such as `list(mean = 3)$me` (the default is `FALSE` for each of
+  these):
+  `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
+- Error instead of warn when calling
+  [a:b](https://jessealderliesten.github.io/checkrpkgs/help/colon) when
+  numeric `a` or `b` is longer than one, such as `3:c(5, 7)` (introduced
+  in R 4.3.0):  
+  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
+- Error instead of silently using only the first element in [logical
+  operations](https://jessealderliesten.github.io/checkrpkgs/help/Logic)
+  such as `c(TRUE, TRUE) && TRUE)` (introduced in R 3.6.0, no longer
+  used since R 4.3.0 because there calling `&&` or `||` with length
+  larger than one always gives an error):  
+  `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
+- Error instead of warn if a
+  [condition](https://jessealderliesten.github.io/checkrpkgs/help/Control)
+  has length larger than one, such as
+  `if(3 < c(5, 7)) {"Now run some code"}` (introduced in R 3.y.z, no
+  longer used since R 4.2.0 because there conditions with length larger
+  than one always give an error):
+  `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
+- Print warnings
+  [warnings](https://jessealderliesten.github.io/checkrpkgs/help/warning)
+  immediately as they occur (default: `options(warn = 0)`):
+  `options(warn = 1)`.
+- Make
+  [warnings](https://jessealderliesten.github.io/checkrpkgs/help/warning)
+  an [error](https://jessealderliesten.github.io/checkrpkgs/help/stop)
+  (default: `options(warn = 0)`): `options(warn = 2)`.
+- Enter the [environment
+  browser](https://jessealderliesten.github.io/checkrpkgs/help/browser)
+  upon error (default: `options(error = NULL)`):
+  `options(error = browser)`; press `Q` or `Escape` to quit the browser
+  mode; press `c` to continue code.
+
+In addition, various packages contain ways to make R stricter:
+
+- Package [strict](https://github.com/hadley/strict/) warns about
+  various unsafe practices, such as the behaviour of
+  [sample()](https://jessealderliesten.github.io/checkrpkgs/help/sample)
+  and [diag()](https://jessealderliesten.github.io/checkrpkgs/help/diag)
+  if called with an argument of length one and type-unsafe
+  [sapply()](https://jessealderliesten.github.io/checkrpkgs/help/sapply);
+  additional ideas are in the
+  [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
+- Package [conflicted](https://CRAN.R-project.org/package=conflicted)
+  avoids silent
+  [conflict](https://jessealderliesten.github.io/checkrpkgs/help/conflicts)
+  resolution (i.e., choosing the latest attached package out of multiple
+  packages to use a function from), and provides
+  `conflicts_prefer(<pkgname>::<funcname>)` to declare preferences once.
+
+### Information about R
+
+Several variables and functions provide information about R and the
+current R session:
+
+- [.Machine](https://jessealderliesten.github.io/checkrpkgs/help/.Machine)
+  and
+  [Sys.info()](https://jessealderliesten.github.io/checkrpkgs/help/Sys.info)
+  provide information about the machine and platform R is running on.
+- [.Platform](https://jessealderliesten.github.io/checkrpkgs/help/.Platform)
+  and
+  [R.Version()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version)
+  provide information about the platform R was built on.
+  [getRversion()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version)
+  provides the version of the running R.
+- [Sys.getlocale()](https://jessealderliesten.github.io/checkrpkgs/help/Sys.getlocale)
+  provides details about the locale.
+- [sessionInfo()](https://jessealderliesten.github.io/checkrpkgs/help/sessionInfo)
+  extracts parts of the information provided by the functions mentioned
+  above about the operating system and R. It also lists attached and
+  loaded packages. Its printing method can be used to print additional
+  information: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+- [capabilities()](https://jessealderliesten.github.io/checkrpkgs/help/capabilities)
+  and
+  [extSoftVersion()](https://jessealderliesten.github.io/checkrpkgs/help/extSoftVersion)
+  provide details about external software that can be used with R.
+- [environment
+  variables](https://jessealderliesten.github.io/checkrpkgs/help/environment%20variables)
+  lists some of the environment variables which affect an R session.
+
+How operating systems identify themselves and their versions can be
+arcane, and specifically Windows versions might report older versions
+than the versions that are actually installed (see the section
+`osVersion` in
+[sessionInfo()](https://jessealderliesten.github.io/checkrpkgs/help/sessionInfo)
+and the `Note` in
+[win.version()](https://jessealderliesten.github.io/checkrpkgs/help/win.version)).
+
+## RStudio
+
+[RStudio](https://posit.co/products/open-source/rstudio) is an
+[integrated development
+environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
+for R that can be downloaded
+[here](https://posit.co/download/rstudio-desktop/).
+
+RStudio can also be used to read and modify plain-text files.
+
+### Configuring RStudio
+
+After installing RStudio, start RStudio, go to `Tools` \>
+`Global Options` \> `General` to *de*select the option
+`Restore .RData into workspace at startup` and set the option
+`Save workspace to .RData on exit` to `Never` to make work portable.
+
+Keyboard shortcuts can be modified at `Tools` \>
+`Modify Keyboard Shortcuts`, e.g., to change the shortcut
+`Run current line or selection` from `Ctrl+Enter` to `Ctrl+R` so it can
+be used with one hand. Sometimes RStudio does not use the modified
+keyboard shortcuts. Going to `Tools` \> `Modify Keyboard Shortcuts`
+usually fixes that without the need to actually reset the shortcuts.
+
+The appearance of code can be changed at `Tools` \> `Global options` \>
+`Appearance`. The default `Editor theme` is the light `Textmate`,
+another nice light `Editor theme` is `Xcode`. Nice dark `Editor themes`
+are `Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`, with
+`Editor fonts` `Consolas`, `Cacadia Mono Light`, or `Lucida Console`.
+
+To check that characters in a typeface or font can be properly
+distinguished from each other when choosing a font, for example using
+[Adobe Fonts](https://fonts.adobe.com/) or [Google
+Fonts](https://fonts.google.com/), the following string groups together
+characters that in some fonts are similar in appearance:
+`71lI|i/ oQO0D gq B8 S5 Z2 ijy4 ., :; "'' __ cldcIdc|dc1d rnm UVVWuvvw`
+
+The string consists of the following characters (using upper case letter
+that are easier to distinguish, with ‘lower’ and ‘upper’ indicating the
+case used in the string):
+
+- SEVEN, ONE, lower EL, upper I, vertical BAR, lower I, SLASH
+- lower O, upper CUE, upper O, ZERO, upper DEE
+- lower GEE, lower CUE
+- upper BEE, EIGHT
+- upper ESS, FIVE
+- upper ZED, TWO
+- lower I, lower JAY, lower WYE, FOUR
+- DOT, COMMA,
+- COLON, SEMICOLON
+- double QUOTES, single QUOTES, single QUOTES
+- UNDERSCORE, UNDERSCORE
+- lower CEE, lower EL, lower DEE, lower CEE, upper I, lower DEE, lower
+  CEE,  
+  vertical BAR, lower DEE, lower CEE, ONE, lower DEE
+- lower AR, lower EN, lower EM
+- upper U, upper VEE, upper VEE, upper double-U,  
+  lower U, lower VEE, lower VEE, lower double-U
+
+## Rtools
+
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/) is *not* an R
+package but software used to build R [from
+source](https://cran.r-project.org/sources.html) and to build R packages
+from source: packages from [GitHub](https://github.com/) and *older*
+versions of packages from
+[CRAN](https://cran.r-project.org/web/packages/index.html) or
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
+(see the section ‘Installing packages’ in the vignette *Instructions
+about R packages* for instructions:
+[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
+Rtools is *not* needed to install current versions of packages from
+[CRAN](https://cran.r-project.org/web/packages/index.html) or
+[Bioconductor](https://bioconductor.org/) on Windows.
+
+To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
+download the version appropriate for the installed version of R (see the
+output of
+[getRversion()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version))
+from [CRAN](https://cran.r-project.org/) via `Download R for Windows` \>
+`Rtools` \> `RTools X.Y` and set it up using the instructions given
+there. See also the
+[HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.5.html) by
+Tomas Kalibera. Alternatively,
+`pkgbuild::check_build_tools(debug = TRUE)` can be used to check and
+install Rtools.
+
+## Documentation and help
+
+- [Bug reporting](https://www.r-project.org/bugs.html), linking to
+  [bugzilla](https://bugs.r-project.org/)
+- CRAN [homepage](https://cran.r-project.org/)
+- R [FAQs](https://cran.r-project.org/faqs.html)
+- R help: from inside R through
+  [help.start()](https://jessealderliesten.github.io/checkrpkgs/help/help.start)
+  or online via <https://cran.r-project.org/search.html>
+- R [homepage](https://www.r-project.org/)
+- R [mailing lists](https://www.r-project.org/mail.html) with a web
+  interface with [information and
+  archives](https://stat.ethz.ch/mailman/listinfo) and a mirror for
+  [searching](https://r-mailing-lists.thecoatlessprofessor.com/)
+- R [manuals](https://cran.r-project.org/manuals.html), (especially the
+  [R Installation and Administration
+  manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)),
+  with [derived versions](https://rstudio.github.io/r-manuals/) better
+  suited for searching.
+- R [news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
+- [RStudio user guide](https://docs.posit.co/ide/user/) by
+  [Posit](https://posit.co/)
+- [search engines](https://cran.r-project.org/search.html) specific for
+  R;
+- [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the
+  r-tag
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+
+### For developers
+
+- CRAN mirrors: see the section ‘Other repositories and mirrors’ in the
+  vignette *Instructions about R packages*:
+  [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)
+- R [developer page](https://developer.r-project.org/)
+- R [development guide](https://contributor.r-project.org/rdevguide/)
+  from the [R Contribution Working
+  Group](https://contributor.r-project.org/)
+- R [news
+  (devel)](https://cran.r-project.org/doc/manuals/r-devel/NEWS.html)
