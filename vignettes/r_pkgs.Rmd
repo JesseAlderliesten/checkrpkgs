@@ -96,14 +96,14 @@ contain specific versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html)
 and [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
 that are consistent with each other and with a
-[specific version](http://bioconductor.org/about/release-announcements/#release-versions)
+[specific version](https://bioconductor.org/about/release-announcements/)
 of R, preventing version conflicts between R packages.
 
 The following code can be used to install packages from BioConductor release
-[version](http://bioconductor.org/about/release-announcements/#release-versions)
+[version](https://bioconductor.org/about/release-announcements/)
 3.23. This code installs the
 [BiocManager](https://CRAN.R-project.org/package=BiocManager) package from
-[CRAN](https://CRAN.R-project.org) that is then used to install packages from
+[CRAN](https://cran.r-project.org/) that is then used to install packages from
 `Bioconductor` and `CRAN` and, through `remotes::install_github()` (see the next
 [section][GitHub]), from `GitHub`:
 
@@ -184,7 +184,7 @@ pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
                                  FUN.VALUE = logical(1), quietly = TRUE)]
 if(length(pkgs_install) > 0L) {
   install.packages(pkgs = pkgs_install, lib = .libPaths(),
-                   repos = "http://R-Forge.R-project.org", dependencies = NA,
+                   repos = "https://r-forge.r-project.org/", dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
