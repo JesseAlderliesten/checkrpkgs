@@ -12,6 +12,7 @@ Information on installing and configuring R, RStudio, and Rtools; setting up and
 Useful links:
 \itemize{
   \item \url{https://github.com/JesseAlderliesten/checkrpkgs}
+  \item \url{https://jessealderliesten.github.io/checkrpkgs/}
   \item Report bugs at \url{https://github.com/JesseAlderliesten/checkrpkgs/issues}
 }
 
