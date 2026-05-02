@@ -1,3 +1,15 @@
+# checkrpkgs 0.5.2
+
+### Miscellaneous
+- Vignette `Installing R, Rtools and RStudio`: additional explanation about
+  possible options. Stylistic updates.
+- Vignette `Instructions about R packages`: add argument `build_vignettes` and
+  update to version 3.23 in `BiocManager::install()`. Rearrange section
+  'Troubleshooting'. Add subheadings. Smooth text.
+- Vignette `Using Git and GitHub`: Explain what Git and GitHub are. Explain
+  'local' vs. 'remote'. Use terminology more consistently.
+
+
 # checkrpkgs 0.5.1
 - Use pkgdown, see https://r-pkgs.org/website.html and https://pkgdown.r-lib.org/.
 
