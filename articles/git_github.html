@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,18 +70,28 @@
 <div class="section level2">
 <h2 id="introduction-and-notation">Introduction and notation<a class="anchor" aria-label="anchor" href="#introduction-and-notation"></a>
 </h2>
-<p>This vignette provides information on setting up and using Git and <a href="https://github.com/" class="external-link">GitHub</a>.</p>
+<p>This vignette provides information on setting up and using Git (a
+version control system) and <a href="https://github.com/" class="external-link">GitHub</a> (a
+website where files, usually code, can be stored). Git and GitHub are
+frequently used together.</p>
+<p>Files on your PC are called ‘local’, whereas files on GitHub are
+called ‘remote’. In addition, a folder on your PC (e.g.,
+<code>"C:\Program Files\R\R-4.6.0\library\checkrpkgs"</code>) is usually
+called a ‘directory’, whereas a folder on GitHub (e.g.,
+<code>"https://github.com/JesseAlderliesten/checkrpkgs"</code>) is
+usually called a ‘repository’.</p>
 <p>In this vignette, text between angled brackets
 (<code>&lt;...&gt;</code>) is used to refer to text that should be
 replaced with specific text to get working code or working file paths.
-For example, <code>&lt;pkgname&gt;</code> is used as a place holder to
-refer in general to a package name: <code>&lt;pkgname&gt;</code> should
-be replaced with <code>utils</code> if you want to obtain information
-about package <code>utils</code>, and with <code>methods</code> if you
-want to obtain information about package <code>methods</code>.
-Similarly, <code>&lt;funcname&gt;</code> is a place holder to refer to a
-function name that should be filled in with a specific function name to
-get working code.</p>
+For example, <code>&lt;username&gt;</code> and
+<code>&lt;repositoryname&gt;</code> are used as place holders to refer
+to a username and repository name: <code>&lt;username&gt;</code> and
+<code>&lt;repositoryname&gt;</code> in
+<code>https://github.com/&lt;username&gt;/&lt;repositoryname&gt;</code>
+should be replaced with <code>JesseAlderliesten</code> and
+<code>checkrpkgs</code>, respectively, to obtain the URL
+<code>https://github.com/JesseAlderliesten/checkrpkgs</code> referring
+to the GitHub repository of this package.</p>
 </div>
 <div class="section level2">
 <h2 id="setting-up-git-and-github">Setting up Git and GitHub<a class="anchor" aria-label="anchor" href="#setting-up-git-and-github"></a>
@@ -90,22 +100,22 @@ get working code.</p>
 <a href="https://git-scm.com/tools/guis" class="external-link">GitHub client</a> such as <a href="https://git-scm.com/downloads" class="external-link">Git SCM</a> or <a href="https://gitforwindows.org/" class="external-link">Git for Windows</a> and install it. To
 update the Git for Windows GitHub client if you already have it, type
 <code>git\update-git-for-windows</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>.</p>
-<p>To use Git and GitHub from RStudio: in RStudio at <code>Tools</code>
-&gt; <code>Global Options</code> &gt; <code>Git/SVN</code>, tick
-<code>Enable version control interface for RStudio projects</code>. The
-Git executable is probably at
+<p>To use Git and GitHub from <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>: in
+RStudio at <code>Tools</code> &gt; <code>Global Options</code> &gt;
+<code>Git/SVN</code>, tick
+<code>Enable version control interface for RStudio projects</code>. Run
+<code>where git.exe</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a> to get the location of
+the Git executable: probably
 <code>C:\Program Files\Git\bin\git.exe</code> or
-<code>C:\Users\&lt;owner&gt;\AppData\Local\Git\bin\git.exe</code> (in
-Windows notation; in R these are
+<code>C:\Users\&lt;owner&gt;\AppData\Local\Git\bin\git.exe</code>
+(usually a hidden folder) in Windows notation; in R these paths are
 <code>C:/Program Files/Git/bin/git.exe</code> or
 <code>C:/Users/&lt;owner&gt;/AppData/Local/Git/bin/git.exe</code>, see
-the <a href="#notes-on-paths">Notes on paths</a>): run
-<code>where git.exe</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a> to get its
-location.</p>
+the <a href="#notes-on-paths">Notes on paths</a>.</p>
 <p>Open the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
 when installing <a href="https://gitforwindows.org/" class="external-link">Git for
-Windows</a>) by typing <code>Git Bash</code> + <code>Enter</code> in
-Windows’ <code>Start</code> menu.</p>
+Windows</a>) by typing <code>Git Bash</code> in Windows’
+<code>Start</code> menu and press <code>Enter</code>.</p>
 <p>To associate Git with your GitHub account, you need to provide your
 name (this name is listed in GitHub with the changes you make and does
 <em>not</em> have to be your GitHub username), and the email associated
@@ -140,15 +150,15 @@ from package <a href="https://CRAN.R-project.org/package=usethis" class="externa
 <em>Project file</em> (i.e., a file with extension <code>.Rproj</code>).
 Then the <code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link">Environment
 pane</a>.</p>
-<p><code>Pull</code> to get changes from the remote directory (i.e.,
+<p><code>Pull</code> to get changes from the remote repository (i.e.,
 <code>GitHub</code>) incorporated in the local directory (i.e., your
-computer), and handle any conflicts to get the local directory
-up-to-date with the remote directory:</p>
+PC), and handle any conflicts to get the local directory up-to-date with
+the remote repository:</p>
 <ul>
 <li>in RStudio: use the <code>pull</code> button (downward arrow) in the
 <code>Git</code> menu;</li>
 <li>in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>:
-<code>git pull https://github.com/&lt;UserName&gt;/&lt;RepositoryName&gt;</code>.</li>
+<code>git pull https://github.com/&lt;username&gt;/&lt;repositoryname&gt;</code>.</li>
 </ul>
 <p>Save the modified R-file after you have made some changes, only then
 will the name of the file appear in the <code>Git</code> menu of RStudio
@@ -158,13 +168,14 @@ to review changes:</p>
 <code>Diff</code> button in the <code>Git</code> menu to get an overview
 of the changes to the file, describe the changes in the box
 <code>Commit message</code>, and use the <code>Commit</code> button.
-<code>Pull</code> again (downward arrow) to make sure the local file is
-up-to-date, and handle any conflicts. Then <code>push</code> (upward
-arrow) to incorporate the changes in the remote directory.</li>
+<code>Pull</code> again (downward arrow) to make sure the local
+directory is up-to-date, and handle any conflicts. Then
+<code>push</code> (upward arrow) to incorporate the changes in the
+remote repository.</li>
 <li>in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>: to
 compare the content of two files, see the instructions in the section <a href="#comparing-files">Comparing files</a> below. Next, use
 <code>git commit -m '&lt;your commit message goes here&gt;' &lt;path&gt;/&lt;and&gt;/&lt;filename&gt;.R</code>
-<code>git push https://github.com/&lt;UserName&gt;/&lt;RepositoryName&gt;</code>
+<code>git push https://github.com/&lt;username&gt;/&lt;repositoryname&gt;</code>
 to commit changes.</li>
 </ul>
 <p>If a <code>Push</code> leads to an error because of an invalid
@@ -177,9 +188,9 @@ remember this token for next times.</p>
 <h2 id="adding-a-new-file">Adding a new file<a class="anchor" aria-label="anchor" href="#adding-a-new-file"></a>
 </h2>
 <p>To add a file to GitHub that was not there yet, first add it to the
-local folder (i.e., on your computer), then let <code>git</code> know it
-is there by typing (it is convenient to use <code>tab</code>-completion
-to select files):
+local folder (i.e., on your PC), then let <code>git</code> know it is
+there by typing (it is convenient to use <code>tab</code>-completion to
+select files):
 <code>git add &lt;filename&gt;.&lt;extension&gt;</code>.</p>
 <p>If the working directory is <em>not</em> the folder where the
 to-be-added file is in, the working directory has to be set to that
@@ -247,16 +258,16 @@ line thirteen and an insertion at character nine of line fourteen.</li>
 </h2>
 <p>Consider moving files to a folder <code>archive</code> instead of
 deleting them. To delete a file, delete the file from the local
-repository (i.e., your PC), then <code>commit</code> the change (i.e.,
+directory (i.e., your PC), then <code>commit</code> the change (i.e.,
 deletion of a file), using the <code>commit message</code> to describe
 why the file was deleted. Then <code>pull</code> to make sure the local
-repository is up to date with the remote repository, and then
+directory is up to date with the remote repository, and then
 <code>push</code> the change to the remote repository.</p>
 <p>Alternatively, open the file on the remote repository (i.e., on the
 <code>GitHub</code> website), click the three dots at the top-right of
 the file &gt; <code>delete</code> &gt; <code>commit</code>. Use the
 commit message to describe why the file was deleted. After that, find
-the file on the local repository (i.e., your PC) and delete the it. Then
+the file in the local directory and delete the it. Then
 <code>pull</code>.</p>
 </div>
 <div class="section level2">
@@ -269,28 +280,27 @@ and <a href="https://docs.github.com/en/repositories/working-with-files/managing
 <h2 id="repositories-download-fork-or-clone">Repositories: download, fork, or clone?<a class="anchor" aria-label="anchor" href="#repositories-download-fork-or-clone"></a>
 </h2>
 <p>There are several ways to get code from a <code>GitHub</code>
-repository to your computer:</p>
+repository to your PC:</p>
 <ul>
 <li>To be able to <code>push</code> your changes back to a
 <code>GitHub</code> repository to which you do <em>not</em> have writing
-access, you need to <code>fork</code> the repository (i.e., the
-<code>fork</code> button &gt; <code>create a new fork</code>). This
+access, you need to <code>fork</code> the repository: use the
+<code>fork</code> button &gt; <code>create a new fork</code>. This
 creates a copy of the repository in your own GitHub repository. Next,
-you have to <code>clone</code> your copy to your local computer, see the
-next point.</li>
+you have to <code>clone</code> your copy to your PC, see the next
+point.</li>
 <li>To be able to push your changes back to a GitHub repository to which
 you <em>do</em> have writing access (e.g., to work on your project from
-another machine; or to work on a fork you created in the step above),
-you have to clone a copy of the GitHub repository to your local computer
-by using the green <code>Code</code> button in the repository, copying
-the URL to the clipboard (i.e., do <em>not</em> use
-<code>download ZIP</code>), create a new R project in RStudio
-(<code>File</code> &gt; <code>New Project</code> &gt;
-<code>Version control</code> &gt; <code>Git</code>), paste the
-repository URL (something like
+another PC; or to work on a fork you created in the step above), you
+have to clone the GitHub repository to your PC: use the green
+<code>Code</code> button in the repository, copy the URL to the
+clipboard (i.e., do <em>not</em> use <code>download ZIP</code>), create
+a new R project in RStudio (<code>File</code> &gt;
+<code>New Project</code> &gt; <code>Version control</code> &gt;
+<code>Git</code>), paste the repository URL (something like
 <code>https://github.com/&lt;username&gt;/&lt;reposname&gt;</code>) in
-the designated field, select the desired location on your computer, and
-create the project. The same repository URL can be used when using shell
+the designated field, select the desired location on your PC, and create
+the project. The same repository URL can be used when using shell
 commands to clone a repository, either with its complete history by
 using
 <code>git clone https://github.com/&lt;username&gt;/&lt;reposname&gt;</code>
@@ -303,8 +313,8 @@ the downloaded file (right-click on them and choose
 <code>extract all</code>). To be able to let R use the package
 correctly, move the package to a location of your R libraries (given by
 the output of <code>cat(normalizePath(.libPaths()))</code>, something
-like <code>C:\Program Files\R\R-4.5.2\library</code> or
-<code>C:\Users\&lt;owner&gt;\AppData\Local\R\win-library\4.5</code>.
+like <code>C:\Program Files\R\R-4.6.0\library</code> or
+<code>C:\Users\&lt;owner&gt;\AppData\Local\R\win-library\4.6</code>.
 Then open the <code>.Rproj</code> file (which has the same name as the
 repository).</li>
 </ul>
@@ -324,30 +334,26 @@ packages &gt; Installing packages &gt; Github’ in the vignette
 <div class="section level3">
 <h3 id="further-documentation">Further documentation<a class="anchor" aria-label="anchor" href="#further-documentation"></a>
 </h3>
-<p>For details, see the GitHub documentation about:</p>
+<p>In addition to section <a href="#using-github">Using GitHub</a>
+above, see:</p>
 <ul>
-<li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches" class="external-link">branches</a></li>
-<li>
-<a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" class="external-link">cloning</a>
-a repository</li>
-<li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks" class="external-link">forks</a></li>
-<li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link">pull
-requests</a></li>
-</ul>
-<p>And see</p>
-<ul>
-<li>The section <a href="https://happygitwithr.com/fork-and-clone" class="external-link">Fork
+<li><p>Branches: GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches" class="external-link">branches</a>
+and <a href="https://learngitbranching.js.org/" class="external-link uri">https://learngitbranching.js.org/</a></p></li>
+<li><p>Cloning (clones) and forking (forks) a repository: GitHub
+documentation about <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" class="external-link">cloning</a>
+and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks" class="external-link">forks</a>
+and the section <a href="https://happygitwithr.com/fork-and-clone" class="external-link">Fork
 and clone</a> from <a href="https://happygitwithr.com/" class="external-link">Happy Git and
-GitHub for the useR</a>;</li>
-<li><a href="https://learngitbranching.js.org/" class="external-link uri">https://learngitbranching.js.org/</a></li>
-<li>Section <a href="#using-github">Using GitHub</a> above</li>
+GitHub for the useR</a>;</p></li>
+<li><p>GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link">pull
+requests</a></p></li>
 </ul>
 </div>
 </div>
 <div class="section level2">
 <h2 id="common-shell-commands">Common shell commands<a class="anchor" aria-label="anchor" href="#common-shell-commands"></a>
 </h2>
-<p>For an overview of some <a href="https://happygitwithr.com/shell" class="external-link">shell</a> commands, see the
+<p>For an overview of <a href="https://happygitwithr.com/shell" class="external-link">shell</a> commands, see the
 documentation of <a href="https://git-scm.com/docs" class="external-link">Git SCM</a>, the
 section about the <a href="https://happygitwithr.com/shell#basic-shell-commands" class="external-link">shell</a>
 from <a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub for the
@@ -392,11 +398,11 @@ respectively.</p>
 </h2>
 <p>Official documentation</p>
 <ul>
-<li><a href="https://git-scm.com/doc" class="external-link">Git</a></li>
-<li>GitHub help pages on <a href="https://docs.github.com/en/get-started/git-basics/set-up-git" class="external-link">setting
+<li><a href="https://git-scm.com/docs" class="external-link">Git</a></li>
+<li>GitHub help pages: <a href="https://docs.github.com/en/get-started/git-basics/set-up-git" class="external-link">setting
 up Git</a>, <a href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account" class="external-link">setting
-up GitHub</a>, on <a href="https://docs.github.com/en" class="external-link">general</a> help,
-and on <a href="https://docs.github.com/en/search-github" class="external-link">searching
+up GitHub</a>, <a href="https://docs.github.com/en" class="external-link">general</a> help,
+and <a href="https://docs.github.com/en/search-github" class="external-link">searching
 GitHub</a>
 </li>
 </ul>

@@ -245,10 +245,10 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #> 'missing_package'
 #>            Package      Version MD5sum
 #> checkinput "checkinput" "0.5.0" NA    
-#> checkrpkgs "checkrpkgs" "0.5.1" NA    
+#> checkrpkgs "checkrpkgs" "0.5.2" NA    
 #>            Built                                      Priority
-#> checkinput "R 4.6.0; ; 2026-04-28 09:35:12 UTC; unix" NA      
-#> checkrpkgs "R 4.6.0; ; 2026-04-28 09:35:17 UTC; unix" NA      
+#> checkinput "R 4.6.0; ; 2026-05-02 20:25:38 UTC; unix" NA      
+#> checkrpkgs "R 4.6.0; ; 2026-05-02 20:25:42 UTC; unix" NA      
 #>            LibPath                           Repository Additional_repositories
 #> checkinput "/home/runner/work/_temp/Library" "Github"   NA                     
 #> checkrpkgs "/home/runner/work/_temp/Library" "Github"   NA                     

@@ -2,18 +2,27 @@
 
 ## Introduction and notation
 
-This vignette provides information on setting up and using Git and
-[GitHub](https://github.com/).
+This vignette provides information on setting up and using Git (a
+version control system) and [GitHub](https://github.com/) (a website
+where files, usually code, can be stored). Git and GitHub are frequently
+used together.
+
+Files on your PC are called ‘local’, whereas files on GitHub are called
+‘remote’. In addition, a folder on your PC (e.g.,
+`"C:\Program Files\R\R-4.6.0\library\checkrpkgs"`) is usually called a
+‘directory’, whereas a folder on GitHub (e.g.,
+`"https://github.com/JesseAlderliesten/checkrpkgs"`) is usually called a
+‘repository’.
 
 In this vignette, text between angled brackets (`<...>`) is used to
 refer to text that should be replaced with specific text to get working
-code or working file paths. For example, `<pkgname>` is used as a place
-holder to refer in general to a package name: `<pkgname>` should be
-replaced with `utils` if you want to obtain information about package
-`utils`, and with `methods` if you want to obtain information about
-package `methods`. Similarly, `<funcname>` is a place holder to refer to
-a function name that should be filled in with a specific function name
-to get working code.
+code or working file paths. For example, `<username>` and
+`<repositoryname>` are used as place holders to refer to a username and
+repository name: `<username>` and `<repositoryname>` in
+`https://github.com/<username>/<repositoryname>` should be replaced with
+`JesseAlderliesten` and `checkrpkgs`, respectively, to obtain the URL
+`https://github.com/JesseAlderliesten/checkrpkgs` referring to the
+GitHub repository of this package.
 
 ## Setting up Git and GitHub
 
@@ -25,19 +34,22 @@ for Windows GitHub client if you already have it, type
 `git\update-git-for-windows` in the
 [shell](https://happygitwithr.com/shell).
 
-To use Git and GitHub from RStudio: in RStudio at `Tools` \>
-`Global Options` \> `Git/SVN`, tick
-`Enable version control interface for RStudio projects`. The Git
-executable is probably at `C:\Program Files\Git\bin\git.exe` or
-`C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows notation;
-in R these are `C:/Program Files/Git/bin/git.exe` or
+To use Git and GitHub from
+[RStudio](https://posit.co/products/open-source/rstudio): in RStudio at
+`Tools` \> `Global Options` \> `Git/SVN`, tick
+`Enable version control interface for RStudio projects`. Run
+`where git.exe` in the [shell](https://happygitwithr.com/shell) to get
+the location of the Git executable: probably
+`C:\Program Files\Git\bin\git.exe` or
+`C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (usually a hidden
+folder) in Windows notation; in R these paths are
+`C:/Program Files/Git/bin/git.exe` or
 `C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, see the [Notes on
-paths](#notes-on-paths)): run `where git.exe` in the
-[shell](https://happygitwithr.com/shell) to get its location.
+paths](#notes-on-paths).
 
 Open the `Git Bash` [shell](https://happygitwithr.com/shell) (which was
 installed when installing [Git for Windows](https://gitforwindows.org/))
-by typing `Git Bash` + `Enter` in Windows’ `Start` menu.
+by typing `Git Bash` in Windows’ `Start` menu and press `Enter`.
 
 To associate Git with your GitHub account, you need to provide your name
 (this name is listed in GitHub with the changes you make and does *not*
@@ -76,14 +88,14 @@ extension `.Rproj`). Then the `Git` menu will be visible as a tab in the
 [Environment
 pane](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 
-`Pull` to get changes from the remote directory (i.e., `GitHub`)
-incorporated in the local directory (i.e., your computer), and handle
-any conflicts to get the local directory up-to-date with the remote
-directory:
+`Pull` to get changes from the remote repository (i.e., `GitHub`)
+incorporated in the local directory (i.e., your PC), and handle any
+conflicts to get the local directory up-to-date with the remote
+repository:
 
 - in RStudio: use the `pull` button (downward arrow) in the `Git` menu;
 - in the [shell](https://happygitwithr.com/shell):
-  `git pull https://github.com/<UserName>/<RepositoryName>`.
+  `git pull https://github.com/<username>/<repositoryname>`.
 
 Save the modified R-file after you have made some changes, only then
 will the name of the file appear in the `Git` menu of RStudio to review
@@ -93,13 +105,13 @@ changes:
   `Diff` button in the `Git` menu to get an overview of the changes to
   the file, describe the changes in the box `Commit message`, and use
   the `Commit` button. `Pull` again (downward arrow) to make sure the
-  local file is up-to-date, and handle any conflicts. Then `push`
-  (upward arrow) to incorporate the changes in the remote directory.
+  local directory is up-to-date, and handle any conflicts. Then `push`
+  (upward arrow) to incorporate the changes in the remote repository.
 - in the [shell](https://happygitwithr.com/shell): to compare the
   content of two files, see the instructions in the section [Comparing
   files](#comparing-files) below. Next, use
   `git commit -m '<your commit message goes here>' <path>/<and>/<filename>.R`
-  `git push https://github.com/<UserName>/<RepositoryName>` to commit
+  `git push https://github.com/<username>/<repositoryname>` to commit
   changes.
 
 If a `Push` leads to an error because of an invalid username or
@@ -111,8 +123,8 @@ entered the PAT once, RStudio will remember this token for next times.
 ## Adding a new file
 
 To add a file to GitHub that was not there yet, first add it to the
-local folder (i.e., on your computer), then let `git` know it is there
-by typing (it is convenient to use `tab`-completion to select files):
+local folder (i.e., on your PC), then let `git` know it is there by
+typing (it is convenient to use `tab`-completion to select files):
 `git add <filename>.<extension>`.
 
 If the working directory is *not* the folder where the to-be-added file
@@ -174,17 +186,17 @@ Note:
 ## Deleting a file
 
 Consider moving files to a folder `archive` instead of deleting them. To
-delete a file, delete the file from the local repository (i.e., your
-PC), then `commit` the change (i.e., deletion of a file), using the
+delete a file, delete the file from the local directory (i.e., your PC),
+then `commit` the change (i.e., deletion of a file), using the
 `commit message` to describe why the file was deleted. Then `pull` to
-make sure the local repository is up to date with the remote repository,
+make sure the local directory is up to date with the remote repository,
 and then `push` the change to the remote repository.
 
 Alternatively, open the file on the remote repository (i.e., on the
 `GitHub` website), click the three dots at the top-right of the file \>
 `delete` \> `commit`. Use the commit message to describe why the file
-was deleted. After that, find the file on the local repository (i.e.,
-your PC) and delete the it. Then `pull`.
+was deleted. After that, find the file in the local directory and delete
+the it. Then `pull`.
 
 ## Moving or renaming a file
 
@@ -196,28 +208,26 @@ and
 ## Repositories: download, fork, or clone?
 
 There are several ways to get code from a `GitHub` repository to your
-computer:
+PC:
 
 - To be able to `push` your changes back to a `GitHub` repository to
   which you do *not* have writing access, you need to `fork` the
-  repository (i.e., the `fork` button \> `create a new fork`). This
-  creates a copy of the repository in your own GitHub repository. Next,
-  you have to `clone` your copy to your local computer, see the next
-  point.
+  repository: use the `fork` button \> `create a new fork`. This creates
+  a copy of the repository in your own GitHub repository. Next, you have
+  to `clone` your copy to your PC, see the next point.
 - To be able to push your changes back to a GitHub repository to which
   you *do* have writing access (e.g., to work on your project from
-  another machine; or to work on a fork you created in the step above),
-  you have to clone a copy of the GitHub repository to your local
-  computer by using the green `Code` button in the repository, copying
-  the URL to the clipboard (i.e., do *not* use `download ZIP`), create a
-  new R project in RStudio (`File` \> `New Project` \> `Version control`
-  \> `Git`), paste the repository URL (something like
-  `https://github.com/<username>/<reposname>`) in the designated field,
-  select the desired location on your computer, and create the project.
-  The same repository URL can be used when using shell commands to clone
-  a repository, either with its complete history by using
-  `git clone https://github.com/<username>/<reposname>` or with only the
-  last commit by using
+  another PC; or to work on a fork you created in the step above), you
+  have to clone the GitHub repository to your PC: use the green `Code`
+  button in the repository, copy the URL to the clipboard (i.e., do
+  *not* use `download ZIP`), create a new R project in RStudio (`File`
+  \> `New Project` \> `Version control` \> `Git`), paste the repository
+  URL (something like `https://github.com/<username>/<reposname>`) in
+  the designated field, select the desired location on your PC, and
+  create the project. The same repository URL can be used when using
+  shell commands to clone a repository, either with its complete history
+  by using `git clone https://github.com/<username>/<reposname>` or with
+  only the last commit by using
   `git clone --depth=1 https://github.com/<username>/<reposname>`.
 - To download code without being able to push your changes back to a
   GitHub repository, you can download the repository by using the green
@@ -225,8 +235,8 @@ computer:
   (right-click on them and choose `extract all`). To be able to let R
   use the package correctly, move the package to a location of your R
   libraries (given by the output of `cat(normalizePath(.libPaths()))`,
-  something like `C:\Program Files\R\R-4.5.2\library` or
-  `C:\Users\<owner>\AppData\Local\R\win-library\4.5`. Then open the
+  something like `C:\Program Files\R\R-4.6.0\library` or
+  `C:\Users\<owner>\AppData\Local\R\win-library\4.6`. Then open the
   `.Rproj` file (which has the same name as the repository).
 
 ### Installing a package from GitHub
@@ -238,6 +248,7 @@ packages*:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)):
 
 ``` r
+
 remotes::install_github(repo = pkgs_new[basename(pkgs_new) != pkgs_new],
                         dependencies = NA, upgrade = "ask", force = FALSE,
                         quiet = FALSE, build_vignettes = TRUE, lib = .libPaths(),
@@ -246,27 +257,29 @@ remotes::install_github(repo = pkgs_new[basename(pkgs_new) != pkgs_new],
 
 ### Further documentation
 
-For details, see the GitHub documentation about:
+In addition to section [Using GitHub](#using-github) above, see:
 
-- [branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)
-- [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-  a repository
-- [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)
-- [pull
+- Branches: GitHub documentation about
+  [branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)
+  and <https://learngitbranching.js.org/>
+
+- Cloning (clones) and forking (forks) a repository: GitHub
+  documentation about
+  [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+  and
+  [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)
+  and the section [Fork and
+  clone](https://happygitwithr.com/fork-and-clone) from [Happy Git and
+  GitHub for the useR](https://happygitwithr.com/);
+
+- GitHub documentation about [pull
   requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-
-And see
-
-- The section [Fork and clone](https://happygitwithr.com/fork-and-clone)
-  from [Happy Git and GitHub for the useR](https://happygitwithr.com/);
-- <https://learngitbranching.js.org/>
-- Section [Using GitHub](#using-github) above
 
 ## Common shell commands
 
-For an overview of some [shell](https://happygitwithr.com/shell)
-commands, see the documentation of [Git SCM](https://git-scm.com/docs),
-the section about the
+For an overview of [shell](https://happygitwithr.com/shell) commands,
+see the documentation of [Git SCM](https://git-scm.com/docs), the
+section about the
 [shell](https://happygitwithr.com/shell#basic-shell-commands) from
 [Happy Git and GitHub for the useR](https://happygitwithr.com/) (a
 summary of which is given below), or in the `BASH shell` type
@@ -298,12 +311,12 @@ respectively.
 
 Official documentation
 
-- [Git](https://git-scm.com/doc)
-- GitHub help pages on [setting up
+- [Git](https://git-scm.com/docs)
+- GitHub help pages: [setting up
   Git](https://docs.github.com/en/get-started/git-basics/set-up-git),
   [setting up
   GitHub](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account),
-  on [general](https://docs.github.com/en) help, and on [searching
+  [general](https://docs.github.com/en) help, and [searching
   GitHub](https://docs.github.com/en/search-github)
 
 Books

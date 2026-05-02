@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,26 +77,23 @@ code of R functions.</p>
 (<code>&lt;...&gt;</code>) is used to refer to text that should be
 replaced with specific text to get working code or working file paths.
 For example, <code>&lt;pkgname&gt;</code> is used as a place holder to
-refer in general to a package name: <code>&lt;pkgname&gt;</code> should
-be replaced with <code>utils</code> if you want to obtain information
-about package <code>utils</code>, and with <code>methods</code> if you
-want to obtain information about package <code>methods</code>.
-Similarly, <code>&lt;funcname&gt;</code> is a place holder to refer to a
-function name that should be filled in with a specific function name to
-get working code.</p>
+refer to a package name and should be replaced with <code>utils</code>
+if you want to obtain information about package <code>utils</code>, and
+with <code>methods</code> if you want to obtain information about
+package <code>methods</code>. Similarly, <code>&lt;funcname&gt;</code>
+is used as a place holder to refer to a function name that should be
+filled in with a specific function name to get working code.</p>
 <p>In this vignette, calls to functions are frequently written in the
-form <code>&lt;pkgname&gt;::&lt;funcname&gt;()</code>. This notation is
-used to make clear which package is used and, through the brackets, that
-a function is indicated. In normal code, one would use
+form <code>&lt;pkgname&gt;::&lt;funcname&gt;()</code>, to make clear
+which package is used and, through the brackets, that a function is
+indicated. In normal code, one would use
 <code>library(&lt;pkgname&gt;)</code> followed by
 <code>&lt;funcname&gt;()</code>. For example, in this vignette the
-notation <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> or
-<code>utils::citation(package = "checkrpkgs")</code> is used to show how
-to cite R or the package <code>checkrpkgs</code>, indicating that the
-function <code>citation</code> is defined in package <code>utils</code>.
-In normal code, one would use <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(utils)</a></code> followed by
-<code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> and
-<code>utils::citation(package = "checkrpkgs")</code>.</p>
+notation <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> is used to show how to cite R,
+indicating that the function <code>citation</code> is defined in package
+<code>utils</code>. In normal code, one would use
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(utils)</a></code> followed by <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation()</a></code> where
+that is needed.</p>
 </div>
 <div class="section level2">
 <h2 id="r-packages">R packages<a class="anchor" aria-label="anchor" href="#r-packages"></a>
@@ -148,17 +145,19 @@ To update these packages, use
 <div class="section level4">
 <h4 id="bioconductor">BioConductor<a class="anchor" aria-label="anchor" href="#bioconductor"></a>
 </h4>
-<p>Each <a href="https://bioconductor.org/" class="external-link">Bioconductor</a> version
-contains specific versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> and
+<p>The <a href="https://bioconductor.org/" class="external-link">Bioconductor</a> repository
+releases versions that contain specific versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> and
 <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">BioConductor</a>
-that are consistent with each other and with a <a href="http://bioconductor.org/about/release-announcements/#release-versions" class="external-link">specific
-version</a> of R, preventing version conflicts between R packages.
-Bioconductor also has thematic package collections known as <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">BiocViews</a>.</p>
+that are consistent with each other and with a <a href="https://bioconductor.org/about/release-announcements/" class="external-link">specific
+version</a> of R, preventing version conflicts between R packages.</p>
 <p>The following code can be used to install packages from BioConductor
-release <a href="http://bioconductor.org/about/release-announcements/#release-versions" class="external-link">version</a>
-3.22. This code installs the <a href="https://CRAN.R-project.org/package=BiocManager" class="external-link">BiocManager</a>
-package from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> that is then
-used to install packages from <code>Bioconductor</code>:</p>
+release <a href="https://bioconductor.org/about/release-announcements/" class="external-link">version</a>
+3.23. This code installs the <a href="https://CRAN.R-project.org/package=BiocManager" class="external-link">BiocManager</a>
+package from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> that is then
+used to install packages from <code>Bioconductor</code> and
+<code>CRAN</code> and, through <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code>
+(see the next <a href="#github">section</a>), from
+<code>GitHub</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>pkgs_new <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="at">pkgs =</span> <span class="st">"BiocManager"</span>, <span class="at">lib =</span> <span class="fu">.libPaths</span>(), <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
@@ -166,22 +165,33 @@ used to install packages from <code>Bioconductor</code>:</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>                   <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>}</span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">pkgs =</span> pkgs_new, <span class="at">lib =</span> <span class="fu">.libPaths</span>(), <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                     <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>                     <span class="at">update =</span> <span class="cn">FALSE</span>, <span class="at">ask =</span> <span class="cn">TRUE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                     <span class="at">force =</span> <span class="cn">FALSE</span>, <span class="at">version =</span> <span class="st">"3.22"</span>)</span></code></pre></div>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                     <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>                     <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                     <span class="at">update =</span> <span class="cn">FALSE</span>, <span class="at">ask =</span> <span class="cn">TRUE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>                     <span class="at">force =</span> <span class="cn">FALSE</span>, <span class="at">version =</span> <span class="st">"3.23"</span>)</span></code></pre></div>
+<p>Bioconductor also has thematic package collections known as <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">BiocViews</a>.</p>
 </div>
 <div class="section level4">
 <h4 id="github">Github<a class="anchor" aria-label="anchor" href="#github"></a>
 </h4>
 <p>The following code can be used to install packages from <a href="https://github.com/" class="external-link">GitHub</a>: it installs the <a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a> package
-that is needed to install packages from GitHub.
-<code>grep(pattern = "/", x = pkgs_new, value = TRUE)</code> selects the
-elements of <code>pkgs_new</code> which contain a slash because for
-argument <code>pkgs</code> of <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code>,
-each element of <code>pkgs</code> should contain the author and
-repository name (e.g., <code>"JesseAlderliesten/checkrpkgs"</code>) or
-the full URL to a package (e.g.,
-<code>"https://github.com/JesseAlderliesten/checkrpkgs"</code>).</p>
+that is needed to install packages from GitHub. If installing packages
+fails, trying with arguments <code>force = TRUE</code> to re-install
+possibly broken dependencies and <code>build_vignettes = FALSE</code> to
+not install vignettes might help.</p>
+<p><code>grep(pattern = "/", x = pkgs_new, value = TRUE)</code> selects
+the elements of <code>pkgs_new</code> which contain a slash because
+<code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code> only works if each element of
+<code>pkgs</code> contains the author name and repository name (e.g.,
+<code>"JesseAlderliesten/checkrpkgs"</code>) or the full URL to a
+package (e.g.,
+<code>"https://github.com/JesseAlderliesten/checkrpkgs"</code>). To
+match names in such formats to package names returned by
+<code><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">utils::installed.packages()</a></code>, use
+<code>basename(pkgs_new)</code> instead of <code>pkgs_new</code> to
+select the last part of the name (e.g., <code>"checkrpkgs"</code>
+instead of <code>"JesseAlderliesten/checkrpkgs"</code>):
+<code>pkgs[!(basename(pkgs) %in% installed.packages()[, "Package"])]</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pkgs_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"JesseAlderliesten/checkrpkgs"</span>,</span>
 <span>              <span class="st">"https://github.com/JesseAlderliesten/progutils"</span><span class="op">)</span></span>
@@ -196,7 +206,7 @@ the full URL to a package (e.g.,
 <span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="other-repositories-and-mirrors">Other repositories and mirrors<a class="anchor" aria-label="anchor" href="#other-repositories-and-mirrors"></a>
+<h4 id="other-repositories-mirrors">Other repositories, mirrors<a class="anchor" aria-label="anchor" href="#other-repositories-mirrors"></a>
 </h4>
 <p>Examples of other repositories for R packages are:</p>
 <ul>
@@ -207,7 +217,7 @@ the full URL to a package (e.g.,
 </li>
 <li>
 <a href="https://r-multiverse.org/overview.html" class="external-link">R-multiverse</a>
-with thematic <a href="https://r-multiverse.org/topics/" class="external-link">collections</a>
+with thematic package <a href="https://r-multiverse.org/topics/" class="external-link">collections</a>
 </li>
 <li>
 <a href="https://ropensci.org/packages/all/" class="external-link">rOpenSci</a> with
@@ -225,7 +235,7 @@ following code shows how to install packages from <a href="https://r-forge.r-pro
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                                 <span class="at">FUN.VALUE =</span> <span class="fu">logical</span>(<span class="dv">1</span>), <span class="at">quietly =</span> <span class="cn">TRUE</span>)]</span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(pkgs_install) <span class="sc">&gt;</span> <span class="dv">0</span><span class="dt">L</span>) {</span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="at">pkgs =</span> pkgs_install, <span class="at">lib =</span> <span class="fu">.libPaths</span>(),</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                   <span class="at">repos =</span> <span class="st">"http://R-Forge.R-project.org"</span>, <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                   <span class="at">repos =</span> <span class="st">"https://r-forge.r-project.org/"</span>, <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>                   <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>}</span></code></pre></div>
@@ -252,8 +262,11 @@ message
 <h3 id="updating-packages">Updating packages<a class="anchor" aria-label="anchor" href="#updating-packages"></a>
 </h3>
 <p>Updating out-of-date packages prevents compatibility issues between
-already-installed and newly-installed packages. For R packages from
-CRAN, versions can be compared using <a href="https://diffify.com/R" class="external-link">diffify</a> and a chronological overview of
+already-installed and newly-installed packages.</p>
+<div class="section level4">
+<h4 id="cran-1">CRAN<a class="anchor" aria-label="anchor" href="#cran-1"></a>
+</h4>
+<p>For R packages from CRAN, versions can be compared using <a href="https://diffify.com/R" class="external-link">diffify</a> and a chronological overview of
 changes is available at <a href="https://dirk.eddelbuettel.com/cranberries/" class="external-link">CRANberries</a>. To
 get the version number of an installed package, run <a href="../help/packageVersion">utils::packageVersion</a><code>("&lt;pkgname&gt;")</code>.</p>
 <p>The following code can be used to install the latest version of
@@ -264,8 +277,12 @@ packages, which might be undesirable):</p>
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">update.packages</a></span><span class="op">(</span>lib.loc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, ask <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                       verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                       checkBuilt <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="bioconductor-1">Bioconductor<a class="anchor" aria-label="anchor" href="#bioconductor-1"></a>
+</h4>
 <p>The following code can be used to update packages to a specific
-BioConductor release (here version 3.22), see the section <a href="#bioconductor">BioConductor</a> above:</p>
+BioConductor release (here version 3.23):</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"BiocManager"</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
@@ -273,9 +290,11 @@ BioConductor release (here version 3.22), see the section <a href="#bioconductor
 <span>                   quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>                     build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                     type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
 <span>                     update <span class="op">=</span> <span class="cn">TRUE</span>, ask <span class="op">=</span> <span class="cn">TRUE</span>, checkBuilt <span class="op">=</span> <span class="cn">TRUE</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                     version <span class="op">=</span> <span class="st">"3.22"</span><span class="op">)</span></span></code></pre></div>
+<span>                     version <span class="op">=</span> <span class="st">"3.23"</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="installing-old-versions">Installing old versions<a class="anchor" aria-label="anchor" href="#installing-old-versions"></a>
@@ -284,16 +303,20 @@ BioConductor release (here version 3.22), see the section <a href="#bioconductor
 to build the packages from source, see the section ‘Rtools’ in the
 vignette <em>Installing R, Rtools and RStudio</em>:
 <code><a href="../articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>.</p>
+<div class="section level4">
+<h4 id="cran-2">CRAN<a class="anchor" aria-label="anchor" href="#cran-2"></a>
+</h4>
 <p>The following code can be used to install an old version of a package
 from CRAN, using package <a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="at">pkgs =</span> <span class="st">"remotes"</span>, <span class="at">lib =</span> <span class="fu">.libPaths</span>(), <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                   <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>}</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_version</span>(<span class="at">package =</span> <span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>, <span class="at">version =</span> <span class="st">"1.23"</span>, <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                         <span class="at">upgrade =</span> <span class="st">"ask"</span>, <span class="at">quiet =</span> <span class="cn">FALSE</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                         <span class="at">lib =</span> <span class="fu">.libPaths</span>(), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"remotes"</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
+<span>                   quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_version.html" class="external-link">install_version</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"deSolve"</span>, version <span class="op">=</span> <span class="st">"1.40"</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>                         upgrade <span class="op">=</span> <span class="st">"ask"</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                         lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, visit the installation page of a package from CRAN, go
 to <code>Downloads</code> &gt; <code>Old sources</code> &gt;
 <code>&lt;pkgname&gt; archive</code> and find the appropriate URL
@@ -304,28 +327,30 @@ install version 1.40 of package <a href="https://CRAN.R-project.org/package=deSo
 <span>                 lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, repos <span class="op">=</span> <span class="cn">NULL</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                 type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
 <span>                 quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="bioconductor-2">Bioconductor<a class="anchor" aria-label="anchor" href="#bioconductor-2"></a>
+</h4>
 <p>Older versions of packages from Bioconductor can be installed by
 changing the value of argument <code>version</code> of
-<code><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">BiocManager::install()</a></code>, see the <a href="https://bioconductor.org/about/release-announcements/" class="external-link">overview</a>
+<code><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">BiocManager::install()</a></code> (e.g.,
+<code>BiocManager::install(pkgs = "deSolve", version = "3.22")</code> to
+indicate the version of <code>deSolve</code> included in BioConductor
+version 3.22) but that only works when using the version of R for that
+specific version of bioConductor, see the <a href="https://bioconductor.org/about/release-announcements/" class="external-link">overview</a>
 of Bioconductor versions with the corresponding R version. Information
 on these older packages can be found by visiting the appropriate version
 of Bioconductor, e.g.,
-<code>https://bioconductor.org/packages/3.21/BiocViews.html</code>.</p>
+<code>https://bioconductor.org/packages/3.22/BiocViews.html</code>.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
 </h3>
+<div class="section level4">
+<h4 id="installing-packages-1">Installing packages<a class="anchor" aria-label="anchor" href="#installing-packages-1"></a>
+</h4>
 <ul>
-<li><p>If a package appears not to be installed when you want to use a
-function from it (e.g., you get the error
-<code>could not find function "&lt;funcname&gt;"</code>), remember you
-need to run <a href="../help/library">library</a><code>(&lt;pkgname&gt;)</code> to be
-able to use its functions.</p></li>
-<li><p>If a package is not functional, re-install it using argument
-<code>force = TRUE</code>. You can also use <a href="../help/get_details_pkgs">checkrpkgs::get_details_pkgs</a><code>(pkgs = &lt;pkgname&gt;)</code>
-to check which dependencies and other system requirements it has and
-then use <a href="../help/check_pkgs">checkrpkgs::check_pkgs</a><code>(pkgs = &lt;pkgnames&gt;)</code>
-to check if all the dependencies are installed and functional.</p></li>
 <li><p>If the warnings
 <code>lib = &lt;pkgname&gt; is not writeable</code> or
 <code>'lib' element &lt;element from .libPaths()&gt; is not a writable directory</code>
@@ -353,6 +378,31 @@ install Rtools, see the section ‘Rtools’ in the vignette <em>Installing
 R, Rtools and RStudio</em>:
 <code><a href="../articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>.</p>
 </li>
+<li><p>The warning
+<code>package '&lt;pkgname&gt;' is not available (for R version x.y.z)</code>
+can have many reasons. First double-check the package name (which is
+case-sensitive). Then check possible other reasons mentioned in this <a href="https://stackoverflow.com/a/25721890/32365738" class="external-link">stackoverflow
+answer</a>.</p></li>
+<li><p>If installing packages fails, try with arguments
+<code>force = TRUE</code> to re-install possibly broken dependencies and
+<code>build_vignettes = FALSE</code> to not install vignettes.</p></li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="using-packages">Using packages<a class="anchor" aria-label="anchor" href="#using-packages"></a>
+</h4>
+<ul>
+<li><p>If a package appears not to be installed when you want to use a
+function from it (e.g., you get the error
+<code>could not find function "&lt;funcname&gt;"</code>), remember you
+need to run <a href="../help/library">library</a><code>(&lt;pkgname&gt;)</code> to be
+able to use its functions.</p></li>
+<li><p>If a package is not functional, re-install it using argument
+<code>force = TRUE</code> to re-install possibly broken dependencies.
+You can also use <a href="../help/get_details_pkgs">checkrpkgs::get_details_pkgs</a><code>(pkgs = &lt;pkgname&gt;)</code>
+to check which dependencies and other system requirements it has and
+then use <a href="../help/check_pkgs">checkrpkgs::check_pkgs</a><code>(pkgs = &lt;pkgnames&gt;)</code>
+to check if all the dependencies are installed and functional.</p></li>
 <li><p>If the warning
 <code>package &lt;pkgname&gt; was built under R version 'x.y.z'</code>
 occurs, you installed a binary package (i.e., not by building from
@@ -361,23 +411,19 @@ the version of R you are currently using (run <a href="../help/R.Version">getRve
 version). The warning is issued because packages are not tested on
 versions of R that are older than the version they were built on.
 Therefore it is best to update R when installing packages.</p></li>
-<li><p>The warning
-<code>package '&lt;pkgname&gt;' is not available (for R version x.y.z)</code>
-can have many reasons. First double-check the package name (which is
-case-sensitive). Then check possible other reasons mentioned in this <a href="https://stackoverflow.com/a/25721890/32365738" class="external-link">stackoverflow
-answer</a>.</p></li>
 <li><p>If errors occur when loading packages that require Java, make
 sure the 64-bit <a href="https://www.java.com/download/manual.jsp" class="external-link">version of Java</a> is
 installed on 64-bit PCs.</p></li>
 </ul>
 </div>
 </div>
+</div>
 <div class="section level2">
 <h2 id="information-about-packages">Information about packages<a class="anchor" aria-label="anchor" href="#information-about-packages"></a>
 </h2>
 <p>Information about packages can be obtained from the internet before
-the packages are installed, as well as from within R the packages are
-installed.</p>
+the packages are installed, as well as from within R after the packages
+are installed.</p>
 <div class="section level3">
 <h3 id="not-yet-installed-packages">Not-yet-installed packages<a class="anchor" aria-label="anchor" href="#not-yet-installed-packages"></a>
 </h3>
@@ -398,9 +444,6 @@ available from <a href="https://bioconductor.org/packages/release/BiocViews.html
 <p>The source code of base R packages can be obtained from <a href="https://github.com/r-devel/r-svn/" class="external-link">GitHub</a> (see the section <a href="#repositories">Repositories</a> below), and installation pages of
 packages on CRAN frequently contain links to GitHub pages where their
 source code can be viewed.</p>
-<div class="section level4">
-<h4 id="package-dependencies">Package dependencies<a class="anchor" aria-label="anchor" href="#package-dependencies"></a>
-</h4>
 <p>For (not necessarily installed) packages from CRAN, use <a href="../help/package_dependencies">tools::package_dependencies</a><code>(packages = "&lt;pkgname&gt;", recursive = TRUE)</code>
 to see dependencies (i.e., which packages are required by package
 <code>&lt;pkgname&gt;</code>) and <a href="../help/dependsOnPkgs">tools::dependsOnPkgs</a><code>(pkgs = "&lt;pkgname&gt;", recursive = TRUE)</code>
@@ -409,13 +452,12 @@ to see reverse dependencies (i.e., which packages require package
 packages that are not found, whereas <code>character(0)</code> is
 returned for packages that do not have any dependencies.</p>
 </div>
-</div>
 <div class="section level3">
 <h3 id="already-installed-packages">Already-installed packages<a class="anchor" aria-label="anchor" href="#already-installed-packages"></a>
 </h3>
-<p>The locations where packages have been installed can be obtained with
-<a href="../help/.libPaths">.libPaths()</a>, and the names of all
-installed packages can be obtained with <a href="../help/list.files">list.files</a><code>(path = .libPaths(), recursive = FALSE)</code>.
+<p>The locations where R installs packages, and where it looks for
+installed packages, can be obtained with <a href="../help/.libPaths">.libPaths()</a>, and the names of all installed
+packages can be obtained with <a href="../help/list.files">list.files</a><code>(path = .libPaths(), recursive = FALSE)</code>.
 The repository from which a package was installed can be obtained from
 the <code>Repository</code> and <code>URL</code> fields of package
 descriptions: <a href="../help/get_details_pkgs">checkrpkgs::get_details_pkgs</a><code>(pkgs = &lt;pkgname&gt;)</code>.
@@ -445,16 +487,16 @@ or list them with <a href="../help/vignette">utils::vignette</a><code>(package =
 obtained (see also the section <a href="#getting-the-source-code">Getting the source code</a> below):</p>
 <ul>
 <li>Arguments: <code>args("&lt;funcname&gt;")</code>.</li>
-<li>Help page: <code>help("&lt;funcname&gt;")</code>;<br>
-indicate the package to distinguish functions with the same name from
-different packages:
-<code>help("&lt;funcname&gt;", package = "&lt;pkgname&gt;")</code>;<br>
-use quotes around the name of an operator to get its help page:
+<li>Help page: <code>help("&lt;funcname&gt;")</code>; indicate the
+package to distinguish functions with the same name from different
+packages:
+<code>help("&lt;funcname&gt;", package = "&lt;pkgname&gt;")</code>; use
+quotes around the name of an operator to get its help page:
 <code><a href="https://rdrr.io/r/base/match.html" class="external-link">help("%in%")</a></code>.</li>
-<li>Methods: for a generic class: <a href="../help/methods">utils::methods</a><code>(class = "&lt;classname&gt;")</code>;<br>
-for a generic function: <a href="../help/methods">utils::methods</a><code>("&lt;funcname&gt;")</code>;<br>
+<li>Methods: for a generic class: <a href="../help/methods">utils::methods</a><code>(class = "&lt;classname&gt;")</code>;
+for a generic function: <a href="../help/methods">utils::methods</a><code>("&lt;funcname&gt;")</code>;
 for S3-methods:
-<code>attr(utils::methods(class = "&lt;classname&gt;"), "info")</code>;<br>
+<code>attr(utils::methods(class = "&lt;classname&gt;"), "info")</code>;
 for S4-methods:
 <code>methods::showMethods(classes = "&lt;classname&gt;", where = getNamespace("&lt;pkgname&gt;"))</code>.</li>
 <li>Objects (including functions) whose name contains a certain string:
@@ -508,8 +550,7 @@ Source</a>.</li>
 6(4):43-45</a>.</li>
 <li>A <a href="https://stackoverflow.com/a/19226817" class="external-link">community
 answer</a> from <a href="https://stackoverflow.com/" class="external-link">StackOverflow</a>.</li>
-<li>The help page for <a href="../help/methods">utils::methods()</a>
-</li>
+<li>The help page for <a href="../help/methods">utils::methods()</a>.</li>
 </ul>
 </div>
 <div class="section level3">
@@ -518,7 +559,7 @@ answer</a> from <a href="https://stackoverflow.com/" class="external-link">Stack
 <p>The source code of the base R packages, for the development, current,
 and older versions of R, is available at <a href="https://cran.r-project.org/src/base/" class="external-link">CRAN</a> and at the <a href="https://svn.r-project.org/R/branches/" class="external-link">SVN-project</a>. Searching
 the source code of the development version is easiest using the <a href="https://github.com/r-devel/r-svn/tree/main/src/library" class="external-link">GitHub
-mirror</a> of the SVN-project, also the documentation on <a href="https://docs.github.com/en/search-github" class="external-link">searching
+mirror</a> of the SVN-project, see also the documentation on <a href="https://docs.github.com/en/search-github" class="external-link">searching
 GitHub</a>.</p>
 <p>The source code of add-on packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> can
 be searched at <a href="https://github.com/cran" class="external-link">METACRAN</a>, an
@@ -547,17 +588,19 @@ the name of the function, <em>without</em> the brackets, and press
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x558ebe892bd8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559b48d7c998&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
 <li>To distinguish functions with the same name from different packages,
 specify the package followed by two colons:
 <code>&lt;pkgname&gt;::&lt;funcname&gt;</code>.</li>
-<li>For non-exported (i.e., internal) functions, specify the package
-followed by three colons:
-<code>&lt;pkgname&gt;:::&lt;funcname&gt;</code>. Non-exported functions
-should <em>not</em> be used in code because they might change.</li>
+<li>For non-exported functions, specify the package followed by three
+colons: <code>&lt;pkgname&gt;:::&lt;funcname&gt;</code> (using only two
+colons, will result in the error
+<code>'&lt;funcname&gt;' is not an exported object from 'namespace:&lt;pkgname&gt;'</code>.
+Non-exported functions should <em>not</em> be used in code because they
+might change.</li>
 <li>For operators such as <a href="../help/match">%in%</a> which start
 with a symbol, use backticks (`) around the name:</li>
 </ul>
@@ -565,7 +608,7 @@ with a symbol, use backticks (`) around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x558ebcb8cd00&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559b470e55c0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -587,14 +630,14 @@ is most robust to always use them.</p>
 methods for different object classes and is <a href="https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation" class="external-link">S3-generic</a>.
 First use <a href="../help/methods">methods</a><code>("&lt;funcname&gt;")</code> to
 get an overview of the available methods; then obtain the source code of
-a particular method by using running the code
+a particular method by using
 <code>getAnywhere("&lt;function.class&gt;")</code>, where
 <code>&lt;function.class&gt;</code> is an item from the overview that
-was returned by <code>methods("&lt;funcname&gt;")</code>. Using
-<code>getAnywhere("&lt;function.class&gt;")</code> instead of simply
-running <code>"&lt;function.class&gt;"</code> ensures this also works
-for functions that are not exported, which is indicated in the overview
-of <code>methods(&lt;funcname&gt;)</code> by an asterisk and the remark
+was returned by <code>methods("&lt;funcname&gt;")</code>. The advantage
+over simply using <code>"&lt;function.class&gt;"</code> is that
+<code>getAnywhere("&lt;function.class&gt;")</code> also works for
+functions that are not exported, which is indicated in the overview of
+<code>methods(&lt;funcname&gt;)</code> by an asterisk and the remark
 <code>Non-visible functions are asterisked</code>.</p>
 <p>For example, <code>UseMethod("mean")</code> in the output of
 <code>getAnywhere("mean")</code> indicates <code>mean</code> is an
@@ -609,7 +652,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x558ebee623f8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559b493baa68&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -634,11 +677,11 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x558ec0d6ce60&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559b4b248fc8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
-<p>The source code of the method <code>mean</code> used with objects of
-classes not listed in the output of <code>methods("mean")</code> is
-given by <code>getAnywhere("mean.default")</code>:</p>
+<p>Or use <code>getAnywhere("mean.default")</code> to see the source
+code of the method <code>mean</code> used with objects of classes not
+listed in the output of <code>methods("mean")</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/getAnywhere.html" class="external-link">getAnywhere</a></span><span class="op">(</span><span class="st">"mean.default"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; A single object matching 'mean.default' was found</span></span>
@@ -672,7 +715,7 @@ given by <code>getAnywhere("mean.default")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x558ec0d6c450&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559b4b2485b8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -693,7 +736,7 @@ particular method:
 <code>getMethod(f = "&lt;funcname&gt;", signature = c(target = "&lt;classname&gt;", current = "&lt;classname&gt;"))</code>.</p>
 <p>The example below shows how to find the source code of method
 <code><a href="https://rdrr.io/r/methods/cbind2.html" class="external-link">cbind2()</a></code> used by the <code>Matrix</code> package to combine
-two matrices that both have the <code>Matrix</code> class defined by
+two matrices that both have the <code>Matrix</code> class as defined by
 package <code>Matrix</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://Matrix.R-forge.R-project.org" class="external-link">Matrix</a></span><span class="op">)</span></span>
@@ -711,8 +754,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x558ebe6cb160&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x558ebd499428&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559b48c260f8&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x559b47a127f8&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -758,7 +801,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x558ec051cdc0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559b4aa1e570&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
@@ -816,11 +859,11 @@ C++ code. Although the file <code>src/&lt;pkgname&gt;.h</code> (e.g., <a href="h
 if code is from package <code>methods</code>) contains an overview of
 the C or C++ code included in a package, your best bet for finding the
 source code is <a href="https://docs.github.com/en/search-github" class="external-link">searching</a> the
-relevant part (e.g.,
+relevant part of the <a href="https://github.com/r-devel/r-svn/" class="external-link">GitHub</a> repository (e.g.,
 <code>https://github.com/r-devel/r-svn/tree/main/src/library/methods/src</code>
-for code from package <code>methods</code>) of the <a href="https://github.com/r-devel/r-svn/" class="external-link">GitHub</a> repository, or
-installing the package from source (see the section ‘Rtools’ in the
-vignette <em>Installing R, Rtools and RStudio</em>:
+for code from package <code>methods</code>), or installing the package
+from source (see the section ‘Rtools’ in the vignette <em>Installing R,
+Rtools and RStudio</em>:
 <code><a href="../articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>) and
 searching in the <code>src</code> folder of the downloaded code.</p>
 </div>
@@ -844,7 +887,8 @@ the collaboration between BioConductor and the <a href="https://r-universe.dev/s
 specific for R</li>
 <li>Section <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages" class="external-link">Add-on
 packages</a> in the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link">R
-Installation and Administration manual</a> manual</li>
+Installation and Administration manual</a> manual (which also contains a
+section about installing packages)</li>
 <li>Section ‘Documentation and help’ in the vignette <em>Installing R,
 Rtools and RStudio</em>:<br><code><a href="../articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>
 </li>

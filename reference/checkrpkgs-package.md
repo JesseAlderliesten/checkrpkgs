@@ -11,6 +11,8 @@ Useful links:
 
 - <https://github.com/JesseAlderliesten/checkrpkgs>
 
+- <https://jessealderliesten.github.io/checkrpkgs/>
+
 - Report bugs at
   <https://github.com/JesseAlderliesten/checkrpkgs/issues>
 

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,15 +73,14 @@
 <p>This vignette contains instructions on installing and configuring <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>, and <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>.</p>
 <p>In this vignette, text between angled brackets
 (<code>&lt;...&gt;</code>) is used to refer to text that should be
-replaced with specific text to get working code or working file paths.
-For example, <code>&lt;pkgname&gt;</code> is used as a place holder to
-refer in general to a package name: <code>&lt;pkgname&gt;</code> should
-be replaced with <code>utils</code> if you want to obtain information
-about package <code>utils</code>, and with <code>methods</code> if you
-want to obtain information about package <code>methods</code>.
-Similarly, <code>&lt;funcname&gt;</code> is a place holder to refer to a
-function name that should be filled in with a specific function name to
-get working code.</p>
+replaced with specific text to get working code. For example,
+<code>&lt;pkgname&gt;</code> is used as a place holder to refer to a
+package name and should be replaced with <code>utils</code> if you want
+to obtain information about package <code>utils</code>, and with
+<code>methods</code> if you want to obtain information about package
+<code>methods</code>. Similarly, <code>&lt;funcname&gt;</code> is used
+as a place holder to refer to a function name that should be filled in
+with a specific function name to get working code.</p>
 </div>
 <div class="section level2">
 <h2 id="r">R<a class="anchor" aria-label="anchor" href="#r"></a>
@@ -99,38 +98,39 @@ NotePad.</p>
 <h3 id="configuring-r">Configuring R<a class="anchor" aria-label="anchor" href="#configuring-r"></a>
 </h3>
 <p>R can be configured by changing <a href="../help/options">general
-options</a>, options for <a href="../help/Startup">startup</a>, and
-options for <a href="../help/install.packages">installing packages</a>
-and <a href="../help/.libPaths">library paths</a>. For more details, see
-the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link">R
-Installation and Administration manual</a> and the section <a href="https://rstats.wtf/r-startup" class="external-link">R Startup</a> from <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You About
-R</a>.</p>
-<p>R can be made a bit stricter by setting various options, described in
-the help files for <a href="../help/options">options</a> and <a href="../help/environment%20variables">environment variables</a>:</p>
+options</a>, <a href="../help/environment%20variables">environment
+variables</a>, and options for <a href="../help/Startup">startup</a>, <a href="../help/install.packages">installing packages</a>, and <a href="../help/.libPaths">library paths</a>.</p>
+<p>Configuring R can be used to made R a bit stricter, described in the
+help files for <a href="../help/options">options</a> and <a href="../help/environment%20variables">environment variables</a>:</p>
 <ul>
 <li>Warn in case of <a href="../help/pmatch">partial matching</a> such
-as <code>list(mean = 3)$me</code> (the default is <code>FALSE</code> for
-each of these):
-<code>options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)</code>.</li>
+as <code>list(mean = 3)$me</code>:
+<code>options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)</code>.
+The default is <code>FALSE</code> for each of these.</li>
 <li>Error instead of warn when calling <a href="../help/colon">a:b</a>
 when numeric <code>a</code> or <code>b</code> is longer than one, such
-as <code>3:c(5, 7)</code> (introduced in R 4.3.0):<br><code>Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")</code>.</li>
+as <code>3:c(5, 7)</code> (introduced in R 4.3.0):
+<code>Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")</code>.</li>
 <li>Error instead of silently using only the first element in <a href="../help/Logic">logical operations</a> such as
 <code>c(TRUE, TRUE) &amp;&amp; TRUE)</code> (introduced in R 3.6.0, no
 longer used since R 4.3.0 because there calling <code>&amp;&amp;</code>
-or <code>||</code> with length larger than one always gives an
-error):<br><code>Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")</code>.</li>
+or <code>||</code> with length larger than one always gives an error):
+<code>Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")</code>.</li>
 <li>Error instead of warn if a <a href="../help/Control">condition</a>
 has length larger than one, such as
-<code>if(3 &lt; c(5, 7)) {"Now run some code"}</code> (introduced in R
+<code>if(3 &lt; c(5, 7)) {print("Not OK")}</code> (introduced in R
 3.y.z, no longer used since R 4.2.0 because there conditions with length
 larger than one always give an error):
 <code>Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")</code>.</li>
 <li>Print warnings <a href="../help/warning">warnings</a> immediately as
-they occur (default: <code>options(warn = 0)</code>):
-<code>options(warn = 1)</code>.</li>
-<li>Make <a href="../help/warning">warnings</a> an <a href="../help/stop">error</a> (default: <code>options(warn = 0)</code>):
-<code>options(warn = 2)</code>.</li>
+they occur: <code>options(warn = 1)</code>. The default is
+<code>options(warn = 0)</code> to warn after the top-level function
+returns.</li>
+<li>Make <a href="../help/warning">warnings</a> an <a href="../help/stop">error</a>: <code>options(warn = 2)</code>. This
+should only be used for debugging because it may trigger bugs and
+resource leaks (per its help-page). The default is
+<code>options(warn = 0)</code> to warn after the top-level function
+returns.</li>
 <li>Enter the <a href="../help/browser">environment browser</a> upon
 error (default: <code>options(error = NULL)</code>):
 <code>options(error = browser)</code>; press <code>Q</code> or
@@ -158,11 +158,11 @@ current R session:</p>
 <ul>
 <li>
 <a href="../help/.Machine">.Machine</a> and <a href="../help/Sys.info">Sys.info()</a> provide information about the
-machine and platform R is running on.</li>
+machine and platform R is running on. <a href="../help/R.Version">getRversion()</a> provides the version of the
+running R.</li>
 <li>
 <a href="../help/.Platform">.Platform</a> and <a href="../help/R.Version">R.Version()</a> provide information about the
-platform R was built on. <a href="../help/R.Version">getRversion()</a>
-provides the version of the running R.</li>
+platform R was built on.</li>
 <li>
 <a href="../help/Sys.getlocale">Sys.getlocale()</a> provides details
 about the locale.</li>
@@ -170,7 +170,8 @@ about the locale.</li>
 <a href="../help/sessionInfo">sessionInfo()</a> extracts parts of
 the information provided by the functions mentioned above about the
 operating system and R. It also lists attached and loaded packages. Its
-printing method can be used to print additional information:
+printing method can be used to print additional information about the
+used locale, time zone, and random number generation:
 <code>print(sessionInfo(), locale = TRUE, RNG = TRUE)</code>.</li>
 <li>
 <a href="../help/capabilities">capabilities()</a> and <a href="../help/extSoftVersion">extSoftVersion()</a> provide details about
@@ -202,6 +203,9 @@ development environment</a> for R that can be downloaded <a href="https://posit.
 <code>Restore .RData into workspace at startup</code> and set the option
 <code>Save workspace to .RData on exit</code> to <code>Never</code> to
 make work portable.</p>
+<p>The version of RStudio to use can be selected at <code>Tools</code>
+&gt; <code>Global Options</code> &gt; <code>General</code> &gt;
+<code>R version</code>.</p>
 <p>Keyboard shortcuts can be modified at <code>Tools</code> &gt;
 <code>Modify Keyboard Shortcuts</code>, e.g., to change the shortcut
 <code>Run current line or selection</code> from <code>Ctrl+Enter</code>
@@ -213,7 +217,7 @@ fixes that without the need to actually reset the shortcuts.</p>
 <code>Global options</code> &gt; <code>Appearance</code>. The default
 <code>Editor theme</code> is the light <code>Textmate</code>, another
 nice light <code>Editor theme</code> is <code>Xcode</code>. Nice dark
-<code>Editor themes</code> are <code>Tomorrow Night Bright</code>,
+<code>Editor theme</code>s are <code>Tomorrow Night Bright</code>,
 <code>Idle Fingers</code>, and <code>Pastel On Dark</code>, with
 <code>Editor fonts</code> <code>Consolas</code>,
 <code>Cacadia Mono Light</code>, or <code>Lucida Console</code>.</p>
@@ -261,7 +265,7 @@ download the version appropriate for the installed version of R (see the
 output of <a href="../help/R.Version">getRversion()</a>) from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> via
 <code>Download R for Windows</code> &gt; <code>Rtools</code> &gt;
 <code>RTools X.Y</code> and set it up using the instructions given
-there. See also the <a href="https://cran.r-project.org/bin/windows/base/howto-R-4.5.html" class="external-link">HowTo</a>
+there. See also the <a href="https://cran.r-project.org/bin/windows/base/howto-R-4.6.html" class="external-link">HowTo</a>
 by Tomas Kalibera. Alternatively,
 <code>pkgbuild::check_build_tools(debug = TRUE)</code> can be used to
 check and install Rtools.</p>
@@ -287,8 +291,8 @@ with a web interface with <a href="https://stat.ethz.ch/mailman/listinfo" class=
 archives</a> and a mirror for <a href="https://r-mailing-lists.thecoatlessprofessor.com/" class="external-link">searching</a>
 </li>
 <li>R <a href="https://cran.r-project.org/manuals.html" class="external-link">manuals</a>,
-(especially the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link">R
-Installation and Administration manual</a>), with <a href="https://rstudio.github.io/r-manuals/" class="external-link">derived versions</a> better
+especially the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link">R
+Installation and Administration manual</a>, with <a href="https://rstudio.github.io/r-manuals/" class="external-link">derived versions</a> better
 suited for searching.</li>
 <li>R <a href="https://cran.r-project.org/doc/manuals/r-release/NEWS.html" class="external-link">news</a>
 </li>

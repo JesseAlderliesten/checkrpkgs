@@ -25,6 +25,7 @@ You can install `checkrpkgs` from
 [GitHub](https://github.com/JesseAlderliesten/checkrpkgs) with:
 
 ``` r
+
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", quiet = FALSE)
 }
@@ -60,6 +61,7 @@ and
 [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
 
 ``` r
+
 library(checkrpkgs)
 check_pkgs(pkgs = "abcdef1") # package is absent
 #> Warning in check_pkgs(pkgs = "abcdef1"): non-installed packages: 'abcdef1'
@@ -70,30 +72,33 @@ check_pkgs(pkgs = "abcdef1") # package is absent
 #> character(0)
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
-#>            Package      LibPath                                            
-#> checkrpkgs "checkrpkgs" "C:/Users/Eigenaar/AppData/Local/R/win-library/4.5"
-#> utils      "utils"      "C:/Program Files/R/R-4.5.2/library"               
-#>            Version Priority Depends
-#> checkrpkgs "0.1.1" NA       NA     
-#> utils      "4.5.2" "base"   NA     
-#>            Imports                                              LinkingTo
-#> checkrpkgs "checkinput (>= 0.0.6), progutils (>= 0.0.3), utils" NA       
-#> utils      NA                                                   NA       
-#>            Suggests                                                                                                     
-#> checkrpkgs "BiocManager, conflicted, ctv, knitr, methods, pkgbuild,\nremotes, rmarkdown, strict, tinytest, tools, stats"
-#> utils      "methods, xml2, commonmark, knitr, jsonlite"                                                                 
-#>            Enhances License              License_is_FOSS License_restricts_use
-#> checkrpkgs NA       "MIT + file LICENSE" NA              NA                   
-#> utils      NA       "Part of R 4.5.2"    NA              NA                   
-#>            OS_type MD5sum NeedsCompilation Built   Repository
-#> checkrpkgs NA      NA     "no"             "4.5.2" NA        
-#> utils      NA      NA     "yes"            "4.5.2" NA        
-#>            Additional_repositories
-#> checkrpkgs NA                     
-#> utils      NA                     
-#>            URL                                               SystemRequirements
-#> checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs" NA                
-#> utils      NA                                                NA
+#>            Package      Version MD5sum
+#> checkrpkgs "checkrpkgs" "0.5.2" NA    
+#> utils      "utils"      "4.6.0" NA    
+#>            Built                                                          
+#> checkrpkgs "R 4.6.0; ; 2026-05-02 18:12:43 UTC; windows"                  
+#> utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"
+#>            Priority LibPath                                            
+#> checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"
+#> utils      "base"   "C:/Program Files/R/R-4.6.0/library"               
+#>            Repository Additional_repositories
+#> checkrpkgs "Github"   NA                     
+#> utils      NA         NA                     
+#>            URL                                                                                                
+#> checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs,\nhttps://jessealderliesten.github.io/checkrpkgs/"
+#> utils      NA                                                                                                 
+#>            GithubRepo GithubUsername SystemRequirements NeedsCompilation
+#> checkrpkgs NA         NA             NA                 "no"            
+#> utils      NA         NA             NA                 "yes"           
+#>            OS_type Depends Imports                                             
+#> checkrpkgs NA      NA      "checkinput (>= 0.5.0), progutils (>= 0.0.6), utils"
+#> utils      NA      NA      NA                                                  
+#>            LinkingTo
+#> checkrpkgs NA       
+#> utils      NA       
+#>            Suggests                                                                                                                                                    
+#> checkrpkgs "BiocManager (>= 1.30.5), conflicted, ctv (>= 0.4-0), knitr,\nMatrix, methods, pkgbuild, remotes (>= 2.0.0), rmarkdown,\nstrict, tinytest (>= 1.4.1), tools"
+#> utils      "methods, xml2, commonmark, knitr, jsonlite"
 ```
 
 # Package index

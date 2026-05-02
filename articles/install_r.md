@@ -9,13 +9,12 @@ This vignette contains instructions on installing and configuring
 
 In this vignette, text between angled brackets (`<...>`) is used to
 refer to text that should be replaced with specific text to get working
-code or working file paths. For example, `<pkgname>` is used as a place
-holder to refer in general to a package name: `<pkgname>` should be
-replaced with `utils` if you want to obtain information about package
-`utils`, and with `methods` if you want to obtain information about
-package `methods`. Similarly, `<funcname>` is a place holder to refer to
-a function name that should be filled in with a specific function name
-to get working code.
+code. For example, `<pkgname>` is used as a place holder to refer to a
+package name and should be replaced with `utils` if you want to obtain
+information about package `utils`, and with `methods` if you want to
+obtain information about package `methods`. Similarly, `<funcname>` is
+used as a place holder to refer to a function name that should be filled
+in with a specific function name to get working code.
 
 ## R
 
@@ -34,54 +33,53 @@ NotePad.
 
 R can be configured by changing [general
 options](https://jessealderliesten.github.io/checkrpkgs/help/options),
-options for
+[environment
+variables](https://jessealderliesten.github.io/checkrpkgs/help/environment%20variables),
+and options for
 [startup](https://jessealderliesten.github.io/checkrpkgs/help/Startup),
-and options for [installing
-packages](https://jessealderliesten.github.io/checkrpkgs/help/install.packages)
+[installing
+packages](https://jessealderliesten.github.io/checkrpkgs/help/install.packages),
 and [library
 paths](https://jessealderliesten.github.io/checkrpkgs/help/.libPaths).
-For more details, see the [R Installation and Administration
-manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
-and the section [R Startup](https://rstats.wtf/r-startup) from [What
-They Forgot to Teach You About R](https://rstats.wtf/).
 
-R can be made a bit stricter by setting various options, described in
-the help files for
+Configuring R can be used to made R a bit stricter, described in the
+help files for
 [options](https://jessealderliesten.github.io/checkrpkgs/help/options)
 and [environment
 variables](https://jessealderliesten.github.io/checkrpkgs/help/environment%20variables):
 
 - Warn in case of [partial
   matching](https://jessealderliesten.github.io/checkrpkgs/help/pmatch)
-  such as `list(mean = 3)$me` (the default is `FALSE` for each of
-  these):
+  such as `list(mean = 3)$me`:
   `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
+  The default is `FALSE` for each of these.
 - Error instead of warn when calling
   [a:b](https://jessealderliesten.github.io/checkrpkgs/help/colon) when
   numeric `a` or `b` is longer than one, such as `3:c(5, 7)` (introduced
-  in R 4.3.0):  
-  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
+  in R 4.3.0): `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
 - Error instead of silently using only the first element in [logical
   operations](https://jessealderliesten.github.io/checkrpkgs/help/Logic)
   such as `c(TRUE, TRUE) && TRUE)` (introduced in R 3.6.0, no longer
   used since R 4.3.0 because there calling `&&` or `||` with length
-  larger than one always gives an error):  
+  larger than one always gives an error):
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
 - Error instead of warn if a
   [condition](https://jessealderliesten.github.io/checkrpkgs/help/Control)
   has length larger than one, such as
-  `if(3 < c(5, 7)) {"Now run some code"}` (introduced in R 3.y.z, no
-  longer used since R 4.2.0 because there conditions with length larger
-  than one always give an error):
+  `if(3 < c(5, 7)) {print("Not OK")}` (introduced in R 3.y.z, no longer
+  used since R 4.2.0 because there conditions with length larger than
+  one always give an error):
   `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
 - Print warnings
   [warnings](https://jessealderliesten.github.io/checkrpkgs/help/warning)
-  immediately as they occur (default: `options(warn = 0)`):
-  `options(warn = 1)`.
+  immediately as they occur: `options(warn = 1)`. The default is
+  `options(warn = 0)` to warn after the top-level function returns.
 - Make
   [warnings](https://jessealderliesten.github.io/checkrpkgs/help/warning)
-  an [error](https://jessealderliesten.github.io/checkrpkgs/help/stop)
-  (default: `options(warn = 0)`): `options(warn = 2)`.
+  an [error](https://jessealderliesten.github.io/checkrpkgs/help/stop):
+  `options(warn = 2)`. This should only be used for debugging because it
+  may trigger bugs and resource leaks (per its help-page). The default
+  is `options(warn = 0)` to warn after the top-level function returns.
 - Enter the [environment
   browser](https://jessealderliesten.github.io/checkrpkgs/help/browser)
   upon error (default: `options(error = NULL)`):
@@ -114,19 +112,20 @@ current R session:
   and
   [Sys.info()](https://jessealderliesten.github.io/checkrpkgs/help/Sys.info)
   provide information about the machine and platform R is running on.
+  [getRversion()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version)
+  provides the version of the running R.
 - [.Platform](https://jessealderliesten.github.io/checkrpkgs/help/.Platform)
   and
   [R.Version()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version)
   provide information about the platform R was built on.
-  [getRversion()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version)
-  provides the version of the running R.
 - [Sys.getlocale()](https://jessealderliesten.github.io/checkrpkgs/help/Sys.getlocale)
   provides details about the locale.
 - [sessionInfo()](https://jessealderliesten.github.io/checkrpkgs/help/sessionInfo)
   extracts parts of the information provided by the functions mentioned
   above about the operating system and R. It also lists attached and
   loaded packages. Its printing method can be used to print additional
-  information: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+  information about the used locale, time zone, and random number
+  generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
 - [capabilities()](https://jessealderliesten.github.io/checkrpkgs/help/capabilities)
   and
   [extSoftVersion()](https://jessealderliesten.github.io/checkrpkgs/help/extSoftVersion)
@@ -160,6 +159,9 @@ After installing RStudio, start RStudio, go to `Tools` \>
 `Restore .RData into workspace at startup` and set the option
 `Save workspace to .RData on exit` to `Never` to make work portable.
 
+The version of RStudio to use can be selected at `Tools` \>
+`Global Options` \> `General` \> `R version`.
+
 Keyboard shortcuts can be modified at `Tools` \>
 `Modify Keyboard Shortcuts`, e.g., to change the shortcut
 `Run current line or selection` from `Ctrl+Enter` to `Ctrl+R` so it can
@@ -169,7 +171,7 @@ usually fixes that without the need to actually reset the shortcuts.
 
 The appearance of code can be changed at `Tools` \> `Global options` \>
 `Appearance`. The default `Editor theme` is the light `Textmate`,
-another nice light `Editor theme` is `Xcode`. Nice dark `Editor themes`
+another nice light `Editor theme` is `Xcode`. Nice dark `Editor theme`s
 are `Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`, with
 `Editor fonts` `Consolas`, `Cacadia Mono Light`, or `Lucida Console`.
 
@@ -225,7 +227,7 @@ output of
 from [CRAN](https://cran.r-project.org/) via `Download R for Windows` \>
 `Rtools` \> `RTools X.Y` and set it up using the instructions given
 there. See also the
-[HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.5.html) by
+[HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.6.html) by
 Tomas Kalibera. Alternatively,
 `pkgbuild::check_build_tools(debug = TRUE)` can be used to check and
 install Rtools.
@@ -244,9 +246,9 @@ install Rtools.
   interface with [information and
   archives](https://stat.ethz.ch/mailman/listinfo) and a mirror for
   [searching](https://r-mailing-lists.thecoatlessprofessor.com/)
-- R [manuals](https://cran.r-project.org/manuals.html), (especially the
+- R [manuals](https://cran.r-project.org/manuals.html), especially the
   [R Installation and Administration
-  manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)),
+  manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html),
   with [derived versions](https://rstudio.github.io/r-manuals/) better
   suited for searching.
 - R [news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
