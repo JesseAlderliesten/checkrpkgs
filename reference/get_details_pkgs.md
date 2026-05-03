@@ -245,10 +245,10 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #> 'missing_package'
 #>            Package      Version MD5sum
 #> checkinput "checkinput" "0.5.0" NA    
-#> checkrpkgs "checkrpkgs" "0.5.2" NA    
+#> checkrpkgs "checkrpkgs" "0.6.0" NA    
 #>            Built                                      Priority
 #> checkinput "R 4.6.0; ; 2026-05-02 20:25:38 UTC; unix" NA      
-#> checkrpkgs "R 4.6.0; ; 2026-05-02 20:25:42 UTC; unix" NA      
+#> checkrpkgs "R 4.6.0; ; 2026-05-03 20:44:23 UTC; unix" NA      
 #>            LibPath                           Repository Additional_repositories
 #> checkinput "/home/runner/work/_temp/Library" "Github"   NA                     
 #> checkrpkgs "/home/runner/work/_temp/Library" "Github"   NA                     
@@ -263,7 +263,7 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #> checkrpkgs NA      NA            
 #>            Imports                                              LinkingTo
 #> checkinput NA                                                   NA       
-#> checkrpkgs "checkinput (>= 0.5.0), progutils (>= 0.0.6), utils" NA       
+#> checkrpkgs "checkinput (>= 0.5.0), progutils (>= 0.0.7), utils" NA       
 #>            Suggests                                                                                                                                                    
 #> checkinput "knitr, rmarkdown, tinytest (>= 1.4.1)"                                                                                                                     
 #> checkrpkgs "BiocManager (>= 1.30.5), conflicted, ctv (>= 0.4-0), knitr,\nMatrix, methods, pkgbuild, remotes (>= 2.0.0), rmarkdown,\nstrict, tinytest (>= 1.4.1), tools"

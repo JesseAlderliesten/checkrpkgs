@@ -1,5 +1,13 @@
 # Changelog
 
+## checkrpkgs 0.6.0
+
+#### Breaking changes
+
+- Dependency `progutils`: increase from `>= 0.0.6` to `>= 0.0.7` to
+  ensure uniform handling of empty quotes and `NA`s through
+  [`progutils::paste_quoted()`](https://rdrr.io/pkg/progutils/man/paste_quoted.html).
+
 ## checkrpkgs 0.5.2
 
 #### Miscellaneous
