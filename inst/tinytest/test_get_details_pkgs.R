@@ -171,11 +171,11 @@ expect_identical(NULL_pkgs_rec_base, NULL_pkgs_high)
 ##### Priority 'NA_character_' #####
 expect_message(
   NULL_pkgs_NA <- get_details_pkgs(priority = NA_character_, db = NULL),
-  pattern = "Selecting packages with priority 'NA'",
+  pattern = "Selecting packages with priority 'NA_character_'",
   strict = TRUE, fixed = TRUE)
 expect_message(
   OK_pkgs_NA <- get_details_pkgs(priority = NA_character_, db = db_OK),
-  pattern = "Selecting packages with priority 'NA'",
+  pattern = "Selecting packages with priority 'NA_character_'",
   strict = TRUE, fixed = TRUE)
 expect_identical(NULL_pkgs_NA, OK_pkgs_NA)
 expect_true(all(is.na(OK_pkgs_NA[, "Priority"])))
