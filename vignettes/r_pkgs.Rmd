@@ -225,7 +225,8 @@ number of an installed package, run
 
 The following code can be used to install the latest version of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) (but note this
-**changes** the version of already-installed packages, which might be undesirable):
+**changes** the version of already-installed packages, which might be
+undesirable):
 
 ```{r, eval = FALSE}
 utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
@@ -276,10 +277,11 @@ pointing to an older version to install it using base R. For example, to install
 version 1.40 of package [deSolve](https://CRAN.R-project.org/package=deSolve):
 
 ```{r, eval = FALSE}
-install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
-                 lib = .libPaths(), repos = NULL, dependencies = NA,
-                 type = getOption("pkgType"), verbose = getOption("verbose"),
-                 quiet = FALSE)
+install.packages(
+  pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
+  lib = .libPaths(), repos = NULL, dependencies = NA,
+  type = getOption("pkgType"), verbose = getOption("verbose"),
+  quiet = FALSE)
 ```
 
 #### Bioconductor

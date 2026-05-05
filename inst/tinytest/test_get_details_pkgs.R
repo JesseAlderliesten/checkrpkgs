@@ -39,7 +39,7 @@ expect_warning(
   pattern = paste0("Some packages were not found at 'lib.loc'.+",
                    progutils::paste_quoted(pkgs_absent)),
   strict = TRUE, fixed = FALSE)
-expect_true(all(rownames(NULL_pkgs_absent_part) %in% "base"))
+expect_true(all(rownames(NULL_pkgs_absent_part) == "base"))
 expect_true(all(fields_req %in% colnames(NULL_pkgs_absent_part)))
 
 expect_warning(
@@ -90,10 +90,10 @@ OK_fields_dupl_v2 <- get_details_pkgs(
   pkgs = pkgs_present, fields = rep("LibPath", 2L), db = db_OK)
 
 expect_identical(NULL_fields_dupl, OK_fields_dupl)
-expect_false(any(duplicated(colnames(NULL_fields_dupl))))
+expect_identical(anyDuplicated(colnames(NULL_fields_dupl)), 0L)
 expect_true(all(c(fields_req, "LibPath", fields_add) %in%
                   colnames(NULL_fields_dupl)))
-expect_false(any(duplicated(colnames(OK_fields_dupl_v2))))
+expect_identical(anyDuplicated(colnames(OK_fields_dupl_v2)), 0L)
 expect_true(all(c(fields_req, "LibPath") %in% colnames(OK_fields_dupl_v2)))
 
 ##### Do not return non-requested non-default fields #####

@@ -84,7 +84,8 @@ get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL
   if(!is.null(priority)) {
     priority_string <- progutils::paste_quoted(priority)
     message("Selecting packages with priority ", priority_string)
-    if(any(bool_high_prio <- priority %in% "high")) {
+    bool_high_prio <- priority %in% "high"
+    if(any(bool_high_prio)) {
       priority <- c(priority[!bool_high_prio], "recommended", "base")
     }
   }
@@ -103,7 +104,8 @@ get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL
            "\n'utils::installed.packages()' containing column 'Package' (or",
            " rownames that are\npackage names): ", deparse(substitute(db)))
     }
-    if(any(bool_dupl_cols <- duplicated(colnames(db)))) {
+    bool_dupl_cols <- duplicated(colnames(db))
+    if(any(bool_dupl_cols)) {
       stop("Column names of 'db' should be unique: ",
            progutils::paste_quoted(colnames(db)[bool_dupl_cols]))
     }
