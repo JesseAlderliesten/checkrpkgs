@@ -9,8 +9,9 @@ fields_req <- c("Package", "Version", "MD5sum", "Built", "Priority",
 obj_zero_row <- matrix(data = "", ncol = length(fields_req),
                        dimnames = list(NULL, fields_req))[0, ]
 pkgs_absent <- c("missing_package", "missing_package_also")
-pkgs_div <- c("utils", "Matrix", "tinytest", "checkrpkgs", "checkinput")
-pkgs_present <- c("JesseAlderliesten/checkinput", "JesseAlderliesten/checkrpkgs")
+pkgs_div <- c("utils", "Matrix", "tinytest", "JesseAlderliesten/checkrpkgs",
+              "checkinput")
+pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
 
 # Correct, full database of packages to use
@@ -107,7 +108,7 @@ NULL_pkgs_div <- get_details_pkgs(pkgs = pkgs_div, db = NULL)
 OK_pkgs_div <- get_details_pkgs(pkgs = pkgs_div, db = db_OK)
 expect_identical(NULL_pkgs_div, OK_pkgs_div)
 expect_true(all(c("CRAN", "Github", NA_character_) %in%
-                  NULL_pkgs_div[pkgs_div, "Repository"]))
+                  NULL_pkgs_div[basename(pkgs_div), "Repository"]))
 
 
 #### Argument 'priority' ####
