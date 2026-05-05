@@ -94,11 +94,11 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 \seealso{
 \code{\link[utils:installed.packages]{utils::installed.packages()}} that is used by \code{get_details_pkgs()}.
 
-\code{\link[tools:CRANtools]{tools::CRAN_package_db()}} for information about packages available from
+\code{\link[tools:CRAN_package_db]{tools::CRAN_package_db()}} for information about packages available from
 \href{https://cran.r-project.org/web/packages/index.html}{CRAN}, including the
 \code{Description} and \code{Maintainer} fields not returned by
-\code{\link[utils:available.packages]{utils::available.packages()}}. \code{\link[tools:CRANtools]{tools::CRAN_check_results()}},
-\code{\link[tools:CRANtools]{tools::CRAN_check_details()}} and \code{\link[tools:CRANtools]{tools::CRAN_check_issues()}} on the current
+\code{\link[utils:available.packages]{utils::available.packages()}}. \code{\link[tools:CRAN_check_results]{tools::CRAN_check_results()}},
+\code{\link[tools:CRAN_check_details]{tools::CRAN_check_details()}} and \code{\link[tools:CRAN_check_issues]{tools::CRAN_check_issues()}} on the current
 check status of CRAN packages.
 
 \link[utils:available.packages]{utils::available.packages}\verb{(fields = NULL, repos = }\code{\link[BiocManager:repositories]{BiocManager::repositories()}}\verb{)}
@@ -111,7 +111,7 @@ for information about packages available from
 The vignette \emph{Instructions about R packages}:
 \code{vignette("r_pkgs", package = "checkrpkgs")}.
 
-Other functions to get information about packages: 
-\code{\link{check_pkgs}()}
+Other functions to get information about packages:
+\code{\link[=check_pkgs]{check_pkgs()}}
 }
 \concept{functions to get information about packages}
