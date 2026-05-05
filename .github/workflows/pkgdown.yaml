@@ -12,10 +12,6 @@ name: pkgdown.yaml
 
 permissions: read-all
 
-template:
-  bootstrap: 5
-  light-switch: true
-
 jobs:
   pkgdown:
     runs-on: ubuntu-latest
