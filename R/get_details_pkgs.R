@@ -187,8 +187,10 @@ get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL
   if(nrow(db) == 0L) {
     warning("Returning a zero-row matrix because none of the packages were found ",
             location_string,
-            if(!is.null(priority)) {paste0(" with priority ", priority_string)},
-            ":\n", progutils::paste_quoted(pkgs[bool_absent]))
+            if(!is.null(priority)) {
+              paste0(" with priority ", priority_string)
+              },
+            ":\n", progutils::paste_quoted(pkgs))
   }
 
   bool_no_repos_info <- is.na(db[, "Repository"]) | db[, "Repository"] == ""
