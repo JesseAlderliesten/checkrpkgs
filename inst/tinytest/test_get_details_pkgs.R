@@ -9,13 +9,16 @@ fields_req <- c("Package", "Version", "MD5sum", "Built", "Priority",
 obj_zero_row <- matrix(data = "", ncol = length(fields_req),
                        dimnames = list(NULL, fields_req))[0, ]
 
-warning("Let 'dir_test_pkg' point to a temporary directory that is cleaned up (see",
-        " the notes in progutils::test_create_dir(). Now 'dir_test_pkg' points to",
+warning("Let 'dirname(dir_test_pkg_install)' point to a temporary directory that is cleaned up (see",
+        " the notes in progutils::test_create_dir(). Now 'dirname(dir_test_pkg_install)' points to",
         " './R/checkrpkgs/inst/tinytest/pkg_tests' when running tinytest::test_all(),",
         " and to './R/checkrpkgs/pkg_tests' when running interactively")
+# dir_test_pkg_install <- progutils::create_dir(
+#   dir = file.path(".", "pkg_tests", "install"), add_date = FALSE)
+# dir_test_pkg <- dirname(dir_test_pkg_install)
 dir_test_pkg_install <- progutils::create_dir(
   dir = file.path(".", "pkg_tests", "install"), add_date = FALSE)
-dir_test_pkg <- dirname(dir_test_pkg_install)
+
 pkgA <- matrix(data = NA, ncol = length(fields_req),
                dimnames = list(NULL, fields_req))
 pkgA[, c("Package", "Version", "LibPath")] <- c("pkgA", "1.0", dir_test_pkg_install)
@@ -27,16 +30,34 @@ pkgs_div <- c("utils", "Matrix", "tinytest", "JesseAlderliesten/checkrpkgs",
 pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
 
+# To do:
+# - see 'References' in ?package.skeleton() on how to install without needing
+#   package 'callr'
 create_small_pkg <- function(name, path) {
   path <- progutils::create_dir(dir = path, add_date = FALSE)
+  dir_install <- progutils::create_dir(dir = file.path(path, "install"),
+                                                add_date = FALSE)
   my_fun <- function(x, y) x + y
   suppressMessages(
-    path_res <- package.skeleton(name = name, list = c("my_fun"),
-                                 environment = environment(),
-                                 path = path, force = FALSE)
+    path_skel <- package.skeleton(name = name, list = c("my_fun"),
+                                  environment = environment(),
+                                  path = path, force = FALSE)
   )
-  path_res
+
+  # Install the package (modified from devtools::install())
+  res_install <- callr::rcmd(
+    cmd = "INSTALL",
+    cmdargs = c(path_skel, "--no-docs", "--no-multiarch", "--no-demo"),
+    libpath = dir_install, echo = FALSE, show = FALSE, timeout = 100)
+  if(res_install$status != 0L) {
+    print(res_install)
+    warning("Package installation failed! Printed result to the console.")
+  }
+  invisible(res_install$status)
 }
+
+# Set up a small package for testing
+create_small_pkg(name = "pkgA", path = dirname(dir_test_pkg_install))
 
 # Correct, full database of packages to use
 db_OK <- utils::installed.packages(
@@ -90,19 +111,6 @@ expect_warning(
   strict = TRUE, fixed = TRUE)
 expect_identical(OK_pkgs_absent, obj_zero_row)
 
-# Set up a small package
-dir_test_pkg_skel <- create_small_pkg(name = "pkgA", path = dir_test_pkg)
-
-# To do:
-# - see 'References' in ?package.skeleton() on how to install without needing
-#   package 'callr'
-# Install the package (modified from devtools::install())
-res <- callr::rcmd(cmd = "INSTALL",
-                   cmdargs = c(dir_test_pkg_skel,
-                               "--no-docs", "--no-multiarch", "--no-demo"),
-                   libpath = dir_test_pkg_install, echo = FALSE, show = FALSE,
-                   timeout = 100)
-
 expect_silent(
   expect_identical(
     # Ignore the 'Built' field that contains a timestamp
@@ -121,9 +129,9 @@ expect_warning(
 # Look in a directory where no package is present
 expect_warning(
   expect_identical(
-    # 'dir_test_pkg' is where the package skeleton was created, whereas
+    # 'dirname(dir_test_pkg_install)' is where the package skeleton was created, whereas
     # 'dir_test_pkg_install' is where it was installed
-    get_details_pkgs(lib.loc = dir_test_pkg),
+    get_details_pkgs(lib.loc = dirname(dir_test_pkg_install)),
     obj_zero_row),
   pattern = "Returning a zero-row matrix", fixed = TRUE, strict = TRUE)
 
@@ -314,11 +322,11 @@ expect_error(
 
 
 #### Delete the created temporary files ####
-unlink(dir_test_pkg, recursive = TRUE)
+unlink(dirname(dir_test_pkg_install), recursive = TRUE)
 
 
 #### Remove objects used in tests ####
-rm(create_small_pkg, db_OK, dir_test_pkg, dir_test_pkg_install, dir_test_pkg_skel,
+rm(create_small_pkg, db_OK, dir_test_pkg_install,
    fields_add, fields_discard, fields_req, NULL_fields_add, NULL_fields_dupl,
    NULL_fields_req, NULL_pkgs_absent, NULL_pkgs_absent_part, NULL_pkgs_base,
    NULL_pkgs_div, NULL_pkgs_high, NULL_pkgs_NA, NULL_pkgs_rec, NULL_pkgs_rec_base,
@@ -326,4 +334,4 @@ rm(create_small_pkg, db_OK, dir_test_pkg, dir_test_pkg_install, dir_test_pkg_ske
    OK_fields_dupl_v2, OK_fields_req, OK_pkgs_absent, OK_pkgs_absent_part,
    OK_pkgs_base, OK_pkgs_div, OK_pkgs_high, OK_pkgs_NA, OK_pkgs_rec,
    OK_pkgs_rec_base, OK_pkgs_select, pkgA, pkgs_absent, pkgs_div, pkgs_present,
-   res, warn_db, warn_zero)
+   warn_db, warn_zero)
