@@ -30,41 +30,44 @@ warn_zero <- "Returning a zero-row matrix because none of the packages were foun
 # To do:
 # - Define this as internal function because it is also useful for tests of
 #   'check_pkgs()'.
-create_fake_pkg <- function(name, path, show_progress = FALSE) {
+create_fake_pkg <- function(name, path,
+                            action_on_error = c("error", "warn", "message"),
+                            show_progress = FALSE) {
   stopifnot(checkinput::is_character(name), checkinput::is_character(path),
             checkinput::is_logical(show_progress))
+  action_on_error <- match.arg(arg = action_on_error, several.ok = FALSE)
 
-  files_present <- list.files(path = path, all.files = TRUE, no.. = TRUE)
-  # 'file.exists()' also finds directories, so checks if <path>/<name> already
-  # exists. 'files_present' is used to check that no other files are present in
-  # 'path'.
-  if(file.exists(file.path(path, name)) || length(files_present) > 0L) {
-    # 'path' should be an empty directory: it will be removed later on.
-    stop("Aborting package creation because 'path' (", path, ") is not empty: ",
-         progutils::paste_quoted(files_present))
-  }
+  path <- normalizePath(path = path,  winslash = "/", mustWork = FALSE)
 
-  warning("Make dir_skel a temporary directory: it is unlinked later on.")
-  dir_skel <- progutils::create_dir(dir = file.path(path, "skel"),
-                                    add_date = FALSE)
-  path <- dirname(dir_skel) # So path separator is the same as in dir_install
+  # Create a temporary directory that can be removed safely (i.e., without
+  # deleting other temporary files still needed by other processes) to put the
+  # package skeleton in. Using 'on.exit()' to ensure this temporary directory is
+  # also deleted if an error occurs before the function returns.
+  skel.loc <- progutils::create_tempdir(subdir = "skel")
+  on.exit(unlink(skel.loc, recursive = TRUE), add = TRUE)
 
   my_fun <- function(x, y) x + y
   suppressMessages(
-    path_pkg_skel <- package.skeleton(name = name, list = c("my_fun"),
-                                      environment = environment(),
-                                      path = dir_skel, force = FALSE)
+    skel_path <- utils::package.skeleton(name = name, list = c("my_fun"),
+                                         environment = environment(),
+                                         path = skel.loc, force = FALSE)
   )
 
-  # remove package skeleton even if installation fails
-  on.exit(unlink(dir_skel, recursive = TRUE), add = TRUE)
-  install.packages(pkgs = path_pkg_skel, lib = path, repos = NULL,
+  install.packages(pkgs = skel_path, lib = path, repos = NULL,
                    verbose = show_progress,
                    # Set options to install little since it is just for testing
                    # Use R CMD INSTALL --help in the terminal to see the options
                    INSTALL_opts = c("--fake", "--no-multiarch",
                                     "--no-test-load", "--use-vanilla"),
                    type = "source", quiet = !show_progress)
+
+  if(!requireNamespace(package = name, lib.loc = path, quietly = TRUE)) {
+    msg_fail <- paste0("Failed to install fake package '", name, "' in\n", path)
+    switch(action_on_fail,
+           "message" = message(msg_fail),
+           "warn" = warning(msg_fail),
+           stop(msg_fail))
+  }
   invisible(file.path(path, name))
 }
 
