@@ -9,8 +9,8 @@ fields_req <- c("Package", "Version", "MD5sum", "Built", "Priority",
 obj_zero_row <- matrix(data = "", ncol = length(fields_req),
                        dimnames = list(NULL, fields_req))[0, ]
 
-warning("Let 'dirname(dir_test_pkg)' point to a temporary directory that is cleaned up (see",
-        " the notes in progutils::test_create_dir(). Now 'dirname(dir_test_pkg)' points to",
+warning("Let 'dir_test_pkg' point to a temporary directory that is cleaned up (see",
+        " the notes in progutils::test_create_dir(). Now 'dir_test_pkg' points to",
         " './R/checkrpkgs/inst/tinytest/pkg_tests' when running tinytest::test_all(),",
         " and to './R/checkrpkgs/pkg_tests' when running interactively")
 dir_test_pkg <- progutils::create_dir(
@@ -28,8 +28,6 @@ pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
 
 # To do:
-# - see 'References' in ?package.skeleton() on how to install without needing
-#   package 'callr'
 # - Define this as internal function because it is also useful for tests of
 #   'check_pkgs()'.
 create_fake_pkg <- function(name, path, show_progress = FALSE) {
@@ -46,7 +44,7 @@ create_fake_pkg <- function(name, path, show_progress = FALSE) {
          progutils::paste_quoted(files_present))
   }
 
-  warning("Make dir_skel a temporary directory that is unlinked later on.")
+  warning("Make dir_skel a temporary directory: it is unlinked later on.")
   dir_skel <- progutils::create_dir(dir = file.path(path, "skel"),
                                     add_date = FALSE)
   path <- dirname(dir_skel) # So path separator is the same as in dir_install
@@ -60,19 +58,13 @@ create_fake_pkg <- function(name, path, show_progress = FALSE) {
 
   # remove package skeleton even if installation fails
   on.exit(unlink(dir_skel, recursive = TRUE), add = TRUE)
-
-  # Install the package (modified from devtools::install())
-  res_install <- callr::rcmd(
-    cmd = "INSTALL",
-    cmdargs = c(path_pkg_skel, "--no-docs", "--no-multiarch", "--no-demo"),
-    libpath = path, echo = FALSE, show = show_progress, timeout = 100)
-
-  # 'status' 0 indicates success
-  if(res_install$status != 0L) {
-    print(res_install)
-    warning("Failed to install package ", name, " at ", path,
-            "!\nprinted result to the console.")
-  }
+  install.packages(pkgs = path_pkg_skel, lib = path, repos = NULL,
+                   verbose = show_progress,
+                   # Set options to install little since it is just for testing
+                   # Use R CMD INSTALL --help in the terminal to see the options
+                   INSTALL_opts = c("--fake", "--no-multiarch",
+                                    "--no-test-load", "--use-vanilla"),
+                   type = "source", quiet = !show_progress)
   invisible(file.path(path, name))
 }
 
