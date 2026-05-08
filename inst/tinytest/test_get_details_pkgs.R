@@ -9,19 +9,16 @@ fields_req <- c("Package", "Version", "MD5sum", "Built", "Priority",
 obj_zero_row <- matrix(data = "", ncol = length(fields_req),
                        dimnames = list(NULL, fields_req))[0, ]
 
-warning("Let 'dirname(dir_test_pkg_install)' point to a temporary directory that is cleaned up (see",
-        " the notes in progutils::test_create_dir(). Now 'dirname(dir_test_pkg_install)' points to",
+warning("Let 'dirname(dir_test_pkg)' point to a temporary directory that is cleaned up (see",
+        " the notes in progutils::test_create_dir(). Now 'dirname(dir_test_pkg)' points to",
         " './R/checkrpkgs/inst/tinytest/pkg_tests' when running tinytest::test_all(),",
         " and to './R/checkrpkgs/pkg_tests' when running interactively")
-# dir_test_pkg_install <- progutils::create_dir(
-#   dir = file.path(".", "pkg_tests", "install"), add_date = FALSE)
-# dir_test_pkg <- dirname(dir_test_pkg_install)
-dir_test_pkg_install <- progutils::create_dir(
-  dir = file.path(".", "pkg_tests", "install"), add_date = FALSE)
+dir_test_pkg <- progutils::create_dir(
+  dir = file.path(".", "pkg_tests"), add_date = FALSE)
 
 pkgA <- matrix(data = NA, ncol = length(fields_req),
                dimnames = list(NULL, fields_req))
-pkgA[, c("Package", "Version", "LibPath")] <- c("pkgA", "1.0", dir_test_pkg_install)
+pkgA[, c("Package", "Version", "LibPath")] <- c("pkgA", "1.0", dir_test_pkg)
 rownames(pkgA) <- "pkgA"
 
 pkgs_absent <- c("missing_package", "missing_package_also")
@@ -33,31 +30,54 @@ warn_zero <- "Returning a zero-row matrix because none of the packages were foun
 # To do:
 # - see 'References' in ?package.skeleton() on how to install without needing
 #   package 'callr'
-create_small_pkg <- function(name, path) {
-  path <- progutils::create_dir(dir = path, add_date = FALSE)
-  dir_install <- progutils::create_dir(dir = file.path(path, "install"),
-                                                add_date = FALSE)
+# - Define this as internal function because it is also useful for tests of
+#   'check_pkgs()'.
+create_fake_pkg <- function(name, path, show_progress = FALSE) {
+  stopifnot(checkinput::is_character(name), checkinput::is_character(path),
+            checkinput::is_logical(show_progress))
+
+  files_present <- list.files(path = path, all.files = TRUE, no.. = TRUE)
+  # 'file.exists()' also finds directories, so checks if <path>/<name> already
+  # exists. 'files_present' is used to check that no other files are present in
+  # 'path'.
+  if(file.exists(file.path(path, name)) || length(files_present) > 0L) {
+    # 'path' should be an empty directory: it will be removed later on.
+    stop("Aborting package creation because 'path' (", path, ") is not empty: ",
+         progutils::paste_quoted(files_present))
+  }
+
+  warning("Make dir_skel a temporary directory that is unlinked later on.")
+  dir_skel <- progutils::create_dir(dir = file.path(path, "skel"),
+                                    add_date = FALSE)
+  path <- dirname(dir_skel) # So path separator is the same as in dir_install
+
   my_fun <- function(x, y) x + y
   suppressMessages(
-    path_skel <- package.skeleton(name = name, list = c("my_fun"),
-                                  environment = environment(),
-                                  path = path, force = FALSE)
+    path_pkg_skel <- package.skeleton(name = name, list = c("my_fun"),
+                                      environment = environment(),
+                                      path = dir_skel, force = FALSE)
   )
+
+  # remove package skeleton even if installation fails
+  on.exit(unlink(dir_skel, recursive = TRUE), add = TRUE)
 
   # Install the package (modified from devtools::install())
   res_install <- callr::rcmd(
     cmd = "INSTALL",
-    cmdargs = c(path_skel, "--no-docs", "--no-multiarch", "--no-demo"),
-    libpath = dir_install, echo = FALSE, show = FALSE, timeout = 100)
+    cmdargs = c(path_pkg_skel, "--no-docs", "--no-multiarch", "--no-demo"),
+    libpath = path, echo = FALSE, show = show_progress, timeout = 100)
+
+  # 'status' 0 indicates success
   if(res_install$status != 0L) {
     print(res_install)
-    warning("Package installation failed! Printed result to the console.")
+    warning("Failed to install package ", name, " at ", path,
+            "!\nprinted result to the console.")
   }
-  invisible(res_install$status)
+  invisible(file.path(path, name))
 }
 
 # Set up a small package for testing
-create_small_pkg(name = "pkgA", path = dirname(dir_test_pkg_install))
+created_path <- create_fake_pkg(name = "pkgA", path = dir_test_pkg)
 
 # Correct, full database of packages to use
 db_OK <- utils::installed.packages(
@@ -114,24 +134,22 @@ expect_identical(OK_pkgs_absent, obj_zero_row)
 expect_silent(
   expect_identical(
     # Ignore the 'Built' field that contains a timestamp
-    get_details_pkgs(lib.loc = dir_test_pkg_install)[, colnames(pkgA) != "Built",
-                                                     drop = FALSE],
+    get_details_pkgs(lib.loc = dir_test_pkg)[, colnames(pkgA) != "Built",
+                                             drop = FALSE],
     pkgA[, colnames(pkgA) != "Built", drop = FALSE])
 )
 
 # Look in a directory for a package that is not present
 expect_warning(
   expect_identical(
-    get_details_pkgs(pkgs = "pkgB", lib.loc = dir_test_pkg_install),
+    get_details_pkgs(pkgs = "pkgB", lib.loc = dir_test_pkg),
     obj_zero_row),
   pattern = "Returning a zero-row matrix", fixed = TRUE, strict = TRUE)
 
 # Look in a directory where no package is present
 expect_warning(
   expect_identical(
-    # 'dirname(dir_test_pkg_install)' is where the package skeleton was created, whereas
-    # 'dir_test_pkg_install' is where it was installed
-    get_details_pkgs(lib.loc = dirname(dir_test_pkg_install)),
+    get_details_pkgs(lib.loc = dirname(dir_test_pkg)),
     obj_zero_row),
   pattern = "Returning a zero-row matrix", fixed = TRUE, strict = TRUE)
 
@@ -322,11 +340,11 @@ expect_error(
 
 
 #### Delete the created temporary files ####
-unlink(dirname(dir_test_pkg_install), recursive = TRUE)
+unlink(dir_test_pkg, recursive = TRUE)
 
 
 #### Remove objects used in tests ####
-rm(create_small_pkg, db_OK, dir_test_pkg_install,
+rm(create_fake_pkg, created_path, db_OK, dir_test_pkg,
    fields_add, fields_discard, fields_req, NULL_fields_add, NULL_fields_dupl,
    NULL_fields_req, NULL_pkgs_absent, NULL_pkgs_absent_part, NULL_pkgs_base,
    NULL_pkgs_div, NULL_pkgs_high, NULL_pkgs_NA, NULL_pkgs_rec, NULL_pkgs_rec_base,
