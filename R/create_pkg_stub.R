@@ -33,7 +33,7 @@
 #' writeable directory.
 #'
 #' @export
-create_fake_pkg <- function(name, path,
+create_pkg_stub <- function(name, path,
                             action_on_failure = c("error", "warning", "message"),
                             show_progress = FALSE) {
   stopifnot(checkinput::is_character(name), checkinput::is_character(path),

@@ -9,7 +9,7 @@ fields_req <- c("Package", "Version", "MD5sum", "Built", "Priority",
 obj_zero_row <- matrix(data = "", ncol = length(fields_req),
                        dimnames = list(NULL, fields_req))[0, ]
 
-# not working in r cmd check if examples of create_fake_pkg() are kept
+# not working in r cmd check if examples of create_pkg_stub() are kept
 dir_test_pkg <- progutils::create_tempdir(subdir = "pkg_tests")
 pkgA <- matrix(data = NA, ncol = length(fields_req),
                dimnames = list(NULL, fields_req))
@@ -22,8 +22,8 @@ pkgs_div <- c("utils", "Matrix", "tinytest", "JesseAlderliesten/checkrpkgs",
 pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
 
-# Set up a small package for testing
-create_fake_pkg(name = "pkgA", path = dir_test_pkg)
+# Set up a package stub for testing
+create_pkg_stub(name = "pkgA", path = dir_test_pkg)
 
 # Correct, full database of packages to use
 db_OK <- utils::installed.packages(

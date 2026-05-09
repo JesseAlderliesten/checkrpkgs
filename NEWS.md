@@ -6,7 +6,7 @@
 - Dependency `progutils`: increase from `>= 0.0.7` to `>= 0.0.9` to use function
   `create_tempdir()` to create a temporary directory that can safely be removed.
 - Use `roxygen2` version 8.0.0.
-- Added function `create_fake_pkg`.
+- Added function `create_pkg_stub`.
 
 ### Bug fixes
 - `get_details_pkgs()` would attempt to use a non-created index if no package
