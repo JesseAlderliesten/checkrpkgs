@@ -32,13 +32,6 @@
 #' `file.path(path, name)` if `path` is already normalized and points to a
 #' writeable directory.
 #'
-#' @examples
-#' (path_to_pkg <- create_fake_pkg(name = "fakepkg",
-#'                                 path = file.path(".", "pkg_tests")))
-#' # Failure if the package already exists in that directory
-#' try(path_to_pkg <- create_fake_pkg(name = "fakepkg",
-#'                                    path = file.path(".", "pkg_tests")))
-#'
 #' @export
 create_fake_pkg <- function(name, path,
                             action_on_failure = c("error", "warning", "message"),

@@ -48,11 +48,3 @@ directory should be used if \code{path} does not point to a writeable directory.
 If the packag is not functioning correctly, the action taken by
 \code{action_on_failure} will be triggered.
 }
-\examples{
-(path_to_pkg <- create_fake_pkg(name = "fakepkg",
-                                path = file.path(".", "pkg_tests")))
-# Failure if the package already exists in that directory
-try(path_to_pkg <- create_fake_pkg(name = "fakepkg",
-                                   path = file.path(".", "pkg_tests")))
-
-}
