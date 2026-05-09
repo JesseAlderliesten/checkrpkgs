@@ -9,14 +9,8 @@ fields_req <- c("Package", "Version", "MD5sum", "Built", "Priority",
 obj_zero_row <- matrix(data = "", ncol = length(fields_req),
                        dimnames = list(NULL, fields_req))[0, ]
 
-warning("Let 'dir_test_pkg' point to a temporary directory that is cleaned up (see",
-        " the notes in progutils::test_create_dir(). Now 'dir_test_pkg' points to",
-        " './R/checkrpkgs/inst/tinytest/pkg_tests' when running tinytest::test_all(),",
-        " and to './R/checkrpkgs/pkg_tests' when running interactively")
-# dir_test_pkg <- progutils::create_tempdir(subdir = "pkg_tests") # not working in r cmd check
-dir_test_pkg <- progutils::create_dir(
-  dir = file.path(".", "pkg_tests"), add_date = FALSE)
-
+# not working in r cmd check if examples of create_fake_pkg() are kept
+dir_test_pkg <- progutils::create_tempdir(subdir = "pkg_tests")
 pkgA <- matrix(data = NA, ncol = length(fields_req),
                dimnames = list(NULL, fields_req))
 pkgA[, c("Package", "Version", "LibPath")] <- c("pkgA", "1.0", dir_test_pkg)
@@ -29,7 +23,7 @@ pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
 
 # Set up a small package for testing
-created_path <- create_fake_pkg(name = "pkgA", path = dir_test_pkg)
+create_fake_pkg(name = "pkgA", path = dir_test_pkg)
 
 # Correct, full database of packages to use
 db_OK <- utils::installed.packages(
@@ -296,7 +290,7 @@ unlink(dir_test_pkg, recursive = TRUE)
 
 
 #### Remove objects used in tests ####
-rm(created_path, db_OK, dir_test_pkg, fields_add, fields_discard, fields_req,
+rm(db_OK, dir_test_pkg, fields_add, fields_discard, fields_req,
    NULL_fields_add, NULL_fields_dupl,
    NULL_fields_req, NULL_pkgs_absent, NULL_pkgs_absent_part, NULL_pkgs_base,
    NULL_pkgs_div, NULL_pkgs_high, NULL_pkgs_NA, NULL_pkgs_rec, NULL_pkgs_rec_base,
