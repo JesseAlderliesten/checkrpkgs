@@ -13,6 +13,7 @@ warning("Let 'dir_test_pkg' point to a temporary directory that is cleaned up (s
         " the notes in progutils::test_create_dir(). Now 'dir_test_pkg' points to",
         " './R/checkrpkgs/inst/tinytest/pkg_tests' when running tinytest::test_all(),",
         " and to './R/checkrpkgs/pkg_tests' when running interactively")
+# dir_test_pkg <- progutils::create_tempdir(subdir = "pkg_tests") # not working in r cmd check
 dir_test_pkg <- progutils::create_dir(
   dir = file.path(".", "pkg_tests"), add_date = FALSE)
 
@@ -26,50 +27,6 @@ pkgs_div <- c("utils", "Matrix", "tinytest", "JesseAlderliesten/checkrpkgs",
               "checkinput")
 pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
-
-# To do:
-# - Define this as internal function because it is also useful for tests of
-#   'check_pkgs()'.
-create_fake_pkg <- function(name, path,
-                            action_on_error = c("error", "warn", "message"),
-                            show_progress = FALSE) {
-  stopifnot(checkinput::is_character(name), checkinput::is_character(path),
-            checkinput::is_logical(show_progress))
-  action_on_error <- match.arg(arg = action_on_error, several.ok = FALSE)
-
-  path <- normalizePath(path = path,  winslash = "/", mustWork = FALSE)
-
-  # Create a temporary directory that can be removed safely (i.e., without
-  # deleting other temporary files still needed by other processes) to put the
-  # package skeleton in. Using 'on.exit()' to ensure this temporary directory is
-  # also deleted if an error occurs before the function returns.
-  skel.loc <- progutils::create_tempdir(subdir = "skel")
-  on.exit(unlink(skel.loc, recursive = TRUE), add = TRUE)
-
-  my_fun <- function(x, y) x + y
-  suppressMessages(
-    skel_path <- utils::package.skeleton(name = name, list = c("my_fun"),
-                                         environment = environment(),
-                                         path = skel.loc, force = FALSE)
-  )
-
-  install.packages(pkgs = skel_path, lib = path, repos = NULL,
-                   verbose = show_progress,
-                   # Set options to install little since it is just for testing
-                   # Use R CMD INSTALL --help in the terminal to see the options
-                   INSTALL_opts = c("--fake", "--no-multiarch",
-                                    "--no-test-load", "--use-vanilla"),
-                   type = "source", quiet = !show_progress)
-
-  if(!requireNamespace(package = name, lib.loc = path, quietly = TRUE)) {
-    msg_fail <- paste0("Failed to install fake package '", name, "' in\n", path)
-    switch(action_on_fail,
-           "message" = message(msg_fail),
-           "warn" = warning(msg_fail),
-           stop(msg_fail))
-  }
-  invisible(file.path(path, name))
-}
 
 # Set up a small package for testing
 created_path <- create_fake_pkg(name = "pkgA", path = dir_test_pkg)
@@ -339,8 +296,8 @@ unlink(dir_test_pkg, recursive = TRUE)
 
 
 #### Remove objects used in tests ####
-rm(create_fake_pkg, created_path, db_OK, dir_test_pkg,
-   fields_add, fields_discard, fields_req, NULL_fields_add, NULL_fields_dupl,
+rm(created_path, db_OK, dir_test_pkg, fields_add, fields_discard, fields_req,
+   NULL_fields_add, NULL_fields_dupl,
    NULL_fields_req, NULL_pkgs_absent, NULL_pkgs_absent_part, NULL_pkgs_base,
    NULL_pkgs_div, NULL_pkgs_high, NULL_pkgs_NA, NULL_pkgs_rec, NULL_pkgs_rec_base,
    NULL_pkgs_select, obj_zero_row, OK_fields_add, OK_fields_dupl,
