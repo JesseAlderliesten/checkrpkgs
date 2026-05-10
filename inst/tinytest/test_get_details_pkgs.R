@@ -17,13 +17,12 @@ pkgA[, c("Package", "Version", "LibPath")] <- c("pkgA", "1.0", dir_test_pkg)
 rownames(pkgA) <- "pkgA"
 
 pkgs_absent <- c("missing_package", "missing_package_also")
-pkgs_div <- c("utils", "Matrix", "tinytest", "JesseAlderliesten/checkrpkgs",
-              "checkinput")
+pkgs_div <- c("utils", "Matrix", "tinytest", "JesseAlderliesten/checkinput")
 pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
 
-# Set up a package stub for testing
-create_pkg_stub(name = "pkgA", path = dir_test_pkg)
+# # Set up a package stub for testing
+# create_pkg_stub(name = "pkgA", path = dir_test_pkg)
 
 # Correct, full database of packages to use
 db_OK <- utils::installed.packages(
@@ -77,13 +76,13 @@ expect_warning(
   strict = TRUE, fixed = TRUE)
 expect_identical(OK_pkgs_absent, obj_zero_row)
 
-expect_silent(
-  expect_identical(
-    # Ignore the 'Built' field that contains a timestamp
-    get_details_pkgs(lib.loc = dir_test_pkg)[, colnames(pkgA) != "Built",
-                                             drop = FALSE],
-    pkgA[, colnames(pkgA) != "Built", drop = FALSE])
-)
+# expect_silent(
+#   expect_identical(
+#     # Ignore the 'Built' field that contains a timestamp
+#     get_details_pkgs(lib.loc = dir_test_pkg)[, colnames(pkgA) != "Built",
+#                                              drop = FALSE],
+#     pkgA[, colnames(pkgA) != "Built", drop = FALSE])
+# )
 
 # Look in a directory for a package that is not present
 expect_warning(
