@@ -1,12 +1,36 @@
 # Changelog
 
+## checkrpkgs 0.7.0
+
+#### Breaking changes
+
+- Dependency `checkinput`: increase from `>= 0.5.0` to `>= 0.6.0`,
+  needed to use `paste_quoted()` that is re-exported from `checkinput`
+  to `progutils`.
+- Dependency `progutils`: increase from `>= 0.0.7` to `>= 0.0.9` to use
+  function `create_tempdir()` to create a temporary directory that can
+  safely be removed.
+- Use `roxygen2` version 8.0.0.
+
+#### Bug fixes
+
+- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
+  would attempt to use a non-created index if no package was found,
+  leading to an error.
+
+#### Miscellaneous
+
+- Add light-switch to `pkgdown` page.
+- Refer from the `README` to the `pkgdown` website.
+- Stylistic changes to code and tests prompted by `goodpractice::gp()`.
+
 ## checkrpkgs 0.6.0
 
 #### Breaking changes
 
 - Dependency `progutils`: increase from `>= 0.0.6` to `>= 0.0.7` to
   ensure uniform handling of empty quotes and `NA`s through
-  [`progutils::paste_quoted()`](https://rdrr.io/pkg/progutils/man/paste_quoted.html).
+  [`progutils::paste_quoted()`](https://rdrr.io/pkg/checkinput/man/paste_quoted.html).
 
 ## checkrpkgs 0.5.2
 

@@ -37,20 +37,25 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs", dependencies = TR
 
 ## Example
 
-The main content of `checkrpkgs` consists of vignettes:
+The main content of `checkrpkgs` consists of vignettes (which can be
+viewed at its [pkgdown](https://jessealderliesten.github.io/checkrpkgs/)
+version under `Articles`, without installing the `checkrpkgs` package):
 
-- *Installing R, Rtools and RStudio*:
+- [Installing R, Rtools and
+  RStudio](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html):
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
   This vignette contains instructions on installing and configuring
   [R](https://www.r-project.org/),
   [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
-- *Instructions about R packages*:
+- [Instructions about R
+  packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
   This vignette contains information on installing and getting
   information about R packages. It also explains how to obtain the
   source code of R functions.
-- *Using Git and GitHub*:
+- [Using Git and
+  GitHub](https://jessealderliesten.github.io/checkrpkgs/articles/git_github.html):
   [`vignette("git_github", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/git_github.md).
   This vignette contains information about setting up and using Git and
   [GitHub](https://github.com/).

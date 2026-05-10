@@ -305,10 +305,11 @@ For example, to install version 1.40 of package
 
 ``` r
 
-install.packages(pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
-                 lib = .libPaths(), repos = NULL, dependencies = NA,
-                 type = getOption("pkgType"), verbose = getOption("verbose"),
-                 quiet = FALSE)
+install.packages(
+  pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
+  lib = .libPaths(), repos = NULL, dependencies = NA,
+  type = getOption("pkgType"), verbose = getOption("verbose"),
+  quiet = FALSE)
 ```
 
 #### Bioconductor
@@ -591,7 +592,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x5640680f86e8>
+#> <bytecode: 0x55cf5de97410>
 #> <environment: namespace:stats>
 ```
 
@@ -614,7 +615,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x564066460d00>
+#> <bytecode: 0x55cf5c215d00>
 #> <environment: namespace:base>
 ```
 
@@ -661,7 +662,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5640687363f8>
+#> <bytecode: 0x55cf5e4eb3f8>
 #> <environment: namespace:base>
 ```
 
@@ -691,7 +692,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x56406a5c8b88>
+#> <bytecode: 0x55cf5feba940>
 #> <environment: namespace:base>
 ```
 
@@ -733,7 +734,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x56406a5c8178>
+#> <bytecode: 0x55cf5feb9f30>
 #> <environment: namespace:base>
 ```
 
@@ -776,8 +777,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x564067fa1e48>
-#> <environment: 0x564066d6d428>
+#> <bytecode: 0x55cf5dd57c58>
+#> <environment: 0x55cf5cb22428>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -823,7 +824,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x564069da0050>
+#> <bytecode: 0x55cf60218850>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

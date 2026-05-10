@@ -219,15 +219,17 @@ PC:
   you *do* have writing access (e.g., to work on your project from
   another PC; or to work on a fork you created in the step above), you
   have to clone the GitHub repository to your PC: use the green `Code`
-  button in the repository, copy the URL to the clipboard (i.e., do
-  *not* use `download ZIP`), create a new R project in RStudio (`File`
-  \> `New Project` \> `Version control` \> `Git`), paste the repository
-  URL (something like `https://github.com/<username>/<reposname>`) in
-  the designated field, select the desired location on your PC, and
-  create the project. The same repository URL can be used when using
-  shell commands to clone a repository, either with its complete history
-  by using `git clone https://github.com/<username>/<reposname>` or with
-  only the last commit by using
+  button in the repository (if you forked a repository, you need the
+  `Code` button of your fork, not of the original repository), copy the
+  URL to the clipboard (i.e., do *not* use `download ZIP`), create a new
+  R project in RStudio (`File` \> `New Project` \> `Version control` \>
+  `Git`), paste the repository URL (something like
+  `https://github.com/<username>/<reposname>`) in the designated field,
+  select the desired location on your PC, and create the project. The
+  same repository URL can be used when using shell commands to clone a
+  repository, either with its complete history by using
+  `git clone https://github.com/<username>/<reposname>` or with only the
+  last commit by using
   `git clone --depth=1 https://github.com/<username>/<reposname>`.
 - To download code without being able to push your changes back to a
   GitHub repository, you can download the repository by using the green

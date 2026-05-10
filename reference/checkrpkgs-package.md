@@ -20,3 +20,8 @@ Useful links:
 
 **Maintainer**: Jesse Alderliesten <jessealderliesten@hotmail.com>
 ([ORCID](https://orcid.org/0000-0003-1132-4310))
+
+Authors:
+
+- Jesse Alderliesten <jessealderliesten@hotmail.com>
+  ([ORCID](https://orcid.org/0000-0003-1132-4310))
