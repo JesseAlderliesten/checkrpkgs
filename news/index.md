@@ -1,5 +1,9 @@
 # Changelog
 
+## checkrpkgs 0.7.1
+
+- Added function `create_pkg_stub`.
+
 ## checkrpkgs 0.7.0
 
 #### Breaking changes
