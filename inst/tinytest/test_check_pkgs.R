@@ -15,21 +15,21 @@ warn_non_existent_pkgs <- paste0("non-installed packages: ",
 #### Test the examples ####
 # This test assumes base packages 'base' is installed and functional.
 expect_silent(
-  expect_equal(
+  expect_identical(
     check_pkgs(pkgs = "base", quietly = FALSE),
     list(absent = character(0), nonfunc = character(0))
   )
 )
 
 expect_warning(
-  expect_equal(
+  expect_identical(
     check_pkgs(pkgs = non_existent_pkgs, quietly = FALSE),
     list(absent = non_existent_pkgs, nonfunc = character(0))
   ),
   pattern = warn_non_existent_pkgs, strict = TRUE, fixed = TRUE)
 
 expect_warning(
-  expect_equal(
+  expect_identical(
     check_pkgs(pkgs = non_existent_pkgs, quietly = TRUE),
     list(absent = non_existent_pkgs, nonfunc = character(0))
   ),
@@ -37,7 +37,7 @@ expect_warning(
 
 # This test assumes base package 'utils' is installed and functional.
 expect_warning(
-  expect_equal(
+  expect_identical(
     check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE),
     list(absent = non_existent_pkgs, nonfunc = character(0))
   ),
@@ -49,8 +49,9 @@ expect_warning(
 # packages 'methods', 'stats', 'datasets' and 'graphics' are installed and
 # functional.
 expect_silent(
-  expect_equal(
-    check_pkgs(pkgs = c("ab/methods", "ab/cd/stats", "ab/datasets", "ab/cd/graphics"),
+  expect_identical(
+    check_pkgs(pkgs = c("ab/methods", "ab/cd/stats", "ab/datasets",
+                        "ab/cd/graphics"),
                quietly = TRUE),
     list(absent = character(0), nonfunc = character(0)))
 )

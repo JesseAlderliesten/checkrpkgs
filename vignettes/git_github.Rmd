@@ -205,7 +205,9 @@ There are several ways to get code from a `GitHub` repository to your PC:
 - To be able to push your changes back to a GitHub repository to which you *do*
   have writing access (e.g., to work on your project from another PC; or to
   work on a fork you created in the step above), you have to clone the GitHub
-  repository to your PC: use the green `Code` button in the repository, copy the
+  repository to your PC: use the green `Code` button in the repository (if you
+  forked a repository, you need the `Code` button of your fork, not of the
+  original repository), copy the
   URL to the clipboard (i.e., do *not* use `download ZIP`), create a new R
   project in RStudio (`File` > `New Project` > `Version control` > `Git`), paste
   the repository URL (something like `https://github.com/<username>/<reposname>`)

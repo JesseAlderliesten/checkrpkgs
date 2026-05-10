@@ -8,10 +8,21 @@ fields_req <- c("Package", "Version", "MD5sum", "Built", "Priority",
                 "LinkingTo", "Suggests")
 obj_zero_row <- matrix(data = "", ncol = length(fields_req),
                        dimnames = list(NULL, fields_req))[0, ]
+
+# not working in r cmd check if examples of create_pkg_stub() are kept
+dir_test_pkg <- progutils::create_tempdir(subdir = "pkg_tests")
+pkgA <- matrix(data = NA, ncol = length(fields_req),
+               dimnames = list(NULL, fields_req))
+pkgA[, c("Package", "Version", "LibPath")] <- c("pkgA", "1.0", dir_test_pkg)
+rownames(pkgA) <- "pkgA"
+
 pkgs_absent <- c("missing_package", "missing_package_also")
-pkgs_div <- c("utils", "Matrix", "tinytest", "checkrpkgs", "checkinput")
-pkgs_present <- c("JesseAlderliesten/checkinput", "JesseAlderliesten/checkrpkgs")
+pkgs_div <- c("utils", "Matrix", "tinytest", "JesseAlderliesten/checkinput")
+pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
+
+# # Set up a package stub for testing
+# create_pkg_stub(name = "pkgA", path = dir_test_pkg)
 
 # Correct, full database of packages to use
 db_OK <- utils::installed.packages(
@@ -39,7 +50,7 @@ expect_warning(
   pattern = paste0("Some packages were not found at 'lib.loc'.+",
                    progutils::paste_quoted(pkgs_absent)),
   strict = TRUE, fixed = FALSE)
-expect_true(all(rownames(NULL_pkgs_absent_part) %in% "base"))
+expect_true(all(rownames(NULL_pkgs_absent_part) == "base"))
 expect_true(all(fields_req %in% colnames(NULL_pkgs_absent_part)))
 
 expect_warning(
@@ -65,6 +76,27 @@ expect_warning(
   strict = TRUE, fixed = TRUE)
 expect_identical(OK_pkgs_absent, obj_zero_row)
 
+# expect_silent(
+#   expect_identical(
+#     # Ignore the 'Built' field that contains a timestamp
+#     get_details_pkgs(lib.loc = dir_test_pkg)[, colnames(pkgA) != "Built",
+#                                              drop = FALSE],
+#     pkgA[, colnames(pkgA) != "Built", drop = FALSE])
+# )
+
+# Look in a directory for a package that is not present
+expect_warning(
+  expect_identical(
+    get_details_pkgs(pkgs = "pkgB", lib.loc = dir_test_pkg),
+    obj_zero_row),
+  pattern = "Returning a zero-row matrix", fixed = TRUE, strict = TRUE)
+
+# Look in a directory where no package is present
+expect_warning(
+  expect_identical(
+    get_details_pkgs(lib.loc = dirname(dir_test_pkg)),
+    obj_zero_row),
+  pattern = "Returning a zero-row matrix", fixed = TRUE, strict = TRUE)
 
 #### Argument 'fields' ####
 ##### Return required fields #####
@@ -90,10 +122,10 @@ OK_fields_dupl_v2 <- get_details_pkgs(
   pkgs = pkgs_present, fields = rep("LibPath", 2L), db = db_OK)
 
 expect_identical(NULL_fields_dupl, OK_fields_dupl)
-expect_false(any(duplicated(colnames(NULL_fields_dupl))))
+expect_identical(anyDuplicated(colnames(NULL_fields_dupl)), 0L)
 expect_true(all(c(fields_req, "LibPath", fields_add) %in%
                   colnames(NULL_fields_dupl)))
-expect_false(any(duplicated(colnames(OK_fields_dupl_v2))))
+expect_identical(anyDuplicated(colnames(OK_fields_dupl_v2)), 0L)
 expect_true(all(c(fields_req, "LibPath") %in% colnames(OK_fields_dupl_v2)))
 
 ##### Do not return non-requested non-default fields #####
@@ -107,7 +139,7 @@ NULL_pkgs_div <- get_details_pkgs(pkgs = pkgs_div, db = NULL)
 OK_pkgs_div <- get_details_pkgs(pkgs = pkgs_div, db = db_OK)
 expect_identical(NULL_pkgs_div, OK_pkgs_div)
 expect_true(all(c("CRAN", "Github", NA_character_) %in%
-                  NULL_pkgs_div[pkgs_div, "Repository"]))
+                  NULL_pkgs_div[basename(pkgs_div), "Repository"]))
 
 
 #### Argument 'priority' ####
@@ -252,12 +284,17 @@ expect_error(
   pattern = warn_db, fixed = TRUE)
 
 
+#### Delete the created temporary files ####
+unlink(dir_test_pkg, recursive = TRUE)
+
+
 #### Remove objects used in tests ####
-rm(db_OK, fields_add, fields_discard, NULL_fields_add, NULL_fields_dupl,
+rm(db_OK, dir_test_pkg, fields_add, fields_discard, fields_req,
+   NULL_fields_add, NULL_fields_dupl,
    NULL_fields_req, NULL_pkgs_absent, NULL_pkgs_absent_part, NULL_pkgs_base,
-   NULL_pkgs_div, NULL_pkgs_high, NULL_pkgs_NA, NULL_pkgs_rec,
-   NULL_pkgs_rec_base, NULL_pkgs_select, obj_zero_row, OK_fields_add,
-   OK_fields_dupl, OK_fields_dupl_v2, OK_fields_req, OK_pkgs_absent,
-   OK_pkgs_absent_part, OK_pkgs_base, OK_pkgs_div, OK_pkgs_high, OK_pkgs_NA,
-   OK_pkgs_rec, OK_pkgs_rec_base, OK_pkgs_select, pkgs_absent, pkgs_div,
-   pkgs_present, fields_req, warn_db, warn_zero)
+   NULL_pkgs_div, NULL_pkgs_high, NULL_pkgs_NA, NULL_pkgs_rec, NULL_pkgs_rec_base,
+   NULL_pkgs_select, obj_zero_row, OK_fields_add, OK_fields_dupl,
+   OK_fields_dupl_v2, OK_fields_req, OK_pkgs_absent, OK_pkgs_absent_part,
+   OK_pkgs_base, OK_pkgs_div, OK_pkgs_high, OK_pkgs_NA, OK_pkgs_rec,
+   OK_pkgs_rec_base, OK_pkgs_select, pkgA, pkgs_absent, pkgs_div, pkgs_present,
+   warn_db, warn_zero)
