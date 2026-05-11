@@ -8,7 +8,7 @@ create_pkg_stub(
   name,
   path,
   action_on_failure = c("error", "warning", "message"),
-  show_progress = FALSE
+  show_progress = TRUE
 )
 }
 \arguments{

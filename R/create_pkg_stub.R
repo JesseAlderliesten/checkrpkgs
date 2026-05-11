@@ -35,7 +35,7 @@
 #' @export
 create_pkg_stub <- function(name, path,
                             action_on_failure = c("error", "warning", "message"),
-                            show_progress = FALSE) {
+                            show_progress = TRUE) {
   stopifnot(checkinput::is_character(name), checkinput::is_character(path),
             checkinput::is_logical(show_progress))
   action_on_failure <- match.arg(arg = action_on_failure, several.ok = FALSE)
