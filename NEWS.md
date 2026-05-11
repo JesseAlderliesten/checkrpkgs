@@ -1,5 +1,15 @@
+# checkrpkgs 0.7.2
+
+### Miscellaneous
+- `check_pkgs()` and `get_details_pkgs()`: Replace link to `BioConductor` (a
+  `suggested` package) documentation with text to get rid of a `Note` in
+  `R cmd check` on `R 4.1.0`.
+- `R-CMD-check.yaml`: Also mention package `rcmdcheck` as needed package. Order
+  packages alphabetically.
+
+
 # checkrpkgs 0.7.1
-- Added function `create_pkg_stub`.
+- Added function `create_pkg_stub()`.
 
 
 # checkrpkgs 0.7.0

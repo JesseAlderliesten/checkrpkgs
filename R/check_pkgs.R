@@ -54,9 +54,9 @@
 #' information about the origin of packages; `tools::standard_package_names()`
 #' (present since \R 4.4.0) for names of the base and recommended packages.
 #'
-#' [old.packages()] and [BiocManager::valid()] to check for outdated or too new
-#' packages, where the latter takes the currently used
-#' [version][BiocManager::version()] of Bioconductor into account.
+#' [old.packages()] and `BiocManager::valid()` to check for outdated or too new
+#' packages, where the latter takes the currently used version of Bioconductor
+#' (see `BiocManager::version()`) into account.
 #'
 #' `options("defaultPackages")` for names of packages that are attached by
 #' default when \R starts up; [loadedNamespaces()] and [utils::sessionInfo()]

@@ -80,9 +80,9 @@ for reverse dependencies; \link{get_details_pkgs}\verb{(pkgs = <pkgname>)} for m
 information about the origin of packages; \code{tools::standard_package_names()}
 (present since \R 4.4.0) for names of the base and recommended packages.
 
-\code{\link[=old.packages]{old.packages()}} and \code{\link[BiocManager:valid]{BiocManager::valid()}} to check for outdated or too new
-packages, where the latter takes the currently used
-\link[BiocManager:version]{version} of Bioconductor into account.
+\code{\link[=old.packages]{old.packages()}} and \code{BiocManager::valid()} to check for outdated or too new
+packages, where the latter takes the currently used version of Bioconductor
+(see \code{BiocManager::version()}) into account.
 
 \code{options("defaultPackages")} for names of packages that are attached by
 default when \R starts up; \code{\link[=loadedNamespaces]{loadedNamespaces()}} and \code{\link[utils:sessionInfo]{utils::sessionInfo()}}

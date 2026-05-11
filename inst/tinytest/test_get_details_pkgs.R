@@ -22,6 +22,11 @@ pkgs_present <- c("utils", "Matrix", "tinytest")
 warn_zero <- "Returning a zero-row matrix because none of the packages were found"
 
 # # Set up a package stub for testing
+# This fails for R 4.1.0: Installation of package 'pkgA' in
+# 'C:/Users/runneradmin/AppData/Local/Temp/RtmpmYCJDq/working_dir/RtmpkJzHbg/pkg_tests'
+# failed and the attempt to install it at the user directory
+# 'C:/Users/runneradmin/AppData/Local/Temp/RtmpmYCJDq/RLIBS_9505c092677/checkrpkgs/tinytest/'no_such_dir''
+# also failed.
 # create_pkg_stub(name = "pkgA", path = dir_test_pkg)
 
 # Correct, full database of packages to use
