@@ -1,3 +1,11 @@
+# checkrpkgs 0.8.0
+
+### Miscellaneous
+- `README`: refer to website when appropriate. Stylistic update.
+- `NEWS`: stylistic update.
+- Vignettes: rely on `pkgdown` to create links to functions.
+
+
 # checkrpkgs 0.7.2
 
 ### Miscellaneous
