@@ -1,5 +1,13 @@
 # Changelog
 
+## checkrpkgs 0.8.0
+
+#### Miscellaneous
+
+- `README`: refer to website when appropriate. Stylistic update.
+- `NEWS`: stylistic update.
+- Vignettes: rely on `pkgdown` to create links to functions.
+
 ## checkrpkgs 0.7.2
 
 #### Miscellaneous
@@ -7,14 +15,16 @@
 - [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
   and
   [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
-  Replace link to `BioConductor` (a `suggested` package) documentation
+  replace link to `BioConductor` (a `suggested` package) documentation
   with text to get rid of a `Note` in `R cmd check` on `R 4.1.0`.
-- `R-CMD-check.yaml`: Also mention package `rcmdcheck` as needed
+- `R-CMD-check.yaml`: also mention package `rcmdcheck` as needed
   package. Order packages alphabetically.
 
 ## checkrpkgs 0.7.1
 
-- Added function
+#### Breaking changes
+
+- Add function
   [`create_pkg_stub()`](https://jessealderliesten.github.io/checkrpkgs/reference/create_pkg_stub.md).
 
 ## checkrpkgs 0.7.0
@@ -64,24 +74,22 @@
 
 ## checkrpkgs 0.5.1
 
-- Use pkgdown, see <https://r-pkgs.org/website.html> and
-  <https://pkgdown.r-lib.org/>.
+- Added `pkgdown` website:
+  <https://jessealderliesten.github.io/checkrpkgs/>.
 
 ## checkrpkgs 0.5.0
 
 #### Breaking changes
 
-- Updated
-  [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
-  added argument `db`, additional checks on input, and updated
-  documentation.
+- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
+  add argument `db`, add checks on input, and update documentation.
 
 ## checkrpkgs 0.4.0
 
 #### Breaking changes
 
-- Updated dependencies: add suggested dependency `Matrix` that is used
-  in vignettes. Remove suggested dependency `stats` after updating an
+- Update dependencies: add suggested dependency `Matrix` that is used in
+  vignettes. Remove suggested dependency `stats` after updating an
   example in the vignettes to use `methods` instead of `stats`.
 
 #### Bugfixes
@@ -95,13 +103,14 @@
 - Updated vignettes: some corrections in text, various updates. Changed
   order of some sections to be more logical. Explain notation for text
   to be filled in (e.g., `<funcname>`) and use that more consistently.
-  `Installing R, Rtools and RStudio`: Adjusted newlines to have shorter
-  lines. Add examples to section ‘Configuring R’.
-  `Instructions about R packages`: some bugfixes in example code. More
-  consistent code to install or update packages. Add example how to
-  install from other repositories. Use evaluation of R code instead of
-  hardcoding output in examples. `Using Git and GitHub`: added section
-  on installing packages from `GitHub`.
+- Vignette `Installing R, Rtools and RStudio`: adjust newlines to have
+  shorter lines. Add examples to section ‘Configuring R’.
+- Vignette `Instructions about R packages`: some bugfixes in example
+  code. More consistent code to install or update packages. Add example
+  how to install from other repositories. Use evaluation of R code
+  instead of hardcoding output in examples.
+- Vignette `Using Git and GitHub`: add section on installing packages
+  from `GitHub`.
 
 ## checkrpkgs 0.3.0
 
@@ -116,7 +125,7 @@
 - [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
   also extract fields `"GithubRepo"` and `"GithubUsername"`. No need to
   use the hardcoded fields in the default argument. Set field
-  `Repository` to `Github` if appropriate. Adjusted warnings.
+  `Repository` to `Github` if appropriate. Adjust warnings.
 
 ## checkrpkgs 0.2.0
 
@@ -139,12 +148,12 @@
 
 #### Miscellaneous
 
-- Adjusted GitHub action `check-standard` to run without the
-  dependencies listed in `Suggests` which I use for documentation. The
-  GitHub action runs on the released `R` version and on `R` 4.1.0 on
-  macOS, Windows, and Ubuntu. It runs every Saturday on 04:23 UTC, and
-  can be run manually (trigger it once manually on the main branch to be
-  able to trigger it manually on other branches).
+- Adjust GitHub action `check-standard` to run without the dependencies
+  listed in `Suggests` which I use for documentation. The GitHub action
+  runs on the released `R` version and on `R` 4.1.0 on macOS, Windows,
+  and Ubuntu. It runs every Saturday on 04:23 UTC, and can be run
+  manually (trigger it once manually on the main branch to be able to
+  trigger it manually on other branches).
 - Including GitHub actions against `R` 4.1.0 because `R` 4.1.0 is
   required to pass the R CMD check on ubuntu-latest:
   `github::hadley/strict` needs `R` \>= 4.1.0. Because `strict` is in
@@ -153,37 +162,44 @@
 
 ## checkrpkgs 0.1.2
 
-- No need to import `knit()` from `knitr` or `render()` from
-  `rmarkdown`, so moved `knitr` and `rmarkdown` back from `Imports` to
-  `Suggests`.
-- Updated the `Instructions about R packages` vignette, especially the
-  section `Getting the source code`. Explained how to point to GitHub
+#### Breaking changes
+
+- Dependencies: no need to import `knit()` from `knitr` or `render()`
+  from `rmarkdown`, so move `knitr` and `rmarkdown` back from `Imports`
+  to `Suggests`.
+
+#### Miscellaneous
+
+- Vignettes: fixe some URLs.
+- Vignette `Instructions about R packages`: updates, especially the
+  section `Getting the source code`. Explain how to point to GitHub
   repositories.
-- Updated vignettes: fixed some URLs.
 
 ## checkrpkgs 0.1.1
 
-- `checkrpkgs` now uses GitHub action `check-standard` on all branches
-  (see `?usethis::use_github_action()`).
+#### Miscellaneous
+
+- Use GitHub action `check-standard` on all branches (see
+  `?usethis::use_github_action()`).
 
 ## checkrpkgs 0.1.0
 
 #### Breaking changes
 
 - [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
-  argument `pkgs` moved to be the first argument. Now warns if a package
-  is found more than once. Always return information from fields
+  move argument `pkgs` to be the first argument. Warn if a package is
+  found more than once. Always return information from fields
   `Repository` and `URL`.
-- `find_nonfunc_pkgs()`: renamed to
+- `find_nonfunc_pkgs()`: rename to
   [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md).
-  Now warns if a package is found more than once.
+  Warn if a package is found more than once.
 
 #### Updated documentation
 
 - Vignette `Instructions about R packages`: first mention BioConductor
-  releases, explaining their advantage. Expanded information on mirror
+  releases, explaining their advantage. Expand information on mirror
   websites into a separate section. Use internal links when referring to
-  section headings. Use hyperlinks to refer to help pages.
+  section headings. Use hyper links to refer to help pages.
 - Vignette `Using Git and GitHub`: add info about comparing files using
   GitHub. Restructure and expand section ‘Documentation’. Use internal
   links when referring to section headings.
@@ -192,20 +208,19 @@
 
 #### Breaking changes
 
-- Added dependencies `checkinput (>= 0.0.6)`, `knitr`,
+- Add dependencies `checkinput (>= 0.0.6)`, `knitr`,
   `progutils (>= 0.0.3)`, `rmarkdown`, and `utils` in `Depends`. Using
   `knitr` and `rmarkdown` in `Depends` because the vignettes are the
   main part of the package.
-- Added dependencies in `Suggests` to be able to run all code in the
+- Add dependencies in `Suggests` to be able to run all code in the
   vignettes and documentation: `BiocManager`, `conflicted`, `ctv`,
   `methods`, `pkgbuild`, `remotes`, `stats`, `strict`, `tools`.
 
 #### Added functions
 
-- `find_nonfunc_pkgs()` to find non-installed or non-functional
-  packages.
-- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
-  to get details of installed packages.
+- `find_nonfunc_pkgs()`: find non-installed or non-functional packages.
+- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
+  get details of installed packages.
 
 #### Updated documentation
 

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,36 +105,33 @@ NotePad.</p>
 <div class="section level3">
 <h3 id="configuring-r">Configuring R<a class="anchor" aria-label="anchor" href="#configuring-r"></a>
 </h3>
-<p>R can be configured by changing <a href="../help/options">general
-options</a>, <a href="../help/environment%20variables">environment
-variables</a>, and options for <a href="../help/Startup">startup</a>, <a href="../help/install.packages">installing packages</a>, and <a href="../help/.libPaths">library paths</a>.</p>
-<p>Configuring R can be used to made R a bit stricter, described in the
-help files for <a href="../help/options">options</a> and <a href="../help/environment%20variables">environment variables</a>:</p>
+<p>R can be configured to be a bit stricter, described in the help files
+for general options (<code><a href="https://rdrr.io/r/base/options.html" class="external-link">help(options)</a></code>) and environment
+variables (<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>):</p>
 <ul>
-<li>Warn in case of <a href="../help/pmatch">partial matching</a> such
-as <code>list(mean = 3)$me</code>:
+<li>Warn in case of partial matching (<code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">help(pmatch)</a></code>) such as
+<code>list(mean = 3)$me</code>:
 <code>options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)</code>.
 The default is <code>FALSE</code> for each of these.</li>
-<li>Error instead of warn when calling <a href="../help/colon">a:b</a>
-when numeric <code>a</code> or <code>b</code> is longer than one, such
-as <code>3:c(5, 7)</code> (introduced in R 4.3.0):
+<li>Error instead of warn when calling <code>a:b</code> when numeric
+<code>a</code> or <code>b</code> is longer than one, such as
+<code>3:c(5, 7)</code> (introduced in R 4.3.0):
 <code>Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")</code>.</li>
-<li>Error instead of silently using only the first element in <a href="../help/Logic">logical operations</a> such as
+<li>Error instead of silently using only the first element in logical
+operations (<code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">help(Logic, package = base)</a></code>) such as
 <code>c(TRUE, TRUE) &amp;&amp; TRUE)</code> (introduced in R 3.6.0, no
 longer used since R 4.3.0 because there calling <code>&amp;&amp;</code>
 or <code>||</code> with length larger than one always gives an error):
 <code>Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")</code>.</li>
-<li>Error instead of warn if a <a href="../help/Control">condition</a>
-has length larger than one, such as
-<code>if(3 &lt; c(5, 7)) {print("Not OK")}</code> (introduced in R
-3.y.z, no longer used since R 4.2.0 because there conditions with length
-larger than one always give an error):
+<li>Error instead of warn if a condition
+(<code><a href="https://rdrr.io/r/base/Control.html" class="external-link">help(Control, package = base)</a></code>) has length larger than one,
+such as <code>if(3 &lt; c(5, 7)) {print("Not OK")}</code> (introduced in
+R 3.y.z, no longer used since R 4.2.0 because there conditions with
+length larger than one always give an error):
 <code>Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")</code>.</li>
-<li>Print warnings <a href="../help/warning">warnings</a> immediately as
-they occur: <code>options(warn = 1)</code>. The default is
-<code>options(warn = 0)</code> to warn after the top-level function
-returns.</li>
-<li>Make <a href="../help/warning">warnings</a> an <a href="../help/stop">error</a>: <code>options(warn = 2)</code>. This
+<li>Print <code>warnings</code> immediately as they occur
+(<code>options(warn = 1)</code>) or make <code>warnings</code> an error
+(<code><a href="https://rdrr.io/r/base/stop.html" class="external-link">help(stop)</a></code>): <code>options(warn = 2)</code>. The latter
 should only be used for debugging because it may trigger bugs and
 resource leaks (per its help-page). The default is
 <code>options(warn = 0)</code> to warn after the top-level function
@@ -148,15 +145,24 @@ continue code.</li>
 <p>In addition, various packages contain ways to make R stricter:</p>
 <ul>
 <li>Package <a href="https://github.com/hadley/strict/" class="external-link">strict</a> warns
-about various unsafe practices, such as the behaviour of <a href="../help/sample">sample()</a> and <a href="../help/diag">diag()</a>
-if called with an argument of length one and type-unsafe <a href="../help/sapply">sapply()</a>; additional ideas are in the <a href="https://github.com/hadley/strict/issues?q=is%3Aissue" class="external-link">issues</a>.</li>
+about various unsafe practices, such as the behaviour of
+<code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code> and <code><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag()</a></code> if called with an argument
+of length one and type-unsafe <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply()</a></code>; additional ideas
+are in the GitHub <a href="https://github.com/hadley/strict/issues?q=is%3Aissue" class="external-link">issues</a>.</li>
 <li>Package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link">conflicted</a>
-avoids silent <a href="../help/conflicts">conflict</a> resolution (i.e.,
-choosing the latest attached package out of multiple packages to use a
-function from), and provides
+avoids silent conflict resolution (i.e., choosing the latest attached
+package out of multiple packages to use a function from; see
+<code>help("conflict")</code>), and provides
 <code>conflicts_prefer(&lt;pkgname&gt;::&lt;funcname&gt;)</code> to
 declare preferences once.</li>
 </ul>
+<p>Finally, options for startup (described in
+<code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code>) and installing packages (see
+<code>help("install.packages()")</code> and
+<code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>) can be used to configure R but can also
+lead to code that behaves different on PCs where these options are not
+set, such that they, for example, do not automatically load a package or
+add a path to the search path.</p>
 </div>
 <div class="section level3">
 <h3 id="information-about-r">Information about R<a class="anchor" aria-label="anchor" href="#information-about-r"></a>
@@ -165,34 +171,33 @@ declare preferences once.</li>
 current R session:</p>
 <ul>
 <li>
-<a href="../help/.Machine">.Machine</a> and <a href="../help/Sys.info">Sys.info()</a> provide information about the
-machine and platform R is running on. <a href="../help/R.Version">getRversion()</a> provides the version of the
-running R.</li>
+<code>.Machine</code> and <code><a href="https://rdrr.io/r/base/Sys.info.html" class="external-link">Sys.info()</a></code> provide
+information about the machine and platform R is running on.
+<code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code> provides the version of the running R.</li>
 <li>
-<a href="../help/.Platform">.Platform</a> and <a href="../help/R.Version">R.Version()</a> provide information about the
-platform R was built on.</li>
+<code>.Platform</code> and <code><a href="https://rdrr.io/r/base/Version.html" class="external-link">R.Version()</a></code> provide
+information about the platform R was built on.</li>
 <li>
-<a href="../help/Sys.getlocale">Sys.getlocale()</a> provides details
-about the locale.</li>
+<code><a href="https://rdrr.io/r/base/locales.html" class="external-link">Sys.getlocale()</a></code> provides details about the locale.</li>
 <li>
-<a href="../help/sessionInfo">sessionInfo()</a> extracts parts of
-the information provided by the functions mentioned above about the
-operating system and R. It also lists attached and loaded packages. Its
-printing method can be used to print additional information about the
-used locale, time zone, and random number generation:
+<code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> extracts parts of the information
+provided by the functions mentioned above about the operating system and
+R. It also lists attached and loaded packages. Its printing method can
+be used to print additional information about the used locale, time
+zone, and random number generation:
 <code>print(sessionInfo(), locale = TRUE, RNG = TRUE)</code>.</li>
 <li>
-<a href="../help/capabilities">capabilities()</a> and <a href="../help/extSoftVersion">extSoftVersion()</a> provide details about
-external software that can be used with R.</li>
-<li>
-<a href="../help/environment%20variables">environment variables</a>
-lists some of the environment variables which affect an R session.</li>
+<code><a href="https://rdrr.io/r/base/capabilities.html" class="external-link">capabilities()</a></code> and <code><a href="https://rdrr.io/r/base/extSoftVersion.html" class="external-link">extSoftVersion()</a></code>
+provide details about external software that can be used with R.</li>
+<li>The help page on environment variables
+(<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>) lists some of the
+environment variables which affect an R session.</li>
 </ul>
 <p>How operating systems identify themselves and their versions can be
 arcane, and specifically Windows versions might report older versions
 than the versions that are actually installed (see the section
-<code>osVersion</code> in <a href="../help/sessionInfo">sessionInfo()</a> and the <code>Note</code>
-in <a href="../help/win.version">win.version()</a>).</p>
+<code>osVersion</code> in <code>help(sessionInfo())</code> and the
+<code>Note</code> in <code>help(win.version())</code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -200,7 +205,7 @@ in <a href="../help/win.version">win.version()</a>).</p>
 </h2>
 <p><a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>
 is an <a href="https://en.wikipedia.org/wiki/Integrated_development_environment" class="external-link">integrated
-development environment</a> for R that can be downloaded <a href="https://posit.co/download/rstudio-desktop/" class="external-link">here</a>.</p>
+development environment</a> for R that can be downloaded from <a href="https://posit.co/download/rstudio-desktop/" class="external-link">posit</a>.</p>
 <p>RStudio can also be used to read and modify plain-text files.</p>
 <div class="section level3">
 <h3 id="configuring-rstudio">Configuring RStudio<a class="anchor" aria-label="anchor" href="#configuring-rstudio"></a>
@@ -270,7 +275,7 @@ about R packages</em> for instructions:
 <em>not</em> needed to install current versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or <a href="https://bioconductor.org/" class="external-link">Bioconductor</a> on Windows.</p>
 <p>To install <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>,
 download the version appropriate for the installed version of R (see the
-output of <a href="../help/R.Version">getRversion()</a>) from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> via
+output of <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code>) from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> via
 <code>Download R for Windows</code> &gt; <code>Rtools</code> &gt;
 <code>RTools X.Y</code> and set it up using the instructions given
 there. See also the <a href="https://cran.r-project.org/bin/windows/base/howto-R-4.6.html" class="external-link">HowTo</a>
@@ -290,7 +295,8 @@ linking to <a href="https://bugs.r-project.org/" class="external-link">bugzilla<
 </li>
 <li>R <a href="https://cran.r-project.org/faqs.html" class="external-link">FAQs</a>
 </li>
-<li>R help: from inside R through <a href="../help/help.start">help.start()</a> or online via <a href="https://cran.r-project.org/search.html" class="external-link uri">https://cran.r-project.org/search.html</a>
+<li>R help: from inside R through <code><a href="https://rdrr.io/r/utils/help.start.html" class="external-link">help.start()</a></code>] or online
+via <a href="https://cran.r-project.org/search.html" class="external-link uri">https://cran.r-project.org/search.html</a>
 </li>
 <li>R <a href="https://www.r-project.org/" class="external-link">homepage</a>
 </li>

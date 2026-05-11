@@ -53,9 +53,8 @@ installed if that option is set during the installation of R.
 To install a package, run R or RStudio as administrator: right-click on
 the R or RStudio icon and select `Run as administrator`. Packages can be
 obtained from several websites, called ‘repositories’ (see below). After
-installing a package, you need to run
-[library](https://jessealderliesten.github.io/checkrpkgs/help/library)`(<pkgname>)`
-to be able to use the functions of that package.
+installing a package, you need to run `library(<pkgname>)` to be able to
+use the functions of that package.
 
 #### CRAN
 
@@ -180,7 +179,7 @@ Examples of other repositories for R packages are:
 
 The websites of these repositories include instructions how to install
 packages from them, and repositories can be selected using
-[utils::setRepositories()](https://jessealderliesten.github.io/checkrpkgs/help/setRepositories).
+[`utils::setRepositories()`](https://rdrr.io/r/utils/setRepositories.html).
 The following code shows how to install packages from
 [R-Forge](https://r-forge.r-project.org/) as an example:
 
@@ -201,28 +200,27 @@ Mirror websites (mirrors) are websites hosted in various parts of the
 world with the same content as the main website. Using a nearby mirror
 allows for faster downloads. Mirrors of repositories can be selected
 using
-[utils::setRepositories()](https://jessealderliesten.github.io/checkrpkgs/help/setRepositories).
+[`utils::setRepositories()`](https://rdrr.io/r/utils/setRepositories.html).
 
 CRAN [mirrors](https://cran.r-project.org/mirrors.html), with
 information about their
 [status](https://cran.r-project.org/mirmon_report.html) that is also
 available from within R through
-[utils::getCRANmirrors()](https://jessealderliesten.github.io/checkrpkgs/help/getCRANmirrors),
+[`utils::getCRANmirrors()`](https://rdrr.io/r/utils/chooseCRANmirror.html),
 can be selected using
-[utils::chooseCRANmirror()](https://jessealderliesten.github.io/checkrpkgs/help/chooseCRANmirror).
+[`utils::chooseCRANmirror()`](https://rdrr.io/r/utils/chooseCRANmirror.html).
 However, RStudio
 [uses](https://docs.posit.co/ide/user/ide/guide/environments/r/packages.html#primary-repository)
 the [RStudio CRAN mirror](https://cran.rstudio.com) with its own global
-distribution, see
-[getOption(“repos”)](https://jessealderliesten.github.io/checkrpkgs/help/getOption).
+distribution, see `getOption("repos")`.
 
 Bioconductor [mirrors](https://bioconductor.org/about/mirrors/), with
 information about their
 [status](https://bioconductor.org/dashboard/#mirror_status), can be
 selected using
-[BiocManager::repositories()](https://jessealderliesten.github.io/checkrpkgs/help/repositories)
+[`BiocManager::repositories()`](https://bioconductor.github.io/BiocManager/reference/repositories.html)
 or
-[chooseBioCmirror()](https://jessealderliesten.github.io/checkrpkgs/help/chooseBioCmirror).
+[`utils::chooseBioCmirror()`](https://rdrr.io/r/utils/chooseBioCmirror.html).
 In RStudio, the RStudio CRAN mirror is used (see above), which is
 signalled by the message
 `'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details`.
@@ -239,7 +237,7 @@ For R packages from CRAN, versions can be compared using
 is available at
 [CRANberries](https://dirk.eddelbuettel.com/cranberries/). To get the
 version number of an installed package, run
-[utils::packageVersion](https://jessealderliesten.github.io/checkrpkgs/help/packageVersion)`("<pkgname>")`.
+`utils::packageVersion("<pkgname>")`.
 
 The following code can be used to install the latest version of packages
 from [CRAN](https://cran.r-project.org/web/packages/index.html) (but
@@ -375,27 +373,23 @@ Bioconductor, e.g.,
 - If a package appears not to be installed when you want to use a
   function from it (e.g., you get the error
   `could not find function "<funcname>"`), remember you need to run
-  [library](https://jessealderliesten.github.io/checkrpkgs/help/library)`(<pkgname>)`
-  to be able to use its functions.
+  `library(<pkgname>)` to be able to use its functions.
 
 - If a package is not functional, re-install it using argument
   `force = TRUE` to re-install possibly broken dependencies. You can
-  also use
-  [checkrpkgs::get_details_pkgs](https://jessealderliesten.github.io/checkrpkgs/help/get_details_pkgs)`(pkgs = <pkgname>)`
-  to check which dependencies and other system requirements it has and
-  then use
-  [checkrpkgs::check_pkgs](https://jessealderliesten.github.io/checkrpkgs/help/check_pkgs)`(pkgs = <pkgnames>)`
-  to check if all the dependencies are installed and functional.
+  also use `checkrpkgs::get_details_pkgs(pkgs = <pkgname>)` to check
+  which dependencies and system requirements it has and then use
+  `checkrpkgs::check_pkgs(pkgs = <pkgnames>)` to check if all the
+  dependencies are installed and functional.
 
 - If the warning `package <pkgname> was built under R version 'x.y.z'`
   occurs, you installed a binary package (i.e., not by building from
   source) that was prepared (‘compiled’) for an earlier version of R
   than the version of R you are currently using (run
-  [getRversion()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version)
-  to see your current R version). The warning is issued because packages
-  are not tested on versions of R that are older than the version they
-  were built on. Therefore it is best to update R when installing
-  packages.
+  [`getRversion()`](https://rdrr.io/r/base/numeric_version.html) to see
+  your current R version). The warning is issued because packages are
+  not tested on versions of R that are older than the version they were
+  built on. Therefore it is best to update R when installing packages.
 
 - If errors occur when loading packages that require Java, make sure the
   64-bit [version of Java](https://www.java.com/download/manual.jsp) is
@@ -414,15 +408,15 @@ PDF-file with all the help files of the standard and recommended
 packages. The manuals and help pages of all packages from CRAN can be
 searched [online](https://cran.r-project.org/search.html), or from
 within R using
-[utils::RSiteSearch()](https://jessealderliesten.github.io/checkrpkgs/help/RSiteSearch).
-In addition,
-[utils::help.search()](https://jessealderliesten.github.io/checkrpkgs/help/help.search)
-can be used to search the help system using fuzzy matching or regular
+[`utils::RSiteSearch()`](https://rdrr.io/r/utils/RSiteSearch.html). In
+addition,
+[`utils::help.search()`](https://rdrr.io/r/utils/help.search.html) can
+be used to search the help system using fuzzy matching or regular
 expressions, which can be disabled by setting argument `agrep` to
 `FALSE` to search faster and return fewer results:
 `utils::help.search(..., agrep = FALSE)`.
 
-[tools::CRAN_package_db()](https://jessealderliesten.github.io/checkrpkgs/help/CRAN_package_db)
+[`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
 gives information about packages available from
 [CRAN](https://cran.r-project.org/web/packages/index.html);
 [`BiocManager::available()`](https://bioconductor.github.io/BiocManager/reference/available.html)
@@ -436,38 +430,35 @@ on CRAN frequently contain links to GitHub pages where their source code
 can be viewed.
 
 For (not necessarily installed) packages from CRAN, use
-[tools::package_dependencies](https://jessealderliesten.github.io/checkrpkgs/help/package_dependencies)`(packages = "<pkgname>", recursive = TRUE)`
+`tools::package_dependencies(packages = "<pkgname>", recursive = TRUE)`
 to see dependencies (i.e., which packages are required by package
 `<pkgname>`) and
-[tools::dependsOnPkgs](https://jessealderliesten.github.io/checkrpkgs/help/dependsOnPkgs)`(pkgs = "<pkgname>", recursive = TRUE)`
-to see reverse dependencies (i.e., which packages require package
-`<pkgname>`). `NULL` is returned for packages that are not found,
-whereas `character(0)` is returned for packages that do not have any
+`tools::dependsOnPkgs(pkgs = "<pkgname>", recursive = TRUE)` to see
+reverse dependencies (i.e., which packages require package `<pkgname>`).
+`NULL` is returned for packages that are not found, whereas
+`character(0)` is returned for packages that do not have any
 dependencies.
 
 ### Already-installed packages
 
 The locations where R installs packages, and where it looks for
 installed packages, can be obtained with
-[.libPaths()](https://jessealderliesten.github.io/checkrpkgs/help/.libPaths),
-and the names of all installed packages can be obtained with
-[list.files](https://jessealderliesten.github.io/checkrpkgs/help/list.files)`(path = .libPaths(), recursive = FALSE)`.
-The repository from which a package was installed can be obtained from
-the `Repository` and `URL` fields of package descriptions:
-[checkrpkgs::get_details_pkgs](https://jessealderliesten.github.io/checkrpkgs/help/get_details_pkgs)`(pkgs = <pkgname>)`.
-The output of
+[`.libPaths()`](https://rdrr.io/r/base/libPaths.html), and the names of
+all installed packages can be obtained with
+`list.files(path = .libPaths(), recursive = FALSE)`. The repository from
+which a package was installed can be obtained from the `Repository` and
+`URL` fields of package descriptions:
+`checkrpkgs::get_details_pkgs(pkgs = <pkgname>)`. The output of
 [`checkrpkgs::get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
 can be used to re-install packages after installing a new version of R.
 
 Information about a package and its functions is available from within R
 after the package has been installed and loaded (i.e.,
-[library](https://jessealderliesten.github.io/checkrpkgs/help/library)`(<pkgname>)`
-has been run):
+`library(<pkgname>)` has been run):
 
-- Citation:
-  [utils::citation](https://jessealderliesten.github.io/checkrpkgs/help/citation)`("<pkgname>")`,
-  with [`utils::citation()`](https://rdrr.io/r/utils/citation.html) to
-  cite R itself.
+- Citation: `utils::citation("<pkgname>")`, with
+  [`utils::citation()`](https://rdrr.io/r/utils/citation.html) to cite R
+  itself.
 - Function overview: `ls(getNamespace("<pkgname>"))` returns a character
   vector with the function names (ignoring names that start with a dot,
   which by convention are for internal use in packages;
@@ -477,12 +468,10 @@ has been run):
   gives an overview with links to their help-pages if there is a file
   `<pkgname>.R` in folder `<pgkname>\R`.
 - Help page: `help(topic = "<pkgname>")`.
-- Version:
-  [utils::packageVersion](https://jessealderliesten.github.io/checkrpkgs/help/packageVersion)`("<pkgname>")`.
+- Version: `utils::packageVersion("<pkgname>")`.
 - Vignettes: show them in a browser through
-  [utils::browseVignettes](https://jessealderliesten.github.io/checkrpkgs/help/browseVignettes)`(package = "<pkgname>")`
-  or list them with
-  [utils::vignette](https://jessealderliesten.github.io/checkrpkgs/help/vignette)`(package = "<pkgname>")`.
+  `utils::browseVignettes(package = "<pkgname>")` or list them with
+  `utils::vignette(package = "<pkgname>")`.
 
 Information about functions, methods, and classes can also be obtained
 (see also the section [Getting the source
@@ -494,29 +483,23 @@ code](#getting-the-source-code) below):
   `help("<funcname>", package = "<pkgname>")`; use quotes around the
   name of an operator to get its help page:
   [`help("%in%")`](https://rdrr.io/r/base/match.html).
-- Methods: for a generic class:
-  [utils::methods](https://jessealderliesten.github.io/checkrpkgs/help/methods)`(class = "<classname>")`;
-  for a generic function:
-  [utils::methods](https://jessealderliesten.github.io/checkrpkgs/help/methods)`("<funcname>")`;
-  for S3-methods: `attr(utils::methods(class = "<classname>"), "info")`;
-  for S4-methods:
+- Methods: for a generic class: `utils::methods(class = "<classname>")`;
+  for a generic function: `utils::methods("<funcname>")`; for
+  S3-methods: `attr(utils::methods(class = "<classname>"), "info")`; for
+  S4-methods:
   `methods::showMethods(classes = "<classname>", where = getNamespace("<pkgname>"))`.
 - Objects (including functions) whose name contains a certain string:
-  [utils::apropos](https://jessealderliesten.github.io/checkrpkgs/help/apropos)`("<string>")`.
+  `utils::apropos("<string>")`.
 
 ### Which packages are used?
 
-The function
-[loadedNamespaces()](https://jessealderliesten.github.io/checkrpkgs/help/loadedNamespaces)
+The function [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html)
 shows which packages are loaded. To see which packages are used in a
-script, look for `::`, `:::`,
-[library](https://jessealderliesten.github.io/checkrpkgs/help/library),
-[require](https://jessealderliesten.github.io/checkrpkgs/help/require),
-and `namespace` (e.g.,
-[loadNamespace](https://jessealderliesten.github.io/checkrpkgs/help/loadNamespace),
-[requireNamespace()](https://jessealderliesten.github.io/checkrpkgs/help/requireNamespace)).
-Various packages have their own way to create dependencies on packages,
-see the overview at
+script, look for `::`, `:::`, `library`, `require`, and `namespace`
+(e.g., [`loadNamespace()`](https://rdrr.io/r/base/ns-load.html),
+[`requireNamespace()`](https://rdrr.io/r/base/ns-load.html)). Various
+packages have their own way to create dependencies on packages, see the
+overview at
 [pak::scan_deps()](https://pak.r-lib.org/reference/scan_deps.html).
 
 To see which packages are mentioned in comments, also look for:
@@ -583,8 +566,8 @@ file and choose `extract all`).
 The simplest way to obtain the source code of a function is to type the
 name of the function, *without* the brackets, and press `Enter`. For
 example, to see what happens when using
-[sd](https://jessealderliesten.github.io/checkrpkgs/help/sd) to
-calculate the standard deviation:
+[`sd()`](https://rdrr.io/r/stats/sd.html) to calculate the standard
+deviation:
 
 ``` r
 
@@ -592,7 +575,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x562716865178>
+#> <bytecode: 0x55d9928c3890>
 #> <environment: namespace:stats>
 ```
 
@@ -606,47 +589,43 @@ Some special cases:
   `'<funcname>' is not an exported object from 'namespace:<pkgname>'`.
   Non-exported functions should *not* be used in code because they might
   change.
-- For operators such as
-  [%in%](https://jessealderliesten.github.io/checkrpkgs/help/match)
-  which start with a symbol, use backticks (\`) around the name:
+- For operators such as `%in%` (see
+  [`help("match")`](https://rdrr.io/r/base/match.html) which start with
+  a symbol, use backticks (\`) around the name:
 
 ``` r
 
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x562714daad00>
+#> <bytecode: 0x55d990d87d00>
 #> <environment: namespace:base>
 ```
 
 ### getAnywhere
 
 A more robust alternative to the [basic method](#basic-method) outlined
-above is to use
-[getAnywhere](https://jessealderliesten.github.io/checkrpkgs/help/getAnywhere)`("<funcname>")`,
-which looks in more places and finds internal functions without the need
-to specify in which package a function is defined. Although the quotes
-around the function name are not necessary when looking for the source
-code of normal functions, they are required when looking for the source
-code of operators such as
-[%in%](https://jessealderliesten.github.io/checkrpkgs/help/match), such
-that it is most robust to always use them.
+above is to use `getAnywhere("<funcname>")`, which looks in more places
+and finds internal functions without the need to specify in which
+package a function is defined. Although the quotes around the function
+name are not necessary when looking for the source code of normal
+functions, they are required when looking for the source code of
+operators such as `%in%`, such that it is most robust to always use
+them.
 
 #### UseMethod
 
 If `getAnywhere("<funcname>")` returns `UseMethod("<funcname>")`, the
 function has different methods for different object classes and is
 [S3-generic](https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation).
-First use
-[methods](https://jessealderliesten.github.io/checkrpkgs/help/methods)`("<funcname>")`
-to get an overview of the available methods; then obtain the source code
-of a particular method by using `getAnywhere("<function.class>")`, where
-`<function.class>` is an item from the overview that was returned by
-`methods("<funcname>")`. The advantage over simply using
-`"<function.class>"` is that `getAnywhere("<function.class>")` also
-works for functions that are not exported, which is indicated in the
-overview of `methods(<funcname>)` by an asterisk and the remark
-`Non-visible functions are asterisked`.
+First use `methods("<funcname>")` to get an overview of the available
+methods; then obtain the source code of a particular method by using
+`getAnywhere("<function.class>")`, where `<function.class>` is an item
+from the overview that was returned by `methods("<funcname>")`. The
+advantage over simply using `"<function.class>"` is that
+`getAnywhere("<function.class>")` also works for functions that are not
+exported, which is indicated in the overview of `methods(<funcname>)` by
+an asterisk and the remark `Non-visible functions are asterisked`.
 
 For example, `UseMethod("mean")` in the output of `getAnywhere("mean")`
 indicates `mean` is an S3-generic:
@@ -662,7 +641,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5627170803f8>
+#> <bytecode: 0x55d99305d3f8>
 #> <environment: namespace:base>
 ```
 
@@ -692,7 +671,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x5627189ed3e8>
+#> <bytecode: 0x55d9949fd930>
 #> <environment: namespace:base>
 ```
 
@@ -734,7 +713,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x5627189f0808>
+#> <bytecode: 0x55d9949fcf20>
 #> <environment: namespace:base>
 ```
 
@@ -743,16 +722,15 @@ getAnywhere("mean.default")
 If `getAnywhere("<funcname>")` returns `standardGeneric("<funcname>")`,
 the function has different S4-methods (see
 [`help(topic = "Introduction", package = "methods")`](https://rdrr.io/r/methods/Introduction.html))
-for different object classes. Use
-[showMethods](https://jessealderliesten.github.io/checkrpkgs/help/showMethods)`("<funcname>")`
-to get an overview of the available methods in all *loaded* packages, or
-use `<pkgname>:::<funcname>` to get an overview of the available methods
+for different object classes. Use `showMethods("<funcname>")` to get an
+overview of the available methods in all **loaded** packages, or use
+`<pkgname>:::<funcname>` to get an overview of the available methods
 from package `<pkgname>`. Finally, provide the function name as argument
 `f` and the selected method as a character vector to argument
-[signature](https://jessealderliesten.github.io/checkrpkgs/help/signature)
-of function
-[getMethod()](https://jessealderliesten.github.io/checkrpkgs/help/getMethod)
-to obtain the source code of a particular method:
+`signature` (see also
+[`help(signature)`](https://rdrr.io/r/methods/GenericFunctions.html)) of
+function [`getMethod()`](https://rdrr.io/r/methods/getMethod.html) to
+obtain the source code of a particular method:
 `getMethod(f = "<funcname>", signature = c(target = "<classname>", current = "<classname>"))`.
 
 The example below shows how to find the source code of method
@@ -777,8 +755,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x562716908fd8>
-#> <environment: 0x5627156b7428>
+#> <bytecode: 0x55d9928e6208>
+#> <environment: 0x55d991694428>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -824,7 +802,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x562718ce0978>
+#> <bytecode: 0x55d994cefbf8>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -913,6 +891,5 @@ and searching in the `src` folder of the downloaded code.
   and RStudio*:  
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)
 - Section [Troubleshooting](#troubleshooting) above
-- The help-page
-  [checkrpkgs::check_pkgs()](https://jessealderliesten.github.io/checkrpkgs/help/check_pkgs)
+- The help-page `help(checkrpkgs::check_pkgs())`
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)

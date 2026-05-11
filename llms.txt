@@ -21,25 +21,26 @@ how to get the source code of R-functions.
 
 ## Installation
 
-You can install `checkrpkgs` from
-[GitHub](https://github.com/JesseAlderliesten/checkrpkgs) with:
+You can visit the [checkrpkgs
+website](https://jessealderliesten.github.io/checkrpkgs/) to explore the
+package. To use `checkrpkgs`, you have to install it from
+[GitHub](https://github.com/JesseAlderliesten/checkrpkgs) using the
+following code in R (you need to run R as administrator):
 
 ``` r
 
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", quiet = FALSE)
 }
-remotes::install_github(repo = "JesseAlderliesten/checkrpkgs", dependencies = TRUE,
-                        upgrade = FALSE, force = FALSE, quiet = FALSE,
-                        build_vignettes = TRUE, lib = NULL,
+remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
+                        dependencies = NA, upgrade = FALSE, force = FALSE,
+                        quiet = FALSE, build_vignettes = TRUE, lib = NULL,
                         verbose = getOption("verbose"))
 ```
 
 ## Example
 
-The main content of `checkrpkgs` consists of vignettes (which can be
-viewed at its [pkgdown](https://jessealderliesten.github.io/checkrpkgs/)
-version under `Articles`, without installing the `checkrpkgs` package):
+The main content of `checkrpkgs` consists of vignettes:
 
 - [Installing R, Rtools and
   RStudio](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html):
@@ -78,10 +79,10 @@ check_pkgs(pkgs = "abcdef1") # package is absent
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
 #>            Package      Version MD5sum
-#> checkrpkgs "checkrpkgs" "0.5.2" NA    
+#> checkrpkgs "checkrpkgs" "0.7.2" NA    
 #> utils      "utils"      "4.6.0" NA    
 #>            Built                                                          
-#> checkrpkgs "R 4.6.0; ; 2026-05-02 18:12:43 UTC; windows"                  
+#> checkrpkgs "R 4.6.0; ; 2026-05-11 12:12:19 UTC; windows"                  
 #> utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"
 #>            Priority LibPath                                            
 #> checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"
@@ -92,11 +93,11 @@ get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
 #>            URL                                                                                                
 #> checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs,\nhttps://jessealderliesten.github.io/checkrpkgs/"
 #> utils      NA                                                                                                 
-#>            GithubRepo GithubUsername SystemRequirements NeedsCompilation
-#> checkrpkgs NA         NA             NA                 "no"            
-#> utils      NA         NA             NA                 "yes"           
+#>            GithubRepo   GithubUsername      SystemRequirements NeedsCompilation
+#> checkrpkgs "checkrpkgs" "JesseAlderliesten" NA                 "no"            
+#> utils      NA           NA                  NA                 "yes"           
 #>            OS_type Depends Imports                                             
-#> checkrpkgs NA      NA      "checkinput (>= 0.5.0), progutils (>= 0.0.6), utils"
+#> checkrpkgs NA      NA      "checkinput (>= 0.6.0), progutils (>= 0.0.9), utils"
 #> utils      NA      NA      NA                                                  
 #>            LinkingTo
 #> checkrpkgs NA       

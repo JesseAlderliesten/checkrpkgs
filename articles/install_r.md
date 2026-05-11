@@ -31,55 +31,41 @@ NotePad.
 
 ### Configuring R
 
-R can be configured by changing [general
-options](https://jessealderliesten.github.io/checkrpkgs/help/options),
-[environment
-variables](https://jessealderliesten.github.io/checkrpkgs/help/environment%20variables),
-and options for
-[startup](https://jessealderliesten.github.io/checkrpkgs/help/Startup),
-[installing
-packages](https://jessealderliesten.github.io/checkrpkgs/help/install.packages),
-and [library
-paths](https://jessealderliesten.github.io/checkrpkgs/help/.libPaths).
+R can be configured to be a bit stricter, described in the help files
+for general options
+([`help(options)`](https://rdrr.io/r/base/options.html)) and environment
+variables
+([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html)):
 
-Configuring R can be used to made R a bit stricter, described in the
-help files for
-[options](https://jessealderliesten.github.io/checkrpkgs/help/options)
-and [environment
-variables](https://jessealderliesten.github.io/checkrpkgs/help/environment%20variables):
-
-- Warn in case of [partial
-  matching](https://jessealderliesten.github.io/checkrpkgs/help/pmatch)
-  such as `list(mean = 3)$me`:
+- Warn in case of partial matching
+  ([`help(pmatch)`](https://rdrr.io/r/base/pmatch.html)) such as
+  `list(mean = 3)$me`:
   `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
   The default is `FALSE` for each of these.
-- Error instead of warn when calling
-  [a:b](https://jessealderliesten.github.io/checkrpkgs/help/colon) when
-  numeric `a` or `b` is longer than one, such as `3:c(5, 7)` (introduced
-  in R 4.3.0): `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
-- Error instead of silently using only the first element in [logical
-  operations](https://jessealderliesten.github.io/checkrpkgs/help/Logic)
+- Error instead of warn when calling `a:b` when numeric `a` or `b` is
+  longer than one, such as `3:c(5, 7)` (introduced in R 4.3.0):
+  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
+- Error instead of silently using only the first element in logical
+  operations
+  ([`help(Logic, package = base)`](https://rdrr.io/r/base/Logic.html))
   such as `c(TRUE, TRUE) && TRUE)` (introduced in R 3.6.0, no longer
   used since R 4.3.0 because there calling `&&` or `||` with length
   larger than one always gives an error):
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
-- Error instead of warn if a
-  [condition](https://jessealderliesten.github.io/checkrpkgs/help/Control)
+- Error instead of warn if a condition
+  ([`help(Control, package = base)`](https://rdrr.io/r/base/Control.html))
   has length larger than one, such as
   `if(3 < c(5, 7)) {print("Not OK")}` (introduced in R 3.y.z, no longer
   used since R 4.2.0 because there conditions with length larger than
   one always give an error):
   `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
-- Print warnings
-  [warnings](https://jessealderliesten.github.io/checkrpkgs/help/warning)
-  immediately as they occur: `options(warn = 1)`. The default is
-  `options(warn = 0)` to warn after the top-level function returns.
-- Make
-  [warnings](https://jessealderliesten.github.io/checkrpkgs/help/warning)
-  an [error](https://jessealderliesten.github.io/checkrpkgs/help/stop):
-  `options(warn = 2)`. This should only be used for debugging because it
-  may trigger bugs and resource leaks (per its help-page). The default
-  is `options(warn = 0)` to warn after the top-level function returns.
+- Print `warnings` immediately as they occur (`options(warn = 1)`) or
+  make `warnings` an error
+  ([`help(stop)`](https://rdrr.io/r/base/stop.html)):
+  `options(warn = 2)`. The latter should only be used for debugging
+  because it may trigger bugs and resource leaks (per its help-page).
+  The default is `options(warn = 0)` to warn after the top-level
+  function returns.
 - Enter the [environment
   browser](https://jessealderliesten.github.io/checkrpkgs/help/browser)
   upon error (default: `options(error = NULL)`):
@@ -90,65 +76,65 @@ In addition, various packages contain ways to make R stricter:
 
 - Package [strict](https://github.com/hadley/strict/) warns about
   various unsafe practices, such as the behaviour of
-  [sample()](https://jessealderliesten.github.io/checkrpkgs/help/sample)
-  and [diag()](https://jessealderliesten.github.io/checkrpkgs/help/diag)
-  if called with an argument of length one and type-unsafe
-  [sapply()](https://jessealderliesten.github.io/checkrpkgs/help/sapply);
-  additional ideas are in the
+  [`sample()`](https://rdrr.io/r/base/sample.html) and
+  [`diag()`](https://rdrr.io/r/base/diag.html) if called with an
+  argument of length one and type-unsafe
+  [`sapply()`](https://rdrr.io/r/base/lapply.html); additional ideas are
+  in the GitHub
   [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
 - Package [conflicted](https://CRAN.R-project.org/package=conflicted)
-  avoids silent
-  [conflict](https://jessealderliesten.github.io/checkrpkgs/help/conflicts)
-  resolution (i.e., choosing the latest attached package out of multiple
-  packages to use a function from), and provides
+  avoids silent conflict resolution (i.e., choosing the latest attached
+  package out of multiple packages to use a function from; see
+  `help("conflict")`), and provides
   `conflicts_prefer(<pkgname>::<funcname>)` to declare preferences once.
+
+Finally, options for startup (described in
+[`help("Startup")`](https://rdrr.io/r/base/Startup.html)) and installing
+packages (see `help("install.packages()")` and
+[`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)) can be used
+to configure R but can also lead to code that behaves different on PCs
+where these options are not set, such that they, for example, do not
+automatically load a package or add a path to the search path.
 
 ### Information about R
 
 Several variables and functions provide information about R and the
 current R session:
 
-- [.Machine](https://jessealderliesten.github.io/checkrpkgs/help/.Machine)
-  and
-  [Sys.info()](https://jessealderliesten.github.io/checkrpkgs/help/Sys.info)
+- `.Machine` and [`Sys.info()`](https://rdrr.io/r/base/Sys.info.html)
   provide information about the machine and platform R is running on.
-  [getRversion()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version)
+  [`getRversion()`](https://rdrr.io/r/base/numeric_version.html)
   provides the version of the running R.
-- [.Platform](https://jessealderliesten.github.io/checkrpkgs/help/.Platform)
-  and
-  [R.Version()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version)
+- `.Platform` and [`R.Version()`](https://rdrr.io/r/base/Version.html)
   provide information about the platform R was built on.
-- [Sys.getlocale()](https://jessealderliesten.github.io/checkrpkgs/help/Sys.getlocale)
-  provides details about the locale.
-- [sessionInfo()](https://jessealderliesten.github.io/checkrpkgs/help/sessionInfo)
-  extracts parts of the information provided by the functions mentioned
-  above about the operating system and R. It also lists attached and
-  loaded packages. Its printing method can be used to print additional
+- [`Sys.getlocale()`](https://rdrr.io/r/base/locales.html) provides
+  details about the locale.
+- [`sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) extracts
+  parts of the information provided by the functions mentioned above
+  about the operating system and R. It also lists attached and loaded
+  packages. Its printing method can be used to print additional
   information about the used locale, time zone, and random number
   generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
-- [capabilities()](https://jessealderliesten.github.io/checkrpkgs/help/capabilities)
-  and
-  [extSoftVersion()](https://jessealderliesten.github.io/checkrpkgs/help/extSoftVersion)
+- [`capabilities()`](https://rdrr.io/r/base/capabilities.html) and
+  [`extSoftVersion()`](https://rdrr.io/r/base/extSoftVersion.html)
   provide details about external software that can be used with R.
-- [environment
-  variables](https://jessealderliesten.github.io/checkrpkgs/help/environment%20variables)
+- The help page on environment variables
+  ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
   lists some of the environment variables which affect an R session.
 
 How operating systems identify themselves and their versions can be
 arcane, and specifically Windows versions might report older versions
 than the versions that are actually installed (see the section
-`osVersion` in
-[sessionInfo()](https://jessealderliesten.github.io/checkrpkgs/help/sessionInfo)
-and the `Note` in
-[win.version()](https://jessealderliesten.github.io/checkrpkgs/help/win.version)).
+`osVersion` in `help(sessionInfo())` and the `Note` in
+`help(win.version())`.
 
 ## RStudio
 
 [RStudio](https://posit.co/products/open-source/rstudio) is an
 [integrated development
 environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
-for R that can be downloaded
-[here](https://posit.co/download/rstudio-desktop/).
+for R that can be downloaded from
+[posit](https://posit.co/download/rstudio-desktop/).
 
 RStudio can also be used to read and modify plain-text files.
 
@@ -223,8 +209,8 @@ Rtools is *not* needed to install current versions of packages from
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
 download the version appropriate for the installed version of R (see the
 output of
-[getRversion()](https://jessealderliesten.github.io/checkrpkgs/help/R.Version))
-from [CRAN](https://cran.r-project.org/) via `Download R for Windows` \>
+[`getRversion()`](https://rdrr.io/r/base/numeric_version.html)) from
+[CRAN](https://cran.r-project.org/) via `Download R for Windows` \>
 `Rtools` \> `RTools X.Y` and set it up using the instructions given
 there. See also the
 [HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.6.html) by
@@ -239,8 +225,8 @@ install Rtools.
 - CRAN [homepage](https://cran.r-project.org/)
 - R [FAQs](https://cran.r-project.org/faqs.html)
 - R help: from inside R through
-  [help.start()](https://jessealderliesten.github.io/checkrpkgs/help/help.start)
-  or online via <https://cran.r-project.org/search.html>
+  [`help.start()`](https://rdrr.io/r/utils/help.start.html)\] or online
+  via <https://cran.r-project.org/search.html>
 - R [homepage](https://www.r-project.org/)
 - R [mailing lists](https://www.r-project.org/mail.html) with a web
   interface with [information and

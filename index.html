@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,20 +81,20 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install <code>checkrpkgs</code> from <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">GitHub</a> with:</p>
+<p>You can visit the <a href="https://jessealderliesten.github.io/checkrpkgs/">checkrpkgs website</a> to explore the package. To use <code>checkrpkgs</code>, you have to install it from <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">GitHub</a> using the following code in R (you need to run R as administrator):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"remotes"</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"JesseAlderliesten/checkrpkgs"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                        upgrade <span class="op">=</span> <span class="cn">FALSE</span>, force <span class="op">=</span> <span class="cn">FALSE</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                        build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"JesseAlderliesten/checkrpkgs"</span>,</span>
+<span>                        dependencies <span class="op">=</span> <span class="cn">NA</span>, upgrade <span class="op">=</span> <span class="cn">FALSE</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                        quiet <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>The main content of <code>checkrpkgs</code> consists of vignettes (which can be viewed at its <a href="https://jessealderliesten.github.io/checkrpkgs/">pkgdown</a> version under <code>Articles</code>, without installing the <code>checkrpkgs</code> package):</p>
+<p>The main content of <code>checkrpkgs</code> consists of vignettes:</p>
 <ul>
 <li>
 <a href="https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html">Installing R, Rtools and RStudio</a>: <code><a href="articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>. This vignette contains instructions on installing and configuring <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://posit.co/products/open-source/rstudio/?sid=1" class="external-link">RStudio</a>, and <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>.</li>
@@ -116,10 +116,10 @@
 <span></span>
 <span><span class="fu"><a href="reference/get_details_pkgs.html">get_details_pkgs</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"utils"</span>, <span class="st">"checkrpkgs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            Package      Version MD5sum</span></span>
-<span><span class="co">#&gt; checkrpkgs "checkrpkgs" "0.5.2" NA    </span></span>
+<span><span class="co">#&gt; checkrpkgs "checkrpkgs" "0.7.2" NA    </span></span>
 <span><span class="co">#&gt; utils      "utils"      "4.6.0" NA    </span></span>
 <span><span class="co">#&gt;            Built                                                          </span></span>
-<span><span class="co">#&gt; checkrpkgs "R 4.6.0; ; 2026-05-02 18:12:43 UTC; windows"                  </span></span>
+<span><span class="co">#&gt; checkrpkgs "R 4.6.0; ; 2026-05-11 12:12:19 UTC; windows"                  </span></span>
 <span><span class="co">#&gt; utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"</span></span>
 <span><span class="co">#&gt;            Priority LibPath                                            </span></span>
 <span><span class="co">#&gt; checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"</span></span>
@@ -130,11 +130,11 @@
 <span><span class="co">#&gt;            URL                                                                                                </span></span>
 <span><span class="co">#&gt; checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs,\nhttps://jessealderliesten.github.io/checkrpkgs/"</span></span>
 <span><span class="co">#&gt; utils      NA                                                                                                 </span></span>
-<span><span class="co">#&gt;            GithubRepo GithubUsername SystemRequirements NeedsCompilation</span></span>
-<span><span class="co">#&gt; checkrpkgs NA         NA             NA                 "no"            </span></span>
-<span><span class="co">#&gt; utils      NA         NA             NA                 "yes"           </span></span>
+<span><span class="co">#&gt;            GithubRepo   GithubUsername      SystemRequirements NeedsCompilation</span></span>
+<span><span class="co">#&gt; checkrpkgs "checkrpkgs" "JesseAlderliesten" NA                 "no"            </span></span>
+<span><span class="co">#&gt; utils      NA           NA                  NA                 "yes"           </span></span>
 <span><span class="co">#&gt;            OS_type Depends Imports                                             </span></span>
-<span><span class="co">#&gt; checkrpkgs NA      NA      "checkinput (&gt;= 0.5.0), progutils (&gt;= 0.0.6), utils"</span></span>
+<span><span class="co">#&gt; checkrpkgs NA      NA      "checkinput (&gt;= 0.6.0), progutils (&gt;= 0.0.9), utils"</span></span>
 <span><span class="co">#&gt; utils      NA      NA      NA                                                  </span></span>
 <span><span class="co">#&gt;            LinkingTo</span></span>
 <span><span class="co">#&gt; checkrpkgs NA       </span></span>

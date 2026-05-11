@@ -152,15 +152,14 @@ onto the shell will copy the path to the shell).
 ### Not using GitHub
 
 R-scripts can be compared using
-[tools::Rdiff()](https://jessealderliesten.github.io/checkrpkgs/help/Rdiff):
-use the quoted file paths (i.e., the directories and file names,
-*including* the extensions) of the two files as arguments `from` and
-`to`:  
+[`tools::Rdiff()`](https://rdrr.io/r/tools/Rdiff.html): use the quoted
+file paths (i.e., the directories and file names, **including** the
+extensions) of the two files as arguments `from` and `to`:  
 `tools::Rdiff(from = "<path/and/filename_file1>.R", to = "<path/and/filename_file2>.R")`
 
 For a nicer output, compare R-scripts using the `Bash`
 [shell](https://happygitwithr.com/shell): open the `Bash` shell and copy
-the file paths (i.e., the directories and file names, *including* the
+the file paths (i.e., the directories and file names, **including** the
 extensions) of the two files to be compared into the shell on the same
 line, and press `Enter`:
 `git diff --no-index '<path/and/filename_file1>.R' '<path/and/filename_file2>.R'`
@@ -168,10 +167,10 @@ line, and press `Enter`:
 Note:
 
 - The flag `--no-index` makes it possible to compare files that are
-  *not* under version control in `Git`.
+  **not** under version control in `Git`.
 - Using quotes (`''`) around the paths ensures this also works when they
   contain spaces.
-- The two paths should be on the same line, i.e., *not* separated by a
+- The two paths should be on the same line, i.e., **not** separated by a
   newline.
 - Although the scroll bar in `Git Bash` seems to indicate the end of the
   file is reached (and scrolling with the mouse does not work) after
@@ -211,20 +210,20 @@ There are several ways to get code from a `GitHub` repository to your
 PC:
 
 - To be able to `push` your changes back to a `GitHub` repository to
-  which you do *not* have writing access, you need to `fork` the
+  which you do **not** have writing access, you need to `fork` the
   repository: use the `fork` button \> `create a new fork`. This creates
   a copy of the repository in your own GitHub repository. Next, you have
   to `clone` your copy to your PC, see the next point.
 - To be able to push your changes back to a GitHub repository to which
-  you *do* have writing access (e.g., to work on your project from
+  you **do** have writing access (e.g., to work on your project from
   another PC; or to work on a fork you created in the step above), you
   have to clone the GitHub repository to your PC: use the green `Code`
   button in the repository (if you forked a repository, you need the
   `Code` button of your fork, not of the original repository), copy the
-  URL to the clipboard (i.e., do *not* use `download ZIP`), create a new
-  R project in RStudio (`File` \> `New Project` \> `Version control` \>
-  `Git`), paste the repository URL (something like
-  `https://github.com/<username>/<reposname>`) in the designated field,
+  URL to the clipboard (i.e., do **not** use `download ZIP`), create a
+  new R project in RStudio (`File` \> `New Project` \> `Version control`
+  \> `Git`), paste the repository URL
+  (`https://github.com/<username>/<reposname>`) in the designated field,
   select the desired location on your PC, and create the project. The
   same repository URL can be used when using shell commands to clone a
   repository, either with its complete history by using
