@@ -89,9 +89,9 @@ for more information about the origin of packages;
 [`old.packages()`](https://rdrr.io/r/utils/update.packages.html) and
 [`BiocManager::valid()`](https://bioconductor.github.io/BiocManager/reference/valid.html)
 to check for outdated or too new packages, where the latter takes the
-currently used
-[version](https://bioconductor.github.io/BiocManager/reference/version.html)
-of Bioconductor into account.
+currently used version of Bioconductor (see
+[`BiocManager::version()`](https://bioconductor.github.io/BiocManager/reference/version.html))
+into account.
 
 `options("defaultPackages")` for names of packages that are attached by
 default when R starts up;

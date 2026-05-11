@@ -1,8 +1,21 @@
 # Changelog
 
+## checkrpkgs 0.7.2
+
+#### Miscellaneous
+
+- [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
+  and
+  [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
+  Replace link to `BioConductor` (a `suggested` package) documentation
+  with text to get rid of a `Note` in `R cmd check` on `R 4.1.0`.
+- `R-CMD-check.yaml`: Also mention package `rcmdcheck` as needed
+  package. Order packages alphabetically.
+
 ## checkrpkgs 0.7.1
 
-- Added function `create_pkg_stub`.
+- Added function
+  [`create_pkg_stub()`](https://jessealderliesten.github.io/checkrpkgs/reference/create_pkg_stub.md).
 
 ## checkrpkgs 0.7.0
 
@@ -34,7 +47,7 @@
 
 - Dependency `progutils`: increase from `>= 0.0.6` to `>= 0.0.7` to
   ensure uniform handling of empty quotes and `NA`s through
-  [`progutils::paste_quoted()`](https://rdrr.io/pkg/checkinput/man/paste_quoted.html).
+  [`progutils::paste_quoted()`](https://jessealderliesten.github.io/checkinput/reference/paste_quoted.html).
 
 ## checkrpkgs 0.5.2
 

@@ -108,7 +108,7 @@ and
 [`tools::CRAN_check_issues()`](https://rdrr.io/r/tools/CRANtools.html)
 on the current check status of CRAN packages.
 
-[utils::available.packages](https://rdrr.io/r/utils/available.packages.html)`(fields = NULL, repos = `[`BiocManager::repositories()`](https://bioconductor.github.io/BiocManager/reference/repositories.html)`)`
+[utils::available.packages](https://rdrr.io/r/utils/available.packages.html)`(fields = NULL, repos = BiocManager::repositories())`
 for information about packages available from
 [BioConductor](https://bioconductor.org/packages/release/BiocViews.html),
 and
@@ -244,16 +244,16 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #> ('/home/runner/work/_temp/Library', '/opt/R/4.6.0/lib/R/site-library', '/opt/R/4.6.0/lib/R/library'):
 #> 'missing_package'
 #>            Package      Version MD5sum
-#> checkinput "checkinput" "0.6.0" NA    
-#> checkrpkgs "checkrpkgs" "0.7.1" NA    
+#> checkinput "checkinput" "0.6.1" NA    
+#> checkrpkgs "checkrpkgs" "0.7.2" NA    
 #>            Built                                      Priority
-#> checkinput "R 4.6.0; ; 2026-05-10 17:25:12 UTC; unix" NA      
-#> checkrpkgs "R 4.6.0; ; 2026-05-10 19:13:14 UTC; unix" NA      
+#> checkinput "R 4.6.0; ; 2026-05-11 11:37:39 UTC; unix" NA      
+#> checkrpkgs "R 4.6.0; ; 2026-05-11 11:37:45 UTC; unix" NA      
 #>            LibPath                           Repository Additional_repositories
 #> checkinput "/home/runner/work/_temp/Library" "Github"   NA                     
 #> checkrpkgs "/home/runner/work/_temp/Library" "Github"   NA                     
 #>            URL                                                                                                
-#> checkinput "https://github.com/JesseAlderliesten/checkinput"                                                  
+#> checkinput "https://github.com/JesseAlderliesten/checkinput,\nhttps://jessealderliesten.github.io/checkinput/"
 #> checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs,\nhttps://jessealderliesten.github.io/checkrpkgs/"
 #>            GithubRepo   GithubUsername      SystemRequirements NeedsCompilation
 #> checkinput "checkinput" "JesseAlderliesten" NA                 "no"            
