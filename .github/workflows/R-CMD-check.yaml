@@ -6,9 +6,9 @@
 
 # NOTE: This workflow only directly installs "hard" dependencies, i.e. Depends,
 # Imports, and LinkingTo dependencies. Notably, Suggests dependencies are never
-# installed, with the exception of testthat, knitr, and rmarkdown. The cache is
-# never used to avoid accidentally restoring a cache containing a suggested
-# dependency.
+# installed, with the exception of knitr, rcmdcheck, rmarkdown, and tinytest.
+# The cache is never used to avoid accidentally restoring a cache containing a
+# suggested dependency.
 
 # Modifications:
 # - not run GHA on 'push': it should be sufficient to run R CMD check locally
@@ -74,10 +74,10 @@ jobs:
           dependencies: '"hard"'
           cache: false
           extra-packages: |
-            any::rcmdcheck
-            any::tinytest
             any::knitr
+            any::rcmdcheck
             any::rmarkdown
+            any::tinytest
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
