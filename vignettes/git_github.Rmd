@@ -64,7 +64,8 @@ typing `Git Bash` in Windows' `Start` menu and press `Enter`.
 To associate Git with your GitHub account, you need to provide your name
 (this name is listed in GitHub with the changes you make and does *not* have to
 be your GitHub username), and the email associated with your GitHub account.
-See the Chapter [Introduce yourself to Git](https://happygitwithr.com/hello-git.html) from
+See the Chapter
+[Introduce yourself to Git](https://happygitwithr.com/hello-git.html) from
 [Happy Git and GitHub for the useR](https://happygitwithr.com/) for more details.
 
 ```{Git Bash}
@@ -139,30 +140,30 @@ will copy the path to the shell).
   repository and in the `Code` panel click the `clock` icon at the top of the
   file overview.
 - Comparing different branches: see
-[here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons)
+  [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons)
 - Comparing commits: see
-[here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits)
+  [here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits)
 - See also section [Repositories: download, fork, or clone?] below.
 
 ### Not using GitHub
-R-scripts can be compared using [tools::Rdiff()](../help/Rdiff): use the quoted file paths
-(i.e., the directories and file names, *including* the extensions) of the two
+R-scripts can be compared using `tools::Rdiff()`: use the quoted file paths
+(i.e., the directories and file names, **including** the extensions) of the two
 files as arguments `from` and `to`:  
 `tools::Rdiff(from = "<path/and/filename_file1>.R", to = "<path/and/filename_file2>.R")`
 
 For a nicer output, compare R-scripts using the `Bash`
-[shell](https://happygitwithr.com/shell): open the `Bash` shell and copy
-the file paths (i.e., the directories and file names, *including* the extensions)
+[shell](https://happygitwithr.com/shell): open the `Bash` shell and copy the
+file paths (i.e., the directories and file names, **including** the extensions)
 of the two files to be compared into the shell on the same line, and press `Enter`:
 `git diff --no-index '<path/and/filename_file1>.R' '<path/and/filename_file2>.R'`
 
 Note:
 
-- The flag `--no-index` makes it possible to compare files that are *not* under
-  version control in `Git`.
+- The flag `--no-index` makes it possible to compare files that are **not**
+  under version control in `Git`.
 - Using quotes (`''`) around the paths ensures this also works when they contain
   spaces.
-- The two paths should be on the same line, i.e., *not* separated by a newline.
+- The two paths should be on the same line, i.e., **not** separated by a newline.
 - Although the scroll bar in `Git Bash` seems to indicate the end of the file is
   reached (and scrolling with the mouse does not work) after opening a file,
   usually a colon (`:`) will be displayed left to the cursor to indicate that
@@ -198,21 +199,21 @@ and
 There are several ways to get code from a `GitHub` repository to your PC:
 
 - To be able to `push` your changes back to a `GitHub` repository to which you
-  do *not* have writing access, you need to `fork` the repository: use the
+  do **not** have writing access, you need to `fork` the repository: use the
   `fork` button > `create a new fork`. This creates a copy of the repository in
   your own GitHub repository. Next, you have to `clone` your copy to your PC,
   see the next point.
-- To be able to push your changes back to a GitHub repository to which you *do*
-  have writing access (e.g., to work on your project from another PC; or to
-  work on a fork you created in the step above), you have to clone the GitHub
+- To be able to push your changes back to a GitHub repository to which you
+  **do** have writing access (e.g., to work on your project from another PC; or
+  to work on a fork you created in the step above), you have to clone the GitHub
   repository to your PC: use the green `Code` button in the repository (if you
   forked a repository, you need the `Code` button of your fork, not of the
   original repository), copy the
-  URL to the clipboard (i.e., do *not* use `download ZIP`), create a new R
+  URL to the clipboard (i.e., do **not** use `download ZIP`), create a new R
   project in RStudio (`File` > `New Project` > `Version control` > `Git`), paste
-  the repository URL (something like `https://github.com/<username>/<reposname>`)
-  in the designated field, select the desired location on your PC, and create
-  the project. The same repository URL can be used when using shell commands to
+  the repository URL (`https://github.com/<username>/<reposname>`) in the
+  designated field, select the desired location on your PC, and create the
+  project. The same repository URL can be used when using shell commands to
   clone a repository, either with its complete history by using
   `git clone https://github.com/<username>/<reposname>` or with only the last
   commit by using `git clone --depth=1 https://github.com/<username>/<reposname>`.
@@ -244,9 +245,13 @@ In addition to section [Using GitHub] above, see:
 
 - Branches: GitHub documentation about [branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches) and https://learngitbranching.js.org/
 
-- Cloning (clones) and forking (forks) a repository: GitHub documentation about [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) and [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) and the section [Fork and clone](https://happygitwithr.com/fork-and-clone) from
-  [Happy Git and GitHub for the useR](https://happygitwithr.com/);
-- GitHub documentation about [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+- Cloning (clones) and forking (forks) a repository: GitHub documentation about
+  [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) and
+  [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)
+  and the section [Fork and clone](https://happygitwithr.com/fork-and-clone)
+  from [Happy Git and GitHub for the useR](https://happygitwithr.com/);
+- GitHub documentation about
+  [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 
 ## Common shell commands

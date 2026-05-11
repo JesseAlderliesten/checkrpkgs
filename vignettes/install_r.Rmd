@@ -44,36 +44,31 @@ Note that R is *not* required to read R-scripts: R-scripts are plain-text files
 that can be read by applications such as Microsoft NotePad.
 
 ### Configuring R
-R can be configured by changing [general options](../help/options),
-[environment variables](../help/environment%20variables), and options for
-[startup](../help/Startup), [installing packages](../help/install.packages), and
-[library paths](../help/.libPaths).
+R can be configured to be a bit stricter, described in the help files for
+general options (`help(options)`) and environment variables
+(`help("environment variables")`):
 
-Configuring R can be used to made R a bit stricter, described in the help files
-for [options](../help/options) and
-[environment variables](../help/environment%20variables):
-
-- Warn in case of [partial matching](../help/pmatch) such as `list(mean = 3)$me`:
-  `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`. The default is `FALSE` for each of these.
-- Error instead of warn when calling [a:b](../help/colon) when numeric `a` or `b`
-  is longer than one, such as `3:c(5, 7)` (introduced in R 4.3.0):
+- Warn in case of partial matching (`help(pmatch)`) such as `list(mean = 3)$me`:
+  `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
+  The default is `FALSE` for each of these.
+- Error instead of warn when calling `a:b` when numeric `a` or `b` is longer
+  than one, such as `3:c(5, 7)` (introduced in R 4.3.0):
   `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
-- Error instead of silently using only the first element in
-  [logical operations](../help/Logic) such as `c(TRUE, TRUE) && TRUE)`
-  (introduced in R 3.6.0, no longer used since R 4.3.0 because there calling `&&`
-  or `||` with length larger than one always gives an error):
+- Error instead of silently using only the first element in logical operations
+  (`help(Logic, package = base)`) such as `c(TRUE, TRUE) && TRUE)` (introduced
+  in R 3.6.0, no longer used since R 4.3.0 because there calling `&&` or `||`
+  with length larger than one always gives an error):
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
-- Error instead of warn if a [condition](../help/Control) has length larger than
-  one, such as `if(3 < c(5, 7)) {print("Not OK")}` (introduced in R 3.y.z, no
-  longer used since R 4.2.0 because there conditions with length larger than one
-  always give an error): `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
-- Print warnings [warnings](../help/warning) immediately as they occur:
-  `options(warn = 1)`. The default is `options(warn = 0)` to warn after the
-  top-level function returns.
-- Make [warnings](../help/warning) an [error](../help/stop): `options(warn = 2)`.
-  This should only be used for debugging because it may trigger bugs and
-  resource leaks (per its help-page). The default is `options(warn = 0)` to warn
-  after the top-level function returns.
+- Error instead of warn if a condition (`help(Control, package = base)`) has
+  length larger than one, such as `if(3 < c(5, 7)) {print("Not OK")}`
+  (introduced in R 3.y.z, no longer used since R 4.2.0 because there conditions
+  with length larger than one always give an error):
+  `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
+- Print `warnings` immediately as they occur (`options(warn = 1)`) or make
+  `warnings` an error (`help(stop)`): `options(warn = 2)`. The latter should
+  only be used for debugging because it may trigger bugs and resource leaks (per
+  its help-page). The default is `options(warn = 0)` to warn after the top-level
+  function returns.
 - Enter the [environment browser](../help/browser) upon error (default:
   `options(error = NULL)`): `options(error = browser)`; press `Q` or `Escape` to
   quit the browser mode; press `c` to continue code.
@@ -81,47 +76,50 @@ for [options](../help/options) and
 In addition, various packages contain ways to make R stricter:
 
 - Package [strict](https://github.com/hadley/strict/) warns about various unsafe
-  practices, such as the behaviour of [sample()](../help/sample) and
-  [diag()](../help/diag) if called with an
-  argument of length one and type-unsafe [sapply()](../help/sapply); additional
-  ideas are in the [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
+  practices, such as the behaviour of `sample()` and `diag()` if called with an
+  argument of length one and type-unsafe `sapply()`; additional ideas are in the
+  GitHub [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
 - Package [conflicted](https://CRAN.R-project.org/package=conflicted) avoids
-  silent [conflict](../help/conflicts) resolution (i.e., choosing the latest
-  attached package out of multiple packages to use a function from), and provides
-  `conflicts_prefer(<pkgname>::<funcname>)` to declare preferences once.
+  silent conflict resolution (i.e., choosing the latest attached package out of
+  multiple packages to use a function from; see `help("conflict")`), and
+  provides `conflicts_prefer(<pkgname>::<funcname>)` to declare preferences once.
+
+Finally, options for startup (described in `help("Startup")`) and installing
+packages (see `help("install.packages()")` and `help(".libPaths")`) can be used
+to configure R but can also lead to code that behaves different on PCs where
+these options are not set, such that they, for example, do not automatically
+load a package or add a path to the search path.
 
 ### Information about R
 Several variables and functions provide information about R and the current R
 session:
 
-- [.Machine](../help/.Machine) and [Sys.info()](../help/Sys.info) provide
-  information about the machine and platform R is running on.
-  [getRversion()](../help/R.Version) provides the version of the running R.
-- [.Platform](../help/.Platform) and [R.Version()](../help/R.Version) provide
-  information about the platform R was built on.
-- [Sys.getlocale()](../help/Sys.getlocale) provides details about the locale.
-- [sessionInfo()](../help/sessionInfo) extracts parts of the information
-  provided by the functions mentioned above about the operating system and R. It
-  also lists attached and loaded packages. Its printing method can be used to
-  print additional information about the used locale, time zone, and random
-  number generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
-- [capabilities()](../help/capabilities) and
-  [extSoftVersion()](../help/extSoftVersion) provide details about external
+- `.Machine` and `Sys.info()` provide information about the machine and platform
+  R is running on. `getRversion()` provides the version of the running R.
+- `.Platform` and `R.Version()` provide information about the platform R was
+  built on.
+- `Sys.getlocale()` provides details about the locale.
+- `sessionInfo()` extracts parts of the information provided by the functions
+  mentioned above about the operating system and R. It also lists attached and
+  loaded packages. Its printing method can be used to print additional
+  information about the used locale, time zone, and random number generation:
+  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+- `capabilities()` and `extSoftVersion()` provide details about external
   software that can be used with R.
-- [environment variables](../help/environment%20variables) lists some of the
-  environment variables which affect an R session.
+- The help page on environment variables (`help("environment variables")`) lists
+  some of the environment variables which affect an R session.
 
 How operating systems identify themselves and their versions can be arcane, and
 specifically Windows versions might report older versions than the versions that
-are actually installed (see the section `osVersion` in
-[sessionInfo()](../help/sessionInfo) and the `Note` in
-[win.version()](../help/win.version)).
+are actually installed (see the section `osVersion` in `help(sessionInfo())` and
+the `Note` in `help(win.version())`.
 
 
 ## RStudio
 [RStudio](https://posit.co/products/open-source/rstudio) is an
 [integrated development environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
-for R that can be downloaded [here](https://posit.co/download/rstudio-desktop/).
+for R that can be downloaded from
+[posit](https://posit.co/download/rstudio-desktop/).
 
 RStudio can also be used to read and modify plain-text files.
 
@@ -190,9 +188,9 @@ current versions of packages from
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/), download
 the version appropriate for the installed version of R (see the output of
-[getRversion()](../help/R.Version)) from [CRAN](https://cran.r-project.org/)
-via `Download R for Windows` > `Rtools` > `RTools X.Y` and set it up using the
-instructions given there. See also the 
+`getRversion()`) from [CRAN](https://cran.r-project.org/) via
+`Download R for Windows` > `Rtools` > `RTools X.Y` and set it up using the
+instructions given there. See also the
 [HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.6.html) by Tomas
 Kalibera. Alternatively, `pkgbuild::check_build_tools(debug = TRUE)` can be used
 to check and install Rtools.
@@ -203,7 +201,7 @@ to check and install Rtools.
   [bugzilla](https://bugs.r-project.org/)
 - CRAN [homepage](https://cran.r-project.org/)
 - R [FAQs](https://cran.r-project.org/faqs.html)
-- R help: from inside R through [help.start()](../help/help.start) or online via
+- R help: from inside R through `help.start()`] or online via
   https://cran.r-project.org/search.html
 - R [homepage](https://www.r-project.org/)
 - R [mailing lists](https://www.r-project.org/mail.html) with a web interface
