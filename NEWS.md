@@ -1,5 +1,9 @@
+# checkrpkgs 0.7.2
+- One test of `get_details_pkgs()` now uses `progutils::create_tempdir()`.
+
+
 # checkrpkgs 0.7.1
-- Added function `create_pkg_stub`.
+- Added function `create_pkg_stub()`.
 
 
 # checkrpkgs 0.7.0
