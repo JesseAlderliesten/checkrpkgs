@@ -101,10 +101,10 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 \code{\link[tools:CRAN_check_details]{tools::CRAN_check_details()}} and \code{\link[tools:CRAN_check_issues]{tools::CRAN_check_issues()}} on the current
 check status of CRAN packages.
 
-\link[utils:available.packages]{utils::available.packages}\verb{(fields = NULL, repos = }\code{\link[BiocManager:repositories]{BiocManager::repositories()}}\verb{)}
+\link[utils:available.packages]{utils::available.packages}\verb{(fields = NULL, repos = BiocManager::repositories())}
 for information about packages available from
 \href{https://bioconductor.org/packages/release/BiocViews.html}{BioConductor}, and
-\code{\link[BiocManager:available]{BiocManager::available()}} for their names.
+\code{BiocManager::available()} for their names.
 
 \link{check_pkgs}, with information on obtaining dependencies in its help-page.
 

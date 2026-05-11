@@ -53,10 +53,10 @@
 #' [tools::CRAN_check_details()] and [tools::CRAN_check_issues()] on the current
 #' check status of CRAN packages.
 #'
-#' [utils::available.packages]`(fields = NULL, repos = `[BiocManager::repositories()]`)`
+#' [utils::available.packages]`(fields = NULL, repos = BiocManager::repositories())`
 #' for information about packages available from
 #' [BioConductor](https://bioconductor.org/packages/release/BiocViews.html), and
-#' [BiocManager::available()] for their names.
+#' `BiocManager::available()` for their names.
 #'
 #' [check_pkgs], with information on obtaining dependencies in its help-page.
 #'
