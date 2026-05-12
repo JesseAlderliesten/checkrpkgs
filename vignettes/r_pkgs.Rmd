@@ -1,11 +1,11 @@
 ---
-title: "Instructions about R packages"
+title: "R packages"
 output:
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 4
 vignette: >
-  %\VignetteIndexEntry{Instructions about R packages}
+  %\VignetteIndexEntry{R packages}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -35,7 +35,7 @@ In this vignette, calls to functions are frequently written in the form
 used and, through the brackets, that a function is indicated. In normal code,
 one would use `library(<pkgname>)` followed by `<funcname>()`. For example, in
 this vignette the notation `utils::citation()` is used to show how to cite R,
-indicating that the function `citation` is defined in
+indicating that the function `citation()` is defined in
 package `utils`. In normal code, one would use `library(utils)` followed by
 `citation()` where that is needed.
 
@@ -60,9 +60,9 @@ option is set during the installation of R.
 ### Installing packages
 To install a package, run R or RStudio as administrator: right-click on the R or
 RStudio icon and select `Run as administrator`. Packages can be obtained from
-several websites, called 'repositories' (see below). After installing a package,
-you need to run `library(<pkgname>)` to be able to use the functions of that
-package.
+several websites, called 'repositories', such as `CRAN`, `BioConductor`, and
+`GitHub`, as discussed in the next sections. After installing a package, you
+need to run `library(<pkgname>)` to be able to use the functions of that package.
 
 #### CRAN
 The [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN) is the
@@ -169,7 +169,7 @@ Examples of other repositories for R packages are:
   [collections](https://ropensci.org/packages/)
 - [R universe](https://r-universe.dev/search) with an
   [overview](https://r-universe.dev/datasets) of
-  [datasets](../help/data) included in R packages
+  [datasets][utils::data()] included in R packages
 
 The websites of these repositories include instructions how to install packages
 from them, and repositories can be selected using `utils::setRepositories()`.
@@ -200,14 +200,13 @@ available from within R through `utils::getCRANmirrors()`, can be selected using
 `utils::chooseCRANmirror()`. However, RStudio
 [uses](https://docs.posit.co/ide/user/ide/guide/environments/r/packages.html#primary-repository)
 the [RStudio CRAN mirror](https://cran.rstudio.com) with its own global
-distribution, see `getOption("repos")`.
+distribution, which is signalled by the message
+`'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details`.
 
 Bioconductor [mirrors](https://bioconductor.org/about/mirrors/), with information
 about their [status](https://bioconductor.org/dashboard/#mirror_status), can be
-selected using `BiocManager::repositories()` or `utils::chooseBioCmirror()`. In
-RStudio, the RStudio CRAN mirror is used (see above), which is signalled by the
-message
-`'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details`.
+selected using `BiocManager::repositories()` or `utils::chooseBioCmirror()`,
+although the RStudio CRAN mirror is used in RStudio (see the preceding paragraph).
 
 ### Updating packages
 Updating out-of-date packages prevents compatibility issues between
@@ -306,7 +305,7 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   asked (in a new window), accompanied by the remark
   `There are binary versions available but the source versions are later` and an
   overview in the console of the binary and source versions indicating if these
-  need compilation, you should choose `No` if you have *not* installed
+  need compilation, you should choose `No` if you have **not** installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/): you will then get
   slightly less up to date package versions but a faster installation.
   
@@ -461,7 +460,7 @@ Partly based on:
   [RNews 6(4):43-45](https://journal.r-project.org/articles/RN-2006-035/).
 - A [community answer](https://stackoverflow.com/a/19226817) from
   [StackOverflow](https://stackoverflow.com/).
-- The help page for [utils::methods()](../help/methods).
+- The help page for `utils::methods()`.
 
 ### Repositories
 The source code of the base R packages, for the development, current, and older
@@ -505,7 +504,7 @@ Some special cases:
 - For non-exported functions, specify the package followed by three colons:
   `<pkgname>:::<funcname>` (using only two colons, will result in the error
   `'<funcname>' is not an exported object from 'namespace:<pkgname>'`.
-  Non-exported functions should *not* be used in code because they might change.
+  Non-exported functions should **not** be used in code because they might change.
 - For operators such as `%in%` (see `help("match")` which start with a symbol,
   use backticks (`) around the name:
   
@@ -564,12 +563,12 @@ getAnywhere("mean.default")
 #### standardGeneric
 If `getAnywhere("<funcname>")` returns `standardGeneric("<funcname>")`, the
 function has different S4-methods (see
-`help(topic = "Introduction", package = "methods")`) for different object
+`help("Introduction", package = "methods")`) for different object
 classes. Use `showMethods("<funcname>")` to get an overview of the available
 methods in all **loaded** packages, or use `<pkgname>:::<funcname>` to get an
 overview of the available methods from package `<pkgname>`. Finally, provide the
 function name as argument `f` and the selected method as a character vector to
-argument `signature` (see also `help(signature)`) of function `getMethod()` to
+argument `signature` (see also `help("signature")`) of function `getMethod()` to
 obtain the source code of a particular method:
 `getMethod(f = "<funcname>", signature = c(target = "<classname>", current = "<classname>"))`.
 
@@ -661,5 +660,5 @@ folder of the downloaded code.
   *Installing R, Rtools and RStudio*:  
   `vignette("install_r", package = "checkrpkgs")`
 - Section [Troubleshooting] above
-- The help-page `help(checkrpkgs::check_pkgs())`
+- The documentation in `help("check_pkgs", package = "checkrpkgs")`
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)

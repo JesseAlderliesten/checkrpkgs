@@ -3,4 +3,17 @@ template:
   bootstrap: 5
   light-switch: true
 
+home:
+  sidebar:
+    structure: [toc, links, license, community, citation, authors, dev]
 
+articles:
+- title: Articles
+  navbar: ~
+  contents:
+  - install_r
+  - r_pkgs
+  - git_github
+
+toc:
+  depth: 3

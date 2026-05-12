@@ -1,3 +1,12 @@
+# checkrpkgs 0.8.1
+
+### Miscellaneous
+- Vignette `Instructions about R packages`: shorten name to `R packages`.
+- Vignette `Using Git and GitHub`: add section on GitHub Actions.
+- Website: show table of contents on homepage. Show more levels in the table of
+  contents in Articles.
+
+
 # checkrpkgs 0.8.0
 
 ### Miscellaneous

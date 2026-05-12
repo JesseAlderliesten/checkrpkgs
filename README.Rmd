@@ -61,7 +61,7 @@ The main content of `checkrpkgs` consists of vignettes:
   instructions on installing and configuring [R](https://www.r-project.org/),
   [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
-- [Instructions about R packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
+- [R packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
   `vignette("r_pkgs", package = "checkrpkgs")`.
   This vignette contains information on installing and getting information about
   R packages. It also explains how to obtain the source code of R functions.

@@ -25,10 +25,10 @@ usually code, can be stored). Git and GitHub are frequently used together.
 
 Files on your PC are called 'local', whereas files on GitHub are called 'remote'.
 In addition, a folder on your PC (e.g.,
-`"C:\Program Files\R\R-4.6.0\library\checkrpkgs"`) is usually called a
+`C:\Program Files\R\R-4.6.0\library\checkrpkgs`) is usually called a
 'directory', whereas a folder on GitHub (e.g., 
-`"https://github.com/JesseAlderliesten/checkrpkgs"`) is usually called a
-'repository'.
+[https://github.com/JesseAlderliesten/checkrpkgs](https://github.com/JesseAlderliesten/checkrpkgs))
+is usually called a 'repository'.
 
 In this vignette, text between angled brackets (`<...>`) is used to refer to
 text that should be replaced with specific text to get working code or working
@@ -36,8 +36,9 @@ file paths. For example, `<username>` and `<repositoryname>` are used as place
 holders to refer to a username and repository name: `<username>` and
 `<repositoryname>` in `https://github.com/<username>/<repositoryname>` should be
 replaced with `JesseAlderliesten` and `checkrpkgs`, respectively, to obtain the
-URL `https://github.com/JesseAlderliesten/checkrpkgs` referring to the GitHub
-repository of this package.
+URL
+[https://github.com/JesseAlderliesten/checkrpkgs](https://github.com/JesseAlderliesten/checkrpkgs)
+referring to the GitHub repository of this package.
 
 
 ## Setting up Git and GitHub
@@ -230,8 +231,8 @@ There are several ways to get code from a `GitHub` repository to your PC:
 ### Installing a package from GitHub
 The following code can be used to install packages from
 [GitHub](https://github.com/) (for details see the section
-'R packages > Installing packages > Github' in the vignette
-*Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")`):
+'R packages > Installing packages > Github' in the vignette *R packages*:
+`vignette("r_pkgs", package = "checkrpkgs")`):
 
 ```{r, eval = FALSE}
 remotes::install_github(repo = pkgs_new[basename(pkgs_new) != pkgs_new],
@@ -252,6 +253,11 @@ In addition to section [Using GitHub] above, see:
   from [Happy Git and GitHub for the useR](https://happygitwithr.com/);
 - GitHub documentation about
   [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+
+
+## GitHub Actions
+See the section `Use GitHub Actions` in the vignette *Package setup* from
+package `develcoder`: `vignette("pkg_setup", package = "develcoder")`.
 
 
 ## Common shell commands
