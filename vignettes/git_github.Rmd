@@ -231,8 +231,8 @@ There are several ways to get code from a `GitHub` repository to your PC:
 ### Installing a package from GitHub
 The following code can be used to install packages from
 [GitHub](https://github.com/) (for details see the section
-'R packages > Installing packages > Github' in the vignette
-*Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")`):
+'R packages > Installing packages > Github' in the vignette *R packages*:
+`vignette("r_pkgs", package = "checkrpkgs")`):
 
 ```{r, eval = FALSE}
 remotes::install_github(repo = pkgs_new[basename(pkgs_new) != pkgs_new],

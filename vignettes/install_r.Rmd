@@ -180,10 +180,9 @@ and to build R packages from source: packages from [GitHub](https://github.com/)
 and **older** versions of packages from 
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
-(see the section 'Installing packages' in the vignette
-*Instructions about R packages* for instructions:
-`vignette("r_pkgs", package = "checkrpkgs")`). Rtools is **not** needed to
-install current versions of packages from
+(see the section 'Installing packages' in the vignette *R packages* for
+instructions: `vignette("r_pkgs", package = "checkrpkgs")`). Rtools is **not**
+needed to install current versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/) on Windows.
 
@@ -221,7 +220,7 @@ to check and install Rtools.
 
 ### For developers
 - CRAN mirrors: see the section 'Other repositories and mirrors' in the vignette
-  *Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")` 
+  *R packages*: `vignette("r_pkgs", package = "checkrpkgs")` 
 - R [developer page](https://developer.r-project.org/)
 - R [development guide](https://contributor.r-project.org/rdevguide/) from the
   [R Contribution Working Group](https://contributor.r-project.org/)

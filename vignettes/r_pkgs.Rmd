@@ -1,11 +1,11 @@
 ---
-title: "Instructions about R packages"
+title: "R packages"
 output:
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 4
 vignette: >
-  %\VignetteIndexEntry{Instructions about R packages}
+  %\VignetteIndexEntry{R packages}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
