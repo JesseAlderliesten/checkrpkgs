@@ -59,18 +59,16 @@ variables
   used since R 4.2.0 because there conditions with length larger than
   one always give an error):
   `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
-- Print `warnings` immediately as they occur (`options(warn = 1)`) or
-  make `warnings` an error
+- Print [`warnings()`](https://rdrr.io/r/base/warnings.html) immediately
+  as they occur (`options(warn = 1)`) or make `warnings` an error
   ([`help(stop)`](https://rdrr.io/r/base/stop.html)):
   `options(warn = 2)`. The latter should only be used for debugging
   because it may trigger bugs and resource leaks (per its help-page).
   The default is `options(warn = 0)` to warn after the top-level
   function returns.
-- Enter the [environment
-  browser](https://jessealderliesten.github.io/checkrpkgs/help/browser)
-  upon error (default: `options(error = NULL)`):
-  `options(error = browser)`; press `Q` or `Escape` to quit the browser
-  mode; press `c` to continue code.
+- Enter the \[environment browser\]\[browser()\] upon error (default:
+  `options(error = NULL)`): `options(error = browser)`; press `Q` or
+  `Escape` to quit the browser mode; press `c` to continue code.
 
 In addition, various packages contain ways to make R stricter:
 
@@ -90,10 +88,11 @@ In addition, various packages contain ways to make R stricter:
 
 Finally, options for startup (described in
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html)) and installing
-packages (see `help("install.packages()")` and
-[`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)) can be used
-to configure R but can also lead to code that behaves different on PCs
-where these options are not set, such that they, for example, do not
+packages (see
+[`help(install.packages)`](https://rdrr.io/r/utils/install.packages.html)
+and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)) can be
+used to configure R but can also lead to code that behaves different on
+PCs where these options are not set, such that they, for example, do not
 automatically load a package or add a path to the search path.
 
 ### Information about R
@@ -101,12 +100,16 @@ automatically load a package or add a path to the search path.
 Several variables and functions provide information about R and the
 current R session:
 
-- `.Machine` and [`Sys.info()`](https://rdrr.io/r/base/Sys.info.html)
-  provide information about the machine and platform R is running on.
+- `.Machine` (see
+  [`help(".Machine")`](https://rdrr.io/r/base/zMachine.html)) and
+  [`Sys.info()`](https://rdrr.io/r/base/Sys.info.html) provide
+  information about the machine and platform R is running on.
   [`getRversion()`](https://rdrr.io/r/base/numeric_version.html)
   provides the version of the running R.
-- `.Platform` and [`R.Version()`](https://rdrr.io/r/base/Version.html)
-  provide information about the platform R was built on.
+- `.Platform` (see
+  [`help(".Platform")`](https://rdrr.io/r/base/Platform.html)) and
+  [`R.Version()`](https://rdrr.io/r/base/Version.html) provide
+  information about the platform R was built on.
 - [`Sys.getlocale()`](https://rdrr.io/r/base/locales.html) provides
   details about the locale.
 - [`sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) extracts
@@ -125,8 +128,9 @@ current R session:
 How operating systems identify themselves and their versions can be
 arcane, and specifically Windows versions might report older versions
 than the versions that are actually installed (see the section
-`osVersion` in `help(sessionInfo())` and the `Note` in
-`help(win.version())`.
+`osVersion` in
+[`help(sessionInfo)`](https://rdrr.io/r/utils/sessionInfo.html) and the
+`Note` in [`help(win.version)`](https://rdrr.io/r/utils/winextras.html).
 
 ## RStudio
 
@@ -134,14 +138,14 @@ than the versions that are actually installed (see the section
 [integrated development
 environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
 for R that can be downloaded from
-[posit](https://posit.co/download/rstudio-desktop/).
+[Posit](https://posit.co/download/rstudio-desktop/).
 
 RStudio can also be used to read and modify plain-text files.
 
 ### Configuring RStudio
 
 After installing RStudio, start RStudio, go to `Tools` \>
-`Global Options` \> `General` to *de*select the option
+`Global Options` \> `General` to **de**select the option
 `Restore .RData into workspace at startup` and set the option
 `Save workspace to .RData on exit` to `Never` to make work portable.
 
@@ -157,7 +161,7 @@ usually fixes that without the need to actually reset the shortcuts.
 
 The appearance of code can be changed at `Tools` \> `Global options` \>
 `Appearance`. The default `Editor theme` is the light `Textmate`,
-another nice light `Editor theme` is `Xcode`. Nice dark `Editor theme`s
+another nice light `Editor theme` is `Xcode`. Nice dark `Editor themes`
 are `Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`, with
 `Editor fonts` `Consolas`, `Cacadia Mono Light`, or `Lucida Console`.
 
@@ -192,17 +196,17 @@ case used in the string):
 
 ## Rtools
 
-[Rtools](https://cran.r-project.org/bin/windows/Rtools/) is *not* an R
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/) is **not** an R
 package but software used to build R [from
 source](https://cran.r-project.org/sources.html) and to build R packages
-from source: packages from [GitHub](https://github.com/) and *older*
+from source: packages from [GitHub](https://github.com/) and **older**
 versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
 (see the section ‘Installing packages’ in the vignette *Instructions
 about R packages* for instructions:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
-Rtools is *not* needed to install current versions of packages from
+Rtools is **not** needed to install current versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/) on Windows.
 
@@ -225,7 +229,7 @@ install Rtools.
 - CRAN [homepage](https://cran.r-project.org/)
 - R [FAQs](https://cran.r-project.org/faqs.html)
 - R help: from inside R through
-  [`help.start()`](https://rdrr.io/r/utils/help.start.html)\] or online
+  [`help.start()`](https://rdrr.io/r/utils/help.start.html) or online
   via <https://cran.r-project.org/search.html>
 - R [homepage](https://www.r-project.org/)
 - R [mailing lists](https://www.r-project.org/mail.html) with a web

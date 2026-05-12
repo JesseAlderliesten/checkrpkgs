@@ -21,8 +21,9 @@ through the brackets, that a function is indicated. In normal code, one
 would use `library(<pkgname>)` followed by `<funcname>()`. For example,
 in this vignette the notation
 [`utils::citation()`](https://rdrr.io/r/utils/citation.html) is used to
-show how to cite R, indicating that the function `citation` is defined
-in package `utils`. In normal code, one would use
+show how to cite R, indicating that the function
+[`citation()`](https://rdrr.io/r/utils/citation.html) is defined in
+package `utils`. In normal code, one would use
 [`library(utils)`](https://rdrr.io/r/base/library.html) followed by
 [`citation()`](https://rdrr.io/r/utils/citation.html) where that is
 needed.
@@ -52,7 +53,8 @@ installed if that option is set during the installation of R.
 
 To install a package, run R or RStudio as administrator: right-click on
 the R or RStudio icon and select `Run as administrator`. Packages can be
-obtained from several websites, called ‘repositories’ (see below). After
+obtained from several websites, called ‘repositories’, such as `CRAN`,
+`BioConductor`, and `GitHub`, as discussed in the next sections. After
 installing a package, you need to run `library(<pkgname>)` to be able to
 use the functions of that package.
 
@@ -174,8 +176,7 @@ Examples of other repositories for R packages are:
   [collections](https://ropensci.org/packages/)
 - [R universe](https://r-universe.dev/search) with an
   [overview](https://r-universe.dev/datasets) of
-  [datasets](https://jessealderliesten.github.io/checkrpkgs/help/data)
-  included in R packages
+  \[datasets\]\[utils::data()\] included in R packages
 
 The websites of these repositories include instructions how to install
 packages from them, and repositories can be selected using
@@ -341,7 +342,7 @@ Bioconductor, e.g.,
   `There are binary versions available but the source versions are later`
   and an overview in the console of the binary and source versions
   indicating if these need compilation, you should choose `No` if you
-  have *not* installed
+  have **not** installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/): you will
   then get slightly less up to date package versions but a faster
   installation.
@@ -528,7 +529,7 @@ Partly based on:
 - A [community answer](https://stackoverflow.com/a/19226817) from
   [StackOverflow](https://stackoverflow.com/).
 - The help page for
-  [utils::methods()](https://jessealderliesten.github.io/checkrpkgs/help/methods).
+  [`utils::methods()`](https://rdrr.io/r/utils/methods.html).
 
 ### Repositories
 
@@ -575,7 +576,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55d9928c3890>
+#> <bytecode: 0x55816c1f5cf8>
 #> <environment: namespace:stats>
 ```
 
@@ -587,8 +588,8 @@ Some special cases:
   colons: `<pkgname>:::<funcname>` (using only two colons, will result
   in the error
   `'<funcname>' is not an exported object from 'namespace:<pkgname>'`.
-  Non-exported functions should *not* be used in code because they might
-  change.
+  Non-exported functions should **not** be used in code because they
+  might change.
 - For operators such as `%in%` (see
   [`help("match")`](https://rdrr.io/r/base/match.html) which start with
   a symbol, use backticks (\`) around the name:
@@ -598,7 +599,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55d990d87d00>
+#> <bytecode: 0x55816a6bcd00>
 #> <environment: namespace:base>
 ```
 
@@ -641,7 +642,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55d99305d3f8>
+#> <bytecode: 0x55816c9923f8>
 #> <environment: namespace:base>
 ```
 
@@ -671,7 +672,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55d9949fd930>
+#> <bytecode: 0x55816dd342b0>
 #> <environment: namespace:base>
 ```
 
@@ -713,7 +714,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55d9949fcf20>
+#> <bytecode: 0x55816dd376d0>
 #> <environment: namespace:base>
 ```
 
@@ -755,8 +756,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55d9928e6208>
-#> <environment: 0x55d991694428>
+#> <bytecode: 0x55816c21ada8>
+#> <environment: 0x55816afc9428>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -802,7 +803,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55d994cefbf8>
+#> <bytecode: 0x55816e020370>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -891,5 +892,5 @@ and searching in the `src` folder of the downloaded code.
   and RStudio*:  
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)
 - Section [Troubleshooting](#troubleshooting) above
-- The help-page `help(checkrpkgs::check_pkgs())`
+- The documentation in `help("checkrpkgs::check_pkgs")`
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)

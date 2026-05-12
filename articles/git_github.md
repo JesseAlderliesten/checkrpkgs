@@ -9,9 +9,9 @@ used together.
 
 Files on your PC are called ‘local’, whereas files on GitHub are called
 ‘remote’. In addition, a folder on your PC (e.g.,
-`"C:\Program Files\R\R-4.6.0\library\checkrpkgs"`) is usually called a
+`C:\Program Files\R\R-4.6.0\library\checkrpkgs`) is usually called a
 ‘directory’, whereas a folder on GitHub (e.g.,
-`"https://github.com/JesseAlderliesten/checkrpkgs"`) is usually called a
+<https://github.com/JesseAlderliesten/checkrpkgs>) is usually called a
 ‘repository’.
 
 In this vignette, text between angled brackets (`<...>`) is used to
@@ -21,7 +21,7 @@ code or working file paths. For example, `<username>` and
 repository name: `<username>` and `<repositoryname>` in
 `https://github.com/<username>/<repositoryname>` should be replaced with
 `JesseAlderliesten` and `checkrpkgs`, respectively, to obtain the URL
-`https://github.com/JesseAlderliesten/checkrpkgs` referring to the
+<https://github.com/JesseAlderliesten/checkrpkgs> referring to the
 GitHub repository of this package.
 
 ## Setting up Git and GitHub

@@ -33,9 +33,9 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/git_github.html">Using Git and GitHub</a></li>
-    <li><a class="dropdown-item" href="../articles/install_r.html">Installing R, Rtools and RStudio</a></li>
+<li><a class="dropdown-item" href="../articles/install_r.html">Installing R, Rtools and RStudio</a></li>
     <li><a class="dropdown-item" href="../articles/r_pkgs.html">Instructions about R packages</a></li>
+    <li><a class="dropdown-item" href="../articles/git_github.html">Using Git and GitHub</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -69,7 +69,7 @@
       <h1>Instructions about R packages</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/master/vignettes/r_pkgs.Rmd" class="external-link"><code>vignettes/r_pkgs.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/devel/vignettes/r_pkgs.Rmd" class="external-link"><code>vignettes/r_pkgs.Rmd</code></a></small>
       <div class="d-none name"><code>r_pkgs.Rmd</code></div>
     </div>
 
@@ -98,8 +98,8 @@ indicated. In normal code, one would use
 <code>library(&lt;pkgname&gt;)</code> followed by
 <code>&lt;funcname&gt;()</code>. For example, in this vignette the
 notation <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> is used to show how to cite R,
-indicating that the function <code>citation</code> is defined in package
-<code>utils</code>. In normal code, one would use
+indicating that the function <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation()</a></code> is defined in
+package <code>utils</code>. In normal code, one would use
 <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(utils)</a></code> followed by <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation()</a></code> where
 that is needed.</p>
 </div>
@@ -124,10 +124,11 @@ installed if that option is set during the installation of R.</p>
 </h3>
 <p>To install a package, run R or RStudio as administrator: right-click
 on the R or RStudio icon and select <code>Run as administrator</code>.
-Packages can be obtained from several websites, called ‘repositories’
-(see below). After installing a package, you need to run
-<code>library(&lt;pkgname&gt;)</code> to be able to use the functions of
-that package.</p>
+Packages can be obtained from several websites, called ‘repositories’,
+such as <code>CRAN</code>, <code>BioConductor</code>, and
+<code>GitHub</code>, as discussed in the next sections. After installing
+a package, you need to run <code>library(&lt;pkgname&gt;)</code> to be
+able to use the functions of that package.</p>
 <div class="section level4">
 <h4 id="cran">CRAN<a class="anchor" aria-label="anchor" href="#cran"></a>
 </h4>
@@ -233,7 +234,8 @@ with thematic package <a href="https://r-multiverse.org/topics/" class="external
 thematic package <a href="https://ropensci.org/packages/" class="external-link">collections</a>
 </li>
 <li>
-<a href="https://r-universe.dev/search" class="external-link">R universe</a> with an <a href="https://r-universe.dev/datasets" class="external-link">overview</a> of <a href="../help/data">datasets</a> included in R packages</li>
+<a href="https://r-universe.dev/search" class="external-link">R universe</a> with an <a href="https://r-universe.dev/datasets" class="external-link">overview</a> of
+[datasets][utils::data()] included in R packages</li>
 </ul>
 <p>The websites of these repositories include instructions how to
 install packages from them, and repositories can be selected using
@@ -376,7 +378,7 @@ is asked (in a new window), accompanied by the remark
 <code>There are binary versions available but the source versions are later</code>
 and an overview in the console of the binary and source versions
 indicating if these need compilation, you should choose <code>No</code>
-if you have <em>not</em> installed <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>: you
+if you have <strong>not</strong> installed <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>: you
 will then get slightly less up to date package versions but a faster
 installation.</p>
 <p>If you want the latest version without using Rtools, you can try
@@ -573,7 +575,7 @@ Source</a>.</li>
 6(4):43-45</a>.</li>
 <li>A <a href="https://stackoverflow.com/a/19226817" class="external-link">community
 answer</a> from <a href="https://stackoverflow.com/" class="external-link">StackOverflow</a>.</li>
-<li>The help page for <a href="../help/methods">utils::methods()</a>.</li>
+<li>The help page for <code><a href="https://rdrr.io/r/utils/methods.html" class="external-link">utils::methods()</a></code>.</li>
 </ul>
 </div>
 <div class="section level3">
@@ -612,7 +614,7 @@ the name of the function, <em>without</em> the brackets, and press
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55d9928c3890&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55816c1f5cf8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
@@ -623,8 +625,8 @@ specify the package followed by two colons:
 colons: <code>&lt;pkgname&gt;:::&lt;funcname&gt;</code> (using only two
 colons, will result in the error
 <code>'&lt;funcname&gt;' is not an exported object from 'namespace:&lt;pkgname&gt;'</code>.
-Non-exported functions should <em>not</em> be used in code because they
-might change.</li>
+Non-exported functions should <strong>not</strong> be used in code
+because they might change.</li>
 <li>For operators such as <code>%in%</code> (see
 <code><a href="https://rdrr.io/r/base/match.html" class="external-link">help("match")</a></code> which start with a symbol, use backticks (`)
 around the name:</li>
@@ -633,7 +635,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55d990d87d00&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55816a6bcd00&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -677,7 +679,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55d99305d3f8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55816c9923f8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -702,7 +704,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55d9949fd930&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55816dd342b0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>Or use <code>getAnywhere("mean.default")</code> to see the source
 code of the method <code>mean</code> used with objects of classes not
@@ -740,7 +742,7 @@ listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55d9949fcf20&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55816dd376d0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -781,8 +783,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55d9928e6208&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55d991694428&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55816c21ada8&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55816afc9428&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -828,7 +830,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55d994cefbf8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55816e020370&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
@@ -920,7 +922,8 @@ section about installing packages)</li>
 Rtools and RStudio</em>:<br><code><a href="../articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>
 </li>
 <li>Section <a href="#troubleshooting">Troubleshooting</a> above</li>
-<li>The help-page <code>help(checkrpkgs::check_pkgs())</code>
+<li>The documentation in
+<code>help("checkrpkgs::check_pkgs")</code>
 </li>
 <li>The book <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You
 About R</a>

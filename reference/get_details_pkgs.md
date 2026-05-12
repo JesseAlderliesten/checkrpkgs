@@ -247,8 +247,8 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #> checkinput "checkinput" "0.6.2" NA    
 #> checkrpkgs "checkrpkgs" "0.8.0" NA    
 #>            Built                                      Priority
-#> checkinput "R 4.6.0; ; 2026-05-11 17:11:01 UTC; unix" NA      
-#> checkrpkgs "R 4.6.0; ; 2026-05-11 17:11:04 UTC; unix" NA      
+#> checkinput "R 4.6.0; ; 2026-05-12 06:18:06 UTC; unix" NA      
+#> checkrpkgs "R 4.6.0; ; 2026-05-12 06:18:08 UTC; unix" NA      
 #>            LibPath                           Repository Additional_repositories
 #> checkinput "/home/runner/work/_temp/Library" "Github"   NA                     
 #> checkrpkgs "/home/runner/work/_temp/Library" "Github"   NA                     
