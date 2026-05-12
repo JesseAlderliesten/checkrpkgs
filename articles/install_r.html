@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/install_r.html">Installing R, Rtools and RStudio</a></li>
-    <li><a class="dropdown-item" href="../articles/r_pkgs.html">Instructions about R packages</a></li>
+    <li><a class="dropdown-item" href="../articles/r_pkgs.html">R packages</a></li>
     <li><a class="dropdown-item" href="../articles/git_github.html">Using Git and GitHub</a></li>
   </ul>
 </li>
@@ -69,7 +69,7 @@
       <h1>Installing R, Rtools and RStudio</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/devel/vignettes/install_r.Rmd" class="external-link"><code>vignettes/install_r.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/master/vignettes/install_r.Rmd" class="external-link"><code>vignettes/install_r.Rmd</code></a></small>
       <div class="d-none name"><code>install_r.Rmd</code></div>
     </div>
 
@@ -99,18 +99,18 @@ a website with the same content as the <a href="https://cran.r-project.org/" cla
 <code>Download R for Windows</code> &gt; <code>base</code> &gt;
 <code>Download R-X.Y.Z for Windows</code> and install it by opening the
 downloaded .exe-file.</p>
-<p>Note that R is <em>not</em> required to read R-scripts: R-scripts are
-plain-text files that can be read by applications such as Microsoft
-NotePad.</p>
+<p>Note that R is <strong>not</strong> required to read R-scripts:
+R-scripts are plain-text files that can be read by applications such as
+Microsoft NotePad.</p>
 <div class="section level3">
 <h3 id="configuring-r">Configuring R<a class="anchor" aria-label="anchor" href="#configuring-r"></a>
 </h3>
 <p>R can be configured to be a bit stricter, described in the help files
-for general options (<code><a href="https://rdrr.io/r/base/options.html" class="external-link">help(options)</a></code>) and environment
+for general options (<code><a href="https://rdrr.io/r/base/options.html" class="external-link">help("options")</a></code>) and environment
 variables (<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>):</p>
 <ul>
-<li>Warn in case of partial matching (<code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">help(pmatch)</a></code>) such as
-<code>list(mean = 3)$me</code>:
+<li>Warn in case of partial matching (<code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">help("pmatch")</a></code>) such
+as <code>list(mean = 3)$me</code>:
 <code>options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)</code>.
 The default is <code>FALSE</code> for each of these.</li>
 <li>Error instead of warn when calling <code>a:b</code> when numeric
@@ -118,20 +118,20 @@ The default is <code>FALSE</code> for each of these.</li>
 <code>3:c(5, 7)</code> (introduced in R 4.3.0):
 <code>Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")</code>.</li>
 <li>Error instead of silently using only the first element in logical
-operations (<code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">help(Logic, package = base)</a></code>) such as
+operations (<code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">help("Logic", package = "base")</a></code>) such as
 <code>c(TRUE, TRUE) &amp;&amp; TRUE)</code> (introduced in R 3.6.0, no
 longer used since R 4.3.0 because there calling <code>&amp;&amp;</code>
 or <code>||</code> with length larger than one always gives an error):
 <code>Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")</code>.</li>
 <li>Error instead of warn if a condition
-(<code><a href="https://rdrr.io/r/base/Control.html" class="external-link">help(Control, package = base)</a></code>) has length larger than one,
-such as <code>if(3 &lt; c(5, 7)) {print("Not OK")}</code> (introduced in
-R 3.y.z, no longer used since R 4.2.0 because there conditions with
-length larger than one always give an error):
+(<code><a href="https://rdrr.io/r/base/Control.html" class="external-link">help("Control", package = "base")</a></code>) has length larger than
+one, such as <code>if(3 &lt; c(5, 7)) {print("Not OK")}</code>
+(introduced in R 3.y.z, no longer used since R 4.2.0 because there
+conditions with length larger than one always give an error):
 <code>Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")</code>.</li>
 <li>Print <code><a href="https://rdrr.io/r/base/warnings.html" class="external-link">warnings()</a></code> immediately as they occur
 (<code>options(warn = 1)</code>) or make <code>warnings</code> an error
-(<code><a href="https://rdrr.io/r/base/stop.html" class="external-link">help(stop)</a></code>): <code>options(warn = 2)</code>. The latter
+(<code><a href="https://rdrr.io/r/base/stop.html" class="external-link">help("stop")</a></code>): <code>options(warn = 2)</code>. The latter
 should only be used for debugging because it may trigger bugs and
 resource leaks (per its help-page). The default is
 <code>options(warn = 0)</code> to warn after the top-level function
@@ -158,11 +158,11 @@ declare preferences once.</li>
 </ul>
 <p>Finally, options for startup (described in
 <code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code>) and installing packages (see
-<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help(install.packages)</a></code> and <code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>)
-can be used to configure R but can also lead to code that behaves
-different on PCs where these options are not set, such that they, for
-example, do not automatically load a package or add a path to the search
-path.</p>
+<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages")</a></code> and
+<code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>) can be used to configure R but can also
+lead to code that behaves different on PCs where these options are not
+set, such that they, for example, do not automatically load a package or
+add a path to the search path.</p>
 </div>
 <div class="section level3">
 <h3 id="information-about-r">Information about R<a class="anchor" aria-label="anchor" href="#information-about-r"></a>
@@ -198,8 +198,8 @@ environment variables which affect an R session.</li>
 <p>How operating systems identify themselves and their versions can be
 arcane, and specifically Windows versions might report older versions
 than the versions that are actually installed (see the section
-<code>osVersion</code> in <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help(sessionInfo)</a></code> and the
-<code>Note</code> in <code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help(win.version)</a></code>.</p>
+<code>osVersion</code> in <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo")</a></code> and the
+<code>Note</code> in <code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version")</a></code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -271,8 +271,8 @@ lower U, lower VEE, lower VEE, lower double-U</li>
 is <strong>not</strong> an R package but software used to build R <a href="https://cran.r-project.org/sources.html" class="external-link">from source</a> and to
 build R packages from source: packages from <a href="https://github.com/" class="external-link">GitHub</a> and <strong>older</strong>
 versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">Bioconductor</a>
-(see the section ‘Installing packages’ in the vignette <em>Instructions
-about R packages</em> for instructions:
+(see the section ‘Installing packages’ in the vignette <em>R
+packages</em> for instructions:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>). Rtools is
 <strong>not</strong> needed to install current versions of packages from
 <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or
@@ -333,7 +333,7 @@ About R</a>
 </h3>
 <ul>
 <li>CRAN mirrors: see the section ‘Other repositories and mirrors’ in
-the vignette <em>Instructions about R packages</em>:
+the vignette <em>R packages</em>:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>
 </li>
 <li>R <a href="https://developer.r-project.org/" class="external-link">developer page</a>

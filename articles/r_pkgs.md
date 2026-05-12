@@ -1,4 +1,4 @@
-# Instructions about R packages
+# R packages
 
 ## Introduction and notation
 
@@ -213,7 +213,8 @@ can be selected using
 However, RStudio
 [uses](https://docs.posit.co/ide/user/ide/guide/environments/r/packages.html#primary-repository)
 the [RStudio CRAN mirror](https://cran.rstudio.com) with its own global
-distribution, see `getOption("repos")`.
+distribution, which is signalled by the message
+`'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details`.
 
 Bioconductor [mirrors](https://bioconductor.org/about/mirrors/), with
 information about their
@@ -221,10 +222,9 @@ information about their
 selected using
 [`BiocManager::repositories()`](https://bioconductor.github.io/BiocManager/reference/repositories.html)
 or
-[`utils::chooseBioCmirror()`](https://rdrr.io/r/utils/chooseBioCmirror.html).
-In RStudio, the RStudio CRAN mirror is used (see above), which is
-signalled by the message
-`'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details`.
+[`utils::chooseBioCmirror()`](https://rdrr.io/r/utils/chooseBioCmirror.html),
+although the RStudio CRAN mirror is used in RStudio (see the preceding
+paragraph).
 
 ### Updating packages
 
@@ -576,7 +576,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55816c1f5cf8>
+#> <bytecode: 0x55e490f6aac0>
 #> <environment: namespace:stats>
 ```
 
@@ -599,7 +599,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55816a6bcd00>
+#> <bytecode: 0x55e48f430d00>
 #> <environment: namespace:base>
 ```
 
@@ -642,7 +642,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55816c9923f8>
+#> <bytecode: 0x55e4917063f8>
 #> <environment: namespace:base>
 ```
 
@@ -672,7 +672,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55816dd342b0>
+#> <bytecode: 0x55e492ac0da0>
 #> <environment: namespace:base>
 ```
 
@@ -714,7 +714,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55816dd376d0>
+#> <bytecode: 0x55e492ac0390>
 #> <environment: namespace:base>
 ```
 
@@ -722,15 +722,15 @@ getAnywhere("mean.default")
 
 If `getAnywhere("<funcname>")` returns `standardGeneric("<funcname>")`,
 the function has different S4-methods (see
-[`help(topic = "Introduction", package = "methods")`](https://rdrr.io/r/methods/Introduction.html))
+[`help("Introduction", package = "methods")`](https://rdrr.io/r/methods/Introduction.html))
 for different object classes. Use `showMethods("<funcname>")` to get an
 overview of the available methods in all **loaded** packages, or use
 `<pkgname>:::<funcname>` to get an overview of the available methods
 from package `<pkgname>`. Finally, provide the function name as argument
 `f` and the selected method as a character vector to argument
 `signature` (see also
-[`help(signature)`](https://rdrr.io/r/methods/GenericFunctions.html)) of
-function [`getMethod()`](https://rdrr.io/r/methods/getMethod.html) to
+[`help("signature")`](https://rdrr.io/r/methods/GenericFunctions.html))
+of function [`getMethod()`](https://rdrr.io/r/methods/getMethod.html) to
 obtain the source code of a particular method:
 `getMethod(f = "<funcname>", signature = c(target = "<classname>", current = "<classname>"))`.
 
@@ -756,8 +756,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55816c21ada8>
-#> <environment: 0x55816afc9428>
+#> <bytecode: 0x55e490f8e750>
+#> <environment: 0x55e48fd3d428>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -803,7 +803,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55816e020370>
+#> <bytecode: 0x55e492daa530>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -892,5 +892,6 @@ and searching in the `src` folder of the downloaded code.
   and RStudio*:  
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)
 - Section [Troubleshooting](#troubleshooting) above
-- The documentation in `help("checkrpkgs::check_pkgs")`
+- The documentation in
+  [`help("check_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)

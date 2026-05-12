@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Instructions about R packages • checkrpkgs</title>
+<title>R packages • checkrpkgs</title>
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Instructions about R packages">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="R packages">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/install_r.html">Installing R, Rtools and RStudio</a></li>
-    <li><a class="dropdown-item" href="../articles/r_pkgs.html">Instructions about R packages</a></li>
+    <li><a class="dropdown-item" href="../articles/r_pkgs.html">R packages</a></li>
     <li><a class="dropdown-item" href="../articles/git_github.html">Using Git and GitHub</a></li>
   </ul>
 </li>
@@ -66,10 +66,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Instructions about R packages</h1>
+      <h1>R packages</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/devel/vignettes/r_pkgs.Rmd" class="external-link"><code>vignettes/r_pkgs.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/master/vignettes/r_pkgs.Rmd" class="external-link"><code>vignettes/r_pkgs.Rmd</code></a></small>
       <div class="d-none name"><code>r_pkgs.Rmd</code></div>
     </div>
 
@@ -261,13 +261,13 @@ also available from within R through
 <code><a href="https://rdrr.io/r/utils/chooseCRANmirror.html" class="external-link">utils::getCRANmirrors()</a></code>, can be selected using
 <code><a href="https://rdrr.io/r/utils/chooseCRANmirror.html" class="external-link">utils::chooseCRANmirror()</a></code>. However, RStudio <a href="https://docs.posit.co/ide/user/ide/guide/environments/r/packages.html#primary-repository" class="external-link">uses</a>
 the <a href="https://cran.rstudio.com" class="external-link">RStudio CRAN mirror</a> with its
-own global distribution, see <code>getOption("repos")</code>.</p>
+own global distribution, which is signalled by the message
+<code>'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details</code>.</p>
 <p>Bioconductor <a href="https://bioconductor.org/about/mirrors/" class="external-link">mirrors</a>, with
 information about their <a href="https://bioconductor.org/dashboard/#mirror_status" class="external-link">status</a>, can
 be selected using <code><a href="https://bioconductor.github.io/BiocManager/reference/repositories.html" class="external-link">BiocManager::repositories()</a></code> or
-<code><a href="https://rdrr.io/r/utils/chooseBioCmirror.html" class="external-link">utils::chooseBioCmirror()</a></code>. In RStudio, the RStudio CRAN
-mirror is used (see above), which is signalled by the message
-<code>'getOption("repos")' replaces Bioconductor standard repositories, see 'help("repositories", package = "BiocManager")' for details</code>.</p>
+<code><a href="https://rdrr.io/r/utils/chooseBioCmirror.html" class="external-link">utils::chooseBioCmirror()</a></code>, although the RStudio CRAN mirror
+is used in RStudio (see the preceding paragraph).</p>
 </div>
 </div>
 <div class="section level3">
@@ -614,7 +614,7 @@ the name of the function, <em>without</em> the brackets, and press
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55816c1f5cf8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e490f6aac0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
@@ -635,7 +635,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55816a6bcd00&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e48f430d00&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -679,7 +679,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55816c9923f8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e4917063f8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -704,7 +704,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55816dd342b0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e492ac0da0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>Or use <code>getAnywhere("mean.default")</code> to see the source
 code of the method <code>mean</code> used with objects of classes not
@@ -742,7 +742,7 @@ listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55816dd376d0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e492ac0390&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -751,17 +751,16 @@ listed in the output of <code>methods("mean")</code>:</p>
 <p>If <code>getAnywhere("&lt;funcname&gt;")</code> returns
 <code>standardGeneric("&lt;funcname&gt;")</code>, the function has
 different S4-methods (see
-<code><a href="https://rdrr.io/r/methods/Introduction.html" class="external-link">help(topic = "Introduction", package = "methods")</a></code>) for
-different object classes. Use
-<code>showMethods("&lt;funcname&gt;")</code> to get an overview of the
-available methods in all <strong>loaded</strong> packages, or use
-<code>&lt;pkgname&gt;:::&lt;funcname&gt;</code> to get an overview of
-the available methods from package <code>&lt;pkgname&gt;</code>.
-Finally, provide the function name as argument <code>f</code> and the
-selected method as a character vector to argument <code>signature</code>
-(see also <code><a href="https://rdrr.io/r/methods/GenericFunctions.html" class="external-link">help(signature)</a></code>) of function
-<code><a href="https://rdrr.io/r/methods/getMethod.html" class="external-link">getMethod()</a></code> to obtain the source code of a particular
-method:
+<code><a href="https://rdrr.io/r/methods/Introduction.html" class="external-link">help("Introduction", package = "methods")</a></code>) for different
+object classes. Use <code>showMethods("&lt;funcname&gt;")</code> to get
+an overview of the available methods in all <strong>loaded</strong>
+packages, or use <code>&lt;pkgname&gt;:::&lt;funcname&gt;</code> to get
+an overview of the available methods from package
+<code>&lt;pkgname&gt;</code>. Finally, provide the function name as
+argument <code>f</code> and the selected method as a character vector to
+argument <code>signature</code> (see also
+<code><a href="https://rdrr.io/r/methods/GenericFunctions.html" class="external-link">help("signature")</a></code>) of function <code><a href="https://rdrr.io/r/methods/getMethod.html" class="external-link">getMethod()</a></code> to
+obtain the source code of a particular method:
 <code>getMethod(f = "&lt;funcname&gt;", signature = c(target = "&lt;classname&gt;", current = "&lt;classname&gt;"))</code>.</p>
 <p>The example below shows how to find the source code of method
 <code><a href="https://rdrr.io/r/methods/cbind2.html" class="external-link">cbind2()</a></code> used by the <code>Matrix</code> package to combine
@@ -783,8 +782,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55816c21ada8&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55816afc9428&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e490f8e750&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55e48fd3d428&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -830,7 +829,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55816e020370&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e492daa530&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
@@ -923,7 +922,7 @@ Rtools and RStudio</em>:<br><code><a href="../articles/install_r.html">vignette(
 </li>
 <li>Section <a href="#troubleshooting">Troubleshooting</a> above</li>
 <li>The documentation in
-<code>help("checkrpkgs::check_pkgs")</code>
+<code><a href="../reference/check_pkgs.html">help("check_pkgs", package = "checkrpkgs")</a></code>
 </li>
 <li>The book <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You
 About R</a>

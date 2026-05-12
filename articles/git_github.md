@@ -244,8 +244,7 @@ PC:
 
 The following code can be used to install packages from
 [GitHub](https://github.com/) (for details see the section ‘R packages
-\> Installing packages \> Github’ in the vignette *Instructions about R
-packages*:
+\> Installing packages \> Github’ in the vignette *R packages*:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)):
 
 ``` r
@@ -275,6 +274,12 @@ In addition to section [Using GitHub](#using-github) above, see:
 
 - GitHub documentation about [pull
   requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+
+## GitHub Actions
+
+See the section `Use GitHub Actions` in the vignette *Package setup*
+from package `develcoder`:
+`vignette("pkg_setup", package = "develcoder")`.
 
 ## Common shell commands
 

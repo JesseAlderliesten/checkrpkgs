@@ -25,7 +25,7 @@ download R via `Download R for Windows` \> `base` \>
 `Download R-X.Y.Z for Windows` and install it by opening the downloaded
 .exe-file.
 
-Note that R is *not* required to read R-scripts: R-scripts are
+Note that R is **not** required to read R-scripts: R-scripts are
 plain-text files that can be read by applications such as Microsoft
 NotePad.
 
@@ -33,12 +33,12 @@ NotePad.
 
 R can be configured to be a bit stricter, described in the help files
 for general options
-([`help(options)`](https://rdrr.io/r/base/options.html)) and environment
-variables
+([`help("options")`](https://rdrr.io/r/base/options.html)) and
+environment variables
 ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html)):
 
 - Warn in case of partial matching
-  ([`help(pmatch)`](https://rdrr.io/r/base/pmatch.html)) such as
+  ([`help("pmatch")`](https://rdrr.io/r/base/pmatch.html)) such as
   `list(mean = 3)$me`:
   `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
   The default is `FALSE` for each of these.
@@ -47,13 +47,13 @@ variables
   `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
 - Error instead of silently using only the first element in logical
   operations
-  ([`help(Logic, package = base)`](https://rdrr.io/r/base/Logic.html))
+  ([`help("Logic", package = "base")`](https://rdrr.io/r/base/Logic.html))
   such as `c(TRUE, TRUE) && TRUE)` (introduced in R 3.6.0, no longer
   used since R 4.3.0 because there calling `&&` or `||` with length
   larger than one always gives an error):
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
 - Error instead of warn if a condition
-  ([`help(Control, package = base)`](https://rdrr.io/r/base/Control.html))
+  ([`help("Control", package = "base")`](https://rdrr.io/r/base/Control.html))
   has length larger than one, such as
   `if(3 < c(5, 7)) {print("Not OK")}` (introduced in R 3.y.z, no longer
   used since R 4.2.0 because there conditions with length larger than
@@ -61,7 +61,7 @@ variables
   `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
 - Print [`warnings()`](https://rdrr.io/r/base/warnings.html) immediately
   as they occur (`options(warn = 1)`) or make `warnings` an error
-  ([`help(stop)`](https://rdrr.io/r/base/stop.html)):
+  ([`help("stop")`](https://rdrr.io/r/base/stop.html)):
   `options(warn = 2)`. The latter should only be used for debugging
   because it may trigger bugs and resource leaks (per its help-page).
   The default is `options(warn = 0)` to warn after the top-level
@@ -89,7 +89,7 @@ In addition, various packages contain ways to make R stricter:
 Finally, options for startup (described in
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html)) and installing
 packages (see
-[`help(install.packages)`](https://rdrr.io/r/utils/install.packages.html)
+[`help("install.packages")`](https://rdrr.io/r/utils/install.packages.html)
 and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)) can be
 used to configure R but can also lead to code that behaves different on
 PCs where these options are not set, such that they, for example, do not
@@ -129,8 +129,9 @@ How operating systems identify themselves and their versions can be
 arcane, and specifically Windows versions might report older versions
 than the versions that are actually installed (see the section
 `osVersion` in
-[`help(sessionInfo)`](https://rdrr.io/r/utils/sessionInfo.html) and the
-`Note` in [`help(win.version)`](https://rdrr.io/r/utils/winextras.html).
+[`help("sessionInfo")`](https://rdrr.io/r/utils/sessionInfo.html) and
+the `Note` in
+[`help("win.version")`](https://rdrr.io/r/utils/winextras.html).
 
 ## RStudio
 
@@ -203,8 +204,8 @@ from source: packages from [GitHub](https://github.com/) and **older**
 versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
-(see the section ‘Installing packages’ in the vignette *Instructions
-about R packages* for instructions:
+(see the section ‘Installing packages’ in the vignette *R packages* for
+instructions:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 Rtools is **not** needed to install current versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) or
@@ -253,7 +254,7 @@ install Rtools.
 ### For developers
 
 - CRAN mirrors: see the section ‘Other repositories and mirrors’ in the
-  vignette *Instructions about R packages*:
+  vignette *R packages*:
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)
 - R [developer page](https://developer.r-project.org/)
 - R [development guide](https://contributor.r-project.org/rdevguide/)

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/install_r.html">Installing R, Rtools and RStudio</a></li>
-    <li><a class="dropdown-item" href="../articles/r_pkgs.html">Instructions about R packages</a></li>
+    <li><a class="dropdown-item" href="../articles/r_pkgs.html">R packages</a></li>
     <li><a class="dropdown-item" href="../articles/git_github.html">Using Git and GitHub</a></li>
   </ul>
 </li>
@@ -69,7 +69,7 @@
       <h1>Using Git and GitHub</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/devel/vignettes/git_github.Rmd" class="external-link"><code>vignettes/git_github.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/master/vignettes/git_github.Rmd" class="external-link"><code>vignettes/git_github.Rmd</code></a></small>
       <div class="d-none name"><code>git_github.Rmd</code></div>
     </div>
 
@@ -331,8 +331,8 @@ repository).</li>
 <h3 id="installing-a-package-from-github">Installing a package from GitHub<a class="anchor" aria-label="anchor" href="#installing-a-package-from-github"></a>
 </h3>
 <p>The following code can be used to install packages from <a href="https://github.com/" class="external-link">GitHub</a> (for details see the section ‘R
-packages &gt; Installing packages &gt; Github’ in the vignette
-<em>Instructions about R packages</em>:
+packages &gt; Installing packages &gt; Github’ in the vignette <em>R
+packages</em>:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="va">pkgs_new</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">pkgs_new</span><span class="op">)</span> <span class="op">!=</span> <span class="va">pkgs_new</span><span class="op">]</span>,</span>
@@ -358,6 +358,13 @@ GitHub for the useR</a>;</p></li>
 requests</a></p></li>
 </ul>
 </div>
+</div>
+<div class="section level2">
+<h2 id="github-actions">GitHub Actions<a class="anchor" aria-label="anchor" href="#github-actions"></a>
+</h2>
+<p>See the section <code>Use GitHub Actions</code> in the vignette
+<em>Package setup</em> from package <code>develcoder</code>:
+<code>vignette("pkg_setup", package = "develcoder")</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="common-shell-commands">Common shell commands<a class="anchor" aria-label="anchor" href="#common-shell-commands"></a>
