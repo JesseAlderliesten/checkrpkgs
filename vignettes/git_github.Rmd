@@ -255,6 +255,11 @@ In addition to section [Using GitHub] above, see:
   [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 
+## GitHub Actions
+See the section `Use GitHub Actions` in the vignette *Package setup* from
+package `develcoder`: `vignette("pkg_setup", package = "develcoder")`.
+
+
 ## Common shell commands
 For an overview of [shell](https://happygitwithr.com/shell) commands, see the
 documentation of [Git SCM](https://git-scm.com/docs), the section about the
