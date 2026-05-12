@@ -3,4 +3,10 @@ template:
   bootstrap: 5
   light-switch: true
 
-
+articles:
+- title: Articles
+  navbar: ~
+  contents:
+  - install_r
+  - r_pkgs
+  - git_github
