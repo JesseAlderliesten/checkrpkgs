@@ -7,14 +7,14 @@ This vignette contains instructions on installing and configuring
 [RStudio](https://posit.co/products/open-source/rstudio), and
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
 
-In this vignette, text between angled brackets (`<...>`) is used to
-refer to text that should be replaced with specific text to get working
-code. For example, `<pkgname>` is used as a place holder to refer to a
-package name and should be replaced with `utils` if you want to obtain
-information about package `utils`, and with `methods` if you want to
-obtain information about package `methods`. Similarly, `<funcname>` is
-used as a place holder to refer to a function name that should be filled
-in with a specific function name to get working code.
+Text between angled brackets (`<...>`) is used to refer to text that
+should be replaced with specific text to get working code. For example,
+`<pkg>` is used as a place holder to refer to a package name and should
+be replaced with `utils` if you want to obtain information about package
+`utils`, and with `methods` if you want to obtain information about
+package `methods`. Similarly, `<func>` is used as a place holder to
+refer to a function name that should be filled in with a specific
+function name to get working code.
 
 ## R
 
@@ -23,7 +23,7 @@ To install [R](https://www.r-project.org/), visit a nearby CRAN
 the same content as the [main](https://cran.r-project.org/) CRAN page),
 download R via `Download R for Windows` \> `base` \>
 `Download R-X.Y.Z for Windows` and install it by opening the downloaded
-.exe-file.
+`.exe` file.
 
 Note that R is **not** required to read R-scripts: R-scripts are
 plain-text files that can be read by applications such as Microsoft
@@ -66,7 +66,7 @@ environment variables
   because it may trigger bugs and resource leaks (per its help-page).
   The default is `options(warn = 0)` to warn after the top-level
   function returns.
-- Enter the \[environment browser\]\[browser()\] upon error (default:
+- Enter the environment browser (help(“browser”)) upon error (default:
   `options(error = NULL)`): `options(error = browser)`; press `Q` or
   `Escape` to quit the browser mode; press `c` to continue code.
 
@@ -83,17 +83,18 @@ In addition, various packages contain ways to make R stricter:
 - Package [conflicted](https://CRAN.R-project.org/package=conflicted)
   avoids silent conflict resolution (i.e., choosing the latest attached
   package out of multiple packages to use a function from; see
-  `help("conflict")`), and provides
-  `conflicts_prefer(<pkgname>::<funcname>)` to declare preferences once.
+  `help("conflict")`), and provides `conflicts_prefer(<pkg>::<func>)` to
+  declare preferences.
 
-Finally, options for startup (described in
+Finally, when using options for start-up (described in
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html)) and installing
-packages (see
-[`help("install.packages")`](https://rdrr.io/r/utils/install.packages.html)
-and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)) can be
-used to configure R but can also lead to code that behaves different on
-PCs where these options are not set, such that they, for example, do not
-automatically load a package or add a path to the search path.
+packages
+([`help("install.packages")`](https://rdrr.io/r/utils/install.packages.html)
+and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)) to
+configure R, it should be kept in mind that these options might lead to
+code that behaves different on PCs where these options are not set, for
+example when they do not automatically load a package or add a path to
+the search path.
 
 ### Information about R
 
@@ -125,9 +126,9 @@ current R session:
   ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
   lists some of the environment variables which affect an R session.
 
-How operating systems identify themselves and their versions can be
-arcane, and specifically Windows versions might report older versions
-than the versions that are actually installed (see the section
+Operating systems might identify themselves and their versions in
+surprising ways, and specifically Windows versions might report older
+versions than the versions that are actually installed (see the section
 `osVersion` in
 [`help("sessionInfo")`](https://rdrr.io/r/utils/sessionInfo.html) and
 the `Note` in
@@ -146,9 +147,11 @@ RStudio can also be used to read and modify plain-text files.
 ### Configuring RStudio
 
 After installing RStudio, start RStudio, go to `Tools` \>
-`Global Options` \> `General` to **de**select the option
+`Global Options` \> `General` to **deselect** the option
 `Restore .RData into workspace at startup` and set the option
-`Save workspace to .RData on exit` to `Never` to make work portable.
+`Save workspace to .RData on exit` to `Never` to make work portable
+(i.e., make sure that R does not use information or data that is not
+present on another PC).
 
 The version of RStudio to use can be selected at `Tools` \>
 `Global Options` \> `General` \> `R version`.
@@ -161,10 +164,11 @@ keyboard shortcuts. Going to `Tools` \> `Modify Keyboard Shortcuts`
 usually fixes that without the need to actually reset the shortcuts.
 
 The appearance of code can be changed at `Tools` \> `Global options` \>
-`Appearance`. The default `Editor theme` is the light `Textmate`,
-another nice light `Editor theme` is `Xcode`. Nice dark `Editor themes`
-are `Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`, with
-`Editor fonts` `Consolas`, `Cacadia Mono Light`, or `Lucida Console`.
+`Appearance`. The default `Editor theme` is the light `Textmate`. Other
+nice editor themes are the light `Xcode` and the dark
+`Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`. Nice
+`Editor fonts` are `Consolas`, `Cacadia Mono Light`, and
+`Lucida Console`.
 
 To check that characters in a typeface or font can be properly
 distinguished from each other when choosing a font, for example using
@@ -248,8 +252,9 @@ install Rtools.
 - [search engines](https://cran.r-project.org/search.html) specific for
   R;
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the
-  r-tag
-- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+  `r` tag
+- The website [What They Forgot to Teach You About
+  R](https://rstats.wtf/)
 
 ### For developers
 
@@ -262,3 +267,5 @@ install Rtools.
   Group](https://contributor.r-project.org/)
 - R [news
   (devel)](https://cran.r-project.org/doc/manuals/r-devel/NEWS.html)
+- My package
+  [develcoder](https://jessealderliesten.github.io/develcoder/)

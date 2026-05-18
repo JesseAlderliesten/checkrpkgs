@@ -6,20 +6,20 @@ This vignette contains information on installing and getting information
 about R packages. It also explains how to obtain the source code of R
 functions.
 
-In this vignette, text between angled brackets (`<...>`) is used to
-refer to text that should be replaced with specific text to get working
-code or working file paths. For example, `<pkgname>` is used as a place
-holder to refer to a package name and should be replaced with `utils` if
-you want to obtain information about package `utils`, and with `methods`
-if you want to obtain information about package `methods`. Similarly,
-`<funcname>` is used as a place holder to refer to a function name that
-should be filled in with a specific function name to get working code.
+Text between angled brackets (`<...>`) is used to refer to text that
+should be replaced with specific text to get working code or working
+file paths. For example, `<pkg>` is used as a place holder to refer to a
+package name and should be replaced with `utils` if you want to obtain
+information about package `utils`, and with `methods` if you want to
+obtain information about package `methods`. Similarly, `<func>` is used
+as a place holder to refer to a function name that should be filled in
+with a specific function name to get working code.
 
 In this vignette, calls to functions are frequently written in the form
-`<pkgname>::<funcname>()`, to make clear which package is used and,
-through the brackets, that a function is indicated. In normal code, one
-would use `library(<pkgname>)` followed by `<funcname>()`. For example,
-in this vignette the notation
+`<pkg>::<func>()`, to make clear which package is used and, through the
+brackets, that a function is indicated. In normal code, one would use
+`library(<pkg>)` followed by `<func>()`. For example, in this vignette
+the notation
 [`utils::citation()`](https://rdrr.io/r/utils/citation.html) is used to
 show how to cite R, indicating that the function
 [`citation()`](https://rdrr.io/r/utils/citation.html) is defined in
@@ -54,9 +54,9 @@ installed if that option is set during the installation of R.
 To install a package, run R or RStudio as administrator: right-click on
 the R or RStudio icon and select `Run as administrator`. Packages can be
 obtained from several websites, called ‘repositories’, such as `CRAN`,
-`BioConductor`, and `GitHub`, as discussed in the next sections. After
-installing a package, you need to run `library(<pkgname>)` to be able to
-use the functions of that package.
+`BioConductor`, and `GitHub`, discussed in the next sections. After
+installing a package, you need to run `library(<pkg>)` to be able to use
+the functions of that package.
 
 #### CRAN
 
@@ -66,7 +66,7 @@ The [Comprehensive R Archive Network](https://cran.r-project.org/)
 following code can be used to install packages from CRAN:
 
 ``` r
-pkgs_new <- c(<pkgname>, <pkgname>)
+pkgs_new <- c(<pkg>, <pkg>)
 # Select packages from 'pkgs_new' that are not installed or not functional
 pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
                                  FUN.VALUE = logical(1), quietly = TRUE)]
@@ -81,17 +81,18 @@ CRAN has thematic package collections known as [task
 views](https://cran.r-project.org/web/views/). To install all core
 packages of a task view, install package
 [ctv](https://CRAN.R-project.org/package=ctv) and run
-`ctv::install.views("<taskviewname>", coreOnly = TRUE)`. To update these
-packages, use `ctv::update.views("<taskviewname>", coreOnly = TRUE)`.
+`ctv::install.views("<taskview>", coreOnly = TRUE)`. To update these
+packages, use `ctv::update.views("<taskview>", coreOnly = TRUE)`.
 
 Packages from CRAN that have been recently archived are available at
 [CRANhaven](https://www.cranhaven.org/).
 
 #### BioConductor
 
-The [Bioconductor](https://bioconductor.org/) repository releases
-versions that contain specific versions of packages from
-[CRAN](https://cran.r-project.org/web/packages/index.html) and
+The [Bioconductor](https://bioconductor.org/) repository has a new
+releases every six months. Each release contains specific versions of
+packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
+and
 [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
 that are consistent with each other and with a [specific
 version](https://bioconductor.org/about/release-announcements/) of R,
@@ -107,7 +108,7 @@ packages from `Bioconductor` and `CRAN` and, through
 (see the next [section](#github)), from `GitHub`:
 
 ``` r
-pkgs_new <- c(<pkgname>, <pkgname>)
+pkgs_new <- c(<pkg>, <pkg>)
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
@@ -128,10 +129,7 @@ Bioconductor also has thematic package collections known as
 The following code can be used to install packages from
 [GitHub](https://github.com/): it installs the
 [remotes](https://CRAN.R-project.org/package=remotes) package that is
-needed to install packages from GitHub. If installing packages fails,
-trying with arguments `force = TRUE` to re-install possibly broken
-dependencies and `build_vignettes = FALSE` to not install vignettes
-might help.
+needed to install packages from GitHub.
 
 `grep(pattern = "/", x = pkgs_new, value = TRUE)` selects the elements
 of `pkgs_new` which contain a slash because
@@ -175,8 +173,8 @@ Examples of other repositories for R packages are:
 - [rOpenSci](https://ropensci.org/packages/all/) with thematic package
   [collections](https://ropensci.org/packages/)
 - [R universe](https://r-universe.dev/search) with an
-  [overview](https://r-universe.dev/datasets) of
-  \[datasets\]\[utils::data()\] included in R packages
+  [overview](https://r-universe.dev/datasets) of datasets (see
+  help(“data”, package = “utils”)) included in R packages
 
 The websites of these repositories include instructions how to install
 packages from them, and repositories can be selected using
@@ -185,8 +183,8 @@ The following code shows how to install packages from
 [R-Forge](https://r-forge.r-project.org/) as an example:
 
 ``` r
-pkgs_new <- c(<pkgname>, <pkgname>)
-# Select packages that are currently not installed or not functional
+pkgs_new <- c(<pkg>, <pkg>)
+# Select packages from 'pkgs_new' that are not installed or not functional
 pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
                                  FUN.VALUE = logical(1), quietly = TRUE)]
 if(length(pkgs_install) > 0L) {
@@ -238,7 +236,7 @@ For R packages from CRAN, versions can be compared using
 is available at
 [CRANberries](https://dirk.eddelbuettel.com/cranberries/). To get the
 version number of an installed package, run
-`utils::packageVersion("<pkgname>")`.
+`utils::packageVersion("<pkg>")`.
 
 The following code can be used to install the latest version of packages
 from [CRAN](https://cran.r-project.org/web/packages/index.html) (but
@@ -297,9 +295,9 @@ remotes::install_version(package = "deSolve", version = "1.40", dependencies = N
 ```
 
 Alternatively, visit the installation page of a package from CRAN, go to
-`Downloads` \> `Old sources` \> `<pkgname> archive` and find the
-appropriate URL pointing to an older version to install it using base R.
-For example, to install version 1.40 of package
+`Downloads` \> `Old sources` \> `<pkg> archive` and find the appropriate
+URL pointing to an older version to install it using base R. For
+example, to install version 1.40 of package
 [deSolve](https://CRAN.R-project.org/package=deSolve):
 
 ``` r
@@ -330,10 +328,10 @@ Bioconductor, e.g.,
 
 #### Installing packages
 
-- If the warnings `lib = <pkgname> is not writeable` or
+- If the warnings `lib = <pkg> is not writeable` or
   `'lib' element <element from .libPaths()> is not a writable directory`
   occur, you probably forgot to run R (or RStudio) as administrator.
-  Close R (RStudio), right-click on the R or RStudio icon and select
+  Close it, right-click on the R (or RStudio) icon and select
   `Run as administrator` to start it as administrator.
 
 - If the question
@@ -359,9 +357,8 @@ Bioconductor, e.g.,
   and RStudio*:
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
 
-- The warning
-  `package '<pkgname>' is not available (for R version x.y.z)` can have
-  many reasons. First double-check the package name (which is
+- The warning `package '<pkg>' is not available (for R version x.y.z)`
+  can have many reasons. First double-check the package name (which is
   case-sensitive). Then check possible other reasons mentioned in this
   [stackoverflow answer](https://stackoverflow.com/a/25721890/32365738).
 
@@ -373,17 +370,17 @@ Bioconductor, e.g.,
 
 - If a package appears not to be installed when you want to use a
   function from it (e.g., you get the error
-  `could not find function "<funcname>"`), remember you need to run
-  `library(<pkgname>)` to be able to use its functions.
+  `could not find function "<func>"`), remember you need to run
+  `library(<pkg>)` to be able to use its functions.
 
 - If a package is not functional, re-install it using argument
   `force = TRUE` to re-install possibly broken dependencies. You can
-  also use `checkrpkgs::get_details_pkgs(pkgs = <pkgname>)` to check
-  which dependencies and system requirements it has and then use
+  also use `checkrpkgs::get_details_pkgs(pkgs = <pkg>)` to check which
+  dependencies and system requirements it has and then use
   `checkrpkgs::check_pkgs(pkgs = <pkgnames>)` to check if all the
   dependencies are installed and functional.
 
-- If the warning `package <pkgname> was built under R version 'x.y.z'`
+- If the warning `package <pkg> was built under R version 'x.y.z'`
   occurs, you installed a binary package (i.e., not by building from
   source) that was prepared (‘compiled’) for an earlier version of R
   than the version of R you are currently using (run
@@ -417,8 +414,9 @@ expressions, which can be disabled by setting argument `agrep` to
 `FALSE` to search faster and return fewer results:
 `utils::help.search(..., agrep = FALSE)`.
 
-[`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
-gives information about packages available from
+[`utils::available.packages()`](https://rdrr.io/r/utils/available.packages.html)
+and [`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
+give information about packages available from
 [CRAN](https://cran.r-project.org/web/packages/index.html);
 [`BiocManager::available()`](https://bioconductor.github.io/BiocManager/reference/available.html)
 gives the names of packages available from
@@ -431,11 +429,10 @@ on CRAN frequently contain links to GitHub pages where their source code
 can be viewed.
 
 For (not necessarily installed) packages from CRAN, use
-`tools::package_dependencies(packages = "<pkgname>", recursive = TRUE)`
-to see dependencies (i.e., which packages are required by package
-`<pkgname>`) and
-`tools::dependsOnPkgs(pkgs = "<pkgname>", recursive = TRUE)` to see
-reverse dependencies (i.e., which packages require package `<pkgname>`).
+`tools::package_dependencies(packages = "<pkg>", recursive = TRUE)` to
+see dependencies (i.e., which packages are required by package `<pkg>`)
+and `tools::dependsOnPkgs(pkgs = "<pkg>", recursive = TRUE)` to see
+reverse dependencies (i.e., which packages require package `<pkg>`).
 `NULL` is returned for packages that are not found, whereas
 `character(0)` is returned for packages that do not have any
 dependencies.
@@ -449,53 +446,51 @@ all installed packages can be obtained with
 `list.files(path = .libPaths(), recursive = FALSE)`. The repository from
 which a package was installed can be obtained from the `Repository` and
 `URL` fields of package descriptions:
-`checkrpkgs::get_details_pkgs(pkgs = <pkgname>)`. The output of
-[`checkrpkgs::get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
-can be used to re-install packages after installing a new version of R.
+`checkrpkgs::get_details_pkgs(pkgs = <pkg>)`.
 
 Information about a package and its functions is available from within R
-after the package has been installed and loaded (i.e.,
-`library(<pkgname>)` has been run):
+after the package has been installed and loaded (i.e., `library(<pkg>)`
+has been run):
 
-- Citation: `utils::citation("<pkgname>")`, with
+- Citation: `utils::citation("<pkg>")`, with
   [`utils::citation()`](https://rdrr.io/r/utils/citation.html) to cite R
   itself.
-- Function overview: `ls(getNamespace("<pkgname>"))` returns a character
+- Function overview: `ls(getNamespace("<pkg>"))` returns a character
   vector with the function names (ignoring names that start with a dot,
   which by convention are for internal use in packages;
-  `ls(getNamespace("<pkgname>"), all.names = TRUE)` includes those
-  function names in the returned character vector);
-  [`help(package = "<pkgname>")`](https://rdrr.io/pkg/%3Cpkgname%3E/man)
-  gives an overview with links to their help-pages if there is a file
-  `<pkgname>.R` in folder `<pgkname>\R`.
-- Help page: `help(topic = "<pkgname>")`.
-- Version: `utils::packageVersion("<pkgname>")`.
+  `ls(getNamespace("<pkg>"), all.names = TRUE)` includes those function
+  names in the returned character vector);
+  [`help(package = "<pkg>")`](https://rdrr.io/pkg/%3Cpkg%3E/man) gives
+  an overview with links to their help-pages if there is a file
+  `<pkg>.R` in folder `<pkg>\R`.
+- Help page: `help(topic = "<pkg>")`.
+- Version: `utils::packageVersion("<pkg>")`.
 - Vignettes: show them in a browser through
-  `utils::browseVignettes(package = "<pkgname>")` or list them with
-  `utils::vignette(package = "<pkgname>")`.
+  `utils::browseVignettes(package = "<pkg>")` or list them with
+  `utils::vignette(package = "<pkg>")`.
 
 Information about functions, methods, and classes can also be obtained
 (see also the section [Getting the source
 code](#getting-the-source-code) below):
 
-- Arguments: `args("<funcname>")`.
-- Help page: `help("<funcname>")`; indicate the package to distinguish
+- Arguments: `args("<func>")`.
+- Help page: `help("<func>")`; indicate the package to distinguish
   functions with the same name from different packages:
-  `help("<funcname>", package = "<pkgname>")`; use quotes around the
-  name of an operator to get its help page:
+  `help("<func>", package = "<pkg>")`; use quotes around the name of an
+  operator to get its help page:
   [`help("%in%")`](https://rdrr.io/r/base/match.html).
-- Methods: for a generic class: `utils::methods(class = "<classname>")`;
-  for a generic function: `utils::methods("<funcname>")`; for
-  S3-methods: `attr(utils::methods(class = "<classname>"), "info")`; for
-  S4-methods:
-  `methods::showMethods(classes = "<classname>", where = getNamespace("<pkgname>"))`.
+- Methods: for a generic class: `utils::methods(class = "<class>")`; for
+  a generic function: `utils::methods("<func>")`; for S3-methods:
+  `attr(utils::methods(class = "<class>"), "info")`; for S4-methods:
+  `methods::showMethods(classes = "<class>", where = getNamespace("<pkg>"))`.
 - Objects (including functions) whose name contains a certain string:
   `utils::apropos("<string>")`.
 
 ### Which packages are used?
 
 The function [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html)
-shows which packages are loaded. To see which packages are used in a
+shows which packages are loaded. `getAnywhere(<pkg>)` shows in which
+package a function is defined. To see which packages are used in a
 script, look for `::`, `:::`, `library`, `require`, and `namespace`
 (e.g., [`loadNamespace()`](https://rdrr.io/r/base/ns-load.html),
 [`requireNamespace()`](https://rdrr.io/r/base/ns-load.html)). Various
@@ -533,8 +528,7 @@ Partly based on:
 
 ### Repositories
 
-The source code of the base R packages, for the development, current,
-and older versions of R, is available at
+The source code of the base R packages is available at
 [CRAN](https://cran.r-project.org/src/base/) and at the
 [SVN-project](https://svn.r-project.org/R/branches/). Searching the
 source code of the development version is easiest using the [GitHub
@@ -576,20 +570,21 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55e490f6aac0>
+#> <bytecode: 0x559d5f2a5348>
 #> <environment: namespace:stats>
 ```
 
 Some special cases:
 
 - To distinguish functions with the same name from different packages,
-  specify the package followed by two colons: `<pkgname>::<funcname>`.
+  specify the package followed by two colons: `<pkg>::<func>`.
 - For non-exported functions, specify the package followed by three
-  colons: `<pkgname>:::<funcname>` (using only two colons, will result
-  in the error
-  `'<funcname>' is not an exported object from 'namespace:<pkgname>'`.
-  Non-exported functions should **not** be used in code because they
-  might change.
+  colons: `<pkg>:::<func>` (using only two colons will result in the
+  error `'<func>' is not an exported object from 'namespace:<pkg>'`; if
+  that error appears when using three colons, you are probably looking
+  in the wrong package, use `getAnywhere(<func>)` to check in which
+  package `<func>` lives). Non-exported functions should **not** be used
+  in code because they might change.
 - For operators such as `%in%` (see
   [`help("match")`](https://rdrr.io/r/base/match.html) which start with
   a symbol, use backticks (\`) around the name:
@@ -599,34 +594,33 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55e48f430d00>
+#> <bytecode: 0x559d5d79ad00>
 #> <environment: namespace:base>
 ```
 
 ### getAnywhere
 
 A more robust alternative to the [basic method](#basic-method) outlined
-above is to use `getAnywhere("<funcname>")`, which looks in more places
-and finds internal functions without the need to specify in which
-package a function is defined. Although the quotes around the function
-name are not necessary when looking for the source code of normal
-functions, they are required when looking for the source code of
-operators such as `%in%`, such that it is most robust to always use
-them.
+above is to use `getAnywhere("<func>")`, which looks in more places and
+finds internal functions without the need to specify in which package a
+function is defined. Although the quotes around the function name are
+not necessary when looking for the source code of normal functions, they
+are required when looking for the source code of operators such as
+`%in%`, such that it is most robust to always use them.
 
 #### UseMethod
 
-If `getAnywhere("<funcname>")` returns `UseMethod("<funcname>")`, the
-function has different methods for different object classes and is
+If `getAnywhere("<func>")` returns `UseMethod("<func>")`, the function
+has different methods for different object classes and is
 [S3-generic](https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation).
-First use `methods("<funcname>")` to get an overview of the available
+First use `methods("<func>")` to get an overview of the available
 methods; then obtain the source code of a particular method by using
 `getAnywhere("<function.class>")`, where `<function.class>` is an item
-from the overview that was returned by `methods("<funcname>")`. The
+from the overview that was returned by `methods("<func>")`. The
 advantage over simply using `"<function.class>"` is that
 `getAnywhere("<function.class>")` also works for functions that are not
-exported, which is indicated in the overview of `methods(<funcname>)` by
-an asterisk and the remark `Non-visible functions are asterisked`.
+exported, which is indicated in the overview of `methods(<func>)` by an
+asterisk and the remark `Non-visible functions are asterisked`.
 
 For example, `UseMethod("mean")` in the output of `getAnywhere("mean")`
 indicates `mean` is an S3-generic:
@@ -642,7 +636,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55e4917063f8>
+#> <bytecode: 0x559d5fa703f8>
 #> <environment: namespace:base>
 ```
 
@@ -672,7 +666,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55e492ac0da0>
+#> <bytecode: 0x559d60e2e4d8>
 #> <environment: namespace:base>
 ```
 
@@ -714,25 +708,25 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55e492ac0390>
+#> <bytecode: 0x559d60e2dac8>
 #> <environment: namespace:base>
 ```
 
 #### standardGeneric
 
-If `getAnywhere("<funcname>")` returns `standardGeneric("<funcname>")`,
-the function has different S4-methods (see
+If `getAnywhere("<func>")` returns `standardGeneric("<func>")`, the
+function has different S4-methods (see
 [`help("Introduction", package = "methods")`](https://rdrr.io/r/methods/Introduction.html))
-for different object classes. Use `showMethods("<funcname>")` to get an
+for different object classes. Use `showMethods("<func>")` to get an
 overview of the available methods in all **loaded** packages, or use
-`<pkgname>:::<funcname>` to get an overview of the available methods
-from package `<pkgname>`. Finally, provide the function name as argument
-`f` and the selected method as a character vector to argument
-`signature` (see also
+`<pkg>:::<func>` to get an overview of the available methods from
+package `<pkg>`. Finally, provide the function name as argument `f` and
+the selected method as a character vector to argument `signature` (see
+also
 [`help("signature")`](https://rdrr.io/r/methods/GenericFunctions.html))
 of function [`getMethod()`](https://rdrr.io/r/methods/getMethod.html) to
 obtain the source code of a particular method:
-`getMethod(f = "<funcname>", signature = c(target = "<classname>", current = "<classname>"))`.
+`getMethod(f = "<func>", signature = c(target = "<class>", current = "<class>"))`.
 
 The example below shows how to find the source code of method
 [`cbind2()`](https://rdrr.io/r/methods/cbind2.html) used by the `Matrix`
@@ -756,8 +750,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55e490f8e750>
-#> <environment: 0x55e48fd3d428>
+#> <bytecode: 0x559d5f2f8600>
+#> <environment: 0x559d5e0a7428>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -803,7 +797,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55e492daa530>
+#> <bytecode: 0x559d61115020>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -814,7 +808,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 
 #### .Internal or .Primitive
 
-If `getAnywhere("<funcname>")` returns `.Internal` or `.Primitive`, the
+If `getAnywhere("<func>")` returns `.Internal` or `.Primitive`, the
 function is internal or primitive. The source code of such functions can
 be viewed at code [repositories](#repositories), or on your computer if
 you have installed R [from
@@ -857,9 +851,9 @@ have a similar general name. For example, the source code of
 
 #### .Call
 
-If `getAnywhere("<funcname>")` returns code that contains `.Call(...)`,
-the function contains a call to C or C++ code. Although the file
-`src/<pkgname>.h` (e.g.,
+If `getAnywhere("<func>")` returns code that contains `.Call(...)`, the
+function contains a call to C or C++ code. Although the file
+`src/<pkg>.h` (e.g.,
 [src/methods.h](https://github.com/r-devel/r-svn/blob/main/src/library/methods/src/methods.h)
 if code is from package `methods`) contains an overview of the C or C++
 code included in a package, your best bet for finding the source code is
@@ -894,4 +888,5 @@ and searching in the `src` folder of the downloaded code.
 - Section [Troubleshooting](#troubleshooting) above
 - The documentation in
   [`help("check_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
-- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+- The website [What They Forgot to Teach You About
+  R](https://rstats.wtf/)

@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>R packages • checkrpkgs</title>
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="R packages">
 </head>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,22 +81,21 @@
 <p>This vignette contains information on installing and getting
 information about R packages. It also explains how to obtain the source
 code of R functions.</p>
-<p>In this vignette, text between angled brackets
-(<code>&lt;...&gt;</code>) is used to refer to text that should be
-replaced with specific text to get working code or working file paths.
-For example, <code>&lt;pkgname&gt;</code> is used as a place holder to
-refer to a package name and should be replaced with <code>utils</code>
-if you want to obtain information about package <code>utils</code>, and
-with <code>methods</code> if you want to obtain information about
-package <code>methods</code>. Similarly, <code>&lt;funcname&gt;</code>
-is used as a place holder to refer to a function name that should be
-filled in with a specific function name to get working code.</p>
+<p>Text between angled brackets (<code>&lt;...&gt;</code>) is used to
+refer to text that should be replaced with specific text to get working
+code or working file paths. For example, <code>&lt;pkg&gt;</code> is
+used as a place holder to refer to a package name and should be replaced
+with <code>utils</code> if you want to obtain information about package
+<code>utils</code>, and with <code>methods</code> if you want to obtain
+information about package <code>methods</code>. Similarly,
+<code>&lt;func&gt;</code> is used as a place holder to refer to a
+function name that should be filled in with a specific function name to
+get working code.</p>
 <p>In this vignette, calls to functions are frequently written in the
-form <code>&lt;pkgname&gt;::&lt;funcname&gt;()</code>, to make clear
-which package is used and, through the brackets, that a function is
-indicated. In normal code, one would use
-<code>library(&lt;pkgname&gt;)</code> followed by
-<code>&lt;funcname&gt;()</code>. For example, in this vignette the
+form <code>&lt;pkg&gt;::&lt;func&gt;()</code>, to make clear which
+package is used and, through the brackets, that a function is indicated.
+In normal code, one would use <code>library(&lt;pkg&gt;)</code> followed
+by <code>&lt;func&gt;()</code>. For example, in this vignette the
 notation <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> is used to show how to cite R,
 indicating that the function <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation()</a></code> is defined in
 package <code>utils</code>. In normal code, one would use
@@ -126,16 +125,16 @@ installed if that option is set during the installation of R.</p>
 on the R or RStudio icon and select <code>Run as administrator</code>.
 Packages can be obtained from several websites, called ‘repositories’,
 such as <code>CRAN</code>, <code>BioConductor</code>, and
-<code>GitHub</code>, as discussed in the next sections. After installing
-a package, you need to run <code>library(&lt;pkgname&gt;)</code> to be
-able to use the functions of that package.</p>
+<code>GitHub</code>, discussed in the next sections. After installing a
+package, you need to run <code>library(&lt;pkg&gt;)</code> to be able to
+use the functions of that package.</p>
 <div class="section level4">
 <h4 id="cran">CRAN<a class="anchor" aria-label="anchor" href="#cran"></a>
 </h4>
 <p>The <a href="https://cran.r-project.org/" class="external-link">Comprehensive R Archive
 Network</a> (CRAN) is the main repository of R <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">packages</a>.
 The following code can be used to install packages from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>pkgs_new <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>)</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>pkgs_new <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co"># Select packages from 'pkgs_new' that are not installed or not functional</span></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>pkgs_install <span class="ot">&lt;-</span> pkgs_new[<span class="sc">!</span><span class="fu">vapply</span>(<span class="at">X =</span> pkgs_new, <span class="at">FUN =</span> requireNamespace,</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>                                 <span class="at">FUN.VALUE =</span> <span class="fu">logical</span>(<span class="dv">1</span>), <span class="at">quietly =</span> <span class="cn">TRUE</span>)]</span>
@@ -146,9 +145,9 @@ The following code can be used to install packages from CRAN:</p>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>}</span></code></pre></div>
 <p>CRAN has thematic package collections known as <a href="https://cran.r-project.org/web/views/" class="external-link">task views</a>. To install
 all core packages of a task view, install package <a href="https://CRAN.R-project.org/package=ctv" class="external-link">ctv</a> and run
-<code>ctv::install.views("&lt;taskviewname&gt;", coreOnly = TRUE)</code>.
-To update these packages, use
-<code>ctv::update.views("&lt;taskviewname&gt;", coreOnly = TRUE)</code>.</p>
+<code>ctv::install.views("&lt;taskview&gt;", coreOnly = TRUE)</code>. To
+update these packages, use
+<code>ctv::update.views("&lt;taskview&gt;", coreOnly = TRUE)</code>.</p>
 <p>Packages from CRAN that have been recently archived are available at
 <a href="https://www.cranhaven.org/" class="external-link">CRANhaven</a>.</p>
 </div>
@@ -156,7 +155,8 @@ To update these packages, use
 <h4 id="bioconductor">BioConductor<a class="anchor" aria-label="anchor" href="#bioconductor"></a>
 </h4>
 <p>The <a href="https://bioconductor.org/" class="external-link">Bioconductor</a> repository
-releases versions that contain specific versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> and
+has a new releases every six months. Each release contains specific
+versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> and
 <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">BioConductor</a>
 that are consistent with each other and with a <a href="https://bioconductor.org/about/release-announcements/" class="external-link">specific
 version</a> of R, preventing version conflicts between R packages.</p>
@@ -168,7 +168,7 @@ used to install packages from <code>Bioconductor</code> and
 <code>CRAN</code> and, through <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code>
 (see the next <a href="#github">section</a>), from
 <code>GitHub</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>pkgs_new <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>pkgs_new <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="at">pkgs =</span> <span class="st">"BiocManager"</span>, <span class="at">lib =</span> <span class="fu">.libPaths</span>(), <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
@@ -185,10 +185,7 @@ used to install packages from <code>Bioconductor</code> and
 <h4 id="github">Github<a class="anchor" aria-label="anchor" href="#github"></a>
 </h4>
 <p>The following code can be used to install packages from <a href="https://github.com/" class="external-link">GitHub</a>: it installs the <a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a> package
-that is needed to install packages from GitHub. If installing packages
-fails, trying with arguments <code>force = TRUE</code> to re-install
-possibly broken dependencies and <code>build_vignettes = FALSE</code> to
-not install vignettes might help.</p>
+that is needed to install packages from GitHub.</p>
 <p><code>grep(pattern = "/", x = pkgs_new, value = TRUE)</code> selects
 the elements of <code>pkgs_new</code> which contain a slash because
 <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github()</a></code> only works if each element of
@@ -234,15 +231,15 @@ with thematic package <a href="https://r-multiverse.org/topics/" class="external
 thematic package <a href="https://ropensci.org/packages/" class="external-link">collections</a>
 </li>
 <li>
-<a href="https://r-universe.dev/search" class="external-link">R universe</a> with an <a href="https://r-universe.dev/datasets" class="external-link">overview</a> of
-[datasets][utils::data()] included in R packages</li>
+<a href="https://r-universe.dev/search" class="external-link">R universe</a> with an <a href="https://r-universe.dev/datasets" class="external-link">overview</a> of datasets (see
+help(“data”, package = “utils”)) included in R packages</li>
 </ul>
 <p>The websites of these repositories include instructions how to
 install packages from them, and repositories can be selected using
 <code><a href="https://rdrr.io/r/utils/setRepositories.html" class="external-link">utils::setRepositories()</a></code>. The following code shows how to
 install packages from <a href="https://r-forge.r-project.org/" class="external-link">R-Forge</a> as an example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>pkgs_new <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkgname<span class="sc">&gt;</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># Select packages that are currently not installed or not functional</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>pkgs_new <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># Select packages from 'pkgs_new' that are not installed or not functional</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>pkgs_install <span class="ot">&lt;-</span> pkgs_new[<span class="sc">!</span><span class="fu">vapply</span>(<span class="at">X =</span> pkgs_new, <span class="at">FUN =</span> requireNamespace,</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                                 <span class="at">FUN.VALUE =</span> <span class="fu">logical</span>(<span class="dv">1</span>), <span class="at">quietly =</span> <span class="cn">TRUE</span>)]</span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(pkgs_install) <span class="sc">&gt;</span> <span class="dv">0</span><span class="dt">L</span>) {</span>
@@ -281,7 +278,7 @@ already-installed and newly-installed packages.</p>
 <p>For R packages from CRAN, versions can be compared using <a href="https://diffify.com/R" class="external-link">diffify</a> and a chronological overview of
 changes is available at <a href="https://dirk.eddelbuettel.com/cranberries/" class="external-link">CRANberries</a>. To
 get the version number of an installed package, run
-<code>utils::packageVersion("&lt;pkgname&gt;")</code>.</p>
+<code>utils::packageVersion("&lt;pkg&gt;")</code>.</p>
 <p>The following code can be used to install the latest version of
 packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> (but
 note this <strong>changes</strong> the version of already-installed
@@ -332,9 +329,9 @@ from CRAN, using package <a href="https://CRAN.R-project.org/package=remotes" cl
 <span>                         lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, visit the installation page of a package from CRAN, go
 to <code>Downloads</code> &gt; <code>Old sources</code> &gt;
-<code>&lt;pkgname&gt; archive</code> and find the appropriate URL
-pointing to an older version to install it using base R. For example, to
-install version 1.40 of package <a href="https://CRAN.R-project.org/package=deSolve" class="external-link">deSolve</a>:</p>
+<code>&lt;pkg&gt; archive</code> and find the appropriate URL pointing
+to an older version to install it using base R. For example, to install
+version 1.40 of package <a href="https://CRAN.R-project.org/package=deSolve" class="external-link">deSolve</a>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
 <span>  pkgs <span class="op">=</span> <span class="st">"https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz"</span>,</span>
@@ -365,11 +362,11 @@ of Bioconductor, e.g.,
 <h4 id="installing-packages-1">Installing packages<a class="anchor" aria-label="anchor" href="#installing-packages-1"></a>
 </h4>
 <ul>
-<li><p>If the warnings
-<code>lib = &lt;pkgname&gt; is not writeable</code> or
+<li><p>If the warnings <code>lib = &lt;pkg&gt; is not writeable</code>
+or
 <code>'lib' element &lt;element from .libPaths()&gt; is not a writable directory</code>
 occur, you probably forgot to run R (or RStudio) as administrator. Close
-R (RStudio), right-click on the R or RStudio icon and select
+it, right-click on the R (or RStudio) icon and select
 <code>Run as administrator</code> to start it as administrator.</p></li>
 <li>
 <p>If the question
@@ -393,7 +390,7 @@ R, Rtools and RStudio</em>:
 <code><a href="../articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>.</p>
 </li>
 <li><p>The warning
-<code>package '&lt;pkgname&gt;' is not available (for R version x.y.z)</code>
+<code>package '&lt;pkg&gt;' is not available (for R version x.y.z)</code>
 can have many reasons. First double-check the package name (which is
 case-sensitive). Then check possible other reasons mentioned in this <a href="https://stackoverflow.com/a/25721890/32365738" class="external-link">stackoverflow
 answer</a>.</p></li>
@@ -408,18 +405,18 @@ answer</a>.</p></li>
 <ul>
 <li><p>If a package appears not to be installed when you want to use a
 function from it (e.g., you get the error
-<code>could not find function "&lt;funcname&gt;"</code>), remember you
-need to run <code>library(&lt;pkgname&gt;)</code> to be able to use its
+<code>could not find function "&lt;func&gt;"</code>), remember you need
+to run <code>library(&lt;pkg&gt;)</code> to be able to use its
 functions.</p></li>
 <li><p>If a package is not functional, re-install it using argument
 <code>force = TRUE</code> to re-install possibly broken dependencies.
 You can also use
-<code>checkrpkgs::get_details_pkgs(pkgs = &lt;pkgname&gt;)</code> to
-check which dependencies and system requirements it has and then use
+<code>checkrpkgs::get_details_pkgs(pkgs = &lt;pkg&gt;)</code> to check
+which dependencies and system requirements it has and then use
 <code>checkrpkgs::check_pkgs(pkgs = &lt;pkgnames&gt;)</code> to check if
 all the dependencies are installed and functional.</p></li>
 <li><p>If the warning
-<code>package &lt;pkgname&gt; was built under R version 'x.y.z'</code>
+<code>package &lt;pkg&gt; was built under R version 'x.y.z'</code>
 occurs, you installed a binary package (i.e., not by building from
 source) that was prepared (‘compiled’) for an earlier version of R than
 the version of R you are currently using (run <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code>
@@ -453,22 +450,23 @@ using fuzzy matching or regular expressions, which can be disabled by
 setting argument <code>agrep</code> to <code>FALSE</code> to search
 faster and return fewer results:
 <code>utils::help.search(..., agrep = FALSE)</code>.</p>
-<p><code><a href="https://rdrr.io/r/tools/CRANtools.html" class="external-link">tools::CRAN_package_db()</a></code> gives information about
-packages available from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a>;
+<p><code><a href="https://rdrr.io/r/utils/available.packages.html" class="external-link">utils::available.packages()</a></code> and
+<code><a href="https://rdrr.io/r/tools/CRANtools.html" class="external-link">tools::CRAN_package_db()</a></code> give information about packages
+available from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a>;
 <code><a href="https://bioconductor.github.io/BiocManager/reference/available.html" class="external-link">BiocManager::available()</a></code> gives the names of packages
 available from <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">BioConductor</a>.</p>
 <p>The source code of base R packages can be obtained from <a href="https://github.com/r-devel/r-svn/" class="external-link">GitHub</a> (see the section <a href="#repositories">Repositories</a> below), and installation pages of
 packages on CRAN frequently contain links to GitHub pages where their
 source code can be viewed.</p>
 <p>For (not necessarily installed) packages from CRAN, use
-<code>tools::package_dependencies(packages = "&lt;pkgname&gt;", recursive = TRUE)</code>
+<code>tools::package_dependencies(packages = "&lt;pkg&gt;", recursive = TRUE)</code>
 to see dependencies (i.e., which packages are required by package
-<code>&lt;pkgname&gt;</code>) and
-<code>tools::dependsOnPkgs(pkgs = "&lt;pkgname&gt;", recursive = TRUE)</code>
+<code>&lt;pkg&gt;</code>) and
+<code>tools::dependsOnPkgs(pkgs = "&lt;pkg&gt;", recursive = TRUE)</code>
 to see reverse dependencies (i.e., which packages require package
-<code>&lt;pkgname&gt;</code>). <code>NULL</code> is returned for
-packages that are not found, whereas <code>character(0)</code> is
-returned for packages that do not have any dependencies.</p>
+<code>&lt;pkg&gt;</code>). <code>NULL</code> is returned for packages
+that are not found, whereas <code>character(0)</code> is returned for
+packages that do not have any dependencies.</p>
 </div>
 <div class="section level3">
 <h3 id="already-installed-packages">Already-installed packages<a class="anchor" aria-label="anchor" href="#already-installed-packages"></a>
@@ -480,48 +478,42 @@ the names of all installed packages can be obtained with
 repository from which a package was installed can be obtained from the
 <code>Repository</code> and <code>URL</code> fields of package
 descriptions:
-<code>checkrpkgs::get_details_pkgs(pkgs = &lt;pkgname&gt;)</code>. The
-output of <code><a href="../reference/get_details_pkgs.html">checkrpkgs::get_details_pkgs()</a></code> can be used to
-re-install packages after installing a new version of R.</p>
+<code>checkrpkgs::get_details_pkgs(pkgs = &lt;pkg&gt;)</code>.</p>
 <p>Information about a package and its functions is available from
 within R after the package has been installed and loaded (i.e.,
-<code>library(&lt;pkgname&gt;)</code> has been run):</p>
+<code>library(&lt;pkg&gt;)</code> has been run):</p>
 <ul>
-<li>Citation: <code>utils::citation("&lt;pkgname&gt;")</code>, with
+<li>Citation: <code>utils::citation("&lt;pkg&gt;")</code>, with
 <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> to cite R itself.</li>
-<li>Function overview: <code>ls(getNamespace("&lt;pkgname&gt;"))</code>
+<li>Function overview: <code>ls(getNamespace("&lt;pkg&gt;"))</code>
 returns a character vector with the function names (ignoring names that
 start with a dot, which by convention are for internal use in packages;
-<code>ls(getNamespace("&lt;pkgname&gt;"), all.names = TRUE)</code>
-includes those function names in the returned character vector);
-<code><a href="https://rdrr.io/pkg/&lt;pkgname&gt;/man" class="external-link">help(package = "&lt;pkgname&gt;")</a></code> gives an overview with
-links to their help-pages if there is a file
-<code>&lt;pkgname&gt;.R</code> in folder
-<code>&lt;pgkname&gt;\R</code>.</li>
-<li>Help page: <code>help(topic = "&lt;pkgname&gt;")</code>.</li>
-<li>Version: <code>utils::packageVersion("&lt;pkgname&gt;")</code>.</li>
+<code>ls(getNamespace("&lt;pkg&gt;"), all.names = TRUE)</code> includes
+those function names in the returned character vector);
+<code><a href="https://rdrr.io/pkg/&lt;pkg&gt;/man" class="external-link">help(package = "&lt;pkg&gt;")</a></code> gives an overview with links
+to their help-pages if there is a file <code>&lt;pkg&gt;.R</code> in
+folder <code>&lt;pkg&gt;\R</code>.</li>
+<li>Help page: <code>help(topic = "&lt;pkg&gt;")</code>.</li>
+<li>Version: <code>utils::packageVersion("&lt;pkg&gt;")</code>.</li>
 <li>Vignettes: show them in a browser through
-<code>utils::browseVignettes(package = "&lt;pkgname&gt;")</code> or list
-them with
-<code>utils::vignette(package = "&lt;pkgname&gt;")</code>.</li>
+<code>utils::browseVignettes(package = "&lt;pkg&gt;")</code> or list
+them with <code>utils::vignette(package = "&lt;pkg&gt;")</code>.</li>
 </ul>
 <p>Information about functions, methods, and classes can also be
 obtained (see also the section <a href="#getting-the-source-code">Getting the source code</a> below):</p>
 <ul>
-<li>Arguments: <code>args("&lt;funcname&gt;")</code>.</li>
-<li>Help page: <code>help("&lt;funcname&gt;")</code>; indicate the
-package to distinguish functions with the same name from different
-packages:
-<code>help("&lt;funcname&gt;", package = "&lt;pkgname&gt;")</code>; use
-quotes around the name of an operator to get its help page:
+<li>Arguments: <code>args("&lt;func&gt;")</code>.</li>
+<li>Help page: <code>help("&lt;func&gt;")</code>; indicate the package
+to distinguish functions with the same name from different packages:
+<code>help("&lt;func&gt;", package = "&lt;pkg&gt;")</code>; use quotes
+around the name of an operator to get its help page:
 <code><a href="https://rdrr.io/r/base/match.html" class="external-link">help("%in%")</a></code>.</li>
 <li>Methods: for a generic class:
-<code>utils::methods(class = "&lt;classname&gt;")</code>; for a generic
-function: <code>utils::methods("&lt;funcname&gt;")</code>; for
-S3-methods:
-<code>attr(utils::methods(class = "&lt;classname&gt;"), "info")</code>;
-for S4-methods:
-<code>methods::showMethods(classes = "&lt;classname&gt;", where = getNamespace("&lt;pkgname&gt;"))</code>.</li>
+<code>utils::methods(class = "&lt;class&gt;")</code>; for a generic
+function: <code>utils::methods("&lt;func&gt;")</code>; for S3-methods:
+<code>attr(utils::methods(class = "&lt;class&gt;"), "info")</code>; for
+S4-methods:
+<code>methods::showMethods(classes = "&lt;class&gt;", where = getNamespace("&lt;pkg&gt;"))</code>.</li>
 <li>Objects (including functions) whose name contains a certain string:
 <code>utils::apropos("&lt;string&gt;")</code>.</li>
 </ul>
@@ -530,8 +522,9 @@ for S4-methods:
 <h3 id="which-packages-are-used">Which packages are used?<a class="anchor" aria-label="anchor" href="#which-packages-are-used"></a>
 </h3>
 <p>The function <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadedNamespaces()</a></code> shows which packages are
-loaded. To see which packages are used in a script, look for
-<code>::</code>, <code>:::</code>, <code>library</code>,
+loaded. <code>getAnywhere(&lt;pkg&gt;)</code> shows in which package a
+function is defined. To see which packages are used in a script, look
+for <code>::</code>, <code>:::</code>, <code>library</code>,
 <code>require</code>, and <code>namespace</code> (e.g.,
 <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadNamespace()</a></code>, <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace()</a></code>). Various
 packages have their own way to create dependencies on packages, see the
@@ -581,8 +574,7 @@ answer</a> from <a href="https://stackoverflow.com/" class="external-link">Stack
 <div class="section level3">
 <h3 id="repositories">Repositories<a class="anchor" aria-label="anchor" href="#repositories"></a>
 </h3>
-<p>The source code of the base R packages, for the development, current,
-and older versions of R, is available at <a href="https://cran.r-project.org/src/base/" class="external-link">CRAN</a> and at the <a href="https://svn.r-project.org/R/branches/" class="external-link">SVN-project</a>. Searching
+<p>The source code of the base R packages is available at <a href="https://cran.r-project.org/src/base/" class="external-link">CRAN</a> and at the <a href="https://svn.r-project.org/R/branches/" class="external-link">SVN-project</a>. Searching
 the source code of the development version is easiest using the <a href="https://github.com/r-devel/r-svn/tree/main/src/library" class="external-link">GitHub
 mirror</a> of the SVN-project, see also the documentation on <a href="https://docs.github.com/en/search-github" class="external-link">searching
 GitHub</a>.</p>
@@ -614,19 +606,22 @@ the name of the function, <em>without</em> the brackets, and press
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e490f6aac0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559d5f2a5348&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
 <li>To distinguish functions with the same name from different packages,
 specify the package followed by two colons:
-<code>&lt;pkgname&gt;::&lt;funcname&gt;</code>.</li>
+<code>&lt;pkg&gt;::&lt;func&gt;</code>.</li>
 <li>For non-exported functions, specify the package followed by three
-colons: <code>&lt;pkgname&gt;:::&lt;funcname&gt;</code> (using only two
-colons, will result in the error
-<code>'&lt;funcname&gt;' is not an exported object from 'namespace:&lt;pkgname&gt;'</code>.
-Non-exported functions should <strong>not</strong> be used in code
-because they might change.</li>
+colons: <code>&lt;pkg&gt;:::&lt;func&gt;</code> (using only two colons
+will result in the error
+<code>'&lt;func&gt;' is not an exported object from 'namespace:&lt;pkg&gt;'</code>;
+if that error appears when using three colons, you are probably looking
+in the wrong package, use <code>getAnywhere(&lt;func&gt;)</code> to
+check in which package <code>&lt;func&gt;</code> lives). Non-exported
+functions should <strong>not</strong> be used in code because they might
+change.</li>
 <li>For operators such as <code>%in%</code> (see
 <code><a href="https://rdrr.io/r/base/match.html" class="external-link">help("match")</a></code> which start with a symbol, use backticks (`)
 around the name:</li>
@@ -635,7 +630,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e48f430d00&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559d5d79ad00&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -643,28 +638,27 @@ around the name:</li>
 </h3>
 <p>A more robust alternative to the <a href="#basic-method">basic
 method</a> outlined above is to use
-<code>getAnywhere("&lt;funcname&gt;")</code>, which looks in more places
-and finds internal functions without the need to specify in which
-package a function is defined. Although the quotes around the function
-name are not necessary when looking for the source code of normal
-functions, they are required when looking for the source code of
-operators such as <code>%in%</code>, such that it is most robust to
-always use them.</p>
+<code>getAnywhere("&lt;func&gt;")</code>, which looks in more places and
+finds internal functions without the need to specify in which package a
+function is defined. Although the quotes around the function name are
+not necessary when looking for the source code of normal functions, they
+are required when looking for the source code of operators such as
+<code>%in%</code>, such that it is most robust to always use them.</p>
 <div class="section level4">
 <h4 id="usemethod">UseMethod<a class="anchor" aria-label="anchor" href="#usemethod"></a>
 </h4>
-<p>If <code>getAnywhere("&lt;funcname&gt;")</code> returns
-<code>UseMethod("&lt;funcname&gt;")</code>, the function has different
+<p>If <code>getAnywhere("&lt;func&gt;")</code> returns
+<code>UseMethod("&lt;func&gt;")</code>, the function has different
 methods for different object classes and is <a href="https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation" class="external-link">S3-generic</a>.
-First use <code>methods("&lt;funcname&gt;")</code> to get an overview of
-the available methods; then obtain the source code of a particular
-method by using <code>getAnywhere("&lt;function.class&gt;")</code>,
-where <code>&lt;function.class&gt;</code> is an item from the overview
-that was returned by <code>methods("&lt;funcname&gt;")</code>. The
-advantage over simply using <code>"&lt;function.class&gt;"</code> is
-that <code>getAnywhere("&lt;function.class&gt;")</code> also works for
+First use <code>methods("&lt;func&gt;")</code> to get an overview of the
+available methods; then obtain the source code of a particular method by
+using <code>getAnywhere("&lt;function.class&gt;")</code>, where
+<code>&lt;function.class&gt;</code> is an item from the overview that
+was returned by <code>methods("&lt;func&gt;")</code>. The advantage over
+simply using <code>"&lt;function.class&gt;"</code> is that
+<code>getAnywhere("&lt;function.class&gt;")</code> also works for
 functions that are not exported, which is indicated in the overview of
-<code>methods(&lt;funcname&gt;)</code> by an asterisk and the remark
+<code>methods(&lt;func&gt;)</code> by an asterisk and the remark
 <code>Non-visible functions are asterisked</code>.</p>
 <p>For example, <code>UseMethod("mean")</code> in the output of
 <code>getAnywhere("mean")</code> indicates <code>mean</code> is an
@@ -679,7 +673,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e4917063f8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559d5fa703f8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -704,7 +698,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e492ac0da0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559d60e2e4d8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>Or use <code>getAnywhere("mean.default")</code> to see the source
 code of the method <code>mean</code> used with objects of classes not
@@ -742,26 +736,26 @@ listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e492ac0390&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559d60e2dac8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="standardgeneric">standardGeneric<a class="anchor" aria-label="anchor" href="#standardgeneric"></a>
 </h4>
-<p>If <code>getAnywhere("&lt;funcname&gt;")</code> returns
-<code>standardGeneric("&lt;funcname&gt;")</code>, the function has
-different S4-methods (see
-<code><a href="https://rdrr.io/r/methods/Introduction.html" class="external-link">help("Introduction", package = "methods")</a></code>) for different
-object classes. Use <code>showMethods("&lt;funcname&gt;")</code> to get
-an overview of the available methods in all <strong>loaded</strong>
-packages, or use <code>&lt;pkgname&gt;:::&lt;funcname&gt;</code> to get
-an overview of the available methods from package
-<code>&lt;pkgname&gt;</code>. Finally, provide the function name as
-argument <code>f</code> and the selected method as a character vector to
-argument <code>signature</code> (see also
-<code><a href="https://rdrr.io/r/methods/GenericFunctions.html" class="external-link">help("signature")</a></code>) of function <code><a href="https://rdrr.io/r/methods/getMethod.html" class="external-link">getMethod()</a></code> to
-obtain the source code of a particular method:
-<code>getMethod(f = "&lt;funcname&gt;", signature = c(target = "&lt;classname&gt;", current = "&lt;classname&gt;"))</code>.</p>
+<p>If <code>getAnywhere("&lt;func&gt;")</code> returns
+<code>standardGeneric("&lt;func&gt;")</code>, the function has different
+S4-methods (see <code><a href="https://rdrr.io/r/methods/Introduction.html" class="external-link">help("Introduction", package = "methods")</a></code>)
+for different object classes. Use
+<code>showMethods("&lt;func&gt;")</code> to get an overview of the
+available methods in all <strong>loaded</strong> packages, or use
+<code>&lt;pkg&gt;:::&lt;func&gt;</code> to get an overview of the
+available methods from package <code>&lt;pkg&gt;</code>. Finally,
+provide the function name as argument <code>f</code> and the selected
+method as a character vector to argument <code>signature</code> (see
+also <code><a href="https://rdrr.io/r/methods/GenericFunctions.html" class="external-link">help("signature")</a></code>) of function
+<code><a href="https://rdrr.io/r/methods/getMethod.html" class="external-link">getMethod()</a></code> to obtain the source code of a particular
+method:
+<code>getMethod(f = "&lt;func&gt;", signature = c(target = "&lt;class&gt;", current = "&lt;class&gt;"))</code>.</p>
 <p>The example below shows how to find the source code of method
 <code><a href="https://rdrr.io/r/methods/cbind2.html" class="external-link">cbind2()</a></code> used by the <code>Matrix</code> package to combine
 two matrices that both have the <code>Matrix</code> class as defined by
@@ -782,8 +776,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e490f8e750&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55e48fd3d428&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559d5f2f8600&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x559d5e0a7428&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -829,7 +823,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e492daa530&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x559d61115020&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
@@ -840,7 +834,7 @@ package <code>Matrix</code>.</p>
 <div class="section level4">
 <h4 id="internal-or--primitive">.Internal or .Primitive<a class="anchor" aria-label="anchor" href="#internal-or--primitive"></a>
 </h4>
-<p>If <code>getAnywhere("&lt;funcname&gt;")</code> returns
+<p>If <code>getAnywhere("&lt;func&gt;")</code> returns
 <code>.Internal</code> or <code>.Primitive</code>, the function is
 internal or primitive. The source code of such functions can be viewed
 at code <a href="#repositories">repositories</a>, or on your computer if
@@ -881,9 +875,9 @@ the c-code for <code>do_makenames()</code> is in file
 <div class="section level4">
 <h4 id="call">.Call<a class="anchor" aria-label="anchor" href="#call"></a>
 </h4>
-<p>If <code>getAnywhere("&lt;funcname&gt;")</code> returns code that
+<p>If <code>getAnywhere("&lt;func&gt;")</code> returns code that
 contains <code>.Call(...)</code>, the function contains a call to C or
-C++ code. Although the file <code>src/&lt;pkgname&gt;.h</code> (e.g., <a href="https://github.com/r-devel/r-svn/blob/main/src/library/methods/src/methods.h" class="external-link">src/methods.h</a>
+C++ code. Although the file <code>src/&lt;pkg&gt;.h</code> (e.g., <a href="https://github.com/r-devel/r-svn/blob/main/src/library/methods/src/methods.h" class="external-link">src/methods.h</a>
 if code is from package <code>methods</code>) contains an overview of
 the C or C++ code included in a package, your best bet for finding the
 source code is <a href="https://docs.github.com/en/search-github" class="external-link">searching</a> the
@@ -924,8 +918,8 @@ Rtools and RStudio</em>:<br><code><a href="../articles/install_r.html">vignette(
 <li>The documentation in
 <code><a href="../reference/check_pkgs.html">help("check_pkgs", package = "checkrpkgs")</a></code>
 </li>
-<li>The book <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You
-About R</a>
+<li>The website <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach
+You About R</a>
 </li>
 </ul>
 </div>

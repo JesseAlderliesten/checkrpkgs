@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Installing R, Rtools and RStudio • checkrpkgs</title>
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Installing R, Rtools and RStudio">
 </head>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,16 +79,15 @@
 <h2 id="introduction-and-notation">Introduction and notation<a class="anchor" aria-label="anchor" href="#introduction-and-notation"></a>
 </h2>
 <p>This vignette contains instructions on installing and configuring <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>, and <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>.</p>
-<p>In this vignette, text between angled brackets
-(<code>&lt;...&gt;</code>) is used to refer to text that should be
-replaced with specific text to get working code. For example,
-<code>&lt;pkgname&gt;</code> is used as a place holder to refer to a
-package name and should be replaced with <code>utils</code> if you want
-to obtain information about package <code>utils</code>, and with
-<code>methods</code> if you want to obtain information about package
-<code>methods</code>. Similarly, <code>&lt;funcname&gt;</code> is used
-as a place holder to refer to a function name that should be filled in
-with a specific function name to get working code.</p>
+<p>Text between angled brackets (<code>&lt;...&gt;</code>) is used to
+refer to text that should be replaced with specific text to get working
+code. For example, <code>&lt;pkg&gt;</code> is used as a place holder to
+refer to a package name and should be replaced with <code>utils</code>
+if you want to obtain information about package <code>utils</code>, and
+with <code>methods</code> if you want to obtain information about
+package <code>methods</code>. Similarly, <code>&lt;func&gt;</code> is
+used as a place holder to refer to a function name that should be filled
+in with a specific function name to get working code.</p>
 </div>
 <div class="section level2">
 <h2 id="r">R<a class="anchor" aria-label="anchor" href="#r"></a>
@@ -98,7 +97,7 @@ CRAN <a href="https://cran.r-project.org/mirrors.html" class="external-link">mir
 a website with the same content as the <a href="https://cran.r-project.org/" class="external-link">main</a> CRAN page), download R via
 <code>Download R for Windows</code> &gt; <code>base</code> &gt;
 <code>Download R-X.Y.Z for Windows</code> and install it by opening the
-downloaded .exe-file.</p>
+downloaded <code>.exe</code> file.</p>
 <p>Note that R is <strong>not</strong> required to read R-scripts:
 R-scripts are plain-text files that can be read by applications such as
 Microsoft NotePad.</p>
@@ -136,7 +135,7 @@ should only be used for debugging because it may trigger bugs and
 resource leaks (per its help-page). The default is
 <code>options(warn = 0)</code> to warn after the top-level function
 returns.</li>
-<li>Enter the [environment browser][browser()] upon error (default:
+<li>Enter the environment browser (help(“browser”)) upon error (default:
 <code>options(error = NULL)</code>):
 <code>options(error = browser)</code>; press <code>Q</code> or
 <code>Escape</code> to quit the browser mode; press <code>c</code> to
@@ -153,16 +152,16 @@ are in the GitHub <a href="https://github.com/hadley/strict/issues?q=is%3Aissue"
 avoids silent conflict resolution (i.e., choosing the latest attached
 package out of multiple packages to use a function from; see
 <code>help("conflict")</code>), and provides
-<code>conflicts_prefer(&lt;pkgname&gt;::&lt;funcname&gt;)</code> to
-declare preferences once.</li>
+<code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> to declare
+preferences.</li>
 </ul>
-<p>Finally, options for startup (described in
-<code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code>) and installing packages (see
-<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages")</a></code> and
-<code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>) can be used to configure R but can also
-lead to code that behaves different on PCs where these options are not
-set, such that they, for example, do not automatically load a package or
-add a path to the search path.</p>
+<p>Finally, when using options for start-up (described in
+<code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code>) and installing packages
+(<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages")</a></code> and
+<code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>) to configure R, it should be kept in
+mind that these options might lead to code that behaves different on PCs
+where these options are not set, for example when they do not
+automatically load a package or add a path to the search path.</p>
 </div>
 <div class="section level3">
 <h3 id="information-about-r">Information about R<a class="anchor" aria-label="anchor" href="#information-about-r"></a>
@@ -195,9 +194,9 @@ provide details about external software that can be used with R.</li>
 (<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>) lists some of the
 environment variables which affect an R session.</li>
 </ul>
-<p>How operating systems identify themselves and their versions can be
-arcane, and specifically Windows versions might report older versions
-than the versions that are actually installed (see the section
+<p>Operating systems might identify themselves and their versions in
+surprising ways, and specifically Windows versions might report older
+versions than the versions that are actually installed (see the section
 <code>osVersion</code> in <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo")</a></code> and the
 <code>Note</code> in <code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version")</a></code>.</p>
 </div>
@@ -214,10 +213,11 @@ development environment</a> for R that can be downloaded from <a href="https://p
 </h3>
 <p>After installing RStudio, start RStudio, go to <code>Tools</code>
 &gt; <code>Global Options</code> &gt; <code>General</code> to
-<strong>de</strong>select the option
+<strong>deselect</strong> the option
 <code>Restore .RData into workspace at startup</code> and set the option
 <code>Save workspace to .RData on exit</code> to <code>Never</code> to
-make work portable.</p>
+make work portable (i.e., make sure that R does not use information or
+data that is not present on another PC).</p>
 <p>The version of RStudio to use can be selected at <code>Tools</code>
 &gt; <code>Global Options</code> &gt; <code>General</code> &gt;
 <code>R version</code>.</p>
@@ -230,12 +230,12 @@ RStudio does not use the modified keyboard shortcuts. Going to
 fixes that without the need to actually reset the shortcuts.</p>
 <p>The appearance of code can be changed at <code>Tools</code> &gt;
 <code>Global options</code> &gt; <code>Appearance</code>. The default
-<code>Editor theme</code> is the light <code>Textmate</code>, another
-nice light <code>Editor theme</code> is <code>Xcode</code>. Nice dark
-<code>Editor themes</code> are <code>Tomorrow Night Bright</code>,
-<code>Idle Fingers</code>, and <code>Pastel On Dark</code>, with
-<code>Editor fonts</code> <code>Consolas</code>,
-<code>Cacadia Mono Light</code>, or <code>Lucida Console</code>.</p>
+<code>Editor theme</code> is the light <code>Textmate</code>. Other nice
+editor themes are the light <code>Xcode</code> and the dark
+<code>Tomorrow Night Bright</code>, <code>Idle Fingers</code>, and
+<code>Pastel On Dark</code>. Nice <code>Editor fonts</code> are
+<code>Consolas</code>, <code>Cacadia Mono Light</code>, and
+<code>Lucida Console</code>.</p>
 <p>To check that characters in a typeface or font can be properly
 distinguished from each other when choosing a font, for example using <a href="https://fonts.adobe.com/" class="external-link">Adobe Fonts</a> or <a href="https://fonts.google.com/" class="external-link">Google Fonts</a>, the following string
 groups together characters that in some fonts are similar in appearance:
@@ -323,9 +323,9 @@ suited for searching.</li>
 specific for R;</li>
 <li>
 <a href="https://stackoverflow.com/tags/r/info" class="external-link">StackOverflow</a>
-posts with the r-tag</li>
-<li>The book <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You
-About R</a>
+posts with the <code>r</code> tag</li>
+<li>The website <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach
+You About R</a>
 </li>
 </ul>
 <div class="section level3">
@@ -344,6 +344,8 @@ Contribution Working Group</a>
 </li>
 <li>R <a href="https://cran.r-project.org/doc/manuals/r-devel/NEWS.html" class="external-link">news
 (devel)</a>
+</li>
+<li>My package <a href="https://jessealderliesten.github.io/develcoder/" class="external-link">develcoder</a>
 </li>
 </ul>
 </div>
