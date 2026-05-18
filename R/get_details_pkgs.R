@@ -220,7 +220,7 @@ get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL
                collapse = "\n- "),
         sep = ":\n- ")
     }
-    warning("Packages found more than once:\n* ",
+    warning(length(ind_dupl), " packages found more than once:\n* ",
             paste0(LibPaths, collapse = "\n* "),
             call. = FALSE)
   }

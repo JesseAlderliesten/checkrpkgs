@@ -1,3 +1,11 @@
+# checkrpkgs 0.8.2
+
+### Miscellaneous
+- `get_details_pkgs()` includes the number of packages that occur more than once
+  in the warning.
+- Small additions and various stylistic updates to the vignettes.
+
+
 # checkrpkgs 0.8.1
 
 ### Miscellaneous

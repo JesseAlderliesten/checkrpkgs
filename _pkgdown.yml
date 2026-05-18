@@ -5,7 +5,10 @@ template:
 
 home:
   sidebar:
-    structure: [toc, links, license, community, citation, authors, dev]
+    structure: [toc, links, license, community, citation, authors]
+
+toc:
+  depth: 3
 
 articles:
 - title: Articles
@@ -14,6 +17,3 @@ articles:
   - install_r
   - r_pkgs
   - git_github
-
-toc:
-  depth: 3
