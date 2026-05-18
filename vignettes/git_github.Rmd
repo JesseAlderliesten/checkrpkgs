@@ -30,11 +30,11 @@ In addition, a folder on your PC (e.g.,
 [https://github.com/JesseAlderliesten/checkrpkgs](https://github.com/JesseAlderliesten/checkrpkgs))
 is usually called a 'repository'.
 
-In this vignette, text between angled brackets (`<...>`) is used to refer to
+Text between angled brackets (`<...>`) is used to refer to
 text that should be replaced with specific text to get working code or working
-file paths. For example, `<username>` and `<repositoryname>` are used as place
+file paths. For example, `<username>` and `<repository>` are used as place
 holders to refer to a username and repository name: `<username>` and
-`<repositoryname>` in `https://github.com/<username>/<repositoryname>` should be
+`<repository>` in `https://github.com/<username>/<repository>` should be
 replaced with `JesseAlderliesten` and `checkrpkgs`, respectively, to obtain the
 URL
 [https://github.com/JesseAlderliesten/checkrpkgs](https://github.com/JesseAlderliesten/checkrpkgs)
@@ -99,7 +99,7 @@ directory up-to-date with the remote repository:
 
 - in RStudio: use the `pull` button (downward arrow) in the `Git` menu;
 - in the [shell](https://happygitwithr.com/shell):
-  `git pull https://github.com/<username>/<repositoryname>`.
+  `git pull https://github.com/<username>/<repository>`.
 
 Save the modified R-file after you have made some changes, only then will the
 name of the file appear in the `Git` menu of RStudio to review changes:
@@ -113,7 +113,7 @@ name of the file appear in the `Git` menu of RStudio to review changes:
 - in the [shell](https://happygitwithr.com/shell): to compare the content of two
   files, see the instructions in the section [Comparing files] below. Next, use
   `git commit -m '<your commit message goes here>' <path>/<and>/<filename>.R`
-  `git push https://github.com/<username>/<repositoryname>` to commit changes.
+  `git push https://github.com/<username>/<repository>` to commit changes.
 
 If a `Push` leads to an error because of an invalid username or password, `Push`
 again, then you will be asked for a personal access token (PAT; see the section
@@ -137,7 +137,7 @@ will copy the path to the shell).
 ### Using GitHub
 - For a chronological overview of all commits (i.e., across all files) in a
   particular branch of a repository, use an URL of the form
-  `http://github.com/<username>/<reponame>/commits`, or go to the main page of the
+  `http://github.com/<username>/<repository>/commits`, or go to the main page of the
   repository and in the `Code` panel click the `clock` icon at the top of the
   file overview.
 - Comparing different branches: see
@@ -212,12 +212,12 @@ There are several ways to get code from a `GitHub` repository to your PC:
   original repository), copy the
   URL to the clipboard (i.e., do **not** use `download ZIP`), create a new R
   project in RStudio (`File` > `New Project` > `Version control` > `Git`), paste
-  the repository URL (`https://github.com/<username>/<reposname>`) in the
+  the repository URL (`https://github.com/<username>/<repository>`) in the
   designated field, select the desired location on your PC, and create the
   project. The same repository URL can be used when using shell commands to
   clone a repository, either with its complete history by using
-  `git clone https://github.com/<username>/<reposname>` or with only the last
-  commit by using `git clone --depth=1 https://github.com/<username>/<reposname>`.
+  `git clone https://github.com/<username>/<repository>` or with only the last
+  commit by using `git clone --depth=1 https://github.com/<username>/<repository>`.
 - To download code without being able to push your changes back to a GitHub
   repository, you can download the repository by using the green `Code` button,
   choosing `Download ZIP` and unzip the downloaded file (right-click on them and
@@ -293,10 +293,11 @@ paths, respectively.
 Official documentation
 
 - [Git](https://git-scm.com/docs)
-- GitHub help pages:
-  [setting up Git](https://docs.github.com/en/get-started/git-basics/set-up-git),
-  [setting up GitHub](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account), [general](https://docs.github.com/en) help, and
-  [searching GitHub](https://docs.github.com/en/search-github)
+- [Git: setting up](https://docs.github.com/en/get-started/git-basics/set-up-git),
+- [GitHub: setting up](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account)
+- [GitHub: general](https://docs.github.com/en)
+- [GitHub: searching](https://docs.github.com/en/search-github)
+- [GitHub: workflow](https://docs.github.com/en/get-started/using-github/github-flow)
 
 Books
 
