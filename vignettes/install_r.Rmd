@@ -69,7 +69,7 @@ general options (`help("options")`) and environment variables
   only be used for debugging because it may trigger bugs and resource leaks (per
   its help-page). The default is `options(warn = 0)` to warn after the top-level
   function returns.
-- Enter the environment browser (help("browser")) upon error (default:
+- Enter the environment browser (`help("browser")`) upon error (default:
   `options(error = NULL)`): `options(error = browser)`; press `Q` or `Escape` to
   quit the browser mode; press `c` to continue code.
 
