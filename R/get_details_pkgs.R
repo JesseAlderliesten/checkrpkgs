@@ -207,7 +207,7 @@ get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL
   bool_dupl <- duplicated(pkg_names)
   if(any(bool_dupl)) {
     ind_dupl <- which(bool_dupl)
-    LibPaths <- rep(NA_character_, times = length(ind_dupl))
+    LibPaths <- rep.int(NA_character_, times = length(ind_dupl))
     for(ind_msg in seq_along(ind_dupl)) {
       pkg <- db[ind_dupl[ind_msg], "Package"]
       row_ind_match <- which(pkg_names == pkg)
