@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/JesseAlderliesten/checkrpkgs/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/JesseAlderliesten/checkrpkgs/blob/main/DESCRIPTION)
 
 Alderliesten J (2026). *checkrpkgs: Information on Installing R,
 RStudio, Rtools, and R packages*. R package version 0.8.2,
