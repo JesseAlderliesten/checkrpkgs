@@ -385,8 +385,11 @@ packages that do not have any dependencies.
 
 ### Already-installed packages
 The locations where R installs packages, and where it looks for installed
-packages, can be obtained with `.libPaths()`, and the names of all installed
+packages, can be obtained with `.libPaths()`. The names of all installed
 packages can be obtained with `list.files(path = .libPaths(), recursive = FALSE)`.
+The locations where a particular package is installed can be obtained with
+`find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
+
 The repository from which a package was installed can be obtained from the
 `Repository` and `URL` fields of package descriptions:
 `checkrpkgs::get_details_pkgs(pkgs = <pkg>)`.
@@ -405,6 +408,8 @@ run):
   `help(package = "<pkg>")` gives an overview with links to their help-pages
   if there is a file `<pkg>.R` in folder `<pkg>\R`.
 - Help page: `help(topic = "<pkg>")`.
+- Installation path:
+  `find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
 - Version: `utils::packageVersion("<pkg>")`.
 - Vignettes: show them in a browser through
   `utils::browseVignettes(package = "<pkg>")` or list them with
