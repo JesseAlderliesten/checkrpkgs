@@ -8,9 +8,9 @@
 #' @inheritParams check_pkgs
 #' @param db `NULL` (default) or a matrix with the results of a call to
 #' [utils::installed.packages()] containing column `Package` (or rownames that
-#' are package names). To prevent a call to [utils::installed.packages()], the
-#' matrix should contain the columns listed in section `Details` below and any
-#' requested columns.
+#' are package names). To prevent a possibly slow call to
+#' [utils::installed.packages()], the matrix should contain the columns listed
+#' in section `Details` below and any requested columns.
 #'
 #' @details
 #' The returned matrix will contain columns `"Package"`, `"Version"`,
@@ -36,32 +36,14 @@
 #' and origin. Information about a package is not duplicated in the returned
 #' matrix if multiple entries in `pkgs` refer to the same package.
 #'
-#' If no packages were found, a zero-row matrix is returned, with a warning.
+#' If no packages are found, a zero-row matrix is returned, with a warning.
 #'
 #' @inheritSection check_pkgs Package names
 #'
-#' @family
-#' functions to get information about packages
-#'
 #' @seealso
-#' [utils::installed.packages()] that is used by `get_details_pkgs()`.
-#'
-#' [tools::CRAN_package_db()] for information about packages available from
-#' [CRAN](https://cran.r-project.org/web/packages/index.html), including the
-#' `Description` and `Maintainer` fields not returned by
-#' [utils::available.packages()]. [tools::CRAN_check_results()],
-#' [tools::CRAN_check_details()] and [tools::CRAN_check_issues()] on the current
-#' check status of CRAN packages.
-#'
-#' [utils::available.packages]`(fields = NULL, repos = BiocManager::repositories())`
-#' for information about packages available from
-#' [BioConductor](https://bioconductor.org/packages/release/BiocViews.html), and
-#' `BiocManager::available()` for their names.
-#'
-#' [check_pkgs], with information on obtaining dependencies in its help-page.
-#'
-#' The vignette *Instructions about R packages*:
-#' `vignette("r_pkgs", package = "checkrpkgs")`.
+#' [utils::installed.packages()] that is used by `get_details_pkgs()`;
+#' [check_pkgs()] to check if a package is installed and functional; The vignette
+#' *Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")`.
 #'
 #' @examples
 #' get_details_pkgs(priority = "base")
