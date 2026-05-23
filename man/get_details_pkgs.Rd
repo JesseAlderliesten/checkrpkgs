@@ -36,9 +36,9 @@ ending in such names, see section \verb{Package names} below.}
 
 \item{db}{\code{NULL} (default) or a matrix with the results of a call to
 \code{\link[utils:installed.packages]{utils::installed.packages()}} containing column \code{Package} (or rownames that
-are package names). To prevent a call to \code{\link[utils:installed.packages]{utils::installed.packages()}}, the
-matrix should contain the columns listed in section \code{Details} below and any
-requested columns.}
+are package names). To prevent a possibly slow call to
+\code{\link[utils:installed.packages]{utils::installed.packages()}}, the matrix should contain the columns listed
+in section \code{Details} below and any requested columns.}
 }
 \value{
 A matrix containing details of the installed packages, see \code{Details}.
@@ -56,7 +56,7 @@ instances are returned, with a warning reporting their version, library path
 and origin. Information about a package is not duplicated in the returned
 matrix if multiple entries in \code{pkgs} refer to the same package.
 
-If no packages were found, a zero-row matrix is returned, with a warning.
+If no packages are found, a zero-row matrix is returned, with a warning.
 }
 \description{
 Wrapper around \code{\link[utils:installed.packages]{utils::installed.packages()}} to get more information about
@@ -93,10 +93,6 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 }
 \seealso{
 \code{\link[utils:installed.packages]{utils::installed.packages()}} that is used by \code{get_details_pkgs()};
-\link{check_pkgs}; The vignette \emph{Instructions about R packages}:
-\code{vignette("r_pkgs", package = "checkrpkgs")}.
-
-Other functions to get information about packages:
-\code{\link[=check_pkgs]{check_pkgs()}}
+\code{\link[=check_pkgs]{check_pkgs()}} to check if a package is installed and functional; The vignette
+\emph{Instructions about R packages}: \code{vignette("r_pkgs", package = "checkrpkgs")}.
 }
-\concept{functions to get information about packages}

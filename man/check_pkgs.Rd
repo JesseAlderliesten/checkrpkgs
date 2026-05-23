@@ -72,8 +72,4 @@ check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
 
 The vignette \emph{Instructions about R packages}:
 \code{vignette("r_pkgs", package = "checkrpkgs")}.
-
-Other functions to get information about packages:
-\code{\link[=get_details_pkgs]{get_details_pkgs()}}
 }
-\concept{functions to get information about packages}
