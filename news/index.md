@@ -1,5 +1,16 @@
 # Changelog
 
+## checkrpkgs 0.8.3
+
+#### Miscellaneous
+
+- Move information from documentation of
+  [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
+  and
+  [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
+  to the vignette `R packages`.
+- Stylistic updates to vignettes and README. Re-knit README.
+
 ## checkrpkgs 0.8.2
 
 #### Miscellaneous

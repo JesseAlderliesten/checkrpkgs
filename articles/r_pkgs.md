@@ -55,8 +55,8 @@ To install a package, run R or RStudio as administrator: right-click on
 the R or RStudio icon and select `Run as administrator`. Packages can be
 obtained from several websites, called ‘repositories’, such as `CRAN`,
 `BioConductor`, and `GitHub`, discussed in the next sections. After
-installing a package, you need to run `library(<pkg>)` to be able to use
-the functions of that package.
+installing a package, you need to [load](#loading-packages) the package
+to be able to use its functions: run `library(<pkg>)`.
 
 #### CRAN
 
@@ -84,7 +84,18 @@ packages of a task view, install package
 `ctv::install.views("<taskview>", coreOnly = TRUE)`. To update these
 packages, use `ctv::update.views("<taskview>", coreOnly = TRUE)`.
 
-Packages from CRAN that have been recently archived are available at
+[`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
+gives information about packages available from
+[CRAN](https://cran.r-project.org/web/packages/index.html), including
+the `Description` and `Maintainer` fields not returned by
+[`utils::available.packages()`](https://rdrr.io/r/utils/available.packages.html).
+[`tools::CRAN_check_results()`](https://rdrr.io/r/tools/CRANtools.html),
+[`tools::CRAN_check_details()`](https://rdrr.io/r/tools/CRANtools.html)
+and
+[`tools::CRAN_check_issues()`](https://rdrr.io/r/tools/CRANtools.html)
+give information about the current check status of CRAN packages.
+Packages from CRAN that have been recently archived (for example because
+check issues were not adressed in time) are available at
 [CRANhaven](https://www.cranhaven.org/).
 
 #### BioConductor
@@ -123,6 +134,13 @@ BiocManager::install(pkgs = pkgs_new, lib = .libPaths(), dependencies = NA,
 
 Bioconductor also has thematic package collections known as
 [BiocViews](https://bioconductor.org/packages/release/BiocViews.html).
+
+`utils::available.packages(fields = NULL, repos = BiocManager::repositories())`
+gives information about packages available from
+[BioConductor](https://bioconductor.org/packages/release/BiocViews.html),
+and
+[`BiocManager::available()`](https://bioconductor.github.io/BiocManager/reference/available.html)
+gives their names.
 
 #### Github
 
@@ -224,6 +242,22 @@ or
 although the RStudio CRAN mirror is used in RStudio (see the preceding
 paragraph).
 
+### Loading packages
+
+After installing a package, you need to load the package to be able to
+use its functions: run `library(<pkg>)`. If loading fails without clear
+reason, setting environment variable `_R_TRACE_LOADNAMESPACE_` to a
+numerical value (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will
+generate additional messages on progress for non-standard packages (see
+the section `Tracing` in
+[`requireNamespace()`](https://rdrr.io/r/base/ns-load.html)).
+
+[`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) gives the
+names of packages that are currently loaded,
+[`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) also
+gives their versions. `options("defaultPackages")` gives the names of
+packages that are attached by default when R starts up.
+
 ### Updating packages
 
 Updating out-of-date packages prevents compatibility issues between
@@ -237,6 +271,8 @@ is available at
 [CRANberries](https://dirk.eddelbuettel.com/cranberries/). To get the
 version number of an installed package, run
 `utils::packageVersion("<pkg>")`.
+[`old.packages()`](https://rdrr.io/r/utils/update.packages.html)
+indicates which packages can be updated.
 
 The following code can be used to install the latest version of packages
 from [CRAN](https://cran.r-project.org/web/packages/index.html) (but
@@ -252,8 +288,12 @@ utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
 
 #### Bioconductor
 
-The following code can be used to update packages to a specific
-BioConductor release (here version 3.23):
+[`BiocManager::valid()`](https://bioconductor.github.io/BiocManager/reference/valid.html)
+indicates which packages can be updated and also checks for too new
+packages, taking the currently used version of Bioconductor (see
+[`BiocManager::version()`](https://bioconductor.github.io/BiocManager/reference/version.html))
+into account. The following code can be used to update packages to a
+specific BioConductor release (here version 3.23):
 
 ``` r
 
@@ -441,11 +481,14 @@ dependencies.
 
 The locations where R installs packages, and where it looks for
 installed packages, can be obtained with
-[`.libPaths()`](https://rdrr.io/r/base/libPaths.html), and the names of
-all installed packages can be obtained with
-`list.files(path = .libPaths(), recursive = FALSE)`. The repository from
-which a package was installed can be obtained from the `Repository` and
-`URL` fields of package descriptions:
+[`.libPaths()`](https://rdrr.io/r/base/libPaths.html). The names of all
+installed packages can be obtained with
+`list.files(path = .libPaths(), recursive = FALSE)`. The locations where
+a particular package is installed can be obtained with
+`find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
+
+The repository from which a package was installed can be obtained from
+the `Repository` and `URL` fields of package descriptions:
 `checkrpkgs::get_details_pkgs(pkgs = <pkg>)`.
 
 Information about a package and its functions is available from within R
@@ -464,6 +507,8 @@ has been run):
   an overview with links to their help-pages if there is a file
   `<pkg>.R` in folder `<pkg>\R`.
 - Help page: `help(topic = "<pkg>")`.
+- Installation path:
+  `find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
 - Version: `utils::packageVersion("<pkg>")`.
 - Vignettes: show them in a browser through
   `utils::browseVignettes(package = "<pkg>")` or list them with
@@ -570,7 +615,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x556043cc42d8>
+#> <bytecode: 0x55d4d3543748>
 #> <environment: namespace:stats>
 ```
 
@@ -594,7 +639,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x5560421b9d00>
+#> <bytecode: 0x55d4d1923d00>
 #> <environment: namespace:base>
 ```
 
@@ -636,7 +681,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55604448f3f8>
+#> <bytecode: 0x55d4d3bf93f8>
 #> <environment: namespace:base>
 ```
 
@@ -666,7 +711,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55604584b5b8>
+#> <bytecode: 0x55d4d5a73d48>
 #> <environment: namespace:base>
 ```
 
@@ -708,7 +753,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55604584aba8>
+#> <bytecode: 0x55d4d5a73338>
 #> <environment: namespace:base>
 ```
 
@@ -750,8 +795,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x556043d17600>
-#> <environment: 0x556042ac6428>
+#> <bytecode: 0x55d4d3465fd8>
+#> <environment: 0x55d4d2230428>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -797,7 +842,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x556045b32170>
+#> <bytecode: 0x55d4d520c788>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -841,7 +886,7 @@ has as entry with `log10` in the first column:
 [arithmetic.c](https://github.com/r-devel/r-svn/blob/main/src/main/arithmetic.c)
 as one of its results. That file contains the source code of `log10`.
 
-Sometimes an R-function is defined in a file that defines multiple
+Sometimes an R function is defined in a file that defines multiple
 functions and thus has a general name. Then the file with c-code will
 have a similar general name. For example, the source code of
 [`make.names()`](https://rdrr.io/r/base/make.names.html) is defined in

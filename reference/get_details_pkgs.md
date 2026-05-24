@@ -48,7 +48,7 @@ get_details_pkgs(
   `NULL` (default) or a matrix with the results of a call to
   [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
   containing column `Package` (or rownames that are package names). To
-  prevent a call to
+  prevent a possibly slow call to
   [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html),
   the matrix should contain the columns listed in section `Details`
   below and any requested columns.
@@ -70,8 +70,7 @@ instances are returned, with a warning reporting their version, library
 path and origin. Information about a package is not duplicated in the
 returned matrix if multiple entries in `pkgs` refer to the same package.
 
-If no packages were found, a zero-row matrix is returned, with a
-warning.
+If no packages are found, a zero-row matrix is returned, with a warning.
 
 ## Details
 
@@ -95,34 +94,11 @@ package names, file paths to packages, and full URLs to packages from
 ## See also
 
 [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
-that is used by `get_details_pkgs()`.
-
-[`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html) for
-information about packages available from
-[CRAN](https://cran.r-project.org/web/packages/index.html), including
-the `Description` and `Maintainer` fields not returned by
-[`utils::available.packages()`](https://rdrr.io/r/utils/available.packages.html).
-[`tools::CRAN_check_results()`](https://rdrr.io/r/tools/CRANtools.html),
-[`tools::CRAN_check_details()`](https://rdrr.io/r/tools/CRANtools.html)
-and
-[`tools::CRAN_check_issues()`](https://rdrr.io/r/tools/CRANtools.html)
-on the current check status of CRAN packages.
-
-[utils::available.packages](https://rdrr.io/r/utils/available.packages.html)`(fields = NULL, repos = BiocManager::repositories())`
-for information about packages available from
-[BioConductor](https://bioconductor.org/packages/release/BiocViews.html),
-and
-[`BiocManager::available()`](https://bioconductor.github.io/BiocManager/reference/available.html)
-for their names.
-
-[check_pkgs](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md),
-with information on obtaining dependencies in its help-page.
-
-The vignette *Instructions about R packages*:
-[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
-
-Other functions to get information about packages:
+that is used by `get_details_pkgs()`;
 [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
+to check if a package is installed and functional; The vignette
+*Instructions about R packages*:
+[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
 
 ## Examples
 
@@ -244,11 +220,11 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #> ('/home/runner/work/_temp/Library', '/opt/R/4.6.0/lib/R/site-library', '/opt/R/4.6.0/lib/R/library'):
 #> 'missing_package'
 #>            Package      Version MD5sum
-#> checkinput "checkinput" "0.6.4" NA    
-#> checkrpkgs "checkrpkgs" "0.8.2" NA    
+#> checkinput "checkinput" "0.6.5" NA    
+#> checkrpkgs "checkrpkgs" "0.8.3" NA    
 #>            Built                                      Priority
-#> checkinput "R 4.6.0; ; 2026-05-22 14:44:34 UTC; unix" NA      
-#> checkrpkgs "R 4.6.0; ; 2026-05-22 14:44:39 UTC; unix" NA      
+#> checkinput "R 4.6.0; ; 2026-05-24 13:17:10 UTC; unix" NA      
+#> checkrpkgs "R 4.6.0; ; 2026-05-24 13:17:15 UTC; unix" NA      
 #>            LibPath                           Repository Additional_repositories
 #> checkinput "/home/runner/work/_temp/Library" "Github"   NA                     
 #> checkrpkgs "/home/runner/work/_temp/Library" "Github"   NA                     

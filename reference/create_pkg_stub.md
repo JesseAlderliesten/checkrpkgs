@@ -62,3 +62,8 @@ user directory (with a warning) because
 will ask if that directory should be used if `path` does not point to a
 writeable directory. If the packag is not functioning correctly, the
 action taken by `action_on_failure` will be triggered.
+
+## See also
+
+The package
+[disposables](https://CRAN.R-project.org/package=disposables).

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,9 +72,9 @@ installed non-functional packages?</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A list of length two, with elements 'absent' and 'nonfunc' containing
 character vectors with the names of packages in <code>pkgs</code> that are not installed
-or are installed but non-functional, with a warning. The elements are
-<code>character(0)</code> if all packages in <code>pkgs</code> are present, and if all packages
-are installed and functional, respectively.</p>
+or are installed but non-functional, respectively, with a warning. The
+elements are <code>character(0)</code> if all packages in <code>pkgs</code> are present, and if all
+packages are installed and functional, respectively.</p>
     </div>
     <div class="section level2">
     <h2 id="package-names">Package names<a class="anchor" aria-label="anchor" href="#package-names"></a></h2>
@@ -113,29 +113,12 @@ packages are functional, nor if all needed
 In addition, <code><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages()</a></code> can be slow such that its
 <a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">help page</a> states that <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace()</a></code> or
 <code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code> should be used instead.</p>
-<p>Setting environment variable <code>_R_TRACE_LOADNAMESPACE_</code> to a numerical value
-(e.g., <code>Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)</code>) will generate additional
-messages on progress for non-standard packages, see the section <code>Tracing</code> in
-<code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/tools/package_dependencies.html" class="external-link">tools::package_dependencies()</a></code><code>(packages = "&lt;pkgname&gt;", recursive = TRUE)</code>
-for dependencies and
-<code><a href="https://rdrr.io/r/tools/dependsOnPkgs.html" class="external-link">tools::dependsOnPkgs()</a></code><code>(pkgs = "&lt;pkgname&gt;", recursive = TRUE)</code>
-for reverse dependencies; <a href="get_details_pkgs.html">get_details_pkgs</a><code>(pkgs = &lt;pkgname&gt;)</code> for more
-information about the origin of packages; <code><a href="https://rdrr.io/r/tools/testInstalledPackage.html" class="external-link">tools::standard_package_names()</a></code>
-(present since <span style="R">R</span> 4.4.0) for names of the base and recommended packages.</p>
-<p><code><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">old.packages()</a></code> and <code><a href="https://bioconductor.github.io/BiocManager/reference/valid.html" class="external-link">BiocManager::valid()</a></code> to check for outdated or too new
-packages, where the latter takes the currently used version of Bioconductor
-(see <code><a href="https://bioconductor.github.io/BiocManager/reference/version.html" class="external-link">BiocManager::version()</a></code>) into account.</p>
-<p><code>options("defaultPackages")</code> for names of packages that are attached by
-default when <span style="R">R</span> starts up; <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadedNamespaces()</a></code> and <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">utils::sessionInfo()</a></code>
-for names of packages that are currently loaded.</p>
+    <div class="dont-index"><p><code><a href="get_details_pkgs.html">get_details_pkgs()</a></code> for more information about the origin of packages.</p>
 <p>The vignette <em>Instructions about R packages</em>:
-<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>.</p>
-<p>Other functions to get information about packages:
-<code><a href="get_details_pkgs.html">get_details_pkgs()</a></code></p></div>
+<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>.</p></div>
     </div>
 
     <div class="section level2">

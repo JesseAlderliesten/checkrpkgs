@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,8 +126,8 @@ on the R or RStudio icon and select <code>Run as administrator</code>.
 Packages can be obtained from several websites, called ‘repositories’,
 such as <code>CRAN</code>, <code>BioConductor</code>, and
 <code>GitHub</code>, discussed in the next sections. After installing a
-package, you need to run <code>library(&lt;pkg&gt;)</code> to be able to
-use the functions of that package.</p>
+package, you need to <a href="#loading-packages">load</a> the package to
+be able to use its functions: run <code>library(&lt;pkg&gt;)</code>.</p>
 <div class="section level4">
 <h4 id="cran">CRAN<a class="anchor" aria-label="anchor" href="#cran"></a>
 </h4>
@@ -148,8 +148,16 @@ all core packages of a task view, install package <a href="https://CRAN.R-projec
 <code>ctv::install.views("&lt;taskview&gt;", coreOnly = TRUE)</code>. To
 update these packages, use
 <code>ctv::update.views("&lt;taskview&gt;", coreOnly = TRUE)</code>.</p>
-<p>Packages from CRAN that have been recently archived are available at
-<a href="https://www.cranhaven.org/" class="external-link">CRANhaven</a>.</p>
+<p><code><a href="https://rdrr.io/r/tools/CRANtools.html" class="external-link">tools::CRAN_package_db()</a></code> gives information about
+packages available from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a>,
+including the <code>Description</code> and <code>Maintainer</code>
+fields not returned by <code><a href="https://rdrr.io/r/utils/available.packages.html" class="external-link">utils::available.packages()</a></code>.
+<code><a href="https://rdrr.io/r/tools/CRANtools.html" class="external-link">tools::CRAN_check_results()</a></code>,
+<code><a href="https://rdrr.io/r/tools/CRANtools.html" class="external-link">tools::CRAN_check_details()</a></code> and
+<code><a href="https://rdrr.io/r/tools/CRANtools.html" class="external-link">tools::CRAN_check_issues()</a></code> give information about the
+current check status of CRAN packages. Packages from CRAN that have been
+recently archived (for example because check issues were not adressed in
+time) are available at <a href="https://www.cranhaven.org/" class="external-link">CRANhaven</a>.</p>
 </div>
 <div class="section level4">
 <h4 id="bioconductor">BioConductor<a class="anchor" aria-label="anchor" href="#bioconductor"></a>
@@ -180,6 +188,9 @@ used to install packages from <code>Bioconductor</code> and
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                     <span class="at">update =</span> <span class="cn">FALSE</span>, <span class="at">ask =</span> <span class="cn">TRUE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>                     <span class="at">force =</span> <span class="cn">FALSE</span>, <span class="at">version =</span> <span class="st">"3.23"</span>)</span></code></pre></div>
 <p>Bioconductor also has thematic package collections known as <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">BiocViews</a>.</p>
+<p><code>utils::available.packages(fields = NULL, repos = BiocManager::repositories())</code>
+gives information about packages available from <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">BioConductor</a>,
+and <code><a href="https://bioconductor.github.io/BiocManager/reference/available.html" class="external-link">BiocManager::available()</a></code> gives their names.</p>
 </div>
 <div class="section level4">
 <h4 id="github">Github<a class="anchor" aria-label="anchor" href="#github"></a>
@@ -268,6 +279,21 @@ is used in RStudio (see the preceding paragraph).</p>
 </div>
 </div>
 <div class="section level3">
+<h3 id="loading-packages">Loading packages<a class="anchor" aria-label="anchor" href="#loading-packages"></a>
+</h3>
+<p>After installing a package, you need to load the package to be able
+to use its functions: run <code>library(&lt;pkg&gt;)</code>. If loading
+fails without clear reason, setting environment variable
+<code>_R_TRACE_LOADNAMESPACE_</code> to a numerical value (e.g.,
+<code>Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)</code>) will generate
+additional messages on progress for non-standard packages (see the
+section <code>Tracing</code> in <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace()</a></code>).</p>
+<p><code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadedNamespaces()</a></code> gives the names of packages that are
+currently loaded, <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">utils::sessionInfo()</a></code> also gives their
+versions. <code>options("defaultPackages")</code> gives the names of
+packages that are attached by default when R starts up.</p>
+</div>
+<div class="section level3">
 <h3 id="updating-packages">Updating packages<a class="anchor" aria-label="anchor" href="#updating-packages"></a>
 </h3>
 <p>Updating out-of-date packages prevents compatibility issues between
@@ -278,7 +304,8 @@ already-installed and newly-installed packages.</p>
 <p>For R packages from CRAN, versions can be compared using <a href="https://diffify.com/R" class="external-link">diffify</a> and a chronological overview of
 changes is available at <a href="https://dirk.eddelbuettel.com/cranberries/" class="external-link">CRANberries</a>. To
 get the version number of an installed package, run
-<code>utils::packageVersion("&lt;pkg&gt;")</code>.</p>
+<code>utils::packageVersion("&lt;pkg&gt;")</code>.
+<code><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">old.packages()</a></code> indicates which packages can be updated.</p>
 <p>The following code can be used to install the latest version of
 packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> (but
 note this <strong>changes</strong> the version of already-installed
@@ -291,7 +318,10 @@ packages, which might be undesirable):</p>
 <div class="section level4">
 <h4 id="bioconductor-1">Bioconductor<a class="anchor" aria-label="anchor" href="#bioconductor-1"></a>
 </h4>
-<p>The following code can be used to update packages to a specific
+<p><code><a href="https://bioconductor.github.io/BiocManager/reference/valid.html" class="external-link">BiocManager::valid()</a></code> indicates which packages can be
+updated and also checks for too new packages, taking the currently used
+version of Bioconductor (see <code><a href="https://bioconductor.github.io/BiocManager/reference/version.html" class="external-link">BiocManager::version()</a></code>) into
+account. The following code can be used to update packages to a specific
 BioConductor release (here version 3.23):</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -472,11 +502,13 @@ packages that do not have any dependencies.</p>
 <h3 id="already-installed-packages">Already-installed packages<a class="anchor" aria-label="anchor" href="#already-installed-packages"></a>
 </h3>
 <p>The locations where R installs packages, and where it looks for
-installed packages, can be obtained with <code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths()</a></code>, and
-the names of all installed packages can be obtained with
+installed packages, can be obtained with <code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths()</a></code>. The
+names of all installed packages can be obtained with
 <code>list.files(path = .libPaths(), recursive = FALSE)</code>. The
-repository from which a package was installed can be obtained from the
-<code>Repository</code> and <code>URL</code> fields of package
+locations where a particular package is installed can be obtained with
+<code>find.package(package = "&lt;pkg&gt;", lib.loc = .libPaths(), verbose = TRUE)</code>.</p>
+<p>The repository from which a package was installed can be obtained
+from the <code>Repository</code> and <code>URL</code> fields of package
 descriptions:
 <code>checkrpkgs::get_details_pkgs(pkgs = &lt;pkg&gt;)</code>.</p>
 <p>Information about a package and its functions is available from
@@ -494,6 +526,8 @@ those function names in the returned character vector);
 to their help-pages if there is a file <code>&lt;pkg&gt;.R</code> in
 folder <code>&lt;pkg&gt;\R</code>.</li>
 <li>Help page: <code>help(topic = "&lt;pkg&gt;")</code>.</li>
+<li>Installation path:
+<code>find.package(package = "&lt;pkg&gt;", lib.loc = .libPaths(), verbose = TRUE)</code>.</li>
 <li>Version: <code>utils::packageVersion("&lt;pkg&gt;")</code>.</li>
 <li>Vignettes: show them in a browser through
 <code>utils::browseVignettes(package = "&lt;pkg&gt;")</code> or list
@@ -606,7 +640,7 @@ the name of the function, <em>without</em> the brackets, and press
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x556043cc42d8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55d4d3543748&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
@@ -630,7 +664,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x5560421b9d00&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55d4d1923d00&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -673,7 +707,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55604448f3f8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55d4d3bf93f8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -698,7 +732,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55604584b5b8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55d4d5a73d48&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>Or use <code>getAnywhere("mean.default")</code> to see the source
 code of the method <code>mean</code> used with objects of classes not
@@ -736,7 +770,7 @@ listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55604584aba8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55d4d5a73338&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -776,8 +810,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x556043d17600&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x556042ac6428&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55d4d3465fd8&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55d4d2230428&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -823,7 +857,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x556045b32170&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55d4d520c788&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
@@ -863,7 +897,7 @@ has as entry with <code>log10</code> in the first column:
 Searching <code>src/main</code> for <code>log1arg</code> gives file <a href="https://github.com/r-devel/r-svn/blob/main/src/main/arithmetic.c" class="external-link">arithmetic.c</a>
 as one of its results. That file contains the source code of
 <code>log10</code>.</p>
-<p>Sometimes an R-function is defined in a file that defines multiple
+<p>Sometimes an R function is defined in a file that defines multiple
 functions and thus has a general name. Then the file with c-code will
 have a similar general name. For example, the source code of
 <code><a href="https://rdrr.io/r/base/make.names.html" class="external-link">make.names()</a></code> is defined in

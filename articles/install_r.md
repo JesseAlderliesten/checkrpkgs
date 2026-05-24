@@ -25,7 +25,7 @@ download R via `Download R for Windows` \> `base` \>
 `Download R-X.Y.Z for Windows` and install it by opening the downloaded
 `.exe` file.
 
-Note that R is **not** required to read R-scripts: R-scripts are
+Note that R is **not** required to read R scripts: R scripts are
 plain-text files that can be read by applications such as Microsoft
 NotePad.
 
@@ -66,9 +66,10 @@ environment variables
   because it may trigger bugs and resource leaks (per its help-page).
   The default is `options(warn = 0)` to warn after the top-level
   function returns.
-- Enter the environment browser (help(“browser”)) upon error (default:
-  `options(error = NULL)`): `options(error = browser)`; press `Q` or
-  `Escape` to quit the browser mode; press `c` to continue code.
+- Enter the environment browser
+  ([`help("browser")`](https://rdrr.io/r/base/browser.html)) upon error
+  (default: `options(error = NULL)`): `options(error = browser)`; press
+  `Q` or `Escape` to quit the browser mode; press `c` to continue code.
 
 In addition, various packages contain ways to make R stricter:
 

@@ -5,7 +5,7 @@
 [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/); obtaining
 information about to-be-installed and already-installed packages; and
-how to get the source code of R-functions.
+how to get the source code of R functions.
 
 ## Folder structure
 
@@ -49,7 +49,7 @@ The main content of `checkrpkgs` consists of vignettes:
   [R](https://www.r-project.org/),
   [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
-- [Instructions about R
+- [R
   packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
   This vignette contains information on installing and getting
@@ -79,10 +79,10 @@ check_pkgs(pkgs = "abcdef1") # package is absent
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
 #>            Package      Version MD5sum
-#> checkrpkgs "checkrpkgs" "0.7.2" NA    
+#> checkrpkgs "checkrpkgs" "0.8.2" NA    
 #> utils      "utils"      "4.6.0" NA    
 #>            Built                                                          
-#> checkrpkgs "R 4.6.0; ; 2026-05-11 12:12:19 UTC; windows"                  
+#> checkrpkgs "R 4.6.0; ; 2026-05-22 08:37:57 UTC; windows"                  
 #> utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"
 #>            Priority LibPath                                            
 #> checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"

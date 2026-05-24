@@ -97,7 +97,7 @@ repository:
 - in the [shell](https://happygitwithr.com/shell):
   `git pull https://github.com/<username>/<repository>`.
 
-Save the modified R-file after you have made some changes, only then
+Save the modified R file after you have made some changes, only then
 will the name of the file appear in the `Git` menu of RStudio to review
 changes:
 
@@ -151,13 +151,13 @@ onto the shell will copy the path to the shell).
 
 ### Not using GitHub
 
-R-scripts can be compared using
+R scripts can be compared using
 [`tools::Rdiff()`](https://rdrr.io/r/tools/Rdiff.html): use the quoted
 file paths (i.e., the directories and file names, **including** the
 extensions) of the two files as arguments `from` and `to`:  
 `tools::Rdiff(from = "<path/and/filename_file1>.R", to = "<path/and/filename_file2>.R")`
 
-For a nicer output, compare R-scripts using the `Bash`
+For a nicer output, compare R scripts using the `Bash`
 [shell](https://happygitwithr.com/shell): open the `Bash` shell and copy
 the file paths (i.e., the directories and file names, **including** the
 extensions) of the two files to be compared into the shell on the same
