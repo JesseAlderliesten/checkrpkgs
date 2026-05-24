@@ -1,3 +1,11 @@
+# checkrpkgs 0.8.3
+
+### Miscellaneous
+- Move information from documentation of `check_pkgs()` and `get_details_pkgs()`
+  to the vignette `R packages`.
+- Stylistic updates to vignettes and README. Re-knit README.
+
+
 # checkrpkgs 0.8.2
 
 ### Miscellaneous
