@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/); obtaining information
 about to-be-installed and already-installed packages; and how to get the source
-code of R-functions.
+code of R functions.
 
 ## Folder structure
 ```

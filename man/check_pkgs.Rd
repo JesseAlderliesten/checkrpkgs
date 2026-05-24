@@ -16,9 +16,9 @@ installed non-functional packages?}
 \value{
 A list of length two, with elements 'absent' and 'nonfunc' containing
 character vectors with the names of packages in \code{pkgs} that are not installed
-or are installed but non-functional, with a warning. The elements are
-\code{character(0)} if all packages in \code{pkgs} are present, and if all packages
-are installed and functional, respectively.
+or are installed but non-functional, respectively, with a warning. The
+elements are \code{character(0)} if all packages in \code{pkgs} are present, and if all
+packages are installed and functional, respectively.
 }
 \description{
 Function to check for non-installed or non-functional packages.
@@ -56,11 +56,6 @@ packages are functional, nor if all needed
 In addition, \code{installed.packages()} can be slow such that its
 \link[=installed.packages]{help page} states that \code{\link[=requireNamespace]{requireNamespace()}} or
 \code{\link[=require]{require()}} should be used instead.
-
-Setting environment variable \verb{_R_TRACE_LOADNAMESPACE_} to a numerical value
-(e.g., \code{Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)}) will generate additional
-messages on progress for non-standard packages, see the section \code{Tracing} in
-\code{\link[=requireNamespace]{requireNamespace()}}.
 }
 
 \examples{
@@ -73,25 +68,8 @@ check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
 
 }
 \seealso{
-\code{\link[tools:package_dependencies]{tools::package_dependencies()}}\verb{(packages = "<pkgname>", recursive = TRUE)}
-for dependencies and
-\code{\link[tools:dependsOnPkgs]{tools::dependsOnPkgs()}}\verb{(pkgs = "<pkgname>", recursive = TRUE)}
-for reverse dependencies; \link{get_details_pkgs}\verb{(pkgs = <pkgname>)} for more
-information about the origin of packages; \code{tools::standard_package_names()}
-(present since \R 4.4.0) for names of the base and recommended packages.
-
-\code{\link[=old.packages]{old.packages()}} and \code{BiocManager::valid()} to check for outdated or too new
-packages, where the latter takes the currently used version of Bioconductor
-(see \code{BiocManager::version()}) into account.
-
-\code{options("defaultPackages")} for names of packages that are attached by
-default when \R starts up; \code{\link[=loadedNamespaces]{loadedNamespaces()}} and \code{\link[utils:sessionInfo]{utils::sessionInfo()}}
-for names of packages that are currently loaded.
+\code{\link[=get_details_pkgs]{get_details_pkgs()}} for more information about the origin of packages.
 
 The vignette \emph{Instructions about R packages}:
 \code{vignette("r_pkgs", package = "checkrpkgs")}.
-
-Other functions to get information about packages:
-\code{\link[=get_details_pkgs]{get_details_pkgs()}}
 }
-\concept{functions to get information about packages}

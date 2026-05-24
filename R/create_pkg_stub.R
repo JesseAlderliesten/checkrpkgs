@@ -32,6 +32,9 @@
 #' `file.path(path, name)` if `path` is already normalized and points to a
 #' writeable directory.
 #'
+#' @seealso
+#' The package [disposables](https://CRAN.R-project.org/package=disposables).
+#'
 #' @export
 create_pkg_stub <- function(name, path,
                             action_on_failure = c("error", "warning", "message"),

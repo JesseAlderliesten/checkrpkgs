@@ -1,5 +1,5 @@
 # Notes:
-# - Subsequent tests use different packages from base-R that should be present
+# - Subsequent tests use different packages from base R that should be present
 #   and functional. The packages used here are attached during startup if
 #   environment variable R_DEFAULT_PACKAGES is unset (they should be in
 #   options("defaultPackages"), see help("Startup") and the entry

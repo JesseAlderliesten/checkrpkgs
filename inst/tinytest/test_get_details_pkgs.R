@@ -119,12 +119,14 @@ expect_true(all(is.na(NULL_fields_add[, "SomeField", drop = FALSE])))
 
 ##### Do not duplicate fields #####
 NULL_fields_dupl <- get_details_pkgs(
-  pkgs = pkgs_present, fields = rep(c("LibPath", fields_add), 2L), db = NULL)
+  pkgs = pkgs_present, fields = rep.int(c("LibPath", fields_add), 2L),
+  db = NULL)
 expect_warning(
   OK_fields_dupl <- get_details_pkgs(
-    pkgs = pkgs_present, fields = rep(c("LibPath", fields_add), 2L), db = db_OK))
+    pkgs = pkgs_present, fields = rep.int(c("LibPath", fields_add), 2L),
+    db = db_OK))
 OK_fields_dupl_v2 <- get_details_pkgs(
-  pkgs = pkgs_present, fields = rep("LibPath", 2L), db = db_OK)
+  pkgs = pkgs_present, fields = rep.int("LibPath", 2L), db = db_OK)
 
 expect_identical(NULL_fields_dupl, OK_fields_dupl)
 expect_identical(anyDuplicated(colnames(NULL_fields_dupl)), 0L)

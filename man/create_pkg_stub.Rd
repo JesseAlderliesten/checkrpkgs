@@ -48,3 +48,6 @@ directory should be used if \code{path} does not point to a writeable directory.
 If the packag is not functioning correctly, the action taken by
 \code{action_on_failure} will be triggered.
 }
+\seealso{
+The package \href{https://CRAN.R-project.org/package=disposables}{disposables}.
+}

@@ -18,9 +18,9 @@
 #' @returns
 #' A list of length two, with elements 'absent' and 'nonfunc' containing
 #' character vectors with the names of packages in `pkgs` that are not installed
-#' or are installed but non-functional, with a warning. The elements are
-#' `character(0)` if all packages in `pkgs` are present, and if all packages
-#' are installed and functional, respectively.
+#' or are installed but non-functional, respectively, with a warning. The
+#' elements are `character(0)` if all packages in `pkgs` are present, and if all
+#' packages are installed and functional, respectively.
 #'
 #' @section Side effects:
 #' Packages are [loaded][loadNamespace()], such that [updating][update.packages()]
@@ -41,32 +41,11 @@
 #' [help page][installed.packages()] states that [requireNamespace()] or
 #' [require()] should be used instead.
 #'
-#' Setting environment variable `_R_TRACE_LOADNAMESPACE_` to a numerical value
-#' (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will generate additional
-#' messages on progress for non-standard packages, see the section `Tracing` in
-#' [requireNamespace()].
-#'
 #' @seealso
-#' [tools::package_dependencies()]`(packages = "<pkgname>", recursive = TRUE)`
-#' for dependencies and
-#' [tools::dependsOnPkgs()]`(pkgs = "<pkgname>", recursive = TRUE)`
-#' for reverse dependencies; [get_details_pkgs]`(pkgs = <pkgname>)` for more
-#' information about the origin of packages; `tools::standard_package_names()`
-#' (present since \R 4.4.0) for names of the base and recommended packages.
-#'
-#' [old.packages()] and `BiocManager::valid()` to check for outdated or too new
-#' packages, where the latter takes the currently used version of Bioconductor
-#' (see `BiocManager::version()`) into account.
-#'
-#' `options("defaultPackages")` for names of packages that are attached by
-#' default when \R starts up; [loadedNamespaces()] and [utils::sessionInfo()]
-#' for names of packages that are currently loaded.
+#' [get_details_pkgs()] for more information about the origin of packages.
 #'
 #' The vignette *Instructions about R packages*:
 #' `vignette("r_pkgs", package = "checkrpkgs")`.
-#'
-#' @family
-#' functions to get information about packages
 #'
 #' @examples
 #' check_pkgs(pkgs = c("base", "grid"), quietly = FALSE)
