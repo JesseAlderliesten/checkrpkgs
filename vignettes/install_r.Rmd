@@ -40,7 +40,7 @@ content as the [main](https://cran.r-project.org/) CRAN page), download R via
 `Download R for Windows` > `base` > `Download R-X.Y.Z for Windows` and install
 it by opening the downloaded `.exe` file.
 
-Note that R is **not** required to read R-scripts: R-scripts are plain-text
+Note that R is **not** required to read R scripts: R scripts are plain-text
 files that can be read by applications such as Microsoft NotePad.
 
 ### Configuring R

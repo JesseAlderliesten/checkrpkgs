@@ -228,7 +228,7 @@ on progress for non-standard packages (see the section `Tracing` in
 
 `loadedNamespaces()` gives the names of packages that are currently loaded,
 `utils::sessionInfo()` also gives their versions. `options("defaultPackages")`
-gives the names of packages that are attached by default when \R starts up.
+gives the names of packages that are attached by default when R starts up.
 
 ### Updating packages
 Updating out-of-date packages prevents compatibility issues between
@@ -653,7 +653,7 @@ has as entry with `log10` in the first column:
 [arithmetic.c](https://github.com/r-devel/r-svn/blob/main/src/main/arithmetic.c)
 as one of its results. That file contains the source code of `log10`.
 
-Sometimes an R-function is defined in a file that defines multiple functions and
+Sometimes an R function is defined in a file that defines multiple functions and
 thus has a general name. Then the file with c-code will have a similar general
 name. For example, the source code of `make.names()` is defined in
 `src/library/base/R/character.R` which contains (among others) the code
