@@ -14,23 +14,13 @@
 information about to-be-installed and already-installed packages; and
 how to get the source code of R functions.
 
-## Folder structure
-
-    ├── .github
-    │   └── workflows: workflows to run tests with GitHub Actions
-    ├── R: functions
-    ├── inst
-    │   └── tinytest: tests
-    ├── man: help-files
-    └── tests: setup to use 'tinytest' for testing
-
 ## Installation
 
 You can visit the [checkrpkgs
 website](https://jessealderliesten.github.io/checkrpkgs/) to explore the
 package. To use `checkrpkgs`, you have to install it from
 [GitHub](https://github.com/JesseAlderliesten/checkrpkgs) using the
-following code in R (you need to run R as administrator):
+following R code (you need to run R as administrator):
 
 ``` r
 if(!requireNamespace("remotes", quietly = TRUE)) {
@@ -79,10 +69,10 @@ check_pkgs(pkgs = "abcdef1") # package is absent
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
 #>            Package      Version MD5sum
-#> checkrpkgs "checkrpkgs" "0.8.2" NA    
+#> checkrpkgs "checkrpkgs" "0.8.3" NA    
 #> utils      "utils"      "4.6.0" NA    
 #>            Built                                                          
-#> checkrpkgs "R 4.6.0; ; 2026-05-22 08:37:57 UTC; windows"                  
+#> checkrpkgs "R 4.6.0; ; 2026-05-24 13:42:12 UTC; windows"                  
 #> utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"
 #>            Priority LibPath                                            
 #> checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"
