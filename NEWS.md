@@ -1,49 +1,26 @@
+# checkrpkgs devel
+
+### Miscellaneous
+- ...
+
+
 # checkrpkgs 0.8.3
 
-### Miscellaneous
+### Documentation
 - Move information from documentation of `check_pkgs()` and `get_details_pkgs()`
   to the vignette `R packages`.
-- Stylistic updates to vignettes and README. Re-knit README.
-
-
-# checkrpkgs 0.8.2
-
-### Miscellaneous
-- `get_details_pkgs()` includes the number of packages that occur more than once
-  in the warning.
-- Small additions and various stylistic updates to the vignettes.
 
 
 # checkrpkgs 0.8.1
 
-### Miscellaneous
+### Documentation
 - Vignette `Instructions about R packages`: shorten name to `R packages`.
 - Vignette `Using Git and GitHub`: add section on GitHub Actions.
-- Website: show table of contents on homepage. Show more levels in the table of
-  contents in Articles.
-
-
-# checkrpkgs 0.8.0
-
-### Miscellaneous
-- `README`: refer to website when appropriate. Stylistic update.
-- `NEWS`: stylistic update.
-- Vignettes: rely on `pkgdown` to create links to functions.
-
-
-# checkrpkgs 0.7.2
-
-### Miscellaneous
-- `check_pkgs()` and `get_details_pkgs()`: replace link to `BioConductor` (a
-  `suggested` package) documentation with text to get rid of a `Note` in
-  `R cmd check` on `R 4.1.0`.
-- `R-CMD-check.yaml`: also mention package `rcmdcheck` as needed package. Order
-  packages alphabetically.
 
 
 # checkrpkgs 0.7.1
 
-### Breaking changes
+### Added functions
 - Add function `create_pkg_stub()`.
 
 
@@ -60,11 +37,6 @@
 - `get_details_pkgs()` would attempt to use a non-created index if no package
   was found, leading to an error.
 
-### Miscellaneous
-- Add light-switch to `pkgdown` page.
-- Refer from the `README` to the `pkgdown` website.
-- Stylistic changes to code and tests prompted by `goodpractice::gp()`.
-
 
 # checkrpkgs 0.6.0
 
@@ -75,18 +47,13 @@
 
 # checkrpkgs 0.5.2
 
-### Miscellaneous
+### Documentation
 - Vignette `Installing R, Rtools and RStudio`: additional explanation about
   possible options. Stylistic updates.
 - Vignette `Instructions about R packages`: add argument `build_vignettes` and
-  update to version 3.23 in `BiocManager::install()`. Rearrange section
-  'Troubleshooting'. Add subheadings. Smooth text.
-- Vignette `Using Git and GitHub`: Explain what Git and GitHub are. Explain
+  update to version 3.23 in example code of `BiocManager::install()`.
+- Vignette `Using Git and GitHub`: explain what Git and GitHub are. Explain
   'local' vs. 'remote'. Use terminology more consistently.
-
-
-# checkrpkgs 0.5.1
-- Added `pkgdown` website: https://jessealderliesten.github.io/checkrpkgs/.
 
 
 # checkrpkgs 0.5.0
@@ -107,12 +74,12 @@
 - `get_details_pkgs()`: if `pkgs` has length larger than zero, warn only about
   duplicated packages that are in `pkgs`.
 
-### Miscellaneous
-- Updated vignettes: some corrections in text, various updates. Changed order of
-  some sections to be more logical. Explain notation for text to be filled in
-  (e.g., `<funcname>`) and use that more consistently.
-- Vignette `Installing R, Rtools and RStudio`: adjust newlines to have shorter
-  lines. Add examples to section 'Configuring R'.
+### Documentation
+- Updated vignettes: some corrections in text. Changed order of some sections to
+  be more logical. Explain notation for text to be filled in (e.g., `<funcname>`)
+  and use that more consistently.
+- Vignette `Installing R, Rtools and RStudio`: Add examples to section
+  'Configuring R'.
 - Vignette `Instructions about R packages`: some bugfixes in example code. More
   consistent code to install or update packages. Add example how to install from
   other repositories. Use evaluation of R code instead of hardcoding output in
@@ -146,25 +113,6 @@
 - Dependency `tinytest`: declare version `>= 1.4.1` because I use argument
   `strict` in `expect_message()` and `expect_warning()`.
 
-### Miscellaneous
-- Make the location of newlines more predictable by hardcoding newlines using
-  `\n` instead of using `wrap_text()` in warnings.
-
-
-# checkrpkgs 0.1.3
-
-### Miscellaneous
-- Adjust GitHub action `check-standard` to run without the dependencies listed
-  in `Suggests` which I use for documentation. The GitHub action runs on the
-  released `R` version and on `R` 4.1.0 on macOS, Windows, and Ubuntu. It runs
-  every Saturday on 04:23 UTC, and can be run manually (trigger it once manually
-  on the main branch to be able to trigger it manually on other branches).
-- Including GitHub actions against `R` 4.1.0 because `R` 4.1.0 is required to
-  pass the R CMD check on ubuntu-latest: `github::hadley/strict` needs `R` >=
-  4.1.0. Because `strict` is in `suggests` it is *not* necessary to add the
-  dependency `R` >= 4.1.0.
-- Show folder structure in `README`.
-
 
 # checkrpkgs 0.1.2
 
@@ -172,17 +120,9 @@
 - Dependencies: no need to import `knit()` from `knitr` or `render()` from
   `rmarkdown`, so move `knitr` and `rmarkdown` back from `Imports` to `Suggests`.
 
-### Miscellaneous
-- Vignettes: fixe some URLs.
+### Documentation
 - Vignette `Instructions about R packages`: updates, especially the section
   `Getting the source code`. Explain how to point to GitHub repositories.
-
-
-# checkrpkgs 0.1.1
-
-### Miscellaneous
-- Use GitHub action `check-standard` on all branches (see
-  `?usethis::use_github_action()`).
 
 
 # checkrpkgs 0.1.0
@@ -194,7 +134,7 @@
 - `find_nonfunc_pkgs()`: rename to `check_pkgs()`. Warn if a package is found
   more than once.
 
-### Updated documentation
+### Documentation
 - Vignette `Instructions about R packages`: first mention BioConductor releases,
   explaining their advantage. Expand information on mirror websites into a
   separate section. Use internal links when referring to section headings. Use
@@ -218,7 +158,7 @@
 - `find_nonfunc_pkgs()`: find non-installed or non-functional packages.
 - `get_details_pkgs()`: get details of installed packages.
 
-### Updated documentation
+### Documentation
 - Updated `README`.
 - Added vignette `Installing R, Rtools and RStudio`.
 - Added vignette `Instructions about R packages`.
