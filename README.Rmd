@@ -25,9 +25,8 @@ about to-be-installed and already-installed packages; and how to get the source
 code of R functions.
 
 ## Installation
-You can visit the
-[checkrpkgs website](https://jessealderliesten.github.io/checkrpkgs/) to explore
-the package. To use `checkrpkgs`, you have to install it from
+Visit the [checkrpkgs website](https://jessealderliesten.github.io/checkrpkgs/)
+to explore the package., or install `checkrpkgs` from
 [GitHub](https://github.com/JesseAlderliesten/checkrpkgs) using the following R
 code (you need to run R as administrator):
 
