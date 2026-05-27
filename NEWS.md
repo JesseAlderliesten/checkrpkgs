@@ -1,7 +1,14 @@
-# checkrpkgs devel
+# checkrpkgs 0.9.0
 
-### Miscellaneous
-- ...
+### Breaking changes
+- Dependency `checkinput`: increase minimum version from `0.6.0` to `0.8.0` to
+  update argument name `allow_zero` to `allow_zero_length`.
+- Dependency `progutils`: increase minimum version from `0.0.9` to `0.2.0` to
+  update argument name `allow_zero` to `allow_zero_length`.
+
+### Documentation
+- Vignette `Installing R, Rtools and RStudio`: rename and restructure section on
+  configuring R. Move documentation for developers to my package `develcoder`.
 
 
 # checkrpkgs 0.8.3
