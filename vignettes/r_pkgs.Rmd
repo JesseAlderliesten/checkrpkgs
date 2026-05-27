@@ -98,8 +98,8 @@ been recently archived (for example because check issues were not adressed in
 time) are available at [CRANhaven](https://www.cranhaven.org/).
 
 #### BioConductor
-The [Bioconductor](https://bioconductor.org/) repository has a new releases
-every six months. Each release contains specific versions of packages from
+The [Bioconductor](https://bioconductor.org/) repository has a new release every
+six months. Each release contains specific versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html)
 and [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
 that are consistent with each other and with a
@@ -140,16 +140,15 @@ gives information about packages available from
 The following code can be used to install packages from
 [GitHub](https://github.com/): it installs the
 [remotes](https://CRAN.R-project.org/package=remotes) package that is needed to
-install packages from GitHub.
-
-`grep(pattern = "/", x = pkgs_new, value = TRUE)` selects the elements of
-`pkgs_new` which contain a slash because `remotes::install_github()` only works
-if each element of `pkgs` contains the author name and repository name (e.g.,
-`"JesseAlderliesten/checkrpkgs"`) or the full URL to a package (e.g.,
-`"https://github.com/JesseAlderliesten/checkrpkgs"`). To match names in such
-formats to package names returned by `utils::installed.packages()`, use
-`basename(pkgs_new)` instead of `pkgs_new` to select the last part of the name
-(e.g., `"checkrpkgs"` instead of `"JesseAlderliesten/checkrpkgs"`):
+install packages from GitHub. `grep(pattern = "/", x = pkgs_new, value = TRUE)`
+is used to select the elements of `pkgs_new` that contain a slash because
+`remotes::install_github()` only works if each element of `pkgs` contains the
+author name and repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or the
+full URL to a package (e.g., `"https://github.com/JesseAlderliesten/checkrpkgs"`).
+To match names in such formats to package names returned by
+`utils::installed.packages()`, use `basename(pkgs_new)` instead of `pkgs_new` to
+select the last part of the name (e.g., `"checkrpkgs"` instead of
+`"JesseAlderliesten/checkrpkgs"`):
 `pkgs[!(basename(pkgs) %in% installed.packages()[, "Package"])]`.
 
 ```{r, eval = FALSE}
@@ -179,7 +178,7 @@ Examples of other repositories for R packages are:
   [collections](https://ropensci.org/packages/)
 - [R universe](https://r-universe.dev/search) with an
   [overview](https://r-universe.dev/datasets) of
-  datasets (see help("data", package = "utils")) included in R packages
+  datasets (see `help("data", package = "utils")`) included in R packages
 
 The websites of these repositories include instructions how to install packages
 from them, and repositories can be selected using `utils::setRepositories()`.
@@ -199,7 +198,7 @@ if(length(pkgs_install) > 0L) {
 }
 ```
 
-Mirror websites (mirrors) are websites hosted in various parts of the world with
+Mirror websites ('mirrors') are websites hosted in various parts of the world with
 the same content as the main website. Using a nearby mirror allows for faster
 downloads. Mirrors of repositories can be selected using
 `utils::setRepositories()`.
@@ -224,7 +223,7 @@ functions: run `library(<pkg>)`. If loading fails without clear reason, setting
 environment variable `_R_TRACE_LOADNAMESPACE_` to a numerical value (e.g.,
 `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will generate additional messages
 on progress for non-standard packages (see the section `Tracing` in
-`requireNamespace()`).
+`help("requireNamespace")`).
 
 `loadedNamespaces()` gives the names of packages that are currently loaded,
 `utils::sessionInfo()` also gives their versions. `options("defaultPackages")`
@@ -369,7 +368,7 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   you installed a binary package (i.e., not by building from source) that was
   prepared ('compiled') for an earlier version of R than the version of R you
   are currently using (run `getRversion()` to see your current R version). The
-  warning is issued because packages are not tested on versions of R that are
+  warning is issued because packages are **not** tested on versions of R that are
   older than the version they were built on. Therefore it is best to update R
   when installing packages.
 
@@ -410,6 +409,17 @@ dependencies (i.e., which packages require package `<pkg>`). `NULL` is
 returned for packages that are not found, whereas `character(0)` is returned for
 packages that do not have any dependencies.
 
+To handle dependencies from other sources (e.g., GitHub), use package
+[pkgdepends](https://r-lib.github.io/pkgdepends/):
+
+``` {r, eval = FALSE}
+library(pkgdepends)
+prop <- pkgdepends::new_pkg_deps("<repos>/<pkg>")
+prop$solve()
+prop$get_solution()$data
+prop$draw()
+```
+
 ### Already-installed packages
 The locations where R installs packages, and where it looks for installed
 packages, can be obtained with `.libPaths()`. The names of all installed
@@ -427,14 +437,11 @@ run):
 
 - Citation: `utils::citation("<pkg>")`, with `utils::citation()` to cite R
   itself.
-- Function overview: `ls(getNamespace("<pkg>"))` returns a character vector
-  with the function names (ignoring names that start with a dot, which by
-  convention are for internal use in packages;
-  `ls(getNamespace("<pkg>"), all.names = TRUE)` includes those function
-  names in the returned character vector);
-  `help(package = "<pkg>")` gives an overview with links to their help-pages
-  if there is a file `<pkg>.R` in folder `<pkg>\R`.
-- Help page: `help(topic = "<pkg>")`.
+- Function overview: `ls(getNamespace("<pkg>"), all.names = TRUE)` returns a
+  character vector with the function names (`all.names = TRUE` would ignore
+  names that start with a dot, which by convention are for internal use in
+  packages; `help(package = "<pkg>")` gives an overview with links to their
+  help-pages if there is a file `<pkg>.R` in folder `<pkg>\R`.
 - Installation path:
   `find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
 - Version: `utils::packageVersion("<pkg>")`.
@@ -683,7 +690,9 @@ folder of the downloaded code.
   [R-universe](https://r-universe.dev/search)
 - [Documentation](https://docs.r-universe.dev/) from the
   [R-universe](https://r-universe.dev/search)
-- [Search engines](https://cran.r-project.org/search.html) specific for R
+- Search engines specific for R: [METACRAN](https://r-pkg.org/),
+  [r-project](https://search.r-project.org/), [Rseek](https://www.rseek.org/),
+  [R-universe](https://r-universe.dev/search)
 - Section
   [Add-on packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
   in the

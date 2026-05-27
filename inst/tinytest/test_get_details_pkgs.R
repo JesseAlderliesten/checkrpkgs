@@ -34,10 +34,10 @@ db_OK <- utils::installed.packages(
   fields = c(fields_req, fields_add))[, fields_req]
 
 # Selection used later on
-NULL_fields_req <- checkrpkgs::get_details_pkgs(
-  fields = fields_req[3:1], db = NULL)
-OK_fields_req <- checkrpkgs::get_details_pkgs(
-  fields = fields_req[3:1], db = db_OK)
+NULL_fields_req <- suppressWarnings(
+  get_details_pkgs(fields = fields_req[3:1], db = NULL))
+OK_fields_req <- suppressWarnings(
+  get_details_pkgs(fields = fields_req[3:1], db = db_OK))
 
 
 #### Argument 'pkgs' ####
@@ -108,9 +108,10 @@ expect_warning(
 expect_true(all(fields_req %in% colnames(NULL_fields_req)))
 
 ##### Return additional fields #####
-NULL_fields_add <- checkrpkgs::get_details_pkgs(fields = fields_add, db = NULL)
+NULL_fields_add <- suppressWarnings(
+  get_details_pkgs(fields = fields_add, db = NULL))
 expect_warning(
-  OK_fields_add <- checkrpkgs::get_details_pkgs(fields = fields_add, db = db_OK),
+  OK_fields_add <- get_details_pkgs(fields = fields_add, db = db_OK),
   pattern = "Trying to retrieve required field(s) missing from matrix 'db'",
   strict = TRUE, fixed  = TRUE)
 expect_identical(NULL_fields_add, OK_fields_add)
@@ -136,10 +137,12 @@ expect_identical(anyDuplicated(colnames(OK_fields_dupl_v2)), 0L)
 expect_true(all(c(fields_req, "LibPath") %in% colnames(OK_fields_dupl_v2)))
 
 ##### Do not return non-requested non-default fields #####
-expect_identical(get_details_pkgs(db = NULL_fields_add), OK_fields_req)
-expect_identical(
+suppressWarnings(
+  expect_identical(get_details_pkgs(db = NULL_fields_add), OK_fields_req))
+suppressWarnings(
+  expect_identical(
   get_details_pkgs(fields = fields_add[2], db = NULL_fields_add),
-  NULL_fields_add[, colnames(NULL_fields_add) != "Title"])
+  NULL_fields_add[, colnames(NULL_fields_add) != "Title"]))
 
 ##### Adjust field 'Repository' #####
 NULL_pkgs_div <- get_details_pkgs(pkgs = pkgs_div, db = NULL)
@@ -208,14 +211,16 @@ expect_identical(NULL_pkgs_rec_base, OK_pkgs_rec_base)
 expect_identical(NULL_pkgs_rec_base, NULL_pkgs_high)
 
 ##### Priority 'NA_character_' #####
+# Using FALSE for 'strict' so tests also pass if packages are duplicated leading
+# to a warning ('<n> packages found more than once').
 expect_message(
   NULL_pkgs_NA <- get_details_pkgs(priority = NA_character_, db = NULL),
   pattern = "Selecting packages with priority 'NA_character_'",
-  strict = TRUE, fixed = TRUE)
+  strict = FALSE, fixed = TRUE)
 expect_message(
   OK_pkgs_NA <- get_details_pkgs(priority = NA_character_, db = db_OK),
   pattern = "Selecting packages with priority 'NA_character_'",
-  strict = TRUE, fixed = TRUE)
+  strict = FALSE, fixed = TRUE)
 expect_identical(NULL_pkgs_NA, OK_pkgs_NA)
 expect_true(all(is.na(OK_pkgs_NA[, "Priority"])))
 
@@ -239,12 +244,14 @@ expect_warning(
 expect_identical(NULL_fields_req, OK_fields_req)
 
 ##### rownames as package names #####
+# Using FALSE for 'strict' so tests also pass if packages are duplicated leading
+# to a warning ('<n> packages found more than once').
 expect_message(
   expect_identical(
     get_details_pkgs(db = db_OK[, colnames(db_OK) != "Package"]),
     NULL_fields_req),
   pattern = "Using rownames of 'db' as package names",
-  strict = TRUE, fixed = TRUE)
+  strict = FALSE, fixed = TRUE)
 
 ##### Missing 'priority' from 'db' #####
 expect_warning(
@@ -261,7 +268,7 @@ expect_warning(
 #### Arguments that should result in an error ####
 expect_error(
   get_details_pkgs(pkgs = 3),
-  pattern = "checkinput::all_characters(x = pkgs, allow_zero = TRUE)",
+  pattern = "checkinput::all_characters(x = pkgs, allow_zero_length = TRUE)",
   fixed = TRUE)
 
 expect_error(
