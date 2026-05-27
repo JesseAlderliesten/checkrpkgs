@@ -101,7 +101,7 @@ check issues were not adressed in time) are available at
 #### BioConductor
 
 The [Bioconductor](https://bioconductor.org/) repository has a new
-releases every six months. Each release contains specific versions of
+release every six months. Each release contains specific versions of
 packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
 and
 [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
@@ -148,9 +148,8 @@ The following code can be used to install packages from
 [GitHub](https://github.com/): it installs the
 [remotes](https://CRAN.R-project.org/package=remotes) package that is
 needed to install packages from GitHub.
-
-`grep(pattern = "/", x = pkgs_new, value = TRUE)` selects the elements
-of `pkgs_new` which contain a slash because
+`grep(pattern = "/", x = pkgs_new, value = TRUE)` is used to select the
+elements of `pkgs_new` that contain a slash because
 [`remotes::install_github()`](https://remotes.r-lib.org/reference/install_github.html)
 only works if each element of `pkgs` contains the author name and
 repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or the full URL
@@ -192,7 +191,8 @@ Examples of other repositories for R packages are:
   [collections](https://ropensci.org/packages/)
 - [R universe](https://r-universe.dev/search) with an
   [overview](https://r-universe.dev/datasets) of datasets (see
-  help(“data”, package = “utils”)) included in R packages
+  [`help("data", package = "utils")`](https://rdrr.io/r/utils/data.html))
+  included in R packages
 
 The websites of these repositories include instructions how to install
 packages from them, and repositories can be selected using
@@ -213,7 +213,7 @@ if(length(pkgs_install) > 0L) {
 }
 ```
 
-Mirror websites (mirrors) are websites hosted in various parts of the
+Mirror websites (‘mirrors’) are websites hosted in various parts of the
 world with the same content as the main website. Using a nearby mirror
 allows for faster downloads. Mirrors of repositories can be selected
 using
@@ -250,7 +250,7 @@ reason, setting environment variable `_R_TRACE_LOADNAMESPACE_` to a
 numerical value (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will
 generate additional messages on progress for non-standard packages (see
 the section `Tracing` in
-[`requireNamespace()`](https://rdrr.io/r/base/ns-load.html)).
+[`help("requireNamespace")`](https://rdrr.io/r/base/ns-load.html)).
 
 [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) gives the
 names of packages that are currently loaded,
@@ -426,8 +426,9 @@ Bioconductor, e.g.,
   than the version of R you are currently using (run
   [`getRversion()`](https://rdrr.io/r/base/numeric_version.html) to see
   your current R version). The warning is issued because packages are
-  not tested on versions of R that are older than the version they were
-  built on. Therefore it is best to update R when installing packages.
+  **not** tested on versions of R that are older than the version they
+  were built on. Therefore it is best to update R when installing
+  packages.
 
 - If errors occur when loading packages that require Java, make sure the
   64-bit [version of Java](https://www.java.com/download/manual.jsp) is
@@ -477,6 +478,18 @@ reverse dependencies (i.e., which packages require package `<pkg>`).
 `character(0)` is returned for packages that do not have any
 dependencies.
 
+To handle dependencies from other sources (e.g., GitHub), use package
+[pkgdepends](https://r-lib.github.io/pkgdepends/):
+
+``` r
+
+library(pkgdepends)
+prop <- pkgdepends::new_pkg_deps("<repos>/<pkg>")
+prop$solve()
+prop$get_solution()$data
+prop$draw()
+```
+
 ### Already-installed packages
 
 The locations where R installs packages, and where it looks for
@@ -498,15 +511,13 @@ has been run):
 - Citation: `utils::citation("<pkg>")`, with
   [`utils::citation()`](https://rdrr.io/r/utils/citation.html) to cite R
   itself.
-- Function overview: `ls(getNamespace("<pkg>"))` returns a character
-  vector with the function names (ignoring names that start with a dot,
-  which by convention are for internal use in packages;
-  `ls(getNamespace("<pkg>"), all.names = TRUE)` includes those function
-  names in the returned character vector);
+- Function overview: `ls(getNamespace("<pkg>"), all.names = TRUE)`
+  returns a character vector with the function names (`all.names = TRUE`
+  would ignore names that start with a dot, which by convention are for
+  internal use in packages;
   [`help(package = "<pkg>")`](https://rdrr.io/pkg/%3Cpkg%3E/man) gives
   an overview with links to their help-pages if there is a file
   `<pkg>.R` in folder `<pkg>\R`.
-- Help page: `help(topic = "<pkg>")`.
 - Installation path:
   `find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
 - Version: `utils::packageVersion("<pkg>")`.
@@ -615,7 +626,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55d4d3543748>
+#> <bytecode: 0x55fba7467de8>
 #> <environment: namespace:stats>
 ```
 
@@ -639,7 +650,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55d4d1923d00>
+#> <bytecode: 0x55fba65cccf0>
 #> <environment: namespace:base>
 ```
 
@@ -681,7 +692,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55d4d3bf93f8>
+#> <bytecode: 0x55fba88a2d38>
 #> <environment: namespace:base>
 ```
 
@@ -711,7 +722,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55d4d5a73d48>
+#> <bytecode: 0x55fbaa7e8518>
 #> <environment: namespace:base>
 ```
 
@@ -753,7 +764,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55d4d5a73338>
+#> <bytecode: 0x55fbaa7e7b08>
 #> <environment: namespace:base>
 ```
 
@@ -795,8 +806,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55d4d3465fd8>
-#> <environment: 0x55d4d2230428>
+#> <bytecode: 0x55fba810b1d8>
+#> <environment: 0x55fba6ed94b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -842,7 +853,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55d4d520c788>
+#> <bytecode: 0x55fba9f22990>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -920,8 +931,10 @@ and searching in the `src` folder of the downloaded code.
   [R-universe](https://r-universe.dev/search)
 - [Documentation](https://docs.r-universe.dev/) from the
   [R-universe](https://r-universe.dev/search)
-- [Search engines](https://cran.r-project.org/search.html) specific for
-  R
+- Search engines specific for R: [METACRAN](https://r-pkg.org/),
+  [r-project](https://search.r-project.org/),
+  [Rseek](https://www.rseek.org/),
+  [R-universe](https://r-universe.dev/search)
 - Section [Add-on
   packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
   in the [R Installation and Administration

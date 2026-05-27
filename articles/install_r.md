@@ -29,13 +29,21 @@ Note that R is **not** required to read R scripts: R scripts are
 plain-text files that can be read by applications such as Microsoft
 NotePad.
 
-### Configuring R
+### Making R stricter
 
-R can be configured to be a bit stricter, described in the help files
-for general options
-([`help("options")`](https://rdrr.io/r/base/options.html)) and
-environment variables
-([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html)):
+R can be configured by changing environment variables and various
+options, see
+([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html),
+[`help("options")`](https://rdrr.io/r/base/options.html),
+[`help("install.packages")`](https://rdrr.io/r/utils/install.packages.html),
+and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)).
+Although options for start-up
+([`help("Startup")`](https://rdrr.io/r/base/Startup.html)) can also be
+changed, that might make code behave differently on PCs where these
+options are not set, for example when they do not automatically load a
+package or add a path to the search path, so should be used cautiously.
+
+Various options can be changed to make R a bit stricter:
 
 - Warn in case of partial matching
   ([`help("pmatch")`](https://rdrr.io/r/base/pmatch.html)) such as
@@ -54,13 +62,12 @@ environment variables
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
 - Error instead of warn if a condition
   ([`help("Control", package = "base")`](https://rdrr.io/r/base/Control.html))
-  has length larger than one, such as
-  `if(3 < c(5, 7)) {print("Not OK")}` (introduced in R 3.y.z, no longer
-  used since R 4.2.0 because there conditions with length larger than
-  one always give an error):
+  has length larger than one, such as `if(3 < c(5, 7))` (introduced in R
+  3.4.0, no longer used since R 4.2.0 because there conditions with
+  length larger than one always give an error):
   `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
 - Print [`warnings()`](https://rdrr.io/r/base/warnings.html) immediately
-  as they occur (`options(warn = 1)`) or make `warnings` an error
+  as they occur (`options(warn = 1)`) or make them an error
   ([`help("stop")`](https://rdrr.io/r/base/stop.html)):
   `options(warn = 2)`. The latter should only be used for debugging
   because it may trigger bugs and resource leaks (per its help-page).
@@ -87,61 +94,52 @@ In addition, various packages contain ways to make R stricter:
   `help("conflict")`), and provides `conflicts_prefer(<pkg>::<func>)` to
   declare preferences.
 
-Finally, when using options for start-up (described in
-[`help("Startup")`](https://rdrr.io/r/base/Startup.html)) and installing
-packages
-([`help("install.packages")`](https://rdrr.io/r/utils/install.packages.html)
-and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)) to
-configure R, it should be kept in mind that these options might lead to
-code that behaves different on PCs where these options are not set, for
-example when they do not automatically load a package or add a path to
-the search path.
-
 ### Information about R
 
-Several variables and functions provide information about R and the
-current R session:
+Several variables and functions provide information about the current R
+session, such as the R version and characteristics of the machine and
+platform R is running on:
 
 - `.Machine` (see
   [`help(".Machine")`](https://rdrr.io/r/base/zMachine.html)) and
   [`Sys.info()`](https://rdrr.io/r/base/Sys.info.html) provide
   information about the machine and platform R is running on.
   [`getRversion()`](https://rdrr.io/r/base/numeric_version.html)
-  provides the version of the running R.
+  provides the version of the running R. Operating systems might
+  identify themselves and their versions in surprising ways, and
+  specifically Windows versions might report older versions than the
+  versions that are actually installed (see the section `osVersion` in
+  [`help("sessionInfo")`](https://rdrr.io/r/utils/sessionInfo.html) and
+  the `Note` in
+  [`help("win.version")`](https://rdrr.io/r/utils/winextras.html).
 - `.Platform` (see
   [`help(".Platform")`](https://rdrr.io/r/base/Platform.html)) and
   [`R.Version()`](https://rdrr.io/r/base/Version.html) provide
   information about the platform R was built on.
-- [`Sys.getlocale()`](https://rdrr.io/r/base/locales.html) provides
-  details about the locale.
-- [`sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) extracts
-  parts of the information provided by the functions mentioned above
-  about the operating system and R. It also lists attached and loaded
-  packages. Its printing method can be used to print additional
-  information about the used locale, time zone, and random number
-  generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+- [`Sys.getlocale()`](https://rdrr.io/r/base/locales.html) and
+  [`l10n_info()`](https://rdrr.io/r/base/l10n_info.html) provide details
+  about the locale (i.e., settings that depend on the user’s language or
+  region).
 - [`capabilities()`](https://rdrr.io/r/base/capabilities.html) and
   [`extSoftVersion()`](https://rdrr.io/r/base/extSoftVersion.html)
   provide details about external software that can be used with R.
 - The help page on environment variables
   ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
   lists some of the environment variables which affect an R session.
-
-Operating systems might identify themselves and their versions in
-surprising ways, and specifically Windows versions might report older
-versions than the versions that are actually installed (see the section
-`osVersion` in
-[`help("sessionInfo")`](https://rdrr.io/r/utils/sessionInfo.html) and
-the `Note` in
-[`help("win.version")`](https://rdrr.io/r/utils/winextras.html).
+- [`sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) extracts
+  parts of the information provided by some of the functions mentioned
+  above about the operating system and R. It also lists attached and
+  loaded packages. Its printing method can be used to print additional
+  information about the used locale, time zone, and random number
+  generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
 
 ## RStudio
 
 [RStudio](https://posit.co/products/open-source/rstudio) is an
 [integrated development
 environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
-for R that can be downloaded from
-[Posit](https://posit.co/download/rstudio-desktop/).
+for R developed by [Posit](https://posit.co/) that can be downloaded
+[here](https://posit.co/download/rstudio-desktop/).
 
 RStudio can also be used to read and modify plain-text files.
 
@@ -168,7 +166,7 @@ The appearance of code can be changed at `Tools` \> `Global options` \>
 `Appearance`. The default `Editor theme` is the light `Textmate`. Other
 nice editor themes are the light `Xcode` and the dark
 `Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`. Nice
-`Editor fonts` are `Consolas`, `Cacadia Mono Light`, and
+`Editor font`s are `Consolas`, `Cacadia Mono Light`, and
 `Lucida Console`.
 
 To check that characters in a typeface or font can be properly
@@ -233,6 +231,11 @@ install Rtools.
 - [Bug reporting](https://www.r-project.org/bugs.html), linking to
   [bugzilla](https://bugs.r-project.org/)
 - CRAN [homepage](https://cran.r-project.org/)
+- CRAN mirrors: see the section ‘Other repositories and mirrors’ in the
+  vignette *R packages*:
+  [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)
+- [develcoder](https://jessealderliesten.github.io/develcoder/) with
+  code to develop R packages
 - R [FAQs](https://cran.r-project.org/faqs.html)
 - R help: from inside R through
   [`help.start()`](https://rdrr.io/r/utils/help.start.html) or online
@@ -250,23 +253,9 @@ install Rtools.
 - R [news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
 - [RStudio user guide](https://docs.posit.co/ide/user/) by
   [Posit](https://posit.co/)
-- [search engines](https://cran.r-project.org/search.html) specific for
+- [Search engines](https://cran.r-project.org/search.html) specific for
   R;
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the
   `r` tag
 - The website [What They Forgot to Teach You About
   R](https://rstats.wtf/)
-
-### For developers
-
-- CRAN mirrors: see the section ‘Other repositories and mirrors’ in the
-  vignette *R packages*:
-  [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)
-- R [developer page](https://developer.r-project.org/)
-- R [development guide](https://contributor.r-project.org/rdevguide/)
-  from the [R Contribution Working
-  Group](https://contributor.r-project.org/)
-- R [news
-  (devel)](https://cran.r-project.org/doc/manuals/r-devel/NEWS.html)
-- My package
-  [develcoder](https://jessealderliesten.github.io/develcoder/)

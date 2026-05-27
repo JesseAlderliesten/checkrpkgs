@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,11 +102,17 @@ downloaded <code>.exe</code> file.</p>
 scripts are plain-text files that can be read by applications such as
 Microsoft NotePad.</p>
 <div class="section level3">
-<h3 id="configuring-r">Configuring R<a class="anchor" aria-label="anchor" href="#configuring-r"></a>
+<h3 id="making-r-stricter">Making R stricter<a class="anchor" aria-label="anchor" href="#making-r-stricter"></a>
 </h3>
-<p>R can be configured to be a bit stricter, described in the help files
-for general options (<code><a href="https://rdrr.io/r/base/options.html" class="external-link">help("options")</a></code>) and environment
-variables (<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>):</p>
+<p>R can be configured by changing environment variables and various
+options, see (<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>,
+<code><a href="https://rdrr.io/r/base/options.html" class="external-link">help("options")</a></code>, <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages")</a></code>, and
+<code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>). Although options for start-up
+(<code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code>) can also be changed, that might make code
+behave differently on PCs where these options are not set, for example
+when they do not automatically load a package or add a path to the
+search path, so should be used cautiously.</p>
+<p>Various options can be changed to make R a bit stricter:</p>
 <ul>
 <li>Warn in case of partial matching (<code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">help("pmatch")</a></code>) such
 as <code>list(mean = 3)$me</code>:
@@ -124,12 +130,12 @@ or <code>||</code> with length larger than one always gives an error):
 <code>Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")</code>.</li>
 <li>Error instead of warn if a condition
 (<code><a href="https://rdrr.io/r/base/Control.html" class="external-link">help("Control", package = "base")</a></code>) has length larger than
-one, such as <code>if(3 &lt; c(5, 7)) {print("Not OK")}</code>
-(introduced in R 3.y.z, no longer used since R 4.2.0 because there
-conditions with length larger than one always give an error):
+one, such as <code>if(3 &lt; c(5, 7))</code> (introduced in R 3.4.0, no
+longer used since R 4.2.0 because there conditions with length larger
+than one always give an error):
 <code>Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")</code>.</li>
 <li>Print <code><a href="https://rdrr.io/r/base/warnings.html" class="external-link">warnings()</a></code> immediately as they occur
-(<code>options(warn = 1)</code>) or make <code>warnings</code> an error
+(<code>options(warn = 1)</code>) or make them an error
 (<code><a href="https://rdrr.io/r/base/stop.html" class="external-link">help("stop")</a></code>): <code>options(warn = 2)</code>. The latter
 should only be used for debugging because it may trigger bugs and
 resource leaks (per its help-page). The default is
@@ -155,50 +161,46 @@ package out of multiple packages to use a function from; see
 <code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> to declare
 preferences.</li>
 </ul>
-<p>Finally, when using options for start-up (described in
-<code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code>) and installing packages
-(<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages")</a></code> and
-<code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>) to configure R, it should be kept in
-mind that these options might lead to code that behaves different on PCs
-where these options are not set, for example when they do not
-automatically load a package or add a path to the search path.</p>
 </div>
 <div class="section level3">
 <h3 id="information-about-r">Information about R<a class="anchor" aria-label="anchor" href="#information-about-r"></a>
 </h3>
-<p>Several variables and functions provide information about R and the
-current R session:</p>
+<p>Several variables and functions provide information about the current
+R session, such as the R version and characteristics of the machine and
+platform R is running on:</p>
 <ul>
 <li>
 <code>.Machine</code> (see <code><a href="https://rdrr.io/r/base/zMachine.html" class="external-link">help(".Machine")</a></code>) and
 <code><a href="https://rdrr.io/r/base/Sys.info.html" class="external-link">Sys.info()</a></code> provide information about the machine and
 platform R is running on. <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code> provides the
-version of the running R.</li>
+version of the running R. Operating systems might identify themselves
+and their versions in surprising ways, and specifically Windows versions
+might report older versions than the versions that are actually
+installed (see the section <code>osVersion</code> in
+<code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo")</a></code> and the <code>Note</code> in
+<code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version")</a></code>.</li>
 <li>
 <code>.Platform</code> (see <code><a href="https://rdrr.io/r/base/Platform.html" class="external-link">help(".Platform")</a></code>) and
 <code><a href="https://rdrr.io/r/base/Version.html" class="external-link">R.Version()</a></code> provide information about the platform R was
 built on.</li>
 <li>
-<code><a href="https://rdrr.io/r/base/locales.html" class="external-link">Sys.getlocale()</a></code> provides details about the locale.</li>
-<li>
-<code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> extracts parts of the information
-provided by the functions mentioned above about the operating system and
-R. It also lists attached and loaded packages. Its printing method can
-be used to print additional information about the used locale, time
-zone, and random number generation:
-<code>print(sessionInfo(), locale = TRUE, RNG = TRUE)</code>.</li>
+<code><a href="https://rdrr.io/r/base/locales.html" class="external-link">Sys.getlocale()</a></code> and <code><a href="https://rdrr.io/r/base/l10n_info.html" class="external-link">l10n_info()</a></code> provide
+details about the locale (i.e., settings that depend on the user’s
+language or region).</li>
 <li>
 <code><a href="https://rdrr.io/r/base/capabilities.html" class="external-link">capabilities()</a></code> and <code><a href="https://rdrr.io/r/base/extSoftVersion.html" class="external-link">extSoftVersion()</a></code>
 provide details about external software that can be used with R.</li>
 <li>The help page on environment variables
 (<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>) lists some of the
 environment variables which affect an R session.</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> extracts parts of the information
+provided by some of the functions mentioned above about the operating
+system and R. It also lists attached and loaded packages. Its printing
+method can be used to print additional information about the used
+locale, time zone, and random number generation:
+<code>print(sessionInfo(), locale = TRUE, RNG = TRUE)</code>.</li>
 </ul>
-<p>Operating systems might identify themselves and their versions in
-surprising ways, and specifically Windows versions might report older
-versions than the versions that are actually installed (see the section
-<code>osVersion</code> in <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo")</a></code> and the
-<code>Note</code> in <code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version")</a></code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -206,7 +208,7 @@ versions than the versions that are actually installed (see the section
 </h2>
 <p><a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>
 is an <a href="https://en.wikipedia.org/wiki/Integrated_development_environment" class="external-link">integrated
-development environment</a> for R that can be downloaded from <a href="https://posit.co/download/rstudio-desktop/" class="external-link">Posit</a>.</p>
+development environment</a> for R developed by <a href="https://posit.co/" class="external-link">Posit</a> that can be downloaded <a href="https://posit.co/download/rstudio-desktop/" class="external-link">here</a>.</p>
 <p>RStudio can also be used to read and modify plain-text files.</p>
 <div class="section level3">
 <h3 id="configuring-rstudio">Configuring RStudio<a class="anchor" aria-label="anchor" href="#configuring-rstudio"></a>
@@ -233,7 +235,7 @@ fixes that without the need to actually reset the shortcuts.</p>
 <code>Editor theme</code> is the light <code>Textmate</code>. Other nice
 editor themes are the light <code>Xcode</code> and the dark
 <code>Tomorrow Night Bright</code>, <code>Idle Fingers</code>, and
-<code>Pastel On Dark</code>. Nice <code>Editor fonts</code> are
+<code>Pastel On Dark</code>. Nice <code>Editor font</code>s are
 <code>Consolas</code>, <code>Cacadia Mono Light</code>, and
 <code>Lucida Console</code>.</p>
 <p>To check that characters in a typeface or font can be properly
@@ -297,6 +299,13 @@ linking to <a href="https://bugs.r-project.org/" class="external-link">bugzilla<
 </li>
 <li>CRAN <a href="https://cran.r-project.org/" class="external-link">homepage</a>
 </li>
+<li>CRAN mirrors: see the section ‘Other repositories and mirrors’ in
+the vignette <em>R packages</em>:
+<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>
+</li>
+<li>
+<a href="https://jessealderliesten.github.io/develcoder/" class="external-link">develcoder</a>
+with code to develop R packages</li>
 <li>R <a href="https://cran.r-project.org/faqs.html" class="external-link">FAQs</a>
 </li>
 <li>R help: from inside R through <code><a href="https://rdrr.io/r/utils/help.start.html" class="external-link">help.start()</a></code> or online
@@ -319,7 +328,7 @@ suited for searching.</li>
 <a href="https://posit.co/" class="external-link">Posit</a>
 </li>
 <li>
-<a href="https://cran.r-project.org/search.html" class="external-link">search engines</a>
+<a href="https://cran.r-project.org/search.html" class="external-link">Search engines</a>
 specific for R;</li>
 <li>
 <a href="https://stackoverflow.com/tags/r/info" class="external-link">StackOverflow</a>
@@ -328,27 +337,6 @@ posts with the <code>r</code> tag</li>
 You About R</a>
 </li>
 </ul>
-<div class="section level3">
-<h3 id="for-developers">For developers<a class="anchor" aria-label="anchor" href="#for-developers"></a>
-</h3>
-<ul>
-<li>CRAN mirrors: see the section ‘Other repositories and mirrors’ in
-the vignette <em>R packages</em>:
-<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>
-</li>
-<li>R <a href="https://developer.r-project.org/" class="external-link">developer page</a>
-</li>
-<li>R <a href="https://contributor.r-project.org/rdevguide/" class="external-link">development
-guide</a> from the <a href="https://contributor.r-project.org/" class="external-link">R
-Contribution Working Group</a>
-</li>
-<li>R <a href="https://cran.r-project.org/doc/manuals/r-devel/NEWS.html" class="external-link">news
-(devel)</a>
-</li>
-<li>My package <a href="https://jessealderliesten.github.io/develcoder/" class="external-link">develcoder</a>
-</li>
-</ul>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
