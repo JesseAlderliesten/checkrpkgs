@@ -242,7 +242,7 @@ the version number of an installed package, run
 be updated.
 
 The following code can be used to install the latest version of packages from
-[CRAN](https://cran.r-project.org/web/packages/index.html) (but note this
+[CRAN](https://cran.r-project.org/web/packages/index.html) (this
 **changes** the version of already-installed packages, which might be
 undesirable):
 
@@ -468,7 +468,7 @@ the section [Getting the source code] below):
 
 ### Which packages are used?
 The function `loadedNamespaces()` shows which packages are loaded.
-`getAnywhere(<pkg>)` shows in which package a function is defined. To see which
+`getAnywhere(<func>)` shows in which package a function is defined. To see which
 packages are used in a script, look for `::`, `:::`, `library`, `require`, and
 `namespace` (e.g., `loadNamespace()`, `requireNamespace()`). Various packages
 have their own way to create dependencies on packages, see the overview at
@@ -508,7 +508,7 @@ source code of the development version is easiest using the
 the SVN-project, see also the documentation on
 [searching GitHub](https://docs.github.com/en/search-github).
 
-The source code of add-on packages from
+The source code of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) can be searched at
 [METACRAN](https://github.com/cran), an *unofficial* CRAN mirror. Alternatively,
 download the source file from section `Downloads` of the CRAN page. The source
