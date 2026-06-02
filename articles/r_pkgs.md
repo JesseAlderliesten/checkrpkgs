@@ -275,9 +275,9 @@ version number of an installed package, run
 indicates which packages can be updated.
 
 The following code can be used to install the latest version of packages
-from [CRAN](https://cran.r-project.org/web/packages/index.html) (but
-note this **changes** the version of already-installed packages, which
-might be undesirable):
+from [CRAN](https://cran.r-project.org/web/packages/index.html) (this
+**changes** the version of already-installed packages, which might be
+undesirable):
 
 ``` r
 
@@ -545,7 +545,7 @@ code](#getting-the-source-code) below):
 ### Which packages are used?
 
 The function [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html)
-shows which packages are loaded. `getAnywhere(<pkg>)` shows in which
+shows which packages are loaded. `getAnywhere(<func>)` shows in which
 package a function is defined. To see which packages are used in a
 script, look for `::`, `:::`, `library`, `require`, and `namespace`
 (e.g., [`loadNamespace()`](https://rdrr.io/r/base/ns-load.html),
@@ -592,7 +592,7 @@ mirror](https://github.com/r-devel/r-svn/tree/main/src/library) of the
 SVN-project, see also the documentation on [searching
 GitHub](https://docs.github.com/en/search-github).
 
-The source code of add-on packages from
+The source code of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) can be
 searched at [METACRAN](https://github.com/cran), an *unofficial* CRAN
 mirror. Alternatively, download the source file from section `Downloads`
@@ -626,7 +626,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55fba7467de8>
+#> <bytecode: 0x5642b015a568>
 #> <environment: namespace:stats>
 ```
 
@@ -650,7 +650,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55fba65cccf0>
+#> <bytecode: 0x5642af4decf0>
 #> <environment: namespace:base>
 ```
 
@@ -692,7 +692,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55fba88a2d38>
+#> <bytecode: 0x5642b17b4d38>
 #> <environment: namespace:base>
 ```
 
@@ -722,7 +722,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55fbaa7e8518>
+#> <bytecode: 0x5642b2b708e0>
 #> <environment: namespace:base>
 ```
 
@@ -764,7 +764,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55fbaa7e7b08>
+#> <bytecode: 0x5642b2b6fed0>
 #> <environment: namespace:base>
 ```
 
@@ -806,8 +806,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55fba810b1d8>
-#> <environment: 0x55fba6ed94b8>
+#> <bytecode: 0x5642b1033da8>
+#> <environment: 0x5642afdeb4b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -853,7 +853,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55fba9f22990>
+#> <bytecode: 0x5642b2e42ab8>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

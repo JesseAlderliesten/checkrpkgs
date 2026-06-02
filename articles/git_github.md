@@ -52,9 +52,9 @@ installed when installing [Git for Windows](https://gitforwindows.org/))
 by typing `Git Bash` in Windows’ `Start` menu and press `Enter`.
 
 To associate Git with your GitHub account, you need to provide your name
-(this name is listed in GitHub with the changes you make and does *not*
-have to be your GitHub username), and the email associated with your
-GitHub account. See the Chapter [Introduce yourself to
+(this name is listed in GitHub with the changes you make and does
+**not** have to be your GitHub username), and the email associated with
+your GitHub account. See the Chapter [Introduce yourself to
 Git](https://happygitwithr.com/hello-git.html) from [Happy Git and
 GitHub for the useR](https://happygitwithr.com/) for more details.
 
@@ -82,10 +82,10 @@ password, see:
 
 ## Using Git and GitHub
 
-To work with GitHub in RStudio, you should not open an R *script* (i.e.,
-a file with extension `.R`) but the R *Project file* (i.e., a file with
-extension `.Rproj`). Then the `Git` menu will be visible as a tab in the
-[Environment
+To work with GitHub in RStudio, you should not open the R **script**
+(i.e., a file with extension `.R`) but the R **Project file** (i.e., a
+file with extension `.Rproj`). Then the `Git` menu will be visible as a
+tab in the [Environment
 pane](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 
 `Pull` to get changes from the remote repository (i.e., `GitHub`)
@@ -122,16 +122,17 @@ entered the PAT once, RStudio will remember this token for next times.
 
 ## Adding a new file
 
-To add a file to GitHub that was not there yet, first add it to the
-local folder (i.e., on your PC), then let `git` know it is there by
-typing (it is convenient to use `tab`-completion to select files):
+To add a file to GitHub that is not there yet, first add it to the local
+folder (i.e., on your PC), then let `git` know it is there by typing (it
+is convenient to use `tab`-completion to select files):
 `git add <filename>.<extension>`.
 
-If the working directory is *not* the folder where the to-be-added file
-is in, the working directory has to be set to that folder (e.g., using
-`cd <path/to/folder>`, in the [shell](https://happygitwithr.com/shell)
-or the path has to be added in front of the filename (dragging the file
-onto the shell will copy the path to the shell).
+If the working directory is **not** the folder where the to-be-added
+file is in, the working directory has to be set to that folder (e.g.,
+using `cd <path/to/folder>`, in the
+[shell](https://happygitwithr.com/shell) or the path has to be added in
+front of the filename (dragging the file onto the shell will copy the
+path to the shell).
 
 ## Comparing files
 
@@ -195,7 +196,7 @@ Alternatively, open the file on the remote repository (i.e., on the
 `GitHub` website), click the three dots at the top-right of the file \>
 `delete` \> `commit`. Use the commit message to describe why the file
 was deleted. After that, find the file in the local directory and delete
-the it. Then `pull`.
+it. Then `pull`.
 
 ## Moving or renaming a file
 
@@ -234,8 +235,8 @@ PC:
   GitHub repository, you can download the repository by using the green
   `Code` button, choosing `Download ZIP` and unzip the downloaded file
   (right-click on them and choose `extract all`). To be able to let R
-  use the package correctly, move the package to a location of your R
-  libraries (given by the output of `cat(normalizePath(.libPaths()))`,
+  use the package correctly, move the package to a location where R
+  looks for packages (given by `cat(normalizePath(.libPaths()))`,
   something like `C:\Program Files\R\R-4.6.0\library` or
   `C:\Users\<owner>\AppData\Local\R\win-library\4.6`. Then open the
   `.Rproj` file (which has the same name as the repository).
@@ -277,9 +278,11 @@ In addition to section [Using GitHub](#using-github) above, see:
 
 ## GitHub Actions
 
-See the section `Use GitHub Actions` in the vignette *Package setup*
+See the section `Automate checks` in the vignette *Package setup* and
+section `Use GitHub Actions` in the vignette *Package development*, both
 from package `develcoder`:
-`vignette("pkg_setup", package = "develcoder")`.
+`vignette("pkg_setup", package = "develcoder")` and
+`vignette("pkg_devel", package = "develcoder")`.
 
 ## Common shell commands
 

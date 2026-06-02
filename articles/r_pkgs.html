@@ -309,9 +309,9 @@ get the version number of an installed package, run
 <code>utils::packageVersion("&lt;pkg&gt;")</code>.
 <code><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">old.packages()</a></code> indicates which packages can be updated.</p>
 <p>The following code can be used to install the latest version of
-packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> (but
-note this <strong>changes</strong> the version of already-installed
-packages, which might be undesirable):</p>
+packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> (this
+<strong>changes</strong> the version of already-installed packages,
+which might be undesirable):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">update.packages</a></span><span class="op">(</span>lib.loc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, ask <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                       verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -564,7 +564,7 @@ S4-methods:
 <h3 id="which-packages-are-used">Which packages are used?<a class="anchor" aria-label="anchor" href="#which-packages-are-used"></a>
 </h3>
 <p>The function <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadedNamespaces()</a></code> shows which packages are
-loaded. <code>getAnywhere(&lt;pkg&gt;)</code> shows in which package a
+loaded. <code>getAnywhere(&lt;func&gt;)</code> shows in which package a
 function is defined. To see which packages are used in a script, look
 for <code>::</code>, <code>:::</code>, <code>library</code>,
 <code>require</code>, and <code>namespace</code> (e.g.,
@@ -620,7 +620,7 @@ answer</a> from <a href="https://stackoverflow.com/" class="external-link">Stack
 the source code of the development version is easiest using the <a href="https://github.com/r-devel/r-svn/tree/main/src/library" class="external-link">GitHub
 mirror</a> of the SVN-project, see also the documentation on <a href="https://docs.github.com/en/search-github" class="external-link">searching
 GitHub</a>.</p>
-<p>The source code of add-on packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> can
+<p>The source code of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> can
 be searched at <a href="https://github.com/cran" class="external-link">METACRAN</a>, an
 <em>unofficial</em> CRAN mirror. Alternatively, download the source file
 from section <code>Downloads</code> of the CRAN page. The source files
@@ -648,7 +648,7 @@ the name of the function, <em>without</em> the brackets, and press
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fba7467de8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5642b015a568&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
@@ -672,7 +672,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fba65cccf0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5642af4decf0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -715,7 +715,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fba88a2d38&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5642b17b4d38&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -740,7 +740,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fbaa7e8518&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5642b2b708e0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>Or use <code>getAnywhere("mean.default")</code> to see the source
 code of the method <code>mean</code> used with objects of classes not
@@ -778,7 +778,7 @@ listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fbaa7e7b08&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5642b2b6fed0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -818,8 +818,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fba810b1d8&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55fba6ed94b8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5642b1033da8&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x5642afdeb4b8&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -865,7 +865,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55fba9f22990&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5642b2e42ab8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>

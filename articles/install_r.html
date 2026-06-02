@@ -107,11 +107,12 @@ Microsoft NotePad.</p>
 <p>R can be configured by changing environment variables and various
 options, see (<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>,
 <code><a href="https://rdrr.io/r/base/options.html" class="external-link">help("options")</a></code>, <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages")</a></code>, and
-<code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>). Although options for start-up
-(<code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code>) can also be changed, that might make code
-behave differently on PCs where these options are not set, for example
-when they do not automatically load a package or add a path to the
-search path, so should be used cautiously.</p>
+<code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>). Although options for start-up can also
+be changed (see <code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code> and the chapter <a href="https://rstats.wtf/r-startup" class="external-link">R Startup</a>), such settings can be
+stored in multiple files in various locations and might make code behave
+differently on PCs where these options are not set, for example when
+they do not automatically load a package or add a path to the search
+path, so should be used cautiously.</p>
 <p>Various options can be changed to make R a bit stricter:</p>
 <ul>
 <li>Warn in case of partial matching (<code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">help("pmatch")</a></code>) such
@@ -174,11 +175,10 @@ platform R is running on:</p>
 <code><a href="https://rdrr.io/r/base/Sys.info.html" class="external-link">Sys.info()</a></code> provide information about the machine and
 platform R is running on. <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code> provides the
 version of the running R. Operating systems might identify themselves
-and their versions in surprising ways, and specifically Windows versions
-might report older versions than the versions that are actually
-installed (see the section <code>osVersion</code> in
-<code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo")</a></code> and the <code>Note</code> in
-<code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version")</a></code>.</li>
+and their versions in surprising ways, and Windows might report older
+versions than the versions that are actually installed (see the section
+<code>osVersion</code> in <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo")</a></code> and the
+<code>Note</code> in <code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version")</a></code>.</li>
 <li>
 <code>.Platform</code> (see <code><a href="https://rdrr.io/r/base/Platform.html" class="external-link">help(".Platform")</a></code>) and
 <code><a href="https://rdrr.io/r/base/Version.html" class="external-link">R.Version()</a></code> provide information about the platform R was
@@ -195,10 +195,10 @@ provide details about external software that can be used with R.</li>
 environment variables which affect an R session.</li>
 <li>
 <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> extracts parts of the information
-provided by some of the functions mentioned above about the operating
-system and R. It also lists attached and loaded packages. Its printing
-method can be used to print additional information about the used
-locale, time zone, and random number generation:
+mentioned above about the operating system and R. It also lists attached
+and loaded packages. Its printing method can be used to print additional
+information about the used locale (i.e., settings that depend on the
+user’s language or region) and random number generation:
 <code>print(sessionInfo(), locale = TRUE, RNG = TRUE)</code>.</li>
 </ul>
 </div>
@@ -220,8 +220,8 @@ development environment</a> for R developed by <a href="https://posit.co/" class
 <code>Save workspace to .RData on exit</code> to <code>Never</code> to
 make work portable (i.e., make sure that R does not use information or
 data that is not present on another PC).</p>
-<p>The version of RStudio to use can be selected at <code>Tools</code>
-&gt; <code>Global Options</code> &gt; <code>General</code> &gt;
+<p>The version of R to use can be selected at <code>Tools</code> &gt;
+<code>Global Options</code> &gt; <code>General</code> &gt;
 <code>R version</code>.</p>
 <p>Keyboard shortcuts can be modified at <code>Tools</code> &gt;
 <code>Modify Keyboard Shortcuts</code>, e.g., to change the shortcut
@@ -324,8 +324,9 @@ suited for searching.</li>
 <li>R <a href="https://cran.r-project.org/doc/manuals/r-release/NEWS.html" class="external-link">news</a>
 </li>
 <li>
-<a href="https://docs.posit.co/ide/user/" class="external-link">RStudio user guide</a> by
-<a href="https://posit.co/" class="external-link">Posit</a>
+<a href="https://docs.posit.co/ide/user/" class="external-link">RStudio user guide</a> and
+<a href="https://opensource.posit.co/resources/cheatsheets/rstudio-ide/" class="external-link">cheatsheet</a>
+by <a href="https://posit.co/" class="external-link">Posit</a>
 </li>
 <li>
 <a href="https://cran.r-project.org/search.html" class="external-link">Search engines</a>
@@ -336,6 +337,20 @@ posts with the <code>r</code> tag</li>
 <li>The website <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach
 You About R</a>
 </li>
+</ul>
+<p>Resources with more details than this vignette:</p>
+<ul>
+<li>Chapter <a href="https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html" class="external-link">Installation
+&amp; Environment Setup</a> from the book <a href="https://bookdown.org/guokai8/mastering-r-through-errors/docs/" class="external-link">Mastering
+R Through Errors and Warnings</a>
+</li>
+<li>Chapter <a href="https://rc2e.com/gettingstarted" class="external-link">Getting Started
+and Getting Help</a> from the <a href="https://rc2e.com/" class="external-link">R
+Cookbook</a>
+</li>
+<li>The book <a href="https://intro2r.com/" class="external-link">An introduction to R</a> by
+Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David
+Lusseau</li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

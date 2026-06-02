@@ -37,11 +37,13 @@ options, see
 [`help("options")`](https://rdrr.io/r/base/options.html),
 [`help("install.packages")`](https://rdrr.io/r/utils/install.packages.html),
 and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)).
-Although options for start-up
-([`help("Startup")`](https://rdrr.io/r/base/Startup.html)) can also be
-changed, that might make code behave differently on PCs where these
-options are not set, for example when they do not automatically load a
-package or add a path to the search path, so should be used cautiously.
+Although options for start-up can also be changed (see
+[`help("Startup")`](https://rdrr.io/r/base/Startup.html) and the chapter
+[R Startup](https://rstats.wtf/r-startup)), such settings can be stored
+in multiple files in various locations and might make code behave
+differently on PCs where these options are not set, for example when
+they do not automatically load a package or add a path to the search
+path, so should be used cautiously.
 
 Various options can be changed to make R a bit stricter:
 
@@ -106,9 +108,9 @@ platform R is running on:
   information about the machine and platform R is running on.
   [`getRversion()`](https://rdrr.io/r/base/numeric_version.html)
   provides the version of the running R. Operating systems might
-  identify themselves and their versions in surprising ways, and
-  specifically Windows versions might report older versions than the
-  versions that are actually installed (see the section `osVersion` in
+  identify themselves and their versions in surprising ways, and Windows
+  might report older versions than the versions that are actually
+  installed (see the section `osVersion` in
   [`help("sessionInfo")`](https://rdrr.io/r/utils/sessionInfo.html) and
   the `Note` in
   [`help("win.version")`](https://rdrr.io/r/utils/winextras.html).
@@ -127,11 +129,12 @@ platform R is running on:
   ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
   lists some of the environment variables which affect an R session.
 - [`sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) extracts
-  parts of the information provided by some of the functions mentioned
-  above about the operating system and R. It also lists attached and
-  loaded packages. Its printing method can be used to print additional
-  information about the used locale, time zone, and random number
-  generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+  parts of the information mentioned above about the operating system
+  and R. It also lists attached and loaded packages. Its printing method
+  can be used to print additional information about the used locale
+  (i.e., settings that depend on the user’s language or region) and
+  random number generation:
+  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
 
 ## RStudio
 
@@ -152,8 +155,8 @@ After installing RStudio, start RStudio, go to `Tools` \>
 (i.e., make sure that R does not use information or data that is not
 present on another PC).
 
-The version of RStudio to use can be selected at `Tools` \>
-`Global Options` \> `General` \> `R version`.
+The version of R to use can be selected at `Tools` \> `Global Options`
+\> `General` \> `R version`.
 
 Keyboard shortcuts can be modified at `Tools` \>
 `Modify Keyboard Shortcuts`, e.g., to change the shortcut
@@ -251,11 +254,24 @@ install Rtools.
   with [derived versions](https://rstudio.github.io/r-manuals/) better
   suited for searching.
 - R [news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
-- [RStudio user guide](https://docs.posit.co/ide/user/) by
-  [Posit](https://posit.co/)
+- [RStudio user guide](https://docs.posit.co/ide/user/) and
+  [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/)
+  by [Posit](https://posit.co/)
 - [Search engines](https://cran.r-project.org/search.html) specific for
   R;
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the
   `r` tag
 - The website [What They Forgot to Teach You About
   R](https://rstats.wtf/)
+
+Resources with more details than this vignette:
+
+- Chapter [Installation & Environment
+  Setup](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
+  from the book [Mastering R Through Errors and
+  Warnings](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
+- Chapter [Getting Started and Getting
+  Help](https://rc2e.com/gettingstarted) from the [R
+  Cookbook](https://rc2e.com/)
+- The book [An introduction to R](https://intro2r.com/) by Alex Douglas,
+  Deon Roos, Francesca Mancini, Ana Couto & David Lusseau

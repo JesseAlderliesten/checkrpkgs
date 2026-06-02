@@ -123,8 +123,8 @@ Windows</a>) by typing <code>Git Bash</code> in Windows’
 <code>Start</code> menu and press <code>Enter</code>.</p>
 <p>To associate Git with your GitHub account, you need to provide your
 name (this name is listed in GitHub with the changes you make and does
-<em>not</em> have to be your GitHub username), and the email associated
-with your GitHub account. See the Chapter <a href="https://happygitwithr.com/hello-git.html" class="external-link">Introduce yourself to
+<strong>not</strong> have to be your GitHub username), and the email
+associated with your GitHub account. See the Chapter <a href="https://happygitwithr.com/hello-git.html" class="external-link">Introduce yourself to
 Git</a> from <a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub
 for the useR</a> for more details.</p>
 <pre class="git"><code>git config --global user.name '&lt;Jane Doe&gt;'
@@ -150,10 +150,11 @@ from package <a href="https://CRAN.R-project.org/package=usethis" class="externa
 <div class="section level2">
 <h2 id="using-git-and-github">Using Git and GitHub<a class="anchor" aria-label="anchor" href="#using-git-and-github"></a>
 </h2>
-<p>To work with GitHub in RStudio, you should not open an R
-<em>script</em> (i.e., a file with extension <code>.R</code>) but the R
-<em>Project file</em> (i.e., a file with extension <code>.Rproj</code>).
-Then the <code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link">Environment
+<p>To work with GitHub in RStudio, you should not open the R
+<strong>script</strong> (i.e., a file with extension <code>.R</code>)
+but the R <strong>Project file</strong> (i.e., a file with extension
+<code>.Rproj</code>). Then the <code>Git</code> menu will be visible as
+a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link">Environment
 pane</a>.</p>
 <p><code>Pull</code> to get changes from the remote repository (i.e.,
 <code>GitHub</code>) incorporated in the local directory (i.e., your
@@ -192,12 +193,12 @@ remember this token for next times.</p>
 <div class="section level2">
 <h2 id="adding-a-new-file">Adding a new file<a class="anchor" aria-label="anchor" href="#adding-a-new-file"></a>
 </h2>
-<p>To add a file to GitHub that was not there yet, first add it to the
+<p>To add a file to GitHub that is not there yet, first add it to the
 local folder (i.e., on your PC), then let <code>git</code> know it is
 there by typing (it is convenient to use <code>tab</code>-completion to
 select files):
 <code>git add &lt;filename&gt;.&lt;extension&gt;</code>.</p>
-<p>If the working directory is <em>not</em> the folder where the
+<p>If the working directory is <strong>not</strong> the folder where the
 to-be-added file is in, the working directory has to be set to that
 folder (e.g., using <code>cd &lt;path/to/folder&gt;</code>, in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a> or the path has to be
 added in front of the filename (dragging the file onto the shell will
@@ -273,7 +274,7 @@ directory is up to date with the remote repository, and then
 <code>GitHub</code> website), click the three dots at the top-right of
 the file &gt; <code>delete</code> &gt; <code>commit</code>. Use the
 commit message to describe why the file was deleted. After that, find
-the file in the local directory and delete the it. Then
+the file in the local directory and delete it. Then
 <code>pull</code>.</p>
 </div>
 <div class="section level2">
@@ -319,9 +320,9 @@ GitHub repository, you can download the repository by using the green
 <code>Code</code> button, choosing <code>Download ZIP</code> and unzip
 the downloaded file (right-click on them and choose
 <code>extract all</code>). To be able to let R use the package
-correctly, move the package to a location of your R libraries (given by
-the output of <code>cat(normalizePath(.libPaths()))</code>, something
-like <code>C:\Program Files\R\R-4.6.0\library</code> or
+correctly, move the package to a location where R looks for packages
+(given by <code>cat(normalizePath(.libPaths()))</code>, something like
+<code>C:\Program Files\R\R-4.6.0\library</code> or
 <code>C:\Users\&lt;owner&gt;\AppData\Local\R\win-library\4.6</code>.
 Then open the <code>.Rproj</code> file (which has the same name as the
 repository).</li>
@@ -361,9 +362,12 @@ requests</a></p></li>
 <div class="section level2">
 <h2 id="github-actions">GitHub Actions<a class="anchor" aria-label="anchor" href="#github-actions"></a>
 </h2>
-<p>See the section <code>Use GitHub Actions</code> in the vignette
-<em>Package setup</em> from package <code>develcoder</code>:
-<code>vignette("pkg_setup", package = "develcoder")</code>.</p>
+<p>See the section <code>Automate checks</code> in the vignette
+<em>Package setup</em> and section <code>Use GitHub Actions</code> in
+the vignette <em>Package development</em>, both from package
+<code>develcoder</code>:
+<code>vignette("pkg_setup", package = "develcoder")</code> and
+<code>vignette("pkg_devel", package = "develcoder")</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="common-shell-commands">Common shell commands<a class="anchor" aria-label="anchor" href="#common-shell-commands"></a>
