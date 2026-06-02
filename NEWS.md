@@ -9,6 +9,7 @@
 ### Documentation
 - Vignette `Installing R, Rtools and RStudio`: rename and restructure section on
   configuring R. Move documentation for developers to my package `develcoder`.
+  Expanded section 'Documentation and help'.
 
 
 # checkrpkgs 0.8.3
