@@ -17,7 +17,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 ## Introduction and notation
 This vignette contains instructions on installing and configuring
 [R](https://www.r-project.org/),
@@ -46,8 +45,10 @@ files that can be read by applications such as Microsoft NotePad.
 ### Making R stricter
 R can be configured by changing environment variables and various options, see
 (`help("environment variables")`, `help("options")`, `help("install.packages")`,
-and `help(".libPaths")`). Although options for start-up (`help("Startup")`) can
-also be changed, that might make code behave differently on PCs where these
+and `help(".libPaths")`). Although options for start-up can also be changed
+(see `help("Startup")` and the chapter [R Startup](https://rstats.wtf/r-startup)),
+such settings can be stored in multiple files in various
+locations and might make code behave differently on PCs where these
 options are not set, for example when they do not automatically load a package
 or add a path to the search path, so should be used cautiously.
 
@@ -97,9 +98,9 @@ running on:
 - `.Machine` (see `help(".Machine")`) and `Sys.info()` provide information about
   the machine and platform R is running on. `getRversion()` provides the version
   of the running R. Operating systems might identify themselves and their
-  versions in surprising ways, and specifically Windows versions might report
-  older versions than the versions that are actually installed (see the section
-  `osVersion` in `help("sessionInfo")` and the `Note` in `help("win.version")`.
+  versions in surprising ways, and Windows might report older versions than the
+  versions that are actually installed (see the section `osVersion` in
+  `help("sessionInfo")` and the `Note` in `help("win.version")`.
 - `.Platform` (see `help(".Platform")`) and `R.Version()` provide information
   about the platform R was built on.
 - `Sys.getlocale()` and `l10n_info()` provide details about the locale (i.e.,
@@ -108,12 +109,12 @@ running on:
   software that can be used with R.
 - The help page on environment variables (`help("environment variables")`) lists
   some of the environment variables which affect an R session.
-- `sessionInfo()` extracts parts of the information provided by some of the
-  functions mentioned above about the operating system and R. It also lists
+- `sessionInfo()` extracts parts of the information mentioned above about the
+  operating system and R. It also lists
   attached and loaded packages. Its printing method can be used to print
-  additional information about the used locale, time zone, and random number
-  generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
-
+  additional information about the used locale (i.e., settings that depend on
+  the user's language or region) and random number generation:
+  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
 
 ## RStudio
 [RStudio](https://posit.co/products/open-source/rstudio) is an
@@ -130,7 +131,7 @@ and set the option `Save workspace to .RData on exit` to `Never` to make work
 portable (i.e., make sure that R does not use information or data that is not
 present on another PC).
 
-The version of RStudio to use can be selected at `Tools` > `Global Options` >
+The version of R to use can be selected at `Tools` > `Global Options` >
 `General` > `R version`.
 
 Keyboard shortcuts can be modified at `Tools` > `Modify Keyboard Shortcuts`,
@@ -195,7 +196,6 @@ instructions given there. See also the
 Kalibera. Alternatively, `pkgbuild::check_build_tools(debug = TRUE)` can be used
 to check and install Rtools.
 
-
 ## Documentation and help
 - [Bug reporting](https://www.r-project.org/bugs.html), linking to
   [bugzilla](https://bugs.r-project.org/)
@@ -216,8 +216,20 @@ to check and install Rtools.
   with [derived versions](https://rstudio.github.io/r-manuals/) better suited
   for searching.
 - R [news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
-- [RStudio user guide](https://docs.posit.co/ide/user/) by
-  [Posit](https://posit.co/)
+- [RStudio user guide](https://docs.posit.co/ide/user/) and
+  [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/)
+  by [Posit](https://posit.co/)
 - [Search engines](https://cran.r-project.org/search.html) specific for R;
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the `r` tag
 - The website [What They Forgot to Teach You About R](https://rstats.wtf/)
+
+Resources with more details than this vignette:
+
+- Chapter
+[Installation & Environment Setup](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
+from the book
+[Mastering R Through Errors and Warnings](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
+- Chapter [Getting Started and Getting Help](https://rc2e.com/gettingstarted)
+  from the [R Cookbook](https://rc2e.com/)
+- The book [An introduction to R](https://intro2r.com/) by Alex Douglas, Deon
+  Roos, Francesca Mancini, Ana Couto & David Lusseau
