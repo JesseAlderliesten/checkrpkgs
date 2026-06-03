@@ -63,6 +63,8 @@ get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL
               checkinput::all_characters(x = priority, allow_NA = TRUE),
             is.null(lib.loc) || checkinput::all_characters(x = lib.loc))
 
+  db_label <- deparse1(substitute(db))
+
   if(!is.null(priority)) {
     priority_string <- progutils::paste_quoted(priority)
     message("Selecting packages with priority ", priority_string)
@@ -84,14 +86,14 @@ get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL
     if(!is.matrix(db) || (!("Package" %in% colnames(db)) && is.null(rownames(db)))) {
       stop("'db' should be 'NULL' or a matrix with the results of a call to",
            "\n'utils::installed.packages()' containing column 'Package' (or",
-           " rownames that are\npackage names): ", deparse(substitute(db)))
+           " rownames that are\npackage names): ", db_label)
     }
     bool_dupl_cols <- duplicated(colnames(db))
     if(any(bool_dupl_cols)) {
       stop("Column names of 'db' should be unique: ",
            progutils::paste_quoted(colnames(db)[bool_dupl_cols]))
     }
-    location_string <- paste0("in 'db' (", deparse(substitute(db)), ")")
+    location_string <- paste0("in 'db' (", db_label, ")")
   }
 
   # Notes:
