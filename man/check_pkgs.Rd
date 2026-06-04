@@ -31,6 +31,8 @@ names, file paths to packages, and full URLs to packages from
 \href{https://github.com/}{GitHub} can all be used as input to \code{pkgs}, e.g.,
 \code{"checkrpkgs"}, \code{"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"},
 \code{"https://github.com/JesseAlderliesten/checkrpkgs"}.
+
+Note that package names are case-sensitive.
 }
 
 \section{Side effects}{

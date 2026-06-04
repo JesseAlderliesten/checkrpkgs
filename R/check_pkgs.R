@@ -22,6 +22,8 @@
 #' `"checkrpkgs"`, `"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"`,
 #' `"https://github.com/JesseAlderliesten/checkrpkgs"`.
 #'
+#' Note that package names are case-sensitive.
+#'
 #' @section Side effects:
 #' Packages are [loaded][loadNamespace()], such that [updating][update.packages()]
 #' them might fail. Restart \R to prevent such problems.
