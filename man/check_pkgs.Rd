@@ -4,21 +4,21 @@
 \alias{check_pkgs}
 \title{Check for non-installed or non-functional packages}
 \usage{
-check_pkgs(pkgs, quietly = FALSE)
+check_pkgs(pkgs, silently = FALSE)
 }
 \arguments{
 \item{pkgs}{A character vector with names of packages to be checked, or
 ending in such names, see section \verb{Package names} below.}
 
-\item{quietly}{\code{TRUE} or \code{FALSE}: suppress warnings when loading
-installed non-functional packages?}
+\item{silently}{\code{TRUE} or \code{FALSE}: suppress warnings that are emitted when
+loading installed non-functional packages?}
 }
 \value{
-A list of length two, with elements 'absent' and 'nonfunc' containing
-character vectors with the names of packages in \code{pkgs} that are not installed
-or are installed but non-functional, respectively, with a warning. The
-elements are \code{character(0)} if all packages in \code{pkgs} are present, and if all
-packages are installed and functional, respectively.
+A list with elements 'absent' and 'nonfunc' containing character vectors with
+the names of packages in \code{pkgs} that are not installed or non-functional,
+respectively. The elements are \code{character(0)} if all packages in \code{pkgs} are
+present and are functional, respectively. A warning is issued if any package
+is not installed or not functional.
 }
 \description{
 Function to check for non-installed or non-functional packages.
@@ -53,18 +53,16 @@ This function uses \code{\link[=find.package]{find.package()}} and \code{\link[=
 \code{\link[utils:installed.packages]{utils::installed.packages()}} because \code{installed.packages} does not check if
 packages are functional, nor if all needed
 \link[tools:package_dependencies]{dependencies} are installed and functional.
-In addition, \code{installed.packages()} can be slow such that its
-\link[=installed.packages]{help page} states that \code{\link[=requireNamespace]{requireNamespace()}} or
-\code{\link[=require]{require()}} should be used instead.
+In addition,\code{\link[=installed.packages]{installed.packages()}} can be slow such that its help pag] states
+that \code{\link[=requireNamespace]{requireNamespace()}} or \code{\link[=require]{require()}} should be used instead.
 }
 
 \examples{
-check_pkgs(pkgs = c("base", "grid"), quietly = FALSE)
+check_pkgs(pkgs = c("base", "utils", "jessealderliesten/checkrpkgs"))
 
 non_existent_pkgs <- c("yz/wx/abcdef4", "wx/abcdef3", "abcdef2", "abcdef1")
-check_pkgs(non_existent_pkgs, quietly = FALSE)
-check_pkgs(non_existent_pkgs, quietly = TRUE)
-check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
+check_pkgs(non_existent_pkgs)
+check_pkgs(pkgs = c(non_existent_pkgs, "utils"))
 
 }
 \seealso{
