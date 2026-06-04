@@ -5,7 +5,7 @@
 #' information.
 #'
 #' @inheritParams utils::installed.packages
-#' @inheritParams check_pkgs
+#' @inheritParams check_pkgs pkgs
 #' @param db `NULL` (default) or a matrix with the results of a call to
 #' [utils::installed.packages()] containing column `Package` (or rownames that
 #' are package names). To prevent a possibly slow call to
