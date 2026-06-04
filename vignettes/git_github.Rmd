@@ -289,7 +289,7 @@ single `tab` to select an option, double `tab` to see multiple options. Dragging
 a file into the shell gives the absolute path to that file. The current and
 parent directory can be indicated by a single (`.`) or two (`..`) dots in file
 paths, respectively. On paths and file separators in R, see the 'Notes on paths'
-in `help("is_path", pkg = "checkinput")`.
+in `help("is_path", package = "checkinput")`.
 
 
 ## Documentation
