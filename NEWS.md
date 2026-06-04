@@ -1,3 +1,22 @@
+# checkrpkgs 0.10.0
+
+### Breaking changes
+- Add dependency `sessioninfo (>= 1.2.0)` to `Suggests` because it mentioned in
+  the documentation of `get_details_pkgs()` and in the vignettes.
+- Dependency `checkinput`: increase minimum version from `0.8.0` to `0.11.0` to
+  incorporate change of argument name `allow_zero_length()` to
+  `allow_zerolength()`.
+- Dependency `progutils`: increase minimum version from `0.2.0` to `0.6.0` to
+  incorporate change of argument name `allow_zero_length()` to
+  `allow_zerolength()`.
+- `check_pkgs()`: argument `quietly` renamed to `silently` because it silences
+  warnings.
+
+### Documentation
+- Refer to package `sessioninfo`.
+- Vignette `Installing R`: restructure and expand various sections.
+
+
 # checkrpkgs 0.9.0
 
 ### Breaking changes
