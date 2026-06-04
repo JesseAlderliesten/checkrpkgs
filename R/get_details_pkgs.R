@@ -41,6 +41,10 @@
 #' @inheritSection check_pkgs Package names
 #'
 #' @seealso
+#' [utils::sessionInfo()] and [sessioninfo::session_info()] which provides more
+#' details about the origin of loaded or installed packages and has the option
+#' to show only information about selected packages and their dependencies.
+#'
 #' [utils::installed.packages()] that is used by `get_details_pkgs()`;
 #' [check_pkgs()] to check if a package is installed and functional; The vignette
 #' *Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")`.
