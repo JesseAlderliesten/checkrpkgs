@@ -25,6 +25,7 @@ Suggests:
     pkgbuild,
     remotes (>= 2.0.0),
     rmarkdown,
+    sessioninfo (>= 1.2.0),
     strict,
     tinytest (>= 1.4.1),
     tools
