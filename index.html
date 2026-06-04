@@ -96,8 +96,41 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">checkrpkgs</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/check_pkgs.html">check_pkgs</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"abcdef1"</span><span class="op">)</span> <span class="co"># package is absent</span></span>
+<span><span class="co">#&gt; Warning in check_pkgs(pkgs = "abcdef1"): non-installed packages: 'abcdef1'</span></span>
+<span><span class="co">#&gt; $absent</span></span>
+<span><span class="co">#&gt; [1] "abcdef1"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $nonfunc</span></span>
+<span><span class="co">#&gt; character(0)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/get_details_pkgs.html">get_details_pkgs</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"utils"</span>, <span class="st">"checkrpkgs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/get_details_pkgs.html">get_details_pkgs</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"utils"</span>, <span class="st">"checkrpkgs"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            Package      Version  MD5sum</span></span>
+<span><span class="co">#&gt; checkrpkgs "checkrpkgs" "0.10.0" NA    </span></span>
+<span><span class="co">#&gt; utils      "utils"      "4.6.0"  NA    </span></span>
+<span><span class="co">#&gt;            Built                                                          </span></span>
+<span><span class="co">#&gt; checkrpkgs "R 4.6.0; ; 2026-06-04 20:57:46 UTC; windows"                  </span></span>
+<span><span class="co">#&gt; utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"</span></span>
+<span><span class="co">#&gt;            Priority LibPath                                            </span></span>
+<span><span class="co">#&gt; checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"</span></span>
+<span><span class="co">#&gt; utils      "base"   "C:/Program Files/R/R-4.6.0/library"               </span></span>
+<span><span class="co">#&gt;            Repository Additional_repositories</span></span>
+<span><span class="co">#&gt; checkrpkgs "Github"   NA                     </span></span>
+<span><span class="co">#&gt; utils      NA         NA                     </span></span>
+<span><span class="co">#&gt;            URL                                                                                                </span></span>
+<span><span class="co">#&gt; checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs,\nhttps://jessealderliesten.github.io/checkrpkgs/"</span></span>
+<span><span class="co">#&gt; utils      NA                                                                                                 </span></span>
+<span><span class="co">#&gt;            GithubRepo   GithubUsername      SystemRequirements NeedsCompilation</span></span>
+<span><span class="co">#&gt; checkrpkgs "checkrpkgs" "JesseAlderliesten" NA                 "no"            </span></span>
+<span><span class="co">#&gt; utils      NA           NA                  NA                 "yes"           </span></span>
+<span><span class="co">#&gt;            OS_type Depends</span></span>
+<span><span class="co">#&gt; checkrpkgs NA      NA     </span></span>
+<span><span class="co">#&gt; utils      NA      NA     </span></span>
+<span><span class="co">#&gt;            Imports                                               LinkingTo</span></span>
+<span><span class="co">#&gt; checkrpkgs "checkinput (&gt;= 0.11.0), progutils (&gt;= 0.6.0), utils" NA       </span></span>
+<span><span class="co">#&gt; utils      NA                                                    NA       </span></span>
+<span><span class="co">#&gt;            Suggests                                                                                                                                                                            </span></span>
+<span><span class="co">#&gt; checkrpkgs "BiocManager (&gt;= 1.30.5), conflicted, ctv (&gt;= 0.4-0), knitr,\nMatrix, methods, pkgbuild, remotes (&gt;= 2.0.0), rmarkdown,\nsessioninfo (&gt;= 1.2.0), strict, tinytest (&gt;= 1.4.1), tools"</span></span>
+<span><span class="co">#&gt; utils      "methods, xml2, commonmark, knitr, jsonlite"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level1">

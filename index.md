@@ -58,8 +58,41 @@ and
 
 library(checkrpkgs)
 check_pkgs(pkgs = "abcdef1") # package is absent
+#> Warning in check_pkgs(pkgs = "abcdef1"): non-installed packages: 'abcdef1'
+#> $absent
+#> [1] "abcdef1"
+#> 
+#> $nonfunc
+#> character(0)
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
+#>            Package      Version  MD5sum
+#> checkrpkgs "checkrpkgs" "0.10.0" NA    
+#> utils      "utils"      "4.6.0"  NA    
+#>            Built                                                          
+#> checkrpkgs "R 4.6.0; ; 2026-06-04 20:57:46 UTC; windows"                  
+#> utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"
+#>            Priority LibPath                                            
+#> checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"
+#> utils      "base"   "C:/Program Files/R/R-4.6.0/library"               
+#>            Repository Additional_repositories
+#> checkrpkgs "Github"   NA                     
+#> utils      NA         NA                     
+#>            URL                                                                                                
+#> checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs,\nhttps://jessealderliesten.github.io/checkrpkgs/"
+#> utils      NA                                                                                                 
+#>            GithubRepo   GithubUsername      SystemRequirements NeedsCompilation
+#> checkrpkgs "checkrpkgs" "JesseAlderliesten" NA                 "no"            
+#> utils      NA           NA                  NA                 "yes"           
+#>            OS_type Depends
+#> checkrpkgs NA      NA     
+#> utils      NA      NA     
+#>            Imports                                               LinkingTo
+#> checkrpkgs "checkinput (>= 0.11.0), progutils (>= 0.6.0), utils" NA       
+#> utils      NA                                                    NA       
+#>            Suggests                                                                                                                                                                            
+#> checkrpkgs "BiocManager (>= 1.30.5), conflicted, ctv (>= 0.4-0), knitr,\nMatrix, methods, pkgbuild, remotes (>= 2.0.0), rmarkdown,\nsessioninfo (>= 1.2.0), strict, tinytest (>= 1.4.1), tools"
+#> utils      "methods, xml2, commonmark, knitr, jsonlite"
 ```
 
 # Similar resources
