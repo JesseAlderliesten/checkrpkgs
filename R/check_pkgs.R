@@ -4,8 +4,15 @@
 #'
 #' @param pkgs A character vector with names of packages to be checked, or
 #' ending in such names, see section `Package names` below.
-#' @param quietly `TRUE` or `FALSE`: suppress warnings when loading
-#' installed non-functional packages?
+#' @param silently `TRUE` or `FALSE`: suppress warnings that are emitted when
+#' loading installed non-functional packages?
+#'
+#' @returns
+#' A list with elements 'absent' and 'nonfunc' containing character vectors with
+#' the names of packages in `pkgs` that are not installed or non-functional,
+#' respectively. The elements are `character(0)` if all packages in `pkgs` are
+#' present and are functional, respectively. A warning is issued if any package
+#' is not installed or not functional.
 #'
 #' @section Package names:
 #' The part after the last forward or backward slash is considered to be the
@@ -15,12 +22,7 @@
 #' `"checkrpkgs"`, `"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"`,
 #' `"https://github.com/JesseAlderliesten/checkrpkgs"`.
 #'
-#' @returns
-#' A list of length two, with elements 'absent' and 'nonfunc' containing
-#' character vectors with the names of packages in `pkgs` that are not installed
-#' or are installed but non-functional, respectively, with a warning. The
-#' elements are `character(0)` if all packages in `pkgs` are present, and if all
-#' packages are installed and functional, respectively.
+#' Note that package names are case-sensitive.
 #'
 #' @section Side effects:
 #' Packages are [loaded][loadNamespace()], such that [updating][update.packages()]
@@ -37,9 +39,8 @@
 #' [utils::installed.packages()] because `installed.packages` does not check if
 #' packages are functional, nor if all needed
 #' [dependencies][tools::package_dependencies()] are installed and functional.
-#' In addition, `installed.packages()` can be slow such that its
-#' [help page][installed.packages()] states that [requireNamespace()] or
-#' [require()] should be used instead.
+#' In addition,[installed.packages()] can be slow such that its help pag] states
+#' that [requireNamespace()] or [require()] should be used instead.
 #'
 #' @seealso
 #' [get_details_pkgs()] for more information about the origin of packages.
@@ -48,16 +49,15 @@
 #' `vignette("r_pkgs", package = "checkrpkgs")`.
 #'
 #' @examples
-#' check_pkgs(pkgs = c("base", "grid"), quietly = FALSE)
+#' check_pkgs(pkgs = c("base", "utils", "jessealderliesten/checkrpkgs"))
 #'
 #' non_existent_pkgs <- c("yz/wx/abcdef4", "wx/abcdef3", "abcdef2", "abcdef1")
-#' check_pkgs(non_existent_pkgs, quietly = FALSE)
-#' check_pkgs(non_existent_pkgs, quietly = TRUE)
-#' check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
+#' check_pkgs(non_existent_pkgs)
+#' check_pkgs(pkgs = c(non_existent_pkgs, "utils"))
 #'
 #' @export
-check_pkgs <- function(pkgs, quietly = FALSE) {
-  stopifnot(checkinput::all_characters(pkgs), checkinput::is_logical(quietly))
+check_pkgs <- function(pkgs, silently = FALSE) {
+  stopifnot(checkinput::all_characters(pkgs), checkinput::is_logical(silently))
 
   pkgs_input <- pkgs
 
@@ -78,15 +78,15 @@ check_pkgs <- function(pkgs, quietly = FALSE) {
     bool_nonfunc <- !bool_absent # Special case where all are absent: all FALSE
     names_nonfunc <- character(0)
   } else {
-    if(quietly) {
+    if(silently) {
       bool_nonfunc <- suppressWarnings(suppressPackageStartupMessages(
         !vapply(X = pkgs[!bool_absent], FUN = requireNamespace,
-                FUN.VALUE = logical(1), lib.loc = NULL, quietly = quietly)
+                FUN.VALUE = logical(1), lib.loc = NULL, quietly = silently)
       ))
     } else {
       bool_nonfunc <- suppressPackageStartupMessages(
         !vapply(X = pkgs[!bool_absent], FUN = requireNamespace,
-                FUN.VALUE = logical(1), lib.loc = NULL, quietly = quietly)
+                FUN.VALUE = logical(1), lib.loc = NULL, quietly = silently)
       )
     }
     names_nonfunc <- (pkgs[!bool_absent])[bool_nonfunc]

@@ -68,3 +68,13 @@ check_pkgs(pkgs = "abcdef1") # package is absent
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
 ```
+
+# Similar resources
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/) by
+  Jennifer Bryan, Jim Hester, Shannon Pileggi, and E. David Aja
+- The book [An introduction to R](https://intro2r.com/) by Alex Douglas, Deon
+  Roos, Francesca Mancini, Ana Couto and David Lusseau
+
+Developers might be interested in my package
+[develcoder](https://jessealderliesten.github.io/develcoder/) with code to
+develop R packages.

@@ -79,6 +79,8 @@ names, file paths to packages, and full URLs to packages from
 \href{https://github.com/}{GitHub} can all be used as input to \code{pkgs}, e.g.,
 \code{"checkrpkgs"}, \code{"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"},
 \code{"https://github.com/JesseAlderliesten/checkrpkgs"}.
+
+Note that package names are case-sensitive.
 }
 
 \examples{
@@ -92,6 +94,10 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 
 }
 \seealso{
+\code{\link[utils:sessionInfo]{utils::sessionInfo()}} and \code{\link[sessioninfo:session_info]{sessioninfo::session_info()}} which provides more
+details about the origin of loaded or installed packages and has the option
+to show only information about selected packages and their dependencies.
+
 \code{\link[utils:installed.packages]{utils::installed.packages()}} that is used by \code{get_details_pkgs()};
 \code{\link[=check_pkgs]{check_pkgs()}} to check if a package is installed and functional; The vignette
 \emph{Instructions about R packages}: \code{vignette("r_pkgs", package = "checkrpkgs")}.

@@ -5,7 +5,7 @@
 #' information.
 #'
 #' @inheritParams utils::installed.packages
-#' @inheritParams check_pkgs
+#' @inheritParams check_pkgs pkgs
 #' @param db `NULL` (default) or a matrix with the results of a call to
 #' [utils::installed.packages()] containing column `Package` (or rownames that
 #' are package names). To prevent a possibly slow call to
@@ -41,6 +41,10 @@
 #' @inheritSection check_pkgs Package names
 #'
 #' @seealso
+#' [utils::sessionInfo()] and [sessioninfo::session_info()] which provides more
+#' details about the origin of loaded or installed packages and has the option
+#' to show only information about selected packages and their dependencies.
+#'
 #' [utils::installed.packages()] that is used by `get_details_pkgs()`;
 #' [check_pkgs()] to check if a package is installed and functional; The vignette
 #' *Instructions about R packages*: `vignette("r_pkgs", package = "checkrpkgs")`.
@@ -57,11 +61,13 @@
 #' @export
 get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL,
                              lib.loc = NULL, db = NULL) {
-  stopifnot(checkinput::all_characters(x = pkgs, allow_zero_length = TRUE),
+  stopifnot(checkinput::all_characters(x = pkgs, allow_zerolength = TRUE),
             is.null(fields) || checkinput::all_characters(x = fields),
             is.null(priority) ||
               checkinput::all_characters(x = priority, allow_NA = TRUE),
             is.null(lib.loc) || checkinput::all_characters(x = lib.loc))
+
+  db_label <- deparse1(substitute(db))
 
   if(!is.null(priority)) {
     priority_string <- progutils::paste_quoted(priority)
@@ -84,14 +90,14 @@ get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL
     if(!is.matrix(db) || (!("Package" %in% colnames(db)) && is.null(rownames(db)))) {
       stop("'db' should be 'NULL' or a matrix with the results of a call to",
            "\n'utils::installed.packages()' containing column 'Package' (or",
-           " rownames that are\npackage names): ", deparse(substitute(db)))
+           " rownames that are\npackage names): ", db_label)
     }
     bool_dupl_cols <- duplicated(colnames(db))
     if(any(bool_dupl_cols)) {
       stop("Column names of 'db' should be unique: ",
            progutils::paste_quoted(colnames(db)[bool_dupl_cols]))
     }
-    location_string <- paste0("in 'db' (", deparse(substitute(db)), ")")
+    location_string <- paste0("in 'db' (", db_label, ")")
   }
 
   # Notes:
