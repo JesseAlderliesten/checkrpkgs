@@ -268,7 +268,7 @@ expect_warning(
 #### Arguments that should result in an error ####
 expect_error(
   get_details_pkgs(pkgs = 3),
-  pattern = "checkinput::all_characters(x = pkgs, allow_zero_length = TRUE)",
+  pattern = "checkinput::all_characters(x = pkgs, allow_zerolength = TRUE)",
   fixed = TRUE)
 
 expect_error(

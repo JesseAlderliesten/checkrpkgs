@@ -57,7 +57,7 @@
 #' @export
 get_details_pkgs <- function(pkgs = character(0), fields = NULL, priority = NULL,
                              lib.loc = NULL, db = NULL) {
-  stopifnot(checkinput::all_characters(x = pkgs, allow_zero_length = TRUE),
+  stopifnot(checkinput::all_characters(x = pkgs, allow_zerolength = TRUE),
             is.null(fields) || checkinput::all_characters(x = fields),
             is.null(priority) ||
               checkinput::all_characters(x = priority, allow_NA = TRUE),
