@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,22 @@
       <small>Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.10.0" id="checkrpkgs-0100">checkrpkgs 0.10.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-0100"></a></h2>
+<div class="section level4">
+<h4 id="breaking-changes-0-10-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-10-0"></a></h4>
+<ul><li>Add dependency <code>sessioninfo (&gt;= 1.2.0)</code> to <code>Suggests</code> because it mentioned in the documentation of <code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code> and in the vignettes.</li>
+<li>Dependency <code>checkinput</code>: increase minimum version from <code>0.8.0</code> to <code>0.11.0</code> to incorporate change of argument name <code>allow_zero_length()</code> to <code>allow_zerolength()</code>.</li>
+<li>Dependency <code>progutils</code>: increase minimum version from <code>0.2.0</code> to <code>0.6.0</code> to incorporate change of argument name <code>allow_zero_length()</code> to <code>allow_zerolength()</code>.</li>
+<li>
+<code><a href="../reference/check_pkgs.html">check_pkgs()</a></code>: argument <code>quietly</code> renamed to <code>silently</code> because it silences warnings.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="documentation-0-10-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-10-0"></a></h4>
+<ul><li>Refer to package <code>sessioninfo</code>.</li>
+<li>Vignette <code>Installing R</code>: restructure and expand various sections.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.0" id="checkrpkgs-090">checkrpkgs 0.9.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-090"></a></h2>
 <div class="section level4">
@@ -120,7 +136,7 @@
 <h2 class="pkg-version" data-toc-text="0.4.0" id="checkrpkgs-040">checkrpkgs 0.4.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-040"></a></h2>
 <div class="section level4">
 <h4 id="breaking-changes-0-4-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-4-0"></a></h4>
-<ul><li>Update dependencies: add suggested dependency <code>Matrix</code> that is used in vignettes. Remove suggested dependency <code>stats</code> after updating an example in the vignettes to use <code>methods</code> instead of <code>stats</code>.</li>
+<ul><li>Update dependencies: add dependency <code>Matrix</code> to <code>Suggests</code> because it is used in vignettes. Remove dependency <code>stats</code> from <code>Suggests</code> after updating an example in the vignettes to use <code>methods</code> instead of <code>stats</code>.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="bugfixes-0-4-0">Bugfixes<a class="anchor" aria-label="anchor" href="#bugfixes-0-4-0"></a></h4>
@@ -139,9 +155,7 @@
 <h2 class="pkg-version" data-toc-text="0.3.0" id="checkrpkgs-030">checkrpkgs 0.3.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-030"></a></h2>
 <div class="section level4">
 <h4 id="breaking-changes-0-3-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-3-0"></a></h4>
-<ul><li>Dependency <code>BiocManager</code> (in <code>Suggests</code>): require version <code>&gt;= 1.30.5</code> to be able to run code in vignettes.</li>
-<li>Dependency <code>ctv</code> (in <code>Suggests</code>): require version <code>&gt;= 0.4-0</code> to be able to run code in vignettes.</li>
-<li>Dependency <code>remotes</code> (in <code>Suggests</code>): require version <code>&gt;= 2.0.0</code> to be able to run code in vignettes.</li>
+<ul><li>Dependencies: require <code>BiocManager &gt;= 1.30.5</code>, <code>ctv &gt;= 0.4-0</code> and <code>remotes &gt;= 2.0.0</code> to be able to run code in vignettes.</li>
 <li>
 <code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code>: also extract fields <code>"GithubRepo"</code> and <code>"GithubUsername"</code>. No need to use the hardcoded fields in the default argument. Set field <code>Repository</code> to <code>Github</code> if appropriate. Adjust warnings.</li>
 </ul></div>
@@ -185,8 +199,8 @@
 <h2 class="pkg-version" data-toc-text="0.0.1" id="checkrpkgs-001">checkrpkgs 0.0.1<a class="anchor" aria-label="anchor" href="#checkrpkgs-001"></a></h2>
 <div class="section level4">
 <h4 id="breaking-changes-0-0-1">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-0-1"></a></h4>
-<ul><li>Add dependencies <code>checkinput (&gt;= 0.0.6)</code>, <code>knitr</code>, <code>progutils (&gt;= 0.0.3)</code>, <code>rmarkdown</code>, and <code>utils</code> in <code>Depends</code>. Using <code>knitr</code> and <code>rmarkdown</code> in <code>Depends</code> because the vignettes are the main part of the package.</li>
-<li>Add dependencies in <code>Suggests</code> to be able to run all code in the vignettes and documentation: <code>BiocManager</code>, <code>conflicted</code>, <code>ctv</code>, <code>methods</code>, <code>pkgbuild</code>, <code>remotes</code>, <code>stats</code>, <code>strict</code>, <code>tools</code>.</li>
+<ul><li>Add dependencies <code>checkinput (&gt;= 0.0.6)</code>, <code>knitr</code>, <code>progutils (&gt;= 0.0.3)</code>, <code>rmarkdown</code>, and <code>utils</code> to <code>Depends</code>. Using <code>knitr</code> and <code>rmarkdown</code> in <code>Depends</code> because the vignettes are the main part of the package.</li>
+<li>Add dependencies <code>BiocManager</code>, <code>conflicted</code>, <code>ctv</code>, <code>methods</code>, <code>pkgbuild</code>, <code>remotes</code>, <code>stats</code>, <code>strict</code>, <code>tools</code> to <code>Suggests</code> to be able to run all code in the vignettes and documentation.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="added-functions-0-0-1">Added functions<a class="anchor" aria-label="anchor" href="#added-functions-0-0-1"></a></h4>

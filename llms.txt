@@ -9,9 +9,9 @@ how to get the source code of R functions.
 
 ## Installation
 
-You can visit the [checkrpkgs
+Visit the [checkrpkgs
 website](https://jessealderliesten.github.io/checkrpkgs/) to explore the
-package. To use `checkrpkgs`, you have to install it from
+package., or install `checkrpkgs` from
 [GitHub](https://github.com/JesseAlderliesten/checkrpkgs) using the
 following R code (you need to run R as administrator):
 
@@ -58,42 +58,20 @@ and
 
 library(checkrpkgs)
 check_pkgs(pkgs = "abcdef1") # package is absent
-#> Warning in check_pkgs(pkgs = "abcdef1"): non-installed packages: 'abcdef1'
-#> $absent
-#> [1] "abcdef1"
-#> 
-#> $nonfunc
-#> character(0)
 
 get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
-#>            Package      Version MD5sum
-#> checkrpkgs "checkrpkgs" "0.8.3" NA    
-#> utils      "utils"      "4.6.0" NA    
-#>            Built                                                          
-#> checkrpkgs "R 4.6.0; ; 2026-05-24 13:42:12 UTC; windows"                  
-#> utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"
-#>            Priority LibPath                                            
-#> checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"
-#> utils      "base"   "C:/Program Files/R/R-4.6.0/library"               
-#>            Repository Additional_repositories
-#> checkrpkgs "Github"   NA                     
-#> utils      NA         NA                     
-#>            URL                                                                                                
-#> checkrpkgs "https://github.com/JesseAlderliesten/checkrpkgs,\nhttps://jessealderliesten.github.io/checkrpkgs/"
-#> utils      NA                                                                                                 
-#>            GithubRepo   GithubUsername      SystemRequirements NeedsCompilation
-#> checkrpkgs "checkrpkgs" "JesseAlderliesten" NA                 "no"            
-#> utils      NA           NA                  NA                 "yes"           
-#>            OS_type Depends Imports                                             
-#> checkrpkgs NA      NA      "checkinput (>= 0.6.0), progutils (>= 0.0.9), utils"
-#> utils      NA      NA      NA                                                  
-#>            LinkingTo
-#> checkrpkgs NA       
-#> utils      NA       
-#>            Suggests                                                                                                                                                    
-#> checkrpkgs "BiocManager (>= 1.30.5), conflicted, ctv (>= 0.4-0), knitr,\nMatrix, methods, pkgbuild, remotes (>= 2.0.0), rmarkdown,\nstrict, tinytest (>= 1.4.1), tools"
-#> utils      "methods, xml2, commonmark, knitr, jsonlite"
 ```
+
+# Similar resources
+
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+  by Jennifer Bryan, Jim Hester, Shannon Pileggi, and E. David Aja
+- The book [An introduction to R](https://intro2r.com/) by Alex Douglas,
+  Deon Roos, Francesca Mancini, Ana Couto and David Lusseau
+
+Developers might be interested in my package
+[develcoder](https://jessealderliesten.github.io/develcoder/) with code
+to develop R packages.
 
 # Package index
 

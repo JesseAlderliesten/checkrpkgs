@@ -44,8 +44,8 @@ the location of the Git executable: probably
 `C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (usually a hidden
 folder) in Windows notation; in R these paths are
 `C:/Program Files/Git/bin/git.exe` or
-`C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, see the [Notes on
-paths](#notes-on-paths).
+`C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, see [Paths in the
+shell](#paths-in-the-shell).
 
 Open the `Git Bash` [shell](https://happygitwithr.com/shell) (which was
 installed when installing [Git for Windows](https://gitforwindows.org/))
@@ -304,17 +304,19 @@ you want help about).
 - working directory, change: `cd` (e.g.,
   `cd 'D:/Userdata/<owner>/Documents/GIT/<somefolder>'`).
 
-## Notes on paths
+### Paths in the shell
 
-When entering paths in the `shell`, use forward slash (`/`) instead of
-the Windows-default backslash (`\`). If the path you want to specify
-contains spaces (e.g., `D:/Userdata/My Account/...`), use quotes around
-the path (e.g., `"D:/Userdata/My Account/..."`). `Tab`-completion can be
-used when entering paths: single `tab` to select an option, double `tab`
-to see multiple options. Dragging a file into the shell gives the
-absolute path to that file. The current and parent directory can be
-indicated by a single (`.`) or two (`..`) dots in file paths,
-respectively.
+When entering paths in the [shell](https://happygitwithr.com/shell), use
+the forward slash (`/`) as file separator instead of the Windows-default
+backslash (`\`). If the path you want to specify contains spaces (e.g.,
+`D:/Userdata/My Account/...`), use quotes around the path (e.g.,
+`"D:/Userdata/My Account/..."`). `Tab`-completion can be used when
+entering paths: single `tab` to select an option, double `tab` to see
+multiple options. Dragging a file into the shell gives the absolute path
+to that file. The current and parent directory can be indicated by a
+single (`.`) or two (`..`) dots in file paths, respectively. On paths
+and file separators in R, see the ‘Notes on paths’ in
+[`help("is_path", package = "checkinput")`](https://jessealderliesten.github.io/checkinput/reference/is_path.html).
 
 ## Documentation
 
@@ -327,6 +329,7 @@ Official documentation
   up](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account)
 - [GitHub: general](https://docs.github.com/en)
 - [GitHub: searching](https://docs.github.com/en/search-github)
+- [GitHub: status](https://www.githubstatus.com/)
 - [GitHub:
   workflow](https://docs.github.com/en/get-started/using-github/github-flow)
 

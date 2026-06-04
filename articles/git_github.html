@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,7 +116,7 @@ the Git executable: probably
 (usually a hidden folder) in Windows notation; in R these paths are
 <code>C:/Program Files/Git/bin/git.exe</code> or
 <code>C:/Users/&lt;owner&gt;/AppData/Local/Git/bin/git.exe</code>, see
-the <a href="#notes-on-paths">Notes on paths</a>.</p>
+<a href="#paths-in-the-shell">Paths in the shell</a>.</p>
 <p>Open the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
 when installing <a href="https://gitforwindows.org/" class="external-link">Git for
 Windows</a>) by typing <code>Git Bash</code> in Windows’
@@ -396,21 +396,22 @@ hidden files)</li>
 <li>working directory, change: <code>cd</code> (e.g.,
 <code>cd 'D:/Userdata/&lt;owner&gt;/Documents/GIT/&lt;somefolder&gt;'</code>).</li>
 </ul>
-</div>
-<div class="section level2">
-<h2 id="notes-on-paths">Notes on paths<a class="anchor" aria-label="anchor" href="#notes-on-paths"></a>
-</h2>
-<p>When entering paths in the <code>shell</code>, use forward slash
-(<code>/</code>) instead of the Windows-default backslash
-(<code>\</code>). If the path you want to specify contains spaces (e.g.,
-<code>D:/Userdata/My Account/...</code>), use quotes around the path
-(e.g., <code>"D:/Userdata/My Account/..."</code>).
+<div class="section level3">
+<h3 id="paths-in-the-shell">Paths in the shell<a class="anchor" aria-label="anchor" href="#paths-in-the-shell"></a>
+</h3>
+<p>When entering paths in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>, use the forward slash
+(<code>/</code>) as file separator instead of the Windows-default
+backslash (<code>\</code>). If the path you want to specify contains
+spaces (e.g., <code>D:/Userdata/My Account/...</code>), use quotes
+around the path (e.g., <code>"D:/Userdata/My Account/..."</code>).
 <code>Tab</code>-completion can be used when entering paths: single
 <code>tab</code> to select an option, double <code>tab</code> to see
 multiple options. Dragging a file into the shell gives the absolute path
 to that file. The current and parent directory can be indicated by a
 single (<code>.</code>) or two (<code>..</code>) dots in file paths,
-respectively.</p>
+respectively. On paths and file separators in R, see the ‘Notes on
+paths’ in <code><a href="https://jessealderliesten.github.io/checkinput/reference/is_path.html" class="external-link">help("is_path", package = "checkinput")</a></code>.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
@@ -426,6 +427,7 @@ setting up</a></li>
 <li><a href="https://docs.github.com/en" class="external-link">GitHub: general</a></li>
 <li><a href="https://docs.github.com/en/search-github" class="external-link">GitHub:
 searching</a></li>
+<li><a href="https://www.githubstatus.com/" class="external-link">GitHub: status</a></li>
 <li><a href="https://docs.github.com/en/get-started/using-github/github-flow" class="external-link">GitHub:
 workflow</a></li>
 </ul>

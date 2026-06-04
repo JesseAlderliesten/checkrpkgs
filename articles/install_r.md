@@ -33,52 +33,56 @@ NotePad.
 
 R can be configured by changing environment variables and various
 options, see
-([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html),
+[`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html),
 [`help("options")`](https://rdrr.io/r/base/options.html),
 [`help("install.packages")`](https://rdrr.io/r/utils/install.packages.html),
-and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html)).
-Although options for start-up can also be changed (see
+and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html).
+Although options for startup can also be changed (see
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html) and the chapter
-[R Startup](https://rstats.wtf/r-startup)), such settings can be stored
-in multiple files in various locations and might make code behave
-differently on PCs where these options are not set, for example when
-they do not automatically load a package or add a path to the search
-path, so should be used cautiously.
+[R Startup](https://rstats.wtf/r-startup)), that should be done
+cautiously because those settings probably make code behave differently
+on PCs where those options are not set, for example when changing which
+packages are automatically loaded or when adding path to the search
+path.
 
 Various options can be changed to make R a bit stricter:
 
-- Warn in case of partial matching
-  ([`help("pmatch")`](https://rdrr.io/r/base/pmatch.html)) such as
-  `list(mean = 3)$me`:
-  `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`.
-  The default is `FALSE` for each of these.
+- Warn in case of partial matching such as `list(mean = 3)$me`:  
+  `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`,
+  with default `FALSE` for each of these. Details:
+  [`help("pmatch")`](https://rdrr.io/r/base/pmatch.html),
+  [`help("attr")`](https://rdrr.io/r/base/attr.html), and
+  [`help("Extract")`](https://rdrr.io/r/base/Extract.html).
 - Error instead of warn when calling `a:b` when numeric `a` or `b` is
-  longer than one, such as `3:c(5, 7)` (introduced in R 4.3.0):
-  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`.
+  longer than one, such as `3:c(5, 7)`:  
+  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`. Details:
+  [`help("colon", package = "base")`](https://rdrr.io/r/base/Colon.html).
+  This option was introduced in R 4.3.0.
 - Error instead of silently using only the first element in logical
-  operations
-  ([`help("Logic", package = "base")`](https://rdrr.io/r/base/Logic.html))
-  such as `c(TRUE, TRUE) && TRUE)` (introduced in R 3.6.0, no longer
-  used since R 4.3.0 because there calling `&&` or `||` with length
-  larger than one always gives an error):
-  `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`.
-- Error instead of warn if a condition
-  ([`help("Control", package = "base")`](https://rdrr.io/r/base/Control.html))
-  has length larger than one, such as `if(3 < c(5, 7))` (introduced in R
-  3.4.0, no longer used since R 4.2.0 because there conditions with
-  length larger than one always give an error):
-  `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`.
+  operations such as `c(TRUE, TRUE) && TRUE)`:  
+  `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`. Details:
+  [`help("Logic", package = "base")`](https://rdrr.io/r/base/Logic.html).
+  This option was introduced in R 3.6.0 and is no longer used since R
+  4.3.0 because there calling `&&` or `||` with length larger than one
+  always gives an error.
+- Error instead of warn if a condition has length larger than one, such
+  as `if(3 < c(5, 7))`:  
+  `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`. Details:
+  [`help("Control", package = "base")`](https://rdrr.io/r/base/Control.html).
+  This option was introduced in R 3.4.0 and is no longer used since R
+  4.2.0 because there conditions with length larger than one always give
+  an error.
 - Print [`warnings()`](https://rdrr.io/r/base/warnings.html) immediately
   as they occur (`options(warn = 1)`) or make them an error
-  ([`help("stop")`](https://rdrr.io/r/base/stop.html)):
-  `options(warn = 2)`. The latter should only be used for debugging
-  because it may trigger bugs and resource leaks (per its help-page).
-  The default is `options(warn = 0)` to warn after the top-level
-  function returns.
-- Enter the environment browser
-  ([`help("browser")`](https://rdrr.io/r/base/browser.html)) upon error
-  (default: `options(error = NULL)`): `options(error = browser)`; press
-  `Q` or `Escape` to quit the browser mode; press `c` to continue code.
+  (`options(warn = 2)`). The latter should only be used for debugging
+  because it may trigger bugs and resource leaks. The default is
+  `options(warn = 0)` to warn after the top-level function returns.
+  Details: [`help("stop")`](https://rdrr.io/r/base/stop.html).
+- Enter the environment browser upon error:  
+  `options(error = browser)`, with default `options(error = NULL)` to
+  not enter the environment browser. Press `Q` or `Escape` to quit the
+  browser mode and press `c` to continue code. Details:
+  [`help("browser")`](https://rdrr.io/r/base/browser.html).
 
 In addition, various packages contain ways to make R stricter:
 
@@ -111,9 +115,9 @@ platform R is running on:
   identify themselves and their versions in surprising ways, and Windows
   might report older versions than the versions that are actually
   installed (see the section `osVersion` in
-  [`help("sessionInfo")`](https://rdrr.io/r/utils/sessionInfo.html) and
-  the `Note` in
-  [`help("win.version")`](https://rdrr.io/r/utils/winextras.html).
+  [`help("sessionInfo", package = "utils")`](https://rdrr.io/r/utils/sessionInfo.html)
+  and the `Note` in
+  [`help("win.version", package = "utils")`](https://rdrr.io/r/utils/winextras.html).
 - `.Platform` (see
   [`help(".Platform")`](https://rdrr.io/r/base/Platform.html)) and
   [`R.Version()`](https://rdrr.io/r/base/Version.html) provide
@@ -128,13 +132,17 @@ platform R is running on:
 - The help page on environment variables
   ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
   lists some of the environment variables which affect an R session.
-- [`sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) extracts
-  parts of the information mentioned above about the operating system
-  and R. It also lists attached and loaded packages. Its printing method
-  can be used to print additional information about the used locale
-  (i.e., settings that depend on the user’s language or region) and
-  random number generation:
-  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+- [`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html)
+  extracts parts of the information mentioned above about the operating
+  system and R. It also lists attached and loaded packages. Its printing
+  method can be used to print additional information about the used
+  locale (i.e., settings that depend on the user’s language or region)
+  and random number generation:
+  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`. Package
+  `sessioninfo` contains the similar function `session_info()` which
+  provides more details about the origin of loaded or installed
+  packages, and has the option to show only information about selected
+  packages and their dependencies.
 
 ## RStudio
 
@@ -166,56 +174,56 @@ keyboard shortcuts. Going to `Tools` \> `Modify Keyboard Shortcuts`
 usually fixes that without the need to actually reset the shortcuts.
 
 The appearance of code can be changed at `Tools` \> `Global options` \>
-`Appearance`. The default `Editor theme` is the light `Textmate`. Other
-nice editor themes are the light `Xcode` and the dark
+`Appearance`. Nice editor themes are the light `Xcode` and the dark
 `Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`. Nice
-`Editor font`s are `Consolas`, `Cacadia Mono Light`, and
+`Editor fonts` are `Consolas`, `Cacadia Mono Light`, and
 `Lucida Console`.
 
-To check that characters in a typeface or font can be properly
-distinguished from each other when choosing a font, for example using
-[Adobe Fonts](https://fonts.adobe.com/) or [Google
-Fonts](https://fonts.google.com/), the following string groups together
-characters that in some fonts are similar in appearance:
-`71lI|i/ oQO0D gq B8 S5 Z2 ijy4 ., :; "'' __ cldcIdc|dc1d rnm UVVWuvvw`
+Choosing a good editor font deserves some attention: using a font with
+clearly distinct characters prevents confusing similar characters when
+writing code. The following strings group together characters that in
+some fonts are similar in appearance. Letters are indicated with their
+names in upper case letters that are easier to distinguish, with ‘upper’
+indicating that upper case letters are used in the string:
 
-The string consists of the following characters (using upper case letter
-that are easier to distinguish, with ‘lower’ and ‘upper’ indicating the
-case used in the string):
+- `B8 S5 y4 Z2`: upper BEE, eight; upper ESS, five; WYE, four; upper
+  ZED, two
+- `gq ijy rnm uvvw UVVW`: GEE, CUE; I, JAY, WYE; AR, EN, EM; U, repeated
+  VEE, double-U; upper U, repeated upper VEE, upper double-U
+- `., :; "'' __`: dot, comma; colon, semicolon; double quotes, repeated
+  single quotes; repeated underscores
+- `cldcIdc|dc1`: CEE, EL, DEE, CEE, upper I, DEE, CEE, vertical bar,
+  DEE, CEE, one
+- `71lI|i/`: seven, one, EL, upper I, vertical bar, I, slash
+- `oQO0D`: O, upper CUE, upper O, ZERO, upper DEE
 
-- SEVEN, ONE, lower EL, upper I, vertical BAR, lower I, SLASH
-- lower O, upper CUE, upper O, ZERO, upper DEE
-- lower GEE, lower CUE
-- upper BEE, EIGHT
-- upper ESS, FIVE
-- upper ZED, TWO
-- lower I, lower JAY, lower WYE, FOUR
-- DOT, COMMA,
-- COLON, SEMICOLON
-- double QUOTES, single QUOTES, single QUOTES
-- UNDERSCORE, UNDERSCORE
-- lower CEE, lower EL, lower DEE, lower CEE, upper I, lower DEE, lower
-  CEE,  
-  vertical BAR, lower DEE, lower CEE, ONE, lower DEE
-- lower AR, lower EN, lower EM
-- upper U, upper VEE, upper VEE, upper double-U,  
-  lower U, lower VEE, lower VEE, lower double-U
+Together, these strings form the following string that can be used to
+compare fonts, for example using [Adobe Fonts](https://fonts.adobe.com/)
+or [Google Fonts](https://fonts.google.com/):
+`B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D`
 
 ## Rtools
 
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) is **not** an R
 package but software used to build R [from
 source](https://cran.r-project.org/sources.html) and to build R packages
-from source: packages from [GitHub](https://github.com/) and **older**
-versions of packages from
-[CRAN](https://cran.r-project.org/web/packages/index.html) or
+from source. The latter is needed when installing packages from
+[GitHub](https://github.com/) and when installing **older** versions of
+packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
+or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
 (see the section ‘Installing packages’ in the vignette *R packages* for
-instructions:
+instructions on installing R packages:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
-Rtools is **not** needed to install current versions of packages from
-[CRAN](https://cran.r-project.org/web/packages/index.html) or
-[Bioconductor](https://bioconductor.org/) on Windows.
+In addition, when updating packages, you might get the question
+`Do you want to install from sources the packages which need compilation?`.
+If you have installed Rtools you can choose `Yes` to install the latest
+package versions by building them from source, see the section
+‘Troubleshooting’ in the vignette *R packages* for details:
+[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
+If you have **not** installed Rtools you should choose `No`: then you
+will get slightly less up-to-date package versions (but a faster
+installation).
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
 download the version appropriate for the installed version of R (see the
@@ -233,45 +241,47 @@ install Rtools.
 
 - [Bug reporting](https://www.r-project.org/bugs.html), linking to
   [bugzilla](https://bugs.r-project.org/)
-- CRAN [homepage](https://cran.r-project.org/)
-- CRAN mirrors: see the section ‘Other repositories and mirrors’ in the
-  vignette *R packages*:
-  [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)
-- [develcoder](https://jessealderliesten.github.io/develcoder/) with
-  code to develop R packages
-- R [FAQs](https://cran.r-project.org/faqs.html)
+- CRAN: the [homepage](https://cran.r-project.org/) and an overview of
+  its [mirrors](https://cran.r-project.org/mirrors.html) (for details,
+  see the section ‘Other repositories and mirrors’ in the vignette *R
+  packages*:
+  [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
+- R [homepage](https://www.r-project.org/) with
+  [FAQs](https://cran.r-project.org/faqs.html),
+  [NEWS](https://cran.r-project.org/doc/manuals/r-release/NEWS.html),
+  and [manuals](https://cran.r-project.org/manuals.html) (especially the
+  [R Installation and Administration
+  manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html))
+  with [derived versions](https://rstudio.github.io/r-manuals/) better
+  suited for searching.
 - R help: from inside R through
-  [`help.start()`](https://rdrr.io/r/utils/help.start.html) or online
-  via <https://cran.r-project.org/search.html>
-- R [homepage](https://www.r-project.org/)
+  [`utils::help.start()`](https://rdrr.io/r/utils/help.start.html) or
+  [online](https://cran.r-project.org/search.html)
 - R [mailing lists](https://www.r-project.org/mail.html) with a web
   interface with [information and
   archives](https://stat.ethz.ch/mailman/listinfo) and a mirror for
   [searching](https://r-mailing-lists.thecoatlessprofessor.com/)
-- R [manuals](https://cran.r-project.org/manuals.html), especially the
-  [R Installation and Administration
-  manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html),
-  with [derived versions](https://rstudio.github.io/r-manuals/) better
-  suited for searching.
-- R [news](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
-- [RStudio user guide](https://docs.posit.co/ide/user/) and
+- RStudio [user guide](https://docs.posit.co/ide/user/) and
   [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/)
   by [Posit](https://posit.co/)
-- [Search engines](https://cran.r-project.org/search.html) specific for
-  R;
+- Search engines specific for R: [METACRAN](https://r-pkg.org/),
+  [r-project](https://search.r-project.org/),
+  [Rseek](https://www.rseek.org/),
+  [R-universe](https://r-universe.dev/search)
 - [StackOverflow](https://stackoverflow.com/tags/r/info) posts with the
   `r` tag
-- The website [What They Forgot to Teach You About
-  R](https://rstats.wtf/)
 
 Resources with more details than this vignette:
 
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+  by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja
+- The book [An introduction to R](https://intro2r.com/) by A.
+  Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau
 - Chapter [Installation & Environment
   Setup](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
   from the book [Mastering R Through Errors and
   Warnings](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
+  by K. Guo
 - Chapter [Getting Started and Getting
   Help](https://rc2e.com/gettingstarted) from the [R
-  Cookbook](https://rc2e.com/)
-- The book [An introduction to R](https://intro2r.com/) by Alex Douglas,
-  Deon Roos, Francesca Mancini, Ana Couto & David Lusseau
+  Cookbook](https://rc2e.com/) by J. Long and P. Teetor

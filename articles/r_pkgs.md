@@ -255,8 +255,11 @@ the section `Tracing` in
 [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) gives the
 names of packages that are currently loaded,
 [`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) also
-gives their versions. `options("defaultPackages")` gives the names of
-packages that are attached by default when R starts up.
+gives their versions, and
+[`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
+provides more details and has the option to show information about their
+dependencies. `options("defaultPackages")` gives the names of packages
+that are attached by default when R starts up.
 
 ### Updating packages
 
@@ -382,7 +385,7 @@ Bioconductor, e.g.,
   indicating if these need compilation, you should choose `No` if you
   have **not** installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/): you will
-  then get slightly less up to date package versions but a faster
+  then get slightly less up-to-date package versions but a faster
   installation.
 
   If you want the latest version without using Rtools, you can try again
@@ -626,7 +629,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x5642b015a568>
+#> <bytecode: 0x55bb0a1777d8>
 #> <environment: namespace:stats>
 ```
 
@@ -650,7 +653,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x5642af4decf0>
+#> <bytecode: 0x55bb09530cf0>
 #> <environment: namespace:base>
 ```
 
@@ -692,7 +695,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5642b17b4d38>
+#> <bytecode: 0x55bb0b806d38>
 #> <environment: namespace:base>
 ```
 
@@ -722,7 +725,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x5642b2b708e0>
+#> <bytecode: 0x55bb0cbcef10>
 #> <environment: namespace:base>
 ```
 
@@ -764,7 +767,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x5642b2b6fed0>
+#> <bytecode: 0x55bb0cbce500>
 #> <environment: namespace:base>
 ```
 
@@ -806,8 +809,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x5642b1033da8>
-#> <environment: 0x5642afdeb4b8>
+#> <bytecode: 0x55bb0b0879f0>
+#> <environment: 0x55bb09e3d4b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -853,7 +856,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x5642b2e42ab8>
+#> <bytecode: 0x55bb0ce8fee8>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -946,5 +949,5 @@ and searching in the `src` folder of the downloaded code.
 - Section [Troubleshooting](#troubleshooting) above
 - The documentation in
   [`help("check_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
-- The website [What They Forgot to Teach You About
-  R](https://rstats.wtf/)
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+  by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja

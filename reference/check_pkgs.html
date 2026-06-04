@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_pkgs</span><span class="op">(</span><span class="va">pkgs</span>, quietly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_pkgs</span><span class="op">(</span><span class="va">pkgs</span>, silently <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -63,18 +63,18 @@
 ending in such names, see section <code>Package names</code> below.</p></dd>
 
 
-<dt id="arg-quietly">quietly<a class="anchor" aria-label="anchor" href="#arg-quietly"></a></dt>
-<dd><p><code>TRUE</code> or <code>FALSE</code>: suppress warnings when loading
-installed non-functional packages?</p></dd>
+<dt id="arg-silently">silently<a class="anchor" aria-label="anchor" href="#arg-silently"></a></dt>
+<dd><p><code>TRUE</code> or <code>FALSE</code>: suppress warnings that are emitted when
+loading installed non-functional packages?</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list of length two, with elements 'absent' and 'nonfunc' containing
-character vectors with the names of packages in <code>pkgs</code> that are not installed
-or are installed but non-functional, respectively, with a warning. The
-elements are <code>character(0)</code> if all packages in <code>pkgs</code> are present, and if all
-packages are installed and functional, respectively.</p>
+    <p>A list with elements 'absent' and 'nonfunc' containing character vectors with
+the names of packages in <code>pkgs</code> that are not installed or non-functional,
+respectively. The elements are <code>character(0)</code> if all packages in <code>pkgs</code> are
+present and are functional, respectively. A warning is issued if any package
+is not installed or not functional.</p>
     </div>
     <div class="section level2">
     <h2 id="package-names">Package names<a class="anchor" aria-label="anchor" href="#package-names"></a></h2>
@@ -86,6 +86,7 @@ names, file paths to packages, and full URLs to packages from
 <a href="https://github.com/" class="external-link">GitHub</a> can all be used as input to <code>pkgs</code>, e.g.,
 <code>"checkrpkgs"</code>, <code>"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"</code>,
 <code>"https://github.com/JesseAlderliesten/checkrpkgs"</code>.</p>
+<p>Note that package names are case-sensitive.</p>
     </div>
     <div class="section level2">
     <h2 id="side-effects">Side effects<a class="anchor" aria-label="anchor" href="#side-effects"></a></h2>
@@ -110,9 +111,8 @@ with a warning.</p>
 <code><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">utils::installed.packages()</a></code> because <code>installed.packages</code> does not check if
 packages are functional, nor if all needed
 <a href="https://rdrr.io/r/tools/package_dependencies.html" class="external-link">dependencies</a> are installed and functional.
-In addition, <code><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages()</a></code> can be slow such that its
-<a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">help page</a> states that <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace()</a></code> or
-<code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code> should be used instead.</p>
+In addition,<code><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages()</a></code> can be slow such that its help pag] states
+that <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace()</a></code> or <code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code> should be used instead.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -123,7 +123,7 @@ In addition, <code><a href="https://rdrr.io/r/utils/installed.packages.html" cla
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">check_pkgs</span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"base"</span>, <span class="st">"grid"</span><span class="op">)</span>, quietly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">check_pkgs</span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"base"</span>, <span class="st">"utils"</span>, <span class="st">"jessealderliesten/checkrpkgs"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $absent</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -132,7 +132,7 @@ In addition, <code><a href="https://rdrr.io/r/utils/installed.packages.html" cla
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">non_existent_pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yz/wx/abcdef4"</span>, <span class="st">"wx/abcdef3"</span>, <span class="st">"abcdef2"</span>, <span class="st">"abcdef1"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">check_pkgs</span><span class="op">(</span><span class="va">non_existent_pkgs</span>, quietly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">check_pkgs</span><span class="op">(</span><span class="va">non_existent_pkgs</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>non-installed packages: 'yz/wx/abcdef4', 'wx/abcdef3', 'abcdef2', 'abcdef1'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $absent</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "yz/wx/abcdef4" "wx/abcdef3"    "abcdef2"       "abcdef1"      </span>
@@ -140,15 +140,7 @@ In addition, <code><a href="https://rdrr.io/r/utils/installed.packages.html" cla
 <span class="r-out co"><span class="r-pr">#&gt;</span> $nonfunc</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">check_pkgs</span><span class="op">(</span><span class="va">non_existent_pkgs</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>non-installed packages: 'yz/wx/abcdef4', 'wx/abcdef3', 'abcdef2', 'abcdef1'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $absent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "yz/wx/abcdef4" "wx/abcdef3"    "abcdef2"       "abcdef1"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $nonfunc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">check_pkgs</span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">non_existent_pkgs</span>, <span class="st">"utils"</span><span class="op">)</span>, quietly <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">check_pkgs</span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">non_existent_pkgs</span>, <span class="st">"utils"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>non-installed packages: 'yz/wx/abcdef4', 'wx/abcdef3', 'abcdef2', 'abcdef1'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $absent</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "yz/wx/abcdef4" "wx/abcdef3"    "abcdef2"       "abcdef1"      </span>

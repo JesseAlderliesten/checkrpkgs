@@ -5,7 +5,7 @@ Function to check for non-installed or non-functional packages.
 ## Usage
 
 ``` r
-check_pkgs(pkgs, quietly = FALSE)
+check_pkgs(pkgs, silently = FALSE)
 ```
 
 ## Arguments
@@ -15,18 +15,18 @@ check_pkgs(pkgs, quietly = FALSE)
   A character vector with names of packages to be checked, or ending in
   such names, see section `Package names` below.
 
-- quietly:
+- silently:
 
-  `TRUE` or `FALSE`: suppress warnings when loading installed
-  non-functional packages?
+  `TRUE` or `FALSE`: suppress warnings that are emitted when loading
+  installed non-functional packages?
 
 ## Value
 
-A list of length two, with elements 'absent' and 'nonfunc' containing
-character vectors with the names of packages in `pkgs` that are not
-installed or are installed but non-functional, respectively, with a
-warning. The elements are `character(0)` if all packages in `pkgs` are
-present, and if all packages are installed and functional, respectively.
+A list with elements 'absent' and 'nonfunc' containing character vectors
+with the names of packages in `pkgs` that are not installed or
+non-functional, respectively. The elements are `character(0)` if all
+packages in `pkgs` are present and are functional, respectively. A
+warning is issued if any package is not installed or not functional.
 
 ## Package names
 
@@ -37,6 +37,8 @@ package names, file paths to packages, and full URLs to packages from
 `"checkrpkgs"`,
 `"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"`,
 `"https://github.com/JesseAlderliesten/checkrpkgs"`.
+
+Note that package names are case-sensitive.
 
 ## Side effects
 
@@ -61,10 +63,9 @@ This function uses
 because `installed.packages` does not check if packages are functional,
 nor if all needed
 [dependencies](https://rdrr.io/r/tools/package_dependencies.html) are
-installed and functional. In addition,
-[`installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
-can be slow such that its [help
-page](https://rdrr.io/r/utils/installed.packages.html) states that
+installed and functional. In
+addition,[`installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
+can be slow such that its help pag\] states that
 [`requireNamespace()`](https://rdrr.io/r/base/ns-load.html) or
 [`require()`](https://rdrr.io/r/base/library.html) should be used
 instead.
@@ -80,7 +81,7 @@ The vignette *Instructions about R packages*:
 ## Examples
 
 ``` r
-check_pkgs(pkgs = c("base", "grid"), quietly = FALSE)
+check_pkgs(pkgs = c("base", "utils", "jessealderliesten/checkrpkgs"))
 #> $absent
 #> character(0)
 #> 
@@ -89,7 +90,7 @@ check_pkgs(pkgs = c("base", "grid"), quietly = FALSE)
 #> 
 
 non_existent_pkgs <- c("yz/wx/abcdef4", "wx/abcdef3", "abcdef2", "abcdef1")
-check_pkgs(non_existent_pkgs, quietly = FALSE)
+check_pkgs(non_existent_pkgs)
 #> Warning: non-installed packages: 'yz/wx/abcdef4', 'wx/abcdef3', 'abcdef2', 'abcdef1'
 #> $absent
 #> [1] "yz/wx/abcdef4" "wx/abcdef3"    "abcdef2"       "abcdef1"      
@@ -97,15 +98,7 @@ check_pkgs(non_existent_pkgs, quietly = FALSE)
 #> $nonfunc
 #> character(0)
 #> 
-check_pkgs(non_existent_pkgs, quietly = TRUE)
-#> Warning: non-installed packages: 'yz/wx/abcdef4', 'wx/abcdef3', 'abcdef2', 'abcdef1'
-#> $absent
-#> [1] "yz/wx/abcdef4" "wx/abcdef3"    "abcdef2"       "abcdef1"      
-#> 
-#> $nonfunc
-#> character(0)
-#> 
-check_pkgs(pkgs = c(non_existent_pkgs, "utils"), quietly = FALSE)
+check_pkgs(pkgs = c(non_existent_pkgs, "utils"))
 #> Warning: non-installed packages: 'yz/wx/abcdef4', 'wx/abcdef3', 'abcdef2', 'abcdef1'
 #> $absent
 #> [1] "yz/wx/abcdef4" "wx/abcdef3"    "abcdef2"       "abcdef1"      

@@ -91,7 +91,15 @@ package names, file paths to packages, and full URLs to packages from
 `"C:/Users/Eigenaar/AppData/Local/R/win-library/4.5/checkrpkgs"`,
 `"https://github.com/JesseAlderliesten/checkrpkgs"`.
 
+Note that package names are case-sensitive.
+
 ## See also
+
+[`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) and
+[`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
+which provides more details about the origin of loaded or installed
+packages and has the option to show only information about selected
+packages and their dependencies.
 
 [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
 that is used by `get_details_pkgs()`;
@@ -219,12 +227,12 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #> Warning: Some packages were not found at 'lib.loc'
 #> ('/home/runner/work/_temp/Library', '/opt/R/4.6.0/lib/R/site-library', '/opt/R/4.6.0/lib/R/library'):
 #> 'missing_package'
-#>            Package      Version MD5sum
-#> checkinput "checkinput" "0.9.0" NA    
-#> checkrpkgs "checkrpkgs" "0.9.0" NA    
+#>            Package      Version  MD5sum
+#> checkinput "checkinput" "0.11.0" NA    
+#> checkrpkgs "checkrpkgs" "0.10.0" NA    
 #>            Built                                      Priority
-#> checkinput "R 4.6.0; ; 2026-06-02 07:24:21 UTC; unix" NA      
-#> checkrpkgs "R 4.6.0; ; 2026-06-02 07:24:27 UTC; unix" NA      
+#> checkinput "R 4.6.0; ; 2026-06-04 20:51:52 UTC; unix" NA      
+#> checkrpkgs "R 4.6.0; ; 2026-06-04 20:51:58 UTC; unix" NA      
 #>            LibPath                           Repository Additional_repositories
 #> checkinput "/home/runner/work/_temp/Library" "Github"   NA                     
 #> checkrpkgs "/home/runner/work/_temp/Library" "Github"   NA                     
@@ -237,12 +245,12 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #>            OS_type Depends       
 #> checkinput NA      "R (>= 4.1.0)"
 #> checkrpkgs NA      NA            
-#>            Imports                                              LinkingTo
-#> checkinput "fs"                                                 NA       
-#> checkrpkgs "checkinput (>= 0.8.0), progutils (>= 0.2.0), utils" NA       
-#>            Suggests                                                                                                                                                    
-#> checkinput "knitr, rmarkdown, tinytest (>= 1.4.1)"                                                                                                                     
-#> checkrpkgs "BiocManager (>= 1.30.5), conflicted, ctv (>= 0.4-0), knitr,\nMatrix, methods, pkgbuild, remotes (>= 2.0.0), rmarkdown,\nstrict, tinytest (>= 1.4.1), tools"
+#>            Imports                                               LinkingTo
+#> checkinput "fs"                                                  NA       
+#> checkrpkgs "checkinput (>= 0.11.0), progutils (>= 0.6.0), utils" NA       
+#>            Suggests                                                                                                                                                                            
+#> checkinput "knitr, progutils (>= 0.0.4), rmarkdown, tinytest (>= 1.4.1)"                                                                                                                       
+#> checkrpkgs "BiocManager (>= 1.30.5), conflicted, ctv (>= 0.4-0), knitr,\nMatrix, methods, pkgbuild, remotes (>= 2.0.0), rmarkdown,\nsessioninfo (>= 1.2.0), strict, tinytest (>= 1.4.1), tools"
 #>            SomeField
 #> checkinput NA       
 #> checkrpkgs NA       

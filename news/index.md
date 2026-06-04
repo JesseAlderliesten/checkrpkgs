@@ -1,5 +1,27 @@
 # Changelog
 
+## checkrpkgs 0.10.0
+
+#### Breaking changes
+
+- Add dependency `sessioninfo (>= 1.2.0)` to `Suggests` because it
+  mentioned in the documentation of
+  [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
+  and in the vignettes.
+- Dependency `checkinput`: increase minimum version from `0.8.0` to
+  `0.11.0` to incorporate change of argument name `allow_zero_length()`
+  to `allow_zerolength()`.
+- Dependency `progutils`: increase minimum version from `0.2.0` to
+  `0.6.0` to incorporate change of argument name `allow_zero_length()`
+  to `allow_zerolength()`.
+- [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md):
+  argument `quietly` renamed to `silently` because it silences warnings.
+
+#### Documentation
+
+- Refer to package `sessioninfo`.
+- Vignette `Installing R`: restructure and expand various sections.
+
 ## checkrpkgs 0.9.0
 
 #### Breaking changes
@@ -89,9 +111,10 @@
 
 #### Breaking changes
 
-- Update dependencies: add suggested dependency `Matrix` that is used in
-  vignettes. Remove suggested dependency `stats` after updating an
-  example in the vignettes to use `methods` instead of `stats`.
+- Update dependencies: add dependency `Matrix` to `Suggests` because it
+  is used in vignettes. Remove dependency `stats` from `Suggests` after
+  updating an example in the vignettes to use `methods` instead of
+  `stats`.
 
 #### Bugfixes
 
@@ -117,12 +140,8 @@
 
 #### Breaking changes
 
-- Dependency `BiocManager` (in `Suggests`): require version `>= 1.30.5`
-  to be able to run code in vignettes.
-- Dependency `ctv` (in `Suggests`): require version `>= 0.4-0` to be
-  able to run code in vignettes.
-- Dependency `remotes` (in `Suggests`): require version `>= 2.0.0` to be
-  able to run code in vignettes.
+- Dependencies: require `BiocManager >= 1.30.5`, `ctv >= 0.4-0` and
+  `remotes >= 2.0.0` to be able to run code in vignettes.
 - [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
   also extract fields `"GithubRepo"` and `"GithubUsername"`. No need to
   use the hardcoded fields in the default argument. Set field
@@ -181,12 +200,12 @@
 #### Breaking changes
 
 - Add dependencies `checkinput (>= 0.0.6)`, `knitr`,
-  `progutils (>= 0.0.3)`, `rmarkdown`, and `utils` in `Depends`. Using
+  `progutils (>= 0.0.3)`, `rmarkdown`, and `utils` to `Depends`. Using
   `knitr` and `rmarkdown` in `Depends` because the vignettes are the
   main part of the package.
-- Add dependencies in `Suggests` to be able to run all code in the
-  vignettes and documentation: `BiocManager`, `conflicted`, `ctv`,
-  `methods`, `pkgbuild`, `remotes`, `stats`, `strict`, `tools`.
+- Add dependencies `BiocManager`, `conflicted`, `ctv`, `methods`,
+  `pkgbuild`, `remotes`, `stats`, `strict`, `tools` to `Suggests` to be
+  able to run all code in the vignettes and documentation.
 
 #### Added functions
 
