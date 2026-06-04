@@ -57,6 +57,13 @@ The main content of `checkrpkgs` consists of vignettes:
 In addition, `checkrpkgs` contains the functions `check_pkgs()` and
 `get_details_pkgs()`:
 
+``` r
+library(checkrpkgs)
+check_pkgs(pkgs = "abcdef1") # package is absent
+
+get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
+```
+
 # Similar resources
 
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)

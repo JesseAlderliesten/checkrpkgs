@@ -62,7 +62,7 @@ The main content of `checkrpkgs` consists of vignettes:
 In addition, `checkrpkgs` contains the functions `check_pkgs()` and
 `get_details_pkgs()`:
 
-```{r example}
+```{r example, eval = FALSE}
 library(checkrpkgs)
 check_pkgs(pkgs = "abcdef1") # package is absent
 
