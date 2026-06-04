@@ -226,8 +226,10 @@ on progress for non-standard packages (see the section `Tracing` in
 `help("requireNamespace")`).
 
 `loadedNamespaces()` gives the names of packages that are currently loaded,
-`utils::sessionInfo()` also gives their versions. `options("defaultPackages")`
-gives the names of packages that are attached by default when R starts up.
+`utils::sessionInfo()` also gives their versions, and
+`sessioninfo::session_info()` provides more details and has the option to show
+information about their dependencies. `options("defaultPackages")` gives the
+names of packages that are attached by default when R starts up.
 
 ### Updating packages
 Updating out-of-date packages prevents compatibility issues between
@@ -331,7 +333,7 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   overview in the console of the binary and source versions indicating if these
   need compilation, you should choose `No` if you have **not** installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/): you will then get
-  slightly less up to date package versions but a faster installation.
+  slightly less up-to-date package versions but a faster installation.
   
   If you want the latest version without using Rtools, you can try again a few
   days later: it usually takes a bit longer for the binaries (i.e., the
@@ -703,4 +705,5 @@ folder of the downloaded code.
   `vignette("install_r", package = "checkrpkgs")`
 - Section [Troubleshooting] above
 - The documentation in `help("check_pkgs", package = "checkrpkgs")`
-- The website [What They Forgot to Teach You About R](https://rstats.wtf/)
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/) by J.
+  Bryan, J. Hester, S. Pileggi, and E. D. Aja
