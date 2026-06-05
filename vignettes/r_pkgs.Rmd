@@ -140,20 +140,16 @@ gives information about packages available from
 The following code can be used to install packages from
 [GitHub](https://github.com/): it installs the
 [remotes](https://CRAN.R-project.org/package=remotes) package that is needed to
-install packages from GitHub. `grep(pattern = "/", x = pkgs_new, value = TRUE)`
-is used to select the elements of `pkgs_new` that contain a slash because
-`remotes::install_github()` only works if each element of `pkgs` contains the
+install packages from GitHub, selects those elements of `pkgs_new` that give the
 author name and repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or the
-full URL to a package (e.g., `"https://github.com/JesseAlderliesten/checkrpkgs"`).
-To match names in such formats to package names returned by
-`utils::installed.packages()`, use `basename(pkgs_new)` instead of `pkgs_new` to
-select the last part of the name (e.g., `"checkrpkgs"` instead of
-`"JesseAlderliesten/checkrpkgs"`):
-`pkgs[!(basename(pkgs) %in% installed.packages()[, "Package"])]`.
+full URL to a package (e.g., `"https://github.com/JesseAlderliesten/checkrpkgs"`)
+as required by `remotes::install_github()`, and installs those packages. To
+match such names to package names as returned by `utils::installed.packages()`,
+use `basename(pkgs_new)` to select the last part of those names:
+`pkgs_new[!(basename(pkgs_new) %in% installed.packages()[, "Package"])]`.
 
 ```{r, eval = FALSE}
-pkgs_new <- c("JesseAlderliesten/checkrpkgs",
-              "https://github.com/JesseAlderliesten/progutils")
+pkgs_new <- "JesseAlderliesten/checkrpkgs"
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
