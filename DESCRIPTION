@@ -11,12 +11,9 @@ Description: Information on installing and configuring R, RStudio, and Rtools;
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-Imports: 
-    checkinput (>= 0.11.0),
-    progutils (>= 0.6.0),
-    utils
 Suggests: 
     BiocManager (>= 1.30.5),
+    checkinput (>= 0.11.0),
     conflicted,
     ctv (>= 0.4-0),
     knitr,
@@ -29,6 +26,7 @@ Suggests:
     strict,
     tinytest (>= 1.4.1),
     tools
+    utils
 Remotes:
     github::JesseAlderliesten/checkinput,
     github::JesseAlderliesten/progutils,
