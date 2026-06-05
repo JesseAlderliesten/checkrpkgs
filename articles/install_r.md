@@ -16,9 +16,8 @@ download R via `Download R for Windows` \> `base` \>
 `Download R-X.Y.Z for Windows` and install it by opening the downloaded
 `.exe` file.
 
-Note that R is **not** required to read R scripts: R scripts are
-plain-text files that can be read by applications such as Microsoft
-NotePad.
+R is **not** required to read R scripts: R scripts are plain-text files
+that can be read by applications such as Microsoft NotePad.
 
 ### Making R stricter
 
@@ -41,7 +40,7 @@ Various options can be changed to make R a bit stricter:
 - Warn in case of partial matching when extracting using `$` (e.g.,
   `list(mean = 3)$me`), when matching function arguments, and when
   getting object attributes:  
-  `options(warnPartialMatchDollar = TRUE, warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, )`,
+  `options(warnPartialMatchDollar = TRUE, warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE)`,
   with default `FALSE` for each of these. Details:
   [`help("pmatch")`](https://rdrr.io/r/base/pmatch.html),
   [`help("Extract")`](https://rdrr.io/r/base/Extract.html), and
@@ -71,7 +70,8 @@ Various options can be changed to make R a bit stricter:
   (`options(warn = 2)`). The latter should only be used for debugging
   because it may trigger bugs and resource leaks. The default is
   `options(warn = 0)` to warn after the top-level function returns.
-  Details: [`help("stop")`](https://rdrr.io/r/base/stop.html).
+  Details: [`help("stop")`](https://rdrr.io/r/base/stop.html) and
+  [`help("warning")`](https://rdrr.io/r/base/warning.html).
 - Enter the environment browser upon error:  
   `options(error = browser)`, with default `options(error = NULL)` to
   not enter the environment browser. Press `Q` or `Escape` to quit the
@@ -90,23 +90,29 @@ In addition, various packages make R stricter:
   avoids silent conflict resolution (i.e., choosing the latest attached
   package out of multiple packages to use a function from; see
   `help("conflict")`), and provides `conflicts_prefer(<pkg>::<func>)` to
-  declare preferences (where `<pkg>` and `<func>` should be replaced by
-  the actual names of the package and function to get working code.
+  declare preferences (`<pkg>` and `<func>` should be replaced by the
+  actual names of the package and function to get working code.
 
 ### Information about R
 
 Several variables and functions provide information about the current R
 session:
 
+- [`capabilities()`](https://rdrr.io/r/base/capabilities.html) and
+  [`extSoftVersion()`](https://rdrr.io/r/base/extSoftVersion.html)
+  provide details about external software that can be used with R.
+- Environment variables affect an R session. Its help page
+  ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
+  lists some of these environment variables.
+- [`getRversion()`](https://rdrr.io/r/base/numeric_version.html)
+  provides the version of the running R.
 - `.Machine` (see
   [`help(".Machine")`](https://rdrr.io/r/base/zMachine.html)) and
   [`Sys.info()`](https://rdrr.io/r/base/Sys.info.html) provide
-  information about the machine and platform R is running on.
-  [`getRversion()`](https://rdrr.io/r/base/numeric_version.html)
-  provides the version of the running R. Operating systems might
-  identify themselves and their versions in surprising ways, and Windows
-  might report older versions than the versions that are actually
-  installed (see the section `osVersion` in
+  information about the machine and platform R is running on. Operating
+  systems might identify themselves and their versions in surprising
+  ways, and Windows might report older versions than the versions that
+  are actually installed (see the section `osVersion` in
   [`help("sessionInfo", package = "utils")`](https://rdrr.io/r/utils/sessionInfo.html)
   and the `Note` in
   [`help("win.version", package = "utils")`](https://rdrr.io/r/utils/winextras.html).
@@ -118,15 +124,9 @@ session:
   [`l10n_info()`](https://rdrr.io/r/base/l10n_info.html) provide details
   about the locale (i.e., settings that depend on the user’s language or
   region).
-- [`capabilities()`](https://rdrr.io/r/base/capabilities.html) and
-  [`extSoftVersion()`](https://rdrr.io/r/base/extSoftVersion.html)
-  provide details about external software that can be used with R.
-- The help page on environment variables
-  ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
-  lists some of the environment variables which affect an R session.
 - [`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html)
   extracts parts of the information mentioned above about the operating
-  system and R. It also lists attached and loaded packages. Its printing
+  system and R, and lists attached and loaded packages. Its printing
   method can be used to print additional information about the used
   locale (i.e., settings that depend on the user’s language or region)
   and random number generation:

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,14 +45,24 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.11.0" id="checkrpkgs-0110">checkrpkgs 0.11.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-0110"></a></h2>
+<div class="section level4">
+<h4 id="breaking-changes-0-11-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-11-0"></a></h4>
+<ul><li>Remove functions <code>check_pkgs()</code> and <code>get_details_pkgs()</code>, move the relevant information to vignette <code>R packages</code>.</li>
+<li>Remove unused function <code>create_pkg_stub()</code>.</li>
+<li>Remove dependency <code>progutils</code> because it is no longer used.</li>
+<li>Move dependencies <code>checkinput</code> from <code>Imports</code> to <code>Suggests</code> because they are used in vignette <code>R packages</code>.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.10.0" id="checkrpkgs-0100">checkrpkgs 0.10.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-0100"></a></h2>
 <div class="section level4">
 <h4 id="breaking-changes-0-10-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-10-0"></a></h4>
-<ul><li>Add dependency <code>sessioninfo (&gt;= 1.2.0)</code> to <code>Suggests</code> because it mentioned in the documentation of <code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code> and in the vignettes.</li>
+<ul><li>Add dependency <code>sessioninfo (&gt;= 1.2.0)</code> to <code>Suggests</code> because it mentioned in the documentation of <code>get_details_pkgs()</code> and in the vignettes.</li>
 <li>Dependency <code>checkinput</code>: increase minimum version from <code>0.8.0</code> to <code>0.11.0</code> to incorporate change of argument name <code>allow_zero_length()</code> to <code>allow_zerolength()</code>.</li>
 <li>Dependency <code>progutils</code>: increase minimum version from <code>0.2.0</code> to <code>0.6.0</code> to incorporate change of argument name <code>allow_zero_length()</code> to <code>allow_zerolength()</code>.</li>
 <li>
-<code><a href="../reference/check_pkgs.html">check_pkgs()</a></code>: argument <code>quietly</code> renamed to <code>silently</code> because it silences warnings.</li>
+<code>check_pkgs()</code>: argument <code>quietly</code> renamed to <code>silently</code> because it silences warnings.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="documentation-0-10-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-10-0"></a></h4>
@@ -76,7 +86,7 @@
 <h2 class="pkg-version" data-toc-text="0.8.3" id="checkrpkgs-083">checkrpkgs 0.8.3<a class="anchor" aria-label="anchor" href="#checkrpkgs-083"></a></h2>
 <div class="section level4">
 <h4 id="documentation-0-8-3">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-8-3"></a></h4>
-<ul><li>Move information from documentation of <code><a href="../reference/check_pkgs.html">check_pkgs()</a></code> and <code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code> to the vignette <code>R packages</code>.</li>
+<ul><li>Move information from documentation of <code>check_pkgs()</code> and <code>get_details_pkgs()</code> to the vignette <code>R packages</code>.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -91,7 +101,7 @@
 <h2 class="pkg-version" data-toc-text="0.7.1" id="checkrpkgs-071">checkrpkgs 0.7.1<a class="anchor" aria-label="anchor" href="#checkrpkgs-071"></a></h2>
 <div class="section level4">
 <h4 id="added-functions-0-7-1">Added functions<a class="anchor" aria-label="anchor" href="#added-functions-0-7-1"></a></h4>
-<ul><li>Add function <code><a href="../reference/create_pkg_stub.html">create_pkg_stub()</a></code>.</li>
+<ul><li>Add function <code>create_pkg_stub()</code>.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -105,7 +115,7 @@
 <div class="section level4">
 <h4 id="bug-fixes-0-7-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-7-0"></a></h4>
 <ul><li>
-<code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code> would attempt to use a non-created index if no package was found, leading to an error.</li>
+<code>get_details_pkgs()</code> would attempt to use a non-created index if no package was found, leading to an error.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -129,7 +139,7 @@
 <div class="section level4">
 <h4 id="breaking-changes-0-5-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-5-0"></a></h4>
 <ul><li>
-<code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code>: add argument <code>db</code>, add checks on input, and update documentation.</li>
+<code>get_details_pkgs()</code>: add argument <code>db</code>, add checks on input, and update documentation.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -141,7 +151,7 @@
 <div class="section level4">
 <h4 id="bugfixes-0-4-0">Bugfixes<a class="anchor" aria-label="anchor" href="#bugfixes-0-4-0"></a></h4>
 <ul><li>
-<code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code>: if <code>pkgs</code> has length larger than zero, warn only about duplicated packages that are in <code>pkgs</code>.</li>
+<code>get_details_pkgs()</code>: if <code>pkgs</code> has length larger than zero, warn only about duplicated packages that are in <code>pkgs</code>.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="documentation-0-4-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-4-0"></a></h4>
@@ -157,7 +167,7 @@
 <h4 id="breaking-changes-0-3-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-3-0"></a></h4>
 <ul><li>Dependencies: require <code>BiocManager &gt;= 1.30.5</code>, <code>ctv &gt;= 0.4-0</code> and <code>remotes &gt;= 2.0.0</code> to be able to run code in vignettes.</li>
 <li>
-<code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code>: also extract fields <code>"GithubRepo"</code> and <code>"GithubUsername"</code>. No need to use the hardcoded fields in the default argument. Set field <code>Repository</code> to <code>Github</code> if appropriate. Adjust warnings.</li>
+<code>get_details_pkgs()</code>: also extract fields <code>"GithubRepo"</code> and <code>"GithubUsername"</code>. No need to use the hardcoded fields in the default argument. Set field <code>Repository</code> to <code>Github</code> if appropriate. Adjust warnings.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -185,9 +195,9 @@
 <div class="section level4">
 <h4 id="breaking-changes-0-1-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-1-0"></a></h4>
 <ul><li>
-<code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code>: move argument <code>pkgs</code> to be the first argument. Warn if a package is found more than once. Always return information from fields <code>Repository</code> and <code>URL</code>.</li>
+<code>get_details_pkgs()</code>: move argument <code>pkgs</code> to be the first argument. Warn if a package is found more than once. Always return information from fields <code>Repository</code> and <code>URL</code>.</li>
 <li>
-<code>find_nonfunc_pkgs()</code>: rename to <code><a href="../reference/check_pkgs.html">check_pkgs()</a></code>. Warn if a package is found more than once.</li>
+<code>find_nonfunc_pkgs()</code>: rename to <code>check_pkgs()</code>. Warn if a package is found more than once.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="documentation-0-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-0"></a></h4>
@@ -207,7 +217,7 @@
 <ul><li>
 <code>find_nonfunc_pkgs()</code>: find non-installed or non-functional packages.</li>
 <li>
-<code><a href="../reference/get_details_pkgs.html">get_details_pkgs()</a></code>: get details of installed packages.</li>
+<code>get_details_pkgs()</code>: get details of installed packages.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="documentation-0-0-1">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-0-1"></a></h4>

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,9 +89,9 @@ a website with the same content as the <a href="https://cran.r-project.org/" cla
 <code>Download R for Windows</code> &gt; <code>base</code> &gt;
 <code>Download R-X.Y.Z for Windows</code> and install it by opening the
 downloaded <code>.exe</code> file.</p>
-<p>Note that R is <strong>not</strong> required to read R scripts: R
-scripts are plain-text files that can be read by applications such as
-Microsoft NotePad.</p>
+<p>R is <strong>not</strong> required to read R scripts: R scripts are
+plain-text files that can be read by applications such as Microsoft
+NotePad.</p>
 <div class="section level3">
 <h3 id="making-r-stricter">Making R stricter<a class="anchor" aria-label="anchor" href="#making-r-stricter"></a>
 </h3>
@@ -107,7 +107,7 @@ when changing which packages are automatically loaded at startup.</p>
 <ul>
 <li>Warn in case of partial matching when extracting using
 <code>$</code> (e.g., <code>list(mean = 3)$me</code>), when matching
-function arguments, and when getting object attributes:<br><code>options(warnPartialMatchDollar = TRUE, warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, )</code>,
+function arguments, and when getting object attributes:<br><code>options(warnPartialMatchDollar = TRUE, warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE)</code>,
 with default <code>FALSE</code> for each of these. Details:
 <code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">help("pmatch")</a></code>, <code><a href="https://rdrr.io/r/base/Extract.html" class="external-link">help("Extract")</a></code>, and
 <code><a href="https://rdrr.io/r/base/attr.html" class="external-link">help("attr")</a></code>. These options were introduced in R
@@ -133,7 +133,8 @@ conditions with length larger than one always give an error.</li>
 (<code>options(warn = 2)</code>). The latter should only be used for
 debugging because it may trigger bugs and resource leaks. The default is
 <code>options(warn = 0)</code> to warn after the top-level function
-returns. Details: <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">help("stop")</a></code>.</li>
+returns. Details: <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">help("stop")</a></code> and
+<code><a href="https://rdrr.io/r/base/warning.html" class="external-link">help("warning")</a></code>.</li>
 <li>Enter the environment browser upon error:<br><code>options(error = browser)</code>, with default
 <code>options(error = NULL)</code> to not enter the environment browser.
 Press <code>Q</code> or <code>Escape</code> to quit the browser mode and
@@ -151,9 +152,9 @@ avoids silent conflict resolution (i.e., choosing the latest attached
 package out of multiple packages to use a function from; see
 <code>help("conflict")</code>), and provides
 <code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> to declare
-preferences (where <code>&lt;pkg&gt;</code> and
-<code>&lt;func&gt;</code> should be replaced by the actual names of the
-package and function to get working code.</li>
+preferences (<code>&lt;pkg&gt;</code> and <code>&lt;func&gt;</code>
+should be replaced by the actual names of the package and function to
+get working code.</li>
 </ul>
 </div>
 <div class="section level3">
@@ -163,10 +164,18 @@ package and function to get working code.</li>
 R session:</p>
 <ul>
 <li>
+<code><a href="https://rdrr.io/r/base/capabilities.html" class="external-link">capabilities()</a></code> and <code><a href="https://rdrr.io/r/base/extSoftVersion.html" class="external-link">extSoftVersion()</a></code>
+provide details about external software that can be used with R.</li>
+<li>Environment variables affect an R session. Its help page
+(<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>) lists some of these
+environment variables.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code> provides the version of the running
+R.</li>
+<li>
 <code>.Machine</code> (see <code><a href="https://rdrr.io/r/base/zMachine.html" class="external-link">help(".Machine")</a></code>) and
 <code><a href="https://rdrr.io/r/base/Sys.info.html" class="external-link">Sys.info()</a></code> provide information about the machine and
-platform R is running on. <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code> provides the
-version of the running R. Operating systems might identify themselves
+platform R is running on. Operating systems might identify themselves
 and their versions in surprising ways, and Windows might report older
 versions than the versions that are actually installed (see the section
 <code>osVersion</code> in
@@ -182,15 +191,9 @@ built on.</li>
 details about the locale (i.e., settings that depend on the user’s
 language or region).</li>
 <li>
-<code><a href="https://rdrr.io/r/base/capabilities.html" class="external-link">capabilities()</a></code> and <code><a href="https://rdrr.io/r/base/extSoftVersion.html" class="external-link">extSoftVersion()</a></code>
-provide details about external software that can be used with R.</li>
-<li>The help page on environment variables
-(<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>) lists some of the
-environment variables which affect an R session.</li>
-<li>
 <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">utils::sessionInfo()</a></code> extracts parts of the information
-mentioned above about the operating system and R. It also lists attached
-and loaded packages. Its printing method can be used to print additional
+mentioned above about the operating system and R, and lists attached and
+loaded packages. Its printing method can be used to print additional
 information about the used locale (i.e., settings that depend on the
 user’s language or region) and random number generation:
 <code>print(sessionInfo(), locale = TRUE, RNG = TRUE)</code>.

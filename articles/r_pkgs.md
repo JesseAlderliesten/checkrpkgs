@@ -89,11 +89,8 @@ gives information about packages available from
 [CRAN](https://cran.r-project.org/web/packages/index.html), including
 the `Description` and `Maintainer` fields not returned by
 [`utils::available.packages()`](https://rdrr.io/r/utils/available.packages.html).
-[`tools::CRAN_check_results()`](https://rdrr.io/r/tools/CRANtools.html),
-[`tools::CRAN_check_details()`](https://rdrr.io/r/tools/CRANtools.html)
-and
-[`tools::CRAN_check_issues()`](https://rdrr.io/r/tools/CRANtools.html)
-give information about the current check status of CRAN packages.
+[`tools::CRAN_check_results()`](https://rdrr.io/r/tools/CRANtools.html)
+gives information about the current check status of CRAN packages.
 Packages from CRAN that have been recently archived (for example because
 check issues were not adressed in time) are available at
 [CRANhaven](https://www.cranhaven.org/).
@@ -147,25 +144,20 @@ gives their names.
 The following code can be used to install packages from
 [GitHub](https://github.com/): it installs the
 [remotes](https://CRAN.R-project.org/package=remotes) package that is
-needed to install packages from GitHub.
-`grep(pattern = "/", x = pkgs_new, value = TRUE)` is used to select the
-elements of `pkgs_new` that contain a slash because
-[`remotes::install_github()`](https://remotes.r-lib.org/reference/install_github.html)
-only works if each element of `pkgs` contains the author name and
-repository name (e.g., `"JesseAlderliesten/checkrpkgs"`) or the full URL
-to a package (e.g.,
-`"https://github.com/JesseAlderliesten/checkrpkgs"`). To match names in
-such formats to package names returned by
+needed to install packages from GitHub, selects those elements of
+`pkgs_new` that give the author name and repository name (e.g.,
+`"JesseAlderliesten/checkrpkgs"`) or the full URL to a package (e.g.,
+`"https://github.com/JesseAlderliesten/checkrpkgs"`) as required by
+[`remotes::install_github()`](https://remotes.r-lib.org/reference/install_github.html),
+and installs those packages. To match such names to package names as
+returned by
 [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html),
-use `basename(pkgs_new)` instead of `pkgs_new` to select the last part
-of the name (e.g., `"checkrpkgs"` instead of
-`"JesseAlderliesten/checkrpkgs"`):
-`pkgs[!(basename(pkgs) %in% installed.packages()[, "Package"])]`.
+use `basename(pkgs_new)` to select the last part of those names:
+`pkgs_new[!(basename(pkgs_new) %in% installed.packages()[, "Package"])]`.
 
 ``` r
 
-pkgs_new <- c("JesseAlderliesten/checkrpkgs",
-              "https://github.com/JesseAlderliesten/progutils")
+pkgs_new <- "JesseAlderliesten/checkrpkgs"
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
                    type = getOption("pkgType"), verbose = getOption("verbose"),
@@ -408,8 +400,8 @@ Bioconductor, e.g.,
   [stackoverflow answer](https://stackoverflow.com/a/25721890/32365738).
 
 - If installing packages fails, try with arguments `force = TRUE` to
-  re-install possibly broken dependencies and `build_vignettes = FALSE`
-  to not install vignettes.
+  re-install possibly broken dependencies and with argument
+  `build_vignettes = FALSE` to not install vignettes.
 
 #### Using packages
 
@@ -418,12 +410,22 @@ Bioconductor, e.g.,
   `could not find function "<func>"`), remember you need to run
   `library(<pkg>)` to be able to use its functions.
 
+- To check that a package is installed and functional, use
+  `library(<pkg)` or `requireNamespace(<pkg>)`. These functions do not
+  allow vectors as input, such that the following code has to be used to
+  check multiple packages:
+
+  ``` r
+  suppressPackageStartupMessages(
+    !vapply(X = c(<pkg>, <pkg>), FUN = requireNamespace, FUN.VALUE = logical(1),
+            lib.loc = NULL, quietly = FALSE)
+  )
+  ```
+
 - If a package is not functional, re-install it using argument
   `force = TRUE` to re-install possibly broken dependencies. You can
   also use `checkrpkgs::get_details_pkgs(pkgs = <pkg>)` to check which
-  dependencies and system requirements it has and use
-  `checkrpkgs::check_pkgs(pkgs = <pkgnames>)` to check if all the
-  dependencies are installed and functional.
+  dependencies and system requirements it has.
 
 - If the warning `package <pkg> was built under R version 'x.y.z'`
   occurs, you installed a binary package (i.e., not by building from
@@ -484,9 +486,8 @@ and `tools::dependsOnPkgs(pkgs = "<pkg>", recursive = TRUE)` to see
 reverse dependencies (i.e., which packages require package `<pkg>`).
 `NULL` is returned for packages that are not found, whereas
 `character(0)` is returned for packages that do not have any
-dependencies.
-
-To handle dependencies from other sources (e.g., GitHub), use package
+dependencies. To see dependencies of packages from other repositories
+(e.g., GitHub), use package
 [pkgdepends](https://r-lib.github.io/pkgdepends/):
 
 ``` r
@@ -500,18 +501,30 @@ prop$draw()
 
 ### Already-installed packages
 
+[`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
+gives details on installed packages. Argument `fields` can be used to
+specify additional fields to extract from the package DESCRIPTION, for
+example
+
+``` r
+`fields = c("Repository", "Additional_repositories",
+"URL", "GithubRepo", "GithubUsername", "SystemRequirements")`.
+```
+
+The `Repository` and `URL` fields show the repository from which a
+package was installed and are conveniently shown by
+[`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html),
+which provides also has the option to show only information about
+selected packages and their dependencies.
+
 The locations where R installs packages, and where it looks for
 installed packages, can be obtained with
-[`.libPaths()`](https://rdrr.io/r/base/libPaths.html). The names of all
-installed packages can be obtained with
-`list.files(path = .libPaths(), recursive = FALSE)`. The locations where
-a particular package is installed can be obtained with
-`find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
-
-The repository from which a package was installed can be obtained from
-the `Repository` and `URL` fields of package descriptions and is
-conveniently shown by
-[`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html).
+[`.libPaths()`](https://rdrr.io/r/base/libPaths.html). The location
+where a particular package is installed can be obtained with
+`find.package(package = "<pkg>", lib.loc = NULL, verbose = TRUE)`, using
+`verbose = TRUE` to get a warning if a package is found more than once.
+The names of all installed packages can be obtained with
+`list.files(path = .libPaths())`.
 
 Information about a package and its functions, methods, and classes is
 available from within R after the package has been installed and loaded
@@ -554,9 +567,9 @@ shows which packages are loaded. `getAnywhere(<func>)` shows in which
 package a function is defined. To see which packages are used in a
 script, look for `::`, `:::`, `library`, `require`, and `namespace`
 (e.g., [`loadNamespace()`](https://rdrr.io/r/base/ns-load.html),
-[`requireNamespace()`](https://rdrr.io/r/base/ns-load.html)). Various
-packages have their own way to create dependencies on packages, see the
-overview at
+[`requireNamespace()`](https://rdrr.io/r/base/ns-load.html)). However,
+various packages have their own way to create dependencies on packages,
+see the overview at
 [pak::scan_deps()](https://pak.r-lib.org/reference/scan_deps.html).
 
 To see which packages are mentioned in comments, also look for:
@@ -620,10 +633,9 @@ file and choose `extract all`).
 ### Basic method
 
 The simplest way to get the source code of a function is to type the
-name of the function, *without* the brackets, and press `Enter`. For
-example, to see what happens when using
-[`sd()`](https://rdrr.io/r/stats/sd.html) to calculate the standard
-deviation:
+name of the function, *without* the brackets. For example, to see what
+happens when using [`sd()`](https://rdrr.io/r/stats/sd.html) to
+calculate the standard deviation:
 
 ``` r
 
@@ -631,7 +643,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x560be3e89bf0>
+#> <bytecode: 0x563dfb922d18>
 #> <environment: namespace:stats>
 ```
 
@@ -644,8 +656,8 @@ Some special cases:
   error `'<func>' is not an exported object from 'namespace:<pkg>'`; if
   that error appears when using three colons, you are probably looking
   in the wrong package, use `getAnywhere(<func>)` to check in which
-  package `<func>` lives). Non-exported functions should **not** be used
-  in code because they might change.
+  package `<func>` is defined). Non-exported functions should **not** be
+  used in code because they might change.
 - For operators such as `%in%` (see
   [`help("match")`](https://rdrr.io/r/base/match.html) which start with
   a symbol, use backticks (\`) around the name:
@@ -655,7 +667,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x560be323fcf0>
+#> <bytecode: 0x563df76a0cf0>
 #> <environment: namespace:base>
 ```
 
@@ -697,7 +709,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x560be5515d38>
+#> <bytecode: 0x563df998c900>
 #> <environment: namespace:base>
 ```
 
@@ -727,7 +739,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x560be68f0350>
+#> <bytecode: 0x563dfb5abfa0>
 #> <environment: namespace:base>
 ```
 
@@ -769,7 +781,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x560be68ef940>
+#> <bytecode: 0x563dfb5af3c0>
 #> <environment: namespace:base>
 ```
 
@@ -811,8 +823,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x560be4d96a60>
-#> <environment: 0x560be3b4c4b8>
+#> <bytecode: 0x563df9332278>
+#> <environment: 0x563df7fad4b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -858,7 +870,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x560be6bb0870>
+#> <bytecode: 0x563dfbfd0400>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -877,12 +889,12 @@ source](https://cran.r-project.org/sources.html) using Rtools (see the
 section ‘Rtools’ in the vignette *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)).
 
-Locate the file `src/main/names.c` and look in the first column for the
-name of the R function to find the appropriate c-entry which is given in
-the second column of that file. Then either search for that c-entry
-using the GitHub search, or manually locate the c-file (the name of the
-file is the c-entry without the prefix `do_`) in `src/main` to get the
-file with the source code.
+Locate the file `src/main/names.c` and look in the first column
+(‘printname’) for the name of the R function to find the appropriate
+c-entry which is given in the second column of that file. Then either
+search for that c-entry using the GitHub search, or manually locate the
+c-file (the name of the file is the c-entry without the prefix `do_`) in
+`src/main` to get the file with the source code.
 
 For example, `getAnywhere("matrix")` shows, among others, the line
 `.Internal(matrix(data, nrow, ncol, byrow, dimnames, missing(nrow), missing(ncol)))`.
@@ -949,7 +961,5 @@ and searching in the `src` folder of the downloaded code.
   and RStudio*:  
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)
 - Section [Troubleshooting](#troubleshooting) above
-- The documentation in
-  [`help("check_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)
   by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja

@@ -1,21 +1,31 @@
 # Changelog
 
+## checkrpkgs 0.11.0
+
+#### Breaking changes
+
+- Remove functions `check_pkgs()` and `get_details_pkgs()`, move the
+  relevant information to vignette `R packages`.
+- Remove unused function `create_pkg_stub()`.
+- Remove dependency `progutils` because it is no longer used.
+- Move dependencies `checkinput` from `Imports` to `Suggests` because
+  they are used in vignette `R packages`.
+
 ## checkrpkgs 0.10.0
 
 #### Breaking changes
 
 - Add dependency `sessioninfo (>= 1.2.0)` to `Suggests` because it
-  mentioned in the documentation of
-  [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
-  and in the vignettes.
+  mentioned in the documentation of `get_details_pkgs()` and in the
+  vignettes.
 - Dependency `checkinput`: increase minimum version from `0.8.0` to
   `0.11.0` to incorporate change of argument name `allow_zero_length()`
   to `allow_zerolength()`.
 - Dependency `progutils`: increase minimum version from `0.2.0` to
   `0.6.0` to incorporate change of argument name `allow_zero_length()`
   to `allow_zerolength()`.
-- [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md):
-  argument `quietly` renamed to `silently` because it silences warnings.
+- `check_pkgs()`: argument `quietly` renamed to `silently` because it
+  silences warnings.
 
 #### Documentation
 
@@ -41,11 +51,8 @@
 
 #### Documentation
 
-- Move information from documentation of
-  [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
-  and
-  [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
-  to the vignette `R packages`.
+- Move information from documentation of `check_pkgs()` and
+  `get_details_pkgs()` to the vignette `R packages`.
 
 ## checkrpkgs 0.8.1
 
@@ -59,8 +66,7 @@
 
 #### Added functions
 
-- Add function
-  [`create_pkg_stub()`](https://jessealderliesten.github.io/checkrpkgs/reference/create_pkg_stub.md).
+- Add function `create_pkg_stub()`.
 
 ## checkrpkgs 0.7.0
 
@@ -76,9 +82,8 @@
 
 #### Bug fixes
 
-- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md)
-  would attempt to use a non-created index if no package was found,
-  leading to an error.
+- `get_details_pkgs()` would attempt to use a non-created index if no
+  package was found, leading to an error.
 
 ## checkrpkgs 0.6.0
 
@@ -104,8 +109,8 @@
 
 #### Breaking changes
 
-- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
-  add argument `db`, add checks on input, and update documentation.
+- `get_details_pkgs()`: add argument `db`, add checks on input, and
+  update documentation.
 
 ## checkrpkgs 0.4.0
 
@@ -118,9 +123,8 @@
 
 #### Bugfixes
 
-- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
-  if `pkgs` has length larger than zero, warn only about duplicated
-  packages that are in `pkgs`.
+- `get_details_pkgs()`: if `pkgs` has length larger than zero, warn only
+  about duplicated packages that are in `pkgs`.
 
 #### Documentation
 
@@ -142,10 +146,10 @@
 
 - Dependencies: require `BiocManager >= 1.30.5`, `ctv >= 0.4-0` and
   `remotes >= 2.0.0` to be able to run code in vignettes.
-- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
-  also extract fields `"GithubRepo"` and `"GithubUsername"`. No need to
-  use the hardcoded fields in the default argument. Set field
-  `Repository` to `Github` if appropriate. Adjust warnings.
+- `get_details_pkgs()`: also extract fields `"GithubRepo"` and
+  `"GithubUsername"`. No need to use the hardcoded fields in the default
+  argument. Set field `Repository` to `Github` if appropriate. Adjust
+  warnings.
 
 ## checkrpkgs 0.2.0
 
@@ -177,13 +181,11 @@
 
 #### Breaking changes
 
-- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
-  move argument `pkgs` to be the first argument. Warn if a package is
-  found more than once. Always return information from fields
-  `Repository` and `URL`.
-- `find_nonfunc_pkgs()`: rename to
-  [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md).
-  Warn if a package is found more than once.
+- `get_details_pkgs()`: move argument `pkgs` to be the first argument.
+  Warn if a package is found more than once. Always return information
+  from fields `Repository` and `URL`.
+- `find_nonfunc_pkgs()`: rename to `check_pkgs()`. Warn if a package is
+  found more than once.
 
 #### Documentation
 
@@ -210,8 +212,7 @@
 #### Added functions
 
 - `find_nonfunc_pkgs()`: find non-installed or non-functional packages.
-- [`get_details_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/get_details_pkgs.md):
-  get details of installed packages.
+- `get_details_pkgs()`: get details of installed packages.
 
 #### Documentation
 
