@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Introduction and notation
 This vignette explains how to install R packages, how to get information about
-to-be-installed and already-installed packages, and how to get the source code
+to-be-installed and already-installed R packages, and how to get the source code
 of R functions.
 
 Text between angled brackets (`<...>`) is used to refer to
@@ -63,8 +63,8 @@ To install a package, run R or RStudio as administrator: right-click on the R or
 RStudio icon and select `Run as administrator`. Packages can be obtained from
 several websites, called 'repositories', such as `CRAN`, `BioConductor`, and
 `GitHub`, discussed in the next sections. After installing a package, you
-need to [load][Loading packages] the package to be able to use its functions:
-run `library(<pkg>)`.
+need to [attach][attaching packages] the package to be able to use its
+functions: run `library(<pkg>)`.
 
 #### CRAN
 The [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN) is the
@@ -214,12 +214,12 @@ about their [status](https://bioconductor.org/dashboard/#mirror_status), can be
 selected using `BiocManager::repositories()` or `utils::chooseBioCmirror()`,
 although the RStudio CRAN mirror is used in RStudio (see the preceding paragraph).
 
-### Loading packages
-After installing a package, you need to load the package to be able to use its
-functions: run `library(<pkg>)`. If loading fails without clear reason, setting
-environment variable `_R_TRACE_LOADNAMESPACE_` to a numerical value (e.g.,
-`Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will generate additional messages
-on progress for non-standard packages (see the section `Tracing` in
+### Attaching packages
+After installing a package, you need to attach the package to be able to use its
+functions: run `library(<pkg>)`. If attaching fails without clear reason,'
+setting environment variable `_R_TRACE_LOADNAMESPACE_` to a numerical value
+(e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will generate additional
+messages on progress for non-standard packages (see the section `Tracing` in
 `help("requireNamespace")`).
 
 `loadedNamespaces()` gives the names of packages that are currently loaded,
@@ -308,7 +308,7 @@ Older versions of packages from Bioconductor can be installed by changing the
 value of argument `version` of `BiocManager::install()` (e.g.,
 `BiocManager::install(pkgs = "deSolve", version = "3.22")` to indicate the
 version of `deSolve` included in BioConductor version 3.22) but that only works
-when using the version of R for that specific version of bioConductor, see the
+when using the version of R for that specific version of Bioconductor, see the
 [overview](https://bioconductor.org/about/release-announcements/) of
 Bioconductor versions with the corresponding R version. Information on these
 older packages can be found by visiting the appropriate version of Bioconductor,
@@ -380,9 +380,9 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   older than the version they were built on. Therefore it is best to update R
   when installing packages.
 
-- If errors occur when loading packages that require Java, make sure the 64-bit
-  [version of Java](https://www.java.com/download/manual.jsp) is installed on
-  64-bit PCs.
+- If errors occur when [attaching packages] that require Java, make sure the
+  64-bit [version of Java](https://www.java.com/download/manual.jsp) is
+  installed on 64-bit PCs.
 
 ## Information about packages
 Information about packages can be obtained from the internet before the packages
@@ -418,7 +418,7 @@ dependencies (i.e., which packages are required by package `<pkg>`) and
 dependencies (i.e., which packages require package `<pkg>`). `NULL` is
 returned for packages that are not found, whereas `character(0)` is returned for
 packages that do not have any dependencies. To see dependencies of packages from
-other repositories (e.g., GitHub), use package 
+other repositories (e.g., [GitHub](https://github.com/)), use package 
 [pkgdepends](https://r-lib.github.io/pkgdepends/):
 
 ``` {r, eval = FALSE}
@@ -451,7 +451,7 @@ names of all installed packages can be obtained with
 `list.files(path = .libPaths())`.
 
 Information about a package and its functions, methods, and classes is available
-from within R after the package has been installed and loaded (i.e.,
+from within R after the package has been installed and attached (i.e.,
 `library(<pkg>)` has been run):
 
 - Citation: `utils::citation("<pkg>")`, with `utils::citation()` to cite R
@@ -619,7 +619,7 @@ If `getAnywhere("<func>")` returns `standardGeneric("<func>")`, the
 function has different S4-methods (see
 `help("Introduction", package = "methods")`) for different object
 classes. Use `showMethods("<func>")` to get an overview of the available
-methods in all **loaded** packages, or use `<pkg>:::<func>` to get an
+methods in all **attached** packages, or use `<pkg>:::<func>` to get an
 overview of the available methods from package `<pkg>`. Finally, provide the
 function name as argument `f` and the selected method as a character vector to
 argument `signature` (see also `help("signature")`) of function `getMethod()` to
@@ -710,9 +710,9 @@ folder of the downloaded code.
   [R-universe](https://r-universe.dev/search)
 - Section
   [Add-on packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
-  in the
+  (which contains a section about installing packages) in the
   [R Installation and Administration manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
-  manual (which also contains a section about installing packages)
+  manual
 - Section 'Documentation and help' in the vignette
   *Installing R, Rtools and RStudio*:  
   `vignette("install_r", package = "checkrpkgs")`
