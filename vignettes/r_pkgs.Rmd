@@ -545,8 +545,8 @@ unzipping the downloaded file (right-click on the file and choose `extract all`)
 
 ### Basic method
 The simplest way to get the source code of a function is to type the name of the
-function, *without* the brackets, and press `Enter`. For example, to see what
-happens when using `sd()` to calculate the standard deviation:
+function, *without* the brackets. For example, to see what happens when using
+`sd()` to calculate the standard deviation:
 
 ```{r}
 sd
@@ -655,11 +655,12 @@ code [repositories][Repositories], or on your computer if you have installed R
 section 'Rtools' in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`).
 
-Locate the file `src/main/names.c` and look in the first column for the name of
-the R function to find the appropriate c-entry which is given in the second
-column of that file. Then either search for that c-entry using the GitHub
-search, or manually locate the c-file (the name of the file is the c-entry
-without the prefix `do_`) in `src/main` to get the file with the source code.
+Locate the file `src/main/names.c` and look in the first column ('printname')
+for the name of the R function to find the appropriate c-entry which is given in
+the second column of that file. Then either search for that c-entry using the
+GitHub search, or manually locate the c-file (the name of the file is the
+c-entry without the prefix `do_`) in `src/main` to get the file with the source
+code.
 
 For example, `getAnywhere("matrix")` shows, among others, the line
 `.Internal(matrix(data, nrow, ncol, byrow, dimnames, missing(nrow), missing(ncol)))`.
