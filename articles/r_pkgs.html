@@ -79,7 +79,7 @@
 <h2 id="introduction-and-notation">Introduction and notation<a class="anchor" aria-label="anchor" href="#introduction-and-notation"></a>
 </h2>
 <p>This vignette explains how to install R packages, how to get
-information about to-be-installed and already-installed packages, and
+information about to-be-installed and already-installed R packages, and
 how to get the source code of R functions.</p>
 <p>Text between angled brackets (<code>&lt;...&gt;</code>) is used to
 refer to text that should be replaced with specific text to get working
@@ -126,8 +126,9 @@ on the R or RStudio icon and select <code>Run as administrator</code>.
 Packages can be obtained from several websites, called ‘repositories’,
 such as <code>CRAN</code>, <code>BioConductor</code>, and
 <code>GitHub</code>, discussed in the next sections. After installing a
-package, you need to <a href="#loading-packages">load</a> the package to
-be able to use its functions: run <code>library(&lt;pkg&gt;)</code>.</p>
+package, you need to <a href="#attaching-packages">attach</a> the
+package to be able to use its functions: run
+<code>library(&lt;pkg&gt;)</code>.</p>
 <div class="section level4">
 <h4 id="cran">CRAN<a class="anchor" aria-label="anchor" href="#cran"></a>
 </h4>
@@ -277,11 +278,11 @@ is used in RStudio (see the preceding paragraph).</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="loading-packages">Loading packages<a class="anchor" aria-label="anchor" href="#loading-packages"></a>
+<h3 id="attaching-packages">Attaching packages<a class="anchor" aria-label="anchor" href="#attaching-packages"></a>
 </h3>
-<p>After installing a package, you need to load the package to be able
-to use its functions: run <code>library(&lt;pkg&gt;)</code>. If loading
-fails without clear reason, setting environment variable
+<p>After installing a package, you need to attach the package to be able
+to use its functions: run <code>library(&lt;pkg&gt;)</code>. If
+attaching fails without clear reason,’ setting environment variable
 <code>_R_TRACE_LOADNAMESPACE_</code> to a numerical value (e.g.,
 <code>Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)</code>) will generate
 additional messages on progress for non-standard packages (see the
@@ -379,7 +380,7 @@ changing the value of argument <code>version</code> of
 <code>BiocManager::install(pkgs = "deSolve", version = "3.22")</code> to
 indicate the version of <code>deSolve</code> included in BioConductor
 version 3.22) but that only works when using the version of R for that
-specific version of bioConductor, see the <a href="https://bioconductor.org/about/release-announcements/" class="external-link">overview</a>
+specific version of Bioconductor, see the <a href="https://bioconductor.org/about/release-announcements/" class="external-link">overview</a>
 of Bioconductor versions with the corresponding R version. Information
 on these older packages can be found by visiting the appropriate version
 of Bioconductor, e.g.,
@@ -465,8 +466,8 @@ to see your current R version). The warning is issued because packages
 are <strong>not</strong> tested on versions of R that are older than the
 version they were built on. Therefore it is best to update R when
 installing packages.</p></li>
-<li><p>If errors occur when loading packages that require Java, make
-sure the 64-bit <a href="https://www.java.com/download/manual.jsp" class="external-link">version of Java</a> is
+<li><p>If errors occur when <a href="#attaching-packages">attaching
+packages</a> that require Java, make sure the 64-bit <a href="https://www.java.com/download/manual.jsp" class="external-link">version of Java</a> is
 installed on 64-bit PCs.</p></li>
 </ul>
 </div>
@@ -509,7 +510,7 @@ to see reverse dependencies (i.e., which packages require package
 <code>&lt;pkg&gt;</code>). <code>NULL</code> is returned for packages
 that are not found, whereas <code>character(0)</code> is returned for
 packages that do not have any dependencies. To see dependencies of
-packages from other repositories (e.g., GitHub), use package <a href="https://r-lib.github.io/pkgdepends/" class="external-link">pkgdepends</a>:</p>
+packages from other repositories (e.g., <a href="https://github.com/" class="external-link">GitHub</a>), use package <a href="https://r-lib.github.io/pkgdepends/" class="external-link">pkgdepends</a>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-lib.github.io/pkgdepends/" class="external-link">pkgdepends</a></span><span class="op">)</span></span>
 <span><span class="va">prop</span> <span class="op">&lt;-</span> <span class="fu">pkgdepends</span><span class="fu">::</span><span class="fu">new_pkg_deps</span><span class="op">(</span><span class="st">"&lt;repos&gt;/&lt;pkg&gt;"</span><span class="op">)</span></span>
@@ -539,7 +540,7 @@ more than once. The names of all installed packages can be obtained with
 <code>list.files(path = .libPaths())</code>.</p>
 <p>Information about a package and its functions, methods, and classes
 is available from within R after the package has been installed and
-loaded (i.e., <code>library(&lt;pkg&gt;)</code> has been run):</p>
+attached (i.e., <code>library(&lt;pkg&gt;)</code> has been run):</p>
 <ul>
 <li>Citation: <code>utils::citation("&lt;pkg&gt;")</code>, with
 <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> to cite R itself.</li>
@@ -661,7 +662,7 @@ deviation:</p>
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e2c2b089c8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5585410cbf88&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
@@ -685,7 +686,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e2be4e4cf0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55853c997cf0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -728,7 +729,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e2c07d0900&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55853ec83900&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -753,7 +754,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e2c1fcd380&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x558540471640&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>Or use <code>getAnywhere("mean.default")</code> to see the source
 code of the method <code>mean</code> used with objects of classes not
@@ -791,7 +792,7 @@ listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e2c1fcc970&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x558540470c30&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -802,7 +803,7 @@ listed in the output of <code>methods("mean")</code>:</p>
 S4-methods (see <code><a href="https://rdrr.io/r/methods/Introduction.html" class="external-link">help("Introduction", package = "methods")</a></code>)
 for different object classes. Use
 <code>showMethods("&lt;func&gt;")</code> to get an overview of the
-available methods in all <strong>loaded</strong> packages, or use
+available methods in all <strong>attached</strong> packages, or use
 <code>&lt;pkg&gt;:::&lt;func&gt;</code> to get an overview of the
 available methods from package <code>&lt;pkg&gt;</code>. Finally,
 provide the function name as argument <code>f</code> and the selected
@@ -830,8 +831,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e2c016cfd0&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55e2bedf14b8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55853e61ffd0&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55853d2a44b8&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -877,7 +878,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e2c2e27ff0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5585412cbe50&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
@@ -962,9 +963,9 @@ the collaboration between BioConductor and the <a href="https://r-universe.dev/s
 <li>Search engines specific for R: <a href="https://r-pkg.org/" class="external-link">METACRAN</a>, <a href="https://search.r-project.org/" class="external-link">r-project</a>, <a href="https://www.rseek.org/" class="external-link">Rseek</a>, <a href="https://r-universe.dev/search" class="external-link">R-universe</a>
 </li>
 <li>Section <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages" class="external-link">Add-on
-packages</a> in the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link">R
-Installation and Administration manual</a> manual (which also contains a
-section about installing packages)</li>
+packages</a> (which contains a section about installing packages) in the
+<a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link">R
+Installation and Administration manual</a> manual</li>
 <li>Section ‘Documentation and help’ in the vignette <em>Installing R,
 Rtools and RStudio</em>:<br><code><a href="../articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>
 </li>

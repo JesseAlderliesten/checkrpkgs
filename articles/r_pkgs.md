@@ -3,8 +3,8 @@
 ## Introduction and notation
 
 This vignette explains how to install R packages, how to get information
-about to-be-installed and already-installed packages, and how to get the
-source code of R functions.
+about to-be-installed and already-installed R packages, and how to get
+the source code of R functions.
 
 Text between angled brackets (`<...>`) is used to refer to text that
 should be replaced with specific text to get working code or working
@@ -55,8 +55,8 @@ To install a package, run R or RStudio as administrator: right-click on
 the R or RStudio icon and select `Run as administrator`. Packages can be
 obtained from several websites, called ‘repositories’, such as `CRAN`,
 `BioConductor`, and `GitHub`, discussed in the next sections. After
-installing a package, you need to [load](#loading-packages) the package
-to be able to use its functions: run `library(<pkg>)`.
+installing a package, you need to [attach](#attaching-packages) the
+package to be able to use its functions: run `library(<pkg>)`.
 
 #### CRAN
 
@@ -236,14 +236,14 @@ or
 although the RStudio CRAN mirror is used in RStudio (see the preceding
 paragraph).
 
-### Loading packages
+### Attaching packages
 
-After installing a package, you need to load the package to be able to
-use its functions: run `library(<pkg>)`. If loading fails without clear
-reason, setting environment variable `_R_TRACE_LOADNAMESPACE_` to a
-numerical value (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will
-generate additional messages on progress for non-standard packages (see
-the section `Tracing` in
+After installing a package, you need to attach the package to be able to
+use its functions: run `library(<pkg>)`. If attaching fails without
+clear reason,’ setting environment variable `_R_TRACE_LOADNAMESPACE_` to
+a numerical value (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`)
+will generate additional messages on progress for non-standard packages
+(see the section `Tracing` in
 [`help("requireNamespace")`](https://rdrr.io/r/base/ns-load.html)).
 
 [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) gives the
@@ -354,7 +354,7 @@ changing the value of argument `version` of
 (e.g., `BiocManager::install(pkgs = "deSolve", version = "3.22")` to
 indicate the version of `deSolve` included in BioConductor version 3.22)
 but that only works when using the version of R for that specific
-version of bioConductor, see the
+version of Bioconductor, see the
 [overview](https://bioconductor.org/about/release-announcements/) of
 Bioconductor versions with the corresponding R version. Information on
 these older packages can be found by visiting the appropriate version of
@@ -437,9 +437,10 @@ Bioconductor, e.g.,
   were built on. Therefore it is best to update R when installing
   packages.
 
-- If errors occur when loading packages that require Java, make sure the
-  64-bit [version of Java](https://www.java.com/download/manual.jsp) is
-  installed on 64-bit PCs.
+- If errors occur when [attaching packages](#attaching-packages) that
+  require Java, make sure the 64-bit [version of
+  Java](https://www.java.com/download/manual.jsp) is installed on 64-bit
+  PCs.
 
 ## Information about packages
 
@@ -487,7 +488,7 @@ reverse dependencies (i.e., which packages require package `<pkg>`).
 `NULL` is returned for packages that are not found, whereas
 `character(0)` is returned for packages that do not have any
 dependencies. To see dependencies of packages from other repositories
-(e.g., GitHub), use package
+(e.g., [GitHub](https://github.com/)), use package
 [pkgdepends](https://r-lib.github.io/pkgdepends/):
 
 ``` r
@@ -527,8 +528,8 @@ The names of all installed packages can be obtained with
 `list.files(path = .libPaths())`.
 
 Information about a package and its functions, methods, and classes is
-available from within R after the package has been installed and loaded
-(i.e., `library(<pkg>)` has been run):
+available from within R after the package has been installed and
+attached (i.e., `library(<pkg>)` has been run):
 
 - Citation: `utils::citation("<pkg>")`, with
   [`utils::citation()`](https://rdrr.io/r/utils/citation.html) to cite R
@@ -643,7 +644,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55e2c2b089c8>
+#> <bytecode: 0x5585410cbf88>
 #> <environment: namespace:stats>
 ```
 
@@ -667,7 +668,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55e2be4e4cf0>
+#> <bytecode: 0x55853c997cf0>
 #> <environment: namespace:base>
 ```
 
@@ -709,7 +710,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55e2c07d0900>
+#> <bytecode: 0x55853ec83900>
 #> <environment: namespace:base>
 ```
 
@@ -739,7 +740,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55e2c1fcd380>
+#> <bytecode: 0x558540471640>
 #> <environment: namespace:base>
 ```
 
@@ -781,7 +782,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55e2c1fcc970>
+#> <bytecode: 0x558540470c30>
 #> <environment: namespace:base>
 ```
 
@@ -791,7 +792,7 @@ If `getAnywhere("<func>")` returns `standardGeneric("<func>")`, the
 function has different S4-methods (see
 [`help("Introduction", package = "methods")`](https://rdrr.io/r/methods/Introduction.html))
 for different object classes. Use `showMethods("<func>")` to get an
-overview of the available methods in all **loaded** packages, or use
+overview of the available methods in all **attached** packages, or use
 `<pkg>:::<func>` to get an overview of the available methods from
 package `<pkg>`. Finally, provide the function name as argument `f` and
 the selected method as a character vector to argument `signature` (see
@@ -823,8 +824,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55e2c016cfd0>
-#> <environment: 0x55e2bedf14b8>
+#> <bytecode: 0x55853e61ffd0>
+#> <environment: 0x55853d2a44b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -870,7 +871,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55e2c2e27ff0>
+#> <bytecode: 0x5585412cbe50>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -954,9 +955,10 @@ and searching in the `src` folder of the downloaded code.
   [R-universe](https://r-universe.dev/search)
 - Section [Add-on
   packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
-  in the [R Installation and Administration
+  (which contains a section about installing packages) in the [R
+  Installation and Administration
   manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
-  manual (which also contains a section about installing packages)
+  manual
 - Section ‘Documentation and help’ in the vignette *Installing R, Rtools
   and RStudio*:  
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)
