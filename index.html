@@ -66,11 +66,11 @@
 <div class="section level1">
 <div class="page-header"><h1 id="checkrpkgs">checkrpkgs<a class="anchor" aria-label="anchor" href="#checkrpkgs"></a>
 </h1></div>
-<p><code>checkrpkgs</code> provides information on installing and configuring <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://posit.co/products/open-source/rstudio/?sid=1" class="external-link">RStudio</a>, and <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>; obtaining information about to-be-installed and already-installed packages; and how to get the source code of R functions.</p>
+<p><code>checkrpkgs</code> explains how to install and configure <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://posit.co/products/open-source/rstudio/?sid=1" class="external-link">RStudio</a>, and <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>; how to install R packages; how to get information about to-be-installed and already-installed packages; how to get the source code of R functions; and how to set up and use Git and GitHub with RStudio.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Visit the <a href="https://jessealderliesten.github.io/checkrpkgs/">checkrpkgs website</a> to explore the package., or install <code>checkrpkgs</code> from <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">GitHub</a> using the following R code (you need to run R as administrator):</p>
+<p>Visit the <a href="https://jessealderliesten.github.io/checkrpkgs/">checkrpkgs website</a> to explore the package, or install <code>checkrpkgs</code> from <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">GitHub</a> using the following R code (you need to run R as administrator):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"remotes"</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -81,16 +81,16 @@
 <span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="content">Content<a class="anchor" aria-label="anchor" href="#content"></a>
 </h2>
-<p>The main content of <code>checkrpkgs</code> consists of vignettes:</p>
+<p>The main content of <code>checkrpkgs</code> are its vignettes:</p>
 <ul>
 <li>
-<a href="https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html">Installing R, Rtools and RStudio</a>: <code><a href="articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>. This vignette contains instructions on installing and configuring <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://posit.co/products/open-source/rstudio/?sid=1" class="external-link">RStudio</a>, and <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>.</li>
+<a href="https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html">Installing R, Rtools and RStudio</a>: <code><a href="articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>, explaining how to install and configure <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://posit.co/products/open-source/rstudio/?sid=1" class="external-link">RStudio</a>, and <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>.</li>
 <li>
-<a href="https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html">R packages</a>: <code><a href="articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>. This vignette contains information on installing and getting information about R packages. It also explains how to obtain the source code of R functions.</li>
+<a href="https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html">R packages</a>: <code><a href="articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>, explaining how to get information about to-be-installed and already-installed package and how to get the source code of R functions.</li>
 <li>
-<a href="https://jessealderliesten.github.io/checkrpkgs/articles/git_github.html">Using Git and GitHub</a>: <code><a href="articles/git_github.html">vignette("git_github", package = "checkrpkgs")</a></code>. This vignette contains information about setting up and using Git and <a href="https://github.com/" class="external-link">GitHub</a>.</li>
+<a href="https://jessealderliesten.github.io/checkrpkgs/articles/git_github.html">Using Git and GitHub</a>: <code><a href="articles/git_github.html">vignette("git_github", package = "checkrpkgs")</a></code>, explaining how to set up and use Git and <a href="https://github.com/" class="external-link">GitHub</a> with RStudio.</li>
 </ul>
 <p>In addition, <code>checkrpkgs</code> contains the functions <code><a href="reference/check_pkgs.html">check_pkgs()</a></code> and <code><a href="reference/get_details_pkgs.html">get_details_pkgs()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -108,7 +108,7 @@
 <span><span class="co">#&gt; checkrpkgs "checkrpkgs" "0.10.0" NA    </span></span>
 <span><span class="co">#&gt; utils      "utils"      "4.6.0"  NA    </span></span>
 <span><span class="co">#&gt;            Built                                                          </span></span>
-<span><span class="co">#&gt; checkrpkgs "R 4.6.0; ; 2026-06-04 20:57:46 UTC; windows"                  </span></span>
+<span><span class="co">#&gt; checkrpkgs "R 4.6.0; ; 2026-06-04 21:09:09 UTC; windows"                  </span></span>
 <span><span class="co">#&gt; utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"</span></span>
 <span><span class="co">#&gt;            Priority LibPath                                            </span></span>
 <span><span class="co">#&gt; checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"</span></span>

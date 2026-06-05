@@ -232,7 +232,7 @@ get_details_pkgs(pkgs = c("JesseAlderliesten/checkinput", "missing_package",
 #> checkrpkgs "checkrpkgs" "0.10.0" NA    
 #>            Built                                      Priority
 #> checkinput "R 4.6.0; ; 2026-06-04 20:51:52 UTC; unix" NA      
-#> checkrpkgs "R 4.6.0; ; 2026-06-04 21:09:04 UTC; unix" NA      
+#> checkrpkgs "R 4.6.0; ; 2026-06-05 08:44:49 UTC; unix" NA      
 #>            LibPath                           Repository Additional_repositories
 #> checkinput "/home/runner/work/_temp/Library" "Github"   NA                     
 #> checkrpkgs "/home/runner/work/_temp/Library" "Github"   NA                     

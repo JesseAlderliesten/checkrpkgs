@@ -2,10 +2,10 @@
 
 ## Introduction and notation
 
-This vignette provides information on setting up and using Git (a
-version control system) and [GitHub](https://github.com/) (a website
-where files, usually code, can be stored). Git and GitHub are frequently
-used together.
+This vignette explains how to set up and use Git (a version control
+system) and [GitHub](https://github.com/) (a website where files,
+usually code, can be stored) with
+[RStudio](https://posit.co/products/open-source/rstudio).
 
 Files on your PC are called ‘local’, whereas files on GitHub are called
 ‘remote’. In addition, a folder on your PC (e.g.,

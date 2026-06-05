@@ -2,18 +2,18 @@
 
 ## Introduction and notation
 
-This vignette contains information on installing and getting information
-about R packages. It also explains how to obtain the source code of R
-functions.
+This vignette explains how to install R packages, how to get information
+about to-be-installed and already-installed packages, and how to get the
+source code of R functions.
 
 Text between angled brackets (`<...>`) is used to refer to text that
 should be replaced with specific text to get working code or working
 file paths. For example, `<pkg>` is used as a place holder to refer to a
-package name and should be replaced with `utils` if you want to obtain
-information about package `utils`, and with `methods` if you want to
-obtain information about package `methods`. Similarly, `<func>` is used
-as a place holder to refer to a function name that should be filled in
-with a specific function name to get working code.
+package name and should be replaced with `utils` if you want to get
+information about package `utils`, and with `methods` if you want to get
+information about package `methods`. Similarly, `<func>` is used as a
+place holder to refer to a function name that should be filled in with a
+specific function name to get working code.
 
 In this vignette, calls to functions are frequently written in the form
 `<pkg>::<func>()`, to make clear which package is used and, through the
@@ -177,7 +177,7 @@ remotes::install_github(repo = grep(pattern = "/", x = pkgs_new, value = TRUE),
                         verbose = getOption("verbose"))
 ```
 
-#### Other repositories, mirrors
+#### Other repositories
 
 Examples of other repositories for R packages are:
 
@@ -212,6 +212,8 @@ if(length(pkgs_install) > 0L) {
                    quiet = FALSE)
 }
 ```
+
+#### Mirror websites
 
 Mirror websites (‘mirrors’) are websites hosted in various parts of the
 world with the same content as the main website. Using a nearby mirror
@@ -419,7 +421,7 @@ Bioconductor, e.g.,
 - If a package is not functional, re-install it using argument
   `force = TRUE` to re-install possibly broken dependencies. You can
   also use `checkrpkgs::get_details_pkgs(pkgs = <pkg>)` to check which
-  dependencies and system requirements it has and then use
+  dependencies and system requirements it has and use
   `checkrpkgs::check_pkgs(pkgs = <pkgnames>)` to check if all the
   dependencies are installed and functional.
 
@@ -462,9 +464,12 @@ expressions, which can be disabled by setting argument `agrep` to
 and [`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
 give information about packages available from
 [CRAN](https://cran.r-project.org/web/packages/index.html);
+`utils::available.packages(fields = NULL, repos = BiocManager::repositories())`
+gives information about packages available from
+[BioConductor](https://bioconductor.org/packages/release/BiocViews.html),
+and
 [`BiocManager::available()`](https://bioconductor.github.io/BiocManager/reference/available.html)
-gives the names of packages available from
-[BioConductor](https://bioconductor.org/packages/release/BiocViews.html).
+gives their names.
 
 The source code of base R packages can be obtained from
 [GitHub](https://github.com/r-devel/r-svn/) (see the section
@@ -504,46 +509,43 @@ a particular package is installed can be obtained with
 `find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
 
 The repository from which a package was installed can be obtained from
-the `Repository` and `URL` fields of package descriptions:
-`checkrpkgs::get_details_pkgs(pkgs = <pkg>)`.
+the `Repository` and `URL` fields of package descriptions and is
+conveniently shown by
+[`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html).
 
-Information about a package and its functions is available from within R
-after the package has been installed and loaded (i.e., `library(<pkg>)`
-has been run):
+Information about a package and its functions, methods, and classes is
+available from within R after the package has been installed and loaded
+(i.e., `library(<pkg>)` has been run):
 
 - Citation: `utils::citation("<pkg>")`, with
   [`utils::citation()`](https://rdrr.io/r/utils/citation.html) to cite R
   itself.
+- Function arguments: `args("<func>")`.
+- Function help page: `help("<func>")`; indicate the package to
+  distinguish functions with the same name from different packages:
+  `help("<func>", package = "<pkg>")`; use quotes around the name of an
+  operator to get its help page:
+  [`help("%in%")`](https://rdrr.io/r/base/match.html).
+- Function methods: for a generic class:
+  `utils::methods(class = "<class>")`; for a generic function:
+  `utils::methods("<func>")`; for S3-methods:
+  `attr(utils::methods(class = "<class>"), "info")`; for S4-methods:
+  `methods::showMethods(classes = "<class>", where = getNamespace("<pkg>"))`.
 - Function overview: `ls(getNamespace("<pkg>"), all.names = TRUE)`
-  returns a character vector with the function names (`all.names = TRUE`
-  would ignore names that start with a dot, which by convention are for
-  internal use in packages;
+  returns a character vector with the function names (the default
+  `all.names = FALSE` ignores names that start with a dot, which by
+  convention are for internal use in packages;
   [`help(package = "<pkg>")`](https://rdrr.io/pkg/%3Cpkg%3E/man) gives
   an overview with links to their help-pages if there is a file
   `<pkg>.R` in folder `<pkg>\R`.
-- Installation path:
+- Functions and other objects whose name contains a certain string:
+  `utils::apropos("<string>")`.
+- Installation path (i.e., where is the package installed):
   `find.package(package = "<pkg>", lib.loc = .libPaths(), verbose = TRUE)`.
 - Version: `utils::packageVersion("<pkg>")`.
 - Vignettes: show them in a browser through
   `utils::browseVignettes(package = "<pkg>")` or list them with
   `utils::vignette(package = "<pkg>")`.
-
-Information about functions, methods, and classes can also be obtained
-(see also the section [Getting the source
-code](#getting-the-source-code) below):
-
-- Arguments: `args("<func>")`.
-- Help page: `help("<func>")`; indicate the package to distinguish
-  functions with the same name from different packages:
-  `help("<func>", package = "<pkg>")`; use quotes around the name of an
-  operator to get its help page:
-  [`help("%in%")`](https://rdrr.io/r/base/match.html).
-- Methods: for a generic class: `utils::methods(class = "<class>")`; for
-  a generic function: `utils::methods("<func>")`; for S3-methods:
-  `attr(utils::methods(class = "<class>"), "info")`; for S4-methods:
-  `methods::showMethods(classes = "<class>", where = getNamespace("<pkg>"))`.
-- Objects (including functions) whose name contains a certain string:
-  `utils::apropos("<string>")`.
 
 ### Which packages are used?
 
@@ -617,7 +619,7 @@ file and choose `extract all`).
 
 ### Basic method
 
-The simplest way to obtain the source code of a function is to type the
+The simplest way to get the source code of a function is to type the
 name of the function, *without* the brackets, and press `Enter`. For
 example, to see what happens when using
 [`sd()`](https://rdrr.io/r/stats/sd.html) to calculate the standard
@@ -629,7 +631,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55746b1507d8>
+#> <bytecode: 0x560be3e89bf0>
 #> <environment: namespace:stats>
 ```
 
@@ -653,7 +655,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55746a509cf0>
+#> <bytecode: 0x560be323fcf0>
 #> <environment: namespace:base>
 ```
 
@@ -673,7 +675,7 @@ If `getAnywhere("<func>")` returns `UseMethod("<func>")`, the function
 has different methods for different object classes and is
 [S3-generic](https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation).
 First use `methods("<func>")` to get an overview of the available
-methods; then obtain the source code of a particular method by using
+methods; then get the source code of a particular method by using
 `getAnywhere("<function.class>")`, where `<function.class>` is an item
 from the overview that was returned by `methods("<func>")`. The
 advantage over simply using `"<function.class>"` is that
@@ -695,7 +697,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55746c7dfd38>
+#> <bytecode: 0x560be5515d38>
 #> <environment: namespace:base>
 ```
 
@@ -725,7 +727,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55746dbacd30>
+#> <bytecode: 0x560be68f0350>
 #> <environment: namespace:base>
 ```
 
@@ -767,7 +769,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55746dbac320>
+#> <bytecode: 0x560be68ef940>
 #> <environment: namespace:base>
 ```
 
@@ -784,7 +786,7 @@ the selected method as a character vector to argument `signature` (see
 also
 [`help("signature")`](https://rdrr.io/r/methods/GenericFunctions.html))
 of function [`getMethod()`](https://rdrr.io/r/methods/getMethod.html) to
-obtain the source code of a particular method:
+get the source code of a particular method:
 `getMethod(f = "<func>", signature = c(target = "<class>", current = "<class>"))`.
 
 The example below shows how to find the source code of method
@@ -809,8 +811,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55746c0609f0>
-#> <environment: 0x55746ae164b8>
+#> <bytecode: 0x560be4d96a60>
+#> <environment: 0x560be3b4c4b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -856,7 +858,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55746de6dd40>
+#> <bytecode: 0x560be6bb0870>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

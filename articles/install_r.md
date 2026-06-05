@@ -1,20 +1,11 @@
 # Installing R, Rtools and RStudio
 
-## Introduction and notation
+## Introduction
 
-This vignette contains instructions on installing and configuring
+This vignette explains how to install and configure
 [R](https://www.r-project.org/),
 [RStudio](https://posit.co/products/open-source/rstudio), and
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
-
-Text between angled brackets (`<...>`) is used to refer to text that
-should be replaced with specific text to get working code. For example,
-`<pkg>` is used as a place holder to refer to a package name and should
-be replaced with `utils` if you want to obtain information about package
-`utils`, and with `methods` if you want to obtain information about
-package `methods`. Similarly, `<func>` is used as a place holder to
-refer to a function name that should be filled in with a specific
-function name to get working code.
 
 ## R
 
@@ -39,20 +30,23 @@ options, see
 and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html).
 Although options for startup can also be changed (see
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html) and the chapter
-[R Startup](https://rstats.wtf/r-startup)), that should be done
-cautiously because those settings probably make code behave differently
+[R Startup](https://rstats.wtf/r-startup) from the book [What They
+Forgot to Teach You About R](https://rstats.wtf/)), that should be done
+cautiously because those options probably make code behave differently
 on PCs where those options are not set, for example when changing which
-packages are automatically loaded or when adding path to the search
-path.
+packages are automatically loaded at startup.
 
 Various options can be changed to make R a bit stricter:
 
-- Warn in case of partial matching such as `list(mean = 3)$me`:  
-  `options(warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, warnPartialMatchDollar = TRUE)`,
+- Warn in case of partial matching when extracting using `$` (e.g.,
+  `list(mean = 3)$me`), when matching function arguments, and when
+  getting object attributes:  
+  `options(warnPartialMatchDollar = TRUE, warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE, )`,
   with default `FALSE` for each of these. Details:
   [`help("pmatch")`](https://rdrr.io/r/base/pmatch.html),
-  [`help("attr")`](https://rdrr.io/r/base/attr.html), and
-  [`help("Extract")`](https://rdrr.io/r/base/Extract.html).
+  [`help("Extract")`](https://rdrr.io/r/base/Extract.html), and
+  [`help("attr")`](https://rdrr.io/r/base/attr.html). These options were
+  introduced in R 2.6.0.
 - Error instead of warn when calling `a:b` when numeric `a` or `b` is
   longer than one, such as `3:c(5, 7)`:  
   `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`. Details:
@@ -84,27 +78,25 @@ Various options can be changed to make R a bit stricter:
   browser mode and press `c` to continue code. Details:
   [`help("browser")`](https://rdrr.io/r/base/browser.html).
 
-In addition, various packages contain ways to make R stricter:
+In addition, various packages make R stricter:
 
 - Package [strict](https://github.com/hadley/strict/) warns about
   various unsafe practices, such as the behaviour of
   [`sample()`](https://rdrr.io/r/base/sample.html) and
   [`diag()`](https://rdrr.io/r/base/diag.html) if called with an
   argument of length one and type-unsafe
-  [`sapply()`](https://rdrr.io/r/base/lapply.html); additional ideas are
-  in the GitHub
-  [issues](https://github.com/hadley/strict/issues?q=is%3Aissue).
+  [`sapply()`](https://rdrr.io/r/base/lapply.html).
 - Package [conflicted](https://CRAN.R-project.org/package=conflicted)
   avoids silent conflict resolution (i.e., choosing the latest attached
   package out of multiple packages to use a function from; see
   `help("conflict")`), and provides `conflicts_prefer(<pkg>::<func>)` to
-  declare preferences.
+  declare preferences (where `<pkg>` and `<func>` should be replaced by
+  the actual names of the package and function to get working code.
 
 ### Information about R
 
 Several variables and functions provide information about the current R
-session, such as the R version and characteristics of the machine and
-platform R is running on:
+session:
 
 - `.Machine` (see
   [`help(".Machine")`](https://rdrr.io/r/base/zMachine.html)) and
@@ -138,8 +130,8 @@ platform R is running on:
   method can be used to print additional information about the used
   locale (i.e., settings that depend on the user’s language or region)
   and random number generation:
-  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`. Package
-  `sessioninfo` contains the similar function `session_info()` which
+  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+  [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
   provides more details about the origin of loaded or installed
   packages, and has the option to show only information about selected
   packages and their dependencies.
@@ -218,12 +210,11 @@ instructions on installing R packages:
 In addition, when updating packages, you might get the question
 `Do you want to install from sources the packages which need compilation?`.
 If you have installed Rtools you can choose `Yes` to install the latest
-package versions by building them from source, see the section
+package versions by building them from source. If you have **not**
+installed Rtools you should choose `No`: then you will get slightly less
+up-to-date package versions (but a faster installation). See the section
 ‘Troubleshooting’ in the vignette *R packages* for details:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
-If you have **not** installed Rtools you should choose `No`: then you
-will get slightly less up-to-date package versions (but a faster
-installation).
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
 download the version appropriate for the installed version of R (see the
@@ -233,17 +224,16 @@ output of
 `Rtools` \> `RTools X.Y` and set it up using the instructions given
 there. See also the
 [HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.6.html) by
-Tomas Kalibera. Alternatively,
-`pkgbuild::check_build_tools(debug = TRUE)` can be used to check and
-install Rtools.
+Tomas Kalibera. Alternatively, use
+`pkgbuild::check_build_tools(debug = TRUE)` to check and install Rtools.
 
 ## Documentation and help
 
 - [Bug reporting](https://www.r-project.org/bugs.html), linking to
   [bugzilla](https://bugs.r-project.org/)
 - CRAN: the [homepage](https://cran.r-project.org/) and an overview of
-  its [mirrors](https://cran.r-project.org/mirrors.html) (for details,
-  see the section ‘Other repositories and mirrors’ in the vignette *R
+  its [mirrors](https://cran.r-project.org/mirrors.html) (for details on
+  mirrors, see the section ‘Mirror websites’ in the vignette *R
   packages*:
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 - R [homepage](https://www.r-project.org/) with
@@ -260,7 +250,8 @@ install Rtools.
 - R [mailing lists](https://www.r-project.org/mail.html) with a web
   interface with [information and
   archives](https://stat.ethz.ch/mailman/listinfo) and a mirror for
-  [searching](https://r-mailing-lists.thecoatlessprofessor.com/)
+  [searching](https://r-mailing-lists.thecoatlessprofessor.com/) the
+  mailing list archives
 - RStudio [user guide](https://docs.posit.co/ide/user/) and
   [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/)
   by [Posit](https://posit.co/)

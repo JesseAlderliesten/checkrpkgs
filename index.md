@@ -1,17 +1,18 @@
 # checkrpkgs
 
-`checkrpkgs` provides information on installing and configuring
+`checkrpkgs` explains how to install and configure
 [R](https://www.r-project.org/),
 [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
-[Rtools](https://cran.r-project.org/bin/windows/Rtools/); obtaining
-information about to-be-installed and already-installed packages; and
-how to get the source code of R functions.
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/); how to install
+R packages; how to get information about to-be-installed and
+already-installed packages; how to get the source code of R functions;
+and how to set up and use Git and GitHub with RStudio.
 
 ## Installation
 
 Visit the [checkrpkgs
 website](https://jessealderliesten.github.io/checkrpkgs/) to explore the
-package., or install `checkrpkgs` from
+package, or install `checkrpkgs` from
 [GitHub](https://github.com/JesseAlderliesten/checkrpkgs) using the
 following R code (you need to run R as administrator):
 
@@ -26,28 +27,28 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
                         verbose = getOption("verbose"))
 ```
 
-## Example
+## Content
 
-The main content of `checkrpkgs` consists of vignettes:
+The main content of `checkrpkgs` are its vignettes:
 
 - [Installing R, Rtools and
   RStudio](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html):
-  [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
-  This vignette contains instructions on installing and configuring
+  [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md),
+  explaining how to install and configure
   [R](https://www.r-project.org/),
   [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
 - [R
   packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
-  [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
-  This vignette contains information on installing and getting
-  information about R packages. It also explains how to obtain the
-  source code of R functions.
+  [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md),
+  explaining how to get information about to-be-installed and
+  already-installed package and how to get the source code of R
+  functions.
 - [Using Git and
   GitHub](https://jessealderliesten.github.io/checkrpkgs/articles/git_github.html):
-  [`vignette("git_github", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/git_github.md).
-  This vignette contains information about setting up and using Git and
-  [GitHub](https://github.com/).
+  [`vignette("git_github", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/git_github.md),
+  explaining how to set up and use Git and [GitHub](https://github.com/)
+  with RStudio.
 
 In addition, `checkrpkgs` contains the functions
 [`check_pkgs()`](https://jessealderliesten.github.io/checkrpkgs/reference/check_pkgs.md)
@@ -70,7 +71,7 @@ get_details_pkgs(pkgs = c("utils", "checkrpkgs"))
 #> checkrpkgs "checkrpkgs" "0.10.0" NA    
 #> utils      "utils"      "4.6.0"  NA    
 #>            Built                                                          
-#> checkrpkgs "R 4.6.0; ; 2026-06-04 20:57:46 UTC; windows"                  
+#> checkrpkgs "R 4.6.0; ; 2026-06-04 21:09:09 UTC; windows"                  
 #> utils      "R 4.6.0; x86_64-w64-mingw32; 2026-04-24 08:04:59 UTC; windows"
 #>            Priority LibPath                                            
 #> checkrpkgs NA       "C:/Users/Eigenaar/AppData/Local/R/win-library/4.6"
