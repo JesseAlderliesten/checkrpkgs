@@ -56,10 +56,9 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
   by Jennifer Bryan, Jim Hester, Shannon Pileggi, and E. David Aja
 - The book [An introduction to R](https://intro2r.com/) by Alex Douglas,
   Deon Roos, Francesca Mancini, Ana Couto and David Lusseau
-
-Developers might be interested in my package
-[develcoder](https://jessealderliesten.github.io/develcoder/) with code
-to develop R packages.
+- Developers might be interested in my package
+  [develcoder](https://jessealderliesten.github.io/develcoder/) with
+  code to develop R packages.
 
 # 
 
