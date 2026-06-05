@@ -25,7 +25,7 @@ Suggests:
     sessioninfo (>= 1.2.0),
     strict,
     tinytest (>= 1.4.1),
-    tools
+    tools,
     utils
 Remotes:
     github::JesseAlderliesten/checkinput,
