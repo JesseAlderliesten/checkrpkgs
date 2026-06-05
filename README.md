@@ -12,7 +12,7 @@
 [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/); how to install
 R packages; how to get information about to-be-installed and
-already-installed packages; how to get the source code of R functions;
+already-installed R packages; how to get the source code of R functions;
 and how to set up and use Git and GitHub with RStudio.
 
 ## Installation
@@ -46,7 +46,7 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
 - [R
   packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
   `vignette("r_pkgs", package = "checkrpkgs")`, explaining how to get
-  information about to-be-installed and already-installed package and
+  information about to-be-installed and already-installed R packages and
   how to get the source code of R functions.
 - [Using Git and
   GitHub](https://jessealderliesten.github.io/checkrpkgs/articles/git_github.html):
@@ -61,4 +61,4 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
   Deon Roos, Francesca Mancini, Ana Couto and David Lusseau
 - Developers might be interested in my package
   [develcoder](https://jessealderliesten.github.io/develcoder/) with
-  code to develop R packages.
+  code and templates to develop R packages.
