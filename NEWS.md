@@ -1,3 +1,10 @@
+# checkrpkgs 0.11.1
+
+### Documentation
+- Restore `R/checkrpkgs-package.R` to have a relevant output of
+  `help("checkrpkgs")`.
+
+
 # checkrpkgs 0.11.0
 
 ### Breaking changes
@@ -5,8 +12,8 @@
   information to vignette `R packages`.
 - Remove unused function `create_pkg_stub()`.
 - Remove dependency `progutils` because it is no longer used.
-- Move dependencies `checkinput` from `Imports` to `Suggests` because they are
-  used in vignette `R packages`.
+- Move dependencies `checkinput` and `utils` from `Imports` to `Suggests`
+  because they are used in vignettes but not anymore in code.
 
 
 # checkrpkgs 0.10.0
