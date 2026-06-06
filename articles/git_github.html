@@ -102,7 +102,7 @@ referring to the GitHub repository of this package.</p>
 </h2>
 <p>Create a <a href="https://github.com/" class="external-link">GitHub</a> account, download a
 <a href="https://git-scm.com/tools/guis" class="external-link">GitHub client</a> such as <a href="https://git-scm.com/downloads" class="external-link">Git SCM</a> or <a href="https://gitforwindows.org/" class="external-link">Git for Windows</a> and install it. To
-update the Git for Windows GitHub client if you already have it, type
+update Git for Windows if you already have it, type
 <code>git\update-git-for-windows</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>.</p>
 <p>To use Git and GitHub from <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>: in
 RStudio at <code>Tools</code> &gt; <code>Global Options</code> &gt;
@@ -149,11 +149,10 @@ from package <a href="https://CRAN.R-project.org/package=usethis" class="externa
 <div class="section level2">
 <h2 id="using-git-and-github">Using Git and GitHub<a class="anchor" aria-label="anchor" href="#using-git-and-github"></a>
 </h2>
-<p>To work with GitHub in RStudio, you should not open the R
-<strong>script</strong> (i.e., a file with extension <code>.R</code>)
-but the R <strong>Project file</strong> (i.e., a file with extension
-<code>.Rproj</code>). Then the <code>Git</code> menu will be visible as
-a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link">Environment
+<p>To work with GitHub in RStudio, you should open the R Project file
+(i.e., a file with extension <code>.Rproj</code>), <strong>not</strong>
+the R script (i.e., a file with extension <code>.R</code>). Then the
+<code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link">Environment
 pane</a>.</p>
 <p><code>Pull</code> to get changes from the remote repository (i.e.,
 <code>GitHub</code>) incorporated in the local directory (i.e., your
@@ -248,11 +247,10 @@ works when they contain spaces.</li>
 separated by a newline.</li>
 <li>Although the scroll bar in <code>Git Bash</code> seems to indicate
 the end of the file is reached (and scrolling with the mouse does not
-work) after opening a file, usually a colon (<code>:</code>) will be
-displayed left to the cursor to indicate that only part of the file is
-shown. Use the <code>down arrow</code> key to see the whole file until
-the end of the file is reached, which is indicated by
-<code>(END)</code>.</li>
+work), usually a colon (<code>:</code>) will be displayed left to the
+cursor to indicate that only part of the file is shown. Use the
+<code>down arrow</code> key to see the whole file until the end of the
+file is reached, which is indicated by <code>(END)</code>.</li>
 <li>The location of a change is indicated at the top of a changed chunk.
 E.g., <code>-13,5 +14,9</code> indicates a deletion at character five of
 line thirteen and an insertion at character nine of line fourteen.</li>
@@ -329,9 +327,8 @@ repository).</li>
 <div class="section level3">
 <h3 id="installing-a-package-from-github">Installing a package from GitHub<a class="anchor" aria-label="anchor" href="#installing-a-package-from-github"></a>
 </h3>
-<p>The following code can be used to install packages from <a href="https://github.com/" class="external-link">GitHub</a> (for details see the section ‘R
-packages &gt; Installing packages &gt; Github’ in the vignette <em>R
-packages</em>:
+<p>The following code can be used to install packages from <a href="https://github.com/" class="external-link">GitHub</a> (for details see the section
+‘Installing packages &gt; Github’ in the vignette <em>R packages</em>:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="va">pkgs_new</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">pkgs_new</span><span class="op">)</span> <span class="op">!=</span> <span class="va">pkgs_new</span><span class="op">]</span>,</span>
@@ -361,10 +358,9 @@ requests</a></p></li>
 <div class="section level2">
 <h2 id="github-actions">GitHub Actions<a class="anchor" aria-label="anchor" href="#github-actions"></a>
 </h2>
-<p>See the section <code>Automate checks</code> in the vignette
-<em>Package setup</em> and section <code>Use GitHub Actions</code> in
-the vignette <em>Package development</em>, both from package
-<code>develcoder</code>:
+<p>See the section ‘Automate checks’ in the vignette <em>Package
+setup</em> and section ‘Use GitHub Actions’ in the vignette <em>Package
+development</em>, both from package <code>develcoder</code>:
 <code>vignette("pkg_setup", package = "develcoder")</code> and
 <code>vignette("pkg_devel", package = "develcoder")</code>.</p>
 </div>
@@ -388,12 +384,10 @@ hidden files)</li>
 </li>
 <li>show user details: <code>git config --global --list</code>
 </li>
-<li>working directory, navigate to: <code>cd ~</code>
+<li>working directory: change it with <code>cd</code> (e.g.,
+<code>cd 'D:/Userdata/&lt;owner&gt;/Documents/GIT/&lt;somefolder&gt;'</code>);
+navigate to it: <code>cd ~</code>; print it: <code>pwd</code>
 </li>
-<li>working directory, print: <code>pwd</code>
-</li>
-<li>working directory, change: <code>cd</code> (e.g.,
-<code>cd 'D:/Userdata/&lt;owner&gt;/Documents/GIT/&lt;somefolder&gt;'</code>).</li>
 </ul>
 <div class="section level3">
 <h3 id="paths-in-the-shell">Paths in the shell<a class="anchor" aria-label="anchor" href="#paths-in-the-shell"></a>

@@ -29,9 +29,8 @@ GitHub repository of this package.
 Create a [GitHub](https://github.com/) account, download a [GitHub
 client](https://git-scm.com/tools/guis) such as [Git
 SCM](https://git-scm.com/downloads) or [Git for
-Windows](https://gitforwindows.org/) and install it. To update the Git
-for Windows GitHub client if you already have it, type
-`git\update-git-for-windows` in the
+Windows](https://gitforwindows.org/) and install it. To update Git for
+Windows if you already have it, type `git\update-git-for-windows` in the
 [shell](https://happygitwithr.com/shell).
 
 To use Git and GitHub from
@@ -82,10 +81,10 @@ password, see:
 
 ## Using Git and GitHub
 
-To work with GitHub in RStudio, you should not open the R **script**
-(i.e., a file with extension `.R`) but the R **Project file** (i.e., a
-file with extension `.Rproj`). Then the `Git` menu will be visible as a
-tab in the [Environment
+To work with GitHub in RStudio, you should open the R Project file
+(i.e., a file with extension `.Rproj`), **not** the R script (i.e., a
+file with extension `.R`). Then the `Git` menu will be visible as a tab
+in the [Environment
 pane](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 
 `Pull` to get changes from the remote repository (i.e., `GitHub`)
@@ -174,11 +173,11 @@ Note:
 - The two paths should be on the same line, i.e., **not** separated by a
   newline.
 - Although the scroll bar in `Git Bash` seems to indicate the end of the
-  file is reached (and scrolling with the mouse does not work) after
-  opening a file, usually a colon (`:`) will be displayed left to the
-  cursor to indicate that only part of the file is shown. Use the
-  `down arrow` key to see the whole file until the end of the file is
-  reached, which is indicated by `(END)`.
+  file is reached (and scrolling with the mouse does not work), usually
+  a colon (`:`) will be displayed left to the cursor to indicate that
+  only part of the file is shown. Use the `down arrow` key to see the
+  whole file until the end of the file is reached, which is indicated by
+  `(END)`.
 - The location of a change is indicated at the top of a changed chunk.
   E.g., `-13,5 +14,9` indicates a deletion at character five of line
   thirteen and an insertion at character nine of line fourteen.
@@ -244,8 +243,8 @@ PC:
 ### Installing a package from GitHub
 
 The following code can be used to install packages from
-[GitHub](https://github.com/) (for details see the section ‘R packages
-\> Installing packages \> Github’ in the vignette *R packages*:
+[GitHub](https://github.com/) (for details see the section ‘Installing
+packages \> Github’ in the vignette *R packages*:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)):
 
 ``` r
@@ -278,8 +277,8 @@ In addition to section [Using GitHub](#using-github) above, see:
 
 ## GitHub Actions
 
-See the section `Automate checks` in the vignette *Package setup* and
-section `Use GitHub Actions` in the vignette *Package development*, both
+See the section ‘Automate checks’ in the vignette *Package setup* and
+section ‘Use GitHub Actions’ in the vignette *Package development*, both
 from package `develcoder`:
 `vignette("pkg_setup", package = "develcoder")` and
 `vignette("pkg_devel", package = "develcoder")`.
@@ -299,10 +298,9 @@ you want help about).
 - list remote repositories: `git remote -v`
 - show status of repositories: `git status`
 - show user details: `git config --global --list`
-- working directory, navigate to: `cd ~`
-- working directory, print: `pwd`
-- working directory, change: `cd` (e.g.,
-  `cd 'D:/Userdata/<owner>/Documents/GIT/<somefolder>'`).
+- working directory: change it with `cd` (e.g.,
+  `cd 'D:/Userdata/<owner>/Documents/GIT/<somefolder>'`); navigate to
+  it: `cd ~`; print it: `pwd`
 
 ### Paths in the shell
 
