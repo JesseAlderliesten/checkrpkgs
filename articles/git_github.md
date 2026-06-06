@@ -197,6 +197,9 @@ Alternatively, open the file on the remote repository (i.e., on the
 was deleted. After that, find the file in the local directory and delete
 it. Then `pull`.
 
+Deleted files and their history can still be viewed on GitHub, e.g., by
+finding the commit in which the file was deleted.
+
 ## Moving or renaming a file
 
 See the GitHub documentation
