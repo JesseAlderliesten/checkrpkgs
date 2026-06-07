@@ -13,7 +13,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Suggests: 
     BiocManager (>= 1.30.5),
-    checkinput (>= 0.11.0),
+    checkinput (>= 1.0.0),
     conflicted,
     ctv (>= 0.4-0),
     knitr,
