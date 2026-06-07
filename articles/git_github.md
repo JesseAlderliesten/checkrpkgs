@@ -7,22 +7,20 @@ system) and [GitHub](https://github.com/) (a website where files,
 usually code, can be stored) with
 [RStudio](https://posit.co/products/open-source/rstudio).
 
-Files on your PC are called ‘local’, whereas files on GitHub are called
-‘remote’. In addition, a folder on your PC (e.g.,
-`C:\Program Files\R\R-4.6.0\library\checkrpkgs`) is usually called a
-‘directory’, whereas a folder on GitHub (e.g.,
-<https://github.com/JesseAlderliesten/checkrpkgs>) is usually called a
-‘repository’.
+Angled brackets (`<...>`) indicate place holders that should be replaced
+with specific text to get working code or working file paths. For
+example, `<username>` and `<repository>` are place holders that refer to
+a username and repository name, e.g.,
+`https://github.com/<username>/<repository>` could refer to the URL
+<https://github.com/JesseAlderliesten/checkrpkgs>, the GitHub repository
+of this package.
 
-Text between angled brackets (`<...>`) is used to refer to text that
-should be replaced with specific text to get working code or working
-file paths. For example, `<username>` and `<repository>` are used as
-place holders to refer to a username and repository name: `<username>`
-and `<repository>` in `https://github.com/<username>/<repository>`
-should be replaced with `JesseAlderliesten` and `checkrpkgs`,
-respectively, to obtain the URL
-<https://github.com/JesseAlderliesten/checkrpkgs> referring to the
-GitHub repository of this package.
+Files on your PC are called often called ‘local files’, whereas files on
+GitHub are called ‘remote files’. In addition, a folder on your PC
+(e.g., `C:\Program Files\R\R-4.6.0\library\checkrpkgs`) is often called
+a ‘directory’, whereas a folder on GitHub (e.g.,
+<https://github.com/JesseAlderliesten/checkrpkgs>) is often called a
+‘repository’.
 
 ## Setting up Git and GitHub
 
@@ -36,19 +34,19 @@ Windows if you already have it, type `git\update-git-for-windows` in the
 To use Git and GitHub from
 [RStudio](https://posit.co/products/open-source/rstudio): in RStudio at
 `Tools` \> `Global Options` \> `Git/SVN`, tick
-`Enable version control interface for RStudio projects`. Run
-`where git.exe` in the [shell](https://happygitwithr.com/shell) to get
-the location of the Git executable: probably
-`C:\Program Files\Git\bin\git.exe` or
-`C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (usually a hidden
-folder) in Windows notation; in R these paths are
-`C:/Program Files/Git/bin/git.exe` or
+`Enable version control interface for RStudio projects`. The
+`Git executable` fields should point to the `git.exe` file, which
+probably is at `C:\Program Files\Git\bin\git.exe` or (in the hidden
+folder) at `C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows
+notation; in R these paths are `C:/Program Files/Git/bin/git.exe` or
 `C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, see [Paths in the
-shell](#paths-in-the-shell).
-
-Open the `Git Bash` [shell](https://happygitwithr.com/shell) (which was
-installed when installing [Git for Windows](https://gitforwindows.org/))
-by typing `Git Bash` in Windows’ `Start` menu and press `Enter`.
+shell](#paths-in-the-shell)). If the content of the `Git executable` is
+not correct, open the `Git Bash`
+[shell](https://happygitwithr.com/shell) (which was installed when
+installing [Git for Windows](https://gitforwindows.org/)) by typing
+`Git Bash` in Windows’ `Start` menu and press `Enter`. Then run
+`where git.exe` in the Git Bash shell to get the location of the Git
+executable.
 
 To associate Git with your GitHub account, you need to provide your name
 (this name is listed in GitHub with the changes you make and does
@@ -87,10 +85,9 @@ file with extension `.R`). Then the `Git` menu will be visible as a tab
 in the [Environment
 pane](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 
-`Pull` to get changes from the remote repository (i.e., `GitHub`)
-incorporated in the local directory (i.e., your PC), and handle any
-conflicts to get the local directory up-to-date with the remote
-repository:
+`Pull` to get changes from `GitHub`) incorporated in your PC, and handle
+any conflicts to get directory on your PC up-to-date with the repository
+on GitHub:
 
 - in RStudio: use the `pull` button (downward arrow) in the `Git` menu;
 - in the [shell](https://happygitwithr.com/shell):
@@ -104,8 +101,9 @@ changes:
   `Diff` button in the `Git` menu to get an overview of the changes to
   the file, describe the changes in the box `Commit message`, and use
   the `Commit` button. `Pull` again (downward arrow) to make sure the
-  local directory is up-to-date, and handle any conflicts. Then `push`
-  (upward arrow) to incorporate the changes in the remote repository.
+  directory on your PC is up-to-date, and handle any conflicts. Then
+  `push` (upward arrow) to incorporate the changes in the repository on
+  GitHub.
 - in the [shell](https://happygitwithr.com/shell): to compare the
   content of two files, see the instructions in the section [Comparing
   files](#comparing-files) below. Next, use
@@ -121,16 +119,16 @@ entered the PAT once, RStudio will remember this token for next times.
 
 ## Adding a new file
 
-To add a file to GitHub that is not there yet, first add it to the local
-folder (i.e., on your PC), then let `git` know it is there by typing (it
+To add a file to GitHub that is not there yet, first add it to the R
+project folder on your PC, then let `git` know it is there by typing (it
 is convenient to use `tab`-completion to select files):
 `git add <filename>.<extension>`.
 
 If the working directory is **not** the folder where the to-be-added
-file is in, the working directory has to be set to that folder (e.g.,
-using `cd <path/to/folder>`, in the
-[shell](https://happygitwithr.com/shell) or the path has to be added in
-front of the filename (dragging the file onto the shell will copy the
+file is in, the working directory has to be changed to that folder
+(e.g., using `cd <path/to/folder>` in the
+[shell](https://happygitwithr.com/shell)), or the path has to be added
+in front of the filename (dragging the file onto the shell will copy the
 path to the shell).
 
 ## Comparing files
@@ -184,21 +182,19 @@ Note:
 
 ## Deleting a file
 
-Consider moving files to a folder `archive` instead of deleting them. To
-delete a file, delete the file from the local directory (i.e., your PC),
-then `commit` the change (i.e., deletion of a file), using the
-`commit message` to describe why the file was deleted. Then `pull` to
-make sure the local directory is up to date with the remote repository,
-and then `push` the change to the remote repository.
+To delete a file, delete the file from your PC, then `commit` the change
+(i.e., deletion of a file), using the `commit message` to describe why
+the file was deleted. Then `pull` to make sure directory on your PC is
+up to date with the repository on GitHub, and then `push` the change to
+the GitHub repository.
 
-Alternatively, open the file on the remote repository (i.e., on the
-`GitHub` website), click the three dots at the top-right of the file \>
-`delete` \> `commit`. Use the commit message to describe why the file
-was deleted. After that, find the file in the local directory and delete
-it. Then `pull`.
+Alternatively, open the file in the `GitHub` repository), click the
+three dots at the top-right of the file \> `delete` \> `commit`. Use the
+commit message to describe why the file was deleted. After that, find
+the file on your PC and delete it. Then `pull`.
 
 Deleted files and their history can still be viewed on GitHub, e.g., by
-finding the commit in which the file was deleted.
+[finding the commit](#using-github) in which the file was deleted.
 
 ## Moving or renaming a file
 
@@ -218,14 +214,14 @@ PC:
   a copy of the repository in your own GitHub repository. Next, you have
   to `clone` your copy to your PC, see the next point.
 - To be able to push your changes back to a GitHub repository to which
-  you **do** have writing access (e.g., to work on your project from
-  another PC; or to work on a fork you created in the step above), you
-  have to clone the GitHub repository to your PC: use the green `Code`
-  button in the repository (if you forked a repository, you need the
-  `Code` button of your fork, not of the original repository), copy the
-  URL to the clipboard (i.e., do **not** use `download ZIP`), create a
-  new R project in RStudio (`File` \> `New Project` \> `Version control`
-  \> `Git`), paste the repository URL
+  you **do** have writing access (e.g., to work on a fork you created in
+  the step above; or to work on your project from another PC), you have
+  to clone the GitHub repository to your PC: use the green `Code` button
+  in the repository (if you forked a repository, you need the `Code`
+  button of your fork, not of the original repository), copy the URL to
+  the clipboard (i.e., do **not** use `download ZIP`), create a new R
+  project in RStudio (`File` \> `New Project` \> `Version control` \>
+  `Git`), paste the repository URL
   (`https://github.com/<username>/<repository>`) in the designated
   field, select the desired location on your PC, and create the project.
   The same repository URL can be used when using shell commands to clone
@@ -241,7 +237,7 @@ PC:
   looks for packages (given by `cat(normalizePath(.libPaths()))`,
   something like `C:\Program Files\R\R-4.6.0\library` or
   `C:\Users\<owner>\AppData\Local\R\win-library\4.6`. Then open the
-  `.Rproj` file (which has the same name as the repository).
+  `.Rproj` file that has the same name as the repository.
 
 ### Installing a package from GitHub
 
@@ -252,7 +248,13 @@ packages \> Github’ in the vignette *R packages*:
 
 ``` r
 
-remotes::install_github(repo = pkgs_new[basename(pkgs_new) != pkgs_new],
+pkgs_new <- "JesseAlderliesten/checkrpkgs"
+if(!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
+                   type = getOption("pkgType"), verbose = getOption("verbose"),
+                   quiet = FALSE)
+}
+remotes::install_github(repo = grep(pattern = "/", x = pkgs_new, value = TRUE),
                         dependencies = NA, upgrade = "ask", force = FALSE,
                         quiet = FALSE, build_vignettes = TRUE, lib = .libPaths(),
                         verbose = getOption("verbose"))
@@ -310,12 +312,12 @@ you want help about).
 When entering paths in the [shell](https://happygitwithr.com/shell), use
 the forward slash (`/`) as file separator instead of the Windows-default
 backslash (`\`). If the path you want to specify contains spaces (e.g.,
-`D:/Userdata/My Account/...`), use quotes around the path (e.g.,
-`"D:/Userdata/My Account/..."`). `Tab`-completion can be used when
-entering paths: single `tab` to select an option, double `tab` to see
-multiple options. Dragging a file into the shell gives the absolute path
-to that file. The current and parent directory can be indicated by a
-single (`.`) or two (`..`) dots in file paths, respectively. On paths
+`D:\Userdata\My Account\...`), you need to use quotes around the path
+(e.g., `"D:/Userdata/My Account/..."`). `Tab`-completion can be used
+when entering paths: single `tab` to select an option, double `tab` to
+see multiple options. Dragging a file into the shell gives the absolute
+path to that file. The current and parent directory can be indicated by
+a single (`.`) or two (`..`) dots in file paths, respectively. On paths
 and file separators in R, see the ‘Notes on paths’ in
 [`help("is_path", package = "checkinput")`](https://jessealderliesten.github.io/checkinput/reference/is_path.html).
 

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,10 +45,14 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.11.1" id="checkrpkgs-0111">checkrpkgs 0.11.1<a class="anchor" aria-label="anchor" href="#checkrpkgs-0111"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.12.0" id="checkrpkgs-0120">checkrpkgs 0.12.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-0120"></a></h2>
 <div class="section level4">
-<h4 id="documentation-0-11-1">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-11-1"></a></h4>
-<ul><li>Restore <code>R/checkrpkgs-package.R</code> to have a relevant output of <code><a href="../reference/checkrpkgs-package.html">help("checkrpkgs")</a></code>.</li>
+<h4 id="breaking-changes-0-12-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-12-0"></a></h4>
+<ul><li>Dependency <code>checkinput</code>: increase minimum version from <code>0.11.0</code> to <code>1.0.0</code> to depend on a stable version.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="documentation-0-12-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-12-0"></a></h4>
+<ul><li>Remove old <code>NEWS</code>.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -71,11 +75,6 @@
 <li>
 <code>check_pkgs()</code>: argument <code>quietly</code> renamed to <code>silently</code> because it silences warnings.</li>
 </ul></div>
-<div class="section level4">
-<h4 id="documentation-0-10-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-10-0"></a></h4>
-<ul><li>Refer to package <code>sessioninfo</code>.</li>
-<li>Vignette <code>Installing R</code>: restructure and expand various sections.</li>
-</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.0" id="checkrpkgs-090">checkrpkgs 0.9.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-090"></a></h2>
@@ -87,21 +86,6 @@
 <div class="section level4">
 <h4 id="documentation-0-9-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-9-0"></a></h4>
 <ul><li>Vignette <code>Installing R, Rtools and RStudio</code>: rename and restructure section on configuring R. Move documentation for developers to my package <code>develcoder</code>. Expanded section ‘Documentation and help’.</li>
-</ul></div>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.3" id="checkrpkgs-083">checkrpkgs 0.8.3<a class="anchor" aria-label="anchor" href="#checkrpkgs-083"></a></h2>
-<div class="section level4">
-<h4 id="documentation-0-8-3">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-8-3"></a></h4>
-<ul><li>Move information from documentation of <code>check_pkgs()</code> and <code>get_details_pkgs()</code> to the vignette <code>R packages</code>.</li>
-</ul></div>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.1" id="checkrpkgs-081">checkrpkgs 0.8.1<a class="anchor" aria-label="anchor" href="#checkrpkgs-081"></a></h2>
-<div class="section level4">
-<h4 id="documentation-0-8-1">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-8-1"></a></h4>
-<ul><li>Vignette <code>Instructions about R packages</code>: shorten name to <code>R packages</code>.</li>
-<li>Vignette <code>Using Git and GitHub</code>: add section on GitHub Actions.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -133,15 +117,6 @@
 </ul></div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.5.2" id="checkrpkgs-052">checkrpkgs 0.5.2<a class="anchor" aria-label="anchor" href="#checkrpkgs-052"></a></h2>
-<div class="section level4">
-<h4 id="documentation-0-5-2">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-5-2"></a></h4>
-<ul><li>Vignette <code>Installing R, Rtools and RStudio</code>: additional explanation about possible options. Stylistic updates.</li>
-<li>Vignette <code>Instructions about R packages</code>: add argument <code>build_vignettes</code> and update to version 3.23 in example code of <code><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">BiocManager::install()</a></code>.</li>
-<li>Vignette <code>Using Git and GitHub</code>: explain what Git and GitHub are. Explain ‘local’ vs. ‘remote’. Use terminology more consistently.</li>
-</ul></div>
-</div>
-    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.0" id="checkrpkgs-050">checkrpkgs 0.5.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-050"></a></h2>
 <div class="section level4">
 <h4 id="breaking-changes-0-5-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-5-0"></a></h4>
@@ -160,13 +135,6 @@
 <ul><li>
 <code>get_details_pkgs()</code>: if <code>pkgs</code> has length larger than zero, warn only about duplicated packages that are in <code>pkgs</code>.</li>
 </ul></div>
-<div class="section level4">
-<h4 id="documentation-0-4-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-4-0"></a></h4>
-<ul><li>Updated vignettes: some corrections in text. Changed order of some sections to be more logical. Explain notation for text to be filled in (e.g., <code>&lt;funcname&gt;</code>) and use that more consistently.</li>
-<li>Vignette <code>Installing R, Rtools and RStudio</code>: Add examples to section ‘Configuring R’.</li>
-<li>Vignette <code>Instructions about R packages</code>: some bugfixes in example code. More consistent code to install or update packages. Add example how to install from other repositories. Use evaluation of R code instead of hardcoding output in examples.</li>
-<li>Vignette <code>Using Git and GitHub</code>: add section on installing packages from <code>GitHub</code>.</li>
-</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="checkrpkgs-030">checkrpkgs 0.3.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-030"></a></h2>
@@ -184,54 +152,6 @@
 <ul><li>Dependency <code>checkinput</code>: increase from <code>&gt;= 0.0.6</code> to <code>&gt;= 0.5.0</code>. This implicitly increases the minimum version of <code>R</code> to <code>&gt;= 4.1.0</code> but removes the dependency on <code>vctrs</code>.</li>
 <li>Dependency <code>progutils</code>: increase from <code>&gt;= 0.0.3</code> to <code>&gt;= 0.0.6</code> to be able to use functions added to <code>progutils</code>.</li>
 <li>Dependency <code>tinytest</code>: declare version <code>&gt;= 1.4.1</code> because I use argument <code>strict</code> in <code>expect_message()</code> and <code>expect_warning()</code>.</li>
-</ul></div>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.2" id="checkrpkgs-012">checkrpkgs 0.1.2<a class="anchor" aria-label="anchor" href="#checkrpkgs-012"></a></h2>
-<div class="section level4">
-<h4 id="breaking-changes-0-1-2">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-1-2"></a></h4>
-<ul><li>Dependencies: no need to import <code>knit()</code> from <code>knitr</code> or <code>render()</code> from <code>rmarkdown</code>, so move <code>knitr</code> and <code>rmarkdown</code> back from <code>Imports</code> to <code>Suggests</code>.</li>
-</ul></div>
-<div class="section level4">
-<h4 id="documentation-0-1-2">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-2"></a></h4>
-<ul><li>Vignette <code>Instructions about R packages</code>: updates, especially the section <code>Getting the source code</code>. Explain how to point to GitHub repositories.</li>
-</ul></div>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="checkrpkgs-010">checkrpkgs 0.1.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-010"></a></h2>
-<div class="section level4">
-<h4 id="breaking-changes-0-1-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-1-0"></a></h4>
-<ul><li>
-<code>get_details_pkgs()</code>: move argument <code>pkgs</code> to be the first argument. Warn if a package is found more than once. Always return information from fields <code>Repository</code> and <code>URL</code>.</li>
-<li>
-<code>find_nonfunc_pkgs()</code>: rename to <code>check_pkgs()</code>. Warn if a package is found more than once.</li>
-</ul></div>
-<div class="section level4">
-<h4 id="documentation-0-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-0"></a></h4>
-<ul><li>Vignette <code>Instructions about R packages</code>: first mention BioConductor releases, explaining their advantage. Expand information on mirror websites into a separate section. Use internal links when referring to section headings. Use hyper links to refer to help pages.</li>
-<li>Vignette <code>Using Git and GitHub</code>: add info about comparing files using GitHub. Restructure and expand section ‘Documentation’. Use internal links when referring to section headings.</li>
-</ul></div>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.0.1" id="checkrpkgs-001">checkrpkgs 0.0.1<a class="anchor" aria-label="anchor" href="#checkrpkgs-001"></a></h2>
-<div class="section level4">
-<h4 id="breaking-changes-0-0-1">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-0-1"></a></h4>
-<ul><li>Add dependencies <code>checkinput (&gt;= 0.0.6)</code>, <code>knitr</code>, <code>progutils (&gt;= 0.0.3)</code>, <code>rmarkdown</code>, and <code>utils</code> to <code>Depends</code>. Using <code>knitr</code> and <code>rmarkdown</code> in <code>Depends</code> because the vignettes are the main part of the package.</li>
-<li>Add dependencies <code>BiocManager</code>, <code>conflicted</code>, <code>ctv</code>, <code>methods</code>, <code>pkgbuild</code>, <code>remotes</code>, <code>stats</code>, <code>strict</code>, <code>tools</code> to <code>Suggests</code> to be able to run all code in the vignettes and documentation.</li>
-</ul></div>
-<div class="section level4">
-<h4 id="added-functions-0-0-1">Added functions<a class="anchor" aria-label="anchor" href="#added-functions-0-0-1"></a></h4>
-<ul><li>
-<code>find_nonfunc_pkgs()</code>: find non-installed or non-functional packages.</li>
-<li>
-<code>get_details_pkgs()</code>: get details of installed packages.</li>
-</ul></div>
-<div class="section level4">
-<h4 id="documentation-0-0-1">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-0-1"></a></h4>
-<ul><li>Updated <code>README</code>.</li>
-<li>Added vignette <code>Installing R, Rtools and RStudio</code>.</li>
-<li>Added vignette <code>Instructions about R packages</code>.</li>
-<li>Added vignette <code>Using Git and GitHub</code>.</li>
 </ul></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

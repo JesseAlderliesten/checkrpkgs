@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,21 +81,19 @@
 <p>This vignette explains how to set up and use Git (a version control
 system) and <a href="https://github.com/" class="external-link">GitHub</a> (a website where
 files, usually code, can be stored) with <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>.</p>
-<p>Files on your PC are called ‘local’, whereas files on GitHub are
-called ‘remote’. In addition, a folder on your PC (e.g.,
-<code>C:\Program Files\R\R-4.6.0\library\checkrpkgs</code>) is usually
-called a ‘directory’, whereas a folder on GitHub (e.g., <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">https://github.com/JesseAlderliesten/checkrpkgs</a>)
-is usually called a ‘repository’.</p>
-<p>Text between angled brackets (<code>&lt;...&gt;</code>) is used to
-refer to text that should be replaced with specific text to get working
-code or working file paths. For example, <code>&lt;username&gt;</code>
-and <code>&lt;repository&gt;</code> are used as place holders to refer
-to a username and repository name: <code>&lt;username&gt;</code> and
-<code>&lt;repository&gt;</code> in
+<p>Angled brackets (<code>&lt;...&gt;</code>) indicate place holders
+that should be replaced with specific text to get working code or
+working file paths. For example, <code>&lt;username&gt;</code> and
+<code>&lt;repository&gt;</code> are place holders that refer to a
+username and repository name, e.g.,
 <code>https://github.com/&lt;username&gt;/&lt;repository&gt;</code>
-should be replaced with <code>JesseAlderliesten</code> and
-<code>checkrpkgs</code>, respectively, to obtain the URL <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">https://github.com/JesseAlderliesten/checkrpkgs</a>
-referring to the GitHub repository of this package.</p>
+could refer to the URL <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">https://github.com/JesseAlderliesten/checkrpkgs</a>,
+the GitHub repository of this package.</p>
+<p>Files on your PC are called often called ‘local files’, whereas files
+on GitHub are called ‘remote files’. In addition, a folder on your PC
+(e.g., <code>C:\Program Files\R\R-4.6.0\library\checkrpkgs</code>) is
+often called a ‘directory’, whereas a folder on GitHub (e.g., <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">https://github.com/JesseAlderliesten/checkrpkgs</a>)
+is often called a ‘repository’.</p>
 </div>
 <div class="section level2">
 <h2 id="setting-up-git-and-github">Setting up Git and GitHub<a class="anchor" aria-label="anchor" href="#setting-up-git-and-github"></a>
@@ -107,19 +105,22 @@ update Git for Windows if you already have it, type
 <p>To use Git and GitHub from <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>: in
 RStudio at <code>Tools</code> &gt; <code>Global Options</code> &gt;
 <code>Git/SVN</code>, tick
-<code>Enable version control interface for RStudio projects</code>. Run
-<code>where git.exe</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a> to get the location of
-the Git executable: probably
-<code>C:\Program Files\Git\bin\git.exe</code> or
-<code>C:\Users\&lt;owner&gt;\AppData\Local\Git\bin\git.exe</code>
-(usually a hidden folder) in Windows notation; in R these paths are
+<code>Enable version control interface for RStudio projects</code>. The
+<code>Git executable</code> fields should point to the
+<code>git.exe</code> file, which probably is at
+<code>C:\Program Files\Git\bin\git.exe</code> or (in the hidden folder)
+at <code>C:\Users\&lt;owner&gt;\AppData\Local\Git\bin\git.exe</code> (in
+Windows notation; in R these paths are
 <code>C:/Program Files/Git/bin/git.exe</code> or
 <code>C:/Users/&lt;owner&gt;/AppData/Local/Git/bin/git.exe</code>, see
-<a href="#paths-in-the-shell">Paths in the shell</a>.</p>
-<p>Open the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
+<a href="#paths-in-the-shell">Paths in the shell</a>). If the content of
+the <code>Git executable</code> is not correct, open the
+<code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
 when installing <a href="https://gitforwindows.org/" class="external-link">Git for
 Windows</a>) by typing <code>Git Bash</code> in Windows’
-<code>Start</code> menu and press <code>Enter</code>.</p>
+<code>Start</code> menu and press <code>Enter</code>. Then run
+<code>where git.exe</code> in the Git Bash shell to get the location of
+the Git executable.</p>
 <p>To associate Git with your GitHub account, you need to provide your
 name (this name is listed in GitHub with the changes you make and does
 <strong>not</strong> have to be your GitHub username), and the email
@@ -154,10 +155,9 @@ from package <a href="https://CRAN.R-project.org/package=usethis" class="externa
 the R script (i.e., a file with extension <code>.R</code>). Then the
 <code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link">Environment
 pane</a>.</p>
-<p><code>Pull</code> to get changes from the remote repository (i.e.,
-<code>GitHub</code>) incorporated in the local directory (i.e., your
-PC), and handle any conflicts to get the local directory up-to-date with
-the remote repository:</p>
+<p><code>Pull</code> to get changes from <code>GitHub</code>)
+incorporated in your PC, and handle any conflicts to get directory on
+your PC up-to-date with the repository on GitHub:</p>
 <ul>
 <li>in RStudio: use the <code>pull</code> button (downward arrow) in the
 <code>Git</code> menu;</li>
@@ -172,10 +172,10 @@ to review changes:</p>
 <code>Diff</code> button in the <code>Git</code> menu to get an overview
 of the changes to the file, describe the changes in the box
 <code>Commit message</code>, and use the <code>Commit</code> button.
-<code>Pull</code> again (downward arrow) to make sure the local
-directory is up-to-date, and handle any conflicts. Then
-<code>push</code> (upward arrow) to incorporate the changes in the
-remote repository.</li>
+<code>Pull</code> again (downward arrow) to make sure the directory on
+your PC is up-to-date, and handle any conflicts. Then <code>push</code>
+(upward arrow) to incorporate the changes in the repository on
+GitHub.</li>
 <li>in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>: to
 compare the content of two files, see the instructions in the section <a href="#comparing-files">Comparing files</a> below. Next, use
 <code>git commit -m '&lt;your commit message goes here&gt;' &lt;path&gt;/&lt;and&gt;/&lt;filename&gt;.R</code>
@@ -191,14 +191,13 @@ remember this token for next times.</p>
 <div class="section level2">
 <h2 id="adding-a-new-file">Adding a new file<a class="anchor" aria-label="anchor" href="#adding-a-new-file"></a>
 </h2>
-<p>To add a file to GitHub that is not there yet, first add it to the
-local folder (i.e., on your PC), then let <code>git</code> know it is
-there by typing (it is convenient to use <code>tab</code>-completion to
-select files):
-<code>git add &lt;filename&gt;.&lt;extension&gt;</code>.</p>
+<p>To add a file to GitHub that is not there yet, first add it to the R
+project folder on your PC, then let <code>git</code> know it is there by
+typing (it is convenient to use <code>tab</code>-completion to select
+files): <code>git add &lt;filename&gt;.&lt;extension&gt;</code>.</p>
 <p>If the working directory is <strong>not</strong> the folder where the
-to-be-added file is in, the working directory has to be set to that
-folder (e.g., using <code>cd &lt;path/to/folder&gt;</code>, in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a> or the path has to be
+to-be-added file is in, the working directory has to be changed to that
+folder (e.g., using <code>cd &lt;path/to/folder&gt;</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>), or the path has to be
 added in front of the filename (dragging the file onto the shell will
 copy the path to the shell).</p>
 </div>
@@ -260,21 +259,20 @@ line thirteen and an insertion at character nine of line fourteen.</li>
 <div class="section level2">
 <h2 id="deleting-a-file">Deleting a file<a class="anchor" aria-label="anchor" href="#deleting-a-file"></a>
 </h2>
-<p>Consider moving files to a folder <code>archive</code> instead of
-deleting them. To delete a file, delete the file from the local
-directory (i.e., your PC), then <code>commit</code> the change (i.e.,
-deletion of a file), using the <code>commit message</code> to describe
-why the file was deleted. Then <code>pull</code> to make sure the local
-directory is up to date with the remote repository, and then
-<code>push</code> the change to the remote repository.</p>
-<p>Alternatively, open the file on the remote repository (i.e., on the
-<code>GitHub</code> website), click the three dots at the top-right of
-the file &gt; <code>delete</code> &gt; <code>commit</code>. Use the
-commit message to describe why the file was deleted. After that, find
-the file in the local directory and delete it. Then
-<code>pull</code>.</p>
+<p>To delete a file, delete the file from your PC, then
+<code>commit</code> the change (i.e., deletion of a file), using the
+<code>commit message</code> to describe why the file was deleted. Then
+<code>pull</code> to make sure directory on your PC is up to date with
+the repository on GitHub, and then <code>push</code> the change to the
+GitHub repository.</p>
+<p>Alternatively, open the file in the <code>GitHub</code> repository),
+click the three dots at the top-right of the file &gt;
+<code>delete</code> &gt; <code>commit</code>. Use the commit message to
+describe why the file was deleted. After that, find the file on your PC
+and delete it. Then <code>pull</code>.</p>
 <p>Deleted files and their history can still be viewed on GitHub, e.g.,
-by finding the commit in which the file was deleted.</p>
+by <a href="#using-github">finding the commit</a> in which the file was
+deleted.</p>
 </div>
 <div class="section level2">
 <h2 id="moving-or-renaming-a-file">Moving or renaming a file<a class="anchor" aria-label="anchor" href="#moving-or-renaming-a-file"></a>
@@ -296,12 +294,12 @@ creates a copy of the repository in your own GitHub repository. Next,
 you have to <code>clone</code> your copy to your PC, see the next
 point.</li>
 <li>To be able to push your changes back to a GitHub repository to which
-you <strong>do</strong> have writing access (e.g., to work on your
-project from another PC; or to work on a fork you created in the step
-above), you have to clone the GitHub repository to your PC: use the
-green <code>Code</code> button in the repository (if you forked a
-repository, you need the <code>Code</code> button of your fork, not of
-the original repository), copy the URL to the clipboard (i.e., do
+you <strong>do</strong> have writing access (e.g., to work on a fork you
+created in the step above; or to work on your project from another PC),
+you have to clone the GitHub repository to your PC: use the green
+<code>Code</code> button in the repository (if you forked a repository,
+you need the <code>Code</code> button of your fork, not of the original
+repository), copy the URL to the clipboard (i.e., do
 <strong>not</strong> use <code>download ZIP</code>), create a new R
 project in RStudio (<code>File</code> &gt; <code>New Project</code> &gt;
 <code>Version control</code> &gt; <code>Git</code>), paste the
@@ -323,8 +321,8 @@ correctly, move the package to a location where R looks for packages
 (given by <code>cat(normalizePath(.libPaths()))</code>, something like
 <code>C:\Program Files\R\R-4.6.0\library</code> or
 <code>C:\Users\&lt;owner&gt;\AppData\Local\R\win-library\4.6</code>.
-Then open the <code>.Rproj</code> file (which has the same name as the
-repository).</li>
+Then open the <code>.Rproj</code> file that has the same name as the
+repository.</li>
 </ul>
 <div class="section level3">
 <h3 id="installing-a-package-from-github">Installing a package from GitHub<a class="anchor" aria-label="anchor" href="#installing-a-package-from-github"></a>
@@ -333,7 +331,13 @@ repository).</li>
 ‘Installing packages &gt; Github’ in the vignette <em>R packages</em>:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="va">pkgs_new</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">pkgs_new</span><span class="op">)</span> <span class="op">!=</span> <span class="va">pkgs_new</span><span class="op">]</span>,</span>
+<code class="sourceCode R"><span><span class="va">pkgs_new</span> <span class="op">&lt;-</span> <span class="st">"JesseAlderliesten/checkrpkgs"</span></span>
+<span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"remotes"</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
+<span>                   quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"/"</span>, x <span class="op">=</span> <span class="va">pkgs_new</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>                        dependencies <span class="op">=</span> <span class="cn">NA</span>, upgrade <span class="op">=</span> <span class="st">"ask"</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                        quiet <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -397,15 +401,16 @@ navigate to it: <code>cd ~</code>; print it: <code>pwd</code>
 <p>When entering paths in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>, use the forward slash
 (<code>/</code>) as file separator instead of the Windows-default
 backslash (<code>\</code>). If the path you want to specify contains
-spaces (e.g., <code>D:/Userdata/My Account/...</code>), use quotes
-around the path (e.g., <code>"D:/Userdata/My Account/..."</code>).
-<code>Tab</code>-completion can be used when entering paths: single
-<code>tab</code> to select an option, double <code>tab</code> to see
-multiple options. Dragging a file into the shell gives the absolute path
-to that file. The current and parent directory can be indicated by a
-single (<code>.</code>) or two (<code>..</code>) dots in file paths,
-respectively. On paths and file separators in R, see the ‘Notes on
-paths’ in <code><a href="https://jessealderliesten.github.io/checkinput/reference/is_path.html" class="external-link">help("is_path", package = "checkinput")</a></code>.</p>
+spaces (e.g., <code>D:\Userdata\My Account\...</code>), you need to use
+quotes around the path (e.g.,
+<code>"D:/Userdata/My Account/..."</code>). <code>Tab</code>-completion
+can be used when entering paths: single <code>tab</code> to select an
+option, double <code>tab</code> to see multiple options. Dragging a file
+into the shell gives the absolute path to that file. The current and
+parent directory can be indicated by a single (<code>.</code>) or two
+(<code>..</code>) dots in file paths, respectively. On paths and file
+separators in R, see the ‘Notes on paths’ in
+<code><a href="https://jessealderliesten.github.io/checkinput/reference/is_path.html" class="external-link">help("is_path", package = "checkinput")</a></code>.</p>
 </div>
 </div>
 <div class="section level2">

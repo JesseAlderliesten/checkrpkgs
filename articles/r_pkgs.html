@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,9 +126,8 @@ on the R or RStudio icon and select <code>Run as administrator</code>.
 Packages can be obtained from several websites, called ‘repositories’,
 such as <code>CRAN</code>, <code>BioConductor</code>, and
 <code>GitHub</code>, discussed in the next sections. After installing a
-package, you need to <a href="#attaching-packages">attach</a> the
-package to be able to use its functions: run
-<code>library(&lt;pkg&gt;)</code>.</p>
+package, you need to <a href="#loading-and-attaching-packages">attach</a> the package to be able
+to use its functions: run <code>library(&lt;pkg&gt;)</code>.</p>
 <div class="section level4">
 <h4 id="cran">CRAN<a class="anchor" aria-label="anchor" href="#cran"></a>
 </h4>
@@ -278,11 +277,12 @@ is used in RStudio (see the preceding paragraph).</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="attaching-packages">Attaching packages<a class="anchor" aria-label="anchor" href="#attaching-packages"></a>
+<h3 id="loading-and-attaching-packages">Loading and attaching packages<a class="anchor" aria-label="anchor" href="#loading-and-attaching-packages"></a>
 </h3>
-<p>After installing a package, you need to attach the package to be able
-to use its functions: run <code>library(&lt;pkg&gt;)</code>. If
-attaching fails without clear reason,’ setting environment variable
+<p>After installing a package, you need to load the namespace of a
+package and attach the package to the search list to be able to use its
+functions: run <code>library(&lt;pkg&gt;)</code>. If this fails without
+clear reason, setting environment variable
 <code>_R_TRACE_LOADNAMESPACE_</code> to a numerical value (e.g.,
 <code>Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)</code>) will generate
 additional messages on progress for non-standard packages (see the
@@ -455,8 +455,10 @@ multiple packages:</p>
 <li><p>If a package is not functional, re-install it using argument
 <code>force = TRUE</code> to re-install possibly broken dependencies.
 You can also use
-<code>checkrpkgs::get_details_pkgs(pkgs = &lt;pkg&gt;)</code> to check
-which dependencies and system requirements it has.</p></li>
+<code>tools::package_dependencies(packages = "&lt;pkg&gt;", recursive = TRUE)</code>
+to check which dependencies it has, and
+<code>installed.packages(fields = "SystemRequirements")["&lt;pkg&gt;", "SystemRequirements"]</code>
+to check which system requirements it has.</p></li>
 <li><p>If the warning
 <code>package &lt;pkg&gt; was built under R version 'x.y.z'</code>
 occurs, you installed a binary package (i.e., not by building from
@@ -466,7 +468,7 @@ to see your current R version). The warning is issued because packages
 are <strong>not</strong> tested on versions of R that are older than the
 version they were built on. Therefore it is best to update R when
 installing packages.</p></li>
-<li><p>If errors occur when <a href="#attaching-packages">attaching
+<li><p>If errors occur when <a href="#loading-and-attaching-packages">loading and attaching
 packages</a> that require Java, make sure the 64-bit <a href="https://www.java.com/download/manual.jsp" class="external-link">version of Java</a> is
 installed on 64-bit PCs.</p></li>
 </ul>
@@ -539,8 +541,8 @@ using <code>verbose = TRUE</code> to get a warning if a package is found
 more than once. The names of all installed packages can be obtained with
 <code>list.files(path = .libPaths())</code>.</p>
 <p>Information about a package and its functions, methods, and classes
-is available from within R after the package has been installed and
-attached (i.e., <code>library(&lt;pkg&gt;)</code> has been run):</p>
+is available from within R after the package has been installed and <a href="#loading-and-attaching-packages">attached</a> (i.e.,
+<code>library(&lt;pkg&gt;)</code> has been run):</p>
 <ul>
 <li>Citation: <code>utils::citation("&lt;pkg&gt;")</code>, with
 <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> to cite R itself.</li>
@@ -559,8 +561,8 @@ S4-methods:
 <li>Function overview:
 <code>ls(getNamespace("&lt;pkg&gt;"), all.names = TRUE)</code> returns a
 character vector with the function names (the default
-<code>all.names = FALSE</code> ignores names that start with a dot,
-which by convention are for internal use in packages;
+<code>all.names = FALSE</code> ignores names that start with a dot
+because those are for internal use in packages;
 <code><a href="https://rdrr.io/pkg/&lt;pkg&gt;/man" class="external-link">help(package = "&lt;pkg&gt;")</a></code> gives an overview with links
 to their help-pages if there is a file <code>&lt;pkg&gt;.R</code> in
 folder <code>&lt;pkg&gt;\R</code>.</li>
@@ -636,15 +638,15 @@ mirror</a> of the SVN-project, see also the documentation on <a href="https://do
 GitHub</a>.</p>
 <p>The source code of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> can
 be searched at <a href="https://github.com/cran" class="external-link">METACRAN</a>, an
-<em>unofficial</em> CRAN mirror. Alternatively, download the source file
-from section <code>Downloads</code> of the CRAN page. The source files
-have been compressed into a <code>tar</code> file so you have to extract
-the files (right-click on the downloaded file and choose
+<strong>unofficial</strong> CRAN mirror. Alternatively, download the
+source file from section <code>Downloads</code> of the CRAN page. The
+source files have been compressed into a <code>tar</code> file so you
+have to extract the files (right-click on the downloaded file and choose
 <code>extract all</code>).</p>
 <p>The source code of add-on packages from <a href="https://bioconductor.org/" class="external-link">BioConductor</a> in the current version
 or in the development-version is available <a href="https://code.bioconductor.org/search/" class="external-link">here</a>.</p>
 <p>The source code of add-on packages from <a href="https://github.com/" class="external-link">GitHub</a> can be viewed directly on GitHub,
-or after downloading the code to your computer by clicking the green
+or after downloading the code to your PC by clicking the green
 <code>Code</code> button on the repository page (e.g.,
 <code>https://github.com/JesseAlderliesten/checkrpkgs</code>), choosing
 <code>Download ZIP</code>, and unzipping the downloaded file
@@ -654,15 +656,15 @@ or after downloading the code to your computer by clicking the green
 <h3 id="basic-method">Basic method<a class="anchor" aria-label="anchor" href="#basic-method"></a>
 </h3>
 <p>The simplest way to get the source code of a function is to type the
-name of the function, <em>without</em> the brackets. For example, to see
-what happens when using <code><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd()</a></code> to calculate the standard
-deviation:</p>
+name of the function, <strong>without</strong> the brackets. For
+example, to see what happens when using <code><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd()</a></code> to calculate
+the standard deviation:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sd</span></span>
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55efed934ef0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55608cdc0f38&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
@@ -686,7 +688,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55efe96fdcf0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x556088b08cf0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -707,13 +709,12 @@ are required when looking for the source code of operators such as
 <code>UseMethod("&lt;func&gt;")</code>, the function has different
 methods for different object classes and is <a href="https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation" class="external-link">S3-generic</a>.
 First use <code>methods("&lt;func&gt;")</code> to get an overview of the
-available methods; then get the source code of a particular method by
-using <code>getAnywhere("&lt;function.class&gt;")</code>, where
-<code>&lt;function.class&gt;</code> is an item from the overview that
-was returned by <code>methods("&lt;func&gt;")</code>. The advantage over
-simply using <code>"&lt;function.class&gt;"</code> is that
-<code>getAnywhere("&lt;function.class&gt;")</code> also works for
-functions that are not exported, which is indicated in the overview of
+available methods; then select a particular method from the overview and
+use <code>getAnywhere("&lt;method&gt;")</code> to get the source code of
+that method. The advantage over simply using
+<code>"&lt;method&gt;"</code> is that
+<code>getAnywhere("&lt;method&gt;")</code> also works for functions that
+are not exported, which is indicated in the overview of
 <code>methods(&lt;func&gt;)</code> by an asterisk and the remark
 <code>Non-visible functions are asterisked</code>.</p>
 <p>For example, <code>UseMethod("mean")</code> in the output of
@@ -729,7 +730,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55efeb9e9900&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55608adf4900&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -754,7 +755,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55efed612ea8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55608c896eb0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>Or use <code>getAnywhere("mean.default")</code> to see the source
 code of the method <code>mean</code> used with objects of classes not
@@ -792,7 +793,7 @@ listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55efed6162c8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55608c8964a0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -803,12 +804,12 @@ listed in the output of <code>methods("mean")</code>:</p>
 S4-methods (see <code><a href="https://rdrr.io/r/methods/Introduction.html" class="external-link">help("Introduction", package = "methods")</a></code>)
 for different object classes. Use
 <code>showMethods("&lt;func&gt;")</code> to get an overview of the
-available methods in all <strong>attached</strong> packages, or use
-<code>&lt;pkg&gt;:::&lt;func&gt;</code> to get an overview of the
-available methods from package <code>&lt;pkg&gt;</code>. Finally,
-provide the function name as argument <code>f</code> and the selected
-method as a character vector to argument <code>signature</code> (see
-also <code><a href="https://rdrr.io/r/methods/GenericFunctions.html" class="external-link">help("signature")</a></code>) of function
+available methods in all <a href="#loading-and-attaching-packages"><strong>attached</strong></a>
+packages, or use <code>&lt;pkg&gt;:::&lt;func&gt;</code> to get an
+overview of the available methods from package <code>&lt;pkg&gt;</code>.
+Finally, provide the function name as argument <code>f</code> and the
+selected method as a character vector to argument <code>signature</code>
+(see also <code><a href="https://rdrr.io/r/methods/GenericFunctions.html" class="external-link">help("signature")</a></code>) of function
 <code><a href="https://rdrr.io/r/methods/getMethod.html" class="external-link">getMethod()</a></code> to get the source code of a particular method:
 <code>getMethod(f = "&lt;func&gt;", signature = c(target = "&lt;class&gt;", current = "&lt;class&gt;"))</code>.</p>
 <p>The example below shows how to find the source code of method
@@ -831,8 +832,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55efeb38f278&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55efea00a4b8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55608a79a1d0&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x5560894154b8&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -878,7 +879,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55efee030cc8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55608d448088&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
@@ -892,10 +893,10 @@ package <code>Matrix</code>.</p>
 <p>If <code>getAnywhere("&lt;func&gt;")</code> returns
 <code>.Internal</code> or <code>.Primitive</code>, the function is
 internal or primitive. The source code of such functions can be viewed
-at code <a href="#repositories">repositories</a>, or on your computer if
-you have installed R <a href="https://cran.r-project.org/sources.html" class="external-link">from source</a> using
-Rtools (see the section ‘Rtools’ in the vignette <em>Installing R,
-Rtools and RStudio</em>:
+at code <a href="#repositories">repositories</a>, or on your PC if you
+have installed R <a href="https://cran.r-project.org/sources.html" class="external-link">from
+source</a> using Rtools (see the section ‘Rtools’ in the vignette
+<em>Installing R, Rtools and RStudio</em>:
 <code><a href="../articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>).</p>
 <p>Locate the file <code>src/main/names.c</code> and look in the first
 column (‘printname’) for the name of the R function to find the
@@ -923,8 +924,8 @@ as one of its results. That file contains the source code of
 functions and thus has a general name. Then the file with c-code will
 have a similar general name. For example, the source code of
 <code><a href="https://rdrr.io/r/base/make.names.html" class="external-link">make.names()</a></code> is defined in
-<code>src/library/base/R/character.R</code> which contains (among
-others) the code <code>.Internal(make.names(names, allow_))</code>, and
+<code>src/library/base/R/character.R</code> which, among others,
+contains the code <code>.Internal(make.names(names, allow_))</code>, and
 the c-code for <code>do_makenames()</code> is in file
 <code>src/main/character.c</code>.</p>
 </div>

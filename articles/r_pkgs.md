@@ -55,8 +55,9 @@ To install a package, run R or RStudio as administrator: right-click on
 the R or RStudio icon and select `Run as administrator`. Packages can be
 obtained from several websites, called ‘repositories’, such as `CRAN`,
 `BioConductor`, and `GitHub`, discussed in the next sections. After
-installing a package, you need to [attach](#attaching-packages) the
-package to be able to use its functions: run `library(<pkg>)`.
+installing a package, you need to
+[attach](#loading-and-attaching-packages) the package to be able to use
+its functions: run `library(<pkg>)`.
 
 #### CRAN
 
@@ -236,14 +237,15 @@ or
 although the RStudio CRAN mirror is used in RStudio (see the preceding
 paragraph).
 
-### Attaching packages
+### Loading and attaching packages
 
-After installing a package, you need to attach the package to be able to
-use its functions: run `library(<pkg>)`. If attaching fails without
-clear reason,’ setting environment variable `_R_TRACE_LOADNAMESPACE_` to
-a numerical value (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`)
-will generate additional messages on progress for non-standard packages
-(see the section `Tracing` in
+After installing a package, you need to load the namespace of a package
+and attach the package to the search list to be able to use its
+functions: run `library(<pkg>)`. If this fails without clear reason,
+setting environment variable `_R_TRACE_LOADNAMESPACE_` to a numerical
+value (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will generate
+additional messages on progress for non-standard packages (see the
+section `Tracing` in
 [`help("requireNamespace")`](https://rdrr.io/r/base/ns-load.html)).
 
 [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) gives the
@@ -424,8 +426,11 @@ Bioconductor, e.g.,
 
 - If a package is not functional, re-install it using argument
   `force = TRUE` to re-install possibly broken dependencies. You can
-  also use `checkrpkgs::get_details_pkgs(pkgs = <pkg>)` to check which
-  dependencies and system requirements it has.
+  also use
+  `tools::package_dependencies(packages = "<pkg>", recursive = TRUE)` to
+  check which dependencies it has, and
+  `installed.packages(fields = "SystemRequirements")["<pkg>", "SystemRequirements"]`
+  to check which system requirements it has.
 
 - If the warning `package <pkg> was built under R version 'x.y.z'`
   occurs, you installed a binary package (i.e., not by building from
@@ -437,8 +442,9 @@ Bioconductor, e.g.,
   were built on. Therefore it is best to update R when installing
   packages.
 
-- If errors occur when [attaching packages](#attaching-packages) that
-  require Java, make sure the 64-bit [version of
+- If errors occur when [loading and attaching
+  packages](#loading-and-attaching-packages) that require Java, make
+  sure the 64-bit [version of
   Java](https://www.java.com/download/manual.jsp) is installed on 64-bit
   PCs.
 
@@ -529,7 +535,8 @@ The names of all installed packages can be obtained with
 
 Information about a package and its functions, methods, and classes is
 available from within R after the package has been installed and
-attached (i.e., `library(<pkg>)` has been run):
+[attached](#loading-and-attaching-packages) (i.e., `library(<pkg>)` has
+been run):
 
 - Citation: `utils::citation("<pkg>")`, with
   [`utils::citation()`](https://rdrr.io/r/utils/citation.html) to cite R
@@ -547,8 +554,8 @@ attached (i.e., `library(<pkg>)` has been run):
   `methods::showMethods(classes = "<class>", where = getNamespace("<pkg>"))`.
 - Function overview: `ls(getNamespace("<pkg>"), all.names = TRUE)`
   returns a character vector with the function names (the default
-  `all.names = FALSE` ignores names that start with a dot, which by
-  convention are for internal use in packages;
+  `all.names = FALSE` ignores names that start with a dot because those
+  are for internal use in packages;
   [`help(package = "<pkg>")`](https://rdrr.io/pkg/%3Cpkg%3E/man) gives
   an overview with links to their help-pages if there is a file
   `<pkg>.R` in folder `<pkg>\R`.
@@ -613,7 +620,7 @@ GitHub](https://docs.github.com/en/search-github).
 
 The source code of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) can be
-searched at [METACRAN](https://github.com/cran), an *unofficial* CRAN
+searched at [METACRAN](https://github.com/cran), an **unofficial** CRAN
 mirror. Alternatively, download the source file from section `Downloads`
 of the CRAN page. The source files have been compressed into a `tar`
 file so you have to extract the files (right-click on the downloaded
@@ -626,15 +633,15 @@ the development-version is available
 
 The source code of add-on packages from [GitHub](https://github.com/)
 can be viewed directly on GitHub, or after downloading the code to your
-computer by clicking the green `Code` button on the repository page
-(e.g., `https://github.com/JesseAlderliesten/checkrpkgs`), choosing
+PC by clicking the green `Code` button on the repository page (e.g.,
+`https://github.com/JesseAlderliesten/checkrpkgs`), choosing
 `Download ZIP`, and unzipping the downloaded file (right-click on the
 file and choose `extract all`).
 
 ### Basic method
 
 The simplest way to get the source code of a function is to type the
-name of the function, *without* the brackets. For example, to see what
+name of the function, **without** the brackets. For example, to see what
 happens when using [`sd()`](https://rdrr.io/r/stats/sd.html) to
 calculate the standard deviation:
 
@@ -644,7 +651,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55efed934ef0>
+#> <bytecode: 0x55608cdc0f38>
 #> <environment: namespace:stats>
 ```
 
@@ -668,7 +675,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55efe96fdcf0>
+#> <bytecode: 0x556088b08cf0>
 #> <environment: namespace:base>
 ```
 
@@ -688,11 +695,10 @@ If `getAnywhere("<func>")` returns `UseMethod("<func>")`, the function
 has different methods for different object classes and is
 [S3-generic](https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation).
 First use `methods("<func>")` to get an overview of the available
-methods; then get the source code of a particular method by using
-`getAnywhere("<function.class>")`, where `<function.class>` is an item
-from the overview that was returned by `methods("<func>")`. The
-advantage over simply using `"<function.class>"` is that
-`getAnywhere("<function.class>")` also works for functions that are not
+methods; then select a particular method from the overview and use
+`getAnywhere("<method>")` to get the source code of that method. The
+advantage over simply using `"<method>"` is that
+`getAnywhere("<method>")` also works for functions that are not
 exported, which is indicated in the overview of `methods(<func>)` by an
 asterisk and the remark `Non-visible functions are asterisked`.
 
@@ -710,7 +716,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55efeb9e9900>
+#> <bytecode: 0x55608adf4900>
 #> <environment: namespace:base>
 ```
 
@@ -740,7 +746,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55efed612ea8>
+#> <bytecode: 0x55608c896eb0>
 #> <environment: namespace:base>
 ```
 
@@ -782,7 +788,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55efed6162c8>
+#> <bytecode: 0x55608c8964a0>
 #> <environment: namespace:base>
 ```
 
@@ -792,7 +798,8 @@ If `getAnywhere("<func>")` returns `standardGeneric("<func>")`, the
 function has different S4-methods (see
 [`help("Introduction", package = "methods")`](https://rdrr.io/r/methods/Introduction.html))
 for different object classes. Use `showMethods("<func>")` to get an
-overview of the available methods in all **attached** packages, or use
+overview of the available methods in all
+[**attached**](#loading-and-attaching-packages) packages, or use
 `<pkg>:::<func>` to get an overview of the available methods from
 package `<pkg>`. Finally, provide the function name as argument `f` and
 the selected method as a character vector to argument `signature` (see
@@ -824,8 +831,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55efeb38f278>
-#> <environment: 0x55efea00a4b8>
+#> <bytecode: 0x55608a79a1d0>
+#> <environment: 0x5560894154b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -871,7 +878,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55efee030cc8>
+#> <bytecode: 0x55608d448088>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -884,10 +891,10 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 
 If `getAnywhere("<func>")` returns `.Internal` or `.Primitive`, the
 function is internal or primitive. The source code of such functions can
-be viewed at code [repositories](#repositories), or on your computer if
-you have installed R [from
-source](https://cran.r-project.org/sources.html) using Rtools (see the
-section ‘Rtools’ in the vignette *Installing R, Rtools and RStudio*:
+be viewed at code [repositories](#repositories), or on your PC if you
+have installed R [from source](https://cran.r-project.org/sources.html)
+using Rtools (see the section ‘Rtools’ in the vignette *Installing R,
+Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)).
 
 Locate the file `src/main/names.c` and look in the first column
@@ -919,7 +926,7 @@ Sometimes an R function is defined in a file that defines multiple
 functions and thus has a general name. Then the file with c-code will
 have a similar general name. For example, the source code of
 [`make.names()`](https://rdrr.io/r/base/make.names.html) is defined in
-`src/library/base/R/character.R` which contains (among others) the code
+`src/library/base/R/character.R` which, among others, contains the code
 `.Internal(make.names(names, allow_))`, and the c-code for
 `do_makenames()` is in file `src/main/character.c`.
 
