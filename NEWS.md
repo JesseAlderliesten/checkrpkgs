@@ -1,3 +1,13 @@
+# checkrpkgs 0.12.0
+
+### Breaking changes
+- Dependency `checkinput`: increase minimum version from `0.11.0` to `1.0.0` to
+  depend on a stable version.
+
+### Documentation
+- Remove old `NEWS`.
+
+
 # checkrpkgs 0.11.0
 
 ### Breaking changes
