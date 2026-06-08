@@ -32,10 +32,10 @@ Windows if you already have it, type `git\update-git-for-windows` in the
 [shell](https://happygitwithr.com/shell).
 
 To use Git and GitHub from
-[RStudio](https://posit.co/products/open-source/rstudio): in RStudio at
-`Tools` \> `Global Options` \> `Git/SVN`, tick
+[RStudio](https://posit.co/products/open-source/rstudio), in RStudio go
+to `Tools` \> `Global Options` \> `Git/SVN` and tick
 `Enable version control interface for RStudio projects`. The
-`Git executable` fields should point to the `git.exe` file, which
+`Git executable` field should point to the `git.exe` file, which
 probably is at `C:\Program Files\Git\bin\git.exe` or in a hidden folder
 at `C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows
 notation; outside Windows, these paths are written as
@@ -44,10 +44,9 @@ notation; outside Windows, these paths are written as
 shell](#paths-in-the-shell)). If the content of the `Git executable` is
 not correct, open the `Git Bash`
 [shell](https://happygitwithr.com/shell) (which was installed when
-installing [Git for Windows](https://gitforwindows.org/)) by typing
-`Git Bash` in Windows’ `Start` menu and press `Enter`. Then run
-`where git.exe` in the Git Bash shell to get the location of the Git
-executable.
+installing [Git for Windows](https://gitforwindows.org/)) by searching
+for `Git Bash` in Windows’ `Start` menu. In the Git Bash shell, run
+`where git.exe` to get the location of the Git executable.
 
 To associate Git with your GitHub account, you need to provide your name
 (this name is listed in GitHub with the changes you make and does
@@ -108,7 +107,7 @@ changes:
 - or in the [shell](https://happygitwithr.com/shell): compare the
   content of two files, see the instructions in the section [Comparing
   files](#comparing-files) below. Next, use
-  `git commit -m '<your commit message goes here>' <path>/<and>/<filename>.R`
+  `git commit -m '<your commit message>' <path>/<and>/<filename>.R`
   `git push https://github.com/<username>/<repository>` to commit
   changes.
 
@@ -166,10 +165,10 @@ extensions) of the two files to be compared into the shell on the same
 line, and press `Enter`:
 `git diff --no-index '<path/and/filename_file1>.R' '<path/and/filename_file2>.R'`
 
-Note:
+Notes:
 
-- The flag `--no-index` makes it possible to compare files that are
-  **not** under version control in `Git`.
+- `--no-index` makes it possible to compare files that are **not** under
+  version control in `Git`.
 - Using quotes (`''`) around the paths ensures this also works when they
   contain spaces.
 - The two paths should be on the same line, i.e., **not** separated by a
@@ -234,8 +233,8 @@ PC:
   the last commit by using
   `git clone --depth=1 https://github.com/<username>/<repository>`.
 - To download code without being able to push your changes back to a
-  GitHub repository, you can download the repository by using the green
-  `Code` button, choosing `Download ZIP` and unzip the downloaded file
+  GitHub repository, download the repository by using the green `Code`
+  button, choose `Download ZIP` and unzip the downloaded file
   (right-click on them and choose `extract all`). To be able to let R
   use the package correctly, move the package to a location where R
   looks for packages (given by `cat(normalizePath(.libPaths()))`,
@@ -279,7 +278,7 @@ In addition to section [Using GitHub](#using-github) above, see:
   [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)
   and the section [Fork and
   clone](https://happygitwithr.com/fork-and-clone) from [Happy Git and
-  GitHub for the useR](https://happygitwithr.com/);
+  GitHub for the useR](https://happygitwithr.com/)
 
 - GitHub documentation about [pull
   requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
@@ -355,9 +354,3 @@ Chapters
   Guide](https://posit.co/products/open-source/rstudio)
 - [Collaboration](https://epirhandbook.com/en/new_pages/collaboration.html)
   from [The Epidemiologist R Handbook](https://epirhandbook.com/en/)
-
-On git tags and releases:
-
-- <https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases>
-- <https://www.toolsqa.com/git/git-tags/>
-- <https://www.jetbrains.com/help/dataspell/use-tags-to-mark-specific-commits.html>

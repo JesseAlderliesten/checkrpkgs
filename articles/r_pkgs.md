@@ -2,8 +2,8 @@
 
 ## Introduction and notation
 
-This vignette explains how to install R packages, how to get information
-about to-be-installed and already-installed R packages, and how to get
+This vignette explains how to install R packages; how to get information
+about to-be-installed and already-installed R packages; and how to get
 the source code of R functions.
 
 Text between angled brackets (`<...>`) is used to refer to text that
@@ -671,7 +671,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x557d1ecfc708>
+#> <bytecode: 0x55be9dd32b60>
 #> <environment: namespace:stats>
 ```
 
@@ -695,7 +695,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x557d1cbeacf0>
+#> <bytecode: 0x55be99add5b0>
 #> <environment: namespace:base>
 ```
 
@@ -736,7 +736,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x557d1eed6900>
+#> <bytecode: 0x55be9bdc8d70>
 #> <environment: namespace:base>
 ```
 
@@ -766,7 +766,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x557d20934180>
+#> <bytecode: 0x55be9d8ac918>
 #> <environment: namespace:base>
 ```
 
@@ -808,7 +808,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x557d209375a0>
+#> <bytecode: 0x55be9d8b1c58>
 #> <environment: namespace:base>
 ```
 
@@ -818,7 +818,7 @@ If `getAnywhere("<func>")` returns `standardGeneric("<func>")`, the
 function has different S4-methods for different object classes (see
 [`help("Introduction", package = "methods")`](https://rdrr.io/r/methods/Introduction.html)).
 Use `showMethods("<func>")` to get an overview of the available methods
-in all [**attached**](#loading-and-attaching-packages) packages, or use
+in all [attached](#loading-and-attaching-packages) packages, or use
 `<pkg>:::<func>` to get an overview of the available methods from
 package `<pkg>`. Finally, provide the function name as argument `f` and
 the selected method as a character vector to argument `signature` (see
@@ -851,8 +851,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x557d1e87fbd8>
-#> <environment: 0x557d1d4f74b8>
+#> <bytecode: 0x55be9b771e18>
+#> <environment: 0x55be9a40a888>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -875,9 +875,15 @@ getAnywhere("cbind2")
 #> [1] "standardGeneric"
 #> attr(,"class")attr(,"package")
 #> [1] "methods"
+```
 
-# standardGeneric("cbind2") indicating that cbind2() is an S4 function, so use
-# showMethods("cbind2") to get an overview of the different methods:
+`standardGeneric("cbind2")` indicates that
+[`cbind2()`](https://rdrr.io/r/methods/cbind2.html) is an S4 function,
+so use `showMethods("cbind2")` to get an overview of the different
+methods:
+
+``` r
+
 showMethods("cbind2")
 #> Function: cbind2 (package methods)
 #> x="ANY", y="ANY"
@@ -890,15 +896,20 @@ showMethods("cbind2")
 #> x="Matrix", y="vector"
 #> x="NULL", y="Matrix"
 #> x="vector", y="Matrix"
+```
 
-# To get the source code of 'cbind2' used with two matrices that both have the
-# 'Matrix' class defined by package 'Matrix'
+Then choose one of the returned methods. For example, to get the source
+code of `cbind2` used with two matrices that both have the ‘Matrix’
+class defined by package `Matrix`:
+
+``` r
+
 getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> Method Definition:
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x557d207e5970>
+#> <bytecode: 0x55be9d6e3e80>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

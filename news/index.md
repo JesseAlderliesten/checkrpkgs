@@ -1,5 +1,12 @@
 # Changelog
 
+## checkrpkgs 1.0.0
+
+#### Breaking changes
+
+- Update dependencies: add dependency `pkgdepends` to `Suggests` because
+  it is used in a vignette.
+
 ## checkrpkgs 0.12.1
 
 #### Documentation
@@ -59,9 +66,8 @@
 
 #### Documentation
 
-- Vignette `Installing R, Rtools and RStudio`: rename and restructure
-  section on configuring R. Move documentation for developers to my
-  package `develcoder`. Expanded section ‘Documentation and help’.
+- Vignette `Installing R, Rtools and RStudio`: move documentation for
+  developers to my package `develcoder`.
 
 ## checkrpkgs 0.7.1
 

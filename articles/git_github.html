@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,11 +102,11 @@ is often called a ‘repository’.</p>
 <a href="https://git-scm.com/tools/guis" class="external-link">GitHub client</a> such as <a href="https://git-scm.com/downloads" class="external-link">Git SCM</a> or <a href="https://gitforwindows.org/" class="external-link">Git for Windows</a> and install it. To
 update Git for Windows if you already have it, type
 <code>git\update-git-for-windows</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>.</p>
-<p>To use Git and GitHub from <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>: in
-RStudio at <code>Tools</code> &gt; <code>Global Options</code> &gt;
-<code>Git/SVN</code>, tick
+<p>To use Git and GitHub from <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>, in
+RStudio go to <code>Tools</code> &gt; <code>Global Options</code> &gt;
+<code>Git/SVN</code> and tick
 <code>Enable version control interface for RStudio projects</code>. The
-<code>Git executable</code> fields should point to the
+<code>Git executable</code> field should point to the
 <code>git.exe</code> file, which probably is at
 <code>C:\Program Files\Git\bin\git.exe</code> or in a hidden folder at
 <code>C:\Users\&lt;owner&gt;\AppData\Local\Git\bin\git.exe</code> (in
@@ -117,10 +117,10 @@ Windows notation; outside Windows, these paths are written as
 the <code>Git executable</code> is not correct, open the
 <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
 when installing <a href="https://gitforwindows.org/" class="external-link">Git for
-Windows</a>) by typing <code>Git Bash</code> in Windows’
-<code>Start</code> menu and press <code>Enter</code>. Then run
-<code>where git.exe</code> in the Git Bash shell to get the location of
-the Git executable.</p>
+Windows</a>) by searching for <code>Git Bash</code> in Windows’
+<code>Start</code> menu. In the Git Bash shell, run
+<code>where git.exe</code> to get the location of the Git
+executable.</p>
 <p>To associate Git with your GitHub account, you need to provide your
 name (this name is listed in GitHub with the changes you make and does
 <strong>not</strong> have to be your GitHub username), and the email
@@ -182,7 +182,7 @@ conflicts. Then <code>push</code> (upward arrow) to incorporate the
 changes in the repository on GitHub.</li>
 <li>or in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>:
 compare the content of two files, see the instructions in the section <a href="#comparing-files">Comparing files</a> below. Next, use
-<code>git commit -m '&lt;your commit message goes here&gt;' &lt;path&gt;/&lt;and&gt;/&lt;filename&gt;.R</code>
+<code>git commit -m '&lt;your commit message&gt;' &lt;path&gt;/&lt;and&gt;/&lt;filename&gt;.R</code>
 <code>git push https://github.com/&lt;username&gt;/&lt;repository&gt;</code>
 to commit changes.</li>
 </ul>
@@ -242,11 +242,11 @@ and file names, <strong>including</strong> the extensions) of the two
 files to be compared into the shell on the same line, and press
 <code>Enter</code>:
 <code>git diff --no-index '&lt;path/and/filename_file1&gt;.R' '&lt;path/and/filename_file2&gt;.R'</code></p>
-<p>Note:</p>
+<p>Notes:</p>
 <ul>
-<li>The flag <code>--no-index</code> makes it possible to compare files
-that are <strong>not</strong> under version control in
-<code>Git</code>.</li>
+<li>
+<code>--no-index</code> makes it possible to compare files that are
+<strong>not</strong> under version control in <code>Git</code>.</li>
 <li>Using quotes (<code>''</code>) around the paths ensures this also
 works when they contain spaces.</li>
 <li>The two paths should be on the same line, i.e., <strong>not</strong>
@@ -320,9 +320,9 @@ using
 or with only the last commit by using
 <code>git clone --depth=1 https://github.com/&lt;username&gt;/&lt;repository&gt;</code>.</li>
 <li>To download code without being able to push your changes back to a
-GitHub repository, you can download the repository by using the green
-<code>Code</code> button, choosing <code>Download ZIP</code> and unzip
-the downloaded file (right-click on them and choose
+GitHub repository, download the repository by using the green
+<code>Code</code> button, choose <code>Download ZIP</code> and unzip the
+downloaded file (right-click on them and choose
 <code>extract all</code>). To be able to let R use the package
 correctly, move the package to a location where R looks for packages
 (given by <code>cat(normalizePath(.libPaths()))</code>, something like
@@ -362,7 +362,7 @@ documentation about <a href="https://docs.github.com/en/repositories/creating-an
 and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks" class="external-link">forks</a>
 and the section <a href="https://happygitwithr.com/fork-and-clone" class="external-link">Fork
 and clone</a> from <a href="https://happygitwithr.com/" class="external-link">Happy Git and
-GitHub for the useR</a>;</p></li>
+GitHub for the useR</a></p></li>
 <li><p>GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link">pull
 requests</a></p></li>
 </ul>
@@ -459,12 +459,6 @@ Guide</a>
 from <a href="https://epirhandbook.com/en/" class="external-link">The Epidemiologist R
 Handbook</a>
 </li>
-</ul>
-<p>On git tags and releases:</p>
-<ul>
-<li><a href="https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases" class="external-link uri">https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases</a></li>
-<li><a href="https://www.toolsqa.com/git/git-tags/" class="external-link uri">https://www.toolsqa.com/git/git-tags/</a></li>
-<li><a href="https://www.jetbrains.com/help/dataspell/use-tags-to-mark-specific-commits.html" class="external-link uri">https://www.jetbrains.com/help/dataspell/use-tags-to-mark-specific-commits.html</a></li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
