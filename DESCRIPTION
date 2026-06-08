@@ -1,10 +1,10 @@
 Package: checkrpkgs
-Title: Information on Installing R, RStudio, Rtools, and R packages
-Version: 0.12.0
+Title: Information on Installing R, Rtools, RStudio, R Packages, Git and GitHub
+Version: 0.12.1
 Authors@R: 
     person("Jesse", "Alderliesten", email = "jessealderliesten@hotmail.com",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1132-4310"))
-Description: Information on installing and configuring R, RStudio, and Rtools;
+Description: Information on installing and configuring R, Rtools, and RStudio;
     setting up and using Git and GitHub; obtaining information about
     to-be-installed and already-installed packages, among which the source code
     of functions.

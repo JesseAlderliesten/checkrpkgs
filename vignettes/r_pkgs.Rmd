@@ -461,6 +461,12 @@ from within R after the package has been installed and
 
 - Citation: `utils::citation("<pkg>")`, with `utils::citation()` to cite R
   itself.
+- Conflicts (i.e., if objects with the same name exist in two or more places on
+  the search path): `base::conflicts(where = search(), detail = TRUE)`. See also
+  the section `Conflicts` in `help("conflictRules", package = "base")` and
+  `conflicts_prefer(<pkg>::<func>)` from package
+  [conflicted](https://CRAN.R-project.org/package=conflicted) to declare
+  preferences.
 - Function arguments: `args("<func>")`.
 - Function help page: `help("<func>")`;
   indicate the package to distinguish functions with the same name from
