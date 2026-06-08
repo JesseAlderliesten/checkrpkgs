@@ -671,7 +671,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55be9dd32b60>
+#> <bytecode: 0x561799193ef0>
 #> <environment: namespace:stats>
 ```
 
@@ -695,7 +695,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55be99add5b0>
+#> <bytecode: 0x5617949a5cf0>
 #> <environment: namespace:base>
 ```
 
@@ -736,7 +736,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55be9bdc8d70>
+#> <bytecode: 0x561796c91900>
 #> <environment: namespace:base>
 ```
 
@@ -766,7 +766,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55be9d8ac918>
+#> <bytecode: 0x561798771728>
 #> <environment: namespace:base>
 ```
 
@@ -808,7 +808,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55be9d8b1c58>
+#> <bytecode: 0x561798776a68>
 #> <environment: namespace:base>
 ```
 
@@ -851,8 +851,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55be9b771e18>
-#> <environment: 0x55be9a40a888>
+#> <bytecode: 0x56179663ab68>
+#> <environment: 0x5617952b24b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -909,7 +909,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55be9d6e3e80>
+#> <bytecode: 0x5617985a8c20>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

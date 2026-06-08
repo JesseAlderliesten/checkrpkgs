@@ -59,3 +59,13 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
 - Developers might be interested in my package
   [develcoder](https://jessealderliesten.github.io/develcoder/) with
   code and templates to develop R packages.
+
+## License
+
+This project is licensed under the terms of the [MIT
+License](https://jessealderliesten.github.io/LICENSE.md).
+
+## Citation
+
+Please cite this project [as described
+here](https://jessealderliesten.github.io/CITATION.cff).
