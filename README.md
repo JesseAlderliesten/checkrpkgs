@@ -56,9 +56,9 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
 # Similar resources
 
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)
-  by Jennifer Bryan, Jim Hester, Shannon Pileggi, and E. David Aja
-- The book [An introduction to R](https://intro2r.com/) by Alex Douglas,
-  Deon Roos, Francesca Mancini, Ana Couto and David Lusseau
+  by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja
+- The book [An introduction to R](https://intro2r.com/) by A.
+  Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau
 - Developers might be interested in my package
   [develcoder](https://jessealderliesten.github.io/develcoder/) with
   code and templates to develop R packages.
