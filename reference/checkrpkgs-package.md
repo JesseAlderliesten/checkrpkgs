@@ -1,6 +1,6 @@
-# checkrpkgs: Information on Installing R, RStudio, Rtools, and R packages
+# checkrpkgs: Information on Installing R, Rtools, RStudio, R Packages, Git and GitHub
 
-Information on installing and configuring R, RStudio, and Rtools;
+Information on installing and configuring R, Rtools, and RStudio;
 setting up and using Git and GitHub; obtaining information about
 to-be-installed and already-installed packages, among which the source
 code of functions.

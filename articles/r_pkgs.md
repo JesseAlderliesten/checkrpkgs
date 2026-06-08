@@ -541,6 +541,14 @@ been run):
 - Citation: `utils::citation("<pkg>")`, with
   [`utils::citation()`](https://rdrr.io/r/utils/citation.html) to cite R
   itself.
+- Conflicts (i.e., if objects with the same name exist in two or more
+  places on the search path):
+  `base::conflicts(where = search(), detail = TRUE)`. See also the
+  section `Conflicts` in
+  [`help("conflictRules", package = "base")`](https://rdrr.io/r/base/library.html)
+  and `conflicts_prefer(<pkg>::<func>)` from package
+  [conflicted](https://CRAN.R-project.org/package=conflicted) to declare
+  preferences.
 - Function arguments: `args("<func>")`.
 - Function help page: `help("<func>")`; indicate the package to
   distinguish functions with the same name from different packages:
@@ -651,7 +659,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55608cdc0f38>
+#> <bytecode: 0x560d3ceeefa0>
 #> <environment: namespace:stats>
 ```
 
@@ -675,7 +683,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x556088b08cf0>
+#> <bytecode: 0x560d38cb4cf0>
 #> <environment: namespace:base>
 ```
 
@@ -716,7 +724,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55608adf4900>
+#> <bytecode: 0x560d3afa0900>
 #> <environment: namespace:base>
 ```
 
@@ -746,7 +754,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55608c896eb0>
+#> <bytecode: 0x560d3ca301d8>
 #> <environment: namespace:base>
 ```
 
@@ -788,7 +796,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55608c8964a0>
+#> <bytecode: 0x560d3ca2f7c8>
 #> <environment: namespace:base>
 ```
 
@@ -831,8 +839,8 @@ getAnywhere("cbind2")
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55608a79a1d0>
-#> <environment: 0x5560894154b8>
+#> <bytecode: 0x560d3a949eb0>
+#> <environment: 0x560d395c14b8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -878,7 +886,7 @@ getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55608d448088>
+#> <bytecode: 0x560d3d5f6a28>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

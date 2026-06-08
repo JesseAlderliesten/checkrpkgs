@@ -4,8 +4,8 @@
 
 This vignette explains how to install and configure
 [R](https://www.r-project.org/),
-[RStudio](https://posit.co/products/open-source/rstudio), and
-[Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/), and
+[RStudio](https://posit.co/products/open-source/rstudio).
 
 ## R
 
@@ -41,16 +41,16 @@ Various options can be changed to make R a bit stricter:
   `list(mean = 3)$me`), when matching function arguments, and when
   getting object attributes:  
   `options(warnPartialMatchDollar = TRUE, warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE)`,
-  with default `FALSE` for each of these. Details:
+  with default `FALSE` for each of these. These options were introduced
+  in R 2.6.0. Details:
   [`help("pmatch")`](https://rdrr.io/r/base/pmatch.html),
   [`help("Extract")`](https://rdrr.io/r/base/Extract.html), and
-  [`help("attr")`](https://rdrr.io/r/base/attr.html). These options were
-  introduced in R 2.6.0.
+  [`help("attr")`](https://rdrr.io/r/base/attr.html).
 - Error instead of warn when calling `a:b` when numeric `a` or `b` is
   longer than one, such as `3:c(5, 7)`:  
-  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`. Details:
+  `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`. This option was
+  introduced in R 4.3.0. Details:
   [`help("colon", package = "base")`](https://rdrr.io/r/base/Colon.html).
-  This option was introduced in R 4.3.0.
 - Error instead of silently using only the first element in logical
   operations such as `c(TRUE, TRUE) && TRUE)`:  
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`. Details:
@@ -65,6 +65,18 @@ Various options can be changed to make R a bit stricter:
   This option was introduced in R 3.4.0 and is no longer used since R
   4.2.0 because there conditions with length larger than one always give
   an error.
+- Error instead of warn in case of conflicts (i.e., if objects with the
+  same name exist in two or more places on the search path):  
+  `options(conflicts.policy = "strict")`. This option was introduced in
+  R 3.6.0. Details:
+  [`help("conflicts", package = "base")`](https://rdrr.io/r/base/conflicts.html)
+  and the section `Conflicts` in
+  [`help("conflictRules", package = "base")`](https://rdrr.io/r/base/library.html)
+  for further options to tune conflict resolution, and
+  `conflicts_prefer(<pkg>::<func>)` from package
+  [conflicted](https://CRAN.R-project.org/package=conflicted) to declare
+  preferences (`<pkg>` and `<func>` should be replaced by the actual
+  names of the package and function to get working code).
 - Print [`warnings()`](https://rdrr.io/r/base/warnings.html) immediately
   as they occur (`options(warn = 1)`) or make them an error
   (`options(warn = 2)`). The latter should only be used for debugging
@@ -78,20 +90,12 @@ Various options can be changed to make R a bit stricter:
   browser mode and press `c` to continue code. Details:
   [`help("browser")`](https://rdrr.io/r/base/browser.html).
 
-In addition, various packages make R stricter:
-
-- Package [strict](https://github.com/hadley/strict/) warns about
-  various unsafe practices, such as the behaviour of
-  [`sample()`](https://rdrr.io/r/base/sample.html) and
-  [`diag()`](https://rdrr.io/r/base/diag.html) if called with an
-  argument of length one and type-unsafe
-  [`sapply()`](https://rdrr.io/r/base/lapply.html).
-- Package [conflicted](https://CRAN.R-project.org/package=conflicted)
-  avoids silent conflict resolution (i.e., choosing the latest attached
-  package out of multiple packages to use a function from; see
-  `help("conflict")`), and provides `conflicts_prefer(<pkg>::<func>)` to
-  declare preferences (`<pkg>` and `<func>` should be replaced by the
-  actual names of the package and function to get working code.
+In addition, package [strict](https://github.com/hadley/strict/) makes R
+stricter by warning about various unsafe practices, such as the
+behaviour of [`sample()`](https://rdrr.io/r/base/sample.html) and
+[`diag()`](https://rdrr.io/r/base/diag.html) if called with an argument
+of length one, and type-unsafe
+[`sapply()`](https://rdrr.io/r/base/lapply.html).
 
 ### Information about R
 
@@ -136,6 +140,39 @@ session:
   packages, and has the option to show only information about selected
   packages and their dependencies.
 
+## Rtools
+
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/) is **not** an R
+package but software used to build R [from
+source](https://cran.r-project.org/sources.html) and to build R packages
+from source. The latter is needed when installing packages from
+[GitHub](https://github.com/) and when installing **older** versions of
+packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
+or
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
+(see the section ‘Installing packages’ in the vignette *R packages* for
+instructions on installing R packages:
+[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
+In addition, when updating packages, you might get the question
+`Do you want to install from sources the packages which need compilation?`.
+If you have installed Rtools you can choose `Yes` to install the latest
+package versions by building them from source. If you have **not**
+installed Rtools you should choose `No`: then you will get slightly less
+up-to-date package versions (but a faster installation). See the section
+‘Troubleshooting’ in the vignette *R packages* for details:
+[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
+
+To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
+download the version appropriate for the installed version of R (see the
+output of
+[`getRversion()`](https://rdrr.io/r/base/numeric_version.html)) from
+[CRAN](https://cran.r-project.org/) via `Download R for Windows` \>
+`Rtools` \> `RTools X.Y` and set it up using the instructions given
+there. See also the
+[HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.6.html) by
+Tomas Kalibera. Alternatively, use
+`pkgbuild::check_build_tools(debug = TRUE)` to check and install Rtools.
+
 ## RStudio
 
 [RStudio](https://posit.co/products/open-source/rstudio) is an
@@ -173,10 +210,11 @@ The appearance of code can be changed at `Tools` \> `Global options` \>
 
 Choosing a good editor font deserves some attention: using a font with
 clearly distinct characters prevents confusing similar characters when
-writing code. The following strings group together characters that in
-some fonts are similar in appearance. Letters are indicated with their
-names in upper case letters that are easier to distinguish, with ‘upper’
-indicating that upper case letters are used in the string:
+reading or debugging code. The following strings group together
+characters that in some fonts are similar in appearance. Letters are
+indicated with their names in upper case letters that are easier to
+distinguish, with ‘upper’ indicating that upper case letters are used in
+the string:
 
 - `B8 S5 y4 Z2`: upper BEE, eight; upper ESS, five; WYE, four; upper
   ZED, two
@@ -193,39 +231,6 @@ Together, these strings form the following string that can be used to
 compare fonts, for example using [Adobe Fonts](https://fonts.adobe.com/)
 or [Google Fonts](https://fonts.google.com/):
 `B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D`
-
-## Rtools
-
-[Rtools](https://cran.r-project.org/bin/windows/Rtools/) is **not** an R
-package but software used to build R [from
-source](https://cran.r-project.org/sources.html) and to build R packages
-from source. The latter is needed when installing packages from
-[GitHub](https://github.com/) and when installing **older** versions of
-packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
-or
-[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
-(see the section ‘Installing packages’ in the vignette *R packages* for
-instructions on installing R packages:
-[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
-In addition, when updating packages, you might get the question
-`Do you want to install from sources the packages which need compilation?`.
-If you have installed Rtools you can choose `Yes` to install the latest
-package versions by building them from source. If you have **not**
-installed Rtools you should choose `No`: then you will get slightly less
-up-to-date package versions (but a faster installation). See the section
-‘Troubleshooting’ in the vignette *R packages* for details:
-[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
-
-To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
-download the version appropriate for the installed version of R (see the
-output of
-[`getRversion()`](https://rdrr.io/r/base/numeric_version.html)) from
-[CRAN](https://cran.r-project.org/) via `Download R for Windows` \>
-`Rtools` \> `RTools X.Y` and set it up using the instructions given
-there. See also the
-[HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.6.html) by
-Tomas Kalibera. Alternatively, use
-`pkgbuild::check_build_tools(debug = TRUE)` to check and install Rtools.
 
 ## Documentation and help
 

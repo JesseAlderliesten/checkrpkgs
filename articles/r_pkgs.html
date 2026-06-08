@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -546,6 +546,13 @@ is available from within R after the package has been installed and <a href="#lo
 <ul>
 <li>Citation: <code>utils::citation("&lt;pkg&gt;")</code>, with
 <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> to cite R itself.</li>
+<li>Conflicts (i.e., if objects with the same name exist in two or more
+places on the search path):
+<code>base::conflicts(where = search(), detail = TRUE)</code>. See also
+the section <code>Conflicts</code> in
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">help("conflictRules", package = "base")</a></code> and
+<code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> from package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link">conflicted</a> to
+declare preferences.</li>
 <li>Function arguments: <code>args("&lt;func&gt;")</code>.</li>
 <li>Function help page: <code>help("&lt;func&gt;")</code>; indicate the
 package to distinguish functions with the same name from different
@@ -664,7 +671,7 @@ the standard deviation:</p>
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55608cdc0f38&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560d3ceeefa0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
@@ -688,7 +695,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x556088b08cf0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560d38cb4cf0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -730,7 +737,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55608adf4900&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560d3afa0900&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -755,7 +762,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55608c896eb0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560d3ca301d8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>Or use <code>getAnywhere("mean.default")</code> to see the source
 code of the method <code>mean</code> used with objects of classes not
@@ -793,7 +800,7 @@ listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55608c8964a0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560d3ca2f7c8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -832,8 +839,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55608a79a1d0&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x5560894154b8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560d3a949eb0&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x560d395c14b8&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -879,7 +886,7 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55608d448088&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x560d3d5f6a28&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>

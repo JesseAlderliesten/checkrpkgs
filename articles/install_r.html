@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>This vignette explains how to install and configure <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>, and <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>.</p>
+<p>This vignette explains how to install and configure <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>, and <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="r">R<a class="anchor" aria-label="anchor" href="#r"></a>
@@ -108,15 +108,14 @@ when changing which packages are automatically loaded at startup.</p>
 <li>Warn in case of partial matching when extracting using
 <code>$</code> (e.g., <code>list(mean = 3)$me</code>), when matching
 function arguments, and when getting object attributes:<br><code>options(warnPartialMatchDollar = TRUE, warnPartialMatchArgs = TRUE, warnPartialMatchAttr = TRUE)</code>,
-with default <code>FALSE</code> for each of these. Details:
-<code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">help("pmatch")</a></code>, <code><a href="https://rdrr.io/r/base/Extract.html" class="external-link">help("Extract")</a></code>, and
-<code><a href="https://rdrr.io/r/base/attr.html" class="external-link">help("attr")</a></code>. These options were introduced in R
-2.6.0.</li>
+with default <code>FALSE</code> for each of these. These options were
+introduced in R 2.6.0. Details: <code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">help("pmatch")</a></code>,
+<code><a href="https://rdrr.io/r/base/Extract.html" class="external-link">help("Extract")</a></code>, and <code><a href="https://rdrr.io/r/base/attr.html" class="external-link">help("attr")</a></code>.</li>
 <li>Error instead of warn when calling <code>a:b</code> when numeric
 <code>a</code> or <code>b</code> is longer than one, such as
-<code>3:c(5, 7)</code>:<br><code>Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")</code>. Details:
-<code><a href="https://rdrr.io/r/base/Colon.html" class="external-link">help("colon", package = "base")</a></code>. This option was introduced
-in R 4.3.0.</li>
+<code>3:c(5, 7)</code>:<br><code>Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")</code>. This option
+was introduced in R 4.3.0. Details:
+<code><a href="https://rdrr.io/r/base/Colon.html" class="external-link">help("colon", package = "base")</a></code>.</li>
 <li>Error instead of silently using only the first element in logical
 operations such as <code>c(TRUE, TRUE) &amp;&amp; TRUE)</code>:<br><code>Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")</code>. Details:
 <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">help("Logic", package = "base")</a></code>. This option was introduced
@@ -128,6 +127,17 @@ such as <code>if(3 &lt; c(5, 7))</code>:<br><code>Sys.setenv("_R_CHECK_LENGTH_1_
 Details: <code><a href="https://rdrr.io/r/base/Control.html" class="external-link">help("Control", package = "base")</a></code>. This option was
 introduced in R 3.4.0 and is no longer used since R 4.2.0 because there
 conditions with length larger than one always give an error.</li>
+<li>Error instead of warn in case of conflicts (i.e., if objects with
+the same name exist in two or more places on the search path):<br><code>options(conflicts.policy = "strict")</code>. This option was
+introduced in R 3.6.0. Details:
+<code><a href="https://rdrr.io/r/base/conflicts.html" class="external-link">help("conflicts", package = "base")</a></code> and the section
+<code>Conflicts</code> in
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">help("conflictRules", package = "base")</a></code> for further options
+to tune conflict resolution, and
+<code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> from package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link">conflicted</a> to
+declare preferences (<code>&lt;pkg&gt;</code> and
+<code>&lt;func&gt;</code> should be replaced by the actual names of the
+package and function to get working code).</li>
 <li>Print <code><a href="https://rdrr.io/r/base/warnings.html" class="external-link">warnings()</a></code> immediately as they occur
 (<code>options(warn = 1)</code>) or make them an error
 (<code>options(warn = 2)</code>). The latter should only be used for
@@ -141,21 +151,10 @@ Press <code>Q</code> or <code>Escape</code> to quit the browser mode and
 press <code>c</code> to continue code. Details:
 <code><a href="https://rdrr.io/r/base/browser.html" class="external-link">help("browser")</a></code>.</li>
 </ul>
-<p>In addition, various packages make R stricter:</p>
-<ul>
-<li>Package <a href="https://github.com/hadley/strict/" class="external-link">strict</a> warns
-about various unsafe practices, such as the behaviour of
+<p>In addition, package <a href="https://github.com/hadley/strict/" class="external-link">strict</a> makes R stricter by
+warning about various unsafe practices, such as the behaviour of
 <code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code> and <code><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag()</a></code> if called with an argument
-of length one and type-unsafe <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply()</a></code>.</li>
-<li>Package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link">conflicted</a>
-avoids silent conflict resolution (i.e., choosing the latest attached
-package out of multiple packages to use a function from; see
-<code>help("conflict")</code>), and provides
-<code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> to declare
-preferences (<code>&lt;pkg&gt;</code> and <code>&lt;func&gt;</code>
-should be replaced by the actual names of the package and function to
-get working code.</li>
-</ul>
+of length one, and type-unsafe <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply()</a></code>.</p>
 </div>
 <div class="section level3">
 <h3 id="information-about-r">Information about R<a class="anchor" aria-label="anchor" href="#information-about-r"></a>
@@ -204,6 +203,36 @@ information about selected packages and their dependencies.</li>
 </div>
 </div>
 <div class="section level2">
+<h2 id="rtools">Rtools<a class="anchor" aria-label="anchor" href="#rtools"></a>
+</h2>
+<p><a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>
+is <strong>not</strong> an R package but software used to build R <a href="https://cran.r-project.org/sources.html" class="external-link">from source</a> and to
+build R packages from source. The latter is needed when installing
+packages from <a href="https://github.com/" class="external-link">GitHub</a> and when
+installing <strong>older</strong> versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">Bioconductor</a>
+(see the section ‘Installing packages’ in the vignette <em>R
+packages</em> for instructions on installing R packages:
+<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>). In addition,
+when updating packages, you might get the question
+<code>Do you want to install from sources the packages which need compilation?</code>.
+If you have installed Rtools you can choose <code>Yes</code> to install
+the latest package versions by building them from source. If you have
+<strong>not</strong> installed Rtools you should choose <code>No</code>:
+then you will get slightly less up-to-date package versions (but a
+faster installation). See the section ‘Troubleshooting’ in the vignette
+<em>R packages</em> for details:
+<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>.</p>
+<p>To install <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>,
+download the version appropriate for the installed version of R (see the
+output of <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code>) from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> via
+<code>Download R for Windows</code> &gt; <code>Rtools</code> &gt;
+<code>RTools X.Y</code> and set it up using the instructions given
+there. See also the <a href="https://cran.r-project.org/bin/windows/base/howto-R-4.6.html" class="external-link">HowTo</a>
+by Tomas Kalibera. Alternatively, use
+<code>pkgbuild::check_build_tools(debug = TRUE)</code> to check and
+install Rtools.</p>
+</div>
+<div class="section level2">
 <h2 id="rstudio">RStudio<a class="anchor" aria-label="anchor" href="#rstudio"></a>
 </h2>
 <p><a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>
@@ -239,10 +268,11 @@ themes are the light <code>Xcode</code> and the dark
 <code>Lucida Console</code>.</p>
 <p>Choosing a good editor font deserves some attention: using a font
 with clearly distinct characters prevents confusing similar characters
-when writing code. The following strings group together characters that
-in some fonts are similar in appearance. Letters are indicated with
-their names in upper case letters that are easier to distinguish, with
-‘upper’ indicating that upper case letters are used in the string:</p>
+when reading or debugging code. The following strings group together
+characters that in some fonts are similar in appearance. Letters are
+indicated with their names in upper case letters that are easier to
+distinguish, with ‘upper’ indicating that upper case letters are used in
+the string:</p>
 <ul>
 <li>
 <code>B8 S5 y4 Z2</code>: upper BEE, eight; upper ESS, five; WYE,
@@ -267,36 +297,6 @@ slash</li>
 compare fonts, for example using <a href="https://fonts.adobe.com/" class="external-link">Adobe Fonts</a> or <a href="https://fonts.google.com/" class="external-link">Google Fonts</a>:
 <code>B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D</code></p>
 </div>
-</div>
-<div class="section level2">
-<h2 id="rtools">Rtools<a class="anchor" aria-label="anchor" href="#rtools"></a>
-</h2>
-<p><a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>
-is <strong>not</strong> an R package but software used to build R <a href="https://cran.r-project.org/sources.html" class="external-link">from source</a> and to
-build R packages from source. The latter is needed when installing
-packages from <a href="https://github.com/" class="external-link">GitHub</a> and when
-installing <strong>older</strong> versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">Bioconductor</a>
-(see the section ‘Installing packages’ in the vignette <em>R
-packages</em> for instructions on installing R packages:
-<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>). In addition,
-when updating packages, you might get the question
-<code>Do you want to install from sources the packages which need compilation?</code>.
-If you have installed Rtools you can choose <code>Yes</code> to install
-the latest package versions by building them from source. If you have
-<strong>not</strong> installed Rtools you should choose <code>No</code>:
-then you will get slightly less up-to-date package versions (but a
-faster installation). See the section ‘Troubleshooting’ in the vignette
-<em>R packages</em> for details:
-<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>.</p>
-<p>To install <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>,
-download the version appropriate for the installed version of R (see the
-output of <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code>) from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> via
-<code>Download R for Windows</code> &gt; <code>Rtools</code> &gt;
-<code>RTools X.Y</code> and set it up using the instructions given
-there. See also the <a href="https://cran.r-project.org/bin/windows/base/howto-R-4.6.html" class="external-link">HowTo</a>
-by Tomas Kalibera. Alternatively, use
-<code>pkgbuild::check_build_tools(debug = TRUE)</code> to check and
-install Rtools.</p>
 </div>
 <div class="section level2">
 <h2 id="documentation-and-help">Documentation and help<a class="anchor" aria-label="anchor" href="#documentation-and-help"></a>
