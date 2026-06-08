@@ -1,3 +1,11 @@
+# checkrpkgs 0.12.1
+
+### Documentation
+- Describe how to make R stricter with respect to conflict resolution using base
+  R.
+- Describe and mention Rtools before RStudio.
+
+
 # checkrpkgs 0.12.0
 
 ### Breaking changes
