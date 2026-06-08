@@ -129,13 +129,6 @@ versions of packages from
 (see the section 'Installing packages' in the vignette *R packages* for
 instructions on installing R packages:
 `vignette("r_pkgs", package = "checkrpkgs")`).
-In addition, when updating packages, you might get the question
-`Do you want to install from sources the packages which need compilation?`. If
-you have installed Rtools you can choose `Yes` to install the latest package
-versions by building them from source. If you have **not** installed Rtools you
-should choose `No`: then you will get slightly less up-to-date package versions
-(but a faster installation). See the section 'Troubleshooting' in the vignette
-*R packages* for details: `vignette("r_pkgs", package = "checkrpkgs")`.
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/), download
 the version appropriate for the installed version of R (see the output of
@@ -145,6 +138,14 @@ instructions given there. See also the
 [HowTo](https://cran.r-project.org/bin/windows/base/howto-R-4.6.html) by Tomas
 Kalibera. Alternatively, use `pkgbuild::check_build_tools(debug = TRUE)` to
 check and install Rtools.
+
+If you have installed Rtools, you might get the question
+`Do you want to install from sources the packages which need compilation?` when
+updating packages. You can choose `Yes` to install the latest package versions
+by building them from source, or choose `No` to get slightly less up-to-date
+package versions but a faster installation. See the section 'Troubleshooting' in
+the vignette *R packages* for details:
+`vignette("r_pkgs", package = "checkrpkgs")`.
 
 ## RStudio
 [RStudio](https://posit.co/products/open-source/rstudio) is an
@@ -193,10 +194,11 @@ used in the string:
 - `71lI|i/`: seven, one, EL, upper I, vertical bar, I, slash
 - `oQO0D`: O, upper CUE, upper O, ZERO, upper DEE
 
-Together, these strings form the following string that can be used to compare
-fonts, for example using [Adobe Fonts](https://fonts.adobe.com/) or
-[Google Fonts](https://fonts.google.com/):
-`B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D`
+Together, these strings form the string
+`B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D` that
+can be used to compare fonts, for example using
+[Adobe Fonts](https://fonts.adobe.com/) or
+[Google Fonts](https://fonts.google.com/).
 
 ## Documentation and help
 - [Bug reporting](https://www.r-project.org/bugs.html), linking to
