@@ -1,3 +1,10 @@
+# checkrpkgs 1.0.0
+
+### Breaking changes
+- Update dependencies: add dependency `pkgdepends` to `Suggests` because it is
+  used in a vignette.
+
+
 # checkrpkgs 0.12.1
 
 ### Documentation
