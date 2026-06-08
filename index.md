@@ -50,16 +50,6 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
   explaining how to set up and use Git and [GitHub](https://github.com/)
   with RStudio.
 
-# Similar resources
-
-- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
-  by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja
-- The book [An introduction to R](https://intro2r.com/) by A.
-  Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau
-- Developers might be interested in my package
-  [develcoder](https://jessealderliesten.github.io/develcoder/) with
-  code and templates to develop R packages.
-
 ## License
 
 This project is licensed under the terms of the [MIT
@@ -69,3 +59,13 @@ License](https://jessealderliesten.github.io/LICENSE.md).
 
 Please cite this project [as described
 here](https://jessealderliesten.github.io/CITATION.cff).
+
+# Similar resources
+
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+  by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja
+- The book [An introduction to R](https://intro2r.com/) by A.
+  Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau
+- Developers might be interested in my package
+  [develcoder](https://jessealderliesten.github.io/develcoder/) with
+  code and templates to develop R packages.
