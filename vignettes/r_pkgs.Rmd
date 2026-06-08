@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 ```
 
 ## Introduction and notation
-This vignette explains how to install R packages, how to get information about
-to-be-installed and already-installed R packages, and how to get the source code
+This vignette explains how to install R packages; how to get information about
+to-be-installed and already-installed R packages; and how to get the source code
 of R functions.
 
 Text between angled brackets (`<...>`) is used to refer to
@@ -637,7 +637,8 @@ If `getAnywhere("<func>")` returns `standardGeneric("<func>")`, the
 function has different S4-methods for different object classes (see
 `help("Introduction", package = "methods")`). Use `showMethods("<func>")` to get
 an overview of the available
-methods in all [**attached**][Loading and attaching packages] packages, or use `<pkg>:::<func>` to get an
+methods in all [attached][Loading and attaching packages] packages, or use
+`<pkg>:::<func>` to get an
 overview of the available methods from package `<pkg>`. Finally, provide the
 function name as argument `f` and the selected method as a character vector to
 argument `signature` (see also `help("signature")`) of function `getMethod()` to
@@ -652,13 +653,20 @@ as defined by package `Matrix`.
 # Need to attach and load package 'Matrix' for this example to work
 library(Matrix)
 getAnywhere("cbind2")
+```
 
-# standardGeneric("cbind2") indicating that cbind2() is an S4 function, so use
-# showMethods("cbind2") to get an overview of the different methods:
+`standardGeneric("cbind2")` indicates that `cbind2()` is an S4 function, so use
+`showMethods("cbind2")` to get an overview of the different methods:
+
+```{r, eval = TRUE}
 showMethods("cbind2")
+```
 
-# To get the source code of 'cbind2' used with two matrices that both have the
-# 'Matrix' class defined by package 'Matrix'
+Then choose one of the returned methods. For example, to get the source code of
+`cbind2` used with two matrices that both have the 'Matrix' class defined by
+package `Matrix`:
+
+```{r, eval = TRUE}
 getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
 ```
 
