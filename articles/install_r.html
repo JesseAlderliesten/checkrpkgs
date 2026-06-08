@@ -212,16 +212,7 @@ packages from <a href="https://github.com/" class="external-link">GitHub</a> and
 installing <strong>older</strong> versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">Bioconductor</a>
 (see the section ‘Installing packages’ in the vignette <em>R
 packages</em> for instructions on installing R packages:
-<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>). In addition,
-when updating packages, you might get the question
-<code>Do you want to install from sources the packages which need compilation?</code>.
-If you have installed Rtools you can choose <code>Yes</code> to install
-the latest package versions by building them from source. If you have
-<strong>not</strong> installed Rtools you should choose <code>No</code>:
-then you will get slightly less up-to-date package versions (but a
-faster installation). See the section ‘Troubleshooting’ in the vignette
-<em>R packages</em> for details:
-<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>.</p>
+<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>).</p>
 <p>To install <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>,
 download the version appropriate for the installed version of R (see the
 output of <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code>) from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> via
@@ -231,6 +222,14 @@ there. See also the <a href="https://cran.r-project.org/bin/windows/base/howto-R
 by Tomas Kalibera. Alternatively, use
 <code>pkgbuild::check_build_tools(debug = TRUE)</code> to check and
 install Rtools.</p>
+<p>If you have installed Rtools, you might get the question
+<code>Do you want to install from sources the packages which need compilation?</code>
+when updating packages. You can choose <code>Yes</code> to install the
+latest package versions by building them from source, or choose
+<code>No</code> to get slightly less up-to-date package versions but a
+faster installation. See the section ‘Troubleshooting’ in the vignette
+<em>R packages</em> for details:
+<code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="rstudio">RStudio<a class="anchor" aria-label="anchor" href="#rstudio"></a>
@@ -293,9 +292,9 @@ slash</li>
 <li>
 <code>oQO0D</code>: O, upper CUE, upper O, ZERO, upper DEE</li>
 </ul>
-<p>Together, these strings form the following string that can be used to
-compare fonts, for example using <a href="https://fonts.adobe.com/" class="external-link">Adobe Fonts</a> or <a href="https://fonts.google.com/" class="external-link">Google Fonts</a>:
-<code>B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D</code></p>
+<p>Together, these strings form the string
+<code>B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D</code>
+that can be used to compare fonts, for example using <a href="https://fonts.adobe.com/" class="external-link">Adobe Fonts</a> or <a href="https://fonts.google.com/" class="external-link">Google Fonts</a>.</p>
 </div>
 </div>
 <div class="section level2">

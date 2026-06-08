@@ -2,9 +2,9 @@
 
 `checkrpkgs` explains how to install and configure
 [R](https://www.r-project.org/),
-[RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
-[Rtools](https://cran.r-project.org/bin/windows/Rtools/); how to install
-R packages; how to get information about to-be-installed and
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/), and
+[RStudio](https://posit.co/products/open-source/rstudio/?sid=1); how to
+install R packages; how to get information about to-be-installed and
 already-installed R packages; how to get the source code of R functions;
 and how to set up and use Git and GitHub with RStudio.
 
@@ -36,8 +36,8 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md),
   explaining how to install and configure
   [R](https://www.r-project.org/),
-  [RStudio](https://posit.co/products/open-source/rstudio/?sid=1), and
-  [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+  [Rtools](https://cran.r-project.org/bin/windows/Rtools/), and
+  [RStudio](https://posit.co/products/open-source/rstudio/?sid=1).
 - [R
   packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md),
@@ -53,9 +53,9 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
 # Similar resources
 
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)
-  by Jennifer Bryan, Jim Hester, Shannon Pileggi, and E. David Aja
-- The book [An introduction to R](https://intro2r.com/) by Alex Douglas,
-  Deon Roos, Francesca Mancini, Ana Couto and David Lusseau
+  by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja
+- The book [An introduction to R](https://intro2r.com/) by A.
+  Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau
 - Developers might be interested in my package
   [develcoder](https://jessealderliesten.github.io/develcoder/) with
   code and templates to develop R packages.

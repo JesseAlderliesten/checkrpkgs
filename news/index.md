@@ -4,6 +4,7 @@
 
 #### Documentation
 
+- Create sub-sections and restructure text of vignettes.
 - Describe how to make R stricter with respect to conflict resolution
   using base
   18. 

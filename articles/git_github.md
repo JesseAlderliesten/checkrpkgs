@@ -16,9 +16,9 @@ a username and repository name, e.g.,
 of this package.
 
 Files on your PC are called often called ‘local files’, whereas files on
-GitHub are called ‘remote files’. In addition, a folder on your PC
-(e.g., `C:\Program Files\R\R-4.6.0\library\checkrpkgs`) is often called
-a ‘directory’, whereas a folder on GitHub (e.g.,
+GitHub are called ‘remote files’. Similarly, a folder on your PC (e.g.,
+`C:\Program Files\R\R-4.6.0\library\checkrpkgs`) is often called a
+‘directory’, whereas a folder on GitHub (e.g.,
 <https://github.com/JesseAlderliesten/checkrpkgs>) is often called a
 ‘repository’.
 
@@ -36,9 +36,10 @@ To use Git and GitHub from
 `Tools` \> `Global Options` \> `Git/SVN`, tick
 `Enable version control interface for RStudio projects`. The
 `Git executable` fields should point to the `git.exe` file, which
-probably is at `C:\Program Files\Git\bin\git.exe` or (in the hidden
-folder) at `C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows
-notation; in R these paths are `C:/Program Files/Git/bin/git.exe` or
+probably is at `C:\Program Files\Git\bin\git.exe` or in a hidden folder
+at `C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows
+notation; outside Windows, these paths are written as
+`C:/Program Files/Git/bin/git.exe` or
 `C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, see [Paths in the
 shell](#paths-in-the-shell)). If the content of the `Git executable` is
 not correct, open the `Git Bash`
@@ -70,12 +71,12 @@ On the use of personal access tokens (PATs) instead of a username and
 password, see:
 
 - GitHub
-  [documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens);
+  [documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 - The Chapter about [Personal Access
   Tokens](https://happygitwithr.com/https-pat.html) in [Happy Git and
-  GitHub for the useR](https://happygitwithr.com/);
+  GitHub for the useR](https://happygitwithr.com/)
 - A [vignette](https://usethis.r-lib.org/articles/git-credentials.html)
-  from package [usethis](https://CRAN.R-project.org/package=usethis).
+  from package [usethis](https://CRAN.R-project.org/package=usethis)
 
 ## Using Git and GitHub
 
@@ -89,9 +90,9 @@ pane](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 any conflicts to get directory on your PC up-to-date with the repository
 on GitHub:
 
-- in RStudio: use the `pull` button (downward arrow) in the `Git` menu;
-- in the [shell](https://happygitwithr.com/shell):
-  `git pull https://github.com/<username>/<repository>`.
+- in RStudio: use the `pull` button (downward arrow) in the `Git` menu
+- or in the [shell](https://happygitwithr.com/shell):
+  `git pull https://github.com/<username>/<repository>`
 
 Save the modified R file after you have made some changes, only then
 will the name of the file appear in the `Git` menu of RStudio to review
@@ -99,12 +100,12 @@ changes:
 
 - in RStudio: check the box in front of the relevant filename, use the
   `Diff` button in the `Git` menu to get an overview of the changes to
-  the file, describe the changes in the box `Commit message`, and use
-  the `Commit` button. `Pull` again (downward arrow) to make sure the
-  directory on your PC is up-to-date, and handle any conflicts. Then
-  `push` (upward arrow) to incorporate the changes in the repository on
-  GitHub.
-- in the [shell](https://happygitwithr.com/shell): to compare the
+  the file, in the box `Commit message` you should describe the changes
+  and why you made them, and use the `Commit` button. `Pull` again
+  (downward arrow) to make sure the directory on your PC is up-to-date,
+  and handle any conflicts. Then `push` (upward arrow) to incorporate
+  the changes in the repository on GitHub.
+- or in the [shell](https://happygitwithr.com/shell): compare the
   content of two files, see the instructions in the section [Comparing
   files](#comparing-files) below. Next, use
   `git commit -m '<your commit message goes here>' <path>/<and>/<filename>.R`
@@ -115,21 +116,24 @@ If a `Push` leads to an error because of an invalid username or
 password, `Push` again, then you will be asked for a personal access
 token (PAT; see the section [Using personal access tokens
 (PATs)](#using-personal-access-tokens-pats) above). After you have
-entered the PAT once, RStudio will remember this token for next times.
+entered the PAT once, RStudio will remember it.
 
 ## Adding a new file
 
 To add a file to GitHub that is not there yet, first add it to the R
-project folder on your PC, then let `git` know it is there by typing (it
-is convenient to use `tab`-completion to select files):
-`git add <filename>.<extension>`.
+project folder on your PC, then check the `staged` box in the `GitHub`
+pane of RStudio and commit it as described
+[above](#using-git-and-github)
 
-If the working directory is **not** the folder where the to-be-added
-file is in, the working directory has to be changed to that folder
-(e.g., using `cd <path/to/folder>` in the
+In the shell this is more involved: If the working directory is **not**
+the folder where the to-be-added file is in, the working directory has
+to be changed to that folder (e.g., using `cd <path/to/folder>` in the
 [shell](https://happygitwithr.com/shell)), or the path has to be added
 in front of the filename (dragging the file onto the shell will copy the
 path to the shell).
+
+Then let `git` know it is there by typing (it is convenient to use
+`tab`-completion to select files): `git add <filename>.<extension>`.
 
 ## Comparing files
 
@@ -188,8 +192,8 @@ the file was deleted. Then `pull` to make sure directory on your PC is
 up to date with the repository on GitHub, and then `push` the change to
 the GitHub repository.
 
-Alternatively, open the file in the `GitHub` repository), click the
-three dots at the top-right of the file \> `delete` \> `commit`. Use the
+Alternatively, open the file in the `GitHub` repository, click the three
+dots at the top-right of the file \> `delete` \> `commit`. Use the
 commit message to describe why the file was deleted. After that, find
 the file on your PC and delete it. Then `pull`.
 
@@ -218,8 +222,8 @@ PC:
   the step above; or to work on your project from another PC), you have
   to clone the GitHub repository to your PC: use the green `Code` button
   in the repository (if you forked a repository, you need the `Code`
-  button of your fork, not of the original repository), copy the URL to
-  the clipboard (i.e., do **not** use `download ZIP`), create a new R
+  button of **your** fork, not of the original repository), copy the URL
+  to the clipboard (i.e., do **not** use `download ZIP`), create a new R
   project in RStudio (`File` \> `New Project` \> `Version control` \>
   `Git`), paste the repository URL
   (`https://github.com/<username>/<repository>`) in the designated
