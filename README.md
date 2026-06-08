@@ -11,9 +11,9 @@
 [R](https://www.r-project.org/),
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/), and
 [RStudio](https://posit.co/products/open-source/rstudio/?sid=1); how to
-install R packages; how to get information about to-be-installed and
-already-installed R packages; how to get the source code of R functions;
-and how to set up and use Git and GitHub with RStudio.
+set up and use Git and GitHub with RStudio; how to install R packages
+and get information about to-be-installed and already-installed
+packages; and how to get the source code of R functions.
 
 ## Installation
 
@@ -45,9 +45,10 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
   [RStudio](https://posit.co/products/open-source/rstudio/?sid=1).
 - [R
   packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
-  `vignette("r_pkgs", package = "checkrpkgs")`, explaining how to get
-  information about to-be-installed and already-installed R packages and
-  how to get the source code of R functions.
+  `vignette("r_pkgs", package = "checkrpkgs")`, explaining how to
+  install R packages; how to get information about to-be-installed and
+  already-installed R packages; and how to get the source code of R
+  functions.
 - [Using Git and
   GitHub](https://jessealderliesten.github.io/checkrpkgs/articles/git_github.html):
   `vignette("git_github", package = "checkrpkgs")`, explaining how to

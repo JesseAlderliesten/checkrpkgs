@@ -1,6 +1,6 @@
 Package: checkrpkgs
 Title: Information on Installing R, Rtools, RStudio, R Packages, Git and GitHub
-Version: 0.12.1
+Version: 1.0.0
 Authors@R: 
     person("Jesse", "Alderliesten", email = "jessealderliesten@hotmail.com",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1132-4310"))
@@ -20,6 +20,7 @@ Suggests:
     Matrix,
     methods,
     pkgbuild,
+    pkgdepends,
     remotes (>= 2.0.0),
     rmarkdown,
     sessioninfo (>= 1.2.0),
