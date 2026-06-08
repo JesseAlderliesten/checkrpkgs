@@ -52,9 +52,8 @@
   update argument name `allow_zero` to `allow_zero_length`.
 
 ### Documentation
-- Vignette `Installing R, Rtools and RStudio`: rename and restructure section on
-  configuring R. Move documentation for developers to my package `develcoder`.
-  Expanded section 'Documentation and help'.
+- Vignette `Installing R, Rtools and RStudio`: move documentation for developers
+  to my package `develcoder`.
 
 
 # checkrpkgs 0.7.1
