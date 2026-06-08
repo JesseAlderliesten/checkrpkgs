@@ -20,8 +20,8 @@ knitr::opts_chunk$set(
 ## Introduction
 This vignette explains how to install and configure
 [R](https://www.r-project.org/),
-[RStudio](https://posit.co/products/open-source/rstudio),
-and [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/),
+and [RStudio](https://posit.co/products/open-source/rstudio).
 
 ## R
 To install [R](https://www.r-project.org/), visit a nearby CRAN
