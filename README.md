@@ -57,13 +57,29 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
 ## License
 
 This project is licensed under the terms of the [MIT
-License](/LICENSE.md).
+License](LICENSE.md).
 
 ## Citation
 
-Please cite this project [as described here](/CITATION.cff).
+    To cite package 'checkrpkgs' in publications use:
 
-# Similar resources
+      Alderliesten J (2026). _checkrpkgs: Information on Installing R,
+      Rtools, RStudio, R Packages, Git and GitHub_. R package version
+      1.0.0, commit 4ebd5719a990f1bddee685bb60dc692d54fafd3e,
+      <https://github.com/JesseAlderliesten/checkrpkgs>.
+
+    A BibTeX entry for LaTeX users is
+
+      @Manual{,
+        title = {checkrpkgs: Information on Installing R, Rtools, RStudio, R Packages, Git
+    and GitHub},
+        author = {Jesse Alderliesten},
+        year = {2026},
+        note = {R package version 1.0.0, commit 4ebd5719a990f1bddee685bb60dc692d54fafd3e},
+        url = {https://github.com/JesseAlderliesten/checkrpkgs},
+      }
+
+## Similar resources
 
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)
   by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja
