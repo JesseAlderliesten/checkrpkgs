@@ -40,7 +40,7 @@ is often called a 'repository'.
 ## Setting up Git and GitHub
 Create a [GitHub](https://github.com/) account, download a
 [GitHub client](https://git-scm.com/tools/guis) such as
-[Git SCM](https://git-scm.com/downloads) or
+[Git SCM](https://git-scm.com/downloads/) or
 [Git for Windows](https://gitforwindows.org/) and install it. To update Git for
 Windows if you already have it, type `git\update-git-for-windows` in the
 [shell](https://happygitwithr.com/shell).

@@ -151,7 +151,7 @@ the vignette *R packages* for details:
 [RStudio](https://posit.co/products/open-source/rstudio) is an
 [integrated development environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
 for R developed by [Posit](https://posit.co/) that can be downloaded
-[here](https://posit.co/download/rstudio-desktop/).
+[here](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads).
 
 RStudio can also be used to read and modify plain-text files.
 

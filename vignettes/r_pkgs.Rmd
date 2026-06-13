@@ -230,7 +230,9 @@ messages on progress for non-standard packages (see the section `Tracing` in
 `utils::sessionInfo()` also gives their versions, and
 `sessioninfo::session_info()` provides more details and has the option to show
 information about their dependencies. `options("defaultPackages")` gives the
-names of packages that are attached by default when R starts up.
+names of packages that are attached by default when R starts up if environment
+variable `R_DEFAULT_PACKAGES` is unset (i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
+is `""`, see `help("Startup")` and the entry `defaultPackages` in `help(options)`).
 
 ### Updating packages
 Updating out-of-date packages prevents compatibility issues between
@@ -268,7 +270,7 @@ if(!requireNamespace("BiocManager", quietly = TRUE)) {
                    quiet = FALSE)
 }
 BiocManager::install(pkgs = character(), lib = .libPaths(), dependencies = NA,
-                     build_vignettes = TRUE, 
+                     build_vignettes = TRUE,
                      type = getOption("pkgType"), verbose = getOption("verbose"),
                      update = TRUE, ask = TRUE, checkBuilt = TRUE, force = FALSE,
                      version = "3.23")
@@ -357,6 +359,10 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
 - If a package appears not to be installed when you want to use a function from
   it (e.g., you get the error `could not find function "<func>"`), remember
   you need to run `library(<pkg>)` to be able to use its functions.
+
+- If `library(<pkg>)` results in the error `there is no package called '<pkg>'`,
+  you have not installed the package, or it is not in any of the library paths
+  returned by `.libPaths()`, which is where R looks for packages.
 
 - To check that a package is installed and functional, use `library(<pkg)` or
   `requireNamespace(<pkg>)`. These functions do not allow vectors as input, such
