@@ -70,5 +70,5 @@ citation("checkrpkgs")
 - The book [An introduction to R](https://intro2r.com/) by A. Douglas, D. Roos,
   F. Mancini, A. Couto and D. Lusseau
 - Developers might be interested in my package
-  [develcoder](https://jessealderliesten.github.io/develcoder/) with code and
+  [`develcoder`](https://jessealderliesten.github.io/develcoder/) with code and
   templates to develop R packages.

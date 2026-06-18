@@ -1,3 +1,10 @@
+# checkrpkgs 1.0.1
+
+### Documentation
+- Apply stylistic suggestions provided by various packages like `goodpractice`
+  that check code sanity.
+
+
 # checkrpkgs 1.0.0
 
 ### Breaking changes
