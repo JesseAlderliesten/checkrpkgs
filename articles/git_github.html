@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,8 +99,8 @@ is often called a ‘repository’.</p>
 <h2 id="setting-up-git-and-github">Setting up Git and GitHub<a class="anchor" aria-label="anchor" href="#setting-up-git-and-github"></a>
 </h2>
 <p>Create a <a href="https://github.com/" class="external-link">GitHub</a> account, download a
-<a href="https://git-scm.com/tools/guis" class="external-link">GitHub client</a> such as <a href="https://git-scm.com/downloads" class="external-link">Git SCM</a> or <a href="https://gitforwindows.org/" class="external-link">Git for Windows</a> and install it. To
-update Git for Windows if you already have it, type
+<a href="https://git-scm.com/tools/guis" class="external-link">GitHub client</a> such as <a href="https://git-scm.com/downloads/" class="external-link"><code>Git SCM</code></a> or <a href="https://gitforwindows.org/" class="external-link"><code>Git for Windows</code></a> and
+install it. To update Git for Windows if you already have it, type
 <code>git\update-git-for-windows</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>.</p>
 <p>To use Git and GitHub from <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>, in
 RStudio go to <code>Tools</code> &gt; <code>Global Options</code> &gt;
@@ -111,23 +111,22 @@ RStudio go to <code>Tools</code> &gt; <code>Global Options</code> &gt;
 <code>C:\Program Files\Git\bin\git.exe</code> or in a hidden folder at
 <code>C:\Users\&lt;owner&gt;\AppData\Local\Git\bin\git.exe</code> (in
 Windows notation; outside Windows, these paths are written as
-<code>C:/Program Files/Git/bin/git.exe</code> or
-<code>C:/Users/&lt;owner&gt;/AppData/Local/Git/bin/git.exe</code>, see
-<a href="#paths-in-the-shell">Paths in the shell</a>). If the content of
-the <code>Git executable</code> is not correct, open the
-<code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
-when installing <a href="https://gitforwindows.org/" class="external-link">Git for
-Windows</a>) by searching for <code>Git Bash</code> in Windows’
-<code>Start</code> menu. In the Git Bash shell, run
-<code>where git.exe</code> to get the location of the Git
-executable.</p>
+<code>C:/Program Files/Git/bin/git.exe</code> and
+<code>C:/Users/&lt;owner&gt;/AppData/Local/Git/bin/git.exe</code>,
+respectively, see <a href="#paths-in-the-shell">Paths in the shell</a>).
+If the content of the <code>Git executable</code> is not correct, open
+the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
+when installing <a href="https://gitforwindows.org/" class="external-link"><code>Git for Windows</code></a>) by
+searching for <code>Git Bash</code> in Windows’ <code>Start</code> menu.
+In the Git Bash shell, run <code>where git.exe</code> to get the
+location of the Git executable.</p>
 <p>To associate Git with your GitHub account, you need to provide your
 name (this name is listed in GitHub with the changes you make and does
 <strong>not</strong> have to be your GitHub username), and the email
-associated with your GitHub account. See the Chapter <a href="https://happygitwithr.com/hello-git.html" class="external-link">Introduce yourself to
-Git</a> from <a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub
-for the useR</a> for more details.</p>
-<pre class="git"><code>git config --global user.name '&lt;Jane Doe&gt;'
+associated with your GitHub account. See the Chapter <a href="https://happygitwithr.com/hello-git.html" class="external-link"><code>Introduce yourself to Git</code></a>
+from <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
+for more details.</p>
+<pre><code>git config --global user.name '&lt;Jane Doe&gt;'
 git config --global user.email '&lt;jane@example.com&gt;'
 git config --global --list</code></pre>
 <p>The last line should return the username and email address you just
@@ -140,12 +139,11 @@ password, see:</p>
 <ul>
 <li>GitHub <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" class="external-link">documentation</a>
 </li>
-<li>The Chapter about <a href="https://happygitwithr.com/https-pat.html" class="external-link">Personal Access
-Tokens</a> in <a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub
-for the useR</a>
+<li>The Chapter about <a href="https://happygitwithr.com/https-pat.html" class="external-link"><code>Personal Access Tokens</code></a>
+in <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
 </li>
 <li>A <a href="https://usethis.r-lib.org/articles/git-credentials.html" class="external-link">vignette</a>
-from package <a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a>
+from package <a href="https://CRAN.R-project.org/package=usethis" class="external-link"><code>usethis</code></a>
 </li>
 </ul>
 </div>
@@ -156,11 +154,10 @@ from package <a href="https://CRAN.R-project.org/package=usethis" class="externa
 <p>To work with GitHub in RStudio, you should open the R Project file
 (i.e., a file with extension <code>.Rproj</code>), <strong>not</strong>
 the R script (i.e., a file with extension <code>.R</code>). Then the
-<code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link">Environment
-pane</a>.</p>
-<p><code>Pull</code> to get changes from <code>GitHub</code>)
-incorporated in your PC, and handle any conflicts to get directory on
-your PC up-to-date with the repository on GitHub:</p>
+<code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link"><code>Environment pane</code></a>.</p>
+<p><code>Pull</code> to get changes from GitHub) incorporated in your
+PC, and handle any conflicts to get directory on your PC up-to-date with
+the repository on GitHub:</p>
 <ul>
 <li>in RStudio: use the <code>pull</code> button (downward arrow) in the
 <code>Git</code> menu</li>
@@ -191,6 +188,12 @@ username or password, <code>Push</code> again, then you will be asked
 for a personal access token (PAT; see the section <a href="#using-personal-access-tokens-pats">Using personal access tokens
 (PATs)</a> above). After you have entered the PAT once, RStudio will
 remember it.</p>
+<p>To <code>Push</code> only some of the changes you made, use the
+<code>Diff</code> button in the <code>Git</code> menu and select the
+line or lines of code containing the changes you want to
+<code>Push</code>. Then select click <code>Stage line</code> or
+<code>Stage chunck</code> button that will show up next to the selected
+code.</p>
 </div>
 <div class="section level2">
 <h2 id="adding-a-new-file">Adding a new file<a class="anchor" aria-label="anchor" href="#adding-a-new-file"></a>
@@ -246,7 +249,7 @@ files to be compared into the shell on the same line, and press
 <ul>
 <li>
 <code>--no-index</code> makes it possible to compare files that are
-<strong>not</strong> under version control in <code>Git</code>.</li>
+<strong>not</strong> under version control in Git.</li>
 <li>Using quotes (<code>''</code>) around the paths ensures this also
 works when they contain spaces.</li>
 <li>The two paths should be on the same line, i.e., <strong>not</strong>
@@ -272,11 +275,11 @@ line thirteen and an insertion at character nine of line fourteen.</li>
 <code>pull</code> to make sure directory on your PC is up to date with
 the repository on GitHub, and then <code>push</code> the change to the
 GitHub repository.</p>
-<p>Alternatively, open the file in the <code>GitHub</code> repository,
-click the three dots at the top-right of the file &gt;
-<code>delete</code> &gt; <code>commit</code>. Use the commit message to
-describe why the file was deleted. After that, find the file on your PC
-and delete it. Then <code>pull</code>.</p>
+<p>Alternatively, open the file in the GitHub repository, click the
+three dots at the top-right of the file &gt; <code>delete</code> &gt;
+<code>commit</code>. Use the commit message to describe why the file was
+deleted. After that, find the file on your PC and delete it. Then
+<code>pull</code>.</p>
 <p>Deleted files and their history can still be viewed on GitHub, e.g.,
 by <a href="#using-github">finding the commit</a> in which the file was
 deleted.</p>
@@ -290,16 +293,15 @@ and <a href="https://docs.github.com/en/repositories/working-with-files/managing
 <div class="section level2">
 <h2 id="repositories-download-fork-or-clone">Repositories: download, fork, or clone?<a class="anchor" aria-label="anchor" href="#repositories-download-fork-or-clone"></a>
 </h2>
-<p>There are several ways to get code from a <code>GitHub</code>
-repository to your PC:</p>
+<p>There are several ways to copy code from a GitHub repository to your
+PC:</p>
 <ul>
-<li>To be able to <code>push</code> your changes back to a
-<code>GitHub</code> repository to which you do <strong>not</strong> have
-writing access, you need to <code>fork</code> the repository: use the
-<code>fork</code> button &gt; <code>create a new fork</code>. This
-creates a copy of the repository in your own GitHub repository. Next,
-you have to <code>clone</code> your copy to your PC, see the next
-point.</li>
+<li>To be able to <code>push</code> your changes back to a GitHub
+repository to which you do <strong>not</strong> have writing access, you
+need to <code>fork</code> the repository: use the <code>fork</code>
+button &gt; <code>create a new fork</code>. This creates a copy of the
+repository in your own GitHub repository. Next, you have to
+<code>clone</code> your copy to your PC, see the next point.</li>
 <li>To be able to push your changes back to a GitHub repository to which
 you <strong>do</strong> have writing access (e.g., to work on a fork you
 created in the step above; or to work on your project from another PC),
@@ -335,7 +337,8 @@ repository.</li>
 <h3 id="installing-a-package-from-github">Installing a package from GitHub<a class="anchor" aria-label="anchor" href="#installing-a-package-from-github"></a>
 </h3>
 <p>The following code can be used to install packages from <a href="https://github.com/" class="external-link">GitHub</a> (for details see the section
-‘Installing packages &gt; Github’ in the vignette <em>R packages</em>:
+<code>Installing packages</code> &gt; <code>Github</code> in the
+vignette <em>R packages</em>:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pkgs_new</span> <span class="op">&lt;-</span> <span class="st">"JesseAlderliesten/checkrpkgs"</span></span>
@@ -344,7 +347,8 @@ repository.</li>
 <span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
 <span>                   quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"/"</span>, x <span class="op">=</span> <span class="va">pkgs_new</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"/"</span>, x <span class="op">=</span> <span class="va">pkgs_new</span>, value <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                    fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>                        dependencies <span class="op">=</span> <span class="cn">NA</span>, upgrade <span class="op">=</span> <span class="st">"ask"</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                        quiet <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -355,25 +359,25 @@ repository.</li>
 <p>In addition to section <a href="#using-github">Using GitHub</a>
 above, see:</p>
 <ul>
-<li><p>Branches: GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches" class="external-link">branches</a>
-and <a href="https://learngitbranching.js.org/" class="external-link uri">https://learngitbranching.js.org/</a></p></li>
+<li><p>Branches: GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches" class="external-link"><code>branches</code></a>
+and the website <a href="https://learngitbranching.js.org/" class="external-link">Learn Git
+Branching</a>.</p></li>
 <li><p>Cloning (clones) and forking (forks) a repository: GitHub
-documentation about <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" class="external-link">cloning</a>
-and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks" class="external-link">forks</a>
-and the section <a href="https://happygitwithr.com/fork-and-clone" class="external-link">Fork
-and clone</a> from <a href="https://happygitwithr.com/" class="external-link">Happy Git and
-GitHub for the useR</a></p></li>
-<li><p>GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link">pull
-requests</a></p></li>
+documentation about <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" class="external-link"><code>cloning</code></a>
+and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks" class="external-link"><code>forks</code></a>
+and the section <a href="https://happygitwithr.com/fork-and-clone" class="external-link"><code>Fork and clone</code></a>
+from <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a></p></li>
+<li><p>GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link"><code>pull requests</code></a></p></li>
 </ul>
 </div>
 </div>
 <div class="section level2">
 <h2 id="github-actions">GitHub Actions<a class="anchor" aria-label="anchor" href="#github-actions"></a>
 </h2>
-<p>See the section ‘Automate checks’ in the vignette <em>Package
-setup</em> and section ‘Use GitHub Actions’ in the vignette <em>Package
-development</em>, both from package <code>develcoder</code>:
+<p>See the section <code>Automate checks</code> in the vignette
+<em>Package setup</em> and section <code>Use GitHub Actions</code> in
+the vignette <em>Package development</em>, both from package
+<code>develcoder</code>:
 <code>vignette("pkg_setup", package = "develcoder")</code> and
 <code>vignette("pkg_devel", package = "develcoder")</code>.</p>
 </div>
@@ -381,13 +385,13 @@ development</em>, both from package <code>develcoder</code>:
 <h2 id="common-shell-commands">Common shell commands<a class="anchor" aria-label="anchor" href="#common-shell-commands"></a>
 </h2>
 <p>For an overview of <a href="https://happygitwithr.com/shell" class="external-link">shell</a> commands, see the
-documentation of <a href="https://git-scm.com/docs" class="external-link">Git SCM</a>, the
-section about the <a href="https://happygitwithr.com/shell#basic-shell-commands" class="external-link">shell</a>
-from <a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub for the
-useR</a> (a summary of which is given below), or in the
-<code>BASH shell</code> type <code>git config</code> or
-<code>git help &lt;command&gt;</code> (replace
-<code>&lt;command&gt;</code> by the command you want help about).</p>
+documentation of <a href="https://git-scm.com/docs" class="external-link"><code>Git SCM</code></a>, the section
+about the <a href="https://happygitwithr.com/shell#basic-shell-commands" class="external-link"><code>shell</code></a>
+from <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
+(a summary of which is given below), or in the <code>BASH shell</code>
+type <code>git config</code> or <code>git help &lt;command&gt;</code>
+(replace <code>&lt;command&gt;</code> by the command you want help
+about).</p>
 <ul>
 <li>list files: <code>ls</code> (use <code>ls -a</code> to also show
 hidden files)</li>
@@ -441,23 +445,21 @@ workflow</a></li>
 <p>Books</p>
 <ul>
 <li>
-<a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub for the
-useR</a> by Jennifer Bryan</li>
+<a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
+by Jennifer Bryan</li>
 <li>
-<a href="https://git-scm.com/book/en/v2" class="external-link">Pro Git Book</a> by Scott
-Chacon and Ben Straub</li>
+<a href="https://git-scm.com/book/en/v2" class="external-link"><code>Pro Git Book</code></a> by
+Scott Chacon and Ben Straub</li>
 </ul>
 <p>Chapters</p>
 <ul>
 <li>
-<a href="https://docs.posit.co/ide/user/ide/guide/tools/version-control.html" class="external-link">Version
-control</a> from Posit’s <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio User
-Guide</a>
+<a href="https://docs.posit.co/ide/user/ide/guide/tools/version-control.html" class="external-link"><code>Version control</code></a>
+from Posit’s <a href="https://posit.co/products/open-source/rstudio" class="external-link"><code>RStudio User Guide</code></a>
 </li>
 <li>
-<a href="https://epirhandbook.com/en/new_pages/collaboration.html" class="external-link">Collaboration</a>
-from <a href="https://epirhandbook.com/en/" class="external-link">The Epidemiologist R
-Handbook</a>
+<a href="https://epirhandbook.com/en/new_pages/collaboration.html" class="external-link"><code>Collaboration</code></a>
+from <a href="https://epirhandbook.com/en/" class="external-link"><code>The Epidemiologist R Handbook</code></a>
 </li>
 </ul>
 </div>

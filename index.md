@@ -3,10 +3,10 @@
 `checkrpkgs` explains how to install and configure
 [R](https://www.r-project.org/),
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/), and
-[RStudio](https://posit.co/products/open-source/rstudio/?sid=1); how to
-set up and use Git and GitHub with RStudio; how to install R packages
-and get information about to-be-installed and already-installed
-packages; and how to get the source code of R functions.
+[RStudio](https://posit.co/products/open-source/rstudio?sid=1); how to
+install R packages and get information about to-be-installed and
+already-installed packages; how to get the source code of R functions;
+and how to set up and use Git and GitHub with RStudio.
 
 ## Installation
 
@@ -37,7 +37,7 @@ remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
   explaining how to install and configure
   [R](https://www.r-project.org/),
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/), and
-  [RStudio](https://posit.co/products/open-source/rstudio/?sid=1).
+  [RStudio](https://posit.co/products/open-source/rstudio?sid=1).
 - [R
   packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html):
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md),
@@ -60,19 +60,18 @@ License](https://jessealderliesten.github.io/checkrpkgs/LICENSE.md).
 ``` R
 To cite package 'checkrpkgs' in publications use:
 
-  Alderliesten J (2026). _checkrpkgs: Information on Installing R,
-  Rtools, RStudio, R Packages, Git and GitHub_. R package version
-  1.0.0, commit 4ebd5719a990f1bddee685bb60dc692d54fafd3e,
+  Alderliesten J (2026). _checkrpkgs: Installing and Using R, Rtools,
+  RStudio, R Packages, Git and GitHub_. R package version 1.0.1,
   <https://github.com/JesseAlderliesten/checkrpkgs>.
 
 A BibTeX entry for LaTeX users is
 
   @Manual{,
-    title = {checkrpkgs: Information on Installing R, Rtools, RStudio, R Packages, Git
-and GitHub},
+    title = {checkrpkgs: Installing and Using R, Rtools, RStudio, R Packages, Git and
+GitHub},
     author = {Jesse Alderliesten},
     year = {2026},
-    note = {R package version 1.0.0, commit 4ebd5719a990f1bddee685bb60dc692d54fafd3e},
+    note = {R package version 1.0.1},
     url = {https://github.com/JesseAlderliesten/checkrpkgs},
   }
 ```
@@ -84,5 +83,5 @@ and GitHub},
 - The book [An introduction to R](https://intro2r.com/) by A.
   Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau
 - Developers might be interested in my package
-  [develcoder](https://jessealderliesten.github.io/develcoder/) with
+  [`develcoder`](https://jessealderliesten.github.io/develcoder/) with
   code and templates to develop R packages.

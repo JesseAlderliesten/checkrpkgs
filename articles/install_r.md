@@ -17,7 +17,7 @@ download R via `Download R for Windows` \> `base` \>
 `.exe` file.
 
 R is **not** required to read R scripts: R scripts are plain-text files
-that can be read by applications such as Microsoft NotePad.
+that can be read by applications such as NotePad.
 
 ### Making R stricter
 
@@ -29,11 +29,11 @@ options, see
 and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html).
 Although options for startup can also be changed (see
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html) and the chapter
-[R Startup](https://rstats.wtf/r-startup) from the book [What They
-Forgot to Teach You About R](https://rstats.wtf/)), that should be done
-cautiously because those options probably make code behave differently
-on PCs where those options are not set, for example when changing which
-packages are automatically loaded at startup.
+[`R Startup`](https://rstats.wtf/r-startup) from the book
+[`What They Forgot to Teach You About R`](https://rstats.wtf/)), that
+should be done cautiously because those options probably make code
+behave differently on PCs where those options are not set, for example
+when changing which packages are automatically loaded at startup.
 
 Various options can be changed to make R a bit stricter:
 
@@ -74,15 +74,18 @@ Various options can be changed to make R a bit stricter:
   [`help("conflictRules", package = "base")`](https://rdrr.io/r/base/library.html)
   for further options to tune conflict resolution, and
   `conflicts_prefer(<pkg>::<func>)` from package
-  [conflicted](https://CRAN.R-project.org/package=conflicted) to declare
-  preferences (`<pkg>` and `<func>` should be replaced by the actual
-  names of the package and function to get working code).
-- Print [`warnings()`](https://rdrr.io/r/base/warnings.html) immediately
-  as they occur (`options(warn = 1)`) or make them an error
-  (`options(warn = 2)`). The latter should only be used for debugging
-  because it may trigger bugs and resource leaks. The default is
-  `options(warn = 0)` to warn after the top-level function returns.
-  Details: [`help("stop")`](https://rdrr.io/r/base/stop.html) and
+  [`conflicted`](https://CRAN.R-project.org/package=conflicted) to
+  declare preferences (`<pkg>` and `<func>` should be replaced by the
+  actual names of the package and function to get working code).
+- Print warnings immediately as they occur (`options(warn = 1)`) or make
+  them an error (`options(warn = 2)`). The latter should only be used
+  for debugging because it may trigger bugs and resource leaks. To
+  suppress warnings altogether, use `options(warn = -1)` or wrap
+  function calls in
+  [`suppressWarnings()`](https://rdrr.io/r/base/warning.html) to
+  suppress particular warnings. The default is `options(warn = 0)` to
+  warn after the top-level function returns. Details:
+  [`help("stop")`](https://rdrr.io/r/base/stop.html) and
   [`help("warning")`](https://rdrr.io/r/base/warning.html).
 - Enter the environment browser upon error:  
   `options(error = browser)`, with default `options(error = NULL)` to
@@ -90,8 +93,8 @@ Various options can be changed to make R a bit stricter:
   browser mode and press `c` to continue code. Details:
   [`help("browser")`](https://rdrr.io/r/base/browser.html).
 
-In addition, package [strict](https://github.com/hadley/strict/) makes R
-stricter by warning about various unsafe practices, such as the
+In addition, package [`strict`](https://github.com/hadley/strict/) makes
+R stricter by warning about various unsafe practices, such as the
 behaviour of [`sample()`](https://rdrr.io/r/base/sample.html) and
 [`diag()`](https://rdrr.io/r/base/diag.html) if called with an argument
 of length one, and type-unsafe
@@ -150,7 +153,7 @@ from source. The latter is needed when installing packages from
 packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
 or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
-(see the section ‘Installing packages’ in the vignette *R packages* for
+(see the section `Installing packages` in the vignette *R packages* for
 instructions on installing R packages:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 
@@ -170,7 +173,7 @@ If you have installed Rtools, you might get the question
 when updating packages. You can choose `Yes` to install the latest
 package versions by building them from source, or choose `No` to get
 slightly less up-to-date package versions but a faster installation. See
-the section ‘Troubleshooting’ in the vignette *R packages* for details:
+the section `Troubleshooting` in the vignette *R packages* for details:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
 
 ## RStudio
@@ -179,7 +182,7 @@ the section ‘Troubleshooting’ in the vignette *R packages* for details:
 [integrated development
 environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
 for R developed by [Posit](https://posit.co/) that can be downloaded
-[here](https://posit.co/download/rstudio-desktop/).
+[here](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads).
 
 RStudio can also be used to read and modify plain-text files.
 
@@ -190,10 +193,17 @@ After installing RStudio, start RStudio, go to `Tools` \>
 `Restore .RData into workspace at startup` and set the option
 `Save workspace to .RData on exit` to `Never` to make work portable
 (i.e., make sure that R does not use information or data that is not
-present on another PC).
+present on another PC). A more disrupting change to enhance portability
+is to **deselect** the options `Show diagnostics for R` and
+`Prompt to install missing R packages discovered in R source files` at
+`Tools` \> `Options` \> `Code` \> `Diagnostics`. Deselecting these
+options ensures namespaces are not automatically loaded when RStudio
+loads a project.
 
-The version of R to use can be selected at `Tools` \> `Global Options`
-\> `General` \> `R version`.
+In the same tab `General`, you can also specify the version of R that
+should be used and the default `working directory` (see
+[`help("getwd")`](https://rdrr.io/r/base/getwd.html)) to be used when
+not in a project.
 
 Keyboard shortcuts can be modified at `Tools` \>
 `Modify Keyboard Shortcuts`, e.g., to change the shortcut
@@ -205,8 +215,7 @@ usually fixes that without the need to actually reset the shortcuts.
 The appearance of code can be changed at `Tools` \> `Global options` \>
 `Appearance`. Nice editor themes are the light `Xcode` and the dark
 `Tomorrow Night Bright`, `Idle Fingers`, and `Pastel On Dark`. Nice
-`Editor fonts` are `Consolas`, `Cacadia Mono Light`, and
-`Lucida Console`.
+editor fonts are `Consolas`, `Cacadia Mono Light`, and `Lucida Console`.
 
 Choosing a good editor font deserves some attention: using a font with
 clearly distinct characters prevents confusing similar characters when
@@ -235,19 +244,19 @@ Fonts](https://fonts.google.com/).
 
 ## Documentation and help
 
-- [Bug reporting](https://www.r-project.org/bugs.html), linking to
-  [bugzilla](https://bugs.r-project.org/)
+- [Bug reporting](https://www.r-project.org/bugs.html) and the relevant
+  section of the
+  [`R FAQ`](https://CRAN.R-project.org/doc/manuals/R-FAQ.html#How-to-report-a-bug)
 - CRAN: the [homepage](https://cran.r-project.org/) and an overview of
   its [mirrors](https://cran.r-project.org/mirrors.html) (for details on
-  mirrors, see the section ‘Mirror websites’ in the vignette *R
+  mirrors, see the section `Mirror websites` in the vignette *R
   packages*:
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 - R [homepage](https://www.r-project.org/) with
   [FAQs](https://cran.r-project.org/faqs.html),
-  [NEWS](https://cran.r-project.org/doc/manuals/r-release/NEWS.html),
+  [`NEWS`](https://cran.r-project.org/doc/manuals/r-release/NEWS.html),
   and [manuals](https://cran.r-project.org/manuals.html) (especially the
-  [R Installation and Administration
-  manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html))
+  [`R Installation and Administration manual`](https://cran.r-project.org/doc/manuals/r-release/R-admin.html))
   with [derived versions](https://rstudio.github.io/r-manuals/) better
   suited for searching.
 - R help: from inside R through
@@ -270,15 +279,16 @@ Fonts](https://fonts.google.com/).
 
 Resources with more details than this vignette:
 
-- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
-  by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja
-- The book [An introduction to R](https://intro2r.com/) by A.
+- The book
+  [`What They Forgot to Teach You About R`](https://rstats.wtf/) by J.
+  Bryan, J. Hester, S. Pileggi, and E. D. Aja
+- The book [`An introduction to R`](https://intro2r.com/) by A.
   Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau
-- Chapter [Installation & Environment
-  Setup](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
-  from the book [Mastering R Through Errors and
-  Warnings](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
+- Chapter
+  [`Installation & Environment Setup`](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
+  from the book
+  [`Mastering R Through Errors and Warnings`](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
   by K. Guo
-- Chapter [Getting Started and Getting
-  Help](https://rc2e.com/gettingstarted) from the [R
-  Cookbook](https://rc2e.com/) by J. Long and P. Teetor
+- Chapter
+  [`Getting Started and Getting Help`](https://rc2e.com/gettingstarted)
+  from the [`R Cookbook`](https://rc2e.com/) by J. Long and P. Teetor

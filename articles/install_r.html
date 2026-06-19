@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,8 +90,7 @@ a website with the same content as the <a href="https://cran.r-project.org/" cla
 <code>Download R-X.Y.Z for Windows</code> and install it by opening the
 downloaded <code>.exe</code> file.</p>
 <p>R is <strong>not</strong> required to read R scripts: R scripts are
-plain-text files that can be read by applications such as Microsoft
-NotePad.</p>
+plain-text files that can be read by applications such as NotePad.</p>
 <div class="section level3">
 <h3 id="making-r-stricter">Making R stricter<a class="anchor" aria-label="anchor" href="#making-r-stricter"></a>
 </h3>
@@ -99,7 +98,8 @@ NotePad.</p>
 options, see <code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>,
 <code><a href="https://rdrr.io/r/base/options.html" class="external-link">help("options")</a></code>, <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages")</a></code>, and
 <code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>. Although options for startup can also be
-changed (see <code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code> and the chapter <a href="https://rstats.wtf/r-startup" class="external-link">R Startup</a> from the book <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You About R</a>),
+changed (see <code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code> and the chapter <a href="https://rstats.wtf/r-startup" class="external-link"><code>R Startup</code></a> from the
+book <a href="https://rstats.wtf/" class="external-link"><code>What They Forgot to Teach You About R</code></a>),
 that should be done cautiously because those options probably make code
 behave differently on PCs where those options are not set, for example
 when changing which packages are automatically loaded at startup.</p>
@@ -134,16 +134,18 @@ introduced in R 3.6.0. Details:
 <code>Conflicts</code> in
 <code><a href="https://rdrr.io/r/base/library.html" class="external-link">help("conflictRules", package = "base")</a></code> for further options
 to tune conflict resolution, and
-<code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> from package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link">conflicted</a> to
-declare preferences (<code>&lt;pkg&gt;</code> and
+<code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> from package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link"><code>conflicted</code></a>
+to declare preferences (<code>&lt;pkg&gt;</code> and
 <code>&lt;func&gt;</code> should be replaced by the actual names of the
 package and function to get working code).</li>
-<li>Print <code><a href="https://rdrr.io/r/base/warnings.html" class="external-link">warnings()</a></code> immediately as they occur
+<li>Print warnings immediately as they occur
 (<code>options(warn = 1)</code>) or make them an error
 (<code>options(warn = 2)</code>). The latter should only be used for
-debugging because it may trigger bugs and resource leaks. The default is
-<code>options(warn = 0)</code> to warn after the top-level function
-returns. Details: <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">help("stop")</a></code> and
+debugging because it may trigger bugs and resource leaks. To suppress
+warnings altogether, use <code>options(warn = -1)</code> or wrap
+function calls in <code><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings()</a></code> to suppress particular
+warnings. The default is <code>options(warn = 0)</code> to warn after
+the top-level function returns. Details: <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">help("stop")</a></code> and
 <code><a href="https://rdrr.io/r/base/warning.html" class="external-link">help("warning")</a></code>.</li>
 <li>Enter the environment browser upon error:<br><code>options(error = browser)</code>, with default
 <code>options(error = NULL)</code> to not enter the environment browser.
@@ -151,10 +153,11 @@ Press <code>Q</code> or <code>Escape</code> to quit the browser mode and
 press <code>c</code> to continue code. Details:
 <code><a href="https://rdrr.io/r/base/browser.html" class="external-link">help("browser")</a></code>.</li>
 </ul>
-<p>In addition, package <a href="https://github.com/hadley/strict/" class="external-link">strict</a> makes R stricter by
-warning about various unsafe practices, such as the behaviour of
-<code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code> and <code><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag()</a></code> if called with an argument
-of length one, and type-unsafe <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply()</a></code>.</p>
+<p>In addition, package <a href="https://github.com/hadley/strict/" class="external-link"><code>strict</code></a> makes R
+stricter by warning about various unsafe practices, such as the
+behaviour of <code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code> and <code><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag()</a></code> if called
+with an argument of length one, and type-unsafe
+<code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply()</a></code>.</p>
 </div>
 <div class="section level3">
 <h3 id="information-about-r">Information about R<a class="anchor" aria-label="anchor" href="#information-about-r"></a>
@@ -210,7 +213,7 @@ is <strong>not</strong> an R package but software used to build R <a href="https
 build R packages from source. The latter is needed when installing
 packages from <a href="https://github.com/" class="external-link">GitHub</a> and when
 installing <strong>older</strong> versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">Bioconductor</a>
-(see the section ‘Installing packages’ in the vignette <em>R
+(see the section <code>Installing packages</code> in the vignette <em>R
 packages</em> for instructions on installing R packages:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>).</p>
 <p>To install <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>,
@@ -227,8 +230,8 @@ install Rtools.</p>
 when updating packages. You can choose <code>Yes</code> to install the
 latest package versions by building them from source, or choose
 <code>No</code> to get slightly less up-to-date package versions but a
-faster installation. See the section ‘Troubleshooting’ in the vignette
-<em>R packages</em> for details:
+faster installation. See the section <code>Troubleshooting</code> in the
+vignette <em>R packages</em> for details:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>.</p>
 </div>
 <div class="section level2">
@@ -236,7 +239,7 @@ faster installation. See the section ‘Troubleshooting’ in the vignette
 </h2>
 <p><a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>
 is an <a href="https://en.wikipedia.org/wiki/Integrated_development_environment" class="external-link">integrated
-development environment</a> for R developed by <a href="https://posit.co/" class="external-link">Posit</a> that can be downloaded <a href="https://posit.co/download/rstudio-desktop/" class="external-link">here</a>.</p>
+development environment</a> for R developed by <a href="https://posit.co/" class="external-link">Posit</a> that can be downloaded <a href="https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads" class="external-link">here</a>.</p>
 <p>RStudio can also be used to read and modify plain-text files.</p>
 <div class="section level3">
 <h3 id="configuring-rstudio">Configuring RStudio<a class="anchor" aria-label="anchor" href="#configuring-rstudio"></a>
@@ -247,10 +250,18 @@ development environment</a> for R developed by <a href="https://posit.co/" class
 <code>Restore .RData into workspace at startup</code> and set the option
 <code>Save workspace to .RData on exit</code> to <code>Never</code> to
 make work portable (i.e., make sure that R does not use information or
-data that is not present on another PC).</p>
-<p>The version of R to use can be selected at <code>Tools</code> &gt;
-<code>Global Options</code> &gt; <code>General</code> &gt;
-<code>R version</code>.</p>
+data that is not present on another PC). A more disrupting change to
+enhance portability is to <strong>deselect</strong> the options
+<code>Show diagnostics for R</code> and
+<code>Prompt to install missing R packages discovered in R source files</code>
+at <code>Tools</code> &gt; <code>Options</code> &gt; <code>Code</code>
+&gt; <code>Diagnostics</code>. Deselecting these options ensures
+namespaces are not automatically loaded when RStudio loads a
+project.</p>
+<p>In the same tab <code>General</code>, you can also specify the
+version of R that should be used and the default
+<code>working directory</code> (see <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">help("getwd")</a></code>) to be
+used when not in a project.</p>
 <p>Keyboard shortcuts can be modified at <code>Tools</code> &gt;
 <code>Modify Keyboard Shortcuts</code>, e.g., to change the shortcut
 <code>Run current line or selection</code> from <code>Ctrl+Enter</code>
@@ -262,7 +273,7 @@ fixes that without the need to actually reset the shortcuts.</p>
 <code>Global options</code> &gt; <code>Appearance</code>. Nice editor
 themes are the light <code>Xcode</code> and the dark
 <code>Tomorrow Night Bright</code>, <code>Idle Fingers</code>, and
-<code>Pastel On Dark</code>. Nice <code>Editor fonts</code> are
+<code>Pastel On Dark</code>. Nice editor fonts are
 <code>Consolas</code>, <code>Cacadia Mono Light</code>, and
 <code>Lucida Console</code>.</p>
 <p>Choosing a good editor font deserves some attention: using a font
@@ -302,19 +313,19 @@ that can be used to compare fonts, for example using <a href="https://fonts.adob
 </h2>
 <ul>
 <li>
-<a href="https://www.r-project.org/bugs.html" class="external-link">Bug reporting</a>,
-linking to <a href="https://bugs.r-project.org/" class="external-link">bugzilla</a>
+<a href="https://www.r-project.org/bugs.html" class="external-link">Bug reporting</a> and
+the relevant section of the <a href="https://CRAN.R-project.org/doc/manuals/R-FAQ.html#How-to-report-a-bug" class="external-link"><code>R FAQ</code></a>
 </li>
 <li>CRAN: the <a href="https://cran.r-project.org/" class="external-link">homepage</a> and an
 overview of its <a href="https://cran.r-project.org/mirrors.html" class="external-link">mirrors</a> (for details
-on mirrors, see the section ‘Mirror websites’ in the vignette <em>R
-packages</em>:
+on mirrors, see the section <code>Mirror websites</code> in the vignette
+<em>R packages</em>:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>).</li>
-<li>R <a href="https://www.r-project.org/" class="external-link">homepage</a> with <a href="https://cran.r-project.org/faqs.html" class="external-link">FAQs</a>, <a href="https://cran.r-project.org/doc/manuals/r-release/NEWS.html" class="external-link">NEWS</a>,
+<li>R <a href="https://www.r-project.org/" class="external-link">homepage</a> with <a href="https://cran.r-project.org/faqs.html" class="external-link">FAQs</a>, <a href="https://cran.r-project.org/doc/manuals/r-release/NEWS.html" class="external-link"><code>NEWS</code></a>,
 and <a href="https://cran.r-project.org/manuals.html" class="external-link">manuals</a>
-(especially the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link">R
-Installation and Administration manual</a>) with <a href="https://rstudio.github.io/r-manuals/" class="external-link">derived versions</a> better
-suited for searching.</li>
+(especially the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link"><code>R Installation and Administration manual</code></a>)
+with <a href="https://rstudio.github.io/r-manuals/" class="external-link">derived versions</a>
+better suited for searching.</li>
 <li>R help: from inside R through <code><a href="https://rdrr.io/r/utils/help.start.html" class="external-link">utils::help.start()</a></code> or <a href="https://cran.r-project.org/search.html" class="external-link">online</a>
 </li>
 <li>R <a href="https://www.r-project.org/mail.html" class="external-link">mailing lists</a>
@@ -333,16 +344,16 @@ posts with the <code>r</code> tag</li>
 </ul>
 <p>Resources with more details than this vignette:</p>
 <ul>
-<li>The book <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You
-About R</a> by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja</li>
-<li>The book <a href="https://intro2r.com/" class="external-link">An introduction to R</a> by
-A. Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau</li>
-<li>Chapter <a href="https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html" class="external-link">Installation
-&amp; Environment Setup</a> from the book <a href="https://bookdown.org/guokai8/mastering-r-through-errors/docs/" class="external-link">Mastering
-R Through Errors and Warnings</a> by K. Guo</li>
-<li>Chapter <a href="https://rc2e.com/gettingstarted" class="external-link">Getting Started
-and Getting Help</a> from the <a href="https://rc2e.com/" class="external-link">R Cookbook</a>
-by J. Long and P. Teetor</li>
+<li>The book <a href="https://rstats.wtf/" class="external-link"><code>What They Forgot to Teach You About R</code></a>
+by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja</li>
+<li>The book <a href="https://intro2r.com/" class="external-link"><code>An introduction to R</code></a> by A.
+Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau</li>
+<li>Chapter <a href="https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html" class="external-link"><code>Installation &amp; Environment Setup</code></a>
+from the book <a href="https://bookdown.org/guokai8/mastering-r-through-errors/docs/" class="external-link"><code>Mastering R Through Errors and Warnings</code></a>
+by K. Guo</li>
+<li>Chapter <a href="https://rc2e.com/gettingstarted" class="external-link"><code>Getting Started and Getting Help</code></a>
+from the <a href="https://rc2e.com/" class="external-link"><code>R Cookbook</code></a> by J.
+Long and P. Teetor</li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
