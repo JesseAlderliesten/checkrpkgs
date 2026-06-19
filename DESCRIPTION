@@ -1,16 +1,17 @@
 Package: checkrpkgs
-Title: Information on Installing R, Rtools, RStudio, R Packages, Git and GitHub
-Version: 1.0.0
+Title: Installing and Using R, Rtools, RStudio, R Packages, Git and GitHub
+Version: 1.0.1
 Authors@R: 
-    person("Jesse", "Alderliesten", email = "jessealderliesten@hotmail.com",
-    role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1132-4310"))
-Description: Information on installing and configuring R, Rtools, and RStudio;
-    setting up and using Git and GitHub; obtaining information about
-    to-be-installed and already-installed packages, among which the source code
-    of functions.
+    person("Jesse", "Alderliesten", , "jessealderliesten@hotmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-1132-4310"))
+Description: Information on installing and configuring R, Rtools, and
+    RStudio; setting up and using Git and GitHub; obtaining information
+    about to-be-installed and already-installed packages, among which the
+    source code of functions.
 License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
+URL: https://github.com/JesseAlderliesten/checkrpkgs,
+    https://jessealderliesten.github.io/checkrpkgs/
+BugReports: https://github.com/JesseAlderliesten/checkrpkgs/issues
 Suggests: 
     BiocManager (>= 1.30.5),
     checkinput (>= 1.0.0),
@@ -28,10 +29,11 @@ Suggests:
     tinytest (>= 1.4.1),
     tools,
     utils
+VignetteBuilder: 
+    knitr
 Remotes:
-    github::JesseAlderliesten/checkinput,
-    github::hadley/strict
-URL: https://github.com/JesseAlderliesten/checkrpkgs, https://jessealderliesten.github.io/checkrpkgs/
-BugReports: https://github.com/JesseAlderliesten/checkrpkgs/issues
-VignetteBuilder: knitr
+    github::hadley/strict,
+    github::JesseAlderliesten/checkinput
 Config/roxygen2/version: 8.0.0
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
