@@ -2,7 +2,8 @@
 <!-- badges: start -->
 
 ![](https://img.shields.io/github/r-package/v/JesseAlderliesten/checkrpkgs?color=blue)
-[![R-CMD-check](https://github.com/JesseAlderliesten/checkrpkgs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JesseAlderliesten/checkrpkgs/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/JesseAlderliesten/checkrpkgs/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/JesseAlderliesten/checkrpkgs/actions/workflows/check-standard.yaml)
+[![R-CMD-check-no-suggests](https://github.com/JesseAlderliesten/checkrpkgs/actions/workflows/check-no-suggests.yaml/badge.svg)](https://github.com/JesseAlderliesten/checkrpkgs/actions/workflows/check-no-suggests.yaml)
 <!-- badges: end -->
 
 # checkrpkgs
