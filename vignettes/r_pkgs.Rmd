@@ -33,12 +33,14 @@ function name to get working code.
 
 In this vignette, calls to functions are frequently written in the form
 `<pkg>::<func>()`, to make clear which package is
-used and, through the brackets, that a function is indicated. In normal code,
-one would use `library(<pkg>)` followed by `<func>()`. For example, in
+used and, through the brackets, that a function is indicated. In normal scripts,
+one would use `library(<pkg>)` in a section at the top of the script where all
+required packages are loaded, followed by `<func>()` where that is needed. For
+example, in
 this vignette the notation `utils::citation()` is used to show how to cite R,
 indicating that the function `citation()` is defined in
-package `utils`. In normal code, one would use `library(utils)` followed by
-`citation()` where that is needed.
+package `utils`. In normal scripts, one would use `library(utils)` in a section 
+at the top of the script, followed by `citation()` where that is needed.
 
 ## R packages
 An R
@@ -55,15 +57,15 @@ recommended packages are the 'high priority' packages. Since R 4.4.0,
 `tools::standard_package_names()` contains a list with the names of these
 packages. To see which high-priority packages are currently installed, run
 `sort(unname(installed.packages(priority = "high")[, "Package"]))`. Package
-'translations' is not a recommended package, but will be installed if that
+`translations` is not a recommended package, but will be installed if that
 option is set during the installation of R.
 
 ### Installing packages
 To install a package, run R or RStudio as administrator: right-click on the R or
 RStudio icon and select `Run as administrator`. Packages can be obtained from
-several websites, called 'repositories', such as `CRAN`, `BioConductor`, and
+several websites, called 'repositories', such as `CRAN`, `Bioconductor`, and
 `GitHub`, discussed in the next sections. After installing a package, you
-need to [attach][Loading and attaching packages] the package to be able to use its
+need to [attach][Loading and attaching packages] it to be able to use its
 functions: run `library(<pkg>)`.
 
 #### CRAN
@@ -98,16 +100,17 @@ about the current check status of CRAN packages. Packages from CRAN that have
 been recently archived, for example because check issues were not addressed in
 time, are available at [CRANhaven](https://www.cranhaven.org/).
 
-#### BioConductor
-The [Bioconductor](https://bioconductor.org/) repository has a new release every
+#### Bioconductor
+The [Bioconductor](https://bioconductor.org/) repository hosts many R packages
+related to bioinformatics. Bioconductor has a new release every
 six months. Each release contains specific versions of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html)
-and [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
+and [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html)
 that are consistent with each other and with a
 [specific version](https://bioconductor.org/about/release-announcements/)
 of R, preventing version conflicts between R packages.
 
-The following code can be used to install packages from BioConductor release
+The following code can be used to install packages from Bioconductor release
 [version](https://bioconductor.org/about/release-announcements/)
 3.23. This code installs the
 [`BiocManager`](https://CRAN.R-project.org/package=BiocManager) package from
@@ -134,7 +137,7 @@ Bioconductor also has thematic package collections known as
 
 `utils::available.packages(fields = NULL, repos = BiocManager::repositories())`
 gives information about packages available from
-[BioConductor](https://bioconductor.org/packages/release/BiocViews.html), and
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html), and
 `BiocManager::available()` gives their names.
 
 #### Github
@@ -231,7 +234,7 @@ messages on progress for non-standard packages (see the section `Tracing` in
 `loadedNamespaces()` gives the names of packages that are currently loaded,
 `utils::sessionInfo()` also gives their versions, `path.package()` gives the
 paths from which packages were loaded. `sessioninfo::session_info()` provides
-both the version and the path and has the option to show
+the names, versions and the paths of loaded packages, and has the option to show
 information about their dependencies (and returns the names in alphabetical
 order instead of the order of loading). `options("defaultPackages")` gives the
 names of packages that are attached by default when R starts up if environment
@@ -244,7 +247,7 @@ already-installed and newly-installed packages.
 
 #### CRAN
 For R packages from CRAN, versions can be compared using
-[`diffify`](https://diffify.com/R) and a chronological overview of changes is
+[diffify](https://diffify.com/R) and a chronological overview of changes is
 available at [CRANberries](https://dirk.eddelbuettel.com/cranberries/). To get
 the version number of an installed package, run
 `utils::packageVersion("<pkg>")`. `old.packages()` indicates which packages can
@@ -265,7 +268,7 @@ utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
 `BiocManager::valid()` indicates which packages can be updated and also checks
 for too new packages, taking the currently used version of Bioconductor (see
 `BiocManager::version()`) into account. The following code can be used to update
-packages to a specific BioConductor release (here version 3.23):
+packages to a specific Bioconductor release (here version 3.23):
 
 ```{r, eval = FALSE}
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
@@ -317,7 +320,7 @@ install.packages(
 Older versions of packages from Bioconductor can be installed by changing the
 value of argument `version` of `BiocManager::install()` (e.g.,
 `BiocManager::install(pkgs = "deSolve", version = "3.22")` to indicate the
-version of `deSolve` included in BioConductor version 3.22) but that only works
+version of `deSolve` included in Bioconductor version 3.22) but that only works
 when using the version of R for that specific version of Bioconductor, see the
 [overview](https://bioconductor.org/about/release-announcements/) of
 Bioconductor versions with the corresponding R version. Information on these
@@ -413,7 +416,7 @@ about packages available from
 [CRAN](https://cran.r-project.org/web/packages/index.html);
 `utils::available.packages(fields = NULL, repos = BiocManager::repositories())`
 gives information about packages available from
-[BioConductor](https://bioconductor.org/packages/release/BiocViews.html), and
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html), and
 `BiocManager::available()` gives their names.
 
 #### Documentation
@@ -559,7 +562,7 @@ download the source file from section `Downloads` of the CRAN page. The source
 files have been compressed into a `tar` file so you have to extract the files
 (right-click on the downloaded file and choose `extract all`).
 
-The source code of packages from [BioConductor](https://bioconductor.org/)
+The source code of packages from [Bioconductor](https://bioconductor.org/)
 in the current and development-version is available
 [here](https://code.bioconductor.org/search/).
 
@@ -750,7 +753,7 @@ folder of the downloaded code.
 - [Documentation](https://docs.r-universe.dev/install.html) from the
   [R-universe](https://r-universe.dev/search)
 - [Instructions](https://bioconductor.org/install/) on installing
-  [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
+  [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html)
   packages
 - Section
   [`Add-on packages`](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
@@ -761,7 +764,7 @@ folder of the downloaded code.
 
 ### Package status
 - [Check results](https://docs.r-universe.dev/bioconductor/#check-results) from
-  BioConductor.
+  Bioconductor.
 
 ### Source code
 - Bryan J. 2015. [`Accessing R Source`](https://github.com/jennybc/access-r-source).

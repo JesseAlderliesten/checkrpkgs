@@ -55,7 +55,7 @@ Windows notation; outside Windows, these paths are written as
 `C:/Program Files/Git/bin/git.exe` and
 `C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, respectively, see
 [Paths in the shell]).
-If the content of the `Git executable` is not correct, open the `Git Bash`
+If the content of the field `Git executable` is not correct, open the `Git Bash`
 [shell](https://happygitwithr.com/shell) (which was installed when installing
 [`Git for Windows`](https://gitforwindows.org/)) by searching for `Git Bash` in
 Windows' `Start` menu. In the Git Bash shell, run `where git.exe`
