@@ -70,6 +70,11 @@ citation("checkrpkgs")
   Bryan, J. Hester, S. Pileggi, and E. D. Aja
 - The book [An introduction to R](https://intro2r.com/) by A. Douglas, D. Roos,
   F. Mancini, A. Couto and D. Lusseau
+- Section
+  [`Prerequisites`](https://rstudio-conf-2022.github.io/build-tidy-tools/pre-reqs.html)
+  from the workshop
+  [Building tidy tools](https://rstudio-conf-2022.github.io/build-tidy-tools/)
+  by E. Rand and I. Lyttle
 - Developers might be interested in my package
   [`develcoder`](https://jessealderliesten.github.io/develcoder/) with code and
   templates to develop R packages.
