@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,20 @@
       <small>Source: <a href="https://github.com/JesseAlderliesten/checkrpkgs/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.1.0" id="checkrpkgs-110">checkrpkgs 1.1.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-110"></a></h2>
+<div class="section level4">
+<h4 id="breaking-changes-1-1-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-1-0"></a></h4>
+<ul><li>Update dependency <code>conflicted</code>: require minimum version <code>1.2.0</code> because function <code>conflicts_prefer()</code> is used in a vignette.</li>
+<li>Update dependency <code>remotes</code>: increase minimum version from <code>2.0.0</code> to <code>2.3.0</code> because function <code>system_requirements()</code> with a version specification in argument <code>OS</code> is used in a vignette.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="documentation-1-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-1-1-0"></a></h4>
+<ul><li>Vignette <code>Installing R, Rtools and RStudio</code>: add websites to compare fonts.</li>
+<li>Vignette <code>R packages</code>: additional info on getting functions from older versions of R and on <code><a href="https://rdrr.io/r/tools/CRANtools.html" class="external-link">tools::CRAN_package_db()</a></code>.</li>
+<li>Vignette <code>Git and GitHub</code>: include info on comparing branches and commits. Various clarifications, especially on moving files after downloading them.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.1" id="checkrpkgs-101">checkrpkgs 1.0.1<a class="anchor" aria-label="anchor" href="#checkrpkgs-101"></a></h2>
 <div class="section level4">
@@ -138,7 +152,7 @@
 <h2 class="pkg-version" data-toc-text="0.6.0" id="checkrpkgs-060">checkrpkgs 0.6.0<a class="anchor" aria-label="anchor" href="#checkrpkgs-060"></a></h2>
 <div class="section level4">
 <h4 id="breaking-changes-0-6-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-6-0"></a></h4>
-<ul><li>Dependency <code>progutils</code>: increase from <code>&gt;= 0.0.6</code> to <code>&gt;= 0.0.7</code> to ensure uniform handling of empty quotes and <code>NA</code>s through <code><a href="https://jessealderliesten.github.io/checkinput/reference/paste_quoted.html" class="external-link">progutils::paste_quoted()</a></code>.</li>
+<ul><li>Dependency <code>progutils</code>: increase from <code>&gt;= 0.0.6</code> to <code>&gt;= 0.0.7</code> to ensure uniform handling of empty quotes and <code>NA</code>s through <code>progutils::paste_quoted()</code>.</li>
 </ul></div>
 </div>
     <div class="section level2">

@@ -42,7 +42,7 @@ at `C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows
 notation; outside Windows, these paths are written as
 `C:/Program Files/Git/bin/git.exe` and
 `C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, respectively, see
-[Paths in the shell](#paths-in-the-shell)). If the content of the
+[Paths in the shell](#paths-in-the-shell)). If the content of the field
 `Git executable` is not correct, open the `Git Bash`
 [shell](https://happygitwithr.com/shell) (which was installed when
 installing [`Git for Windows`](https://gitforwindows.org/)) by searching
@@ -71,7 +71,7 @@ password, see:
 
 - GitHub
   [documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-- The Chapter about
+- The chapter about
   [`Personal Access Tokens`](https://happygitwithr.com/https-pat.html)
   in [`Happy Git and GitHub for the useR`](https://happygitwithr.com/)
 - A [vignette](https://usethis.r-lib.org/articles/git-credentials.html)
@@ -85,7 +85,7 @@ file with extension `.R`). Then the `Git` menu will be visible as a tab
 in the
 [`Environment pane`](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 
-`Pull` to get changes from GitHub) incorporated in your PC, and handle
+`Pull` to get changes from GitHub incorporated in your PC, and handle
 any conflicts to get directory on your PC up-to-date with the repository
 on GitHub:
 
@@ -97,13 +97,13 @@ Save the modified R file after you have made some changes, only then
 will the name of the file appear in the `Git` menu of RStudio to review
 changes:
 
-- in RStudio: check the box in front of the relevant filename, use the
-  `Diff` button in the `Git` menu to get an overview of the changes to
-  the file, in the box `Commit message` you should describe the changes
-  and why you made them, and use the `Commit` button. `Pull` again
-  (downward arrow) to make sure the directory on your PC is up-to-date,
-  and handle any conflicts. Then `push` (upward arrow) to incorporate
-  the changes in the repository on GitHub.
+- in RStudio: check the `Staged` box in front of the relevant filename,
+  use the `Diff` button in the `Git` menu to get an overview of the
+  changes to the file, in the box `Commit message` you should describe
+  the changes and why you made them, and use the `Commit` button. `Pull`
+  again (downward arrow) to make sure the directory on your PC is
+  up-to-date, and handle any conflicts. Then `push` (upward arrow) to
+  incorporate the changes in the repository on GitHub.
 - or in the [shell](https://happygitwithr.com/shell): compare the
   content of two files, see the instructions in the section [Comparing
   files](#comparing-files) below. Next, use
@@ -119,25 +119,28 @@ entered the PAT once, RStudio will remember it.
 
 To `Push` only some of the changes you made, use the `Diff` button in
 the `Git` menu and select the line or lines of code containing the
-changes you want to `Push`. Then select click `Stage line` or
-`Stage chunck` button that will show up next to the selected code.
+changes you want to `Push`. Then a button `Stage line` or `Stage chunck`
+will show up next to the selected code. Click that button to `Push` only
+the selected lines.
 
 ## Adding a new file
 
 To add a file to GitHub that is not there yet, first add it to the R
-project folder on your PC, then check the `staged` box in the `GitHub`
-pane of RStudio and commit it as described
-[above](#using-git-and-github)
+project folder on your PC (see the output of
+[`getwd()`](https://rdrr.io/r/base/getwd.html)), then check the `Staged`
+box in front of the relevant filename in the `GitHub` pane of RStudio
+and commit it as described [above](#using-git-and-github).
 
-In the shell this is more involved: If the working directory is **not**
-the folder where the to-be-added file is in, the working directory has
-to be changed to that folder (e.g., using `cd <path/to/folder>` in the
-[shell](https://happygitwithr.com/shell)), or the path has to be added
-in front of the filename (dragging the file onto the shell will copy the
+Using the [shell](https://happygitwithr.com/shell) to add a new file is
+more involved: if the working directory **of the shell** (see the output
+of `pwd`) is **not** the folder where the to-be-added file is in, the
+working directory has to be changed to that folder (e.g., using
+`cd <path/to/folder>` in the shell), or the path has to be added in
+front of the filename (dragging the file onto the shell will copy the
 path to the shell).
 
-Then let `git` know it is there by typing (it is convenient to use
-`tab`-completion to select files): `git add <filename>.<extension>`.
+Then let `git` know the new file is there by typing (it is convenient to
+use `tab`-completion to select files): `git add <filename>.<extension>`.
 
 ## Comparing files
 
@@ -148,9 +151,22 @@ Then let `git` know it is there by typing (it is convenient to use
   `http://github.com/<username>/<repository>/commits`, or go to the main
   page of the repository and in the `Code` panel click the `clock` icon
   at the top of the file overview.
-- Comparing different branches: see
+- To compare different branches of a repository, use three dots between
+  their names, giving an URL of the form
+  `https://github.com/<username>/<repository>/compare/<branch>...<otherbranch>`,
+  for example
+  `https://github.com/JesseAlderliesten/checkrpkgs/compare/main...devel`
+  that compares the `main` and `devel` branches of this package.
+  Details:
   [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons)
-- Comparing commits: see
+- To compare different commits in a repository, use two dots between
+  their commit IDs (the shortened SHA codes displayed at the right of
+  each commit in the commit history, and at the top of the commit),
+  giving an URL of the form
+  `https://github.com/<username>/<repository>/compare/<ID_commit>...<ID_othercommit>`,
+  for example
+  `https://github.com/JesseAlderliesten/checkrpkgs/compare/e8eb0a1...e60a155`
+  that compares two commits. Details:
   [here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits)
 - See also section [Repositories: download, fork, or
   clone?](#repositories-download-fork-or-clone) below.
@@ -217,18 +233,19 @@ There are several ways to copy code from a GitHub repository to your PC:
 
 - To be able to `push` your changes back to a GitHub repository to which
   you do **not** have writing access, you need to `fork` the repository:
-  use the `fork` button \> `create a new fork`. This creates a copy of
-  the repository in your own GitHub repository. Next, you have to
-  `clone` your copy to your PC, see the next point.
+  use the `fork` button on the GitHub page of the repository and then
+  use `create a new fork`. This creates a copy of the repository in your
+  own GitHub repository. Next, you have to `clone` your copy to your PC,
+  see the next point.
 - To be able to push your changes back to a GitHub repository to which
   you **do** have writing access (e.g., to work on a fork you created in
   the step above; or to work on your project from another PC), you have
   to clone the GitHub repository to your PC: use the green `Code` button
-  in the repository (if you forked a repository, you need the `Code`
-  button of **your** fork, not of the original repository), copy the URL
-  to the clipboard (i.e., do **not** use `download ZIP`), create a new R
-  project in RStudio (`File` \> `New Project` \> `Version control` \>
-  `Git`), paste the repository URL
+  on the GitHub page of the repository (if you forked a repository, you
+  need the `Code` button of **your fork**, not of the original
+  repository), copy the URL to the clipboard (i.e., do **not** use
+  `download ZIP`), create a new R project in RStudio (`File` \>
+  `New Project` \> `Version control` \> `Git`), paste the repository URL
   (`https://github.com/<username>/<repository>`) in the designated
   field, select the desired location on your PC, and create the project.
   The same repository URL can be used when using shell commands to clone
@@ -238,13 +255,22 @@ There are several ways to copy code from a GitHub repository to your PC:
   `git clone --depth=1 https://github.com/<username>/<repository>`.
 - To download code without being able to push your changes back to a
   GitHub repository, download the repository by using the green `Code`
-  button, choose `Download ZIP` and unzip the downloaded file
-  (right-click on them and choose `extract all`). To be able to let R
-  use the package correctly, move the package to a location where R
-  looks for packages (given by `cat(normalizePath(.libPaths()))`,
-  something like `C:\Program Files\R\R-4.6.0\library` or
-  `C:\Users\<owner>\AppData\Local\R\win-library\4.6`. Then open the
-  `.Rproj` file that has the same name as the repository.
+  button on the GitHub page of the repository, choose `Download ZIP` and
+  unzip the downloaded file (right-click on them and choose
+  `extract all`). To be able to let R use the R files correctly, R has
+  to know where the files are. If the downloaded files are an R package,
+  move it to a location where R looks for packages (given by
+  `cat(normalizePath(.libPaths()))`, something like
+  `C:\Program Files\R\R-4.6.0\library` or
+  `C:\Users\<owner>\AppData\Local\R\win-library\4.6`). Then open the
+  `.Rproj` file that has the same name as the repository. If the
+  downloaded files are not a package but an R project, open the `.Rproj`
+  file to change the working directory to the folder where that project
+  file is. If the downloaded files are not an R project, you have to
+  move them to the working directory (see the output of
+  [`getwd()`](https://rdrr.io/r/base/getwd.html)), or use
+  `setwd(<path/to/files>)` to change the working directory to the
+  location where the files are.
 
 ### Installing a package from GitHub
 

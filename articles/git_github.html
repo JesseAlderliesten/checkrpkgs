@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,8 +114,8 @@ Windows notation; outside Windows, these paths are written as
 <code>C:/Program Files/Git/bin/git.exe</code> and
 <code>C:/Users/&lt;owner&gt;/AppData/Local/Git/bin/git.exe</code>,
 respectively, see <a href="#paths-in-the-shell">Paths in the shell</a>).
-If the content of the <code>Git executable</code> is not correct, open
-the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
+If the content of the field <code>Git executable</code> is not correct,
+open the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
 when installing <a href="https://gitforwindows.org/" class="external-link"><code>Git for Windows</code></a>) by
 searching for <code>Git Bash</code> in Windows’ <code>Start</code> menu.
 In the Git Bash shell, run <code>where git.exe</code> to get the
@@ -139,7 +139,7 @@ password, see:</p>
 <ul>
 <li>GitHub <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" class="external-link">documentation</a>
 </li>
-<li>The Chapter about <a href="https://happygitwithr.com/https-pat.html" class="external-link"><code>Personal Access Tokens</code></a>
+<li>The chapter about <a href="https://happygitwithr.com/https-pat.html" class="external-link"><code>Personal Access Tokens</code></a>
 in <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
 </li>
 <li>A <a href="https://usethis.r-lib.org/articles/git-credentials.html" class="external-link">vignette</a>
@@ -155,9 +155,9 @@ from package <a href="https://CRAN.R-project.org/package=usethis" class="externa
 (i.e., a file with extension <code>.Rproj</code>), <strong>not</strong>
 the R script (i.e., a file with extension <code>.R</code>). Then the
 <code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link"><code>Environment pane</code></a>.</p>
-<p><code>Pull</code> to get changes from GitHub) incorporated in your
-PC, and handle any conflicts to get directory on your PC up-to-date with
-the repository on GitHub:</p>
+<p><code>Pull</code> to get changes from GitHub incorporated in your PC,
+and handle any conflicts to get directory on your PC up-to-date with the
+repository on GitHub:</p>
 <ul>
 <li>in RStudio: use the <code>pull</code> button (downward arrow) in the
 <code>Git</code> menu</li>
@@ -169,14 +169,15 @@ the repository on GitHub:</p>
 will the name of the file appear in the <code>Git</code> menu of RStudio
 to review changes:</p>
 <ul>
-<li>in RStudio: check the box in front of the relevant filename, use the
-<code>Diff</code> button in the <code>Git</code> menu to get an overview
-of the changes to the file, in the box <code>Commit message</code> you
-should describe the changes and why you made them, and use the
-<code>Commit</code> button. <code>Pull</code> again (downward arrow) to
-make sure the directory on your PC is up-to-date, and handle any
-conflicts. Then <code>push</code> (upward arrow) to incorporate the
-changes in the repository on GitHub.</li>
+<li>in RStudio: check the <code>Staged</code> box in front of the
+relevant filename, use the <code>Diff</code> button in the
+<code>Git</code> menu to get an overview of the changes to the file, in
+the box <code>Commit message</code> you should describe the changes and
+why you made them, and use the <code>Commit</code> button.
+<code>Pull</code> again (downward arrow) to make sure the directory on
+your PC is up-to-date, and handle any conflicts. Then <code>push</code>
+(upward arrow) to incorporate the changes in the repository on
+GitHub.</li>
 <li>or in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>:
 compare the content of two files, see the instructions in the section <a href="#comparing-files">Comparing files</a> below. Next, use
 <code>git commit -m '&lt;your commit message&gt;' &lt;path&gt;/&lt;and&gt;/&lt;filename&gt;.R</code>
@@ -191,23 +192,26 @@ remember it.</p>
 <p>To <code>Push</code> only some of the changes you made, use the
 <code>Diff</code> button in the <code>Git</code> menu and select the
 line or lines of code containing the changes you want to
-<code>Push</code>. Then select click <code>Stage line</code> or
-<code>Stage chunck</code> button that will show up next to the selected
-code.</p>
+<code>Push</code>. Then a button <code>Stage line</code> or
+<code>Stage chunck</code> will show up next to the selected code. Click
+that button to <code>Push</code> only the selected lines.</p>
 </div>
 <div class="section level2">
 <h2 id="adding-a-new-file">Adding a new file<a class="anchor" aria-label="anchor" href="#adding-a-new-file"></a>
 </h2>
 <p>To add a file to GitHub that is not there yet, first add it to the R
-project folder on your PC, then check the <code>staged</code> box in the
-<code>GitHub</code> pane of RStudio and commit it as described <a href="#using-git-and-github">above</a></p>
-<p>In the shell this is more involved: If the working directory is
+project folder on your PC (see the output of <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd()</a></code>), then
+check the <code>Staged</code> box in front of the relevant filename in
+the <code>GitHub</code> pane of RStudio and commit it as described <a href="#using-git-and-github">above</a>.</p>
+<p>Using the <a href="https://happygitwithr.com/shell" class="external-link">shell</a> to add
+a new file is more involved: if the working directory <strong>of the
+shell</strong> (see the output of <code>pwd</code>) is
 <strong>not</strong> the folder where the to-be-added file is in, the
 working directory has to be changed to that folder (e.g., using
-<code>cd &lt;path/to/folder&gt;</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>), or the path has to be
-added in front of the filename (dragging the file onto the shell will
+<code>cd &lt;path/to/folder&gt;</code> in the shell), or the path has to
+be added in front of the filename (dragging the file onto the shell will
 copy the path to the shell).</p>
-<p>Then let <code>git</code> know it is there by typing (it is
+<p>Then let <code>git</code> know the new file is there by typing (it is
 convenient to use <code>tab</code>-completion to select files):
 <code>git add &lt;filename&gt;.&lt;extension&gt;</code>.</p>
 </div>
@@ -224,9 +228,22 @@ in a particular branch of a repository, use an URL of the form
 or go to the main page of the repository and in the <code>Code</code>
 panel click the <code>clock</code> icon at the top of the file
 overview.</li>
-<li>Comparing different branches: see <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons" class="external-link">here</a>
+<li>To compare different branches of a repository, use three dots
+between their names, giving an URL of the form
+<code>https://github.com/&lt;username&gt;/&lt;repository&gt;/compare/&lt;branch&gt;...&lt;otherbranch&gt;</code>,
+for example
+<code>https://github.com/JesseAlderliesten/checkrpkgs/compare/main...devel</code>
+that compares the <code>main</code> and <code>devel</code> branches of
+this package. Details: <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#three-dot-and-two-dot-git-diff-comparisons" class="external-link">here</a>
 </li>
-<li>Comparing commits: see <a href="https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits" class="external-link">here</a>
+<li>To compare different commits in a repository, use two dots between
+their commit IDs (the shortened SHA codes displayed at the right of each
+commit in the commit history, and at the top of the commit), giving an
+URL of the form
+<code>https://github.com/&lt;username&gt;/&lt;repository&gt;/compare/&lt;ID_commit&gt;...&lt;ID_othercommit&gt;</code>,
+for example
+<code>https://github.com/JesseAlderliesten/checkrpkgs/compare/e8eb0a1...e60a155</code>
+that compares two commits. Details: <a href="https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits" class="external-link">here</a>
 </li>
 <li>See also section <a href="#repositories-download-fork-or-clone">Repositories: download,
 fork, or clone?</a> below.</li>
@@ -299,18 +316,20 @@ PC:</p>
 <li>To be able to <code>push</code> your changes back to a GitHub
 repository to which you do <strong>not</strong> have writing access, you
 need to <code>fork</code> the repository: use the <code>fork</code>
-button &gt; <code>create a new fork</code>. This creates a copy of the
-repository in your own GitHub repository. Next, you have to
-<code>clone</code> your copy to your PC, see the next point.</li>
+button on the GitHub page of the repository and then use
+<code>create a new fork</code>. This creates a copy of the repository in
+your own GitHub repository. Next, you have to <code>clone</code> your
+copy to your PC, see the next point.</li>
 <li>To be able to push your changes back to a GitHub repository to which
 you <strong>do</strong> have writing access (e.g., to work on a fork you
 created in the step above; or to work on your project from another PC),
 you have to clone the GitHub repository to your PC: use the green
-<code>Code</code> button in the repository (if you forked a repository,
-you need the <code>Code</code> button of <strong>your</strong> fork, not
-of the original repository), copy the URL to the clipboard (i.e., do
-<strong>not</strong> use <code>download ZIP</code>), create a new R
-project in RStudio (<code>File</code> &gt; <code>New Project</code> &gt;
+<code>Code</code> button on the GitHub page of the repository (if you
+forked a repository, you need the <code>Code</code> button of
+<strong>your fork</strong>, not of the original repository), copy the
+URL to the clipboard (i.e., do <strong>not</strong> use
+<code>download ZIP</code>), create a new R project in RStudio
+(<code>File</code> &gt; <code>New Project</code> &gt;
 <code>Version control</code> &gt; <code>Git</code>), paste the
 repository URL
 (<code>https://github.com/&lt;username&gt;/&lt;repository&gt;</code>) in
@@ -323,15 +342,22 @@ or with only the last commit by using
 <code>git clone --depth=1 https://github.com/&lt;username&gt;/&lt;repository&gt;</code>.</li>
 <li>To download code without being able to push your changes back to a
 GitHub repository, download the repository by using the green
-<code>Code</code> button, choose <code>Download ZIP</code> and unzip the
-downloaded file (right-click on them and choose
-<code>extract all</code>). To be able to let R use the package
-correctly, move the package to a location where R looks for packages
+<code>Code</code> button on the GitHub page of the repository, choose
+<code>Download ZIP</code> and unzip the downloaded file (right-click on
+them and choose <code>extract all</code>). To be able to let R use the R
+files correctly, R has to know where the files are. If the downloaded
+files are an R package, move it to a location where R looks for packages
 (given by <code>cat(normalizePath(.libPaths()))</code>, something like
 <code>C:\Program Files\R\R-4.6.0\library</code> or
-<code>C:\Users\&lt;owner&gt;\AppData\Local\R\win-library\4.6</code>.
+<code>C:\Users\&lt;owner&gt;\AppData\Local\R\win-library\4.6</code>).
 Then open the <code>.Rproj</code> file that has the same name as the
-repository.</li>
+repository. If the downloaded files are not a package but an R project,
+open the <code>.Rproj</code> file to change the working directory to the
+folder where that project file is. If the downloaded files are not an R
+project, you have to move them to the working directory (see the output
+of <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd()</a></code>), or use
+<code>setwd(&lt;path/to/files&gt;)</code> to change the working
+directory to the location where the files are.</li>
 </ul>
 <div class="section level3">
 <h3 id="installing-a-package-from-github">Installing a package from GitHub<a class="anchor" aria-label="anchor" href="#installing-a-package-from-github"></a>

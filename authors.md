@@ -11,13 +11,13 @@ Source:
 [`DESCRIPTION`](https://github.com/JesseAlderliesten/checkrpkgs/blob/main/DESCRIPTION)
 
 Alderliesten J (2026). *checkrpkgs: Installing and Using R, Rtools,
-RStudio, R Packages, Git and GitHub*. R package version 1.0.1,
+RStudio, R Packages, Git and GitHub*. R package version 1.1.0,
 <https://github.com/JesseAlderliesten/checkrpkgs>.
 
     @Manual{,
       title = {checkrpkgs: Installing and Using R, Rtools, RStudio, R Packages, Git and GitHub},
       author = {Jesse Alderliesten},
       year = {2026},
-      note = {R package version 1.0.1},
+      note = {R package version 1.1.0},
       url = {https://github.com/JesseAlderliesten/checkrpkgs},
     }

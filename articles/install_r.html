@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@ options, see <code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-
 <code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>. Although options for startup can also be
 changed (see <code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code> and the chapter <a href="https://rstats.wtf/r-startup" class="external-link"><code>R Startup</code></a> from the
 book <a href="https://rstats.wtf/" class="external-link"><code>What They Forgot to Teach You About R</code></a>),
-that should be done cautiously because those options probably make code
+that should be done cautiously because those options likely make code
 behave differently on PCs where those options are not set, for example
 when changing which packages are automatically loaded at startup.</p>
 <p>Various options can be changed to make R a bit stricter:</p>
@@ -134,7 +134,8 @@ introduced in R 3.6.0. Details:
 <code>Conflicts</code> in
 <code><a href="https://rdrr.io/r/base/library.html" class="external-link">help("conflictRules", package = "base")</a></code> for further options
 to tune conflict resolution, and
-<code>conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code> from package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link"><code>conflicted</code></a>
+<code>conflicted::conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code>
+from package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link"><code>conflicted</code></a>
 to declare preferences (<code>&lt;pkg&gt;</code> and
 <code>&lt;func&gt;</code> should be replaced by the actual names of the
 package and function to get working code).</li>
@@ -259,9 +260,9 @@ at <code>Tools</code> &gt; <code>Options</code> &gt; <code>Code</code>
 namespaces are not automatically loaded when RStudio loads a
 project.</p>
 <p>In the same tab <code>General</code>, you can also specify the
-version of R that should be used and the default
-<code>working directory</code> (see <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">help("getwd")</a></code>) to be
-used when not in a project.</p>
+version of R that should be used and the default working directory (see
+<code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">help("getwd")</a></code>) to be used when <strong>not</strong> in a
+project.</p>
 <p>Keyboard shortcuts can be modified at <code>Tools</code> &gt;
 <code>Modify Keyboard Shortcuts</code>, e.g., to change the shortcut
 <code>Run current line or selection</code> from <code>Ctrl+Enter</code>
@@ -280,32 +281,28 @@ themes are the light <code>Xcode</code> and the dark
 with clearly distinct characters prevents confusing similar characters
 when reading or debugging code. The following strings group together
 characters that in some fonts are similar in appearance. Letters are
-indicated with their names in upper case letters that are easier to
-distinguish, with ‘upper’ indicating that upper case letters are used in
-the string:</p>
+indicated with their names in the same case as used in the string:</p>
 <ul>
 <li>
-<code>B8 S5 y4 Z2</code>: upper BEE, eight; upper ESS, five; WYE,
-four; upper ZED, two</li>
+<code>B8 S5 y4 Z2</code>: BEE, eight; ESS, five; wye, four; ZED,
+two</li>
 <li>
-<code>gq ijy rnm uvvw UVVW</code>: GEE, CUE; I, JAY, WYE; AR, EN,
-EM; U, repeated VEE, double-U; upper U, repeated upper VEE, upper
-double-U</li>
+<code>gq ijy rnm uvvw UVVW</code>: gee, cue; i, jay, wye; ar, en,
+em; u, repeated vee, double-u; U, repeated VEE, DOUBLE-U</li>
 <li>
 <code>., :; "'' __</code>: dot, comma; colon, semicolon; double
 quotes, repeated single quotes; repeated underscores</li>
 <li>
-<code>cldcIdc|dc1</code>: CEE, EL, DEE, CEE, upper I, DEE, CEE,
-vertical bar, DEE, CEE, one</li>
+<code>cldcIdc|dc1</code>: cee, el, dee, cee, I, dee, cee, vertical
+bar, dee, cee, one</li>
 <li>
-<code>71lI|i/</code>: seven, one, EL, upper I, vertical bar, I,
-slash</li>
+<code>71lI|i/</code>: seven, one, el, I, vertical bar, i, slash</li>
 <li>
-<code>oQO0D</code>: O, upper CUE, upper O, ZERO, upper DEE</li>
+<code>oQO0D</code>: o, CUE, (upper case letter) O, zero, DEE</li>
 </ul>
-<p>Together, these strings form the string
+<p>Combining these strings gives
 <code>B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D</code>
-that can be used to compare fonts, for example using <a href="https://fonts.adobe.com/" class="external-link">Adobe Fonts</a> or <a href="https://fonts.google.com/" class="external-link">Google Fonts</a>.</p>
+which can be used to compare fonts, for example using <a href="https://fonts.adobe.com/fonts" class="external-link">Adobe Fonts</a>, <a href="https://www.fontsquirrel.com/" class="external-link">Font Squirrel</a>, <a href="https://fonts.google.com/" class="external-link">Google Fonts</a>, or <a href="https://www.myfonts.com/" class="external-link">MyFonts</a>.</p>
 </div>
 </div>
 <div class="section level2">

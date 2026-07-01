@@ -1,5 +1,26 @@
 # Changelog
 
+## checkrpkgs 1.1.0
+
+#### Breaking changes
+
+- Update dependency `conflicted`: require minimum version `1.2.0`
+  because function `conflicts_prefer()` is used in a vignette.
+- Update dependency `remotes`: increase minimum version from `2.0.0` to
+  `2.3.0` because function `system_requirements()` with a version
+  specification in argument `OS` is used in a vignette.
+
+#### Documentation
+
+- Vignette `Installing R, Rtools and RStudio`: add websites to compare
+  fonts.
+- Vignette `R packages`: additional info on getting functions from older
+  versions of R and on
+  [`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html).
+- Vignette `Git and GitHub`: include info on comparing branches and
+  commits. Various clarifications, especially on moving files after
+  downloading them.
+
 ## checkrpkgs 1.0.1
 
 #### Documentation
@@ -105,7 +126,7 @@
 
 - Dependency `progutils`: increase from `>= 0.0.6` to `>= 0.0.7` to
   ensure uniform handling of empty quotes and `NA`s through
-  [`progutils::paste_quoted()`](https://jessealderliesten.github.io/checkinput/reference/paste_quoted.html).
+  `progutils::paste_quoted()`.
 
 ## checkrpkgs 0.5.0
 

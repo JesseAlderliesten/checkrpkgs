@@ -31,9 +31,9 @@ Although options for startup can also be changed (see
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html) and the chapter
 [`R Startup`](https://rstats.wtf/r-startup) from the book
 [`What They Forgot to Teach You About R`](https://rstats.wtf/)), that
-should be done cautiously because those options probably make code
-behave differently on PCs where those options are not set, for example
-when changing which packages are automatically loaded at startup.
+should be done cautiously because those options likely make code behave
+differently on PCs where those options are not set, for example when
+changing which packages are automatically loaded at startup.
 
 Various options can be changed to make R a bit stricter:
 
@@ -73,7 +73,7 @@ Various options can be changed to make R a bit stricter:
   and the section `Conflicts` in
   [`help("conflictRules", package = "base")`](https://rdrr.io/r/base/library.html)
   for further options to tune conflict resolution, and
-  `conflicts_prefer(<pkg>::<func>)` from package
+  `conflicted::conflicts_prefer(<pkg>::<func>)` from package
   [`conflicted`](https://CRAN.R-project.org/package=conflicted) to
   declare preferences (`<pkg>` and `<func>` should be replaced by the
   actual names of the package and function to get working code).
@@ -201,9 +201,9 @@ options ensures namespaces are not automatically loaded when RStudio
 loads a project.
 
 In the same tab `General`, you can also specify the version of R that
-should be used and the default `working directory` (see
+should be used and the default working directory (see
 [`help("getwd")`](https://rdrr.io/r/base/getwd.html)) to be used when
-not in a project.
+**not** in a project.
 
 Keyboard shortcuts can be modified at `Tools` \>
 `Modify Keyboard Shortcuts`, e.g., to change the shortcut
@@ -221,26 +221,25 @@ Choosing a good editor font deserves some attention: using a font with
 clearly distinct characters prevents confusing similar characters when
 reading or debugging code. The following strings group together
 characters that in some fonts are similar in appearance. Letters are
-indicated with their names in upper case letters that are easier to
-distinguish, with ‘upper’ indicating that upper case letters are used in
-the string:
+indicated with their names in the same case as used in the string:
 
-- `B8 S5 y4 Z2`: upper BEE, eight; upper ESS, five; WYE, four; upper
-  ZED, two
-- `gq ijy rnm uvvw UVVW`: GEE, CUE; I, JAY, WYE; AR, EN, EM; U, repeated
-  VEE, double-U; upper U, repeated upper VEE, upper double-U
+- `B8 S5 y4 Z2`: BEE, eight; ESS, five; wye, four; ZED, two
+- `gq ijy rnm uvvw UVVW`: gee, cue; i, jay, wye; ar, en, em; u, repeated
+  vee, double-u; U, repeated VEE, DOUBLE-U
 - `., :; "'' __`: dot, comma; colon, semicolon; double quotes, repeated
   single quotes; repeated underscores
-- `cldcIdc|dc1`: CEE, EL, DEE, CEE, upper I, DEE, CEE, vertical bar,
-  DEE, CEE, one
-- `71lI|i/`: seven, one, EL, upper I, vertical bar, I, slash
-- `oQO0D`: O, upper CUE, upper O, ZERO, upper DEE
+- `cldcIdc|dc1`: cee, el, dee, cee, I, dee, cee, vertical bar, dee, cee,
+  one
+- `71lI|i/`: seven, one, el, I, vertical bar, i, slash
+- `oQO0D`: o, CUE, (upper case letter) O, zero, DEE
 
-Together, these strings form the string
+Combining these strings gives
 `B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D`
-that can be used to compare fonts, for example using [Adobe
-Fonts](https://fonts.adobe.com/) or [Google
-Fonts](https://fonts.google.com/).
+which can be used to compare fonts, for example using [Adobe
+Fonts](https://fonts.adobe.com/fonts), [Font
+Squirrel](https://www.fontsquirrel.com/), [Google
+Fonts](https://fonts.google.com/), or
+[MyFonts](https://www.myfonts.com/).
 
 ## Documentation and help
 

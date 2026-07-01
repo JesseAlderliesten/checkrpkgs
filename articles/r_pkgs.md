@@ -17,14 +17,16 @@ specific function name to get working code.
 
 In this vignette, calls to functions are frequently written in the form
 `<pkg>::<func>()`, to make clear which package is used and, through the
-brackets, that a function is indicated. In normal code, one would use
-`library(<pkg>)` followed by `<func>()`. For example, in this vignette
-the notation
+brackets, that a function is indicated. In normal scripts, one would use
+`library(<pkg>)` in a section at the top of the script where all
+required packages are loaded, followed by `<func>()` where that is
+needed. For example, in this vignette the notation
 [`utils::citation()`](https://rdrr.io/r/utils/citation.html) is used to
 show how to cite R, indicating that the function
 [`citation()`](https://rdrr.io/r/utils/citation.html) is defined in
-package `utils`. In normal code, one would use
-[`library(utils)`](https://rdrr.io/r/base/library.html) followed by
+package `utils`. In normal scripts, one would use
+[`library(utils)`](https://rdrr.io/r/base/library.html) in a section at
+the top of the script, followed by
 [`citation()`](https://rdrr.io/r/utils/citation.html) where that is
 needed.
 
@@ -35,9 +37,9 @@ An R
 is a standardized collection of material extending R by providing code,
 data, or documentation.
 
-The
-[base](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Add_002don-packages-in-R)
-packages are always installed together with R. The
+The [base
+packages](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Add_002don-packages-in-R)
+are always installed together with R. The
 [recommended](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Add_002don-packages-from-CRAN)
 packages are installed with binary distributions of R. Together, the
 base and recommended packages are the ‘high priority’ packages. Since R
@@ -46,7 +48,7 @@ base and recommended packages are the ‘high priority’ packages. Since R
 contains a list with the names of these packages. To see which
 high-priority packages are currently installed, run
 `sort(unname(installed.packages(priority = "high")[, "Package"]))`.
-Package ‘translations’ is not a recommended package, but will be
+Package `translations` is not a recommended package, but will be
 installed if that option is set during the installation of R.
 
 ### Installing packages
@@ -54,10 +56,10 @@ installed if that option is set during the installation of R.
 To install a package, run R or RStudio as administrator: right-click on
 the R or RStudio icon and select `Run as administrator`. Packages can be
 obtained from several websites, called ‘repositories’, such as `CRAN`,
-`BioConductor`, and `GitHub`, discussed in the next sections. After
+`Bioconductor`, and `GitHub`, discussed in the next sections. After
 installing a package, you need to
-[attach](#loading-and-attaching-packages) the package to be able to use
-its functions: run `library(<pkg>)`.
+[attach](#loading-and-attaching-packages) it to be able to use its
+functions: run `library(<pkg>)`.
 
 #### CRAN
 
@@ -89,26 +91,32 @@ packages, use `ctv::update.views("<taskview>", coreOnly = TRUE)`.
 gives information about packages available from
 [CRAN](https://cran.r-project.org/web/packages/index.html).
 [`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
-includes the `Description` and `Maintainer` fields not returned by
+gives much more information for each package, including the
+`Description` and `Maintainer` fields not returned by
 [`utils::available.packages()`](https://rdrr.io/r/utils/available.packages.html).
+[`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
+also includes the development versions of the
+[recommended](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Add_002don-packages-from-CRAN)
+packages, which have `"4.7.0/Recommended"` instead of `<NA>` in column
+`Path`.
 [`tools::CRAN_check_results()`](https://rdrr.io/r/tools/CRANtools.html)
 gives information about the current check status of CRAN packages.
 Packages from CRAN that have been recently archived, for example because
 check issues were not addressed in time, are available at
 [CRANhaven](https://www.cranhaven.org/).
 
-#### BioConductor
+#### Bioconductor
 
-The [Bioconductor](https://bioconductor.org/) repository has a new
-release every six months. Each release contains specific versions of
-packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
-and
-[BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
+The [Bioconductor](https://bioconductor.org/) repository hosts many R
+packages related to bioinformatics. Bioconductor has a new release every
+six months. Each release contains specific versions of packages from
+[CRAN](https://cran.r-project.org/web/packages/index.html) and
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html)
 that are consistent with each other and with a [specific
 version](https://bioconductor.org/about/release-announcements/) of R,
 preventing version conflicts between R packages.
 
-The following code can be used to install packages from BioConductor
+The following code can be used to install packages from Bioconductor
 release [version](https://bioconductor.org/about/release-announcements/)
 3.23. This code installs the
 [`BiocManager`](https://CRAN.R-project.org/package=BiocManager) package
@@ -134,9 +142,9 @@ BiocManager::install(pkgs = pkgs_new, lib = .libPaths(), dependencies = NA,
 Bioconductor also has thematic package collections known as
 [BiocViews](https://bioconductor.org/packages/release/BiocViews.html).
 
-`utils::available.packages(fields = NULL, repos = BiocManager::repositories())`
-gives information about packages available from
-[BioConductor](https://bioconductor.org/packages/release/BiocViews.html),
+`utils::available.packages(repos = BiocManager::repositories())` gives
+information about packages available from
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html),
 and
 [`BiocManager::available()`](https://bioconductor.github.io/BiocManager/reference/available.html)
 gives their names.
@@ -146,7 +154,7 @@ gives their names.
 The following code can be used to install packages from
 [GitHub](https://github.com/): it installs the
 [`remotes`](https://CRAN.R-project.org/package=remotes) package that is
-needed to install packages from GitHub, selects those elements of
+used to install packages from GitHub, selects those elements of
 `pkgs_new` that give the author name and repository name (e.g.,
 `"JesseAlderliesten/checkrpkgs"`) or the full URL to a package (e.g.,
 `"https://github.com/JesseAlderliesten/checkrpkgs"`) as required by
@@ -262,9 +270,9 @@ gives their versions,
 [`path.package()`](https://rdrr.io/r/base/find.package.html) gives the
 paths from which packages were loaded.
 [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
-provides both the version and the path and has the option to show
-information about their dependencies (and returns the names in
-alphabetical order instead of the order of loading).
+provides the names, versions and the paths of loaded packages, and has
+the option to show information about their dependencies (and returns the
+names in alphabetical order instead of the order of loading).
 `options("defaultPackages")` gives the names of packages that are
 attached by default when R starts up if environment variable
 `R_DEFAULT_PACKAGES` is unset (i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
@@ -280,10 +288,16 @@ already-installed and newly-installed packages.
 #### CRAN
 
 For R packages from CRAN, versions can be compared using
-[`diffify`](https://diffify.com/R) and a chronological overview of
-changes is available at
-[CRANberries](https://dirk.eddelbuettel.com/cranberries/). To get the
-version number of an installed package, run
+[diffify](https://diffify.com/R) and a chronological overview of changes
+is available at
+[CRANberries](https://dirk.eddelbuettel.com/cranberries/).
+
+Package [`rcheology`](https://github.com/hughjonesd/rcheology) provides
+an overview of functions in earlier versions of base R. Package
+[`backports`](https://CRAN.R-project.org/package=backports) provides
+re-implementations of old functions.
+
+To get the version number of an installed package, run
 `utils::packageVersion("<pkg>")`.
 [`old.packages()`](https://rdrr.io/r/utils/update.packages.html)
 indicates which packages can be updated.
@@ -307,7 +321,7 @@ indicates which packages can be updated and also checks for too new
 packages, taking the currently used version of Bioconductor (see
 [`BiocManager::version()`](https://bioconductor.github.io/BiocManager/reference/version.html))
 into account. The following code can be used to update packages to a
-specific BioConductor release (here version 3.23):
+specific Bioconductor release (here version 3.23):
 
 ``` r
 
@@ -348,6 +362,9 @@ remotes::install_version(package = "deSolve", version = "1.40", dependencies = N
                          lib = .libPaths(), verbose = getOption("verbose"))
 ```
 
+It is also possible to specify minimum versions, e.g.,
+`version = >= 1.40`.
+
 Alternatively, visit the installation page of a package from CRAN, go to
 `Downloads` \> `Old sources` \> `<pkg> archive` and find the appropriate
 URL pointing to an older version to install it using base R. For
@@ -369,7 +386,7 @@ Older versions of packages from Bioconductor can be installed by
 changing the value of argument `version` of
 [`BiocManager::install()`](https://bioconductor.github.io/BiocManager/reference/install.html)
 (e.g., `BiocManager::install(pkgs = "deSolve", version = "3.22")` to
-indicate the version of `deSolve` included in BioConductor version 3.22)
+indicate the version of `deSolve` included in Bioconductor version 3.22)
 but that only works when using the version of R for that specific
 version of Bioconductor, see the
 [overview](https://bioconductor.org/about/release-announcements/) of
@@ -397,9 +414,10 @@ Bioconductor, e.g.,
   versions by building them from source, or choose `No` to get slightly
   less up-to-date package versions but a faster installation.
 
-  To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
-  see the section `Rtools` in the vignette *Installing R, Rtools and
-  RStudio*:
+  This question is only asked if you have installed
+  [Rtools](https://cran.r-project.org/bin/windows/Rtools/). To install
+  Rtools, see the section `Rtools` in the vignette *Installing R, Rtools
+  and RStudio*:
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
   If you want the latest version without using Rtools, you can try again
   a few days later: it usually takes a bit longer for the binaries
@@ -482,9 +500,9 @@ installed.
 and [`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
 give information about packages available from
 [CRAN](https://cran.r-project.org/web/packages/index.html);
-`utils::available.packages(fields = NULL, repos = BiocManager::repositories())`
-gives information about packages available from
-[BioConductor](https://bioconductor.org/packages/release/BiocViews.html),
+`utils::available.packages(repos = BiocManager::repositories())` gives
+information about packages available from
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html),
 and
 [`BiocManager::available()`](https://bioconductor.github.io/BiocManager/reference/available.html)
 gives their names.
@@ -528,11 +546,12 @@ prop$draw()
 
 #### Source code
 
-The source code of base R packages can be obtained from
-[GitHub](https://github.com/r-devel/r-svn/) (see the section
-[Repositories](#repositories) below), and installation pages of packages
-on CRAN frequently contain links to GitHub pages where their source code
-can be viewed.
+The source code of [base R
+packages](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Add_002don-packages-in-R)
+can be obtained from [GitHub](https://github.com/r-devel/r-svn/) (see
+the section [Repositories](#repositories) below), and installation pages
+of packages on CRAN frequently contain links to GitHub pages where their
+source code can be viewed.
 
 ### Already-installed packages
 
@@ -549,7 +568,7 @@ package is installed can be obtained with
 #### Documentation
 
 [`library()`](https://rdrr.io/r/base/library.html) (without providing
-the `package` or `help` arguments) and
+arguments `package` or `help`) and
 [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
 give details on installed packages. Argument `fields` of the
 [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
@@ -576,7 +595,7 @@ been run):
   `base::conflicts(where = search(), detail = TRUE)`. See also the
   section `Conflicts` in
   [`help("conflictRules", package = "base")`](https://rdrr.io/r/base/library.html)
-  and `conflicts_prefer(<pkg>::<func>)` from package
+  and `conflicted::conflicts_prefer(<pkg>::<func>)` from package
   [`conflicted`](https://CRAN.R-project.org/package=conflicted) to
   declare preferences.
 - Functions, finding functions and other objects whose name contains a
@@ -585,14 +604,14 @@ been run):
   `ls(getNamespace("<pkg>"), all.names = TRUE)` returns a character
   vector with the function names (the default `all.names = FALSE`
   ignores names that start with a dot because those are for internal use
-  in packages;
+  in packages);
   [`help(package = "<pkg>")`](https://rdrr.io/pkg/%3Cpkg%3E/man) gives
   an overview with links to their help-pages if there is a file
   `<pkg>.R` in folder `<pkg>\R`.
 - Help page of a function: `help("<func>")`; indicate the package to
   distinguish functions with the same name from different packages:
-  `help("<func>", package = "<pkg>")`; use quotes around the name of an
-  operator to get its help page:
+  `help("<func>", package = "<pkg>")`; use quotes around the name of a
+  function that start with a symbol to get its help page:
   [`help("%in%")`](https://rdrr.io/r/base/match.html).
 - Installation path of a package (i.e., where is a package installed):
   `find.package(package = "<pkg>", lib.loc = NULL, verbose = TRUE)`.
@@ -649,8 +668,9 @@ Partly based on:
 
 ### Repositories
 
-The source code of the base R packages is available at
-[CRAN](https://cran.r-project.org/src/base/) and at the
+The source code of the [base R
+packages](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Add_002don-packages-in-R)
+is available at [CRAN](https://cran.r-project.org/src/base/) and at the
 [SVN-project](https://svn.r-project.org/R/branches/). Searching the
 source code of the development version is easiest using the [GitHub
 mirror](https://github.com/r-devel/r-svn/tree/main/src/library) of the
@@ -666,7 +686,7 @@ file so you have to extract the files (right-click on the downloaded
 file and choose `extract all`).
 
 The source code of packages from
-[BioConductor](https://bioconductor.org/) in the current and
+[Bioconductor](https://bioconductor.org/) in the current and
 development-version is available
 [here](https://code.bioconductor.org/search/).
 
@@ -690,7 +710,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55e32633c5c8>
+#> <bytecode: 0x55f2bed6a1f0>
 #> <environment: namespace:stats>
 ```
 
@@ -705,8 +725,8 @@ Some special cases:
   wrong package, use `getAnywhere(<func>)` to check in which package
   `<func>` is defined). Non-exported functions should **not** be used in
   code because they might change.
-- For operators such as `%in%` (see
-  [`help("%in%")`](https://rdrr.io/r/base/match.html) that start with a
+- For functions such as `%in%` (see
+  [`help("%in%")`](https://rdrr.io/r/base/match.html)) that start with a
   symbol, use backticks (\`) around the name:
 
 ``` r
@@ -714,7 +734,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55e322f62cf0>
+#> <bytecode: 0x55f2ba7fbcf0>
 #> <environment: namespace:base>
 ```
 
@@ -724,7 +744,7 @@ A more robust alternative to the [basic method](#basic-method) outlined
 above is to use `getAnywhere("<func>")`, which looks in more places and
 finds non-exported functions without the need to specify in which
 package a function is defined. Although the quotes around the function
-name are only required when looking for the source code of operators
+name are only required when looking for the source code of functions
 that start with a symbol (e.g., `%in%`), it is most robust to always use
 them.
 
@@ -755,7 +775,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55e32524e900>
+#> <bytecode: 0x55f2bcaeac88>
 #> <environment: namespace:base>
 ```
 
@@ -785,7 +805,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55e326ce65d0>
+#> <bytecode: 0x55f2be4cd8d8>
 #> <environment: namespace:base>
 ```
 
@@ -827,7 +847,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55e326ce99f0>
+#> <bytecode: 0x55f2be4d0cf8>
 #> <environment: namespace:base>
 ```
 
@@ -873,8 +893,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55e324bf7900>
-#> <environment: 0x55e32386f4b8>
+#> <bytecode: 0x55f2bc4a6de0>
+#> <environment: 0x55f2bb10baf8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -937,7 +957,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55e326ae1ba8>
+#> <bytecode: 0x55f2be329bc0>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -987,9 +1007,11 @@ Sometimes an R function is defined in a file that defines multiple
 functions and thus has a general name. Then the file with c-code will
 have a similar general name. For example, the source code of
 [`make.names()`](https://rdrr.io/r/base/make.names.html) is defined in
-`src/library/base/R/character.R` which, among others, contains the code
+[`src/library/base/R/character.R`](https://github.com/r-devel/r-svn/blob/main/src/library/base/R/character.R)
+which, among others, contains the code
 `.Internal(make.names(names, allow_))`, and the c-code for
-`do_makenames()` is in file `src/main/character.c`.
+`do_makenames()` is in file
+[`src/main/character.c`](https://github.com/r-devel/r-svn/blob/main/src/main/character.c).
 
 #### .Call
 
@@ -1014,7 +1036,7 @@ and searching in the `src` folder of the downloaded code.
 - [Documentation](https://docs.r-universe.dev/install.html) from the
   [R-universe](https://r-universe.dev/search)
 - [Instructions](https://bioconductor.org/install/) on installing
-  [BioConductor](https://bioconductor.org/packages/release/BiocViews.html)
+  [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html)
   packages
 - Section
   [`Add-on packages`](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
@@ -1027,7 +1049,7 @@ and searching in the `src` folder of the downloaded code.
 
 - [Check
   results](https://docs.r-universe.dev/bioconductor/#check-results) from
-  BioConductor.
+  Bioconductor.
 
 ### Source code
 
