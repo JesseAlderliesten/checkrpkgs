@@ -7,9 +7,8 @@ cff-version: 1.2.0
 message: 'To cite package "checkrpkgs" in publications use:'
 type: software
 license: MIT
-title: 'checkrpkgs: Information on Installing R, Rtools, RStudio, R Packages, Git
-  and GitHub'
-version: 1.0.0
+title: 'checkrpkgs: Installing and Using R, Rtools, RStudio, R Packages, Git and GitHub'
+version: 1.1.0
 abstract: Information on installing and configuring R, Rtools, and RStudio; setting
   up and using Git and GitHub; obtaining information about to-be-installed and already-installed
   packages, among which the source code of functions.
