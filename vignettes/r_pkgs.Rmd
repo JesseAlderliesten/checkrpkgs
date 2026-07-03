@@ -484,7 +484,7 @@ installed can be obtained with
 `utils::installed.packages()` give details on installed packages. Argument
 `fields` of the `utils::installed.packages()` can be used to specify additional
 fields to extract from the package `DESCRIPTION`, for example
-`fields = c("Repository", "Additional_repositories", "URL", "GithubRepo", "GithubUsername", "SystemRequirements")`.
+`utils::installed.packages(fields = c("Repository", "Additional_repositories", "URL", "GithubRepo", "GithubUsername", "SystemRequirements"))`.
 The `Repository` and `URL` fields show the repository from which a package was
 installed and are conveniently shown by `sessioninfo::session_info()`, which
 also has the option to show only information about selected packages
