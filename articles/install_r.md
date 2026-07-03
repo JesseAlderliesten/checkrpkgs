@@ -224,14 +224,14 @@ characters that in some fonts are similar in appearance. Letters are
 indicated with their names in the same case as used in the string:
 
 - `B8 S5 y4 Z2`: BEE, eight; ESS, five; wye, four; ZED, two
-- `gq ijy rnm uvvw UVVW`: gee, cue; i, jay, wye; ar, en, em; u, repeated
-  vee, double-u; U, repeated VEE, DOUBLE-U
+- `gq ijy rnm uvvw UVVW`: gee, cue; eye, jay, wye; ar, en, em; u,
+  repeated vee, double-u; U, repeated VEE, double-U
 - `., :; "'' __`: dot, comma; colon, semicolon; double quotes, repeated
   single quotes; repeated underscores
-- `cldcIdc|dc1`: cee, el, dee, cee, I, dee, cee, vertical bar, dee, cee,
-  one
-- `71lI|i/`: seven, one, el, I, vertical bar, i, slash
-- `oQO0D`: o, CUE, (upper case letter) O, zero, DEE
+- `cldcIdc|dc1`: cee, el, dee, cee, EYE, dee, cee, vertical bar, dee,
+  cee, one
+- `71lI|i/`: seven, one, el, EYE, vertical bar, eye, slash
+- `oQO0D`: oh, CUE, OH, zero, DEE
 
 Combining these strings gives
 `B8 S5 y4 Z2 gq ijy rnm uvvw UVVW ., :; "'' __ cldcIdc|dc1 71lI|i/ oQO0D`

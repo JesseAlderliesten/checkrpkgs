@@ -574,7 +574,7 @@ give details on installed packages. Argument `fields` of the
 [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
 can be used to specify additional fields to extract from the package
 `DESCRIPTION`, for example
-`fields = c("Repository", "Additional_repositories", "URL", "GithubRepo", "GithubUsername", "SystemRequirements")`.
+`utils::installed.packages(fields = c("Repository", "Additional_repositories", "URL", "GithubRepo", "GithubUsername", "SystemRequirements"))`.
 The `Repository` and `URL` fields show the repository from which a
 package was installed and are conveniently shown by
 [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html),
@@ -710,7 +710,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x55f2bed6a1f0>
+#> <bytecode: 0x562d4ff26f40>
 #> <environment: namespace:stats>
 ```
 
@@ -734,7 +734,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55f2ba7fbcf0>
+#> <bytecode: 0x562d4bbf3cf0>
 #> <environment: namespace:base>
 ```
 
@@ -775,7 +775,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55f2bcaeac88>
+#> <bytecode: 0x562d4dee2c88>
 #> <environment: namespace:base>
 ```
 
@@ -805,7 +805,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55f2be4cd8d8>
+#> <bytecode: 0x562d4f8cfda8>
 #> <environment: namespace:base>
 ```
 
@@ -847,7 +847,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55f2be4d0cf8>
+#> <bytecode: 0x562d4f8d31c8>
 #> <environment: namespace:base>
 ```
 
@@ -893,8 +893,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55f2bc4a6de0>
-#> <environment: 0x55f2bb10baf8>
+#> <bytecode: 0x562d4d89ede0>
+#> <environment: 0x562d4c503af8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -957,7 +957,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55f2be329bc0>
+#> <bytecode: 0x562d4f729f30>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
