@@ -126,6 +126,10 @@ menu and select the line or lines of code containing the changes you want to
 `Push`. Then a button `Stage line` or `Stage chunck` will show up next to the
 selected code. Click that button to `Push` only the selected lines.
 
+If you pushed changes to your fork of a repository you do not own, move to your
+fork in GitHub and click the `Contribute` button > `Open pull request`. Wait for
+the checks to complete. Then use `Create pull request`.
+
 ## Adding a new file
 To add a file to GitHub that is not there yet, first add it to the R project
 folder on your PC (see the output of `getwd()`), then check the `Staged` box in
@@ -165,6 +169,9 @@ Then let `git` know the new file is there by typing (it is convenient to use
   `https://github.com/JesseAlderliesten/checkrpkgs/compare/e8eb0a1...e60a155`
   that compares two commits. Details:
   [here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits)
+- Changes to the files of a particular pull request are visible in the
+  `Files changed` tab of that pull request. To get a diff-file of these changes,
+  append `.diff` to the URL of the pull request.
 - See also section [Repositories: download, fork, or clone?] below.
 
 ### Not using GitHub
