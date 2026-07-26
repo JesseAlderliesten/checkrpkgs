@@ -292,6 +292,15 @@ remotes::install_github(repo = grep(pattern = "/", x = pkgs_new, value = TRUE,
                         verbose = getOption("verbose"))
 ```
 
+### Linking
+URLs are
+[automatically converted](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/autolinked-references-and-urls#issues-and-pull-requests)
+to links, as are references to issues and pull requests (e.g., `#2`, 
+`https://github.com/<user>/<repo>/issues/2`). To
+[link a pull request](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
+on the main branch to an issue, use the keywords `close`, `resolve`, `fix`, or
+variants thereof in the pull request description. 
+
 ### Further documentation
 In addition to section [Using GitHub] above, see:
 
