@@ -372,8 +372,9 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   [stackoverflow answer](https://stackoverflow.com/a/25721890/32365738).
 
 - If installing packages fails, try with arguments `force = TRUE` to re-install
-  possibly broken dependencies and with argument `build_vignettes = FALSE` to
-  not install vignettes.
+  possibly broken dependencies, with argument `build_vignettes = FALSE` to
+  not install vignettes, or with `verbose = TRUE` to get more diagnostic
+  information.
 
 #### Using packages
 - If a package appears not to be installed when you want to use a function from
