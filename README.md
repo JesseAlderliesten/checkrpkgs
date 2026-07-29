@@ -63,8 +63,7 @@ License](LICENSE.md).
     To cite package 'checkrpkgs' in publications use:
 
       Alderliesten J (2026). _checkrpkgs: Installing and Using R, Rtools,
-      RStudio, R Packages, Git and GitHub_. R package version 1.1.0, commit
-      efcdfe34b621b2dd1e85dd77f0fcd94d9c84e0cc,
+      RStudio, R Packages, Git and GitHub_. R package version 1.1.1,
       <https://github.com/JesseAlderliesten/checkrpkgs>.
 
     A BibTeX entry for LaTeX users is
@@ -74,7 +73,7 @@ License](LICENSE.md).
     GitHub},
         author = {Jesse Alderliesten},
         year = {2026},
-        note = {R package version 1.1.0, commit efcdfe34b621b2dd1e85dd77f0fcd94d9c84e0cc},
+        note = {R package version 1.1.1},
         url = {https://github.com/JesseAlderliesten/checkrpkgs},
       }
 
