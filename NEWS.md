@@ -1,3 +1,12 @@
+# checkrpkgs 1.1.1
+
+### Documentation
+- Vignette `git_github`: add how to create a new branch to push changes back and
+  how to move from pushing changes to a pull request. Show how to get a
+  diff-file of changes in a pull request. Describe linking and how to link a
+  pull request to an issue.
+
+
 # checkrpkgs 1.1.0
 
 ### Breaking changes

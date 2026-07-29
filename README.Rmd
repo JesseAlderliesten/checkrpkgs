@@ -29,16 +29,14 @@ and use Git and GitHub with RStudio.
 Visit the [checkrpkgs website](https://jessealderliesten.github.io/checkrpkgs/)
 to explore the package, or install `checkrpkgs` from
 [GitHub](https://github.com/JesseAlderliesten/checkrpkgs) using the following R
-code (you need to run R as administrator):
+code:
 
 ```{r, eval = FALSE}
-if(!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages(pkgs = "remotes", quiet = FALSE)
+if(!requireNamespace("remotes")) {
+  install.packages(pkgs = "remotes")
 }
 remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
-                        dependencies = NA, upgrade = FALSE, force = FALSE,
-                        quiet = FALSE, build_vignettes = TRUE, lib = NULL,
-                        verbose = getOption("verbose"))
+                        upgrade = FALSE, build_vignettes = TRUE, lib = NULL)
 ```
 
 ## Content
