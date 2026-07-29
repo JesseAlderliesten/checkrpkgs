@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -195,6 +195,10 @@ line or lines of code containing the changes you want to
 <code>Push</code>. Then a button <code>Stage line</code> or
 <code>Stage chunck</code> will show up next to the selected code. Click
 that button to <code>Push</code> only the selected lines.</p>
+<p>If you pushed changes to your fork of a repository you do not own,
+move to your fork in GitHub and click the <code>Contribute</code> button
+&gt; <code>Open pull request</code>. Wait for the checks to complete.
+Then use <code>Create pull request</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="adding-a-new-file">Adding a new file<a class="anchor" aria-label="anchor" href="#adding-a-new-file"></a>
@@ -245,6 +249,10 @@ for example
 <code>https://github.com/JesseAlderliesten/checkrpkgs/compare/e8eb0a1...e60a155</code>
 that compares two commits. Details: <a href="https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits" class="external-link">here</a>
 </li>
+<li>Changes to the files of a particular pull request are visible in the
+<code>Files changed</code> tab of that pull request. To get a diff-file
+of these changes, append <code>.diff</code> to the URL of the pull
+request.</li>
 <li>See also section <a href="#repositories-download-fork-or-clone">Repositories: download,
 fork, or clone?</a> below.</li>
 </ul>
@@ -339,7 +347,12 @@ commands to clone a repository, either with its complete history by
 using
 <code>git clone https://github.com/&lt;username&gt;/&lt;repository&gt;</code>
 or with only the last commit by using
-<code>git clone --depth=1 https://github.com/&lt;username&gt;/&lt;repository&gt;</code>.</li>
+<code>git clone --depth=1 https://github.com/&lt;username&gt;/&lt;repository&gt;</code>.
+Create a new branch to work in: click the <code>New branch</code> button
+in RStudio (besides the <code>Switch branch</code> icon indicating which
+branch (e.g., <code>main</code>) you are using), use a descriptive
+branch name (e.g., containing the name of the file you want to change),
+and click <code>Create</code>.</li>
 <li>To download code without being able to push your changes back to a
 GitHub repository, download the repository by using the green
 <code>Code</code> button on the GitHub page of the repository, choose
@@ -378,6 +391,18 @@ vignette <em>R packages</em>:
 <span>                        dependencies <span class="op">=</span> <span class="cn">NA</span>, upgrade <span class="op">=</span> <span class="st">"ask"</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                        quiet <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="linking">Linking<a class="anchor" aria-label="anchor" href="#linking"></a>
+</h3>
+<p>URLs are <a href="https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/autolinked-references-and-urls#issues-and-pull-requests" class="external-link">automatically
+converted</a> to links, as are references to issues and pull requests
+(e.g., <code>#2</code>,
+<code>https://github.com/&lt;user&gt;/&lt;repo&gt;/issues/2</code>). To
+<a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue" class="external-link">link
+a pull request</a> on the main branch to an issue, use the keywords
+<code>close</code>, <code>resolve</code>, <code>fix</code>, or variants
+thereof in the pull request description.</p>
 </div>
 <div class="section level3">
 <h3 id="further-documentation">Further documentation<a class="anchor" aria-label="anchor" href="#further-documentation"></a>
@@ -500,7 +525,7 @@ from <a href="https://epirhandbook.com/en/" class="external-link"><code>The Epid
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

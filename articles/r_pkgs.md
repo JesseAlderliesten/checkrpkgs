@@ -431,8 +431,9 @@ Bioconductor, e.g.,
   [stackoverflow answer](https://stackoverflow.com/a/25721890/32365738).
 
 - If installing packages fails, try with arguments `force = TRUE` to
-  re-install possibly broken dependencies and with argument
-  `build_vignettes = FALSE` to not install vignettes.
+  re-install possibly broken dependencies, with argument
+  `build_vignettes = FALSE` to not install vignettes, or with
+  `verbose = TRUE` to get more diagnostic information.
 
 #### Using packages
 
@@ -710,7 +711,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x562d4ff26f40>
+#> <bytecode: 0x557c1e91e910>
 #> <environment: namespace:stats>
 ```
 
@@ -734,7 +735,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x562d4bbf3cf0>
+#> <bytecode: 0x557c1a5c2d30>
 #> <environment: namespace:base>
 ```
 
@@ -775,7 +776,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x562d4dee2c88>
+#> <bytecode: 0x557c1c8b0898>
 #> <environment: namespace:base>
 ```
 
@@ -805,7 +806,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x562d4f8cfda8>
+#> <bytecode: 0x557c1e25df88>
 #> <environment: namespace:base>
 ```
 
@@ -847,7 +848,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x562d4f8d31c8>
+#> <bytecode: 0x557c1e2613a8>
 #> <environment: namespace:base>
 ```
 
@@ -893,8 +894,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x562d4d89ede0>
-#> <environment: 0x562d4c503af8>
+#> <bytecode: 0x557c1c2742d8>
+#> <environment: 0x557c1aed2b48>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -957,7 +958,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x562d4f729f30>
+#> <bytecode: 0x557c1e0b58f8>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

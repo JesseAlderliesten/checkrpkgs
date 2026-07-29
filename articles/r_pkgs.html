@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -452,9 +452,10 @@ can have many reasons. First check the package name, which is
 case-sensitive. Then check possible other reasons mentioned in this <a href="https://stackoverflow.com/a/25721890/32365738" class="external-link">stackoverflow
 answer</a>.</p></li>
 <li><p>If installing packages fails, try with arguments
-<code>force = TRUE</code> to re-install possibly broken dependencies and
+<code>force = TRUE</code> to re-install possibly broken dependencies,
 with argument <code>build_vignettes = FALSE</code> to not install
-vignettes.</p></li>
+vignettes, or with <code>verbose = TRUE</code> to get more diagnostic
+information.</p></li>
 </ul>
 </div>
 <div class="section level4">
@@ -734,7 +735,7 @@ example, use <code>sd</code> to see what happens when using
 <span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
 <span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
 <span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x562d4ff26f40&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x557c1e91e910&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
@@ -758,7 +759,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x562d4bbf3cf0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x557c1a5c2d30&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -801,7 +802,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x562d4dee2c88&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x557c1c8b0898&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -826,7 +827,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x562d4f8cfda8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x557c1e25df88&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>You can also use <code>getAnywhere("mean.default")</code> to see the
 source code of the method <code>mean</code> used with objects of classes
@@ -864,7 +865,7 @@ not listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x562d4f8d31c8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x557c1e2613a8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -907,8 +908,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x562d4d89ede0&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x562d4c503af8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x557c1c2742d8&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x557c1aed2b48&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -964,7 +965,7 @@ the <code>Matrix</code> class defined by package
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x562d4f729f30&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x557c1e0b58f8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
@@ -1097,7 +1098,7 @@ by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja</li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

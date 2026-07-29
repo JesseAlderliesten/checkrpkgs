@@ -123,6 +123,11 @@ changes you want to `Push`. Then a button `Stage line` or `Stage chunck`
 will show up next to the selected code. Click that button to `Push` only
 the selected lines.
 
+If you pushed changes to your fork of a repository you do not own, move
+to your fork in GitHub and click the `Contribute` button \>
+`Open pull request`. Wait for the checks to complete. Then use
+`Create pull request`.
+
 ## Adding a new file
 
 To add a file to GitHub that is not there yet, first add it to the R
@@ -168,6 +173,9 @@ use `tab`-completion to select files): `git add <filename>.<extension>`.
   `https://github.com/JesseAlderliesten/checkrpkgs/compare/e8eb0a1...e60a155`
   that compares two commits. Details:
   [here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits)
+- Changes to the files of a particular pull request are visible in the
+  `Files changed` tab of that pull request. To get a diff-file of these
+  changes, append `.diff` to the URL of the pull request.
 - See also section [Repositories: download, fork, or
   clone?](#repositories-download-fork-or-clone) below.
 
@@ -253,6 +261,11 @@ There are several ways to copy code from a GitHub repository to your PC:
   `git clone https://github.com/<username>/<repository>` or with only
   the last commit by using
   `git clone --depth=1 https://github.com/<username>/<repository>`.
+  Create a new branch to work in: click the `New branch` button in
+  RStudio (besides the `Switch branch` icon indicating which branch
+  (e.g., `main`) you are using), use a descriptive branch name (e.g.,
+  containing the name of the file you want to change), and click
+  `Create`.
 - To download code without being able to push your changes back to a
   GitHub repository, download the repository by using the green `Code`
   button on the GitHub page of the repository, choose `Download ZIP` and
@@ -293,6 +306,16 @@ remotes::install_github(repo = grep(pattern = "/", x = pkgs_new, value = TRUE,
                         quiet = FALSE, build_vignettes = TRUE, lib = .libPaths(),
                         verbose = getOption("verbose"))
 ```
+
+### Linking
+
+URLs are [automatically
+converted](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/autolinked-references-and-urls#issues-and-pull-requests)
+to links, as are references to issues and pull requests (e.g., `#2`,
+`https://github.com/<user>/<repo>/issues/2`). To [link a pull
+request](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
+on the main branch to an issue, use the keywords `close`, `resolve`,
+`fix`, or variants thereof in the pull request description.
 
 ### Further documentation
 

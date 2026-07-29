@@ -14,17 +14,15 @@ Visit the [checkrpkgs
 website](https://jessealderliesten.github.io/checkrpkgs/) to explore the
 package, or install `checkrpkgs` from
 [GitHub](https://github.com/JesseAlderliesten/checkrpkgs) using the
-following R code (you need to run R as administrator):
+following R code:
 
 ``` r
 
-if(!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages(pkgs = "remotes", quiet = FALSE)
+if(!requireNamespace("remotes")) {
+  install.packages(pkgs = "remotes")
 }
 remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
-                        dependencies = NA, upgrade = FALSE, force = FALSE,
-                        quiet = FALSE, build_vignettes = TRUE, lib = NULL,
-                        verbose = getOption("verbose"))
+                        upgrade = FALSE, build_vignettes = TRUE, lib = NULL)
 ```
 
 ## Content
@@ -61,7 +59,7 @@ License](https://jessealderliesten.github.io/checkrpkgs/LICENSE.md).
 To cite package 'checkrpkgs' in publications use:
 
   Alderliesten J (2026). _checkrpkgs: Installing and Using R, Rtools,
-  RStudio, R Packages, Git and GitHub_. R package version 1.1.0,
+  RStudio, R Packages, Git and GitHub_. R package version 1.1.1,
   <https://github.com/JesseAlderliesten/checkrpkgs>.
 
 A BibTeX entry for LaTeX users is
@@ -71,7 +69,7 @@ A BibTeX entry for LaTeX users is
 GitHub},
     author = {Jesse Alderliesten},
     year = {2026},
-    note = {R package version 1.1.0},
+    note = {R package version 1.1.1},
     url = {https://github.com/JesseAlderliesten/checkrpkgs},
   }
 ```
