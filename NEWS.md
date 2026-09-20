@@ -1,3 +1,15 @@
+# checkrpkgs 1.1.2
+
+### Documentation
+- Vignette `Installing R, Rtools and RStudio`: mention other integrated
+  development environments (IDEs) for `R`. Document the RStudio `NEWS` page.
+- Vignette `R packages`: mention other general code repositories that contain
+  `R` packages. Add ways to search for vignettes. Some clarifications.
+- Vignette `Git and GitHub`: point out the Terminal that comes with RStudio to
+  find the Git executable. Add some GitHub commands.
+- The used version of `roxygen2` increased from `8.0.0` to `8.1.0`.
+
+
 # checkrpkgs 1.1.1
 
 ### Documentation
