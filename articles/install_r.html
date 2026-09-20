@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -241,7 +241,18 @@ vignette <em>R packages</em> for details:
 <p><a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>
 is an <a href="https://en.wikipedia.org/wiki/Integrated_development_environment" class="external-link">integrated
 development environment</a> for R developed by <a href="https://posit.co/" class="external-link">Posit</a> that can be downloaded <a href="https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads" class="external-link">here</a>.</p>
-<p>RStudio can also be used to read and modify plain-text files.</p>
+<p>RStudio can also be used to read and modify plain-text files.
+Developers can use package <a href="https://cran.r-project.org/package=rstudioapi" class="external-link">rstudioapi</a> to
+interact with RStudio from within R.</p>
+<div class="section level3">
+<h3 id="other-ides">Other IDEs<a class="anchor" aria-label="anchor" href="#other-ides"></a>
+</h3>
+<p>Other integrated development environments for R are:</p>
+<ul>
+<li><a href="https://ess.r-project.org/" class="external-link"><code>Emacs Speaks Statistics (ESS)</code></a></li>
+<li><a href="https://rkward.kde.org/" class="external-link"><code>RKWard</code></a></li>
+</ul>
+</div>
 <div class="section level3">
 <h3 id="configuring-rstudio">Configuring RStudio<a class="anchor" aria-label="anchor" href="#configuring-rstudio"></a>
 </h3>
@@ -279,9 +290,10 @@ themes are the light <code>Xcode</code> and the dark
 <code>Lucida Console</code>.</p>
 <p>Choosing a good editor font deserves some attention: using a font
 with clearly distinct characters prevents confusing similar characters
-when reading or debugging code. The following strings group together
-characters that in some fonts are similar in appearance. Letters are
-indicated with their names in the same case as used in the string:</p>
+when writing, reading or debugging code. The following strings group
+together characters that in some fonts are similar in appearance.
+Letters are indicated with their names in the same case as used in the
+string:</p>
 <ul>
 <li>
 <code>B8 S5 y4 Z2</code>: BEE, eight; ESS, five; wye, four; ZED,
@@ -319,7 +331,7 @@ overview of its <a href="https://cran.r-project.org/mirrors.html" class="externa
 on mirrors, see the section <code>Mirror websites</code> in the vignette
 <em>R packages</em>:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>).</li>
-<li>R <a href="https://www.r-project.org/" class="external-link">homepage</a> with <a href="https://cran.r-project.org/faqs.html" class="external-link">FAQs</a>, <a href="https://cran.r-project.org/doc/manuals/r-release/NEWS.html" class="external-link"><code>NEWS</code></a>,
+<li>R <a href="https://www.r-project.org/" class="external-link">homepage</a> with <a href="https://cran.r-project.org/faqs.html" class="external-link"><code>FAQs</code></a>, <a href="https://cran.r-project.org/doc/manuals/r-release/NEWS.html" class="external-link"><code>NEWS</code></a>,
 and <a href="https://cran.r-project.org/manuals.html" class="external-link">manuals</a>
 (especially the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html" class="external-link"><code>R Installation and Administration manual</code></a>)
 with <a href="https://rstudio.github.io/r-manuals/" class="external-link">derived versions</a>
@@ -330,9 +342,8 @@ better suited for searching.</li>
 with a web interface with <a href="https://stat.ethz.ch/mailman/listinfo" class="external-link">information and
 archives</a> and a mirror for <a href="https://r-mailing-lists.thecoatlessprofessor.com/" class="external-link">searching</a>
 the mailing list archives</li>
-<li>RStudio <a href="https://docs.posit.co/ide/user/" class="external-link">user guide</a> and
-<a href="https://opensource.posit.co/resources/cheatsheets/rstudio-ide/" class="external-link">cheatsheet</a>
-by <a href="https://posit.co/" class="external-link">Posit</a>
+<li>RStudio by <a href="https://posit.co/" class="external-link">Posit</a>: <a href="https://docs.posit.co/ide/user/" class="external-link">user guide</a>, <a href="https://opensource.posit.co/resources/cheatsheets/rstudio-ide/" class="external-link">cheatsheet</a>,
+and <a href="https://docs.posit.co/ide/news/" class="external-link"><code>NEWS</code></a>
 </li>
 <li>Search engines specific for R: <a href="https://r-pkg.org/" class="external-link">METACRAN</a>, <a href="https://search.r-project.org/" class="external-link">r-project</a>, <a href="https://www.rseek.org/" class="external-link">Rseek</a>, <a href="https://r-universe.dev/search" class="external-link">R-universe</a>
 </li>

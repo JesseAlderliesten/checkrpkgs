@@ -184,7 +184,17 @@ environment](https://en.wikipedia.org/wiki/Integrated_development_environment)
 for R developed by [Posit](https://posit.co/) that can be downloaded
 [here](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads).
 
-RStudio can also be used to read and modify plain-text files.
+RStudio can also be used to read and modify plain-text files. Developers
+can use package
+[rstudioapi](https://cran.r-project.org/package=rstudioapi) to interact
+with RStudio from within R.
+
+### Other IDEs
+
+Other integrated development environments for R are:
+
+- [`Emacs Speaks Statistics (ESS)`](https://ess.r-project.org/)
+- [`RKWard`](https://rkward.kde.org/)
 
 ### Configuring RStudio
 
@@ -219,7 +229,7 @@ editor fonts are `Consolas`, `Cacadia Mono Light`, and `Lucida Console`.
 
 Choosing a good editor font deserves some attention: using a font with
 clearly distinct characters prevents confusing similar characters when
-reading or debugging code. The following strings group together
+writing, reading or debugging code. The following strings group together
 characters that in some fonts are similar in appearance. Letters are
 indicated with their names in the same case as used in the string:
 
@@ -252,7 +262,7 @@ Fonts](https://fonts.google.com/), or
   packages*:
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 - R [homepage](https://www.r-project.org/) with
-  [FAQs](https://cran.r-project.org/faqs.html),
+  [`FAQs`](https://cran.r-project.org/faqs.html),
   [`NEWS`](https://cran.r-project.org/doc/manuals/r-release/NEWS.html),
   and [manuals](https://cran.r-project.org/manuals.html) (especially the
   [`R Installation and Administration manual`](https://cran.r-project.org/doc/manuals/r-release/R-admin.html))
@@ -266,9 +276,10 @@ Fonts](https://fonts.google.com/), or
   archives](https://stat.ethz.ch/mailman/listinfo) and a mirror for
   [searching](https://r-mailing-lists.thecoatlessprofessor.com/) the
   mailing list archives
-- RStudio [user guide](https://docs.posit.co/ide/user/) and
-  [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/)
-  by [Posit](https://posit.co/)
+- RStudio by [Posit](https://posit.co/): [user
+  guide](https://docs.posit.co/ide/user/),
+  [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/),
+  and [`NEWS`](https://docs.posit.co/ide/news/)
 - Search engines specific for R: [METACRAN](https://r-pkg.org/),
   [r-project](https://search.r-project.org/),
   [Rseek](https://www.rseek.org/),

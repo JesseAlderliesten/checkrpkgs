@@ -26,9 +26,10 @@ show how to cite R, indicating that the function
 [`citation()`](https://rdrr.io/r/utils/citation.html) is defined in
 package `utils`. In normal scripts, one would use
 [`library(utils)`](https://rdrr.io/r/base/library.html) in a section at
-the top of the script, followed by
-[`citation()`](https://rdrr.io/r/utils/citation.html) where that is
-needed.
+the top of the script where all required packages are
+[attached](#loading-and-attaching-packages), and
+[`citation()`](https://rdrr.io/r/utils/citation.html) is used where that
+is needed.
 
 ## R packages
 
@@ -53,9 +54,8 @@ installed if that option is set during the installation of R.
 
 ### Installing packages
 
-To install a package, run R or RStudio as administrator: right-click on
-the R or RStudio icon and select `Run as administrator`. Packages can be
-obtained from several websites, called ‘repositories’, such as `CRAN`,
+Packages can be installed from within R or RStudio and can be obtained
+from several websites, called ‘repositories’, such as `CRAN`,
 `Bioconductor`, and `GitHub`, discussed in the next sections. After
 installing a package, you need to
 [attach](#loading-and-attaching-packages) it to be able to use its
@@ -102,7 +102,8 @@ packages, which have `"4.7.0/Recommended"` instead of `<NA>` in column
 [`tools::CRAN_check_results()`](https://rdrr.io/r/tools/CRANtools.html)
 gives information about the current check status of CRAN packages.
 Packages from CRAN that have been recently archived, for example because
-check issues were not addressed in time, are available at
+[check issues](https://contributor.r-project.org/cran-cookbook/) were
+not addressed in time, are available at
 [CRANhaven](https://www.cranhaven.org/).
 
 #### Bioconductor
@@ -122,8 +123,8 @@ release [version](https://bioconductor.org/about/release-announcements/)
 [`BiocManager`](https://CRAN.R-project.org/package=BiocManager) package
 from [CRAN](https://cran.r-project.org/) that is then used to install
 packages from `Bioconductor` and CRAN and, through
-[`remotes::install_github()`](https://remotes.r-lib.org/reference/install_github.html)
-(see the next [section](#github)), from GitHub:
+[`remotes::install_github()`](https://remotes.r-lib.org/reference/install_github.html),
+from GitHub (see the next [section](#github)):
 
 ``` r
 pkgs_new <- c(<pkg>, <pkg>)
@@ -196,6 +197,13 @@ Examples of other repositories for R packages are:
   [`help("data", package = "utils")`](https://rdrr.io/r/utils/data.html))
   included in R packages
 
+Some general code repositories that also contain code of R projects:
+
+- [Codeberg](https://codeberg.org/explore/repos?language=R)
+- [GitLab](https://gitlab.com/gitlab-com) with access to its API through
+  R package [gitlabr](https://CRAN.R-project.org/package=gitlabr).
+- [SourceForge](https://sourceforge.net/directory/r/)
+
 Repositories can be selected using
 [`utils::setRepositories()`](https://rdrr.io/r/utils/setRepositories.html).
 The websites of these repositories include instructions how to install
@@ -249,8 +257,8 @@ selected using
 [`BiocManager::repositories()`](https://bioconductor.github.io/BiocManager/reference/repositories.html)
 or
 [`utils::chooseBioCmirror()`](https://rdrr.io/r/utils/chooseBioCmirror.html),
-although the RStudio CRAN mirror is used in RStudio (see the preceding
-paragraph).
+although, as mentioned in the previous paragraph, the RStudio CRAN
+mirror is used in RStudio.
 
 ### Loading and attaching packages
 
@@ -259,9 +267,9 @@ and attach the package to the search list to be able to use its
 functions: run `library(<pkg>)`. If this fails without clear reason,
 setting environment variable `_R_TRACE_LOADNAMESPACE_` to a numerical
 value (e.g., `Sys.setenv("_R_TRACE_LOADNAMESPACE_" = 4)`) will generate
-additional messages on progress for non-standard packages (see the
+additional messages on progress for non-standard packages, see the
 section `Tracing` in
-[`help("requireNamespace")`](https://rdrr.io/r/base/ns-load.html)).
+[`help("requireNamespace")`](https://rdrr.io/r/base/ns-load.html).
 
 [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) gives the
 names of packages that are currently loaded,
@@ -291,11 +299,6 @@ For R packages from CRAN, versions can be compared using
 [diffify](https://diffify.com/R) and a chronological overview of changes
 is available at
 [CRANberries](https://dirk.eddelbuettel.com/cranberries/).
-
-Package [`rcheology`](https://github.com/hughjonesd/rcheology) provides
-an overview of functions in earlier versions of base R. Package
-[`backports`](https://CRAN.R-project.org/package=backports) provides
-re-implementations of old functions.
 
 To get the version number of an installed package, run
 `utils::packageVersion("<pkg>")`.
@@ -344,6 +347,13 @@ build the packages from source, see the section `Rtools` in the vignette
 *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
 
+#### base R
+
+Package [`rcheology`](https://github.com/hughjonesd/rcheology) provides
+an overview of functions in earlier versions of base R. Package
+[`backports`](https://CRAN.R-project.org/package=backports) provides
+re-implementations of old R functions.
+
 #### CRAN
 
 The following code can be used to install an old version of a package
@@ -363,7 +373,7 @@ remotes::install_version(package = "deSolve", version = "1.40", dependencies = N
 ```
 
 It is also possible to specify minimum versions, e.g.,
-`version = >= 1.40`.
+`version = ">= 1.40"`.
 
 Alternatively, visit the installation page of a package from CRAN, go to
 `Downloads` \> `Old sources` \> `<pkg> archive` and find the appropriate
@@ -440,13 +450,14 @@ Bioconductor, e.g.,
 - If a package appears not to be installed when you want to use a
   function from it (e.g., you get the error
   `could not find function "<func>"`), remember you need to run
-  `library(<pkg>)` to be able to use its functions.
+  [`library(<pkg>)`](#loading-and-attaching-packages) to be able to use
+  its functions.
 
 - If `library(<pkg>)` results in the error
   `there is no package called '<pkg>'`, you have not installed the
-  package, or it is not in any of the library paths returned by
-  [`.libPaths()`](https://rdrr.io/r/base/libPaths.html), which is where
-  R looks for packages.
+  package, or it is not installed in any of the library paths returned
+  by [`.libPaths()`](https://rdrr.io/r/base/libPaths.html), which is
+  where R looks for packages.
 
 - To check that a package is installed and functional, use
   `library(<pkg)` or `requireNamespace(<pkg>)`. These functions do not
@@ -621,11 +632,17 @@ been run):
   `utils::methods("<func>")`; for S3-methods:
   `attr(utils::methods(class = "<class>"), "info")`; for S4-methods:
   `methods::showMethods(classes = "<class>", where = getNamespace("<pkg>"))`.
+- `NEWS` file of a package: `utils::news(package = "<pkg>")`.
 - Version of a package that is currently used:
   `utils::packageVersion("<pkg>")`.
-- Vignettes of a package: show them in a browser through
-  `utils::browseVignettes(package = "<pkg>")`, or list them with
-  `utils::vignette(package = "<pkg>")`.
+- Vignettes of a package: list available vignettes in a browser with
+  links to their contents through
+  `utils::browseVignettes(package = "<pkg>")`, list them with
+  `utils::vignette(package = "<pkg>")`, search for `<text>` in vignettes
+  while using fuzzy matching through
+  `help.search("<text>", package = "<pkg>", types = "vignette")`, or
+  view a specific vignette in the help-pane through
+  `vignette("<vignette_name>", package = "<pkg>")`.
 
 ### Which packages are used?
 
@@ -711,7 +728,7 @@ sd
 #> function (x, na.rm = FALSE) 
 #> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
 #>     na.rm = na.rm))
-#> <bytecode: 0x557c1e91e910>
+#> <bytecode: 0x55e12633e370>
 #> <environment: namespace:stats>
 ```
 
@@ -735,7 +752,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x557c1a5c2d30>
+#> <bytecode: 0x55e12194b1f0>
 #> <environment: namespace:base>
 ```
 
@@ -776,7 +793,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x557c1c8b0898>
+#> <bytecode: 0x55e123c38d58>
 #> <environment: namespace:base>
 ```
 
@@ -806,7 +823,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x557c1e25df88>
+#> <bytecode: 0x55e125bce130>
 #> <environment: namespace:base>
 ```
 
@@ -848,7 +865,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x557c1e2613a8>
+#> <bytecode: 0x55e125bd1550>
 #> <environment: namespace:base>
 ```
 
@@ -894,8 +911,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x557c1c2742d8>
-#> <environment: 0x557c1aed2b48>
+#> <bytecode: 0x55e1234bd3d0>
+#> <environment: 0x55e12225b008>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -958,7 +975,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x557c1e0b58f8>
+#> <bytecode: 0x55e1251044c8>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

@@ -17,10 +17,10 @@ of this package.
 
 Files on your PC are called often called ‘local files’, whereas files on
 GitHub are called ‘remote files’. Similarly, a folder on your PC (e.g.,
-`C:\Program Files\R\R-4.6.0\library\checkrpkgs`) is often called a
-‘directory’, whereas a folder on GitHub (e.g.,
+`C:\Program Files\R\R-4.6.0\library\checkrpkgs`) is often called a local
+directory, whereas a folder on GitHub (e.g.,
 <https://github.com/JesseAlderliesten/checkrpkgs>) is often called a
-‘repository’.
+remote repository.
 
 ## Setting up Git and GitHub
 
@@ -43,11 +43,15 @@ notation; outside Windows, these paths are written as
 `C:/Program Files/Git/bin/git.exe` and
 `C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, respectively, see
 [Paths in the shell](#paths-in-the-shell)). If the content of the field
-`Git executable` is not correct, open the `Git Bash`
-[shell](https://happygitwithr.com/shell) (which was installed when
-installing [`Git for Windows`](https://gitforwindows.org/)) by searching
-for `Git Bash` in Windows’ `Start` menu. In the Git Bash shell, run
-`where git.exe` to get the location of the Git executable.
+`Git executable` is not correct, open the `Terminal` tab in the
+`RStudio`
+[console](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html#console)
+or the `Git Bash` [shell](https://happygitwithr.com/shell) (which was
+installed when installing
+[`Git for Windows`](https://gitforwindows.org/), you can find it by
+searching for `Git Bash` in Windows’ `Start` menu). In the terminal or
+the Git Bash shell, run `where git.exe` to get the location of the Git
+executable.
 
 To associate Git with your GitHub account, you need to provide your name
 (this name is listed in GitHub with the changes you make and does
@@ -85,9 +89,10 @@ file with extension `.R`). Then the `Git` menu will be visible as a tab
 in the
 [`Environment pane`](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 
-`Pull` to get changes from GitHub incorporated in your PC, and handle
-any conflicts to get directory on your PC up-to-date with the repository
-on GitHub:
+`Pull` to get changes from GitHub (e.g., created by a collaborator)
+incorporated in the local files on your PC, and handle any conflicts to
+get the directory on your PC up-to-date with the remote repository on
+GitHub:
 
 - in RStudio: use the `pull` button (downward arrow) in the `Git` menu
 - or in the [shell](https://happygitwithr.com/shell):
@@ -99,11 +104,11 @@ changes:
 
 - in RStudio: check the `Staged` box in front of the relevant filename,
   use the `Diff` button in the `Git` menu to get an overview of the
-  changes to the file, in the box `Commit message` you should describe
-  the changes and why you made them, and use the `Commit` button. `Pull`
-  again (downward arrow) to make sure the directory on your PC is
-  up-to-date, and handle any conflicts. Then `push` (upward arrow) to
-  incorporate the changes in the repository on GitHub.
+  changes to the file, describe the changes and why you made them in the
+  box `Commit message`, and use the `Commit` button. Then `Pull` again
+  (downward arrow) to make sure the directory on your PC is up-to-date,
+  and handle any conflicts. Then `push` (upward arrow) to incorporate
+  the changes in the repository on GitHub.
 - or in the [shell](https://happygitwithr.com/shell): compare the
   content of two files, see the instructions in the section [Comparing
   files](#comparing-files) below. Next, use
@@ -266,7 +271,7 @@ There are several ways to copy code from a GitHub repository to your PC:
   (e.g., `main`) you are using), use a descriptive branch name (e.g.,
   containing the name of the file you want to change), and click
   `Create`.
-- To download code without being able to push your changes back to a
+- To download code **without** being able to push your changes back to a
   GitHub repository, download the repository by using the green `Code`
   button on the GitHub page of the repository, choose `Download ZIP` and
   unzip the downloaded file (right-click on them and choose
@@ -300,11 +305,10 @@ if(!requireNamespace("remotes", quietly = TRUE)) {
                    type = getOption("pkgType"), verbose = getOption("verbose"),
                    quiet = FALSE)
 }
-remotes::install_github(repo = grep(pattern = "/", x = pkgs_new, value = TRUE,
-                                    fixed = TRUE),
-                        dependencies = NA, upgrade = "ask", force = FALSE,
-                        quiet = FALSE, build_vignettes = TRUE, lib = .libPaths(),
-                        verbose = getOption("verbose"))
+remotes::install_github(
+  repo = grep(pattern = "/", x = pkgs_new, value = TRUE, fixed = TRUE),
+  dependencies = NA, upgrade = "ask", force = FALSE, quiet = FALSE,
+  build_vignettes = TRUE, lib = .libPaths(), verbose = getOption("verbose"))
 ```
 
 ### Linking
@@ -359,6 +363,8 @@ you want help about).
 
 - list files: `ls` (use `ls -a` to also show hidden files)
 - list remote repositories: `git remote -v`
+- show which origin is used: `git remote get-url origin`
+- show changes in repositories: `git diff`
 - show status of repositories: `git status`
 - show user details: `git config --global --list`
 - working directory: change it with `cd` (e.g.,
@@ -376,7 +382,7 @@ when entering paths: single `tab` to select an option, double `tab` to
 see multiple options. Dragging a file into the shell gives the absolute
 path to that file. The current and parent directory can be indicated by
 a single (`.`) or two (`..`) dots in file paths, respectively. On paths
-and file separators in R, see the ‘Notes on paths’ in
+and file separators in R, see the `Notes on paths` in
 [`help("is_path", package = "checkinput")`](https://jessealderliesten.github.io/checkinput/reference/is_path.html).
 
 ## Documentation
@@ -385,7 +391,7 @@ Official documentation
 
 - [Git](https://git-scm.com/docs)
 - [Git: setting
-  up](https://docs.github.com/en/get-started/git-basics/set-up-git),
+  up](https://docs.github.com/en/get-started/git-basics/set-up-git)
 - [GitHub: setting
   up](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account)
 - [GitHub: general](https://docs.github.com/en)

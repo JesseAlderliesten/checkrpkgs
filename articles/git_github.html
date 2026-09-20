@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,8 +92,8 @@ the GitHub repository of this package.</p>
 <p>Files on your PC are called often called ‘local files’, whereas files
 on GitHub are called ‘remote files’. Similarly, a folder on your PC
 (e.g., <code>C:\Program Files\R\R-4.6.0\library\checkrpkgs</code>) is
-often called a ‘directory’, whereas a folder on GitHub (e.g., <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">https://github.com/JesseAlderliesten/checkrpkgs</a>)
-is often called a ‘repository’.</p>
+often called a local directory, whereas a folder on GitHub (e.g., <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">https://github.com/JesseAlderliesten/checkrpkgs</a>)
+is often called a remote repository.</p>
 </div>
 <div class="section level2">
 <h2 id="setting-up-git-and-github">Setting up Git and GitHub<a class="anchor" aria-label="anchor" href="#setting-up-git-and-github"></a>
@@ -115,11 +115,13 @@ Windows notation; outside Windows, these paths are written as
 <code>C:/Users/&lt;owner&gt;/AppData/Local/Git/bin/git.exe</code>,
 respectively, see <a href="#paths-in-the-shell">Paths in the shell</a>).
 If the content of the field <code>Git executable</code> is not correct,
-open the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
-when installing <a href="https://gitforwindows.org/" class="external-link"><code>Git for Windows</code></a>) by
-searching for <code>Git Bash</code> in Windows’ <code>Start</code> menu.
-In the Git Bash shell, run <code>where git.exe</code> to get the
-location of the Git executable.</p>
+open the <code>Terminal</code> tab in the <code>RStudio</code> <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html#console" class="external-link">console</a>
+or the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
+when installing <a href="https://gitforwindows.org/" class="external-link"><code>Git for Windows</code></a>, you
+can find it by searching for <code>Git Bash</code> in Windows’
+<code>Start</code> menu). In the terminal or the Git Bash shell, run
+<code>where git.exe</code> to get the location of the Git
+executable.</p>
 <p>To associate Git with your GitHub account, you need to provide your
 name (this name is listed in GitHub with the changes you make and does
 <strong>not</strong> have to be your GitHub username), and the email
@@ -155,8 +157,9 @@ from package <a href="https://CRAN.R-project.org/package=usethis" class="externa
 (i.e., a file with extension <code>.Rproj</code>), <strong>not</strong>
 the R script (i.e., a file with extension <code>.R</code>). Then the
 <code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link"><code>Environment pane</code></a>.</p>
-<p><code>Pull</code> to get changes from GitHub incorporated in your PC,
-and handle any conflicts to get directory on your PC up-to-date with the
+<p><code>Pull</code> to get changes from GitHub (e.g., created by a
+collaborator) incorporated in the local files on your PC, and handle any
+conflicts to get the directory on your PC up-to-date with the remote
 repository on GitHub:</p>
 <ul>
 <li>in RStudio: use the <code>pull</code> button (downward arrow) in the
@@ -171,13 +174,13 @@ to review changes:</p>
 <ul>
 <li>in RStudio: check the <code>Staged</code> box in front of the
 relevant filename, use the <code>Diff</code> button in the
-<code>Git</code> menu to get an overview of the changes to the file, in
-the box <code>Commit message</code> you should describe the changes and
-why you made them, and use the <code>Commit</code> button.
-<code>Pull</code> again (downward arrow) to make sure the directory on
-your PC is up-to-date, and handle any conflicts. Then <code>push</code>
-(upward arrow) to incorporate the changes in the repository on
-GitHub.</li>
+<code>Git</code> menu to get an overview of the changes to the file,
+describe the changes and why you made them in the box
+<code>Commit message</code>, and use the <code>Commit</code> button.
+Then <code>Pull</code> again (downward arrow) to make sure the directory
+on your PC is up-to-date, and handle any conflicts. Then
+<code>push</code> (upward arrow) to incorporate the changes in the
+repository on GitHub.</li>
 <li>or in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>:
 compare the content of two files, see the instructions in the section <a href="#comparing-files">Comparing files</a> below. Next, use
 <code>git commit -m '&lt;your commit message&gt;' &lt;path&gt;/&lt;and&gt;/&lt;filename&gt;.R</code>
@@ -353,14 +356,15 @@ in RStudio (besides the <code>Switch branch</code> icon indicating which
 branch (e.g., <code>main</code>) you are using), use a descriptive
 branch name (e.g., containing the name of the file you want to change),
 and click <code>Create</code>.</li>
-<li>To download code without being able to push your changes back to a
-GitHub repository, download the repository by using the green
-<code>Code</code> button on the GitHub page of the repository, choose
-<code>Download ZIP</code> and unzip the downloaded file (right-click on
-them and choose <code>extract all</code>). To be able to let R use the R
-files correctly, R has to know where the files are. If the downloaded
-files are an R package, move it to a location where R looks for packages
-(given by <code>cat(normalizePath(.libPaths()))</code>, something like
+<li>To download code <strong>without</strong> being able to push your
+changes back to a GitHub repository, download the repository by using
+the green <code>Code</code> button on the GitHub page of the repository,
+choose <code>Download ZIP</code> and unzip the downloaded file
+(right-click on them and choose <code>extract all</code>). To be able to
+let R use the R files correctly, R has to know where the files are. If
+the downloaded files are an R package, move it to a location where R
+looks for packages (given by
+<code>cat(normalizePath(.libPaths()))</code>, something like
 <code>C:\Program Files\R\R-4.6.0\library</code> or
 <code>C:\Users\&lt;owner&gt;\AppData\Local\R\win-library\4.6</code>).
 Then open the <code>.Rproj</code> file that has the same name as the
@@ -386,11 +390,10 @@ vignette <em>R packages</em>:
 <span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
 <span>                   quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"/"</span>, x <span class="op">=</span> <span class="va">pkgs_new</span>, value <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                                    fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>                        dependencies <span class="op">=</span> <span class="cn">NA</span>, upgrade <span class="op">=</span> <span class="st">"ask"</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                        quiet <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span></span>
+<span>  repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"/"</span>, x <span class="op">=</span> <span class="va">pkgs_new</span>, value <span class="op">=</span> <span class="cn">TRUE</span>, fixed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  dependencies <span class="op">=</span> <span class="cn">NA</span>, upgrade <span class="op">=</span> <span class="st">"ask"</span>, force <span class="op">=</span> <span class="cn">FALSE</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="linking">Linking<a class="anchor" aria-label="anchor" href="#linking"></a>
@@ -448,6 +451,11 @@ about).</p>
 hidden files)</li>
 <li>list remote repositories: <code>git remote -v</code>
 </li>
+<li>show which origin is used:
+<code>git remote get-url origin</code>
+</li>
+<li>show changes in repositories: <code>git diff</code>
+</li>
 <li>show status of repositories: <code>git status</code>
 </li>
 <li>show user details: <code>git config --global --list</code>
@@ -471,7 +479,7 @@ option, double <code>tab</code> to see multiple options. Dragging a file
 into the shell gives the absolute path to that file. The current and
 parent directory can be indicated by a single (<code>.</code>) or two
 (<code>..</code>) dots in file paths, respectively. On paths and file
-separators in R, see the ‘Notes on paths’ in
+separators in R, see the <code>Notes on paths</code> in
 <code><a href="https://jessealderliesten.github.io/checkinput/reference/is_path.html" class="external-link">help("is_path", package = "checkinput")</a></code>.</p>
 </div>
 </div>
@@ -481,9 +489,8 @@ separators in R, see the ‘Notes on paths’ in
 <p>Official documentation</p>
 <ul>
 <li><a href="https://git-scm.com/docs" class="external-link">Git</a></li>
-<li>
-<a href="https://docs.github.com/en/get-started/git-basics/set-up-git" class="external-link">Git:
-setting up</a>,</li>
+<li><a href="https://docs.github.com/en/get-started/git-basics/set-up-git" class="external-link">Git:
+setting up</a></li>
 <li><a href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account" class="external-link">GitHub:
 setting up</a></li>
 <li><a href="https://docs.github.com/en" class="external-link">GitHub: general</a></li>
