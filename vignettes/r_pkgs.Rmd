@@ -190,7 +190,7 @@ Some general code repositories that also contain code of R projects:
 
 - [Codeberg](https://codeberg.org/explore/repos?language=R)
 - [GitLab](https://gitlab.com/gitlab-com) with access to its API through R
-  package [gitlabr](http://cran.rstudio.com/web/packages/gitlabr/index.html).
+  package [gitlabr](https://CRAN.R-project.org/package=gitlabr).
 - [SourceForge](https://sourceforge.net/directory/r/)
 
 Repositories can be selected using `utils::setRepositories()`. The websites of
