@@ -246,11 +246,12 @@ messages on progress for non-standard packages, see the section `Tracing` in
 `help("requireNamespace")`.
 
 `loadedNamespaces()` gives the names of packages that are currently loaded,
-`utils::sessionInfo()` also gives their versions, `path.package()` gives the
-paths from which packages were loaded. `sessioninfo::session_info()` provides
-the names, versions and the paths of loaded packages, and has the option to show
-information about their dependencies (and returns the names in alphabetical
-order instead of the order of loading). `options("defaultPackages")` gives the
+`utils::sessionInfo()` also gives their versions and shows if they are attached
+or only loaded, `path.package()` gives the paths from which attached packages
+were loaded. `sessioninfo::session_info(base = TRUE)` provides
+the names, versions and the paths of loaded packages, has the option to show
+information about their dependencies, and returns the names in alphabetical
+order instead of the order of loading. `options("defaultPackages")` gives the
 names of packages that are attached by default when R starts up if environment
 variable `R_DEFAULT_PACKAGES` is unset (i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
 is `""`, see `help("Startup")` and the entry `defaultPackages` in `help(options)`).
@@ -398,8 +399,10 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   you have not installed the package, or it is not installed in any of the
   library paths returned by `.libPaths()`, which is where R looks for packages.
 
-- To check that a package is installed and functional, use `library(<pkg)` or
-  `requireNamespace(<pkg>)`. These functions do not allow vectors as input, such
+- To check that a package is installed and functional, use `library(<pkg)`,
+  `requireNamespace(<pkg>)`, or
+  `loadNamespace("<pkg>", versionCheck = list(op = ">=", version = package_version("1.2.3")))`.
+  These functions do not allow vectors as input, such
   that the following code has to be used to check multiple packages:
   
   ``` {r, eval = FALSE}
@@ -534,8 +537,9 @@ the package has been installed and [attached][Loading and attaching packages]
   `find.package(package = "<pkg>", lib.loc = NULL, verbose = TRUE)`.
 - Methods for a function: for a generic class: `utils::methods(class = "<class>")`;
   for a generic function: `utils::methods("<func>")`;
-  for S3-methods: `attr(utils::methods(class = "<class>"), "info")`;
-  for S4-methods:
+  for S3-methods (see `help("UseMethod")` for details):
+  `attr(utils::methods(class = "<class>"), "info")`;
+  for S4-methods (see `help("Methods_Details", package = "methods")` for details):
   `methods::showMethods(classes = "<class>", where = getNamespace("<pkg>"))`.
 - `NEWS` file of a package: `utils::news(package = "<pkg>")`.
 - Version of a package that is currently used: `utils::packageVersion("<pkg>")`.
