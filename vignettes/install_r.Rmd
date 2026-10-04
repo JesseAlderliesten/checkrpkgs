@@ -163,8 +163,12 @@ with RStudio from within R.
 ### Other IDEs
 Other integrated development environments for R are:
 
+- [`Eclipse statET`](https://eclipse.dev/statet/)
 - [`Emacs Speaks Statistics (ESS)`](https://ess.r-project.org/)
+- [`Positron`](https://positron.posit.co/)
 - [`RKWard`](https://rkward.kde.org/)
+- [`R in Visual Studio Code`](https://code.visualstudio.com/docs/languages/r)
+- [`tinn-R`](https://tinn-r.org/)
 
 ### Configuring RStudio
 After installing RStudio, start RStudio, go to `Tools` > `Global Options` >
