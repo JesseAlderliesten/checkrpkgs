@@ -8,7 +8,7 @@ expect_true(all(
     ls(getNamespace("base"), all.names = TRUE)
 ))
 
-hdb_base <- hsearch_db(package = "base", types = "help")
+hdb_base <- utils::hsearch_db(package = "base", types = "help")
 expect_true(all(
   c("colon", "Control", "environment variables", "Extract", "Logic", "Startup") %in%
     c(hdb_base$Base[, "Name"], hdb_base$Aliases[, "Alias"])

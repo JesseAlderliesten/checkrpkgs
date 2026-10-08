@@ -37,11 +37,10 @@ expect_true(all(
   inst_high_prio_pkgs[, "Package"] == rownames(inst_high_prio_pkgs)
 ))
 
-hdb_base <- hsearch_db(package = "base", types = "help")
-expect_true(all(
-  c(".internalGenerics", "Startup") %in%
-    c(hdb_base$Base[, "Name"], hdb_base$Aliases[, "Alias"])
-))
+hdb_base <- utils::hsearch_db(package = "base", types = "help")
+expect_true(".internalGenerics" %in% hdb_base$Aliases[, "Alias"])
+expect_true("Startup" %in% hdb_base$Base[, "Name"])
+
 
 #### BiocManager ####
 if(requireNamespace("BiocManager", quietly = TRUE)) {
@@ -90,7 +89,7 @@ expect_true(all(c("f", "signature") %in% names(formals(methods::getMethod))))
 expect_true(all(c("classes", "where") %in% names(formals(methods::showMethods))))
 expect_true(all(
   c("Introduction", "Methods_Details") %in%
-    hsearch_db(package = "methods", types = "help")$Base[, "Name"]
+    utils::hsearch_db(package = "methods", types = "help")$Base[, "Name"]
 ))
 
 #### pkgbuild ####
