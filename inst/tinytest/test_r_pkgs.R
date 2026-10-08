@@ -55,7 +55,7 @@ if(requireNamespace("BiocManager", quietly = TRUE)) {
   ))
   expect_true(all(
     c("dependencies", "lib", "type", "verbose") %in%
-      names(formals(install.packages))
+      names(formals(utils::install.packages))
   ))
   expect_true("build_vignettes" %in% names(formals(remotes::install_github)))
 }
