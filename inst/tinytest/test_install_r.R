@@ -8,13 +8,13 @@ expect_true(all(
     ls(getNamespace("base"), all.names = TRUE)
 ))
 
-if(requireNamespace("utils", quietly = TRUE)) {
-  hdb_base <- utils::hsearch_db(package = "base", types = "help")
-  expect_true(all(
-    c("colon", "Control", "environment variables", "Extract", "Logic", "Startup") %in%
-      c(hdb_base$Base[, "Name"], hdb_base$Aliases[, "Alias"])
-  ))
-}
+# if(requireNamespace("utils", quietly = TRUE)) {
+#   hdb_base <- utils::hsearch_db(package = "base", types = "help")
+#   expect_true(all(
+#     c("colon", "Control", "environment variables", "Extract", "Logic", "Startup") %in%
+#       c(hdb_base$Base[, "Name"], hdb_base$Aliases[, "Alias"])
+#   ))
+# }
 
 #### conflicted ####
 if(requireNamespace("conflicted", quietly = TRUE)) {

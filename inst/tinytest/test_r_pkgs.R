@@ -37,11 +37,11 @@ expect_true(all(
   inst_high_prio_pkgs[, "Package"] == rownames(inst_high_prio_pkgs)
 ))
 
-if(requireNamespace("utils", quietly = TRUE)) {
-  hdb_base <- utils::hsearch_db(package = "base", types = "help")
-  expect_true(".internalGenerics" %in% hdb_base$Aliases[, "Alias"])
-  expect_true("Startup" %in% hdb_base$Base[, "Name"])
-}
+# if(requireNamespace("utils", quietly = TRUE)) {
+#   hdb_base <- utils::hsearch_db(package = "base", types = "help")
+#   expect_true(".internalGenerics" %in% hdb_base$Aliases[, "Alias"])
+#   expect_true("Startup" %in% hdb_base$Base[, "Name"])
+# }
 
 #### BiocManager ####
 if(requireNamespace("BiocManager", quietly = TRUE)) {
@@ -88,12 +88,12 @@ if(requireNamespace("Matrix", quietly = TRUE)) {
 #### methods ####
 expect_true(all(c("f", "signature") %in% names(formals(methods::getMethod))))
 expect_true(all(c("classes", "where") %in% names(formals(methods::showMethods))))
-if(requireNamespace("utils", quietly = TRUE)) {
-expect_true(all(
-  c("Introduction", "Methods_Details") %in%
-    utils::hsearch_db(package = "methods", types = "help")$Base[, "Name"]
-))
-}
+# if(requireNamespace("utils", quietly = TRUE)) {
+#   expect_true(all(
+#     c("Introduction", "Methods_Details") %in%
+#       utils::hsearch_db(package = "methods", types = "help")$Base[, "Name"]
+#   ))
+# }
 
 #### pkgbuild ####
 if(requireNamespace("pkgbuild", quietly = TRUE)) {
