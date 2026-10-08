@@ -25,7 +25,7 @@ R can be configured by changing environment variables and various
 options, see
 [`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html),
 [`help("options")`](https://rdrr.io/r/base/options.html),
-[`help("install.packages")`](https://rdrr.io/r/utils/install.packages.html),
+[`help("install.packages", package = "utils")`](https://rdrr.io/r/utils/install.packages.html),
 and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html).
 Although options for startup can also be changed (see
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html) and the chapter
@@ -108,9 +108,10 @@ session:
 - [`capabilities()`](https://rdrr.io/r/base/capabilities.html) and
   [`extSoftVersion()`](https://rdrr.io/r/base/extSoftVersion.html)
   provide details about external software that can be used with R.
-- Environment variables affect an R session. Its help page
+- [`Sys.getenv()`](https://rdrr.io/r/base/Sys.getenv.html) lists the
+  values of environment variables that affect an R session, see
   ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
-  lists some of these environment variables.
+  for their documentation.
 - [`getRversion()`](https://rdrr.io/r/base/numeric_version.html)
   provides the version of the running R.
 - `.Machine` (see
@@ -122,7 +123,8 @@ session:
   are actually installed (see the section `osVersion` in
   [`help("sessionInfo", package = "utils")`](https://rdrr.io/r/utils/sessionInfo.html)
   and the `Note` in
-  [`help("win.version", package = "utils")`](https://rdrr.io/r/utils/winextras.html).
+  [`help("win.version", package = "utils")`](https://rdrr.io/r/utils/winextras.html)
+  (only available on Microsoft Windows).
 - `.Platform` (see
   [`help(".Platform")`](https://rdrr.io/r/base/Platform.html)) and
   [`R.Version()`](https://rdrr.io/r/base/Version.html) provide
@@ -133,10 +135,11 @@ session:
   region).
 - [`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html)
   extracts parts of the information mentioned above about the operating
-  system and R, and lists attached and loaded packages. Its printing
-  method can be used to print additional information about the used
-  locale (i.e., settings that depend on the user’s language or region)
-  and random number generation:
+  system and R, and lists attached and loaded packages (see also
+  [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html)). Its
+  printing method can be used to print additional information about the
+  used locale (i.e., settings that depend on the user’s language or
+  region) and random number generation:
   `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
   [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
   provides more details about the origin of loaded or installed
@@ -193,8 +196,12 @@ with RStudio from within R.
 
 Other integrated development environments for R are:
 
+- [`Eclipse statET`](https://eclipse.dev/statet/)
 - [`Emacs Speaks Statistics (ESS)`](https://ess.r-project.org/)
+- [`Positron`](https://positron.posit.co/)
 - [`RKWard`](https://rkward.kde.org/)
+- [`R in Visual Studio Code`](https://code.visualstudio.com/docs/languages/r)
+- [`tinn-R`](https://tinn-r.org/)
 
 ### Configuring RStudio
 
@@ -208,7 +215,11 @@ is to **deselect** the options `Show diagnostics for R` and
 `Prompt to install missing R packages discovered in R source files` at
 `Tools` \> `Options` \> `Code` \> `Diagnostics`. Deselecting these
 options ensures namespaces are not automatically loaded when RStudio
-loads a project.
+loads a project (run
+[`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) to see which
+packages have been attached, or
+[`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
+to get more information about those that are not base R packages).
 
 In the same tab `General`, you can also specify the version of R that
 should be used and the default working directory (see

@@ -1,5 +1,25 @@
 # Changelog
 
+## checkrpkgs 1.2.0
+
+#### Breaking changes
+
+- Add `withr (>= 2.0.0)` as suggested dependency because it is used when
+  testing the content of vignette `R packages`.
+
+#### Documentation
+
+- `README`: add contact/contribution info.
+- Vignette `Installing R, Rtools and RStudio`: list additional
+  integrated development environments (IDEs) for `R`. Add links to some
+  help-pages.
+- Vignette `R packages`: provide defaults to
+  [`getOption()`](https://rdrr.io/r/base/options.html) to use if the
+  requested option is unset. Add namespace declarations in front of
+  function calls. Additions on getting information about loaded or
+  attached packages and on getting the documentation of old base-R
+  functions. `R-Forge` will become read-only.
+
 ## checkrpkgs 1.1.2
 
 #### Documentation

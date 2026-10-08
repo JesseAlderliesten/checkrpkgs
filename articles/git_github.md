@@ -158,9 +158,9 @@ use `tab`-completion to select files): `git add <filename>.<extension>`.
 
 - For a chronological overview of all commits (i.e., across all files)
   in a particular branch of a repository, use an URL of the form
-  `http://github.com/<username>/<repository>/commits`, or go to the main
-  page of the repository and in the `Code` panel click the `clock` icon
-  at the top of the file overview.
+  `https://github.com/<username>/<repository>/commits`, or go to the
+  main page of the repository and in the `Code` panel click the `clock`
+  icon at the top of the file overview.
 - To compare different branches of a repository, use three dots between
   their names, giving an URL of the form
   `https://github.com/<username>/<repository>/compare/<branch>...<otherbranch>`,
@@ -302,13 +302,14 @@ The following code can be used to install packages from
 pkgs_new <- "JesseAlderliesten/checkrpkgs"
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
-                   type = getOption("pkgType"), verbose = getOption("verbose"),
-                   quiet = FALSE)
+                   type = getOption("pkgType", "both"),
+                   verbose = getOption("verbose", FALSE), quiet = FALSE)
 }
 remotes::install_github(
   repo = grep(pattern = "/", x = pkgs_new, value = TRUE, fixed = TRUE),
   dependencies = NA, upgrade = "ask", force = FALSE, quiet = FALSE,
-  build_vignettes = TRUE, lib = .libPaths(), verbose = getOption("verbose"))
+  build_vignettes = TRUE, lib = .libPaths(),
+  verbose = getOption("verbose", FALSE))
 ```
 
 ### Linking

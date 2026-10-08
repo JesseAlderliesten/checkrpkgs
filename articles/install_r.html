@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,7 +96,8 @@ plain-text files that can be read by applications such as NotePad.</p>
 </h3>
 <p>R can be configured by changing environment variables and various
 options, see <code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>,
-<code><a href="https://rdrr.io/r/base/options.html" class="external-link">help("options")</a></code>, <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages")</a></code>, and
+<code><a href="https://rdrr.io/r/base/options.html" class="external-link">help("options")</a></code>,
+<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">help("install.packages", package = "utils")</a></code>, and
 <code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">help(".libPaths")</a></code>. Although options for startup can also be
 changed (see <code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code> and the chapter <a href="https://rstats.wtf/r-startup" class="external-link"><code>R Startup</code></a> from the
 book <a href="https://rstats.wtf/" class="external-link"><code>What They Forgot to Teach You About R</code></a>),
@@ -169,9 +170,11 @@ R session:</p>
 <li>
 <code><a href="https://rdrr.io/r/base/capabilities.html" class="external-link">capabilities()</a></code> and <code><a href="https://rdrr.io/r/base/extSoftVersion.html" class="external-link">extSoftVersion()</a></code>
 provide details about external software that can be used with R.</li>
-<li>Environment variables affect an R session. Its help page
-(<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>) lists some of these
-environment variables.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv()</a></code> lists the values of environment variables
+that affect an R session, see
+(<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>) for their
+documentation.</li>
 <li>
 <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code> provides the version of the running
 R.</li>
@@ -183,8 +186,8 @@ and their versions in surprising ways, and Windows might report older
 versions than the versions that are actually installed (see the section
 <code>osVersion</code> in
 <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo", package = "utils")</a></code> and the
-<code>Note</code> in
-<code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version", package = "utils")</a></code>.</li>
+<code>Note</code> in <code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version", package = "utils")</a></code>
+(only available on Microsoft Windows).</li>
 <li>
 <code>.Platform</code> (see <code><a href="https://rdrr.io/r/base/Platform.html" class="external-link">help(".Platform")</a></code>) and
 <code><a href="https://rdrr.io/r/base/Version.html" class="external-link">R.Version()</a></code> provide information about the platform R was
@@ -196,9 +199,10 @@ language or region).</li>
 <li>
 <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">utils::sessionInfo()</a></code> extracts parts of the information
 mentioned above about the operating system and R, and lists attached and
-loaded packages. Its printing method can be used to print additional
-information about the used locale (i.e., settings that depend on the
-user’s language or region) and random number generation:
+loaded packages (see also <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadedNamespaces()</a></code>). Its printing
+method can be used to print additional information about the used locale
+(i.e., settings that depend on the user’s language or region) and random
+number generation:
 <code>print(sessionInfo(), locale = TRUE, RNG = TRUE)</code>.
 <code><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">sessioninfo::session_info()</a></code> provides more details about the
 origin of loaded or installed packages, and has the option to show only
@@ -249,8 +253,12 @@ interact with RStudio from within R.</p>
 </h3>
 <p>Other integrated development environments for R are:</p>
 <ul>
+<li><a href="https://eclipse.dev/statet/" class="external-link"><code>Eclipse statET</code></a></li>
 <li><a href="https://ess.r-project.org/" class="external-link"><code>Emacs Speaks Statistics (ESS)</code></a></li>
+<li><a href="https://positron.posit.co/" class="external-link"><code>Positron</code></a></li>
 <li><a href="https://rkward.kde.org/" class="external-link"><code>RKWard</code></a></li>
+<li><a href="https://code.visualstudio.com/docs/languages/r" class="external-link"><code>R in Visual Studio Code</code></a></li>
+<li><a href="https://tinn-r.org/" class="external-link"><code>tinn-R</code></a></li>
 </ul>
 </div>
 <div class="section level3">
@@ -268,8 +276,10 @@ enhance portability is to <strong>deselect</strong> the options
 <code>Prompt to install missing R packages discovered in R source files</code>
 at <code>Tools</code> &gt; <code>Options</code> &gt; <code>Code</code>
 &gt; <code>Diagnostics</code>. Deselecting these options ensures
-namespaces are not automatically loaded when RStudio loads a
-project.</p>
+namespaces are not automatically loaded when RStudio loads a project
+(run <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadedNamespaces()</a></code> to see which packages have been
+attached, or <code><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">sessioninfo::session_info()</a></code> to get more
+information about those that are not base R packages).</p>
 <p>In the same tab <code>General</code>, you can also specify the
 version of R that should be used and the default working directory (see
 <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">help("getwd")</a></code>) to be used when <strong>not</strong> in a

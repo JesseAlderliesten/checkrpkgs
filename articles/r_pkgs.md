@@ -75,8 +75,8 @@ pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
                                  FUN.VALUE = logical(1), quietly = TRUE)]
 if(length(pkgs_install) > 0L) {
   install.packages(pkgs = pkgs_install, lib = .libPaths(), dependencies = NA,
-                   type = getOption("pkgType"), verbose = getOption("verbose"),
-                   quiet = FALSE)
+                   type = getOption("pkgType", "both"),
+                   verbose = getOption("verbose", FALSE), quiet = FALSE)
 }
 ```
 
@@ -130,14 +130,14 @@ from GitHub (see the next [section](#github)):
 pkgs_new <- c(<pkg>, <pkg>)
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
-                   type = getOption("pkgType"), verbose = getOption("verbose"),
-                   quiet = FALSE)
+                   type = getOption("pkgType", "both"),
+                   verbose = getOption("verbose", FALSE), quiet = FALSE)
 }
 BiocManager::install(pkgs = pkgs_new, lib = .libPaths(), dependencies = NA,
-                     build_vignettes = TRUE,
-                     type = getOption("pkgType"), verbose = getOption("verbose"),
-                     update = FALSE, ask = TRUE, checkBuilt = TRUE,
-                     force = FALSE, version = "3.23")
+                     build_vignettes = TRUE, type = getOption("pkgType", "both"),
+                     verbose = getOption("verbose", FALSE), update = FALSE,
+                     ask = TRUE, checkBuilt = TRUE, force = FALSE,
+                     version = "3.23")
 ```
 
 Bioconductor also has thematic package collections known as
@@ -171,13 +171,13 @@ use `basename(pkgs_new)` to select the last part of those names:
 pkgs_new <- "JesseAlderliesten/checkrpkgs"
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
-                   type = getOption("pkgType"), verbose = getOption("verbose"),
-                   quiet = FALSE)
+                   type = getOption("pkgType", "both"),
+                   verbose = getOption("verbose", FALSE), quiet = FALSE)
 }
 remotes::install_github(repo = grep(pattern = "/", x = pkgs_new, value = TRUE),
                         dependencies = NA, upgrade = "ask", force = FALSE,
                         quiet = FALSE, build_vignettes = TRUE, lib = .libPaths(),
-                        verbose = getOption("verbose"))
+                        verbose = getOption("verbose", FALSE))
 ```
 
 #### Other repositories
@@ -185,8 +185,9 @@ remotes::install_github(repo = grep(pattern = "/", x = pkgs_new, value = TRUE),
 Examples of other repositories for R packages are:
 
 - [Neuroconductor](https://neuroconductor.org/list-packages/all)
-- [R-Forge](https://r-forge.r-project.org/) with a [GitHub
-  mirror](https://github.com/r-forge) and thematic package
+- [R-Forge](https://r-forge.r-project.org/) (read-only from January 2027
+  onwards) with a [GitHub mirror](https://github.com/r-forge) and
+  thematic package
   [collections](https://r-forge.r-project.org/softwaremap/trove_list.php)
 - [R-multiverse](https://r-multiverse.org/overview.html) with thematic
   package [collections](https://r-multiverse.org/topics/)
@@ -221,8 +222,8 @@ pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
 if(length(pkgs_install) > 0L) {
   install.packages(pkgs = pkgs_install, lib = .libPaths(),
                    repos = "https://r-forge.r-project.org/", dependencies = NA,
-                   type = getOption("pkgType"), verbose = getOption("verbose"),
-                   quiet = FALSE)
+                   type = getOption("pkgType", "both"),
+                   verbose = getOption("verbose", FALSE), quiet = FALSE)
 }
 ```
 
@@ -274,14 +275,14 @@ section `Tracing` in
 [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) gives the
 names of packages that are currently loaded,
 [`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) also
-gives their versions,
+gives their versions and shows if they are attached or only loaded,
 [`path.package()`](https://rdrr.io/r/base/find.package.html) gives the
-paths from which packages were loaded.
-[`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
-provides the names, versions and the paths of loaded packages, and has
-the option to show information about their dependencies (and returns the
-names in alphabetical order instead of the order of loading).
-`options("defaultPackages")` gives the names of packages that are
+paths from which attached packages were loaded.
+`sessioninfo::session_info(include_base = TRUE)` provides the names,
+versions and the paths of loaded packages, has the option to show
+information about their dependencies, and returns the names in
+alphabetical order instead of the order of loading.
+`getOption("defaultPackages")` gives the names of packages that are
 attached by default when R starts up if environment variable
 `R_DEFAULT_PACKAGES` is unset (i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
 is `""`, see [`help("Startup")`](https://rdrr.io/r/base/Startup.html)
@@ -302,7 +303,7 @@ is available at
 
 To get the version number of an installed package, run
 `utils::packageVersion("<pkg>")`.
-[`old.packages()`](https://rdrr.io/r/utils/update.packages.html)
+[`utils::old.packages()`](https://rdrr.io/r/utils/update.packages.html)
 indicates which packages can be updated.
 
 The following code can be used to install the latest version of packages
@@ -313,8 +314,8 @@ undesirable):
 ``` r
 
 utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
-                       verbose = getOption("verbose"), quiet = FALSE,
-                       checkBuilt = TRUE, type = getOption("pkgType"))
+                       verbose = getOption("verbose", FALSE), quiet = FALSE,
+                       checkBuilt = TRUE, type = getOption("pkgType", "both"))
 ```
 
 #### Bioconductor
@@ -330,13 +331,13 @@ specific Bioconductor release (here version 3.23):
 
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
-                   type = getOption("pkgType"), verbose = getOption("verbose"),
-                   quiet = FALSE)
+                   type = getOption("pkgType", "both"),
+                   verbose = getOption("verbose", FALSE), quiet = FALSE)
 }
 BiocManager::install(pkgs = character(), lib = .libPaths(), dependencies = NA,
-                     build_vignettes = TRUE,
-                     type = getOption("pkgType"), verbose = getOption("verbose"),
-                     update = TRUE, ask = TRUE, checkBuilt = TRUE, force = FALSE,
+                     build_vignettes = TRUE, type = getOption("pkgType", "both"),
+                     verbose = getOption("verbose", FALSE), update = TRUE,
+                     ask = TRUE, checkBuilt = TRUE, force = FALSE,
                      version = "3.23")
 ```
 
@@ -350,7 +351,11 @@ build the packages from source, see the section `Rtools` in the vignette
 #### base R
 
 Package [`rcheology`](https://github.com/hughjonesd/rcheology) provides
-an overview of functions in earlier versions of base R. Package
+functions to detect changes in base-R functions between versions of base
+R. A [Shiny version](https://hughjonesd.shinyapps.io/rcheology/) is also
+available. `rcheology` is complemented by [Historical R
+help](https://hughjonesd.github.io/r-help/) that provides documentation
+of the base-R functions for older R versions. Package
 [`backports`](https://CRAN.R-project.org/package=backports) provides
 re-implementations of old R functions.
 
@@ -364,12 +369,12 @@ from CRAN, using package
 
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
-                   type = getOption("pkgType"), verbose = getOption("verbose"),
-                   quiet = FALSE)
+                   type = getOption("pkgType", "both"),
+                   verbose = getOption("verbose", FALSE), quiet = FALSE)
 }
 remotes::install_version(package = "deSolve", version = "1.40", dependencies = NA,
                          upgrade = "ask", quiet = FALSE, build_vignettes = TRUE,
-                         lib = .libPaths(), verbose = getOption("verbose"))
+                         lib = .libPaths(), verbose = getOption("verbose", FALSE))
 ```
 
 It is also possible to specify minimum versions, e.g.,
@@ -386,7 +391,7 @@ example, to install version 1.40 of package
 install.packages(
   pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
   lib = .libPaths(), repos = NULL, dependencies = NA,
-  type = getOption("pkgType"), verbose = getOption("verbose"),
+  type = getOption("pkgType", "both"), verbose = getOption("verbose", FALSE),
   quiet = FALSE)
 ```
 
@@ -440,10 +445,12 @@ Bioconductor, e.g.,
   case-sensitive. Then check possible other reasons mentioned in this
   [stackoverflow answer](https://stackoverflow.com/a/25721890/32365738).
 
-- If installing packages fails, try with arguments `force = TRUE` to
-  re-install possibly broken dependencies, with argument
-  `build_vignettes = FALSE` to not install vignettes, or with
-  `verbose = TRUE` to get more diagnostic information.
+- If installing packages fails, try
+  `utils::install.packages(<pkgs>, verbose = TRUE, build_vignettes = FALSE)`
+  to get more diagnostic information and not install vignettes. For
+  packages from `BioConductor`, try
+  `BiocManager::install(<pkgs>, force = TRUE)` to re-install possibly
+  broken dependencies.
 
 #### Using packages
 
@@ -460,9 +467,10 @@ Bioconductor, e.g.,
   where R looks for packages.
 
 - To check that a package is installed and functional, use
-  `library(<pkg)` or `requireNamespace(<pkg>)`. These functions do not
-  allow vectors as input, such that the following code has to be used to
-  check multiple packages:
+  `library(<pkg)`, `requireNamespace(<pkg>)`, or
+  `loadNamespace("<pkg>", versionCheck = list(op = ">=", version = package_version("1.2.3")))`.
+  These functions do not allow vectors as input, such that the following
+  code has to be used to check multiple packages:
 
   ``` r
   suppressPackageStartupMessages(
@@ -544,7 +552,7 @@ reverse dependencies (i.e., which packages require package `<pkg>`).
 `NULL` is returned for packages that are not found, whereas
 `character(0)` is returned for packages that do not have any
 dependencies. To see dependencies of packages from other repositories
-(e.g., [GitHub](https://github.com/)), use package
+(e.g., [GitHub](https://github.com/)), use the experimental package
 [`pkgdepends`](https://r-lib.github.io/pkgdepends/):
 
 ``` r
@@ -588,10 +596,11 @@ can be used to specify additional fields to extract from the package
 `DESCRIPTION`, for example
 `utils::installed.packages(fields = c("Repository", "Additional_repositories", "URL", "GithubRepo", "GithubUsername", "SystemRequirements"))`.
 The `Repository` and `URL` fields show the repository from which a
-package was installed and are conveniently shown by
+package was installed and are conveniently shown in column `source` by
 [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html),
-which also has the option to show only information about selected
-packages and their dependencies.
+in which arguments `pkgs` and `dependencies` can be used to show only
+information about selected packages and their dependencies:
+`sessioninfo::session_info(info = "packages", pkgs = "checkrpkgs", dependencies = TRUE)`.
 
 Information about a package and its functions is available from within R
 after the package has been installed and
@@ -604,10 +613,10 @@ been run):
   itself.
 - Conflicts (i.e., if objects with the same name exist in two or more
   places on the search path):
-  `base::conflicts(where = search(), detail = TRUE)`. See also the
-  section `Conflicts` in
-  [`help("conflictRules", package = "base")`](https://rdrr.io/r/base/library.html)
-  and `conflicted::conflicts_prefer(<pkg>::<func>)` from package
+  `conflicts(where = search(), detail = TRUE)`. See also the section
+  `Conflicts` in
+  [`help("conflictRules")`](https://rdrr.io/r/base/library.html) and
+  `conflicted::conflicts_prefer(<pkg>::<func>)` from package
   [`conflicted`](https://CRAN.R-project.org/package=conflicted) to
   declare preferences.
 - Functions, finding functions and other objects whose name contains a
@@ -629,8 +638,12 @@ been run):
   `find.package(package = "<pkg>", lib.loc = NULL, verbose = TRUE)`.
 - Methods for a function: for a generic class:
   `utils::methods(class = "<class>")`; for a generic function:
-  `utils::methods("<func>")`; for S3-methods:
-  `attr(utils::methods(class = "<class>"), "info")`; for S4-methods:
+  `utils::methods("<func>")`; for S3-methods (see
+  [`help("UseMethod")`](https://rdrr.io/r/base/UseMethod.html) for
+  details): `attr(utils::methods(class = "<class>"), "info")`; for
+  S4-methods (see
+  [`help("Methods_Details", package = "methods")`](https://rdrr.io/r/methods/Methods_Details.html)
+  for details):
   `methods::showMethods(classes = "<class>", where = getNamespace("<pkg>"))`.
 - `NEWS` file of a package: `utils::news(package = "<pkg>")`.
 - Version of a package that is currently used:
@@ -640,21 +653,21 @@ been run):
   `utils::browseVignettes(package = "<pkg>")`, list them with
   `utils::vignette(package = "<pkg>")`, search for `<text>` in vignettes
   while using fuzzy matching through
-  `help.search("<text>", package = "<pkg>", types = "vignette")`, or
-  view a specific vignette in the help-pane through
-  `vignette("<vignette_name>", package = "<pkg>")`.
+  `utils::help.search("<text>", package = "<pkg>", types = "vignette")`,
+  or view a specific vignette in the help-pane through
+  `utils::vignette("<vignette_name>", package = "<pkg>")`.
 
 ### Which packages are used?
 
 The function [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html)
-shows which packages are loaded. `getAnywhere(<func>)` shows in which
-package a function is defined. To see which packages are used in a
+shows which packages are loaded. `utils::getAnywhere(<func>)` shows in
+which package a function is defined. To see which packages are used in a
 script, looking for `::`, `:::`, `library`, `require`, and `namespace`
 (e.g., [`loadNamespace()`](https://rdrr.io/r/base/ns-load.html),
 [`requireNamespace()`](https://rdrr.io/r/base/ns-load.html)) will cover
 most cases. However, various packages have their own way to create
-dependencies on packages, see the overview at
-[pak::scan_deps()](https://pak.r-lib.org/reference/scan_deps.html).
+dependencies on packages, see the overview
+[here](https://pak.r-lib.org/reference/scan_deps.html).
 
 To see which packages are mentioned in comments, also look for:
 
@@ -718,18 +731,18 @@ file and choose `extract all`).
 ### Basic method
 
 The simplest way to get the source code of a function is to type the
-name of the function, **without** the brackets. For example, use `sd` to
-see what happens when using [`sd()`](https://rdrr.io/r/stats/sd.html) to
-calculate the standard deviation:
+name of the function, **without** the brackets. For example, use
+`hasName` to see how function
+[`hasName()`](https://rdrr.io/r/utils/hasName.html) checks for the
+presence of names:
 
 ``` r
 
-sd
-#> function (x, na.rm = FALSE) 
-#> sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
-#>     na.rm = na.rm))
-#> <bytecode: 0x55e12633e370>
-#> <environment: namespace:stats>
+hasName
+#> function (x, name) 
+#> match(name, names(x), nomatch = 0L) > 0L
+#> <bytecode: 0x55858a0e2c10>
+#> <environment: namespace:utils>
 ```
 
 Some special cases:
@@ -740,9 +753,9 @@ Some special cases:
   colons: `<pkg>:::<func>` (using only two colons will result in the
   error `'<func>' is not an exported object from 'namespace:<pkg>'`; if
   that error appears when using three colons, you probably looked in the
-  wrong package, use `getAnywhere(<func>)` to check in which package
-  `<func>` is defined). Non-exported functions should **not** be used in
-  code because they might change.
+  wrong package, use `utils::getAnywhere(<func>)` to check in which
+  package `<func>` is defined). Non-exported functions should **not** be
+  used in code because they might change.
 - For functions such as `%in%` (see
   [`help("%in%")`](https://rdrr.io/r/base/match.html)) that start with a
   symbol, use backticks (\`) around the name:
@@ -752,26 +765,26 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55e12194b1f0>
+#> <bytecode: 0x5585855e25f0>
 #> <environment: namespace:base>
 ```
 
 ### getAnywhere
 
 A more robust alternative to the [basic method](#basic-method) outlined
-above is to use `getAnywhere("<func>")`, which looks in more places and
-finds non-exported functions without the need to specify in which
-package a function is defined. Although the quotes around the function
-name are only required when looking for the source code of functions
-that start with a symbol (e.g., `%in%`), it is most robust to always use
-them.
+above is to use `utils::getAnywhere("<func>")`, which looks in more
+places and finds non-exported functions without the need to specify in
+which package a function is defined. Although the quotes around the
+function name are only required when looking for the source code of
+functions that start with a symbol (e.g., `%in%`), it is most robust to
+always use them.
 
 #### UseMethod
 
 If `getAnywhere("<func>")` returns `UseMethod("<func>")`, the function
 has different methods for different object classes and is
 [S3-generic](https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation).
-First use `methods("<func>")` to get an overview of the available
+First use `utils::methods("<func>")` to get an overview of the available
 methods; then use a particular method `"<method>"` from that overview
 and use `getAnywhere("<method>")` to get the source code of that method.
 The advantage over simply using `"<method>"` is that
@@ -793,7 +806,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55e123c38d58>
+#> <bytecode: 0x5585878d0ce8>
 #> <environment: namespace:base>
 ```
 
@@ -823,7 +836,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55e125bce130>
+#> <bytecode: 0x55858983d870>
 #> <environment: namespace:base>
 ```
 
@@ -865,7 +878,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55e125bd1550>
+#> <bytecode: 0x55858983ce60>
 #> <environment: namespace:base>
 ```
 
@@ -874,13 +887,13 @@ getAnywhere("mean.default")
 If `getAnywhere("<func>")` returns `standardGeneric("<func>")`, the
 function has different S4-methods for different object classes (see
 [`help("Introduction", package = "methods")`](https://rdrr.io/r/methods/Introduction.html)).
-Use `showMethods("<func>")` to get an overview of the available methods
-in all [attached](#loading-and-attaching-packages) packages, or use
-`<pkg>:::<func>` to get an overview of the available methods from
+Use `methods::showMethods("<func>")` to get an overview of the available
+methods in all [attached](#loading-and-attaching-packages) packages, or
+use `<pkg>:::<func>` to get an overview of the available methods from
 package `<pkg>`. Finally, provide the function name as argument `f` and
 the selected method as a character vector to argument `signature` (see
 also
-[`help("signature")`](https://rdrr.io/r/methods/GenericFunctions.html))
+[`help("signature", package = "methods")`](https://rdrr.io/r/methods/GenericFunctions.html))
 of function [`getMethod()`](https://rdrr.io/r/methods/getMethod.html) to
 get the source code of a particular method:
 `getMethod(f = "<func>", signature = c(target = "<class>", current = "<class>"))`.
@@ -911,8 +924,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55e1234bd3d0>
-#> <environment: 0x55e12225b008>
+#> <bytecode: 0x558587155f90>
+#> <environment: 0x558585f12f18>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -975,7 +988,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55e1251044c8>
+#> <bytecode: 0x558588d64530>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:

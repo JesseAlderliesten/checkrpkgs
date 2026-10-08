@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,8 +141,8 @@ The following code can be used to install packages from CRAN:</p>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>                                 <span class="at">FUN.VALUE =</span> <span class="fu">logical</span>(<span class="dv">1</span>), <span class="at">quietly =</span> <span class="cn">TRUE</span>)]</span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(pkgs_install) <span class="sc">&gt;</span> <span class="dv">0</span><span class="dt">L</span>) {</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="at">pkgs =</span> pkgs_install, <span class="at">lib =</span> <span class="fu">.libPaths</span>(), <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>                   <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>, <span class="st">"both"</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>, <span class="cn">FALSE</span>), <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>}</span></code></pre></div>
 <p>CRAN has thematic package collections known as <a href="https://cran.r-project.org/web/views/" class="external-link">task views</a>. To install
 all core packages of a task view, install package <a href="https://CRAN.R-project.org/package=ctv" class="external-link"><code>ctv</code></a> and
@@ -185,14 +185,14 @@ next <a href="#github">section</a>):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>pkgs_new <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="at">pkgs =</span> <span class="st">"BiocManager"</span>, <span class="at">lib =</span> <span class="fu">.libPaths</span>(), <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>                   <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>, <span class="st">"both"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>, <span class="cn">FALSE</span>), <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>}</span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">pkgs =</span> pkgs_new, <span class="at">lib =</span> <span class="fu">.libPaths</span>(), <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                     <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>                     <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                     <span class="at">update =</span> <span class="cn">FALSE</span>, <span class="at">ask =</span> <span class="cn">TRUE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>                     <span class="at">force =</span> <span class="cn">FALSE</span>, <span class="at">version =</span> <span class="st">"3.23"</span>)</span></code></pre></div>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                     <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>, <span class="st">"both"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>                     <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>, <span class="cn">FALSE</span>), <span class="at">update =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                     <span class="at">ask =</span> <span class="cn">TRUE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>, <span class="at">force =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>                     <span class="at">version =</span> <span class="st">"3.23"</span>)</span></code></pre></div>
 <p>Bioconductor also has thematic package collections known as <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">BiocViews</a>.</p>
 <p><code>utils::available.packages(repos = BiocManager::repositories())</code>
 gives information about packages available from <a href="https://bioconductor.org/packages/release/BiocViews.html" class="external-link">Bioconductor</a>,
@@ -216,13 +216,13 @@ packages. To match such names to package names as returned by
 <code class="sourceCode R"><span><span class="va">pkgs_new</span> <span class="op">&lt;-</span> <span class="st">"JesseAlderliesten/checkrpkgs"</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"remotes"</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
-<span>                   quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span>, <span class="st">"both"</span><span class="op">)</span>,</span>
+<span>                   verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span>, <span class="cn">FALSE</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"/"</span>, x <span class="op">=</span> <span class="va">pkgs_new</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>                        dependencies <span class="op">=</span> <span class="cn">NA</span>, upgrade <span class="op">=</span> <span class="st">"ask"</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                        quiet <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>                        verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="other-repositories">Other repositories<a class="anchor" aria-label="anchor" href="#other-repositories"></a>
@@ -231,8 +231,9 @@ packages. To match such names to package names as returned by
 <ul>
 <li><a href="https://neuroconductor.org/list-packages/all" class="external-link">Neuroconductor</a></li>
 <li>
-<a href="https://r-forge.r-project.org/" class="external-link">R-Forge</a> with a <a href="https://github.com/r-forge" class="external-link">GitHub mirror</a> and thematic package
-<a href="https://r-forge.r-project.org/softwaremap/trove_list.php" class="external-link">collections</a>
+<a href="https://r-forge.r-project.org/" class="external-link">R-Forge</a> (read-only from
+January 2027 onwards) with a <a href="https://github.com/r-forge" class="external-link">GitHub
+mirror</a> and thematic package <a href="https://r-forge.r-project.org/softwaremap/trove_list.php" class="external-link">collections</a>
 </li>
 <li>
 <a href="https://r-multiverse.org/overview.html" class="external-link">R-multiverse</a>
@@ -269,8 +270,8 @@ The following code shows how to install packages from <a href="https://r-forge.r
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(pkgs_install) <span class="sc">&gt;</span> <span class="dv">0</span><span class="dt">L</span>) {</span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="at">pkgs =</span> pkgs_install, <span class="at">lib =</span> <span class="fu">.libPaths</span>(),</span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                   <span class="at">repos =</span> <span class="st">"https://r-forge.r-project.org/"</span>, <span class="at">dependencies =</span> <span class="cn">NA</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>), <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>                   <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                   <span class="at">type =</span> <span class="fu">getOption</span>(<span class="st">"pkgType"</span>, <span class="st">"both"</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>, <span class="cn">FALSE</span>), <span class="at">quiet =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level4">
@@ -313,13 +314,14 @@ section <code>Tracing</code> in
 <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">help("requireNamespace")</a></code>.</p>
 <p><code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadedNamespaces()</a></code> gives the names of packages that are
 currently loaded, <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">utils::sessionInfo()</a></code> also gives their
-versions, <code><a href="https://rdrr.io/r/base/find.package.html" class="external-link">path.package()</a></code> gives the paths from which
-packages were loaded. <code><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">sessioninfo::session_info()</a></code> provides
-the names, versions and the paths of loaded packages, and has the option
-to show information about their dependencies (and returns the names in
-alphabetical order instead of the order of loading).
-<code>options("defaultPackages")</code> gives the names of packages that
-are attached by default when R starts up if environment variable
+versions and shows if they are attached or only loaded,
+<code><a href="https://rdrr.io/r/base/find.package.html" class="external-link">path.package()</a></code> gives the paths from which attached packages
+were loaded. <code>sessioninfo::session_info(include_base = TRUE)</code>
+provides the names, versions and the paths of loaded packages, has the
+option to show information about their dependencies, and returns the
+names in alphabetical order instead of the order of loading.
+<code>getOption("defaultPackages")</code> gives the names of packages
+that are attached by default when R starts up if environment variable
 <code>R_DEFAULT_PACKAGES</code> is unset (i.e.,
 <code>Sys.getenv("R_DEFAULT_PACKAGES")</code> is <code>""</code>, see
 <code><a href="https://rdrr.io/r/base/Startup.html" class="external-link">help("Startup")</a></code> and the entry <code>defaultPackages</code>
@@ -337,15 +339,16 @@ already-installed and newly-installed packages.</p>
 changes is available at <a href="https://dirk.eddelbuettel.com/cranberries/" class="external-link">CRANberries</a>.</p>
 <p>To get the version number of an installed package, run
 <code>utils::packageVersion("&lt;pkg&gt;")</code>.
-<code><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">old.packages()</a></code> indicates which packages can be updated.</p>
+<code><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">utils::old.packages()</a></code> indicates which packages can be
+updated.</p>
 <p>The following code can be used to install the latest version of
 packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> (this
 <strong>changes</strong> the version of already-installed packages,
 which might be undesirable):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">update.packages</a></span><span class="op">(</span>lib.loc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, ask <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>                       verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                       checkBuilt <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>                       verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span>, <span class="cn">FALSE</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                       checkBuilt <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span>, <span class="st">"both"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="bioconductor-1">Bioconductor<a class="anchor" aria-label="anchor" href="#bioconductor-1"></a>
@@ -358,13 +361,13 @@ Bioconductor release (here version 3.23):</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"BiocManager"</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
-<span>                   quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span>, <span class="st">"both"</span><span class="op">)</span>,</span>
+<span>                   verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span>, <span class="cn">FALSE</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>                     build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                     type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
-<span>                     update <span class="op">=</span> <span class="cn">TRUE</span>, ask <span class="op">=</span> <span class="cn">TRUE</span>, checkBuilt <span class="op">=</span> <span class="cn">TRUE</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                     build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span>, <span class="st">"both"</span><span class="op">)</span>,</span>
+<span>                     verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span>, <span class="cn">FALSE</span><span class="op">)</span>, update <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                     ask <span class="op">=</span> <span class="cn">TRUE</span>, checkBuilt <span class="op">=</span> <span class="cn">TRUE</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                     version <span class="op">=</span> <span class="st">"3.23"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -379,8 +382,11 @@ in the vignette <em>Installing R, Rtools and RStudio</em>:
 <h4 id="base-r">base R<a class="anchor" aria-label="anchor" href="#base-r"></a>
 </h4>
 <p>Package <a href="https://github.com/hughjonesd/rcheology" class="external-link"><code>rcheology</code></a>
-provides an overview of functions in earlier versions of base R. Package
-<a href="https://CRAN.R-project.org/package=backports" class="external-link"><code>backports</code></a>
+provides functions to detect changes in base-R functions between
+versions of base R. A <a href="https://hughjonesd.shinyapps.io/rcheology/" class="external-link">Shiny version</a> is
+also available. <code>rcheology</code> is complemented by <a href="https://hughjonesd.github.io/r-help/" class="external-link">Historical R help</a> that
+provides documentation of the base-R functions for older R versions.
+Package <a href="https://CRAN.R-project.org/package=backports" class="external-link"><code>backports</code></a>
 provides re-implementations of old R functions.</p>
 </div>
 <div class="section level4">
@@ -391,12 +397,12 @@ from CRAN, using package <a href="https://CRAN.R-project.org/package=remotes" cl
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"remotes"</span>, lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
-<span>                   quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>                   type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span>, <span class="st">"both"</span><span class="op">)</span>,</span>
+<span>                   verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span>, <span class="cn">FALSE</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_version.html" class="external-link">install_version</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"deSolve"</span>, version <span class="op">=</span> <span class="st">"1.40"</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                         upgrade <span class="op">=</span> <span class="st">"ask"</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                         lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>                         lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>It is also possible to specify minimum versions, e.g.,
 <code>version = "&gt;= 1.40"</code>.</p>
 <p>Alternatively, visit the installation page of a package from CRAN, go
@@ -408,7 +414,7 @@ version 1.40 of package <a href="https://CRAN.R-project.org/package=deSolve" cla
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
 <span>  pkgs <span class="op">=</span> <span class="st">"https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz"</span>,</span>
 <span>  lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span>, repos <span class="op">=</span> <span class="cn">NULL</span>, dependencies <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"pkgType"</span>, <span class="st">"both"</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"verbose"</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -464,11 +470,12 @@ Rtools.</p>
 can have many reasons. First check the package name, which is
 case-sensitive. Then check possible other reasons mentioned in this <a href="https://stackoverflow.com/a/25721890/32365738" class="external-link">stackoverflow
 answer</a>.</p></li>
-<li><p>If installing packages fails, try with arguments
-<code>force = TRUE</code> to re-install possibly broken dependencies,
-with argument <code>build_vignettes = FALSE</code> to not install
-vignettes, or with <code>verbose = TRUE</code> to get more diagnostic
-information.</p></li>
+<li><p>If installing packages fails, try
+<code>utils::install.packages(&lt;pkgs&gt;, verbose = TRUE, build_vignettes = FALSE)</code>
+to get more diagnostic information and not install vignettes. For
+packages from <code>BioConductor</code>, try
+<code>BiocManager::install(&lt;pkgs&gt;, force = TRUE)</code> to
+re-install possibly broken dependencies.</p></li>
 </ul>
 </div>
 <div class="section level4">
@@ -487,10 +494,11 @@ paths returned by <code><a href="https://rdrr.io/r/base/libPaths.html" class="ex
 packages.</p></li>
 <li>
 <p>To check that a package is installed and functional, use
-<code>library(&lt;pkg)</code> or
-<code>requireNamespace(&lt;pkg&gt;)</code>. These functions do not allow
-vectors as input, such that the following code has to be used to check
-multiple packages:</p>
+<code>library(&lt;pkg)</code>,
+<code>requireNamespace(&lt;pkg&gt;)</code>, or
+<code>loadNamespace("&lt;pkg&gt;", versionCheck = list(op = "&gt;=", version = package_version("1.2.3")))</code>.
+These functions do not allow vectors as input, such that the following
+code has to be used to check multiple packages:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">vapply</span>(<span class="at">X =</span> <span class="fu">c</span>(<span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>, <span class="sc">&lt;</span>pkg<span class="sc">&gt;</span>), <span class="at">FUN =</span> requireNamespace, <span class="at">FUN.VALUE =</span> <span class="fu">logical</span>(<span class="dv">1</span>),</span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>          <span class="at">lib.loc =</span> <span class="cn">NULL</span>, <span class="at">quietly =</span> <span class="cn">FALSE</span>)</span>
@@ -568,7 +576,7 @@ to see reverse dependencies (i.e., which packages require package
 <code>&lt;pkg&gt;</code>). <code>NULL</code> is returned for packages
 that are not found, whereas <code>character(0)</code> is returned for
 packages that do not have any dependencies. To see dependencies of
-packages from other repositories (e.g., <a href="https://github.com/" class="external-link">GitHub</a>), use package <a href="https://r-lib.github.io/pkgdepends/" class="external-link"><code>pkgdepends</code></a>:</p>
+packages from other repositories (e.g., <a href="https://github.com/" class="external-link">GitHub</a>), use the experimental package <a href="https://r-lib.github.io/pkgdepends/" class="external-link"><code>pkgdepends</code></a>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-lib.github.io/pkgdepends/" class="external-link">pkgdepends</a></span><span class="op">)</span></span>
 <span><span class="va">prop</span> <span class="op">&lt;-</span> <span class="fu">pkgdepends</span><span class="fu">::</span><span class="fu"><a href="https://r-lib.github.io/pkgdepends/reference/pkg_deps.html" class="external-link">new_pkg_deps</a></span><span class="op">(</span><span class="st">"&lt;repos&gt;/&lt;pkg&gt;"</span><span class="op">)</span></span>
@@ -612,9 +620,11 @@ for example
 <code>utils::installed.packages(fields = c("Repository", "Additional_repositories", "URL", "GithubRepo", "GithubUsername", "SystemRequirements"))</code>.
 The <code>Repository</code> and <code>URL</code> fields show the
 repository from which a package was installed and are conveniently shown
-by <code><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">sessioninfo::session_info()</a></code>, which also has the option
-to show only information about selected packages and their
-dependencies.</p>
+in column <code>source</code> by
+<code><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">sessioninfo::session_info()</a></code>, in which arguments
+<code>pkgs</code> and <code>dependencies</code> can be used to show only
+information about selected packages and their dependencies:
+<code>sessioninfo::session_info(info = "packages", pkgs = "checkrpkgs", dependencies = TRUE)</code>.</p>
 <p>Information about a package and its functions is available from
 within R after the package has been installed and <a href="#loading-and-attaching-packages">attached</a> (i.e.,
 <code>library(&lt;pkg&gt;)</code> has been run):</p>
@@ -624,9 +634,8 @@ within R after the package has been installed and <a href="#loading-and-attachin
 with <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">utils::citation()</a></code> to cite R itself.</li>
 <li>Conflicts (i.e., if objects with the same name exist in two or more
 places on the search path):
-<code>base::conflicts(where = search(), detail = TRUE)</code>. See also
-the section <code>Conflicts</code> in
-<code><a href="https://rdrr.io/r/base/library.html" class="external-link">help("conflictRules", package = "base")</a></code> and
+<code>conflicts(where = search(), detail = TRUE)</code>. See also the
+section <code>Conflicts</code> in <code><a href="https://rdrr.io/r/base/library.html" class="external-link">help("conflictRules")</a></code> and
 <code>conflicted::conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code>
 from package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link"><code>conflicted</code></a>
 to declare preferences.</li>
@@ -649,9 +658,11 @@ its help page: <code><a href="https://rdrr.io/r/base/match.html" class="external
 <code>find.package(package = "&lt;pkg&gt;", lib.loc = NULL, verbose = TRUE)</code>.</li>
 <li>Methods for a function: for a generic class:
 <code>utils::methods(class = "&lt;class&gt;")</code>; for a generic
-function: <code>utils::methods("&lt;func&gt;")</code>; for S3-methods:
+function: <code>utils::methods("&lt;func&gt;")</code>; for S3-methods
+(see <code><a href="https://rdrr.io/r/base/UseMethod.html" class="external-link">help("UseMethod")</a></code> for details):
 <code>attr(utils::methods(class = "&lt;class&gt;"), "info")</code>; for
-S4-methods:
+S4-methods (see
+<code><a href="https://rdrr.io/r/methods/Methods_Details.html" class="external-link">help("Methods_Details", package = "methods")</a></code> for details):
 <code>methods::showMethods(classes = "&lt;class&gt;", where = getNamespace("&lt;pkg&gt;"))</code>.</li>
 <li>
 <code>NEWS</code> file of a package:
@@ -664,9 +675,9 @@ links to their contents through
 with <code>utils::vignette(package = "&lt;pkg&gt;")</code>, search for
 <code>&lt;text&gt;</code> in vignettes while using fuzzy matching
 through
-<code>help.search("&lt;text&gt;", package = "&lt;pkg&gt;", types = "vignette")</code>,
+<code>utils::help.search("&lt;text&gt;", package = "&lt;pkg&gt;", types = "vignette")</code>,
 or view a specific vignette in the help-pane through
-<code>vignette("&lt;vignette_name&gt;", package = "&lt;pkg&gt;")</code>.</li>
+<code>utils::vignette("&lt;vignette_name&gt;", package = "&lt;pkg&gt;")</code>.</li>
 </ul>
 </div>
 </div>
@@ -674,13 +685,13 @@ or view a specific vignette in the help-pane through
 <h3 id="which-packages-are-used">Which packages are used?<a class="anchor" aria-label="anchor" href="#which-packages-are-used"></a>
 </h3>
 <p>The function <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadedNamespaces()</a></code> shows which packages are
-loaded. <code>getAnywhere(&lt;func&gt;)</code> shows in which package a
-function is defined. To see which packages are used in a script, looking
-for <code>::</code>, <code>:::</code>, <code>library</code>,
-<code>require</code>, and <code>namespace</code> (e.g.,
-<code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadNamespace()</a></code>, <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace()</a></code>) will
-cover most cases. However, various packages have their own way to create
-dependencies on packages, see the overview at <a href="https://pak.r-lib.org/reference/scan_deps.html" class="external-link">pak::scan_deps()</a>.</p>
+loaded. <code>utils::getAnywhere(&lt;func&gt;)</code> shows in which
+package a function is defined. To see which packages are used in a
+script, looking for <code>::</code>, <code>:::</code>,
+<code>library</code>, <code>require</code>, and <code>namespace</code>
+(e.g., <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">loadNamespace()</a></code>, <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace()</a></code>)
+will cover most cases. However, various packages have their own way to
+create dependencies on packages, see the overview <a href="https://pak.r-lib.org/reference/scan_deps.html" class="external-link">here</a>.</p>
 <p>To see which packages are mentioned in comments, also look for:</p>
 <ul>
 <li>
@@ -750,15 +761,14 @@ or after downloading the code to your PC by clicking the green
 </h3>
 <p>The simplest way to get the source code of a function is to type the
 name of the function, <strong>without</strong> the brackets. For
-example, use <code>sd</code> to see what happens when using
-<code><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd()</a></code> to calculate the standard deviation:</p>
+example, use <code>hasName</code> to see how function
+<code><a href="https://rdrr.io/r/utils/hasName.html" class="external-link">hasName()</a></code> checks for the presence of names:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sd</span></span>
-<span><span class="co">#&gt; function (x, na.rm = FALSE) </span></span>
-<span><span class="co">#&gt; sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), </span></span>
-<span><span class="co">#&gt;     na.rm = na.rm))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e12633e370&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">hasName</span></span>
+<span><span class="co">#&gt; function (x, name) </span></span>
+<span><span class="co">#&gt; match(name, names(x), nomatch = 0L) &gt; 0L</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55858a0e2c10&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: namespace:utils&gt;</span></span></code></pre></div>
 <p>Some special cases:</p>
 <ul>
 <li>To distinguish functions with the same name from different packages,
@@ -769,10 +779,10 @@ colons: <code>&lt;pkg&gt;:::&lt;func&gt;</code> (using only two colons
 will result in the error
 <code>'&lt;func&gt;' is not an exported object from 'namespace:&lt;pkg&gt;'</code>;
 if that error appears when using three colons, you probably looked in
-the wrong package, use <code>getAnywhere(&lt;func&gt;)</code> to check
-in which package <code>&lt;func&gt;</code> is defined). Non-exported
-functions should <strong>not</strong> be used in code because they might
-change.</li>
+the wrong package, use <code>utils::getAnywhere(&lt;func&gt;)</code> to
+check in which package <code>&lt;func&gt;</code> is defined).
+Non-exported functions should <strong>not</strong> be used in code
+because they might change.</li>
 <li>For functions such as <code>%in%</code> (see
 <code><a href="https://rdrr.io/r/base/match.html" class="external-link">help("%in%")</a></code>) that start with a symbol, use backticks (`)
 around the name:</li>
@@ -781,7 +791,7 @@ around the name:</li>
 <code class="sourceCode R"><span><span class="va">`%in%`</span></span>
 <span><span class="co">#&gt; function (x, table) </span></span>
 <span><span class="co">#&gt; match(x, table, nomatch = 0L) &gt; 0L</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e12194b1f0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5585855e25f0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -789,20 +799,20 @@ around the name:</li>
 </h3>
 <p>A more robust alternative to the <a href="#basic-method">basic
 method</a> outlined above is to use
-<code>getAnywhere("&lt;func&gt;")</code>, which looks in more places and
-finds non-exported functions without the need to specify in which
-package a function is defined. Although the quotes around the function
-name are only required when looking for the source code of functions
-that start with a symbol (e.g., <code>%in%</code>), it is most robust to
-always use them.</p>
+<code>utils::getAnywhere("&lt;func&gt;")</code>, which looks in more
+places and finds non-exported functions without the need to specify in
+which package a function is defined. Although the quotes around the
+function name are only required when looking for the source code of
+functions that start with a symbol (e.g., <code>%in%</code>), it is most
+robust to always use them.</p>
 <div class="section level4">
 <h4 id="usemethod">UseMethod<a class="anchor" aria-label="anchor" href="#usemethod"></a>
 </h4>
 <p>If <code>getAnywhere("&lt;func&gt;")</code> returns
 <code>UseMethod("&lt;func&gt;")</code>, the function has different
 methods for different object classes and is <a href="https://cran.r-project.org/doc/manuals/R-intro.html#Object-orientation" class="external-link">S3-generic</a>.
-First use <code>methods("&lt;func&gt;")</code> to get an overview of the
-available methods; then use a particular method
+First use <code>utils::methods("&lt;func&gt;")</code> to get an overview
+of the available methods; then use a particular method
 <code>"&lt;method&gt;"</code> from that overview and use
 <code>getAnywhere("&lt;method&gt;")</code> to get the source code of
 that method. The advantage over simply using
@@ -824,7 +834,7 @@ S3-generic:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; UseMethod("mean")</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e123c38d58&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x5585878d0ce8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>First use <code>methods("mean")</code> to get an overview of the
 available methods:</p>
@@ -849,7 +859,7 @@ method <code>mean</code> used with objects of class
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, ...) </span></span>
 <span><span class="co">#&gt; .Date(mean(unclass(x), ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e125bce130&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55858983d870&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 <p>You can also use <code>getAnywhere("mean.default")</code> to see the
 source code of the method <code>mean</code> used with objects of classes
@@ -887,7 +897,7 @@ not listed in the output of <code>methods("mean")</code>:</p>
 <span><span class="co">#&gt;     }</span></span>
 <span><span class="co">#&gt;     .Internal(mean(x))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e125bd1550&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55858983ce60&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -897,13 +907,13 @@ not listed in the output of <code>methods("mean")</code>:</p>
 <code>standardGeneric("&lt;func&gt;")</code>, the function has different
 S4-methods for different object classes (see
 <code><a href="https://rdrr.io/r/methods/Introduction.html" class="external-link">help("Introduction", package = "methods")</a></code>). Use
-<code>showMethods("&lt;func&gt;")</code> to get an overview of the
-available methods in all <a href="#loading-and-attaching-packages">attached</a> packages, or use
+<code>methods::showMethods("&lt;func&gt;")</code> to get an overview of
+the available methods in all <a href="#loading-and-attaching-packages">attached</a> packages, or use
 <code>&lt;pkg&gt;:::&lt;func&gt;</code> to get an overview of the
 available methods from package <code>&lt;pkg&gt;</code>. Finally,
 provide the function name as argument <code>f</code> and the selected
 method as a character vector to argument <code>signature</code> (see
-also <code><a href="https://rdrr.io/r/methods/GenericFunctions.html" class="external-link">help("signature")</a></code>) of function
+also <code><a href="https://rdrr.io/r/methods/GenericFunctions.html" class="external-link">help("signature", package = "methods")</a></code>) of function
 <code><a href="https://rdrr.io/r/methods/getMethod.html" class="external-link">getMethod()</a></code> to get the source code of a particular method:
 <code>getMethod(f = "&lt;func&gt;", signature = c(target = "&lt;class&gt;", current = "&lt;class&gt;"))</code>.</p>
 <p>The example below shows how to find the source code of method
@@ -930,8 +940,8 @@ package <code>Matrix</code>.</p>
 <span><span class="co">#&gt;     "y"), default = NULL, skeleton = (function (x, y, ...) </span></span>
 <span><span class="co">#&gt;     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", </span></span>
 <span><span class="co">#&gt;         "cbind2"), domain = NA))(x, y, ...))</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e1234bd3d0&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55e12225b008&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x558587155f90&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x558585f12f18&gt;</span></span>
 <span><span class="co">#&gt; attr(,"generic")</span></span>
 <span><span class="co">#&gt; [1] "cbind2"</span></span>
 <span><span class="co">#&gt; attr(,"generic")attr(,"package")</span></span>
@@ -987,7 +997,7 @@ the <code>Matrix</code> class defined by package
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; function (x, y, ...) </span></span>
 <span><span class="co">#&gt; cbind.Matrix(x, y, deparse.level = 0L)</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55e1251044c8&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x558588d64530&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:Matrix&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Signatures:</span></span>
