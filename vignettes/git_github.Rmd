@@ -282,13 +282,14 @@ The following code can be used to install packages from
 pkgs_new <- "JesseAlderliesten/checkrpkgs"
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
-                   type = getOption("pkgType"), verbose = getOption("verbose"),
-                   quiet = FALSE)
+                   type = getOption("pkgType", "both"),
+                   verbose = getOption("verbose", FALSE), quiet = FALSE)
 }
 remotes::install_github(
   repo = grep(pattern = "/", x = pkgs_new, value = TRUE, fixed = TRUE),
   dependencies = NA, upgrade = "ask", force = FALSE, quiet = FALSE,
-  build_vignettes = TRUE, lib = .libPaths(), verbose = getOption("verbose"))
+  build_vignettes = TRUE, lib = .libPaths(),
+  verbose = getOption("verbose", FALSE))
 ```
 
 ### Linking
