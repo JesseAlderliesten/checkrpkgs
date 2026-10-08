@@ -63,6 +63,11 @@ This project is licensed under the terms of the [MIT License](LICENSE.md).
 citation("checkrpkgs")
 ```
 
+## Contact
+Please open a
+[GitHub issue](https://github.com/JesseAlderliesten/checkrpkgs/issues) if you
+have suggestions for improvement of `checkrpkgs`.
+
 ## Similar resources
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/) by J.
   Bryan, J. Hester, S. Pileggi, and E. D. Aja

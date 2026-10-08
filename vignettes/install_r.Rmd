@@ -35,7 +35,8 @@ be read by applications such as NotePad.
 
 ### Making R stricter
 R can be configured by changing environment variables and various options, see
-`help("environment variables")`, `help("options")`, `help("install.packages")`,
+`help("environment variables")`, `help("options")`,
+`help("install.packages", package = "utils")`,
 and `help(".libPaths")`. Although options for startup can also be changed (see
 `help("Startup")` and the chapter [`R Startup`](https://rstats.wtf/r-startup) from
 the book [`What They Forgot to Teach You About R`](https://rstats.wtf/)), that
@@ -98,21 +99,22 @@ Several variables and functions provide information about the current R session:
 
 - `capabilities()` and `extSoftVersion()` provide details about external
   software that can be used with R.
-- Environment variables affect an R session. Its help page
-  (`help("environment variables")`) lists some of these environment variables.
+- `Sys.getenv()` lists the values of environment variables that affect an R
+  session, see (`help("environment variables")`) for their documentation.
 - `getRversion()` provides the version of the running R.
 - `.Machine` (see `help(".Machine")`) and `Sys.info()` provide information about
   the machine and platform R is running on. Operating systems might identify
   themselves and their versions in surprising ways, and Windows might report
   older versions than the versions that are actually installed (see the section
   `osVersion` in `help("sessionInfo", package = "utils")` and the `Note` in
-  `help("win.version", package = "utils")`.
+  `help("win.version", package = "utils")` (only available on Microsoft Windows).
 - `.Platform` (see `help(".Platform")`) and `R.Version()` provide information
   about the platform R was built on.
 - `Sys.getlocale()` and `l10n_info()` provide details about the locale (i.e.,
   settings that depend on the user's language or region).
 - `utils::sessionInfo()` extracts parts of the information mentioned above about
-  the operating system and R, and lists attached and loaded packages. Its
+  the operating system and R, and lists attached and loaded packages (see also
+  `loadedNamespaces()`). Its
   printing method can be used to print additional information about the used
   locale (i.e., settings that depend on the user's language or region) and
   random number generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
@@ -162,8 +164,12 @@ with RStudio from within R.
 ### Other IDEs
 Other integrated development environments for R are:
 
+- [`Eclipse statET`](https://eclipse.dev/statet/)
 - [`Emacs Speaks Statistics (ESS)`](https://ess.r-project.org/)
+- [`Positron`](https://positron.posit.co/)
 - [`RKWard`](https://rkward.kde.org/)
+- [`R in Visual Studio Code`](https://code.visualstudio.com/docs/languages/r)
+- [`tinn-R`](https://tinn-r.org/)
 
 ### Configuring RStudio
 After installing RStudio, start RStudio, go to `Tools` > `Global Options` >
@@ -174,7 +180,10 @@ present on another PC). A more disrupting change to enhance portability is to
 **deselect** the options `Show diagnostics for R` and
 `Prompt to install missing R packages discovered in R source files` at `Tools` >
 `Options` > `Code` > `Diagnostics`. Deselecting these options ensures namespaces
-are not automatically loaded when RStudio loads a project.
+are not automatically loaded when RStudio loads a project (run
+`loadedNamespaces()` to see which packages have been attached, or 
+`sessioninfo::session_info()` to get more information about those that are not
+base R packages).
 
 In the same tab `General`, you can also specify the version of R that should be
 used and the default working directory (see `help("getwd")`) to be used when
