@@ -28,7 +28,8 @@ Suggests:
     strict,
     tinytest (>= 1.4.1),
     tools,
-    utils
+    utils,
+    withr (>= 2.0.0)
 VignetteBuilder: 
     knitr
 Remotes:
