@@ -35,7 +35,8 @@ be read by applications such as NotePad.
 
 ### Making R stricter
 R can be configured by changing environment variables and various options, see
-`help("environment variables")`, `help("options")`, `help("install.packages")`,
+`help("environment variables")`, `help("options")`,
+`help("install.packages", package = "utils")`,
 and `help(".libPaths")`. Although options for startup can also be changed (see
 `help("Startup")` and the chapter [`R Startup`](https://rstats.wtf/r-startup) from
 the book [`What They Forgot to Teach You About R`](https://rstats.wtf/)), that
@@ -106,7 +107,7 @@ Several variables and functions provide information about the current R session:
   themselves and their versions in surprising ways, and Windows might report
   older versions than the versions that are actually installed (see the section
   `osVersion` in `help("sessionInfo", package = "utils")` and the `Note` in
-  `help("win.version", package = "utils")`.
+  `help("win.version", package = "utils")` (only available on Microsoft Windows).
 - `.Platform` (see `help(".Platform")`) and `R.Version()` provide information
   about the platform R was built on.
 - `Sys.getlocale()` and `l10n_info()` provide details about the locale (i.e.,
