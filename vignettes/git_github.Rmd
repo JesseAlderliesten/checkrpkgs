@@ -151,7 +151,7 @@ Then let `git` know the new file is there by typing (it is convenient to use
 ### Using GitHub
 - For a chronological overview of all commits (i.e., across all files) in a
   particular branch of a repository, use an URL of the form
-  `http://github.com/<username>/<repository>/commits`, or go to the main page of the
+  `https://github.com/<username>/<repository>/commits`, or go to the main page of the
   repository and in the `Code` panel click the `clock` icon at the top of the
   file overview.
 - To compare different branches of a repository, use three dots between their
