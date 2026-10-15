@@ -624,7 +624,7 @@ The simplest way to get the source code of a function is to type the name of the
 function, **without** the brackets. For example, use `hasName` to see how
 function `hasName()` checks for the presence of names:
 
-```{r}
+```{r hasName}
 hasName
 ```
 
@@ -642,7 +642,7 @@ Some special cases:
 - For functions such as `%in%` (see `help("%in%")`) that start with a symbol,
   use backticks (`) around the name:
   
-```{r}
+```{r %in%}
 `%in%`
 ```
 
@@ -791,7 +791,8 @@ included in a package, your best bet for finding the source code is
 [searching](https://docs.github.com/en/search-github) the relevant part of the
 [GitHub](https://github.com/r-devel/r-svn/) repository (e.g.,
 `https://github.com/r-devel/r-svn/tree/main/src/library/methods/src` for code
-from package `methods`), or installing the package from source (see the section
+from package `methods`; note that GitHub search only searches the main branch),
+or installing the package from source (see the section
 `Rtools` in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`) and searching in the `src`
 folder of the downloaded code.
@@ -832,3 +833,8 @@ folder of the downloaded code.
 - Search engines specific for R: [METACRAN](https://r-pkg.org/),
   [r-project](https://search.r-project.org/), [Rseek](https://www.rseek.org/),
   [R-universe](https://r-universe.dev/search)
+
+## sessionInfo
+```{r, echo = FALSE}
+utils::sessionInfo()
+```
