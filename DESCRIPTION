@@ -14,7 +14,7 @@ URL: https://github.com/JesseAlderliesten/checkrpkgs,
 BugReports: https://github.com/JesseAlderliesten/checkrpkgs/issues
 Suggests: 
     BiocManager (>= 1.30.5),
-    checkinput (>= 1.0.0),
+    checkinput (>= 1.5.0),
     conflicted (>= 1.2.0),
     ctv (>= 0.4-0),
     knitr,
