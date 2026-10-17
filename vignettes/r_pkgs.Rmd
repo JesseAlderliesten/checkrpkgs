@@ -10,7 +10,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r opts, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -74,7 +74,7 @@ The [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN) is the
 main repository of R [packages](https://cran.r-project.org/web/packages/index.html).
 The following code can be used to install packages from CRAN:
 
-```{r, eval = FALSE}
+```{r install_base, eval = FALSE}
 pkgs_new <- c(<pkg>, <pkg>)
 # Select packages from 'pkgs_new' that are not installed or not functional
 pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
@@ -124,7 +124,7 @@ The following code can be used to install packages from Bioconductor release
 `Bioconductor` and CRAN and, through `remotes::install_github()`, from GitHub
 (see the next [section][GitHub]):
 
-```{r, eval = FALSE}
+```{r install_bioc, eval = FALSE}
 pkgs_new <- c(<pkg>, <pkg>)
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
@@ -158,7 +158,7 @@ match such names to package names as returned by `utils::installed.packages()`,
 use `basename(pkgs_new)` to select the last part of those names:
 `pkgs_new[!(basename(pkgs_new) %in% installed.packages()[, "Package"])]`.
 
-```{r, eval = FALSE}
+```{r install_github, eval = FALSE}
 pkgs_new <- "JesseAlderliesten/checkrpkgs"
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
@@ -197,20 +197,16 @@ Repositories can be selected using `utils::setRepositories()`. The websites of
 these repositories include instructions how to install packages from them. In
 addition, package [`remotes`](https://CRAN.R-project.org/package=remotes) contains
 functions to install packages from some of these repositories. The following
-code shows how to install packages from [R-Forge](https://r-forge.r-project.org/)
-as an example:
+code shows how to install package
+[`goodpractice`](https://docs.ropensci.org/goodpractice/) from
+[rOpenSci](https://ropensci.org/packages/all/) as an example:
 
-```{r, eval = FALSE}
-pkgs_new <- c(<pkg>, <pkg>)
-# Select packages from 'pkgs_new' that are not installed or not functional
-pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
-                                 FUN.VALUE = logical(1), quietly = TRUE)]
-if(length(pkgs_install) > 0L) {
-  install.packages(pkgs = pkgs_install, lib = .libPaths(),
-                   repos = "https://r-forge.r-project.org/", dependencies = NA,
-                   type = getOption("pkgType", "both"),
-                   verbose = getOption("verbose", FALSE), quiet = FALSE)
-}
+```{r install_alt, eval = FALSE}
+install.packages(pkgs = pkgs_install, lib = .libPaths(),
+                 repos = c("https://ropensci.r-universe.dev",
+                           "https://cloud.r-project.org"),
+                 dependencies = NA, type = getOption("pkgType", "both"),
+                 verbose = getOption("verbose", FALSE), quiet = FALSE)
 ```
 
 #### Mirror websites
@@ -274,7 +270,7 @@ The following code can be used to install the latest version of packages from
 **changes** the version of already-installed packages, which might be
 undesirable):
 
-```{r, eval = FALSE}
+```{r update_base, eval = FALSE}
 utils::update.packages(lib.loc = .libPaths(), ask = TRUE, dependencies = NA,
                        verbose = getOption("verbose", FALSE), quiet = FALSE,
                        checkBuilt = TRUE, type = getOption("pkgType", "both"))
@@ -286,7 +282,7 @@ for too new packages, taking the currently used version of Bioconductor (see
 `BiocManager::version()`) into account. The following code can be used to update
 packages to a specific Bioconductor release (here version 3.23):
 
-```{r, eval = FALSE}
+```{r update_bioc, eval = FALSE}
 if(!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages(pkgs = "BiocManager", lib = .libPaths(), dependencies = NA,
                    type = getOption("pkgType", "both"),
@@ -319,7 +315,7 @@ re-implementations of old R functions.
 The following code can be used to install an old version of a package from CRAN,
 using package [`remotes`](https://CRAN.R-project.org/package=remotes):
 
-```{r, eval = FALSE}
+```{r install_old_base, eval = FALSE}
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
                    type = getOption("pkgType", "both"),
@@ -337,7 +333,7 @@ Alternatively, visit the installation page of a package from CRAN, go to
 pointing to an older version to install it using base R. For example, to install
 version 1.40 of package [`deSolve`](https://CRAN.R-project.org/package=deSolve):
 
-```{r, eval = FALSE}
+```{r install_old_alt, eval = FALSE}
 install.packages(
   pkgs = "https://cran.r-project.org/src/contrib/Archive/deSolve/deSolve_1.40.tar.gz",
   lib = .libPaths(), repos = NULL, dependencies = NA,
@@ -410,7 +406,7 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   These functions do not allow vectors as input, such
   that the following code has to be used to check multiple packages:
   
-  ``` {r, eval = FALSE}
+  ``` {r requireNamespace, eval = FALSE}
   suppressPackageStartupMessages(
     !vapply(X = c(<pkg>, <pkg>), FUN = requireNamespace, FUN.VALUE = logical(1),
             lib.loc = NULL, quietly = FALSE)
@@ -475,7 +471,7 @@ packages that do not have any dependencies. To see dependencies of packages from
 other repositories (e.g., [GitHub](https://github.com/)), use the experimental
 package [`pkgdepends`](https://r-lib.github.io/pkgdepends/):
 
-``` {r, eval = FALSE}
+``` {r pkgdepends, eval = FALSE}
 library(pkgdepends)
 prop <- pkgdepends::new_pkg_deps("<repos>/<pkg>")
 prop$solve()
@@ -568,11 +564,13 @@ packages have their own way to create dependencies on packages, see the overview
 
 To see which packages are mentioned in comments, also look for:
 
+- `Codeberg`: [Codeberg](https://codeberg.org/explore/repos?language=R)
 - `conductor`: [Bioconductor](https://bioconductor.org/),
   [Neuroconductor](https://neuroconductor.org/)
 - `CRAN`: [CRAN](https://cran.r-project.org/)
-- `forge`: [R-Forge](https://r-forge.r-project.org/)
-- `Git`: [GitHub](https://github.com/)
+- `forge`: [R-Forge](https://r-forge.r-project.org/),
+  [SourceForge](https://sourceforge.net/directory/r/)
+- `Git`: [GitHub](https://github.com/), [GitLab](https://gitlab.com/gitlab-com)
 - `package` and `libraries`
 - `rOpenSci`: [rOpenSci](https://ropensci.org/packages/)
 - `verse`: [R-multiverse](https://r-multiverse.org/),
@@ -624,7 +622,7 @@ The simplest way to get the source code of a function is to type the name of the
 function, **without** the brackets. For example, use `hasName` to see how
 function `hasName()` checks for the presence of names:
 
-```{r}
+```{r hasName}
 hasName
 ```
 
@@ -642,7 +640,7 @@ Some special cases:
 - For functions such as `%in%` (see `help("%in%")`) that start with a symbol,
   use backticks (`) around the name:
   
-```{r}
+```{r %in%}
 `%in%`
 ```
 
@@ -668,12 +666,12 @@ asterisk and the remark `Non-visible functions are asterisked`.
 
 For example, the output of `getAnywhere("mean")` contains `UseMethod("mean")`,
 indicating that `mean` is an S3-generic:
-```{r, eval = TRUE}
+```{r getAnywhere, eval = TRUE}
 getAnywhere("mean")
 ```
 
 First use `methods("mean")` to get an overview of the available methods:
-```{r, eval = TRUE}
+```{r methods, eval = TRUE}
 methods("mean")
 ```
 
@@ -681,7 +679,7 @@ The output shows, among others, the methods `mean.Date` and `mean.default`.
 You can use `getAnywhere("mean.Date")` to see the source code of the method `mean`
 used with objects of class `Date`. 
 
-```{r, eval = TRUE}
+```{r getAnywhere v2, eval = TRUE}
 getAnywhere("mean.Date")
 ```
 
@@ -689,7 +687,7 @@ You can also use `getAnywhere("mean.default")` to see the source code of the
 method `mean`
 used with objects of classes not listed in the output of `methods("mean")`:
 
-```{r, eval = TRUE}
+```{r getAnywhere v3, eval = TRUE}
 getAnywhere("mean.default")
 ```
 
@@ -710,7 +708,7 @@ The example below shows how to find the source code of method `cbind2()` used by
 the `Matrix` package to combine two matrices that both have the `Matrix` class
 as defined by package `Matrix`.
 
-```{r, eval = TRUE}
+```{r standardGeneric, eval = TRUE}
 # Need to attach and load package 'Matrix' for this example to work
 if(requireNamespace("Matrix")) {
   library(Matrix)
@@ -721,7 +719,7 @@ if(requireNamespace("Matrix")) {
 `standardGeneric("cbind2")` indicates that `cbind2()` is an S4 function, so use
 `showMethods("cbind2")` to get an overview of the different methods:
 
-```{r, eval = TRUE}
+```{r showMethods, eval = TRUE}
 if(requireNamespace("Matrix")) {
   library(Matrix)
   showMethods("cbind2")
@@ -732,7 +730,7 @@ Then choose one of the returned methods. For example, to get the source code of
 `cbind2` used with two matrices that both have the `Matrix` class defined by
 package `Matrix`:
 
-```{r, eval = TRUE}
+```{r getMethod, eval = TRUE}
 if(requireNamespace("Matrix")) {
   library(Matrix)
   getMethod(f = "cbind2", signature = c(x = "Matrix", y = "Matrix"))
@@ -791,7 +789,8 @@ included in a package, your best bet for finding the source code is
 [searching](https://docs.github.com/en/search-github) the relevant part of the
 [GitHub](https://github.com/r-devel/r-svn/) repository (e.g.,
 `https://github.com/r-devel/r-svn/tree/main/src/library/methods/src` for code
-from package `methods`), or installing the package from source (see the section
+from package `methods`; note that GitHub search only searches the main branch),
+or installing the package from source (see the section
 `Rtools` in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`) and searching in the `src`
 folder of the downloaded code.
@@ -832,3 +831,8 @@ folder of the downloaded code.
 - Search engines specific for R: [METACRAN](https://r-pkg.org/),
   [r-project](https://search.r-project.org/), [Rseek](https://www.rseek.org/),
   [R-universe](https://r-universe.dev/search)
+
+## sessionInfo
+```{r sessionInfo, echo = FALSE}
+utils::sessionInfo()
+```

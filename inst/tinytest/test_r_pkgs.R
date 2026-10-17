@@ -156,9 +156,13 @@ expect_true(all(
 
 CRAN_pkg_db <- tools::CRAN_package_db()
 expect_true(all(c("Description", "Maintainer") %in% colnames(CRAN_pkg_db)))
-expect_true(
-  endsWith(x = names(table(CRAN_pkg_db[, "Path"])), suffix = "Recommended")
-)
+expect_true(all(
+  endsWith(
+    # A character vector with two paths: one for the current release and one for
+    # the development version, e.g., c("4.6.2/Recommended", "4.7.0/Recommended")
+    x = names(table(CRAN_pkg_db[, "Path"])),
+    suffix = "Recommended")
+))
 
 if(getRversion() >= "4.4.0") {
   std_pkg_names <- tools::standard_package_names()
