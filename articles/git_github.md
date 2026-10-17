@@ -388,7 +388,7 @@ and file separators in R, see the `Notes on paths` in
 
 ## Documentation
 
-Official documentation
+### Official documentation
 
 - [Git](https://git-scm.com/docs)
 - [Git: setting
@@ -401,17 +401,24 @@ Official documentation
 - [GitHub:
   workflow](https://docs.github.com/en/get-started/using-github/github-flow)
 
-Books
+### Books
 
 - [`Happy Git and GitHub for the useR`](https://happygitwithr.com/) by
   Jennifer Bryan
 - [`Pro Git Book`](https://git-scm.com/book/en/v2) by Scott Chacon and
   Ben Straub
 
-Chapters
+### Chapters
 
+- [`Getting Started With GitHub`](https://book.the-turing-way.org/collaboration/github-novice)
+  from
+  `The Turing Way handbook to reproducible, ethical and collaborative data science`
 - [`Version control`](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html)
-  from Posit’s
-  [`RStudio User Guide`](https://posit.co/products/open-source/rstudio)
+  from Posit’s `RStudio User Guide`
 - [`Collaboration`](https://epirhandbook.com/en/new_pages/collaboration.html)
-  from [`The Epidemiologist R Handbook`](https://epirhandbook.com/en/)
+  from `The Epidemiologist R Handbook`
+
+### See also
+
+- Vignette *R markdown and knitr* in package `develcoder`:
+  `vignette("rmarkdown_knitr", package = "develcoder")`

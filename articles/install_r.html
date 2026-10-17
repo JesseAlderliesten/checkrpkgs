@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,26 +115,23 @@ introduced in R 2.6.0. Details: <code><a href="https://rdrr.io/r/base/pmatch.htm
 <li>Error instead of warn when calling <code>a:b</code> when numeric
 <code>a</code> or <code>b</code> is longer than one, such as
 <code>3:c(5, 7)</code>:<br><code>Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")</code>. This option
-was introduced in R 4.3.0. Details:
-<code><a href="https://rdrr.io/r/base/Colon.html" class="external-link">help("colon", package = "base")</a></code>.</li>
+was introduced in R 4.3.0. Details: <code><a href="https://rdrr.io/r/base/Colon.html" class="external-link">help("colon")</a></code>.</li>
 <li>Error instead of silently using only the first element in logical
-operations such as <code>c(TRUE, TRUE) &amp;&amp; TRUE)</code>:<br><code>Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")</code>. Details:
+operations such as <code>c(TRUE, TRUE) &amp;&amp; TRUE</code>:<br><code>Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")</code>. Details:
 <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">help("Logic", package = "base")</a></code>. This option was introduced
 in R 3.6.0 and is no longer used since R 4.3.0 because there calling
 <code>&amp;&amp;</code> or <code>||</code> with length larger than one
 always gives an error.</li>
 <li>Error instead of warn if a condition has length larger than one,
 such as <code>if(3 &lt; c(5, 7))</code>:<br><code>Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")</code>.
-Details: <code><a href="https://rdrr.io/r/base/Control.html" class="external-link">help("Control", package = "base")</a></code>. This option was
-introduced in R 3.4.0 and is no longer used since R 4.2.0 because there
-conditions with length larger than one always give an error.</li>
+Details: <code><a href="https://rdrr.io/r/base/Control.html" class="external-link">help("Control")</a></code>. This option was introduced in R
+3.4.0 and is no longer used since R 4.2.0 because there conditions with
+length larger than one always give an error.</li>
 <li>Error instead of warn in case of conflicts (i.e., if objects with
 the same name exist in two or more places on the search path):<br><code>options(conflicts.policy = "strict")</code>. This option was
-introduced in R 3.6.0. Details:
-<code><a href="https://rdrr.io/r/base/conflicts.html" class="external-link">help("conflicts", package = "base")</a></code> and the section
-<code>Conflicts</code> in
-<code><a href="https://rdrr.io/r/base/library.html" class="external-link">help("conflictRules", package = "base")</a></code> for further options
-to tune conflict resolution, and
+introduced in R 3.6.0. Details: <code><a href="https://rdrr.io/r/base/conflicts.html" class="external-link">help("conflicts")</a></code> and the
+section <code>Conflicts</code> in <code><a href="https://rdrr.io/r/base/library.html" class="external-link">help("conflictRules")</a></code> for
+further options to tune conflict resolution, and
 <code>conflicted::conflicts_prefer(&lt;pkg&gt;::&lt;func&gt;)</code>
 from package <a href="https://CRAN.R-project.org/package=conflicted" class="external-link"><code>conflicted</code></a>
 to declare preferences (<code>&lt;pkg&gt;</code> and
@@ -172,9 +169,8 @@ R session:</p>
 provide details about external software that can be used with R.</li>
 <li>
 <code><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv()</a></code> lists the values of environment variables
-that affect an R session, see
-(<code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>) for their
-documentation.</li>
+that affect an R session, see <code><a href="https://rdrr.io/r/base/EnvVar.html" class="external-link">help("environment variables")</a></code>
+for their documentation.</li>
 <li>
 <code><a href="https://rdrr.io/r/base/numeric_version.html" class="external-link">getRversion()</a></code> provides the version of the running
 R.</li>
@@ -185,9 +181,9 @@ platform R is running on. Operating systems might identify themselves
 and their versions in surprising ways, and Windows might report older
 versions than the versions that are actually installed (see the section
 <code>osVersion</code> in
-<code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo", package = "utils")</a></code> and the
-<code>Note</code> in <code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version", package = "utils")</a></code>
-(only available on Microsoft Windows).</li>
+<code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">help("sessionInfo", package = "utils")</a></code> and, on Windows, the
+<code>Note</code> in
+<code><a href="https://rdrr.io/r/utils/winextras.html" class="external-link">help("win.version", package = "utils")</a></code>.</li>
 <li>
 <code>.Platform</code> (see <code><a href="https://rdrr.io/r/base/Platform.html" class="external-link">help(".Platform")</a></code>) and
 <code><a href="https://rdrr.io/r/base/Version.html" class="external-link">R.Version()</a></code> provide information about the platform R was
@@ -216,10 +212,10 @@ information about selected packages and their dependencies.</li>
 <p><a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>
 is <strong>not</strong> an R package but software used to build R <a href="https://cran.r-project.org/sources.html" class="external-link">from source</a> and to
 build R packages from source. The latter is needed when installing
-packages from <a href="https://github.com/" class="external-link">GitHub</a> and when
-installing <strong>older</strong> versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">Bioconductor</a>
-(see the section <code>Installing packages</code> in the vignette <em>R
-packages</em> for instructions on installing R packages:
+<strong>older</strong> versions of packages from <a href="https://cran.r-project.org/web/packages/index.html" class="external-link">CRAN</a> or <a href="https://bioconductor.org/packages/release/BiocViews.html#___Software" class="external-link">Bioconductor</a>,
+and might be needed when installing packages from <a href="https://github.com/" class="external-link">GitHub</a>: see the section
+<code>Installing packages</code> in the vignette <em>R packages</em> for
+instructions on installing R packages:
 <code><a href="../articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>).</p>
 <p>To install <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>,
 download the version appropriate for the installed version of R (see the
@@ -248,19 +244,9 @@ development environment</a> for R developed by <a href="https://posit.co/" class
 <p>RStudio can also be used to read and modify plain-text files.
 Developers can use package <a href="https://cran.r-project.org/package=rstudioapi" class="external-link">rstudioapi</a> to
 interact with RStudio from within R.</p>
-<div class="section level3">
-<h3 id="other-ides">Other IDEs<a class="anchor" aria-label="anchor" href="#other-ides"></a>
-</h3>
-<p>Other integrated development environments for R are:</p>
-<ul>
-<li><a href="https://eclipse.dev/statet/" class="external-link"><code>Eclipse statET</code></a></li>
-<li><a href="https://ess.r-project.org/" class="external-link"><code>Emacs Speaks Statistics (ESS)</code></a></li>
-<li><a href="https://positron.posit.co/" class="external-link"><code>Positron</code></a></li>
-<li><a href="https://rkward.kde.org/" class="external-link"><code>RKWard</code></a></li>
-<li><a href="https://code.visualstudio.com/docs/languages/r" class="external-link"><code>R in Visual Studio Code</code></a></li>
-<li><a href="https://tinn-r.org/" class="external-link"><code>tinn-R</code></a></li>
-</ul>
-</div>
+<p>Various other integrated development environments for R exist: <a href="https://eclipse.dev/statet/" class="external-link"><code>Eclipse statET</code></a>, <a href="https://ess.r-project.org/" class="external-link"><code>Emacs Speaks Statistics (ESS)</code></a>,
+<a href="https://positron.posit.co/" class="external-link"><code>Positron</code></a>, <a href="https://rkward.kde.org/" class="external-link"><code>RKWard</code></a>, <a href="https://code.visualstudio.com/docs/languages/r" class="external-link"><code>R in Visual Studio Code</code></a>
+and <a href="https://tinn-r.org/" class="external-link"><code>tinn-R</code></a>.</p>
 <div class="section level3">
 <h3 id="configuring-rstudio">Configuring RStudio<a class="anchor" aria-label="anchor" href="#configuring-rstudio"></a>
 </h3>
@@ -269,8 +255,8 @@ interact with RStudio from within R.</p>
 <strong>deselect</strong> the option
 <code>Restore .RData into workspace at startup</code> and set the option
 <code>Save workspace to .RData on exit</code> to <code>Never</code> to
-make work portable (i.e., make sure that R does not use information or
-data that is not present on another PC). A more disrupting change to
+make work portable, i.e., make sure that R does not use information or
+data that is not present on another PC. A more disrupting change to
 enhance portability is to <strong>deselect</strong> the options
 <code>Show diagnostics for R</code> and
 <code>Prompt to install missing R packages discovered in R source files</code>

@@ -211,20 +211,17 @@ The websites of these repositories include instructions how to install
 packages from them. In addition, package
 [`remotes`](https://CRAN.R-project.org/package=remotes) contains
 functions to install packages from some of these repositories. The
-following code shows how to install packages from
-[R-Forge](https://r-forge.r-project.org/) as an example:
+following code shows how to install package
+[`goodpractice`](https://docs.ropensci.org/goodpractice/) from
+[rOpenSci](https://ropensci.org/packages/all/) as an example:
 
 ``` r
-pkgs_new <- c(<pkg>, <pkg>)
-# Select packages from 'pkgs_new' that are not installed or not functional
-pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
-                                 FUN.VALUE = logical(1), quietly = TRUE)]
-if(length(pkgs_install) > 0L) {
-  install.packages(pkgs = pkgs_install, lib = .libPaths(),
-                   repos = "https://r-forge.r-project.org/", dependencies = NA,
-                   type = getOption("pkgType", "both"),
-                   verbose = getOption("verbose", FALSE), quiet = FALSE)
-}
+
+install.packages(pkgs = pkgs_install, lib = .libPaths(),
+                 repos = c("https://ropensci.r-universe.dev",
+                           "https://cloud.r-project.org"),
+                 dependencies = NA, type = getOption("pkgType", "both"),
+                 verbose = getOption("verbose", FALSE), quiet = FALSE)
 ```
 
 #### Mirror websites
@@ -671,11 +668,14 @@ dependencies on packages, see the overview
 
 To see which packages are mentioned in comments, also look for:
 
+- `Codeberg`: [Codeberg](https://codeberg.org/explore/repos?language=R)
 - `conductor`: [Bioconductor](https://bioconductor.org/),
   [Neuroconductor](https://neuroconductor.org/)
 - `CRAN`: [CRAN](https://cran.r-project.org/)
-- `forge`: [R-Forge](https://r-forge.r-project.org/)
-- `Git`: [GitHub](https://github.com/)
+- `forge`: [R-Forge](https://r-forge.r-project.org/),
+  [SourceForge](https://sourceforge.net/directory/r/)
+- `Git`: [GitHub](https://github.com/),
+  [GitLab](https://gitlab.com/gitlab-com)
 - `package` and `libraries`
 - `rOpenSci`: [rOpenSci](https://ropensci.org/packages/)
 - `verse`: [R-multiverse](https://r-multiverse.org/),
@@ -741,7 +741,7 @@ presence of names:
 hasName
 #> function (x, name) 
 #> match(name, names(x), nomatch = 0L) > 0L
-#> <bytecode: 0x55858a0e2c10>
+#> <bytecode: 0x55bb0364f2a0>
 #> <environment: namespace:utils>
 ```
 
@@ -765,7 +765,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x5585855e25f0>
+#> <bytecode: 0x55bb00253d30>
 #> <environment: namespace:base>
 ```
 
@@ -806,7 +806,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5585878d0ce8>
+#> <bytecode: 0x55bb02541898>
 #> <environment: namespace:base>
 ```
 
@@ -836,7 +836,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55858983d870>
+#> <bytecode: 0x55bb044b3b10>
 #> <environment: namespace:base>
 ```
 
@@ -878,7 +878,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55858983ce60>
+#> <bytecode: 0x55bb044b6f30>
 #> <environment: namespace:base>
 ```
 
@@ -924,8 +924,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x558587155f90>
-#> <environment: 0x558585f12f18>
+#> <bytecode: 0x55bb01dcbc00>
+#> <environment: 0x55bb00b63b48>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -988,7 +988,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x558588d64530>
+#> <bytecode: 0x55bb03aa6e40>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -1055,8 +1055,9 @@ code included in a package, your best bet for finding the source code is
 [searching](https://docs.github.com/en/search-github) the relevant part
 of the [GitHub](https://github.com/r-devel/r-svn/) repository (e.g.,
 `https://github.com/r-devel/r-svn/tree/main/src/library/methods/src` for
-code from package `methods`), or installing the package from source (see
-the section `Rtools` in the vignette *Installing R, Rtools and RStudio*:
+code from package `methods`; note that GitHub search only searches the
+main branch), or installing the package from source (see the section
+`Rtools` in the vignette *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md))
 and searching in the `src` folder of the downloaded code.
 
@@ -1105,3 +1106,37 @@ and searching in the `src` folder of the downloaded code.
   [r-project](https://search.r-project.org/),
   [Rseek](https://www.rseek.org/),
   [R-universe](https://r-universe.dev/search)
+
+## sessionInfo
+
+    #> R version 4.6.1 (2026-06-24)
+    #> Platform: x86_64-pc-linux-gnu
+    #> Running under: Ubuntu 24.04.5 LTS
+    #> 
+    #> Matrix products: default
+    #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+    #> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+    #> 
+    #> locale:
+    #>  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+    #>  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+    #>  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+    #> [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+    #> 
+    #> time zone: UTC
+    #> tzcode source: system (glibc)
+    #> 
+    #> attached base packages:
+    #> [1] stats     graphics  grDevices utils     datasets  methods   base     
+    #> 
+    #> other attached packages:
+    #> [1] Matrix_1.7-5
+    #> 
+    #> loaded via a namespace (and not attached):
+    #>  [1] digest_0.6.39     desc_1.4.3        R6_2.6.1          fastmap_1.2.0    
+    #>  [5] xfun_0.62         lattice_0.22-9    cachem_1.1.0      knitr_1.52       
+    #>  [9] htmltools_0.5.9   rmarkdown_2.32    lifecycle_1.0.5   cli_3.6.6        
+    #> [13] grid_4.6.1        sass_0.4.10       pkgdown_2.2.1     textshaping_1.0.5
+    #> [17] jquerylib_0.1.4   systemfonts_1.3.2 compiler_4.6.1    tools_4.6.1      
+    #> [21] ragg_1.5.2        bslib_0.12.0      evaluate_1.0.5    yaml_2.3.12      
+    #> [25] otel_0.2.0        jsonlite_2.0.0    rlang_1.3.0       fs_2.1.0

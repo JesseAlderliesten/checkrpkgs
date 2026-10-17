@@ -50,9 +50,9 @@ Various options can be changed to make R a bit stricter:
   longer than one, such as `3:c(5, 7)`:  
   `Sys.setenv("_R_CHECK_LENGTH_COLON_" = "TRUE")`. This option was
   introduced in R 4.3.0. Details:
-  [`help("colon", package = "base")`](https://rdrr.io/r/base/Colon.html).
+  [`help("colon")`](https://rdrr.io/r/base/Colon.html).
 - Error instead of silently using only the first element in logical
-  operations such as `c(TRUE, TRUE) && TRUE)`:  
+  operations such as `c(TRUE, TRUE) && TRUE`:  
   `Sys.setenv("_R_CHECK_LENGTH_1_LOGIC2_" = "TRUE")`. Details:
   [`help("Logic", package = "base")`](https://rdrr.io/r/base/Logic.html).
   This option was introduced in R 3.6.0 and is no longer used since R
@@ -61,18 +61,17 @@ Various options can be changed to make R a bit stricter:
 - Error instead of warn if a condition has length larger than one, such
   as `if(3 < c(5, 7))`:  
   `Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")`. Details:
-  [`help("Control", package = "base")`](https://rdrr.io/r/base/Control.html).
-  This option was introduced in R 3.4.0 and is no longer used since R
-  4.2.0 because there conditions with length larger than one always give
-  an error.
+  [`help("Control")`](https://rdrr.io/r/base/Control.html). This option
+  was introduced in R 3.4.0 and is no longer used since R 4.2.0 because
+  there conditions with length larger than one always give an error.
 - Error instead of warn in case of conflicts (i.e., if objects with the
   same name exist in two or more places on the search path):  
   `options(conflicts.policy = "strict")`. This option was introduced in
   R 3.6.0. Details:
-  [`help("conflicts", package = "base")`](https://rdrr.io/r/base/conflicts.html)
-  and the section `Conflicts` in
-  [`help("conflictRules", package = "base")`](https://rdrr.io/r/base/library.html)
-  for further options to tune conflict resolution, and
+  [`help("conflicts")`](https://rdrr.io/r/base/conflicts.html) and the
+  section `Conflicts` in
+  [`help("conflictRules")`](https://rdrr.io/r/base/library.html) for
+  further options to tune conflict resolution, and
   `conflicted::conflicts_prefer(<pkg>::<func>)` from package
   [`conflicted`](https://CRAN.R-project.org/package=conflicted) to
   declare preferences (`<pkg>` and `<func>` should be replaced by the
@@ -110,7 +109,7 @@ session:
   provide details about external software that can be used with R.
 - [`Sys.getenv()`](https://rdrr.io/r/base/Sys.getenv.html) lists the
   values of environment variables that affect an R session, see
-  ([`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html))
+  [`help("environment variables")`](https://rdrr.io/r/base/EnvVar.html)
   for their documentation.
 - [`getRversion()`](https://rdrr.io/r/base/numeric_version.html)
   provides the version of the running R.
@@ -122,9 +121,8 @@ session:
   ways, and Windows might report older versions than the versions that
   are actually installed (see the section `osVersion` in
   [`help("sessionInfo", package = "utils")`](https://rdrr.io/r/utils/sessionInfo.html)
-  and the `Note` in
-  [`help("win.version", package = "utils")`](https://rdrr.io/r/utils/winextras.html)
-  (only available on Microsoft Windows).
+  and, on Windows, the `Note` in
+  [`help("win.version", package = "utils")`](https://rdrr.io/r/utils/winextras.html).
 - `.Platform` (see
   [`help(".Platform")`](https://rdrr.io/r/base/Platform.html)) and
   [`R.Version()`](https://rdrr.io/r/base/Version.html) provide
@@ -151,13 +149,13 @@ session:
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) is **not** an R
 package but software used to build R [from
 source](https://cran.r-project.org/sources.html) and to build R packages
-from source. The latter is needed when installing packages from
-[GitHub](https://github.com/) and when installing **older** versions of
+from source. The latter is needed when installing **older** versions of
 packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
 or
-[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software)
-(see the section `Installing packages` in the vignette *R packages* for
-instructions on installing R packages:
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software),
+and might be needed when installing packages from
+[GitHub](https://github.com/): see the section `Installing packages` in
+the vignette *R packages* for instructions on installing R packages:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
@@ -192,25 +190,22 @@ can use package
 [rstudioapi](https://cran.r-project.org/package=rstudioapi) to interact
 with RStudio from within R.
 
-### Other IDEs
-
-Other integrated development environments for R are:
-
-- [`Eclipse statET`](https://eclipse.dev/statet/)
-- [`Emacs Speaks Statistics (ESS)`](https://ess.r-project.org/)
-- [`Positron`](https://positron.posit.co/)
-- [`RKWard`](https://rkward.kde.org/)
-- [`R in Visual Studio Code`](https://code.visualstudio.com/docs/languages/r)
-- [`tinn-R`](https://tinn-r.org/)
+Various other integrated development environments for R exist:
+[`Eclipse statET`](https://eclipse.dev/statet/),
+[`Emacs Speaks Statistics (ESS)`](https://ess.r-project.org/),
+[`Positron`](https://positron.posit.co/),
+[`RKWard`](https://rkward.kde.org/),
+[`R in Visual Studio Code`](https://code.visualstudio.com/docs/languages/r)
+and [`tinn-R`](https://tinn-r.org/).
 
 ### Configuring RStudio
 
 After installing RStudio, start RStudio, go to `Tools` \>
 `Global Options` \> `General` to **deselect** the option
 `Restore .RData into workspace at startup` and set the option
-`Save workspace to .RData on exit` to `Never` to make work portable
-(i.e., make sure that R does not use information or data that is not
-present on another PC). A more disrupting change to enhance portability
+`Save workspace to .RData on exit` to `Never` to make work portable,
+i.e., make sure that R does not use information or data that is not
+present on another PC. A more disrupting change to enhance portability
 is to **deselect** the options `Show diagnostics for R` and
 `Prompt to install missing R packages discovered in R source files` at
 `Tools` \> `Options` \> `Code` \> `Diagnostics`. Deselecting these

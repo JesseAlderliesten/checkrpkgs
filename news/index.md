@@ -1,5 +1,27 @@
 # Changelog
 
+## checkrpkgs 1.3.0
+
+#### Breaking changes
+
+- Dependency `checkinput`: increase minimum version from `1.0.0` to
+  `1.5.0` to incorporate updates to section `Note on paths` from
+  [`checkinput::is_path()`](https://jessealderliesten.github.io/checkinput/reference/is_path.html).
+
+#### Documentation
+
+- Vignette `Git and GitHub`: add a reference and use subsection headings
+  in `Documentation`.
+- Vignette `R packages`: add chunk names. Show session info. Do not use
+  retiring `R-Forge` as example package directory. Add package
+  repositories to look for packages mentioned in comments.
+- Vignettes: include headings in code blocks.
+
+### Bugfix in tests
+
+- [`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
+  has two different values in column `path`.
+
 ## checkrpkgs 1.2.0
 
 #### Breaking changes
