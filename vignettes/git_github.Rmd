@@ -10,7 +10,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r opts, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -278,7 +278,7 @@ The following code can be used to install packages from
 `Installing packages` > `Github` in the vignette *R packages*:
 `vignette("r_pkgs", package = "checkrpkgs")`):
 
-```{r, eval = FALSE}
+```{r install github, eval = FALSE}
 pkgs_new <- "JesseAlderliesten/checkrpkgs"
 if(!requireNamespace("remotes", quietly = TRUE)) {
   install.packages(pkgs = "remotes", lib = .libPaths(), dependencies = NA,
