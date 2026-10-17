@@ -197,20 +197,16 @@ Repositories can be selected using `utils::setRepositories()`. The websites of
 these repositories include instructions how to install packages from them. In
 addition, package [`remotes`](https://CRAN.R-project.org/package=remotes) contains
 functions to install packages from some of these repositories. The following
-code shows how to install packages from [R-Forge](https://r-forge.r-project.org/)
-as an example:
+code shows how to install package
+[`goodpractice`](https://docs.ropensci.org/goodpractice/) from
+[rOpenSci](https://ropensci.org/packages/all/) as an example:
 
 ```{r install_alt, eval = FALSE}
-pkgs_new <- c(<pkg>, <pkg>)
-# Select packages from 'pkgs_new' that are not installed or not functional
-pkgs_install <- pkgs_new[!vapply(X = pkgs_new, FUN = requireNamespace,
-                                 FUN.VALUE = logical(1), quietly = TRUE)]
-if(length(pkgs_install) > 0L) {
-  install.packages(pkgs = pkgs_install, lib = .libPaths(),
-                   repos = "https://r-forge.r-project.org/", dependencies = NA,
-                   type = getOption("pkgType", "both"),
-                   verbose = getOption("verbose", FALSE), quiet = FALSE)
-}
+install.packages(pkgs = pkgs_install, lib = .libPaths(),
+                 repos = c("https://ropensci.r-universe.dev",
+                           "https://cloud.r-project.org"),
+                 dependencies = NA, type = getOption("pkgType", "both"),
+                 verbose = getOption("verbose", FALSE), quiet = FALSE)
 ```
 
 #### Mirror websites
