@@ -564,11 +564,13 @@ packages have their own way to create dependencies on packages, see the overview
 
 To see which packages are mentioned in comments, also look for:
 
+- `Codeberg`: [Codeberg](https://codeberg.org/explore/repos?language=R)
 - `conductor`: [Bioconductor](https://bioconductor.org/),
   [Neuroconductor](https://neuroconductor.org/)
 - `CRAN`: [CRAN](https://cran.r-project.org/)
-- `forge`: [R-Forge](https://r-forge.r-project.org/)
-- `Git`: [GitHub](https://github.com/)
+- `forge`: [R-Forge](https://r-forge.r-project.org/),
+  [SourceForge](https://sourceforge.net/directory/r/)
+- `Git`: [GitHub](https://github.com/), [GitLab](https://gitlab.com/gitlab-com)
 - `package` and `libraries`
 - `rOpenSci`: [rOpenSci](https://ropensci.org/packages/)
 - `verse`: [R-multiverse](https://r-multiverse.org/),
