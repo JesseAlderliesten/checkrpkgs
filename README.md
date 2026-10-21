@@ -29,8 +29,10 @@ following R code:
 if(!requireNamespace("remotes")) {
   install.packages(pkgs = "remotes")
 }
-remotes::install_github(repo = "JesseAlderliesten/checkrpkgs",
-                        upgrade = FALSE, build_vignettes = TRUE, lib = NULL)
+remotes::install_github(
+  repo = "JesseAlderliesten/checkrpkgs",
+  upgrade = FALSE, build_vignettes = TRUE,
+  lib = NULL)
 ```
 
 ## Content
@@ -62,8 +64,7 @@ License](LICENSE.md).
     To cite package 'checkrpkgs' in publications use:
 
       Alderliesten J (2026). _checkrpkgs: Installing and Using R, Rtools,
-      RStudio, R Packages, Git and GitHub_. R package version 1.3.0, commit
-      2bf00d2900a2564df4fd5fc468dd119177f31dcc,
+      RStudio, R Packages, Git and GitHub_. R package version 1.3.1,
       <https://github.com/JesseAlderliesten/checkrpkgs>.
 
     A BibTeX entry for LaTeX users is
@@ -73,7 +74,7 @@ License](LICENSE.md).
     GitHub},
         author = {Jesse Alderliesten},
         year = {2026},
-        note = {R package version 1.3.0, commit 2bf00d2900a2564df4fd5fc468dd119177f31dcc},
+        note = {R package version 1.3.1},
         url = {https://github.com/JesseAlderliesten/checkrpkgs},
       }
 
