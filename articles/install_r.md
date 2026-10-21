@@ -9,7 +9,7 @@ This vignette explains how to install and configure
 
 ## R
 
-To install [R](https://www.r-project.org/), visit a nearby CRAN
+To install R, visit a nearby CRAN
 [mirror](https://cran.r-project.org/mirrors.html) (i.e., a website with
 the same content as the [main](https://cran.r-project.org/) CRAN page),
 download R via `Download R for Windows` \> `base` \>
@@ -29,11 +29,11 @@ options, see
 and [`help(".libPaths")`](https://rdrr.io/r/base/libPaths.html).
 Although options for startup can also be changed (see
 [`help("Startup")`](https://rdrr.io/r/base/Startup.html) and the chapter
-[`R Startup`](https://rstats.wtf/r-startup) from the book
-[`What They Forgot to Teach You About R`](https://rstats.wtf/)), that
-should be done cautiously because those options likely make code behave
-differently on PCs where those options are not set, for example when
-changing which packages are automatically loaded at startup.
+[R Startup](https://rstats.wtf/r-startup) from the book [What They
+Forgot to Teach You About R](https://rstats.wtf/)), that should be done
+cautiously because those options likely make code behave differently on
+PCs where those options are not set, for example when changing which
+packages are automatically loaded at startup.
 
 Various options can be changed to make R a bit stricter:
 
@@ -73,7 +73,7 @@ Various options can be changed to make R a bit stricter:
   [`help("conflictRules")`](https://rdrr.io/r/base/library.html) for
   further options to tune conflict resolution, and
   `conflicted::conflicts_prefer(<pkg>::<func>)` from package
-  [`conflicted`](https://CRAN.R-project.org/package=conflicted) to
+  [**conflicted**](https://CRAN.R-project.org/package=conflicted) to
   declare preferences (`<pkg>` and `<func>` should be replaced by the
   actual names of the package and function to get working code).
 - Print warnings immediately as they occur (`options(warn = 1)`) or make
@@ -92,8 +92,8 @@ Various options can be changed to make R a bit stricter:
   browser mode and press `c` to continue code. Details:
   [`help("browser")`](https://rdrr.io/r/base/browser.html).
 
-In addition, package [`strict`](https://github.com/hadley/strict/) makes
-R stricter by warning about various unsafe practices, such as the
+In addition, package [**strict**](https://github.com/hadley/strict/)
+makes R stricter by warning about various unsafe practices, such as the
 behaviour of [`sample()`](https://rdrr.io/r/base/sample.html) and
 [`diag()`](https://rdrr.io/r/base/diag.html) if called with an argument
 of length one, and type-unsafe
@@ -135,10 +135,10 @@ session:
   extracts parts of the information mentioned above about the operating
   system and R, and lists attached and loaded packages (see also
   [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html)). Its
-  printing method can be used to print additional information about the
+  print method can be used to print additional information about the
   used locale (i.e., settings that depend on the user’s language or
-  region) and random number generation:
-  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+  region) and random number generation:  
+  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.  
   [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
   provides more details about the origin of loaded or installed
   packages, and has the option to show only information about selected
@@ -154,7 +154,7 @@ packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
 or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software),
 and might be needed when installing packages from
-[GitHub](https://github.com/): see the section `Installing packages` in
+[GitHub](https://github.com/): see the section ‘Installing packages’ in
 the vignette *R packages* for instructions on installing R packages:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 
@@ -174,7 +174,7 @@ If you have installed Rtools, you might get the question
 when updating packages. You can choose `Yes` to install the latest
 package versions by building them from source, or choose `No` to get
 slightly less up-to-date package versions but a faster installation. See
-the section `Troubleshooting` in the vignette *R packages* for details:
+the section ‘Troubleshooting’ in the vignette *R packages* for details:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
 
 ## RStudio
@@ -187,16 +187,16 @@ for R developed by [Posit](https://posit.co/) that can be downloaded
 
 RStudio can also be used to read and modify plain-text files. Developers
 can use package
-[rstudioapi](https://cran.r-project.org/package=rstudioapi) to interact
-with RStudio from within R.
+[**rstudioapi**](https://cran.r-project.org/package=rstudioapi) to
+interact with RStudio from within R.
 
-Various other integrated development environments for R exist:
-[`Eclipse statET`](https://eclipse.dev/statet/),
-[`Emacs Speaks Statistics (ESS)`](https://ess.r-project.org/),
-[`Positron`](https://positron.posit.co/),
-[`RKWard`](https://rkward.kde.org/),
-[`R in Visual Studio Code`](https://code.visualstudio.com/docs/languages/r)
-and [`tinn-R`](https://tinn-r.org/).
+Various other integrated development environments for R exist: [Eclipse
+statET](https://eclipse.dev/statet/), [Emacs Speaks Statistics
+(ESS)](https://ess.r-project.org/),
+[Positron](https://positron.posit.co/),
+[`RKWard`](https://rkward.kde.org/), [R in Visual Studio
+Code](https://code.visualstudio.com/docs/languages/r) and
+[tinn-R](https://tinn-r.org/).
 
 ### Configuring RStudio
 
@@ -260,18 +260,19 @@ Fonts](https://fonts.google.com/), or
 ## Documentation and help
 
 - [Bug reporting](https://www.r-project.org/bugs.html) and the relevant
-  section of the
-  [`R FAQ`](https://CRAN.R-project.org/doc/manuals/R-FAQ.html#How-to-report-a-bug)
+  section of the [R
+  FAQ](https://CRAN.R-project.org/doc/manuals/R-FAQ.html#How-to-report-a-bug)
 - CRAN: the [homepage](https://cran.r-project.org/) and an overview of
   its [mirrors](https://cran.r-project.org/mirrors.html) (for details on
   mirrors, see the section `Mirror websites` in the vignette *R
   packages*:
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 - R [homepage](https://www.r-project.org/) with
-  [`FAQs`](https://cran.r-project.org/faqs.html),
-  [`NEWS`](https://cran.r-project.org/doc/manuals/r-release/NEWS.html),
+  [FAQs](https://cran.r-project.org/faqs.html),
+  [NEWS](https://cran.r-project.org/doc/manuals/r-release/NEWS.html),
   and [manuals](https://cran.r-project.org/manuals.html) (especially the
-  [`R Installation and Administration manual`](https://cran.r-project.org/doc/manuals/r-release/R-admin.html))
+  [R Installation and Administration
+  manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html))
   with [derived versions](https://rstudio.github.io/r-manuals/) better
   suited for searching.
 - R help: from inside R through
@@ -285,7 +286,7 @@ Fonts](https://fonts.google.com/), or
 - RStudio by [Posit](https://posit.co/): [user
   guide](https://docs.posit.co/ide/user/),
   [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/),
-  and [`NEWS`](https://docs.posit.co/ide/news/)
+  and [NEWS](https://docs.posit.co/ide/news/)
 - Search engines specific for R: [METACRAN](https://r-pkg.org/),
   [r-project](https://search.r-project.org/),
   [Rseek](https://www.rseek.org/),
@@ -295,16 +296,15 @@ Fonts](https://fonts.google.com/), or
 
 Resources with more details than this vignette:
 
-- The book
-  [`What They Forgot to Teach You About R`](https://rstats.wtf/) by J.
-  Bryan, J. Hester, S. Pileggi, and E. D. Aja
-- The book [`An introduction to R`](https://intro2r.com/) by A.
-  Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau
-- Chapter
-  [`Installation & Environment Setup`](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
-  from the book
-  [`Mastering R Through Errors and Warnings`](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
-  by K. Guo
-- Chapter
-  [`Getting Started and Getting Help`](https://rc2e.com/gettingstarted)
-  from the [`R Cookbook`](https://rc2e.com/) by J. Long and P. Teetor
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+  by Bryan, Hester, Pileggi, and Aja
+- The book [An introduction to R](https://intro2r.com/) by Douglas,
+  Roos, Mancini, Couto and Lusseau
+- Chapter [Installation & Environment
+  Setup](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
+  from the book [Mastering R Through Errors and
+  Warnings](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
+  by Guo
+- Chapter [Getting Started and Getting
+  Help](https://rc2e.com/gettingstarted) from the [R
+  Cookbook](https://rc2e.com/) by Long and Teetor

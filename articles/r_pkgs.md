@@ -2,9 +2,10 @@
 
 ## Introduction and notation
 
-This vignette explains how to install R packages; how to get information
-about to-be-installed and already-installed R packages; and how to get
-the source code of R functions.
+This vignette explains how to install R
+[packages](http://cran.r-project.org/web/packages/); how to get
+information about to-be-installed and already-installed R packages; and
+how to get the source code of R functions.
 
 Text between angled brackets (`<...>`) is used to refer to text that
 should be replaced with specific text to get working code or working
@@ -49,14 +50,14 @@ base and recommended packages are the ‘high priority’ packages. Since R
 contains a list with the names of these packages. To see which
 high-priority packages are currently installed, run
 `sort(unname(installed.packages(priority = "high")[, "Package"]))`.
-Package `translations` is not a recommended package, but will be
+Package **translations** is not a recommended package, but will be
 installed if that option is set during the installation of R.
 
 ### Installing packages
 
 Packages can be installed from within R or RStudio and can be obtained
-from several websites, called ‘repositories’, such as `CRAN`,
-`Bioconductor`, and `GitHub`, discussed in the next sections. After
+from several websites, called ‘repositories’, such as ‘CRAN’,
+‘Bioconductor’, and ‘GitHub’, discussed in the next sections. After
 installing a package, you need to
 [attach](#loading-and-attaching-packages) it to be able to use its
 functions: run `library(<pkg>)`.
@@ -65,8 +66,8 @@ functions: run `library(<pkg>)`.
 
 The [Comprehensive R Archive Network](https://cran.r-project.org/)
 (CRAN) is the main repository of R
-[packages](https://cran.r-project.org/web/packages/index.html). The
-following code can be used to install packages from CRAN:
+[packages](https://cran.r-project.org/web/packages/). The following code
+can be used to install packages from CRAN:
 
 ``` r
 pkgs_new <- c(<pkg>, <pkg>)
@@ -83,7 +84,7 @@ if(length(pkgs_install) > 0L) {
 CRAN has thematic package collections known as [task
 views](https://cran.r-project.org/web/views/). To install all core
 packages of a task view, install package
-[`ctv`](https://CRAN.R-project.org/package=ctv) and run
+[**ctv**](https://CRAN.R-project.org/package=ctv) and run
 `ctv::install.views("<taskview>", coreOnly = TRUE)`. To update these
 packages, use `ctv::update.views("<taskview>", coreOnly = TRUE)`.
 
@@ -98,7 +99,7 @@ gives much more information for each package, including the
 also includes the development versions of the
 [recommended](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Add_002don-packages-from-CRAN)
 packages, which have `"4.7.0/Recommended"` instead of `<NA>` in column
-`Path`.
+`Path` if the development-version of R is `4.7.0`.
 [`tools::CRAN_check_results()`](https://rdrr.io/r/tools/CRANtools.html)
 gives information about the current check status of CRAN packages.
 Packages from CRAN that have been recently archived, for example because
@@ -111,7 +112,7 @@ not addressed in time, are available at
 The [Bioconductor](https://bioconductor.org/) repository hosts many R
 packages related to bioinformatics. Bioconductor has a new release every
 six months. Each release contains specific versions of packages from
-[CRAN](https://cran.r-project.org/web/packages/index.html) and
+CRAN and
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html)
 that are consistent with each other and with a [specific
 version](https://bioconductor.org/about/release-announcements/) of R,
@@ -120,9 +121,9 @@ preventing version conflicts between R packages.
 The following code can be used to install packages from Bioconductor
 release [version](https://bioconductor.org/about/release-announcements/)
 3.23. This code installs the
-[`BiocManager`](https://CRAN.R-project.org/package=BiocManager) package
-from [CRAN](https://cran.r-project.org/) that is then used to install
-packages from `Bioconductor` and CRAN and, through
+[**BiocManager**](https://CRAN.R-project.org/package=BiocManager)
+package from CRAN that is then used to install packages from
+Bioconductor and CRAN and, through
 [`remotes::install_github()`](https://remotes.r-lib.org/reference/install_github.html),
 from GitHub (see the next [section](#github)):
 
@@ -154,8 +155,8 @@ gives their names.
 
 The following code can be used to install packages from
 [GitHub](https://github.com/): it installs the
-[`remotes`](https://CRAN.R-project.org/package=remotes) package that is
-used to install packages from GitHub, selects those elements of
+[**remotes**](https://CRAN.R-project.org/package=remotes) package that
+is used to install packages from GitHub, selects those elements of
 `pkgs_new` that give the author name and repository name (e.g.,
 `"JesseAlderliesten/checkrpkgs"`) or the full URL to a package (e.g.,
 `"https://github.com/JesseAlderliesten/checkrpkgs"`) as required by
@@ -163,7 +164,7 @@ used to install packages from GitHub, selects those elements of
 and installs those packages. To match such names to package names as
 returned by
 [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html),
-use `basename(pkgs_new)` to select the last part of those names:
+use `basename(pkgs_new)` to select the last part of those names:  
 `pkgs_new[!(basename(pkgs_new) %in% installed.packages()[, "Package"])]`.
 
 ``` r
@@ -209,10 +210,10 @@ Repositories can be selected using
 [`utils::setRepositories()`](https://rdrr.io/r/utils/setRepositories.html).
 The websites of these repositories include instructions how to install
 packages from them. In addition, package
-[`remotes`](https://CRAN.R-project.org/package=remotes) contains
+[**remotes**](https://CRAN.R-project.org/package=remotes) contains
 functions to install packages from some of these repositories. The
 following code shows how to install package
-[`goodpractice`](https://docs.ropensci.org/goodpractice/) from
+[**goodpractice**](https://docs.ropensci.org/goodpractice/) from
 [rOpenSci](https://ropensci.org/packages/all/) as an example:
 
 ``` r
@@ -347,20 +348,21 @@ build the packages from source, see the section `Rtools` in the vignette
 
 #### base R
 
-Package [`rcheology`](https://github.com/hughjonesd/rcheology) provides
-functions to detect changes in base-R functions between versions of base
-R. A [Shiny version](https://hughjonesd.shinyapps.io/rcheology/) is also
-available. `rcheology` is complemented by [Historical R
+Package [**rcheology**](https://github.com/hughjonesd/rcheology)
+provides functions to detect changes in base-R functions between
+versions of base R. A [Shiny
+version](https://hughjonesd.shinyapps.io/rcheology/) is also available.
+**rcheology** is complemented by [Historical R
 help](https://hughjonesd.github.io/r-help/) that provides documentation
 of the base-R functions for older R versions. Package
-[`backports`](https://CRAN.R-project.org/package=backports) provides
+[**backports**](https://CRAN.R-project.org/package=backports) provides
 re-implementations of old R functions.
 
 #### CRAN
 
 The following code can be used to install an old version of a package
 from CRAN, using package
-[`remotes`](https://CRAN.R-project.org/package=remotes):
+[**remotes**](https://CRAN.R-project.org/package=remotes):
 
 ``` r
 
@@ -381,7 +383,7 @@ Alternatively, visit the installation page of a package from CRAN, go to
 `Downloads` \> `Old sources` \> `<pkg> archive` and find the appropriate
 URL pointing to an older version to install it using base R. For
 example, to install version 1.40 of package
-[`deSolve`](https://CRAN.R-project.org/package=deSolve):
+[**deSolve**](https://CRAN.R-project.org/package=deSolve):
 
 ``` r
 
@@ -398,8 +400,8 @@ Older versions of packages from Bioconductor can be installed by
 changing the value of argument `version` of
 [`BiocManager::install()`](https://bioconductor.github.io/BiocManager/reference/install.html)
 (e.g., `BiocManager::install(pkgs = "deSolve", version = "3.22")` to
-indicate the version of `deSolve` included in Bioconductor version 3.22)
-but that only works when using the version of R for that specific
+indicate the version of **deSolve** included in Bioconductor version
+3.22) but that only works when using the version of R for that specific
 version of Bioconductor, see the
 [overview](https://bioconductor.org/about/release-announcements/) of
 Bioconductor versions with the corresponding R version. Information on
@@ -428,7 +430,7 @@ Bioconductor, e.g.,
 
   This question is only asked if you have installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/). To install
-  Rtools, see the section `Rtools` in the vignette *Installing R, Rtools
+  Rtools, see the section ‘Rtools’ in the vignette *Installing R, Rtools
   and RStudio*:
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
   If you want the latest version without using Rtools, you can try again
@@ -515,14 +517,14 @@ installed.
 
 [`utils::available.packages()`](https://rdrr.io/r/utils/available.packages.html)
 and [`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
-give information about packages available from
-[CRAN](https://cran.r-project.org/web/packages/index.html);
+give information about packages available from CRAN;
 `utils::available.packages(repos = BiocManager::repositories())` gives
 information about packages available from
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html),
 and
 [`BiocManager::available()`](https://bioconductor.github.io/BiocManager/reference/available.html)
-gives their names.
+gives their names. Section [Other repositories](#other-repositories)
+above gives other repositories where to look for R packages.
 
 #### Documentation
 
@@ -590,13 +592,13 @@ arguments `package` or `help`) and
 give details on installed packages. Argument `fields` of the
 [`utils::installed.packages()`](https://rdrr.io/r/utils/installed.packages.html)
 can be used to specify additional fields to extract from the package
-`DESCRIPTION`, for example
+`DESCRIPTION`, for example  
 `utils::installed.packages(fields = c("Repository", "Additional_repositories", "URL", "GithubRepo", "GithubUsername", "SystemRequirements"))`.
 The `Repository` and `URL` fields show the repository from which a
 package was installed and are conveniently shown in column `source` by
 [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html),
 in which arguments `pkgs` and `dependencies` can be used to show only
-information about selected packages and their dependencies:
+information about selected packages and their dependencies:  
 `sessioninfo::session_info(info = "packages", pkgs = "checkrpkgs", dependencies = TRUE)`.
 
 Information about a package and its functions is available from within R
@@ -611,14 +613,15 @@ been run):
 - Conflicts (i.e., if objects with the same name exist in two or more
   places on the search path):
   `conflicts(where = search(), detail = TRUE)`. See also the section
-  `Conflicts` in
+  ‘Conflicts’ in
   [`help("conflictRules")`](https://rdrr.io/r/base/library.html) and
   `conflicted::conflicts_prefer(<pkg>::<func>)` from package
-  [`conflicted`](https://CRAN.R-project.org/package=conflicted) to
+  [**conflicted**](https://CRAN.R-project.org/package=conflicted) to
   declare preferences.
 - Functions, finding functions and other objects whose name contains a
-  certain string: `utils::apropos("<string>")`.
-- Functions, overview of all functions in a package:
+  certain string:  
+  `utils::apropos("<string>")`.
+- Functions, overview of all functions in a package:  
   `ls(getNamespace("<pkg>"), all.names = TRUE)` returns a character
   vector with the function names (the default `all.names = FALSE`
   ignores names that start with a dot because those are for internal use
@@ -631,9 +634,9 @@ been run):
   `help("<func>", package = "<pkg>")`; use quotes around the name of a
   function that start with a symbol to get its help page:
   [`help("%in%")`](https://rdrr.io/r/base/match.html).
-- Installation path of a package (i.e., where is a package installed):
+- Installation path of a package (i.e., where is a package installed):  
   `find.package(package = "<pkg>", lib.loc = NULL, verbose = TRUE)`.
-- Methods for a function: for a generic class:
+- Methods for a function: for a generic class:  
   `utils::methods(class = "<class>")`; for a generic function:
   `utils::methods("<func>")`; for S3-methods (see
   [`help("UseMethod")`](https://rdrr.io/r/base/UseMethod.html) for
@@ -688,9 +691,9 @@ To see which packages are mentioned in comments, also look for:
 
 Partly based on:
 
-- Bryan J. 2015.
+- Bryan. 2015.
   [`Accessing R Source`](https://github.com/jennybc/access-r-source).
-- Ligges U. 2006. `R help desk: accessing the sources`. [RNews
+- Ligges. 2006. `R help desk: accessing the sources`. [RNews
   6(4):43-45](https://journal.r-project.org/articles/RN-2006-035/).
 - A [community answer](https://stackoverflow.com/a/19226817) from
   [StackOverflow](https://stackoverflow.com/).
@@ -741,7 +744,7 @@ presence of names:
 hasName
 #> function (x, name) 
 #> match(name, names(x), nomatch = 0L) > 0L
-#> <bytecode: 0x55bb0364f2a0>
+#> <bytecode: 0x56353e54f6c8>
 #> <environment: namespace:utils>
 ```
 
@@ -765,7 +768,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55bb00253d30>
+#> <bytecode: 0x563539b9a1f0>
 #> <environment: namespace:base>
 ```
 
@@ -806,7 +809,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55bb02541898>
+#> <bytecode: 0x56353be87d58>
 #> <environment: namespace:base>
 ```
 
@@ -836,7 +839,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55bb044b3b10>
+#> <bytecode: 0x56353de1c248>
 #> <environment: namespace:base>
 ```
 
@@ -878,7 +881,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55bb044b6f30>
+#> <bytecode: 0x56353de1f668>
 #> <environment: namespace:base>
 ```
 
@@ -895,7 +898,7 @@ the selected method as a character vector to argument `signature` (see
 also
 [`help("signature", package = "methods")`](https://rdrr.io/r/methods/GenericFunctions.html))
 of function [`getMethod()`](https://rdrr.io/r/methods/getMethod.html) to
-get the source code of a particular method:
+get the source code of a particular method:  
 `getMethod(f = "<func>", signature = c(target = "<class>", current = "<class>"))`.
 
 The example below shows how to find the source code of method
@@ -924,8 +927,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55bb01dcbc00>
-#> <environment: 0x55bb00b63b48>
+#> <bytecode: 0x56353b712050>
+#> <environment: 0x56353a4aa008>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -988,7 +991,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55bb03aa6e40>
+#> <bytecode: 0x56353d3d6e28>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -1005,44 +1008,47 @@ function is internal or primitive (see
 and `help(".Primitive()")`). The source code of such functions can be
 viewed at code [repositories](#repositories), or on your PC if you have
 installed R [from source](https://cran.r-project.org/sources.html) using
-Rtools (see the section `Rtools` in the vignette *Installing R, Rtools
+Rtools (see the section ‘Rtools’ in the vignette *Installing R, Rtools
 and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)).
 
-Locate the file `src/main/names.c` and look in the first column
-(`printname`) for the name of the R function to find the appropriate
+Locate the file ‘src/main/names.c’ and look in the first column
+(‘printname’) for the name of the R function to find the appropriate
 c-entry which is given in the second column of that file. Then either
 search for that c-entry using the GitHub search, or manually locate the
-c-file (the name of the file is the c-entry without the prefix `do_`) in
-`src/main` to get the file with the source code.
+c-file (the name of the file is the c-entry without the prefix ‘do\_’)
+in folder ‘src/main’ to get the file with the source code.
 
 For example, `getAnywhere("matrix")` shows, among others, the line  
 `.Internal(matrix(data, nrow, ncol, byrow, dimnames, missing(nrow), missing(ncol)))`.
 The file
-[`src/main/names.c`](https://github.com/r-devel/r-svn/blob/main/src/main/names.c)
-has as entry with `matrix` in the first column:  
+[src/main/names.c](https://github.com/r-devel/r-svn/blob/main/src/main/names.c)
+has as entry with ‘matrix’ in the first column:  
 `{"matrix", do_matrix, 0, 11, 7, {PP_FUNCALL, PREC_FN, 0}}`. Searching
-`src/main` for `matrix` gives file
-[`array.c`](https://github.com/r-devel/r-svn/blob/main/src/main/array.c)
-as one of the results. That file contains the source code of `matrix`.
-Similarly, `getAnywhere("log10")` shows
-`function (x) .Primitive("log10")`. The file
-[`src/main/names.c`](https://github.com/r-devel/r-svn/blob/main/src/main/names.c)
-has as entry with `log10` in the first column:  
+folder ‘src/main’ for ‘matrix’ gives file
+[array.c](https://github.com/r-devel/r-svn/blob/main/src/main/array.c)
+as one of the results. That file contains the source code of
+[`matrix()`](https://rdrr.io/r/base/matrix.html). Similarly,
+`getAnywhere("log10")` shows `function (x) .Primitive("log10")`. The
+file
+[src/main/names.c](https://github.com/r-devel/r-svn/blob/main/src/main/names.c)
+has as entry with ‘log10’ in the first column:  
 `{"log10", do_log1arg, 10, 1, 1, {PP_FUNCALL, PREC_FN, 0}}`. Searching
-`src/main` for `log1arg` gives file
-[`arithmetic.c`](https://github.com/r-devel/r-svn/blob/main/src/main/arithmetic.c)
-as one of its results. That file contains the source code of `log10`.
+folder ‘src/main’ for `log1arg` gives file
+[arithmetic.c](https://github.com/r-devel/r-svn/blob/main/src/main/arithmetic.c)
+as one of its results. That file contains the source code of
+[`log10()`](https://rdrr.io/r/base/Log.html).
 
 Sometimes an R function is defined in a file that defines multiple
 functions and thus has a general name. Then the file with c-code will
 have a similar general name. For example, the source code of
 [`make.names()`](https://rdrr.io/r/base/make.names.html) is defined in
-[`src/library/base/R/character.R`](https://github.com/r-devel/r-svn/blob/main/src/library/base/R/character.R)
+file
+[src/library/base/R/character.R](https://github.com/r-devel/r-svn/blob/main/src/library/base/R/character.R)
 which, among others, contains the code
 `.Internal(make.names(names, allow_))`, and the c-code for
-`do_makenames()` is in file
-[`src/main/character.c`](https://github.com/r-devel/r-svn/blob/main/src/main/character.c).
+`do_makenames()` is defined in file
+[src/main/character.c](https://github.com/r-devel/r-svn/blob/main/src/main/character.c).
 
 #### .Call
 
@@ -1050,16 +1056,17 @@ If `getAnywhere("<func>")` returns code that contains `.Call(...)`, the
 function contains a call to C or C++ code. Although the file
 `src/<pkg>.h` (e.g.,
 [src/methods.h](https://github.com/r-devel/r-svn/blob/main/src/library/methods/src/methods.h)
-if code is from package `methods`) contains an overview of the C or C++
-code included in a package, your best bet for finding the source code is
-[searching](https://docs.github.com/en/search-github) the relevant part
-of the [GitHub](https://github.com/r-devel/r-svn/) repository (e.g.,
+if code is from package **methods**) contains an overview of the C or
+C++ code included in a package, your best bet for finding the source
+code is [searching](https://docs.github.com/en/search-github) the
+relevant part of the [GitHub](https://github.com/r-devel/r-svn/)
+repository (e.g.,
 `https://github.com/r-devel/r-svn/tree/main/src/library/methods/src` for
-code from package `methods`; note that GitHub search only searches the
+code from package **methods**; note that GitHub search only searches the
 main branch), or installing the package from source (see the section
-`Rtools` in the vignette *Installing R, Rtools and RStudio*:
+‘Rtools’ in the vignette *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md))
-and searching in the `src` folder of the downloaded code.
+and searching in the ‘src’ folder of the downloaded code.
 
 ## Documentation and help
 
@@ -1070,10 +1077,10 @@ and searching in the `src` folder of the downloaded code.
 - [Instructions](https://bioconductor.org/install/) on installing
   [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html)
   packages
-- Section
-  [`Add-on packages`](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
-  in the
-  [`R Installation and Administration manual`](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
+- Section [Add-on
+  packages](https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages)
+  in the [R Installation and Administration
+  manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
   manual
 - Section [Troubleshooting](#troubleshooting) above
 
@@ -1085,9 +1092,9 @@ and searching in the `src` folder of the downloaded code.
 
 ### Source code
 
-- Bryan J. 2015.
+- Bryan. 2015.
   [`Accessing R Source`](https://github.com/jennybc/access-r-source).
-- Ligges U. 2006. `R help desk: accessing the sources`. [RNews
+- Ligges. 2006. `R help desk: accessing the sources`. [RNews
   6(4):43-45](https://journal.r-project.org/articles/RN-2006-035/).
 - A [community answer](https://stackoverflow.com/a/19226817) from
   [StackOverflow](https://stackoverflow.com/).
@@ -1096,9 +1103,8 @@ and searching in the `src` folder of the downloaded code.
 
 ### Miscellaneous
 
-- The book
-  [`What They Forgot to Teach You About R`](https://rstats.wtf/) by J.
-  Bryan, J. Hester, S. Pileggi, and E. D. Aja
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/)
+  by Bryan, Hester, Pileggi, and Aja
 - Section `Documentation and help` in the vignette *Installing R, Rtools
   and RStudio*:  
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)

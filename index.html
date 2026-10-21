@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,33 +62,39 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-<div class="section level1">
+  <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="checkrpkgs">checkrpkgs<a class="anchor" aria-label="anchor" href="#checkrpkgs"></a>
 </h1></div>
-<p><code>checkrpkgs</code> explains how to install and configure <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>, and <a href="https://posit.co/products/open-source/rstudio?sid=1" class="external-link">RStudio</a>; how to install R packages and get information about to-be-installed and already-installed packages; how to get the source code of R functions; and how to set up and use Git and GitHub with RStudio.</p>
+<!-- badges: start -->
+
+<p><strong>checkrpkgs</strong> explains how to install and configure <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>, and <a href="https://posit.co/products/open-source/rstudio?sid=1" class="external-link">RStudio</a>; how to install R <a href="https://cran.r-project.org/web/packages/" class="external-link">packages</a> and get information about to-be-installed and already-installed packages; how to get the source code of R functions; and how to set up and use Git and <a href="https://github.com/" class="external-link">GitHub</a> with RStudio.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Visit the <a href="https://jessealderliesten.github.io/checkrpkgs/">checkrpkgs website</a> to explore the package, or install <code>checkrpkgs</code> from <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">GitHub</a> using the following R code:</p>
+<p>Visit the <a href="https://jessealderliesten.github.io/checkrpkgs/"><strong>checkrpkgs</strong> website</a> to explore the package, or install <strong>checkrpkgs</strong> <a href="https://github.com/JesseAlderliesten/checkrpkgs" class="external-link">from GitHub</a> using the following R code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"remotes"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"JesseAlderliesten/checkrpkgs"</span>,</span>
-<span>                        upgrade <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, lib <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span></span>
+<span>  repo <span class="op">=</span> <span class="st">"JesseAlderliesten/checkrpkgs"</span>,</span>
+<span>  upgrade <span class="op">=</span> <span class="cn">FALSE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  lib <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="content">Content<a class="anchor" aria-label="anchor" href="#content"></a>
 </h2>
-<p><code>checkrpkgs</code> consists of three vignettes:</p>
+<p><strong>checkrpkgs</strong> consists of three vignettes:</p>
 <ul>
 <li>
-<a href="https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html">Installing R, Rtools and RStudio</a>: <code><a href="articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>, explaining how to install and configure <a href="https://www.r-project.org/" class="external-link">R</a>, <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>, and <a href="https://posit.co/products/open-source/rstudio?sid=1" class="external-link">RStudio</a>.</li>
+<a href="https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html">Installing R, Rtools and RStudio</a> explaining how to install and configure R, Rtools, and RStudio:<br><code><a href="articles/install_r.html">vignette("install_r", package = "checkrpkgs")</a></code>
+</li>
 <li>
-<a href="https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html">R packages</a>: <code><a href="articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>, explaining how to install R packages; how to get information about to-be-installed and already-installed R packages; and how to get the source code of R functions.</li>
+<a href="https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html">R packages</a> explaining how to install R packages; how to get information about to-be-installed and already-installed R packages; and how to get the source code of R functions:<br><code><a href="articles/r_pkgs.html">vignette("r_pkgs", package = "checkrpkgs")</a></code>
+</li>
 <li>
-<a href="https://jessealderliesten.github.io/checkrpkgs/articles/git_github.html">Using Git and GitHub</a>: <code><a href="articles/git_github.html">vignette("git_github", package = "checkrpkgs")</a></code>, explaining how to set up and use Git and <a href="https://github.com/" class="external-link">GitHub</a> with RStudio.</li>
+<a href="https://jessealderliesten.github.io/checkrpkgs/articles/git_github.html">Using Git and GitHub</a> explaining how to set up and use Git and GitHub with RStudio:<br><code><a href="articles/git_github.html">vignette("git_github", package = "checkrpkgs")</a></code>
+</li>
 </ul>
 </div>
 <div class="section level2">
@@ -102,7 +108,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>To cite package <span class="st">'checkrpkgs'</span> <span class="cf">in</span> publications use<span class="sc">:</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  Alderliesten <span class="fu">J</span> (<span class="dv">2026</span>). _checkrpkgs<span class="sc">:</span> Installing and Using R, Rtools,</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  RStudio, R Packages, Git and GitHub_. R package version <span class="dv">1</span>.<span class="fl">3.0</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  RStudio, R Packages, Git and GitHub_. R package version <span class="dv">1</span>.<span class="fl">3.1</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>JesseAlderliesten<span class="sc">/</span>checkrpkgs<span class="sc">&gt;</span>.</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
@@ -112,27 +118,26 @@
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>GitHub},</span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    author <span class="ot">=</span> {Jesse Alderliesten},</span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2026</span>},</span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">1</span>.<span class="fl">3.0</span>},</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">1</span>.<span class="fl">3.1</span>},</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>JesseAlderliesten<span class="sc">/</span>checkrpkgs},</span>
 <span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
 </h2>
-<p>Please open a <a href="https://github.com/JesseAlderliesten/checkrpkgs/issues" class="external-link">GitHub issue</a> if you have suggestions for improvement of <code>checkrpkgs</code>.</p>
+<p>Please open a <a href="https://github.com/JesseAlderliesten/checkrpkgs/issues" class="external-link">GitHub issue</a> if you have suggestions for improvement of <strong>checkrpkgs</strong>.</p>
 </div>
 <div class="section level2">
 <h2 id="similar-resources">Similar resources<a class="anchor" aria-label="anchor" href="#similar-resources"></a>
 </h2>
 <ul>
-<li>The book <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You About R</a> by J. Bryan, J. Hester, S. Pileggi, and E. D. Aja</li>
-<li>The book <a href="https://intro2r.com/" class="external-link">An introduction to R</a> by A. Douglas, D. Roos, F. Mancini, A. Couto and D. Lusseau</li>
-<li>Section <a href="https://rstudio-conf-2022.github.io/build-tidy-tools/pre-reqs.html" class="external-link"><code>Prerequisites</code></a> from the workshop <a href="https://rstudio-conf-2022.github.io/build-tidy-tools/" class="external-link">Building tidy tools</a> by E. Rand and I. Lyttle</li>
-<li>Developers might be interested in my package <a href="https://jessealderliesten.github.io/develcoder/" class="external-link"><code>develcoder</code></a> with code and templates to develop R packages.</li>
+<li>The book <a href="https://rstats.wtf/" class="external-link">What They Forgot to Teach You About R</a> by Bryan, Hester, Pileggi, and Aja</li>
+<li>The book <a href="https://intro2r.com/" class="external-link">An introduction to R</a> by Douglas, Roos, Mancini, Couto and Lusseau</li>
+<li>Section <a href="https://rstudio-conf-2022.github.io/build-tidy-tools/pre-reqs.html" class="external-link">Prerequisites</a> from the workshop <a href="https://rstudio-conf-2022.github.io/build-tidy-tools/" class="external-link">Building tidy tools</a> by Rand and Lyttle</li>
+<li>Developers might be interested in my <a href="https://jessealderliesten.github.io/develcoder/" class="external-link"><strong>develcoder</strong></a> package with code and templates to develop R packages.</li>
 </ul>
 </div>
 </div>
-
   </main><aside class="col-md-3"><div class="table-of-contents">
 <h2 data-toc-skip>Table of contents</h2>
 <ul class="list-unstyled">

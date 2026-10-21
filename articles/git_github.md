@@ -25,41 +25,38 @@ remote repository.
 ## Setting up Git and GitHub
 
 Create a [GitHub](https://github.com/) account, download a [GitHub
-client](https://git-scm.com/tools/guis) such as
-[`Git SCM`](https://git-scm.com/downloads/) or
-[`Git for Windows`](https://gitforwindows.org/) and install it. To
-update Git for Windows if you already have it, type
-`git\update-git-for-windows` in the
+client](https://git-scm.com/tools/guis) such as [Git
+SCM](https://git-scm.com/downloads/) or [Git for
+Windows](https://gitforwindows.org/) and install it. To update Git for
+Windows if you already have it, type `git\update-git-for-windows` in the
 [shell](https://happygitwithr.com/shell).
 
 To use Git and GitHub from
 [RStudio](https://posit.co/products/open-source/rstudio), in RStudio go
 to `Tools` \> `Global Options` \> `Git/SVN` and tick
 `Enable version control interface for RStudio projects`. The
-`Git executable` field should point to the `git.exe` file, which
-probably is at `C:\Program Files\Git\bin\git.exe` or in a hidden folder
-at `C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows
-notation; outside Windows, these paths are written as
+`Git executable` field should point to the git.exe file, which probably
+is at `C:\Program Files\Git\bin\git.exe` or in a hidden folder at
+`C:\Users\<owner>\AppData\Local\Git\bin\git.exe` (in Windows notation;
+outside Windows, these paths are written as
 `C:/Program Files/Git/bin/git.exe` and
 `C:/Users/<owner>/AppData/Local/Git/bin/git.exe`, respectively, see
 [Paths in the shell](#paths-in-the-shell)). If the content of the field
-`Git executable` is not correct, open the `Terminal` tab in the
-`RStudio`
+`Git executable` is not correct, open the ‘Terminal’ tab in the
+‘RStudio’
 [console](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html#console)
-or the `Git Bash` [shell](https://happygitwithr.com/shell) (which was
-installed when installing
-[`Git for Windows`](https://gitforwindows.org/), you can find it by
-searching for `Git Bash` in Windows’ `Start` menu). In the terminal or
-the Git Bash shell, run `where git.exe` to get the location of the Git
-executable.
+or the Git Bash [shell](https://happygitwithr.com/shell) (which was
+installed when installing [Git for Windows](https://gitforwindows.org/),
+you can find it by searching for ‘Git Bash’ in Windows’ `Start` menu).
+In the terminal or the Git Bash shell, run `where git.exe` to get the
+location of the Git executable.
 
 To associate Git with your GitHub account, you need to provide your name
 (this name is listed in GitHub with the changes you make and does
 **not** have to be your GitHub username), and the email associated with
-your GitHub account. See the Chapter
-[`Introduce yourself to Git`](https://happygitwithr.com/hello-git.html)
-from [`Happy Git and GitHub for the useR`](https://happygitwithr.com/)
-for more details.
+your GitHub account. See the Chapter [Introduce yourself to
+Git](https://happygitwithr.com/hello-git.html) from [Happy Git and
+GitHub for the useR](https://happygitwithr.com/) for more details.
 
     git config --global user.name '<Jane Doe>'
     git config --global user.email '<jane@example.com>'
@@ -75,19 +72,19 @@ password, see:
 
 - GitHub
   [documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-- The chapter about
-  [`Personal Access Tokens`](https://happygitwithr.com/https-pat.html)
-  in [`Happy Git and GitHub for the useR`](https://happygitwithr.com/)
+- The chapter about [Personal Access
+  Tokens](https://happygitwithr.com/https-pat.html) in [Happy Git and
+  GitHub for the useR](https://happygitwithr.com/)
 - A [vignette](https://usethis.r-lib.org/articles/git-credentials.html)
-  from package [`usethis`](https://CRAN.R-project.org/package=usethis)
+  from package [**usethis**](https://CRAN.R-project.org/package=usethis)
 
 ## Using Git and GitHub
 
 To work with GitHub in RStudio, you should open the R Project file
-(i.e., a file with extension `.Rproj`), **not** the R script (i.e., a
-file with extension `.R`). Then the `Git` menu will be visible as a tab
-in the
-[`Environment pane`](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
+(i.e., a file with extension ‘.Rproj’), **not** the R script (i.e., a
+file with extension ‘.R’). Then the `Git` menu will be visible as a tab
+in the [Environment
+pane](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html).
 
 `Pull` to get changes from GitHub (e.g., created by a collaborator)
 incorporated in the local files on your PC, and handle any conflicts to
@@ -159,7 +156,7 @@ use `tab`-completion to select files): `git add <filename>.<extension>`.
 - For a chronological overview of all commits (i.e., across all files)
   in a particular branch of a repository, use an URL of the form
   `https://github.com/<username>/<repository>/commits`, or go to the
-  main page of the repository and in the `Code` panel click the `clock`
+  main page of the repository and in the `Code` panel click the clock
   icon at the top of the file overview.
 - To compare different branches of a repository, use three dots between
   their names, giving an URL of the form
@@ -192,11 +189,11 @@ file paths (i.e., the directories and file names, **including** the
 extensions) of the two files as arguments `from` and `to`:  
 `tools::Rdiff(from = "<path/and/filename_file1>.R", to = "<path/and/filename_file2>.R")`
 
-For a nicer output, compare R scripts using the `Bash`
-[shell](https://happygitwithr.com/shell): open the `Bash` shell and copy
+For a nicer output, compare R scripts using the ‘Bash’
+[shell](https://happygitwithr.com/shell): open the ‘Bash’ shell and copy
 the file paths (i.e., the directories and file names, **including** the
 extensions) of the two files to be compared into the shell on the same
-line, and press `Enter`:
+line, and press ‘Enter’:
 `git diff --no-index '<path/and/filename_file1>.R' '<path/and/filename_file2>.R'`
 
 Notes:
@@ -207,7 +204,7 @@ Notes:
   contain spaces.
 - The two paths should be on the same line, i.e., **not** separated by a
   newline.
-- Although the scroll bar in `Git Bash` seems to indicate the end of the
+- Although the scroll bar in ‘Git Bash’ seems to indicate the end of the
   file is reached (and scrolling with the mouse does not work), usually
   a colon (`:`) will be displayed left to the cursor to indicate that
   only part of the file is shown. Use the `down arrow` key to see the
@@ -220,10 +217,10 @@ Notes:
 ## Deleting a file
 
 To delete a file, delete the file from your PC, then `commit` the change
-(i.e., deletion of a file), using the `commit message` to describe why
-the file was deleted. Then `pull` to make sure directory on your PC is
-up to date with the repository on GitHub, and then `push` the change to
-the GitHub repository.
+(i.e., deletion of a file), using the commit message to describe why the
+file was deleted. Then `pull` to make sure directory on your PC is up to
+date with the repository on GitHub, and then `push` the change to the
+GitHub repository.
 
 Alternatively, open the file in the GitHub repository, click the three
 dots at the top-right of the file \> `delete` \> `commit`. Use the
@@ -281,8 +278,8 @@ There are several ways to copy code from a GitHub repository to your PC:
   `cat(normalizePath(.libPaths()))`, something like
   `C:\Program Files\R\R-4.6.0\library` or
   `C:\Users\<owner>\AppData\Local\R\win-library\4.6`). Then open the
-  `.Rproj` file that has the same name as the repository. If the
-  downloaded files are not a package but an R project, open the `.Rproj`
+  ‘.Rproj’ file that has the same name as the repository. If the
+  downloaded files are not a package but an R project, open the ‘.Rproj’
   file to change the working directory to the folder where that project
   file is. If the downloaded files are not an R project, you have to
   move them to the working directory (see the output of
@@ -327,38 +324,38 @@ on the main branch to an issue, use the keywords `close`, `resolve`,
 In addition to section [Using GitHub](#using-github) above, see:
 
 - Branches: GitHub documentation about
-  [`branches`](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)
+  [branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)
   and the website [Learn Git
   Branching](https://learngitbranching.js.org/).
 
 - Cloning (clones) and forking (forks) a repository: GitHub
   documentation about
-  [`cloning`](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+  [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
   and
-  [`forks`](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)
-  and the section
-  [`Fork and clone`](https://happygitwithr.com/fork-and-clone) from
-  [`Happy Git and GitHub for the useR`](https://happygitwithr.com/)
+  [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)
+  and the section [Fork and
+  clone](https://happygitwithr.com/fork-and-clone) from [Happy Git and
+  GitHub for the useR](https://happygitwithr.com/)
 
-- GitHub documentation about
-  [`pull requests`](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+- GitHub documentation about [pull
+  requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 ## GitHub Actions
 
-See the section `Automate checks` in the vignette *Package setup* and
-section `Use GitHub Actions` in the vignette *Package development*, both
-from package `develcoder`:
+See the section ‘Automate checks’ in the vignette *Package setup* and
+section ‘Use GitHub Actions’ in the vignette *Package development*, both
+from package **develcoder**:
 `vignette("pkg_setup", package = "develcoder")` and
 `vignette("pkg_devel", package = "develcoder")`.
 
 ## Common shell commands
 
 For an overview of [shell](https://happygitwithr.com/shell) commands,
-see the documentation of [`Git SCM`](https://git-scm.com/docs), the
+see the documentation of [Git SCM](https://git-scm.com/docs), the
 section about the
-[`shell`](https://happygitwithr.com/shell#basic-shell-commands) from
-[`Happy Git and GitHub for the useR`](https://happygitwithr.com/) (a
-summary of which is given below), or in the `BASH shell` type
+[shell](https://happygitwithr.com/shell#basic-shell-commands) from
+[Happy Git and GitHub for the useR](https://happygitwithr.com/) (a
+summary of which is given below), or in the ‘Bash shell’ type
 `git config` or `git help <command>` (replace `<command>` by the command
 you want help about).
 
@@ -378,12 +375,12 @@ When entering paths in the [shell](https://happygitwithr.com/shell), use
 the forward slash (`/`) as file separator instead of the Windows-default
 backslash (`\`). If the path you want to specify contains spaces (e.g.,
 `D:\Userdata\My Account\...`), you need to use quotes around the path
-(e.g., `"D:/Userdata/My Account/..."`). `Tab`-completion can be used
-when entering paths: single `tab` to select an option, double `tab` to
-see multiple options. Dragging a file into the shell gives the absolute
-path to that file. The current and parent directory can be indicated by
-a single (`.`) or two (`..`) dots in file paths, respectively. On paths
-and file separators in R, see the `Notes on paths` in
+(e.g., `"D:/Userdata/My Account/..."`). Tab-completion can be used when
+entering paths: single tab to select an option, double tab to see
+multiple options. Dragging a file into the shell gives the absolute path
+to that file. The current and parent directory can be indicated by a
+single (`.`) or two (`..`) dots in file paths, respectively. On paths
+and file separators in R, see the ‘Notes on Paths’ in
 [`help("is_path", package = "checkinput")`](https://jessealderliesten.github.io/checkinput/reference/is_path.html).
 
 ## Documentation
@@ -403,22 +400,23 @@ and file separators in R, see the `Notes on paths` in
 
 ### Books
 
-- [`Happy Git and GitHub for the useR`](https://happygitwithr.com/) by
-  Jennifer Bryan
-- [`Pro Git Book`](https://git-scm.com/book/en/v2) by Scott Chacon and
-  Ben Straub
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/) by
+  Bryan
+- [Pro Git Book](https://git-scm.com/book/en/v2) by Chacon and Straub
 
 ### Chapters
 
-- [`Getting Started With GitHub`](https://book.the-turing-way.org/collaboration/github-novice)
-  from
-  `The Turing Way handbook to reproducible, ethical and collaborative data science`
-- [`Version control`](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html)
-  from Posit’s `RStudio User Guide`
-- [`Collaboration`](https://epirhandbook.com/en/new_pages/collaboration.html)
-  from `The Epidemiologist R Handbook`
+- [Getting Started With
+  GitHub](https://book.the-turing-way.org/collaboration/github-novice)
+  from ‘The Turing Way handbook to reproducible, ethical and
+  collaborative data science’
+- [Version
+  control](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html)
+  from Posit’s RStudio User Guide
+- [Collaboration](https://epirhandbook.com/en/new_pages/collaboration.html)
+  from ‘The Epidemiologist R Handbook’
 
 ### See also
 
-- Vignette *R markdown and knitr* in package `develcoder`:
+- Vignette *R markdown and knitr* in package **develcoder**:
   `vignette("rmarkdown_knitr", package = "develcoder")`

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">checkrpkgs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,35 +99,34 @@ is often called a remote repository.</p>
 <h2 id="setting-up-git-and-github">Setting up Git and GitHub<a class="anchor" aria-label="anchor" href="#setting-up-git-and-github"></a>
 </h2>
 <p>Create a <a href="https://github.com/" class="external-link">GitHub</a> account, download a
-<a href="https://git-scm.com/tools/guis" class="external-link">GitHub client</a> such as <a href="https://git-scm.com/downloads/" class="external-link"><code>Git SCM</code></a> or <a href="https://gitforwindows.org/" class="external-link"><code>Git for Windows</code></a> and
-install it. To update Git for Windows if you already have it, type
+<a href="https://git-scm.com/tools/guis" class="external-link">GitHub client</a> such as <a href="https://git-scm.com/downloads/" class="external-link">Git SCM</a> or <a href="https://gitforwindows.org/" class="external-link">Git for Windows</a> and install it. To
+update Git for Windows if you already have it, type
 <code>git\update-git-for-windows</code> in the <a href="https://happygitwithr.com/shell" class="external-link">shell</a>.</p>
 <p>To use Git and GitHub from <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>, in
 RStudio go to <code>Tools</code> &gt; <code>Global Options</code> &gt;
 <code>Git/SVN</code> and tick
 <code>Enable version control interface for RStudio projects</code>. The
-<code>Git executable</code> field should point to the
-<code>git.exe</code> file, which probably is at
-<code>C:\Program Files\Git\bin\git.exe</code> or in a hidden folder at
+<code>Git executable</code> field should point to the git.exe file,
+which probably is at <code>C:\Program Files\Git\bin\git.exe</code> or in
+a hidden folder at
 <code>C:\Users\&lt;owner&gt;\AppData\Local\Git\bin\git.exe</code> (in
 Windows notation; outside Windows, these paths are written as
 <code>C:/Program Files/Git/bin/git.exe</code> and
 <code>C:/Users/&lt;owner&gt;/AppData/Local/Git/bin/git.exe</code>,
 respectively, see <a href="#paths-in-the-shell">Paths in the shell</a>).
 If the content of the field <code>Git executable</code> is not correct,
-open the <code>Terminal</code> tab in the <code>RStudio</code> <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html#console" class="external-link">console</a>
-or the <code>Git Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a> (which was installed
-when installing <a href="https://gitforwindows.org/" class="external-link"><code>Git for Windows</code></a>, you
-can find it by searching for <code>Git Bash</code> in Windows’
-<code>Start</code> menu). In the terminal or the Git Bash shell, run
-<code>where git.exe</code> to get the location of the Git
-executable.</p>
+open the ‘Terminal’ tab in the ‘RStudio’ <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html#console" class="external-link">console</a>
+or the Git Bash <a href="https://happygitwithr.com/shell" class="external-link">shell</a>
+(which was installed when installing <a href="https://gitforwindows.org/" class="external-link">Git for Windows</a>, you can find it
+by searching for ‘Git Bash’ in Windows’ <code>Start</code> menu). In the
+terminal or the Git Bash shell, run <code>where git.exe</code> to get
+the location of the Git executable.</p>
 <p>To associate Git with your GitHub account, you need to provide your
 name (this name is listed in GitHub with the changes you make and does
 <strong>not</strong> have to be your GitHub username), and the email
-associated with your GitHub account. See the Chapter <a href="https://happygitwithr.com/hello-git.html" class="external-link"><code>Introduce yourself to Git</code></a>
-from <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
-for more details.</p>
+associated with your GitHub account. See the Chapter <a href="https://happygitwithr.com/hello-git.html" class="external-link">Introduce yourself to
+Git</a> from <a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub
+for the useR</a> for more details.</p>
 <pre><code>git config --global user.name '&lt;Jane Doe&gt;'
 git config --global user.email '&lt;jane@example.com&gt;'
 git config --global --list</code></pre>
@@ -141,11 +140,12 @@ password, see:</p>
 <ul>
 <li>GitHub <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" class="external-link">documentation</a>
 </li>
-<li>The chapter about <a href="https://happygitwithr.com/https-pat.html" class="external-link"><code>Personal Access Tokens</code></a>
-in <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
+<li>The chapter about <a href="https://happygitwithr.com/https-pat.html" class="external-link">Personal Access
+Tokens</a> in <a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub
+for the useR</a>
 </li>
 <li>A <a href="https://usethis.r-lib.org/articles/git-credentials.html" class="external-link">vignette</a>
-from package <a href="https://CRAN.R-project.org/package=usethis" class="external-link"><code>usethis</code></a>
+from package <a href="https://CRAN.R-project.org/package=usethis" class="external-link"><strong>usethis</strong></a>
 </li>
 </ul>
 </div>
@@ -154,9 +154,10 @@ from package <a href="https://CRAN.R-project.org/package=usethis" class="externa
 <h2 id="using-git-and-github">Using Git and GitHub<a class="anchor" aria-label="anchor" href="#using-git-and-github"></a>
 </h2>
 <p>To work with GitHub in RStudio, you should open the R Project file
-(i.e., a file with extension <code>.Rproj</code>), <strong>not</strong>
-the R script (i.e., a file with extension <code>.R</code>). Then the
-<code>Git</code> menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link"><code>Environment pane</code></a>.</p>
+(i.e., a file with extension ‘.Rproj’), <strong>not</strong> the R
+script (i.e., a file with extension ‘.R’). Then the <code>Git</code>
+menu will be visible as a tab in the <a href="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" class="external-link">Environment
+pane</a>.</p>
 <p><code>Pull</code> to get changes from GitHub (e.g., created by a
 collaborator) incorporated in the local files on your PC, and handle any
 conflicts to get the directory on your PC up-to-date with the remote
@@ -233,8 +234,7 @@ convenient to use <code>tab</code>-completion to select files):
 in a particular branch of a repository, use an URL of the form
 <code>https://github.com/&lt;username&gt;/&lt;repository&gt;/commits</code>,
 or go to the main page of the repository and in the <code>Code</code>
-panel click the <code>clock</code> icon at the top of the file
-overview.</li>
+panel click the clock icon at the top of the file overview.</li>
 <li>To compare different branches of a repository, use three dots
 between their names, giving an URL of the form
 <code>https://github.com/&lt;username&gt;/&lt;repository&gt;/compare/&lt;branch&gt;...&lt;otherbranch&gt;</code>,
@@ -267,11 +267,10 @@ fork, or clone?</a> below.</li>
 quoted file paths (i.e., the directories and file names,
 <strong>including</strong> the extensions) of the two files as arguments
 <code>from</code> and <code>to</code>:<br><code>tools::Rdiff(from = "&lt;path/and/filename_file1&gt;.R", to = "&lt;path/and/filename_file2&gt;.R")</code></p>
-<p>For a nicer output, compare R scripts using the <code>Bash</code> <a href="https://happygitwithr.com/shell" class="external-link">shell</a>: open the
-<code>Bash</code> shell and copy the file paths (i.e., the directories
-and file names, <strong>including</strong> the extensions) of the two
-files to be compared into the shell on the same line, and press
-<code>Enter</code>:
+<p>For a nicer output, compare R scripts using the ‘Bash’ <a href="https://happygitwithr.com/shell" class="external-link">shell</a>: open the ‘Bash’ shell
+and copy the file paths (i.e., the directories and file names,
+<strong>including</strong> the extensions) of the two files to be
+compared into the shell on the same line, and press ‘Enter’:
 <code>git diff --no-index '&lt;path/and/filename_file1&gt;.R' '&lt;path/and/filename_file2&gt;.R'</code></p>
 <p>Notes:</p>
 <ul>
@@ -282,10 +281,10 @@ files to be compared into the shell on the same line, and press
 works when they contain spaces.</li>
 <li>The two paths should be on the same line, i.e., <strong>not</strong>
 separated by a newline.</li>
-<li>Although the scroll bar in <code>Git Bash</code> seems to indicate
-the end of the file is reached (and scrolling with the mouse does not
-work), usually a colon (<code>:</code>) will be displayed left to the
-cursor to indicate that only part of the file is shown. Use the
+<li>Although the scroll bar in ‘Git Bash’ seems to indicate the end of
+the file is reached (and scrolling with the mouse does not work),
+usually a colon (<code>:</code>) will be displayed left to the cursor to
+indicate that only part of the file is shown. Use the
 <code>down arrow</code> key to see the whole file until the end of the
 file is reached, which is indicated by <code>(END)</code>.</li>
 <li>The location of a change is indicated at the top of a changed chunk.
@@ -299,7 +298,7 @@ line thirteen and an insertion at character nine of line fourteen.</li>
 </h2>
 <p>To delete a file, delete the file from your PC, then
 <code>commit</code> the change (i.e., deletion of a file), using the
-<code>commit message</code> to describe why the file was deleted. Then
+commit message to describe why the file was deleted. Then
 <code>pull</code> to make sure directory on your PC is up to date with
 the repository on GitHub, and then <code>push</code> the change to the
 GitHub repository.</p>
@@ -367,14 +366,14 @@ looks for packages (given by
 <code>cat(normalizePath(.libPaths()))</code>, something like
 <code>C:\Program Files\R\R-4.6.0\library</code> or
 <code>C:\Users\&lt;owner&gt;\AppData\Local\R\win-library\4.6</code>).
-Then open the <code>.Rproj</code> file that has the same name as the
-repository. If the downloaded files are not a package but an R project,
-open the <code>.Rproj</code> file to change the working directory to the
-folder where that project file is. If the downloaded files are not an R
-project, you have to move them to the working directory (see the output
-of <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd()</a></code>), or use
-<code>setwd(&lt;path/to/files&gt;)</code> to change the working
-directory to the location where the files are.</li>
+Then open the ‘.Rproj’ file that has the same name as the repository. If
+the downloaded files are not a package but an R project, open the
+‘.Rproj’ file to change the working directory to the folder where that
+project file is. If the downloaded files are not an R project, you have
+to move them to the working directory (see the output of
+<code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd()</a></code>), or use <code>setwd(&lt;path/to/files&gt;)</code>
+to change the working directory to the location where the files
+are.</li>
 </ul>
 <div class="section level3">
 <h3 id="installing-a-package-from-github">Installing a package from GitHub<a class="anchor" aria-label="anchor" href="#installing-a-package-from-github"></a>
@@ -414,25 +413,26 @@ thereof in the pull request description.</p>
 <p>In addition to section <a href="#using-github">Using GitHub</a>
 above, see:</p>
 <ul>
-<li><p>Branches: GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches" class="external-link"><code>branches</code></a>
+<li><p>Branches: GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches" class="external-link">branches</a>
 and the website <a href="https://learngitbranching.js.org/" class="external-link">Learn Git
 Branching</a>.</p></li>
 <li><p>Cloning (clones) and forking (forks) a repository: GitHub
-documentation about <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" class="external-link"><code>cloning</code></a>
-and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks" class="external-link"><code>forks</code></a>
-and the section <a href="https://happygitwithr.com/fork-and-clone" class="external-link"><code>Fork and clone</code></a>
-from <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a></p></li>
-<li><p>GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link"><code>pull requests</code></a></p></li>
+documentation about <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" class="external-link">cloning</a>
+and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks" class="external-link">forks</a>
+and the section <a href="https://happygitwithr.com/fork-and-clone" class="external-link">Fork
+and clone</a> from <a href="https://happygitwithr.com/" class="external-link">Happy Git and
+GitHub for the useR</a></p></li>
+<li><p>GitHub documentation about <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request" class="external-link">pull
+requests</a></p></li>
 </ul>
 </div>
 </div>
 <div class="section level2">
 <h2 id="github-actions">GitHub Actions<a class="anchor" aria-label="anchor" href="#github-actions"></a>
 </h2>
-<p>See the section <code>Automate checks</code> in the vignette
-<em>Package setup</em> and section <code>Use GitHub Actions</code> in
-the vignette <em>Package development</em>, both from package
-<code>develcoder</code>:
+<p>See the section ‘Automate checks’ in the vignette <em>Package
+setup</em> and section ‘Use GitHub Actions’ in the vignette <em>Package
+development</em>, both from package <strong>develcoder</strong>:
 <code>vignette("pkg_setup", package = "develcoder")</code> and
 <code>vignette("pkg_devel", package = "develcoder")</code>.</p>
 </div>
@@ -440,10 +440,10 @@ the vignette <em>Package development</em>, both from package
 <h2 id="common-shell-commands">Common shell commands<a class="anchor" aria-label="anchor" href="#common-shell-commands"></a>
 </h2>
 <p>For an overview of <a href="https://happygitwithr.com/shell" class="external-link">shell</a> commands, see the
-documentation of <a href="https://git-scm.com/docs" class="external-link"><code>Git SCM</code></a>, the section
-about the <a href="https://happygitwithr.com/shell#basic-shell-commands" class="external-link"><code>shell</code></a>
-from <a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
-(a summary of which is given below), or in the <code>BASH shell</code>
+documentation of <a href="https://git-scm.com/docs" class="external-link">Git SCM</a>, the
+section about the <a href="https://happygitwithr.com/shell#basic-shell-commands" class="external-link">shell</a>
+from <a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub for the
+useR</a> (a summary of which is given below), or in the ‘Bash shell’
 type <code>git config</code> or <code>git help &lt;command&gt;</code>
 (replace <code>&lt;command&gt;</code> by the command you want help
 about).</p>
@@ -474,14 +474,13 @@ navigate to it: <code>cd ~</code>; print it: <code>pwd</code>
 backslash (<code>\</code>). If the path you want to specify contains
 spaces (e.g., <code>D:\Userdata\My Account\...</code>), you need to use
 quotes around the path (e.g.,
-<code>"D:/Userdata/My Account/..."</code>). <code>Tab</code>-completion
-can be used when entering paths: single <code>tab</code> to select an
-option, double <code>tab</code> to see multiple options. Dragging a file
-into the shell gives the absolute path to that file. The current and
-parent directory can be indicated by a single (<code>.</code>) or two
-(<code>..</code>) dots in file paths, respectively. On paths and file
-separators in R, see the <code>Notes on paths</code> in
-<code><a href="https://jessealderliesten.github.io/checkinput/reference/is_path.html" class="external-link">help("is_path", package = "checkinput")</a></code>.</p>
+<code>"D:/Userdata/My Account/..."</code>). Tab-completion can be used
+when entering paths: single tab to select an option, double tab to see
+multiple options. Dragging a file into the shell gives the absolute path
+to that file. The current and parent directory can be indicated by a
+single (<code>.</code>) or two (<code>..</code>) dots in file paths,
+respectively. On paths and file separators in R, see the ‘Notes on
+Paths’ in <code><a href="https://jessealderliesten.github.io/checkinput/reference/is_path.html" class="external-link">help("is_path", package = "checkinput")</a></code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -509,11 +508,11 @@ workflow</a></li>
 </h3>
 <ul>
 <li>
-<a href="https://happygitwithr.com/" class="external-link"><code>Happy Git and GitHub for the useR</code></a>
-by Jennifer Bryan</li>
+<a href="https://happygitwithr.com/" class="external-link">Happy Git and GitHub for the
+useR</a> by Bryan</li>
 <li>
-<a href="https://git-scm.com/book/en/v2" class="external-link"><code>Pro Git Book</code></a> by
-Scott Chacon and Ben Straub</li>
+<a href="https://git-scm.com/book/en/v2" class="external-link">Pro Git Book</a> by Chacon
+and Straub</li>
 </ul>
 </div>
 <div class="section level3">
@@ -521,18 +520,15 @@ Scott Chacon and Ben Straub</li>
 </h3>
 <ul>
 <li>
-<a href="https://book.the-turing-way.org/collaboration/github-novice" class="external-link"><code>Getting Started With GitHub</code></a>
-from
-<code>The Turing Way handbook to reproducible, ethical and collaborative data science</code>
-</li>
+<a href="https://book.the-turing-way.org/collaboration/github-novice" class="external-link">Getting
+Started With GitHub</a> from ‘The Turing Way handbook to reproducible,
+ethical and collaborative data science’</li>
 <li>
-<a href="https://docs.posit.co/ide/user/ide/guide/tools/version-control.html" class="external-link"><code>Version control</code></a>
-from Posit’s <code>RStudio User Guide</code>
-</li>
+<a href="https://docs.posit.co/ide/user/ide/guide/tools/version-control.html" class="external-link">Version
+control</a> from Posit’s RStudio User Guide</li>
 <li>
-<a href="https://epirhandbook.com/en/new_pages/collaboration.html" class="external-link"><code>Collaboration</code></a>
-from <code>The Epidemiologist R Handbook</code>
-</li>
+<a href="https://epirhandbook.com/en/new_pages/collaboration.html" class="external-link">Collaboration</a>
+from ‘The Epidemiologist R Handbook’</li>
 </ul>
 </div>
 <div class="section level3">
@@ -540,7 +536,7 @@ from <code>The Epidemiologist R Handbook</code>
 </h3>
 <ul>
 <li>Vignette <em>R markdown and knitr</em> in package
-<code>develcoder</code>:
+<strong>develcoder</strong>:
 <code>vignette("rmarkdown_knitr", package = "develcoder")</code>
 </li>
 </ul>
