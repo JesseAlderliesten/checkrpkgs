@@ -24,7 +24,7 @@ This vignette explains how to install and configure
 and [RStudio](https://posit.co/products/open-source/rstudio).
 
 ## R
-To install [R](https://www.r-project.org/), visit a nearby CRAN
+To install R, visit a nearby CRAN
 [mirror](https://cran.r-project.org/mirrors.html) (i.e., a website with the same
 content as the [main](https://cran.r-project.org/) CRAN page), download R via
 `Download R for Windows` > `base` > `Download R-X.Y.Z for Windows` and install
@@ -38,8 +38,8 @@ R can be configured by changing environment variables and various options, see
 `help("environment variables")`, `help("options")`,
 `help("install.packages", package = "utils")`,
 and `help(".libPaths")`. Although options for startup can also be changed (see
-`help("Startup")` and the chapter [`R Startup`](https://rstats.wtf/r-startup) from
-the book [`What They Forgot to Teach You About R`](https://rstats.wtf/)), that
+`help("Startup")` and the chapter [R Startup](https://rstats.wtf/r-startup) from
+the book [What They Forgot to Teach You About R](https://rstats.wtf/)), that
 should be done cautiously because those options likely make code behave
 differently on PCs where those options are not set, for example when changing
 which packages are automatically loaded at startup.
@@ -74,22 +74,22 @@ Various options can be changed to make R a bit stricter:
   Details: `help("conflicts")` and the section `Conflicts` in
   `help("conflictRules")` for further options to tune conflict resolution, and
   `conflicted::conflicts_prefer(<pkg>::<func>)` from package
-  [`conflicted`](https://CRAN.R-project.org/package=conflicted) to declare
+  [**conflicted**](https://CRAN.R-project.org/package=conflicted) to declare
   preferences (`<pkg>` and `<func>` should be replaced by the actual names of
   the package and function to get working code).
-- Print warnings immediately as they occur (`options(warn = 1)`) or make
-  them an error (`options(warn = 2)`). The latter should only be used for
-  debugging because it may trigger bugs and resource leaks. To suppress warnings
+- Print warnings immediately as they occur (`options(warn = 1)`) or make them an
+  error (`options(warn = 2)`). The latter should only be used for debugging
+  because it may trigger bugs and resource leaks. To suppress warnings
   altogether, use `options(warn = -1)` or wrap function calls in
-  `suppressWarnings()` to suppress particular warnings. The default
-  is `options(warn = 0)` to warn after the top-level function returns. Details:
+  `suppressWarnings()` to suppress particular warnings. The default is
+  `options(warn = 0)` to warn after the top-level function returns. Details:
   `help("stop")` and `help("warning")`.
 - Enter the environment browser upon error:  
   `options(error = browser)`, with default `options(error = NULL)` to not enter
   the environment browser. Press `Q` or `Escape` to quit the browser mode and
   press `c` to continue code. Details: `help("browser")`.
 
-In addition, package [`strict`](https://github.com/hadley/strict/) makes R
+In addition, package [**strict**](https://github.com/hadley/strict/) makes R
 stricter by warning about various unsafe practices, such as the behaviour of
 `sample()` and `diag()` if called with an argument of length one, and
 type-unsafe `sapply()`.
@@ -114,23 +114,24 @@ Several variables and functions provide information about the current R session:
   settings that depend on the user's language or region).
 - `utils::sessionInfo()` extracts parts of the information mentioned above about
   the operating system and R, and lists attached and loaded packages (see also
-  `loadedNamespaces()`). Its
-  printing method can be used to print additional information about the used
-  locale (i.e., settings that depend on the user's language or region) and
-  random number generation: `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.
+  `loadedNamespaces()`). Its print method can be used to print additional
+  information about the used locale (i.e., settings that depend on the user's
+  language or region) and random number generation:  
+  `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.  
   `sessioninfo::session_info()` provides more details about the origin of loaded
   or installed packages, and has the option to show only information about
   selected packages and their dependencies.
 
 ## Rtools
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) is **not** an R package
-but software used to build R [from source](https://cran.r-project.org/sources.html)
-and to build R packages from source. The latter is needed when installing
-**older** versions of packages from
-[CRAN](https://cran.r-project.org/web/packages/index.html) or
-[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software), and might be needed when installing packages from
-[GitHub](https://github.com/): see the section `Installing packages` in the
-vignette *R packages* for instructions on installing R packages:
+but software used to build R
+[from source](https://cran.r-project.org/sources.html) and to build R packages
+from source. The latter is needed when installing **older** versions of packages
+from [CRAN](https://cran.r-project.org/web/packages/index.html) or
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software),
+and might be needed when installing packages from [GitHub](https://github.com/):
+see the section 'Installing packages' in the vignette *R packages* for
+instructions on installing R packages:
 `vignette("r_pkgs", package = "checkrpkgs")`).
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/), download
@@ -146,7 +147,7 @@ If you have installed Rtools, you might get the question
 `Do you want to install from sources the packages which need compilation?` when
 updating packages. You can choose `Yes` to install the latest package versions
 by building them from source, or choose `No` to get slightly less up-to-date
-package versions but a faster installation. See the section `Troubleshooting` in
+package versions but a faster installation. See the section 'Troubleshooting' in
 the vignette *R packages* for details:
 `vignette("r_pkgs", package = "checkrpkgs")`.
 
@@ -157,15 +158,15 @@ for R developed by [Posit](https://posit.co/) that can be downloaded
 [here](https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads).
 
 RStudio can also be used to read and modify plain-text files. Developers can use
-package [rstudioapi](https://cran.r-project.org/package=rstudioapi) to interact
-with RStudio from within R.
+package [**rstudioapi**](https://cran.r-project.org/package=rstudioapi) to
+interact with RStudio from within R.
 
 Various other integrated development environments for R exist:
-[`Eclipse statET`](https://eclipse.dev/statet/),
-[`Emacs Speaks Statistics (ESS)`](https://ess.r-project.org/),
-[`Positron`](https://positron.posit.co/), [`RKWard`](https://rkward.kde.org/),
-[`R in Visual Studio Code`](https://code.visualstudio.com/docs/languages/r) and
-[`tinn-R`](https://tinn-r.org/).
+[Eclipse statET](https://eclipse.dev/statet/),
+[Emacs Speaks Statistics (ESS)](https://ess.r-project.org/),
+[Positron](https://positron.posit.co/), [`RKWard`](https://rkward.kde.org/),
+[R in Visual Studio Code](https://code.visualstudio.com/docs/languages/r) and
+[tinn-R](https://tinn-r.org/).
 
 ### Configuring RStudio
 After installing RStudio, start RStudio, go to `Tools` > `Global Options` >
@@ -198,10 +199,9 @@ editor fonts are `Consolas`, `Cacadia Mono Light`, and `Lucida Console`.
 
 Choosing a good editor font deserves some attention: using a font with clearly
 distinct characters prevents confusing similar characters when writing, reading
-or debugging code. The
-following strings group together characters that in some fonts are similar in
-appearance. Letters are indicated with their names in the same case as used in
-the string:
+or debugging code. The following strings group together characters that in some
+fonts are similar in appearance. Letters are indicated with their names in the
+same case as used in the string:
 
 - `B8 S5 y4 Z2`: BEE, eight; ESS, five; wye, four; ZED, two
 - `gq ijy rnm uvvw UVVW`: gee, cue; eye, jay, wye; ar, en, em; u, repeated vee,
@@ -223,16 +223,16 @@ which can be used to compare fonts, for example using
 ## Documentation and help
 - [Bug reporting](https://www.r-project.org/bugs.html) and the relevant section
   of the
-  [`R FAQ`](https://CRAN.R-project.org/doc/manuals/R-FAQ.html#How-to-report-a-bug)
+  [R FAQ](https://CRAN.R-project.org/doc/manuals/R-FAQ.html#How-to-report-a-bug)
 - CRAN: the [homepage](https://cran.r-project.org/) and an overview of its
   [mirrors](https://cran.r-project.org/mirrors.html) (for details on mirrors,
   see the section `Mirror websites` in the vignette *R packages*:
   `vignette("r_pkgs", package = "checkrpkgs")`).
 - R [homepage](https://www.r-project.org/) with
-  [`FAQs`](https://cran.r-project.org/faqs.html),
-  [`NEWS`](https://cran.r-project.org/doc/manuals/r-release/NEWS.html), and
+  [FAQs](https://cran.r-project.org/faqs.html),
+  [NEWS](https://cran.r-project.org/doc/manuals/r-release/NEWS.html), and
   [manuals](https://cran.r-project.org/manuals.html) (especially the
-  [`R Installation and Administration manual`](https://cran.r-project.org/doc/manuals/r-release/R-admin.html))
+  [R Installation and Administration manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html))
   with [derived versions](https://rstudio.github.io/r-manuals/) better suited
   for searching.
 - R help: from inside R through `utils::help.start()` or
@@ -244,7 +244,7 @@ which can be used to compare fonts, for example using
 - RStudio by [Posit](https://posit.co/):
   [user guide](https://docs.posit.co/ide/user/),
   [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/),
-  and [`NEWS`](https://docs.posit.co/ide/news/)
+  and [NEWS](https://docs.posit.co/ide/news/)
 - Search engines specific for R: [METACRAN](https://r-pkg.org/),
   [r-project](https://search.r-project.org/), [Rseek](https://www.rseek.org/),
   [R-universe](https://r-universe.dev/search)
@@ -252,14 +252,14 @@ which can be used to compare fonts, for example using
 
 Resources with more details than this vignette:
 
-- The book [`What They Forgot to Teach You About R`](https://rstats.wtf/) by J.
-  Bryan, J. Hester, S. Pileggi, and E. D. Aja
-- The book [`An introduction to R`](https://intro2r.com/) by A. Douglas, D. Roos,
-  F. Mancini, A. Couto and D. Lusseau
+- The book [What They Forgot to Teach You About R](https://rstats.wtf/) by
+  Bryan, Hester, Pileggi, and Aja
+- The book [An introduction to R](https://intro2r.com/) by Douglas, Roos,
+  Mancini, Couto and Lusseau
 - Chapter
-  [`Installation & Environment Setup`](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
+  [Installation & Environment Setup](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
   from the book
-  [`Mastering R Through Errors and Warnings`](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
-  by K. Guo
-- Chapter [`Getting Started and Getting Help`](https://rc2e.com/gettingstarted)
-  from the [`R Cookbook`](https://rc2e.com/) by J. Long and P. Teetor
+  [Mastering R Through Errors and Warnings](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
+  by Guo
+- Chapter [Getting Started and Getting Help](https://rc2e.com/gettingstarted)
+  from the [R Cookbook](https://rc2e.com/) by Long and Teetor

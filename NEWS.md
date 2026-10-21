@@ -1,3 +1,9 @@
+# checkrpkgs 1.3.1
+
+### Documentation
+- Make layout more uniform.
+
+
 # checkrpkgs 1.3.0
 
 ### Breaking changes
