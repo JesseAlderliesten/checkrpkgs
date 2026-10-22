@@ -7,14 +7,14 @@
 # checkrpkgs 1.3.0
 
 ### Breaking changes
-- Dependency `checkinput`: increase minimum version from `1.0.0` to `1.5.0` to
-  incorporate updates to section `Note on paths` from `checkinput::is_path()`.
+- Dependency **checkinput**: increase minimum version from 1.0.0 to 1.5.0 to
+  incorporate updates to section 'Note on paths' from `checkinput::is_path()`.
 
 ### Documentation
-- Vignette `Git and GitHub`: add a reference and use subsection headings in
-  `Documentation`.
-- Vignette `R packages`: add chunk names. Show session info. Do not use retiring
-  `R-Forge` as example package directory. Add package repositories to look for
+- Vignette *Git and GitHub*: add a reference and use subsection headings in
+  'Documentation'.
+- Vignette *R packages*: add chunk names. Show session info. Do not use retiring
+  R-Forge as example package directory. Add package repositories to look for
   packages mentioned in comments.
 - Vignettes: include headings in code blocks.
 
@@ -25,30 +25,30 @@
 # checkrpkgs 1.2.0
 
 ### Breaking changes
-- Add `withr (>= 2.0.0)` as suggested dependency because it is used when testing
-  the content of vignette `R packages`.
+- Add **withr** with minimum version 2.0.0 as suggested dependency because it is
+  used when testing the content of vignette *R packages*.
 
 ### Documentation
-- `README`: add contact/contribution info.
-- Vignette `Installing R, Rtools and RStudio`: list additional integrated
-  development environments (IDEs) for `R`. Add links to some help-pages.
-- Vignette `R packages`: provide defaults to `getOption()` to use if the
+- README: add contact/contribution info.
+- Vignette *Installing R, Rtools and RStudio*: list additional integrated
+  development environments (IDEs) for R. Add links to some help-pages.
+- Vignette *R packages*: provide defaults to `getOption()` to use if the
   requested option is unset. Add namespace declarations in front of function
   calls. Additions on getting information about loaded or attached packages and
-  on getting the documentation of old base-R functions. `R-Forge` will become
+  on getting the documentation of old base R functions. R-Forge will become
   read-only.
 
 
 # checkrpkgs 1.1.2
 
 ### Documentation
-- Vignette `Installing R, Rtools and RStudio`: mention other integrated
-  development environments (IDEs) for `R`. Document the RStudio `NEWS` page.
-- Vignette `R packages`: mention other general code repositories that contain
-  `R` packages. Add ways to search for vignettes. Some clarifications.
-- Vignette `Git and GitHub`: point out the Terminal that comes with RStudio to
+- Vignette *Installing R, Rtools and RStudio*: mention other integrated
+  development environments (IDEs) for R. Document the RStudio NEWS page.
+- Vignette *R packages*: mention other general code repositories that contain
+  R packages. Add ways to search for vignettes. Some clarifications.
+- Vignette *Git and GitHub*: point out the Terminal that comes with RStudio to
   find the Git executable. Add some GitHub commands.
-- The used version of `roxygen2` increased from `8.0.0` to `8.1.0`.
+- The used version of **roxygen2** increased from 8.0.0 to 8.1.0.
 
 
 # checkrpkgs 1.1.1
@@ -63,31 +63,31 @@
 # checkrpkgs 1.1.0
 
 ### Breaking changes
-- Update dependency `conflicted`: require minimum version `1.2.0` because
+- Update dependency **conflicted**: require minimum version 1.2.0 because
   function `conflicts_prefer()` is used in a vignette.
-- Update dependency `remotes`: increase minimum version from `2.0.0` to `2.3.0`
+- Update dependency **remotes**: increase minimum version from 2.0.0 to 2.3.0
   because function `system_requirements()` with a version specification in
   argument `OS` is used in a vignette.
 
 ### Documentation
-- Vignette `Installing R, Rtools and RStudio`: add websites to compare fonts.
-- Vignette `R packages`: additional info on getting functions from older
+- Vignette *Installing R, Rtools and RStudio*: add websites to compare fonts.
+- Vignette *R packages*: additional info on getting functions from older
   versions of R and on `tools::CRAN_package_db()`.
-- Vignette `Git and GitHub`: include info on comparing branches and commits.
+- Vignette *Git and GitHub*: include info on comparing branches and commits.
   Various clarifications, especially on moving files after downloading them.
 
 
 # checkrpkgs 1.0.1
 
 ### Documentation
-- Apply stylistic suggestions provided by various packages like `goodpractice`
+- Apply stylistic suggestions provided by various packages like **goodpractice**
   that check code sanity.
 
 
 # checkrpkgs 1.0.0
 
 ### Breaking changes
-- Update dependencies: add dependency `pkgdepends` to `Suggests` because it is
+- Update dependencies: add dependency **pkgdepends** to `Suggests` because it is
   used in a vignette.
 
 
@@ -95,41 +95,42 @@
 
 ### Documentation
 - Create sub-sections and restructure text of vignettes.
-- Describe how to make R stricter with respect to conflict resolution using base
-  R.
+- Describe how to make R stricter with respect to conflict resolution using
+  base R.
 - Describe and mention Rtools before RStudio.
 
 
 # checkrpkgs 0.12.0
 
 ### Breaking changes
-- Dependency `checkinput`: increase minimum version from `0.11.0` to `1.0.0` to
+- Dependency **checkinput**: increase minimum version from 0.11.0 to 1.0.0 to
   depend on a stable version.
 
 ### Documentation
-- Remove old `NEWS`.
+- Remove old NEWS.
 
 
 # checkrpkgs 0.11.0
 
 ### Breaking changes
 - Remove functions `check_pkgs()` and `get_details_pkgs()`, move the relevant
-  information to vignette `R packages`.
+  information to vignette *R packages*.
 - Remove unused function `create_pkg_stub()`.
-- Remove dependency `progutils` because it is no longer used.
-- Move dependencies `checkinput` and `utils` from `Imports` to `Suggests`
+- Remove dependency **progutils** because it is no longer used.
+- Move dependencies **checkinput** and `utils` from `Imports` to `Suggests`
   because they are used in vignettes but not anymore in code.
 
 
 # checkrpkgs 0.10.0
 
 ### Breaking changes
-- Add dependency `sessioninfo (>= 1.2.0)` to `Suggests` because it mentioned in
-  the documentation of `get_details_pkgs()` and in the vignettes.
-- Dependency `checkinput`: increase minimum version from `0.8.0` to `0.11.0` to
+- Add dependency **sessioninfo** with minimum version 1.2.0 to `Suggests`
+  because it mentioned in the documentation of `get_details_pkgs()` and in the
+  vignettes.
+- Dependency **checkinput**: increase minimum version from 0.8.0 to 0.11.0 to
   incorporate change of argument name `allow_zero_length()` to
   `allow_zerolength()`.
-- Dependency `progutils`: increase minimum version from `0.2.0` to `0.6.0` to
+- Dependency **progutils**: increase minimum version from 0.2.0 to 0.6.0 to
   incorporate change of argument name `allow_zero_length()` to
   `allow_zerolength()`.
 - `check_pkgs()`: argument `quietly` renamed to `silently` because it silences
@@ -139,14 +140,14 @@
 # checkrpkgs 0.9.0
 
 ### Breaking changes
-- Dependency `checkinput`: increase minimum version from `0.6.0` to `0.8.0` to
+- Dependency **checkinput**: increase minimum version from 0.6.0 to 0.8.0 to
   update argument name `allow_zero` to `allow_zero_length`.
-- Dependency `progutils`: increase minimum version from `0.0.9` to `0.2.0` to
+- Dependency **progutils**: increase minimum version from 0.0.9 to 0.2.0 to
   update argument name `allow_zero` to `allow_zero_length`.
 
 ### Documentation
-- Vignette `Installing R, Rtools and RStudio`: move documentation for developers
-  to my package `develcoder`.
+- Vignette *Installing R, Rtools and RStudio*: move documentation for developers
+  to my package **develcoder**.
 
 
 # checkrpkgs 0.7.1
@@ -158,11 +159,13 @@
 # checkrpkgs 0.7.0
 
 ### Breaking changes
-- Dependency `checkinput`: increase from `>= 0.5.0` to `>= 0.6.0`, needed to use
-  `paste_quoted()` that is re-exported from `checkinput` to `progutils`.
-- Dependency `progutils`: increase from `>= 0.0.7` to `>= 0.0.9` to use function
-  `create_tempdir()` to create a temporary directory that can safely be removed.
-- Use `roxygen2` version 8.0.0.
+- Dependency **checkinput**: increase minimum version from 0.5.0 to 0.6.0, to be
+  able to use `paste_quoted()` that is re-exported from **checkinput** to
+  **progutils**.
+- Dependency **progutils**: increase minimum version from 0.0.7 to 0.0.9 to be
+  able to use function `create_tempdir()` to create a temporary directory that
+  can safely be removed.
+- Use **roxygen2** version 8.0.0.
 
 ### Bug fixes
 - `get_details_pkgs()` would attempt to use a non-created index if no package
@@ -172,8 +175,9 @@
 # checkrpkgs 0.6.0
 
 ### Breaking changes
-- Dependency `progutils`: increase from `>= 0.0.6` to `>= 0.0.7` to ensure
-  uniform handling of empty quotes and `NA`s through `progutils::paste_quoted()`.
+- Dependency **progutils**: increase minimum version from 0.0.6 to 0.0.7 to
+  ensure uniform handling of empty quotes and `NA`s through
+  `progutils::paste_quoted()`.
 
 
 # checkrpkgs 0.5.0
@@ -186,9 +190,9 @@
 # checkrpkgs 0.4.0
 
 ### Breaking changes
-- Update dependencies: add dependency `Matrix` to `Suggests` because it is used
-  in vignettes. Remove dependency `stats` from `Suggests` after updating an
-  example in the vignettes to use `methods` instead of `stats`.
+- Update dependencies: add dependency **Matrix** to `Suggests` because it is
+  used in vignettes. Remove dependency **stats** from `Suggests` after updating
+  an example in the vignettes to use **methods** instead of **stats**.
 
 ### Bugfixes ###
 - `get_details_pkgs()`: if `pkgs` has length larger than zero, warn only about
@@ -198,20 +202,21 @@
 # checkrpkgs 0.3.0
 
 ### Breaking changes
-- Dependencies: require `BiocManager >= 1.30.5`, `ctv >= 0.4-0` and
-  `remotes >= 2.0.0` to be able to run code in vignettes.
-- `get_details_pkgs()`: also extract fields `"GithubRepo"` and `"GithubUsername"`.
-  No need to use the hardcoded fields in the default argument. Set field
-  `Repository` to `Github` if appropriate. Adjust warnings.
+- Dependencies: require **BiocManager** with minimum version 1.30.5, **ctv**
+  with minimum version 0.4-0 and **remotes** with minimum version 2.0.0 to be
+  able to run code in vignettes.
+- `get_details_pkgs()`: also extract fields `"GithubRepo"` and
+  `"GithubUsername"`. No need to use the hardcoded fields in the default
+  argument. Set field `Repository` to `Github` if appropriate. Adjust warnings.
 
 
 # checkrpkgs 0.2.0
 
 ### Breaking changes
-- Dependency `checkinput`: increase from `>= 0.0.6` to `>= 0.5.0`. This
-  implicitly increases the minimum version of `R` to `>= 4.1.0` but removes the
-  dependency on `vctrs`.
-- Dependency `progutils`: increase from `>= 0.0.3` to `>= 0.0.6` to be able to
-  use functions added to `progutils`.
-- Dependency `tinytest`: declare version `>= 1.4.1` because I use argument
+- Dependency **checkinput**: increase minimum version from 0.0.6 to 0.5.0. This
+  implicitly increases the minimum version of R to 4.1.0 but removes the
+  dependency on **vctrs**.
+- Dependency **progutils**: increase minimum version from 0.0.3 to 0.0.6 to be
+  able to use functions added to **progutils**.
+- Dependency **tinytest**: declare minimum version 1.4.1 because I use argument
   `strict` in `expect_message()` and `expect_warning()`.

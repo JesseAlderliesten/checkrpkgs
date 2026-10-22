@@ -21,11 +21,11 @@ knitr::opts_chunk$set(
 **checkrpkgs** explains how to install and configure
 [R](https://www.r-project.org/),
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/), and
-[RStudio](https://posit.co/products/open-source/rstudio?sid=1); how to install R
-[packages](https://cran.r-project.org/web/packages/) and get information about
-to-be-installed and already-installed packages; how to get the source code of R
-functions; and how to set up and use Git and [GitHub](https://github.com/) with
-RStudio.
+[RStudio](https://posit.co/products/open-source/rstudio?sid=1); how to install
+R [packages](https://cran.r-project.org/web/packages/) and get information
+about to-be-installed and already-installed packages; how to get the source code
+of R functions; and how to set up and use Git and
+[GitHub](https://github.com/) with RStudio.
 
 ## Installation
 Visit the [**checkrpkgs** website](https://jessealderliesten.github.io/checkrpkgs/)
@@ -69,7 +69,7 @@ citation("checkrpkgs")
 ## Contact
 Please open a
 [GitHub issue](https://github.com/JesseAlderliesten/checkrpkgs/issues) if you
-have suggestions for improvement of **checkrpkgs**.
+have suggestions to improve **checkrpkgs**.
 
 ## Similar resources
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/) by

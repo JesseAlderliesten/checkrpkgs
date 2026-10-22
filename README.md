@@ -82,7 +82,7 @@ License](LICENSE.md).
 
 Please open a [GitHub
 issue](https://github.com/JesseAlderliesten/checkrpkgs/issues) if you
-have suggestions for improvement of **checkrpkgs**.
+have suggestions to improve **checkrpkgs**.
 
 ## Similar resources
 
