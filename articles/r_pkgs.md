@@ -11,10 +11,10 @@ Text between angled brackets (`<...>`) is used to refer to text that
 should be replaced with specific text to get working code or working
 file paths. For example, `<pkg>` is used as a place holder to refer to a
 package name and should be replaced with `utils` if you want to get
-information about package `utils`, and with `methods` if you want to get
-information about package `methods`. Similarly, `<func>` is used as a
-place holder to refer to a function name that should be replaced with a
-specific function name to get working code.
+information about package **utils**, and with `methods` if you want to
+get information about package **methods**. Similarly, `<func>` is used
+as a place holder to refer to a function name that should be replaced
+with a specific function name to get working code.
 
 In this vignette, calls to functions are frequently written in the form
 `<pkg>::<func>()`, to make clear which package is used and, through the
@@ -25,7 +25,7 @@ needed. For example, in this vignette the notation
 [`utils::citation()`](https://rdrr.io/r/utils/citation.html) is used to
 show how to cite R, indicating that the function
 [`citation()`](https://rdrr.io/r/utils/citation.html) is defined in
-package `utils`. In normal scripts, one would use
+package **utils**. In normal scripts, one would use
 [`library(utils)`](https://rdrr.io/r/base/library.html) in a section at
 the top of the script where all required packages are
 [attached](#loading-and-attaching-packages), and
@@ -282,10 +282,10 @@ information about their dependencies, and returns the names in
 alphabetical order instead of the order of loading.
 `getOption("defaultPackages")` gives the names of packages that are
 attached by default when R starts up if environment variable
-`R_DEFAULT_PACKAGES` is unset (i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
+`R_DEFAULT_PACKAGES` is unset, i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
 is `""`, see [`help("Startup")`](https://rdrr.io/r/base/Startup.html)
 and the entry `defaultPackages` in
-[`help(options)`](https://rdrr.io/r/base/options.html)).
+[`help(options)`](https://rdrr.io/r/base/options.html).
 
 ### Updating packages
 
@@ -342,7 +342,7 @@ BiocManager::install(pkgs = character(), lib = .libPaths(), dependencies = NA,
 ### Installing old versions
 
 Installing old versions of a package might require installing Rtools to
-build the packages from source, see the section `Rtools` in the vignette
+build the packages from source, see the section ‘Rtools’ in the vignette
 *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
 
@@ -447,7 +447,7 @@ Bioconductor, e.g.,
 - If installing packages fails, try
   `utils::install.packages(<pkgs>, verbose = TRUE, build_vignettes = FALSE)`
   to get more diagnostic information and not install vignettes. For
-  packages from `BioConductor`, try
+  packages from BioConductor, try
   `BiocManager::install(<pkgs>, force = TRUE)` to re-install possibly
   broken dependencies.
 
@@ -691,9 +691,9 @@ To see which packages are mentioned in comments, also look for:
 
 Partly based on:
 
-- Bryan. 2015.
-  [`Accessing R Source`](https://github.com/jennybc/access-r-source).
-- Ligges. 2006. `R help desk: accessing the sources`. [RNews
+- Bryan. 2015. [Accessing R
+  Source](https://github.com/jennybc/access-r-source).
+- Ligges. 2006. R help desk: accessing the sources. [RNews
   6(4):43-45](https://journal.r-project.org/articles/RN-2006-035/).
 - A [community answer](https://stackoverflow.com/a/19226817) from
   [StackOverflow](https://stackoverflow.com/).
@@ -708,13 +708,13 @@ is available at [CRAN](https://cran.r-project.org/src/base/) and at the
 [SVN-project](https://svn.r-project.org/R/branches/). Searching the
 source code of the development version is easiest using the [GitHub
 mirror](https://github.com/r-devel/r-svn/tree/main/src/library) of the
-SVN-project, see also the documentation on
-[`searching GitHub`](https://docs.github.com/en/search-github).
+SVN-project, see also the documentation on [searching
+GitHub](https://docs.github.com/en/search-github).
 
 The source code of packages from
 [CRAN](https://cran.r-project.org/web/packages/index.html) can be
 searched at [METACRAN](https://github.com/cran), an **unofficial** CRAN
-mirror. Alternatively, download the source file from section `Downloads`
+mirror. Alternatively, download the source file from section ‘Downloads’
 of the CRAN page. The source files have been compressed into a `tar`
 file so you have to extract the files (right-click on the downloaded
 file and choose `extract all`).
@@ -744,7 +744,7 @@ presence of names:
 hasName
 #> function (x, name) 
 #> match(name, names(x), nomatch = 0L) > 0L
-#> <bytecode: 0x56353e54f6c8>
+#> <bytecode: 0x56482afc3618>
 #> <environment: namespace:utils>
 ```
 
@@ -768,7 +768,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x563539b9a1f0>
+#> <bytecode: 0x5648265f31f0>
 #> <environment: namespace:base>
 ```
 
@@ -809,7 +809,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x56353be87d58>
+#> <bytecode: 0x5648288e0d58>
 #> <environment: namespace:base>
 ```
 
@@ -839,7 +839,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x56353de1c248>
+#> <bytecode: 0x56482a87a448>
 #> <environment: namespace:base>
 ```
 
@@ -881,7 +881,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x56353de1f668>
+#> <bytecode: 0x56482a87d868>
 #> <environment: namespace:base>
 ```
 
@@ -927,8 +927,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x56353b712050>
-#> <environment: 0x56353a4aa008>
+#> <bytecode: 0x56482816b088>
+#> <environment: 0x564826f03008>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -991,7 +991,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x56353d3d6e28>
+#> <bytecode: 0x564829e35d00>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -1003,14 +1003,14 @@ if(requireNamespace("Matrix")) {
 #### .Internal or .Primitive
 
 If `getAnywhere("<func>")` returns `.Internal` or `.Primitive`, the
-function is internal or primitive (see
+function is internal or primitive, see
 [`help(".internalGenerics")`](https://rdrr.io/r/base/InternalMethods.html)
-and `help(".Primitive()")`). The source code of such functions can be
+and `help(".Primitive()")`. The source code of such functions can be
 viewed at code [repositories](#repositories), or on your PC if you have
 installed R [from source](https://cran.r-project.org/sources.html) using
-Rtools (see the section ‘Rtools’ in the vignette *Installing R, Rtools
+Rtools, see the section ‘Rtools’ in the vignette *Installing R, Rtools
 and RStudio*:
-[`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)).
+[`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
 
 Locate the file ‘src/main/names.c’ and look in the first column
 (‘printname’) for the name of the R function to find the appropriate
@@ -1092,9 +1092,9 @@ and searching in the ‘src’ folder of the downloaded code.
 
 ### Source code
 
-- Bryan. 2015.
-  [`Accessing R Source`](https://github.com/jennybc/access-r-source).
-- Ligges. 2006. `R help desk: accessing the sources`. [RNews
+- Bryan. 2015. [Accessing R
+  Source](https://github.com/jennybc/access-r-source).
+- Ligges. 2006. R help desk: accessing the sources. [RNews
   6(4):43-45](https://journal.r-project.org/articles/RN-2006-035/).
 - A [community answer](https://stackoverflow.com/a/19226817) from
   [StackOverflow](https://stackoverflow.com/).

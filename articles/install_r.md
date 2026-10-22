@@ -133,11 +133,11 @@ session:
   region).
 - [`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html)
   extracts parts of the information mentioned above about the operating
-  system and R, and lists attached and loaded packages (see also
-  [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html)). Its
-  print method can be used to print additional information about the
-  used locale (i.e., settings that depend on the user’s language or
-  region) and random number generation:  
+  system and R, and lists attached and loaded packages, see also
+  [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html). Its print
+  method can be used to print additional information about the used
+  locale (i.e., settings that depend on the user’s language or region)
+  and random number generation:  
   `print(sessionInfo(), locale = TRUE, RNG = TRUE)`.  
   [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
   provides more details about the origin of loaded or installed
@@ -210,11 +210,11 @@ is to **deselect** the options `Show diagnostics for R` and
 `Prompt to install missing R packages discovered in R source files` at
 `Tools` \> `Options` \> `Code` \> `Diagnostics`. Deselecting these
 options ensures namespaces are not automatically loaded when RStudio
-loads a project (run
+loads a project. Run
 [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) to see which
 packages have been attached, or
 [`sessioninfo::session_info()`](https://sessioninfo.r-lib.org/reference/session_info.html)
-to get more information about those that are not base R packages).
+to get more information about those that are not base R packages.
 
 In the same tab `General`, you can also specify the version of R that
 should be used and the default working directory (see
