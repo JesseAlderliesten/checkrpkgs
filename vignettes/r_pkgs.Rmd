@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Introduction and notation
 This vignette explains how to install R
-[packages](http://cran.r-project.org/web/packages/); how to get information
+[packages](https://cran.r-project.org/web/packages/); how to get information
 about to-be-installed and already-installed R packages; and how to get the
 source code of R functions.
 
