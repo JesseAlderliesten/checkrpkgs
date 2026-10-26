@@ -243,9 +243,9 @@ future projects that you create. See the
 [blogpost from Posit](https://tidyverse.org/blog/2021/10/renaming-default-branch/)
 for details.
 
-```{r GitHub-rename, eval = FALSE}
+```{r GitHub-rename-default, eval = FALSE}
 usethis::git_default_branch() # show default branch for the current repository
-git_default_branch_configure(name = "main")
+usethis::git_default_branch_configure(name = "main")
 ```
 
 ## Repositories: download, fork, or clone?
