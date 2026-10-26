@@ -91,14 +91,9 @@ if(requireNamespace("Matrix", quietly = TRUE)) {
 expect_true(all(c("f", "signature") %in% names(formals(methods::getMethod))))
 expect_true(all(c("classes", "where") %in% names(formals(methods::showMethods))))
 if(requireNamespace("utils", quietly = TRUE)) {
-  expect_true(
-    "Introduction" %in%
-      utils::hsearch_db(package = "methods", types = "help")$Base[, "Name"]
-  )
-  expect_true(
-    "Methods_Details" %in%
-      utils::hsearch_db(package = "methods", types = "help")$Base[, "Name"]
-  )
+  hdb_utils <- utils::hsearch_db(package = "utils", types = "help")
+  expect_true("Introduction" %in% hdb_utils$Base[, "Name"])
+  expect_true("Methods_Details" %in% hdb_utils$Base[, "Name"])
 }
 
 #### pkgbuild ####
