@@ -225,6 +225,28 @@ See the GitHub documentation
 and
 [here](https://docs.github.com/en/repositories/working-with-files/managing-files/renaming-a-file).
 
+## Renaming a repository
+The code below can be used to change the name of the default branch of the
+current repository from `master` to `main`, see the
+[blogpost from Posit](https://tidyverse.org/blog/2021/10/renaming-default-branch/)
+for details.
+
+```{r GitHub-rename, eval = FALSE}
+usethis::git_default_branch() # show default branch for the current repository
+usethis::git_default_branch_rename(from = "master", to = "main")
+# Sometimes this takes a while before it works
+usethis::git_default_branch_rediscover()
+```
+
+The code below can be used to set `main` as the name of the default branch in
+future projects that you create. See the
+[blogpost from Posit](https://tidyverse.org/blog/2021/10/renaming-default-branch/)
+for details.
+
+```{r GitHub-rename, eval = FALSE}
+usethis::git_default_branch() # show default branch for the current repository
+git_default_branch_configure(name = "main")
+```
 
 ## Repositories: download, fork, or clone?
 There are several ways to copy code from a GitHub repository to your PC:
