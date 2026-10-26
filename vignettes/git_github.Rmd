@@ -275,8 +275,8 @@ There are several ways to copy code from a GitHub repository to your PC:
 ### Installing a package from GitHub
 The following code can be used to install packages from
 [GitHub](https://github.com/) (for details see the section
-`Installing packages` > `Github` in the vignette *R packages*:
-`vignette("r_pkgs", package = "checkrpkgs")`):
+[`Installing packages` > `Github`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html#github)
+in the vignette *R packages*: `vignette("r_pkgs", package = "checkrpkgs")`):
 
 ```{r install github, eval = FALSE}
 pkgs_new <- "JesseAlderliesten/checkrpkgs"
@@ -317,8 +317,11 @@ In addition to section [Using GitHub] above, see:
   [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 ## GitHub Actions
-See the section 'Automate checks' in the vignette *Package setup* and section
-'Use GitHub Actions' in the vignette *Package development*, both from package
+See the section
+['Automate checks'](https://jessealderliesten.github.io/develcoder/articles/pkg_setup.html#automate-checks)
+in the vignette *Package setup* and the section
+[Use GitHub Actions](https://jessealderliesten.github.io/develcoder/articles/pkg_devel.html#use-github-actions)
+in the vignette *Package development*, both from package
 **develcoder**: `vignette("pkg_setup", package = "develcoder")` and
 `vignette("pkg_devel", package = "develcoder")`.
 
@@ -382,4 +385,4 @@ respectively. On paths and file separators in R, see the 'Notes on Paths' in
 ### See also
 
 - Vignette *R markdown and knitr* in package **develcoder**:
-  `vignette("rmarkdown_knitr", package = "develcoder")`
+  [`vignette("rmarkdown_knitr", package = "develcoder")`](https://jessealderliesten.github.io/develcoder/articles/rmarkdown_knitr.html)

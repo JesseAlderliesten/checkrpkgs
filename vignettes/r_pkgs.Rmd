@@ -296,8 +296,9 @@ BiocManager::install(pkgs = character(), lib = .libPaths(), dependencies = NA,
 
 ### Installing old versions
 Installing old versions of a package might require installing Rtools to build
-the packages from source, see the section 'Rtools' in the vignette
-*Installing R, Rtools and RStudio*:
+the packages from source, see the section
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`.
 
 #### base R
@@ -371,7 +372,9 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   
   This question is only asked if you have installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/). To install Rtools,
-  see the section 'Rtools' in the vignette *Installing R, Rtools and RStudio*:
+  see the section
+  [Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+  in the vignette *Installing R, Rtools and RStudio*:
   `vignette("install_r", package = "checkrpkgs")`. If you want the latest
   version without using Rtools, you can try again a few days later: it usually
   takes a bit longer for the binaries (i.e., the package versions that do not
@@ -741,7 +744,9 @@ internal or primitive, see `help(".internalGenerics")` in R 4.4.0 and later and
 `help(".Primitive()")`. The source code of such functions can be viewed at code
 [repositories][Repositories], or on your PC if you have installed R
 [from source](https://cran.r-project.org/sources.html) using Rtools, see the
-section 'Rtools' in the vignette *Installing R, Rtools and RStudio*:
+section
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`.
 
 Locate the file 'src/main/names.c' and look in the first column ('printname')
@@ -788,8 +793,9 @@ included in a package, your best bet for finding the source code is
 [GitHub](https://github.com/r-devel/r-svn/) repository (e.g.,
 `https://github.com/r-devel/r-svn/tree/main/src/library/methods/src` for code
 from package **methods**; note that GitHub search only searches the main
-branch), or installing the package from source (see the section 'Rtools' in the
-vignette *Installing R, Rtools and RStudio*:
+branch), or installing the package from source (see the section
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`) and searching in the 'src'
 folder of the downloaded code.
 
@@ -823,8 +829,9 @@ folder of the downloaded code.
 ### Miscellaneous
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/) by
   Bryan, Hester, Pileggi, and Aja
-- Section `Documentation and help` in the vignette
-  *Installing R, Rtools and RStudio*:  
+- Section
+  [Documentation and help](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#documentation-and-help)
+  in the vignette *Installing R, Rtools and RStudio*:  
   `vignette("install_r", package = "checkrpkgs")`
 - Search engines specific for R: [METACRAN](https://r-pkg.org/),
   [r-project](https://search.r-project.org/), [Rseek](https://www.rseek.org/),

@@ -130,9 +130,10 @@ from source. The latter is needed when installing **older** versions of packages
 from [CRAN](https://cran.r-project.org/web/packages/index.html) or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software),
 and might be needed when installing packages from [GitHub](https://github.com/):
-see the section 'Installing packages' in the vignette *R packages* for
-instructions on installing R packages:
-`vignette("r_pkgs", package = "checkrpkgs")`).
+see the section
+[Installing packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html#installing-packages)
+in the vignette *R packages* for instructions on installing R packages:
+`vignette("r_pkgs", package = "checkrpkgs")`.
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/), download
 the version appropriate for the installed version of R (see the output of
@@ -147,8 +148,9 @@ If you have installed Rtools, you might get the question
 `Do you want to install from sources the packages which need compilation?` when
 updating packages. You can choose `Yes` to install the latest package versions
 by building them from source, or choose `No` to get slightly less up-to-date
-package versions but a faster installation. See the section 'Troubleshooting' in
-the vignette *R packages* for details:
+package versions but a faster installation. See the section
+[Troubleshooting](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html#troubleshooting)
+in the vignette *R packages* for details:
 `vignette("r_pkgs", package = "checkrpkgs")`.
 
 ## RStudio
@@ -226,8 +228,9 @@ which can be used to compare fonts, for example using
   [R FAQ](https://CRAN.R-project.org/doc/manuals/R-FAQ.html#How-to-report-a-bug)
 - CRAN: the [homepage](https://cran.r-project.org/) and an overview of its
   [mirrors](https://cran.r-project.org/mirrors.html) (for details on mirrors,
-  see the section `Mirror websites` in the vignette *R packages*:
-  `vignette("r_pkgs", package = "checkrpkgs")`).
+  see the section
+  [Mirror websites](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html#mirror-websites)
+  in the vignette *R packages*: `vignette("r_pkgs", package = "checkrpkgs")`).
 - R [homepage](https://www.r-project.org/) with
   [FAQs](https://cran.r-project.org/faqs.html),
   [NEWS](https://cran.r-project.org/doc/manuals/r-release/NEWS.html), and
