@@ -28,6 +28,7 @@ Suggests:
     strict,
     tinytest (>= 1.4.1),
     tools,
+    usethis (>= 2.1.2),
     utils,
     withr (>= 2.0.0)
 VignetteBuilder: 
