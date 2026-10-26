@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Introduction and notation
 This vignette explains how to install R
-[packages](http://cran.r-project.org/web/packages/); how to get information
+[packages](https://cran.r-project.org/web/packages/); how to get information
 about to-be-installed and already-installed R packages; and how to get the
 source code of R functions.
 
@@ -736,8 +736,8 @@ if(requireNamespace("Matrix")) {
 ```
 
 #### .Internal or .Primitive
-If `getAnywhere("<func>")` returns `.Internal` or `.Primitive`, the function
-is internal or primitive, see `help(".internalGenerics")` and
+If `getAnywhere("<func>")` returns `.Internal` or `.Primitive`, the function is
+internal or primitive, see `help(".internalGenerics")` in R 4.4.0 and later and
 `help(".Primitive()")`. The source code of such functions can be viewed at code
 [repositories][Repositories], or on your PC if you have installed R
 [from source](https://cran.r-project.org/sources.html) using Rtools, see the
