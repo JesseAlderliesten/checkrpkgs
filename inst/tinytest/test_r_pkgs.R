@@ -39,8 +39,10 @@ expect_true(all(
 
 if(requireNamespace("utils", quietly = TRUE)) {
   hdb_base <- utils::hsearch_db(package = "base", types = "help")
-  expect_true(".internalGenerics" %in% hdb_base$Aliases[, "Alias"])
   expect_true("Startup" %in% hdb_base$Base[, "Name"])
+  if(utils::packageVersion("base") >= "4.4.0") {
+    expect_true(".internalGenerics" %in% hdb_base$Aliases[, "Alias"])
+  }
 }
 
 #### BiocManager ####
