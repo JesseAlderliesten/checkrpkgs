@@ -10,10 +10,9 @@ expect_true(all(
 
 if(requireNamespace("utils", quietly = TRUE)) {
   hdb_base <- utils::hsearch_db(package = "base", types = "help")
-  expect_true(all(
-    c("colon", "Control", "environment variables", "Extract", "Logic", "Startup") %in%
-      c(hdb_base$Base[, "Name"], hdb_base$Aliases[, "Alias"])
-  ))
+  res <- c("colon", "Control", "environment variables", "Extract", "Logic", "Startup") %in%
+    c(hdb_base$Base[, "Name"], hdb_base$Aliases[, "Alias"])
+  expect_silent(if(res != rep(TRUE, 7L)) {warning(res)})
 }
 
 #### conflicted ####
