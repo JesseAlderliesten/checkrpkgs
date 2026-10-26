@@ -1,5 +1,11 @@
 # Changelog
 
+## checkrpkgs 1.3.2
+
+#### Documentation
+
+- Prune the NEWS file.
+
 ## checkrpkgs 1.3.1
 
 #### Documentation
@@ -16,17 +22,9 @@
 
 #### Documentation
 
-- Vignette *Git and GitHub*: add a reference and use subsection headings
-  in ‘Documentation’.
-- Vignette *R packages*: add chunk names. Show session info. Do not use
-  retiring R-Forge as example package directory. Add package
-  repositories to look for packages mentioned in comments.
-- Vignettes: include headings in code blocks.
-
-### Bugfix in tests
-
-- [`tools::CRAN_package_db()`](https://rdrr.io/r/tools/CRANtools.html)
-  has two different values in column `path`.
+- Vignette *R packages*: show session info. Do not use retiring R-Forge
+  as example package directory. Add package repositories to look for
+  packages mentioned in comments.
 
 ## checkrpkgs 1.2.0
 
@@ -37,7 +35,6 @@
 
 #### Documentation
 
-- README: add contact/contribution info.
 - Vignette *Installing R, Rtools and RStudio*: list additional
   integrated development environments (IDEs) for R. Add links to some
   help-pages.
@@ -47,28 +44,6 @@
   function calls. Additions on getting information about loaded or
   attached packages and on getting the documentation of old base R
   functions. R-Forge will become read-only.
-
-## checkrpkgs 1.1.2
-
-#### Documentation
-
-- Vignette *Installing R, Rtools and RStudio*: mention other integrated
-  development environments (IDEs) for R. Document the RStudio NEWS page.
-- Vignette *R packages*: mention other general code repositories that
-  contain R packages. Add ways to search for vignettes. Some
-  clarifications.
-- Vignette *Git and GitHub*: point out the Terminal that comes with
-  RStudio to find the Git executable. Add some GitHub commands.
-- The used version of **roxygen2** increased from 8.0.0 to 8.1.0.
-
-## checkrpkgs 1.1.1
-
-#### Documentation
-
-- Vignette `git_github`: add how to create a new branch to push changes
-  back and how to move from pushing changes to a pull request. Show how
-  to get a diff-file of changes in a pull request. Describe linking and
-  how to link a pull request to an issue.
 
 ## checkrpkgs 1.1.0
 
@@ -91,13 +66,6 @@
   commits. Various clarifications, especially on moving files after
   downloading them.
 
-## checkrpkgs 1.0.1
-
-#### Documentation
-
-- Apply stylistic suggestions provided by various packages like
-  **goodpractice** that check code sanity.
-
 ## checkrpkgs 1.0.0
 
 #### Breaking changes
@@ -105,25 +73,12 @@
 - Update dependencies: add dependency **pkgdepends** to `Suggests`
   because it is used in a vignette.
 
-## checkrpkgs 0.12.1
-
-#### Documentation
-
-- Create sub-sections and restructure text of vignettes.
-- Describe how to make R stricter with respect to conflict resolution
-  using base R.
-- Describe and mention Rtools before RStudio.
-
 ## checkrpkgs 0.12.0
 
 #### Breaking changes
 
 - Dependency **checkinput**: increase minimum version from 0.11.0 to
   1.0.0 to depend on a stable version.
-
-#### Documentation
-
-- Remove old NEWS.
 
 ## checkrpkgs 0.11.0
 
@@ -133,7 +88,7 @@
   relevant information to vignette *R packages*.
 - Remove unused function `create_pkg_stub()`.
 - Remove dependency **progutils** because it is no longer used.
-- Move dependencies **checkinput** and `utils` from `Imports` to
+- Move dependencies **checkinput** and **utils** from `Imports` to
   `Suggests` because they are used in vignettes but not anymore in code.
 
 ## checkrpkgs 0.10.0

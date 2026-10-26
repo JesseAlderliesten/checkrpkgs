@@ -3,7 +3,7 @@
 ## Introduction and notation
 
 This vignette explains how to install R
-[packages](http://cran.r-project.org/web/packages/); how to get
+[packages](https://cran.r-project.org/web/packages/); how to get
 information about to-be-installed and already-installed R packages; and
 how to get the source code of R functions.
 
@@ -744,7 +744,7 @@ presence of names:
 hasName
 #> function (x, name) 
 #> match(name, names(x), nomatch = 0L) > 0L
-#> <bytecode: 0x56482afc3618>
+#> <bytecode: 0x55e9fddce418>
 #> <environment: namespace:utils>
 ```
 
@@ -768,7 +768,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x5648265f31f0>
+#> <bytecode: 0x55e9f9266d30>
 #> <environment: namespace:base>
 ```
 
@@ -809,7 +809,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5648288e0d58>
+#> <bytecode: 0x55e9fb554898>
 #> <environment: namespace:base>
 ```
 
@@ -839,7 +839,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x56482a87a448>
+#> <bytecode: 0x55e9fd4d4738>
 #> <environment: namespace:base>
 ```
 
@@ -881,7 +881,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x56482a87d868>
+#> <bytecode: 0x55e9fd4d9a78>
 #> <environment: namespace:base>
 ```
 
@@ -927,8 +927,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x56482816b088>
-#> <environment: 0x564826f03008>
+#> <bytecode: 0x55e9faddebc8>
+#> <environment: 0x55e9f9b76b48>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -991,7 +991,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x564829e35d00>
+#> <bytecode: 0x55e9fcaa4718>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -1005,11 +1005,11 @@ if(requireNamespace("Matrix")) {
 If `getAnywhere("<func>")` returns `.Internal` or `.Primitive`, the
 function is internal or primitive, see
 [`help(".internalGenerics")`](https://rdrr.io/r/base/InternalMethods.html)
-and `help(".Primitive()")`. The source code of such functions can be
-viewed at code [repositories](#repositories), or on your PC if you have
-installed R [from source](https://cran.r-project.org/sources.html) using
-Rtools, see the section ‘Rtools’ in the vignette *Installing R, Rtools
-and RStudio*:
+in R 4.4.0 and later and `help(".Primitive()")`. The source code of such
+functions can be viewed at code [repositories](#repositories), or on
+your PC if you have installed R [from
+source](https://cran.r-project.org/sources.html) using Rtools, see the
+section ‘Rtools’ in the vignette *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
 
 Locate the file ‘src/main/names.c’ and look in the first column
