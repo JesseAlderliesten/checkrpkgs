@@ -123,7 +123,7 @@ RStudio will remember it.
 
 To `Push` only some of the changes you made, use the `Diff` button in the `Git`
 menu and select the line or lines of code containing the changes you want to
-`Push`. Then a button `Stage line` or `Stage chunck` will show up next to the
+`Push`. Then a button `Stage line` or `Stage chunk` will show up next to the
 selected code. Click that button to `Push` only the selected lines.
 
 If you pushed changes to your fork of a repository you do not own, move to your
