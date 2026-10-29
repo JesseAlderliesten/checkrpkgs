@@ -183,7 +183,7 @@ expect_true(all(
 ))
 expect_true(all(
   c("dependencies", "lib", "pkgs", "quiet", "repos", "type", "verbose") %in%
-    names(formals(install.packages))
+    names(formals(utils::install.packages))
 ))
 expect_true("fields" %in% names(formals(utils::installed.packages)))
 expect_true("class" %in% names(formals(utils::methods)))
