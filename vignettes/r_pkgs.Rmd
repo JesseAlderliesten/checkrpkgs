@@ -241,11 +241,15 @@ messages on progress for non-standard packages, see the section `Tracing` in
 
 `loadedNamespaces()` gives the names of packages that are currently loaded,
 `utils::sessionInfo()` also gives their versions and shows if they are attached
-or only loaded, `path.package()` gives the paths from which attached packages
-were loaded. `sessioninfo::session_info(include_base = TRUE)` provides
+or only loaded, and `path.package()` gives the paths from which attached
+packages were loaded. `sessioninfo::session_info(include_base = TRUE)` provides
 the names, versions and the paths of loaded packages, has the option to show
 information about their dependencies, and returns the names in alphabetical
-order instead of the order of loading. `getOption("defaultPackages")` gives the
+order instead of the order of loading. `sessioncheck::sessionstate()` gives
+similar information and in addition shows relevant information about the
+random-number generator (RNG).
+
+`getOption("defaultPackages")` gives the
 names of packages that are attached by default when R starts up if environment
 variable `R_DEFAULT_PACKAGES` is unset, i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
 is `""`, see `help("Startup")` and the entry `defaultPackages` in
@@ -575,7 +579,8 @@ To see which packages are mentioned in comments, also look for:
 - `Git`: [GitHub](https://github.com/), [GitLab](https://gitlab.com/gitlab-com)
 - `package` and `libraries`
 - `rOpenSci`: [rOpenSci](https://ropensci.org/packages/)
-- `verse`: [R-multiverse](https://r-multiverse.org/),
+- `verse`: [pharmaverse](https://pharmaverse.org/),
+  [R-multiverse](https://r-multiverse.org/),
   [R-universe](https://r-universe.dev/packages),
   [tidyverse](https://tidyverse.org/packages/), etc
 
