@@ -261,8 +261,9 @@ Resources with more details than this vignette:
   Mancini, Couto and Lusseau
 - Chapter
   [Installation & Environment Setup](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
-  from the book
-  [Mastering R Through Errors and Warnings](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
-  by Guo
+  from the book 'Mastering R Through Errors and Warnings' by Guo
+- Chapter
+  [Getting started with R](https://learningstatisticswithr.com/03-introR.html)
+  from the book 'Learning statistics with R' from Navarro.
 - Chapter [Getting Started and Getting Help](https://rc2e.com/gettingstarted)
-  from the [R Cookbook](https://rc2e.com/) by Long and Teetor
+  from the 'R Cookbook' by Long and Teetor
