@@ -24,6 +24,7 @@ Suggests:
     pkgdepends,
     remotes (>= 2.3.0),
     rmarkdown,
+    sessioncheck (>= 0.2.0),
     sessioninfo (>= 1.2.0),
     strict,
     tinytest (>= 1.4.1),
