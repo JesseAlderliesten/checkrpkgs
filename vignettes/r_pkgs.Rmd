@@ -56,7 +56,8 @@ are always installed together with R. The
 packages are installed with binary distributions of R. Together, the base and
 recommended packages are the 'high priority' packages. Since R 4.4.0,
 `tools::standard_package_names()` contains a list with the names of these
-packages. To see which high-priority packages are currently installed, run
+packages, use `lapply(tools::standard_package_names(), sort)` to sort their
+names. To see which high-priority packages are currently installed, run
 `sort(unname(installed.packages(priority = "high")[, "Package"]))`. Package
 **translations** is not a recommended package, but will be installed if that
 option is set during the installation of R.
@@ -534,6 +535,10 @@ the package has been installed and [attached][Loading and attaching packages]
   `ls(getNamespace("<pkg>"), all.names = TRUE)` returns a character vector with
   the function names (the default `all.names = FALSE` ignores names that start
   with a dot because those are for internal use in packages);
+  `help("<pkg>-deprecated")` and `help("<pkg>-defunct")` list the
+  [deprecated](https://cran.r-project.org/doc/manuals/r-release/packages/base/refman/base.html#Deprecated)
+  and [defunct](https://cran.r-project.org/doc/manuals/r-release/packages/base/refman/base.html#Defunct)
+  functions in a package.
   `help(package = "<pkg>")` gives an overview with links to their help-pages if
   there is a file `<pkg>.R` in folder `<pkg>\R`.
 - Help page of a function: `help("<func>")`; indicate the package to distinguish
