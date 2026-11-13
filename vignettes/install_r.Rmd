@@ -242,7 +242,7 @@ which can be used to compare fonts, for example using
   [online](https://cran.r-project.org/search.html)
 - R [mailing lists](https://www.r-project.org/mail.html) with a web interface
   with [information and archives](https://stat.ethz.ch/mailman/listinfo) and a
-  mirror for [searching](https://r-mailing-lists.thecoatlessprofessor.com/) the
+  mirror for [searching](https://archives.rstats.dev/) the 
   mailing list archives
 - RStudio by [Posit](https://posit.co/):
   [user guide](https://docs.posit.co/ide/user/),
