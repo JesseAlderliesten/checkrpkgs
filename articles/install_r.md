@@ -154,9 +154,10 @@ packages from [CRAN](https://cran.r-project.org/web/packages/index.html)
 or
 [Bioconductor](https://bioconductor.org/packages/release/BiocViews.html#___Software),
 and might be needed when installing packages from
-[GitHub](https://github.com/): see the section ‘Installing packages’ in
-the vignette *R packages* for instructions on installing R packages:
-[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
+[GitHub](https://github.com/): see the section [Installing
+packages](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html#installing-packages)
+in the vignette *R packages* for instructions on installing R packages:
+[`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
 
 To install [Rtools](https://cran.r-project.org/bin/windows/Rtools/),
 download the version appropriate for the installed version of R (see the
@@ -174,7 +175,9 @@ If you have installed Rtools, you might get the question
 when updating packages. You can choose `Yes` to install the latest
 package versions by building them from source, or choose `No` to get
 slightly less up-to-date package versions but a faster installation. See
-the section ‘Troubleshooting’ in the vignette *R packages* for details:
+the section
+[Troubleshooting](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html#troubleshooting)
+in the vignette *R packages* for details:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md).
 
 ## RStudio
@@ -264,8 +267,9 @@ Fonts](https://fonts.google.com/), or
   FAQ](https://CRAN.R-project.org/doc/manuals/R-FAQ.html#How-to-report-a-bug)
 - CRAN: the [homepage](https://cran.r-project.org/) and an overview of
   its [mirrors](https://cran.r-project.org/mirrors.html) (for details on
-  mirrors, see the section `Mirror websites` in the vignette *R
-  packages*:
+  mirrors, see the section [Mirror
+  websites](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html#mirror-websites)
+  in the vignette *R packages*:
   [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)).
 - R [homepage](https://www.r-project.org/) with
   [FAQs](https://cran.r-project.org/faqs.html),
@@ -281,8 +285,7 @@ Fonts](https://fonts.google.com/), or
 - R [mailing lists](https://www.r-project.org/mail.html) with a web
   interface with [information and
   archives](https://stat.ethz.ch/mailman/listinfo) and a mirror for
-  [searching](https://r-mailing-lists.thecoatlessprofessor.com/) the
-  mailing list archives
+  [searching](https://archives.rstats.dev/) the mailing list archives
 - RStudio by [Posit](https://posit.co/): [user
   guide](https://docs.posit.co/ide/user/),
   [cheatsheet](https://opensource.posit.co/resources/cheatsheets/rstudio-ide/),
@@ -302,9 +305,10 @@ Resources with more details than this vignette:
   Roos, Mancini, Couto and Lusseau
 - Chapter [Installation & Environment
   Setup](https://bookdown.org/guokai8/mastering-r-through-errors/docs/installation-environment.html)
-  from the book [Mastering R Through Errors and
-  Warnings](https://bookdown.org/guokai8/mastering-r-through-errors/docs/)
-  by Guo
+  from the book ‘Mastering R Through Errors and Warnings’ by Guo
+- Chapter [Getting started with
+  R](https://learningstatisticswithr.com/03-introR.html) from the book
+  ‘Learning statistics with R’ from Navarro.
 - Chapter [Getting Started and Getting
-  Help](https://rc2e.com/gettingstarted) from the [R
-  Cookbook](https://rc2e.com/) by Long and Teetor
+  Help](https://rc2e.com/gettingstarted) from the ‘R Cookbook’ by Long
+  and Teetor

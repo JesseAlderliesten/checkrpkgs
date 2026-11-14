@@ -47,8 +47,9 @@ packages are installed with binary distributions of R. Together, the
 base and recommended packages are the ‘high priority’ packages. Since R
 4.4.0,
 [`tools::standard_package_names()`](https://rdrr.io/r/tools/testInstalledPackage.html)
-contains a list with the names of these packages. To see which
-high-priority packages are currently installed, run
+contains a list with the names of these packages, use
+`lapply(tools::standard_package_names(), sort)` to sort their names. To
+see which high-priority packages are currently installed, run
 `sort(unname(installed.packages(priority = "high")[, "Package"]))`.
 Package **translations** is not a recommended package, but will be
 installed if that option is set during the installation of R.
@@ -273,13 +274,17 @@ section `Tracing` in
 [`loadedNamespaces()`](https://rdrr.io/r/base/ns-load.html) gives the
 names of packages that are currently loaded,
 [`utils::sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html) also
-gives their versions and shows if they are attached or only loaded,
+gives their versions and shows if they are attached or only loaded, and
 [`path.package()`](https://rdrr.io/r/base/find.package.html) gives the
 paths from which attached packages were loaded.
 `sessioninfo::session_info(include_base = TRUE)` provides the names,
 versions and the paths of loaded packages, has the option to show
 information about their dependencies, and returns the names in
 alphabetical order instead of the order of loading.
+[`sessioncheck::sessionstate()`](https://sessioncheck.djnavarro.net/reference/sessionstate.html)
+gives similar information and in addition shows relevant information
+about the random-number generator (RNG).
+
 `getOption("defaultPackages")` gives the names of packages that are
 attached by default when R starts up if environment variable
 `R_DEFAULT_PACKAGES` is unset, i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
@@ -342,8 +347,9 @@ BiocManager::install(pkgs = character(), lib = .libPaths(), dependencies = NA,
 ### Installing old versions
 
 Installing old versions of a package might require installing Rtools to
-build the packages from source, see the section ‘Rtools’ in the vignette
-*Installing R, Rtools and RStudio*:
+build the packages from source, see the section
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
 
 #### base R
@@ -430,8 +436,9 @@ Bioconductor, e.g.,
 
   This question is only asked if you have installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/). To install
-  Rtools, see the section ‘Rtools’ in the vignette *Installing R, Rtools
-  and RStudio*:
+  Rtools, see the section
+  [Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+  in the vignette *Installing R, Rtools and RStudio*:
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
   If you want the latest version without using Rtools, you can try again
   a few days later: it usually takes a bit longer for the binaries
@@ -625,7 +632,12 @@ been run):
   `ls(getNamespace("<pkg>"), all.names = TRUE)` returns a character
   vector with the function names (the default `all.names = FALSE`
   ignores names that start with a dot because those are for internal use
-  in packages);
+  in packages); `help("<pkg>-deprecated")` and `help("<pkg>-defunct")`
+  list the
+  [deprecated](https://cran.r-project.org/doc/manuals/r-release/packages/base/refman/base.html#Deprecated)
+  and
+  [defunct](https://cran.r-project.org/doc/manuals/r-release/packages/base/refman/base.html#Defunct)
+  functions in a package.
   [`help(package = "<pkg>")`](https://rdrr.io/pkg/%3Cpkg%3E/man) gives
   an overview with links to their help-pages if there is a file
   `<pkg>.R` in folder `<pkg>\R`.
@@ -681,7 +693,8 @@ To see which packages are mentioned in comments, also look for:
   [GitLab](https://gitlab.com/gitlab-com)
 - `package` and `libraries`
 - `rOpenSci`: [rOpenSci](https://ropensci.org/packages/)
-- `verse`: [R-multiverse](https://r-multiverse.org/),
+- `verse`: [pharmaverse](https://pharmaverse.org/),
+  [R-multiverse](https://r-multiverse.org/),
   [R-universe](https://r-universe.dev/packages),
   [tidyverse](https://tidyverse.org/packages/), etc
 
@@ -744,7 +757,7 @@ presence of names:
 hasName
 #> function (x, name) 
 #> match(name, names(x), nomatch = 0L) > 0L
-#> <bytecode: 0x55e9fddce418>
+#> <bytecode: 0x5f255370bc18>
 #> <environment: namespace:utils>
 ```
 
@@ -768,7 +781,7 @@ Some special cases:
 `%in%`
 #> function (x, table) 
 #> match(x, table, nomatch = 0L) > 0L
-#> <bytecode: 0x55e9f9266d30>
+#> <bytecode: 0x5f254eed5920>
 #> <environment: namespace:base>
 ```
 
@@ -809,7 +822,7 @@ getAnywhere("mean")
 #> 
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55e9fb554898>
+#> <bytecode: 0x5f25511dc218>
 #> <environment: namespace:base>
 ```
 
@@ -839,7 +852,7 @@ getAnywhere("mean.Date")
 #> 
 #> function (x, ...) 
 #> .Date(mean(unclass(x), ...))
-#> <bytecode: 0x55e9fd4d4738>
+#> <bytecode: 0x5f25532a8a68>
 #> <environment: namespace:base>
 ```
 
@@ -881,7 +894,7 @@ getAnywhere("mean.default")
 #>     }
 #>     .Internal(mean(x))
 #> }
-#> <bytecode: 0x55e9fd4d9a78>
+#> <bytecode: 0x5f25532a8058>
 #> <environment: namespace:base>
 ```
 
@@ -927,8 +940,8 @@ if(requireNamespace("Matrix")) {
 #>     "y"), default = NULL, skeleton = (function (x, y, ...) 
 #>     stop(gettextf("invalid call in method dispatch to '%s' (no default method)", 
 #>         "cbind2"), domain = NA))(x, y, ...))
-#> <bytecode: 0x55e9faddebc8>
-#> <environment: 0x55e9f9b76b48>
+#> <bytecode: 0x5f2550a703b0>
+#> <environment: 0x5f254f7e5ea8>
 #> attr(,"generic")
 #> [1] "cbind2"
 #> attr(,"generic")attr(,"package")
@@ -991,7 +1004,7 @@ if(requireNamespace("Matrix")) {
 #> 
 #> function (x, y, ...) 
 #> cbind.Matrix(x, y, deparse.level = 0L)
-#> <bytecode: 0x55e9fcaa4718>
+#> <bytecode: 0x5f2552729238>
 #> <environment: namespace:Matrix>
 #> 
 #> Signatures:
@@ -1009,7 +1022,9 @@ in R 4.4.0 and later and `help(".Primitive()")`. The source code of such
 functions can be viewed at code [repositories](#repositories), or on
 your PC if you have installed R [from
 source](https://cran.r-project.org/sources.html) using Rtools, see the
-section ‘Rtools’ in the vignette *Installing R, Rtools and RStudio*:
+section
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md).
 
 Locate the file ‘src/main/names.c’ and look in the first column
@@ -1064,7 +1079,8 @@ repository (e.g.,
 `https://github.com/r-devel/r-svn/tree/main/src/library/methods/src` for
 code from package **methods**; note that GitHub search only searches the
 main branch), or installing the package from source (see the section
-‘Rtools’ in the vignette *Installing R, Rtools and RStudio*:
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md))
 and searching in the ‘src’ folder of the downloaded code.
 
@@ -1105,8 +1121,9 @@ and searching in the ‘src’ folder of the downloaded code.
 
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/)
   by Bryan, Hester, Pileggi, and Aja
-- Section `Documentation and help` in the vignette *Installing R, Rtools
-  and RStudio*:  
+- Section [Documentation and
+  help](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#documentation-and-help)
+  in the vignette *Installing R, Rtools and RStudio*:  
   [`vignette("install_r", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.md)
 - Search engines specific for R: [METACRAN](https://r-pkg.org/),
   [r-project](https://search.r-project.org/),
@@ -1115,13 +1132,13 @@ and searching in the ‘src’ folder of the downloaded code.
 
 ## sessionInfo
 
-    #> R version 4.6.1 (2026-06-24)
+    #> R version 4.6.2 (2026-10-29)
     #> Platform: x86_64-pc-linux-gnu
-    #> Running under: Ubuntu 24.04.5 LTS
+    #> Running under: Ubuntu 26.04.1 LTS
     #> 
     #> Matrix products: default
     #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-    #> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+    #> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.32.so;  LAPACK version 3.12.0
     #> 
     #> locale:
     #>  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
@@ -1136,13 +1153,13 @@ and searching in the ‘src’ folder of the downloaded code.
     #> [1] stats     graphics  grDevices utils     datasets  methods   base     
     #> 
     #> other attached packages:
-    #> [1] Matrix_1.7-5
+    #> [1] Matrix_1.7-6
     #> 
     #> loaded via a namespace (and not attached):
     #>  [1] digest_0.6.39     desc_1.4.3        R6_2.6.1          fastmap_1.2.0    
-    #>  [5] xfun_0.62         lattice_0.22-9    cachem_1.1.0      knitr_1.52       
+    #>  [5] xfun_0.62         lattice_0.23-1    cachem_1.1.0      knitr_1.52       
     #>  [9] htmltools_0.5.9   rmarkdown_2.32    lifecycle_1.0.5   cli_3.6.6        
-    #> [13] grid_4.6.1        sass_0.4.10       pkgdown_2.2.1     textshaping_1.0.5
-    #> [17] jquerylib_0.1.4   systemfonts_1.3.2 compiler_4.6.1    tools_4.6.1      
+    #> [13] grid_4.6.2        sass_0.4.10       pkgdown_2.2.1     textshaping_1.0.5
+    #> [17] jquerylib_0.1.4   systemfonts_1.3.2 compiler_4.6.2    tools_4.6.2      
     #> [21] ragg_1.5.2        bslib_0.12.0      evaluate_1.0.5    yaml_2.3.12      
-    #> [25] otel_0.2.0        jsonlite_2.0.0    rlang_1.3.0       fs_2.1.0
+    #> [25] otel_0.3.0        jsonlite_2.0.0    rlang_1.3.0       fs_2.1.0

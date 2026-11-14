@@ -1,5 +1,22 @@
 # Changelog
 
+## checkrpkgs 1.4.0
+
+#### Breaking changes
+
+- Dependency **checkinput**: increase minimum version from 1.5.1 to
+  1.6.0 to no longer require `x` in check functions to be atomic.
+- Add suggested dependency **sessioncheck** that is used in vignette *R
+  packages*
+- Add suggested dependency **usethis** that is used in vignette *Git and
+  GitHub*.
+
+#### Documentation
+
+- Include URLs when referring to vignette sections.
+- Vignette *Git and GitHub*: add a section on how to rename a
+  repository.
+
 ## checkrpkgs 1.3.2
 
 #### Documentation

@@ -121,7 +121,7 @@ entered the PAT once, RStudio will remember it.
 
 To `Push` only some of the changes you made, use the `Diff` button in
 the `Git` menu and select the line or lines of code containing the
-changes you want to `Push`. Then a button `Stage line` or `Stage chunck`
+changes you want to `Push`. Then a button `Stage line` or `Stage chunk`
 will show up next to the selected code. Click that button to `Push` only
 the selected lines.
 
@@ -237,6 +237,32 @@ See the GitHub documentation
 and
 [here](https://docs.github.com/en/repositories/working-with-files/managing-files/renaming-a-file).
 
+## Renaming a repository
+
+The code below can be used to change the name of the default branch of
+the current repository from `master` to `main`, see the [blogpost from
+Posit](https://tidyverse.org/blog/2021/10/renaming-default-branch/) for
+details.
+
+``` r
+
+usethis::git_default_branch() # show default branch for the current repository
+usethis::git_default_branch_rename(from = "master", to = "main")
+# Sometimes this takes a while before it works
+usethis::git_default_branch_rediscover()
+```
+
+The code below can be used to set `main` as the name of the default
+branch in future projects that you create. See the [blogpost from
+Posit](https://tidyverse.org/blog/2021/10/renaming-default-branch/) for
+details.
+
+``` r
+
+usethis::git_default_branch() # show default branch for the current repository
+usethis::git_default_branch_configure(name = "main")
+```
+
 ## Repositories: download, fork, or clone?
 
 There are several ways to copy code from a GitHub repository to your PC:
@@ -291,7 +317,9 @@ There are several ways to copy code from a GitHub repository to your PC:
 
 The following code can be used to install packages from
 [GitHub](https://github.com/) (for details see the section
-`Installing packages` \> `Github` in the vignette *R packages*:
+[`Installing packages` \>
+`Github`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.html#github)
+in the vignette *R packages*:
 [`vignette("r_pkgs", package = "checkrpkgs")`](https://jessealderliesten.github.io/checkrpkgs/articles/r_pkgs.md)):
 
 ``` r
@@ -342,9 +370,11 @@ In addition to section [Using GitHub](#using-github) above, see:
 
 ## GitHub Actions
 
-See the section ‘Automate checks’ in the vignette *Package setup* and
-section ‘Use GitHub Actions’ in the vignette *Package development*, both
-from package **develcoder**:
+See the section [‘Automate
+checks’](https://jessealderliesten.github.io/develcoder/articles/pkg_setup.html#automate-checks)
+in the vignette *Package setup* and the section [Use GitHub
+Actions](https://jessealderliesten.github.io/develcoder/articles/pkg_devel.html#use-github-actions)
+in the vignette *Package development*, both from package **develcoder**:
 `vignette("pkg_setup", package = "develcoder")` and
 `vignette("pkg_devel", package = "develcoder")`.
 
@@ -419,4 +449,4 @@ and file separators in R, see the ‘Notes on Paths’ in
 ### See also
 
 - Vignette *R markdown and knitr* in package **develcoder**:
-  `vignette("rmarkdown_knitr", package = "develcoder")`
+  [`vignette("rmarkdown_knitr", package = "develcoder")`](https://jessealderliesten.github.io/develcoder/articles/rmarkdown_knitr.html)
