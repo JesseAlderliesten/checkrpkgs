@@ -19,6 +19,19 @@ if(requireNamespace("remotes", quietly = TRUE)) {
 #### tools ####
 expect_true(all(c("from", "to") %in% names(formals(tools::Rdiff))))
 
+#### usethis ####
+if(requireNamespace("usethis", quietly = TRUE)) {
+  expect_true(all(
+    c("git_default_branch", "git_default_branch_rediscover") %in%
+      ls(getNamespace("usethis"), all.names = TRUE)
+  ))
+
+  expect_true("name" %in% names(formals(usethis::git_default_branch_configure)))
+  expect_true(all(
+    c("from", "to") %in% names(formals(usethis::git_default_branch_rename))
+  ))
+}
+
 #### utils ####
 expect_true(all(
   c("dependencies", "lib", "pkgs", "quiet", "type", "verbose") %in%

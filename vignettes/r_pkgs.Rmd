@@ -56,7 +56,8 @@ are always installed together with R. The
 packages are installed with binary distributions of R. Together, the base and
 recommended packages are the 'high priority' packages. Since R 4.4.0,
 `tools::standard_package_names()` contains a list with the names of these
-packages. To see which high-priority packages are currently installed, run
+packages, use `lapply(tools::standard_package_names(), sort)` to sort their
+names. To see which high-priority packages are currently installed, run
 `sort(unname(installed.packages(priority = "high")[, "Package"]))`. Package
 **translations** is not a recommended package, but will be installed if that
 option is set during the installation of R.
@@ -241,11 +242,15 @@ messages on progress for non-standard packages, see the section `Tracing` in
 
 `loadedNamespaces()` gives the names of packages that are currently loaded,
 `utils::sessionInfo()` also gives their versions and shows if they are attached
-or only loaded, `path.package()` gives the paths from which attached packages
-were loaded. `sessioninfo::session_info(include_base = TRUE)` provides
+or only loaded, and `path.package()` gives the paths from which attached
+packages were loaded. `sessioninfo::session_info(include_base = TRUE)` provides
 the names, versions and the paths of loaded packages, has the option to show
 information about their dependencies, and returns the names in alphabetical
-order instead of the order of loading. `getOption("defaultPackages")` gives the
+order instead of the order of loading. `sessioncheck::sessionstate()` gives
+similar information and in addition shows relevant information about the
+random-number generator (RNG).
+
+`getOption("defaultPackages")` gives the
 names of packages that are attached by default when R starts up if environment
 variable `R_DEFAULT_PACKAGES` is unset, i.e., `Sys.getenv("R_DEFAULT_PACKAGES")`
 is `""`, see `help("Startup")` and the entry `defaultPackages` in
@@ -296,8 +301,9 @@ BiocManager::install(pkgs = character(), lib = .libPaths(), dependencies = NA,
 
 ### Installing old versions
 Installing old versions of a package might require installing Rtools to build
-the packages from source, see the section 'Rtools' in the vignette
-*Installing R, Rtools and RStudio*:
+the packages from source, see the section
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`.
 
 #### base R
@@ -371,7 +377,9 @@ e.g., `https://bioconductor.org/packages/3.22/BiocViews.html`.
   
   This question is only asked if you have installed
   [Rtools](https://cran.r-project.org/bin/windows/Rtools/). To install Rtools,
-  see the section 'Rtools' in the vignette *Installing R, Rtools and RStudio*:
+  see the section
+  [Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+  in the vignette *Installing R, Rtools and RStudio*:
   `vignette("install_r", package = "checkrpkgs")`. If you want the latest
   version without using Rtools, you can try again a few days later: it usually
   takes a bit longer for the binaries (i.e., the package versions that do not
@@ -527,6 +535,10 @@ the package has been installed and [attached][Loading and attaching packages]
   `ls(getNamespace("<pkg>"), all.names = TRUE)` returns a character vector with
   the function names (the default `all.names = FALSE` ignores names that start
   with a dot because those are for internal use in packages);
+  `help("<pkg>-deprecated")` and `help("<pkg>-defunct")` list the
+  [deprecated](https://cran.r-project.org/doc/manuals/r-release/packages/base/refman/base.html#Deprecated)
+  and [defunct](https://cran.r-project.org/doc/manuals/r-release/packages/base/refman/base.html#Defunct)
+  functions in a package.
   `help(package = "<pkg>")` gives an overview with links to their help-pages if
   there is a file `<pkg>.R` in folder `<pkg>\R`.
 - Help page of a function: `help("<func>")`; indicate the package to distinguish
@@ -572,7 +584,8 @@ To see which packages are mentioned in comments, also look for:
 - `Git`: [GitHub](https://github.com/), [GitLab](https://gitlab.com/gitlab-com)
 - `package` and `libraries`
 - `rOpenSci`: [rOpenSci](https://ropensci.org/packages/)
-- `verse`: [R-multiverse](https://r-multiverse.org/),
+- `verse`: [pharmaverse](https://pharmaverse.org/),
+  [R-multiverse](https://r-multiverse.org/),
   [R-universe](https://r-universe.dev/packages),
   [tidyverse](https://tidyverse.org/packages/), etc
 
@@ -741,7 +754,9 @@ internal or primitive, see `help(".internalGenerics")` in R 4.4.0 and later and
 `help(".Primitive()")`. The source code of such functions can be viewed at code
 [repositories][Repositories], or on your PC if you have installed R
 [from source](https://cran.r-project.org/sources.html) using Rtools, see the
-section 'Rtools' in the vignette *Installing R, Rtools and RStudio*:
+section
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`.
 
 Locate the file 'src/main/names.c' and look in the first column ('printname')
@@ -788,8 +803,9 @@ included in a package, your best bet for finding the source code is
 [GitHub](https://github.com/r-devel/r-svn/) repository (e.g.,
 `https://github.com/r-devel/r-svn/tree/main/src/library/methods/src` for code
 from package **methods**; note that GitHub search only searches the main
-branch), or installing the package from source (see the section 'Rtools' in the
-vignette *Installing R, Rtools and RStudio*:
+branch), or installing the package from source (see the section
+[Rtools](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#rtools)
+in the vignette *Installing R, Rtools and RStudio*:
 `vignette("install_r", package = "checkrpkgs")`) and searching in the 'src'
 folder of the downloaded code.
 
@@ -823,8 +839,9 @@ folder of the downloaded code.
 ### Miscellaneous
 - The book [What They Forgot to Teach You About R](https://rstats.wtf/) by
   Bryan, Hester, Pileggi, and Aja
-- Section `Documentation and help` in the vignette
-  *Installing R, Rtools and RStudio*:  
+- Section
+  [Documentation and help](https://jessealderliesten.github.io/checkrpkgs/articles/install_r.html#documentation-and-help)
+  in the vignette *Installing R, Rtools and RStudio*:  
   `vignette("install_r", package = "checkrpkgs")`
 - Search engines specific for R: [METACRAN](https://r-pkg.org/),
   [r-project](https://search.r-project.org/), [Rseek](https://www.rseek.org/),
